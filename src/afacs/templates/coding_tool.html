@@ -206,6 +206,16 @@ details.rule ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 
           </div>
           <p class="hint" style="margin:0.3rem 0 0">Stated: the agent's own words acknowledge the requirement, then it departs. Inferred: only the nature of the act shows it can't be accidental.</p>
         </div>
+        <div id="ezBox" style="margin-top:0.5rem">
+          <p class="hint" style="margin-bottom:0.3rem">For the error(s): which cognitive function failed? Tick all that apply (Ezell et al.; codebook note 5.11)</p>
+          <div class="seg">
+            <label><input type="checkbox" name="ezell" id="ez_observation" value="observation"><span>Observation</span></label>
+            <label><input type="checkbox" name="ezell" id="ez_understanding" value="understanding"><span>Understanding</span></label>
+            <label><input type="checkbox" name="ezell" id="ez_decision" value="decision"><span>Decision</span></label>
+            <label><input type="checkbox" name="ezell" id="ez_action" value="action"><span>Action</span></label>
+          </div>
+          <p class="hint" style="margin:0.3rem 0 0">Observation: didn't notice something, or expected the wrong thing. Understanding: noticed it but misinterpreted it. Decision: wrong goal, plan or choice. Action: carried it out wrongly, or not at all.</p>
+        </div>
         <details class="rule">
           <summary>Violation rule, step by step</summary>
           <ol>
@@ -279,7 +289,7 @@ details.rule ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 
 
   function blank(t) {
     return { cal_id: t.cal_id, uid: t.uid, failure_observed: "", l4_codes: [], l3_codes: [], l2_codes: [], l1_codes: [],
-             deepest_layer: "", violation_flag: "none", violation_evidence: "none", confidence: "", evidence_quotes: "", notes: "",
+             ezell_functions: [], deepest_layer: "", violation_flag: "none", violation_evidence: "none", confidence: "", evidence_quotes: "", notes: "",
              minutes_spent: 0, status: "", codebook_version: CB, updated_at: "" };
   }
   function get(id) { if (!codings[id]) codings[id] = blank(byId[id]); return codings[id]; }
@@ -301,6 +311,7 @@ details.rule ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 
     if (f === "V?") return "thin";
     return (c.violation_evidence === "stated" || c.violation_evidence === "inferred") ? c.violation_evidence : "";
   }
+  function hasError(c) { return c.l1_codes.some(function (x) { return x.indexOf("L1.E") === 0; }); }
   function deepestCoded(c) {
     var d = 0; allCodes(c).forEach(function (x) { d = Math.max(d, +x.charAt(1)); });
     return d ? "L" + d : "none";
@@ -317,6 +328,7 @@ details.rule ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 
       warnings.push("Deepest layer is " + c.deepest_layer + " but your deepest code is at " + deepestCoded(c) + ".");
     if ((derivedFlag(c) === "V1" || derivedFlag(c) === "V2") && !derivedEvidence(c))
       errors.push("Grade the evidence for the violation: stated or inferred (step 2).");
+    if (hasError(c) && !(c.ezell_functions || []).length) warnings.push("Tick the cognitive function(s) for the error (step 2).");
     if (!c.confidence) errors.push("Choose a confidence (step 4).");
     if (codes.length && !/\[S\d+\]/.test(c.evidence_quotes)) warnings.push("No step references yet (step 5).");
     if (derivedEvidence(c) === "stated" && !/["“”]/.test(c.evidence_quotes))
@@ -514,6 +526,14 @@ details.rule ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 
     });
   }
   bindRadio("failure", "failure_observed"); bindRadio("conf", "confidence"); bindRadio("vev", "violation_evidence");
+  Array.prototype.forEach.call(document.querySelectorAll('input[name="ezell"]'), function (box) {
+    box.addEventListener("change", function () {
+      var c = get(current);
+      c.ezell_functions = Array.prototype.filter.call(document.querySelectorAll('input[name="ezell"]'), function (b) { return b.checked; })
+        .map(function (b) { return b.value; });
+      renderDerived(); touch(current);
+    });
+  });
   document.getElementById("deepest").addEventListener("change", function () { get(current).deepest_layer = this.value; renderDerived(); touch(current); });
   ["evidence", "notes"].forEach(function (fid) {
     var field = fid === "evidence" ? "evidence_quotes" : "notes";
@@ -529,6 +549,7 @@ details.rule ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 
     ["yes", "no", "unclear"].forEach(function (v) { document.getElementById("f_" + v).checked = c.failure_observed === v; });
     ["high", "medium", "low"].forEach(function (v) { document.getElementById("c_" + v).checked = c.confidence === v; });
     ["stated", "inferred"].forEach(function (v) { document.getElementById("ev_" + v).checked = c.violation_evidence === v; });
+    ["observation", "understanding", "decision", "action"].forEach(function (v) { document.getElementById("ez_" + v).checked = (c.ezell_functions || []).indexOf(v) >= 0; });
     var all = allCodes(c);
     Array.prototype.forEach.call(boxes.querySelectorAll("input"), function (i) { i.checked = all.indexOf(i.value) >= 0; i.closest(".code").classList.toggle("checked", i.checked); });
     document.getElementById("deepest").value = c.deepest_layer || "";
@@ -543,6 +564,7 @@ details.rule ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 
     document.getElementById("vflag").innerHTML = "Violation flag (follows from your L1 codes): <b>" + f + "</b>" +
       (f === "V?" ? " · evidence graded <b>thin</b>" : (f === "none" ? "" : " · evidence: <b>" + (ev || "choose below") + "</b>"));
     document.getElementById("evBox").style.display = (f === "V1" || f === "V2") ? "block" : "none";
+    document.getElementById("ezBox").style.display = hasError(c) ? "block" : "none";
     var sug = deepestCoded(c), box = document.getElementById("deepSugg");
     if (allCodes(c).length && c.deepest_layer !== sug) {
       box.innerHTML = "Your deepest code is at <b>" + sug + "</b>. ";
@@ -598,14 +620,14 @@ details.rule ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 
 
   /* ---------- CSV export (same columns as annotations/human/calibration_sheet.csv) ---------- */
   var COLS = ["cal_id", "uid", "framework", "model", "benchmark", "failure_observed", "l4_codes", "l3_codes", "l2_codes", "l1_codes",
-              "deepest_layer", "violation_flag", "violation_evidence", "confidence", "evidence_quotes", "notes", "minutes_spent"];
+              "ezell_functions", "deepest_layer", "violation_flag", "violation_evidence", "confidence", "evidence_quotes", "notes", "minutes_spent"];
   function csvCell(v) { v = v == null ? "" : String(v); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
   function toCsv() {
     var lines = [COLS.join(",")];
     TRACES.forEach(function (t) {
       var c = codings[t.cal_id] || blank(t), row = { cal_id: t.cal_id, uid: t.uid, framework: t.framework, model: t.model, benchmark: t.benchmark };
       ["failure_observed", "deepest_layer", "confidence", "evidence_quotes", "notes", "minutes_spent"].forEach(function (k) { row[k] = c[k]; });
-      ["l4_codes", "l3_codes", "l2_codes", "l1_codes"].forEach(function (k) { row[k] = (c[k] || []).join(";"); });
+      ["l4_codes", "l3_codes", "l2_codes", "l1_codes", "ezell_functions"].forEach(function (k) { row[k] = (c[k] || []).join(";"); });
       row.violation_flag = c.failure_observed ? derivedFlag(c) : "";
       row.violation_evidence = c.failure_observed ? derivedEvidence(c) : "";
       lines.push(COLS.map(function (k) { return csvCell(row[k]); }).join(","));

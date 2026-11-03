@@ -65,7 +65,7 @@ Ezell et al. describe one causal chain: **system factors** and **contextual fact
 **Ezell et al. add to AFACS**
 1. Model development as a latent condition (L4.4), together with the point that it needs a different kind of evidence: developer records, not traces (codebook v1, section 1.1).
 2. Security-related context (malicious inputs, vulnerable tools) as named sub-cases of L2.1.
-3. A finer description of cognitive functions (observation, understanding, decision, action), which the study can use to test which distinctions coders can make consistently.
+3. A finer description of cognitive functions (observation, understanding, decision, action). AFACS records the Ezell function for every L1 error alongside the HFACS error type (codebook v1, note 5.11), so the study can check the mapping above against real codings and compare which scheme coders apply more consistently.
 4. A specification of what information investigators need (their Table 1), which this study audits against MAST's logs (`docs/information_audit.md`).
 
 ## A difference in scope

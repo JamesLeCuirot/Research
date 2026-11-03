@@ -28,7 +28,7 @@ from afacs.schema import CODING_FIELDS, CURRENT_CODEBOOK, load_codebook_codes, n
 
 TEMPLATE = Path(__file__).parent / "templates" / "coding_tool.html"
 OUTPUT = paths.DATA / "coding_tool.html"
-LIST_FIELDS = ("l4_codes", "l3_codes", "l2_codes", "l1_codes")
+LIST_FIELDS = ("l4_codes", "l3_codes", "l2_codes", "l1_codes", "ezell_functions")
 
 
 def read_sheet() -> list[dict]:
@@ -95,6 +95,9 @@ def import_codings(folder: Path) -> None:
         for w in warnings:
             print(f"  {row['cal_id']} warning {w}")
     fieldnames = list(rows[0].keys())
+    for i, field in enumerate(CODING_FIELDS):  # an older sheet may lack a newer column
+        if field not in fieldnames:
+            fieldnames.insert(fieldnames.index(CODING_FIELDS[i - 1]) + 1 if i else 5, field)
     if "status" not in fieldnames:
         fieldnames.append("status")
     with open(paths.CALIBRATION_SHEET, "w", newline="") as f:

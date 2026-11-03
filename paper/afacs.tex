@@ -276,10 +276,10 @@ L1 Unsafe acts: violations & L1.V1 & Routine: habitual shortcutting across the t
 \end{tabular}
 \end{table}
 
-\subsection{The people around the system, and failures without an unsafe act}
+\subsection{Adapting HFACS to multi-agent runs}
 \label{sec:people}
 
-Three decisions adapt HFACS to multi-agent benchmark runs. First, the humans
+Five decisions adapt HFACS to multi-agent benchmark runs. First, the humans
 whose decisions shape a run are placed in the existing tiers rather than in a new
 one. The user who sets the task sits at the top of the supervision chain, so a
 deficient task is coded L3.4 whether a human user or an orchestrating agent set
@@ -294,7 +294,12 @@ unsafe act. If a tool or service fails and the agents respond reasonably, for
 example by reporting the problem rather than inventing a result, the failure is
 coded at the precondition or design layer and no L1 code is given. HFACS assumes
 an unsafe act at the sharp end of every accident; forcing one here would
-misrepresent the failure.
+misrepresent the failure. Fourth, a loop is coded as the repeating agent's
+unsafe act and, where a supervising agent could have broken it, also as a failure
+to correct a known problem (L3.3). Fifth, an omission such as never verifying a
+result is coded by whose job it was: an L1 act if an agent was told to do it, L3.1
+if a supervising agent should have checked, and L4.1 or L4.3 if nobody was given
+the job.
 
 \subsection{Cross-walk to Ezell et al.}
 
@@ -304,9 +309,13 @@ correspond to L4, with the system prompt treated as part of the task
 specification at L3.4; their contextual factors correspond to L2.1, with task
 definition at L3.4 and resource limits at L4.2; and their cognitive errors
 correspond to the L1 errors, with memory limits and distraction treated as agent
-state at L2.2. Their four cognitive functions cut the same ground as HFACS's three
-error types differently; RQ3 tests which distinctions can be applied
-consistently.
+state at L2.2. Their four cognitive functions (observation, understanding,
+decision-making and action execution) cut the same ground as HFACS's three error
+types differently. AFACS therefore records both for every error: the HFACS type
+(E1--E3) as the code, and the Ezell function in a separate field. This allows the
+cross-walk's predictions (E3 with observation and understanding, E2 with
+decision, E1 with action) to be checked against coded traces, and RQ3 to compare
+which scheme can be applied more consistently.
 
 \begin{table}[tbp]
 \centering
@@ -593,7 +602,8 @@ prompt replaced by the annotator prompt (\code{prompts/annotator\_v1.md}) with
 the codebook pasted in. The trace is the user message, and the reply is
 constrained by a JSON schema whose allowed codes are read from the codebook, so
 the annotator cannot invent codes and must give step-referenced evidence for each
-code, a causal summary, and an evidence grade for any violation. Every annotation
+code, a causal summary, an evidence grade for any violation, and Ezell et al.'s
+cognitive function for any error. Every annotation
 records the backend, the model requested and the model that served it, the
 prompt and codebook versions, a hash of the full system prompt, token usage and a
 session identifier. A refusal is recorded as an error and is not routed to
@@ -628,7 +638,10 @@ Cohen's $\kappa$~\cite{cohen1960kappa}, read with the Landis and Koch
 bands~\cite{landis1977measurement}, for the presence of each layer, for each code
 (averaged across codes, never pooled), for error versus violation, for the
 violation evidence grade, for the deepest layer (with a linearly weighted variant
-on the ordered scale L1 to L4), and for whether a failure was observed; the share
+on the ordered scale L1 to L4), and for whether a failure was observed. To compare
+the two ways of typing an error, the mean per-label $\kappa$ over HFACS's three
+error types is set against the mean over Ezell et al.'s four cognitive functions;
+the schemes differ in number of categories, so the comparison is indicative. the share
 of identical full code sets is also reported, because exact matches are much
 rarer than partial ones in automated HFACS coding~\cite{ahmadi2025hfacsgrpo}. Each
 headline $\kappa$ carries a 95\% bootstrap interval (2{,}000 resamples), omitted
@@ -673,7 +686,9 @@ violations. In the other direction, their framework contributes a
 model-development factor, which AFACS adopts as L4.4 with its own evidence
 requirement (Section~\ref{sec:evidence}), and named
 security-related contexts. Whether the added categories matter in practice is an
-empirical question, taken up in RQ3.
+empirical question, taken up in RQ3. \pending{observed cross-tabulation of HFACS
+error types against Ezell et al.'s cognitive functions in the AI pilot, and whether
+it matches the predicted alignment}.
 
 \subsection{RQ2: information adequacy}
 
@@ -766,6 +781,8 @@ L1 present & -- & --\\
 Individual codes (mean per-code $\kappa$) & -- & --\\
 Violation vs error & -- & --\\
 Violation evidence grade & -- & --\\
+Error type, HFACS E1--E3 (mean per-code $\kappa$) & -- & --\\
+Error type, Ezell et al.\ functions (mean per-label $\kappa$) & -- & --\\
 Deepest layer (weighted) & -- & --\\
 Failure observed & -- & --\\
 Identical full code set (share of traces) & -- & --\\
@@ -794,13 +811,13 @@ MAST mode & Expected AFACS location\\
 \midrule
 1.1 Disobey task specification & Spread: L3.4, L1.E2 or L1.E3, L1.V, or L4.5 (a run set up with no task)\\
 1.2 Disobey role specification & L4.1 role design, or L1.E2 / L1.V\\
-1.3 Step repetition & L1 acts, with L3.3 (loop not broken) and L4.1 (no termination logic)\\
+1.3 Step repetition & L1 act, with L3.3 where a supervisor could have broken the loop, and L4.1 (no termination logic)\\
 1.4 Loss of conversation history & L2.2 agent state, with L4.2 context limits\\
 1.5 Unaware of termination conditions & L4.1 termination logic, or L1.E2\\
 2.1--2.5 Inter-agent misalignment & Mostly L2.3 coordination; 2.2 also L3.4\\
 2.6 Reasoning--action mismatch & L1.E1 (sound intention, faulty execution), or L1.V\\
 3.1 Premature termination & L1.E2, or L1.V (false claim of completion), with L3.1\\
-3.2 No or incomplete verification & L3.1, L4.3, or L1.V1 (routine skipping)\\
+3.2 No or incomplete verification & By whose job it was: L1 (incl.\ L1.V1 routine skipping), L3.1, or L4.1/L4.3\\
 3.3 Incorrect verification & L3.1, L1.E2 or L1.E3\\
 \bottomrule
 \end{tabular}

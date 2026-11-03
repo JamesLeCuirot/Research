@@ -27,6 +27,11 @@ VIOLATION_FLAGS = ["none", "V1", "V2", "V?"]
 VIOLATION_EVIDENCE = ["none", "stated", "inferred", "thin"]
 EVIDENCE_FOR_FLAG = {"V1": {"stated", "inferred"}, "V2": {"stated", "inferred"}, "V?": {"thin"}, "none": {"none"}}
 CONFIDENCE = ["high", "medium", "low"]
+# Ezell et al.'s (2025) cognitive functions, recorded for every L1 error alongside
+# the HFACS error type, so the study can compare which scheme is applied more
+# consistently (codebook v1, note 5.11). Violations have no Ezell counterpart.
+EZELL_FUNCTIONS = ["observation", "understanding", "decision", "action"]
+ERROR_CODES = {"L1.E1", "L1.E2", "L1.E3"}
 
 # The fields a coder fills in for each trace (human sheet and LLM output alike).
 CODING_FIELDS = [
@@ -35,6 +40,7 @@ CODING_FIELDS = [
     "l3_codes",
     "l2_codes",
     "l1_codes",
+    "ezell_functions",  # codebook v1: observation | understanding | decision | action, for L1 errors
     "deepest_layer",
     "violation_flag",
     "violation_evidence",  # codebook v1: stated | inferred | thin | none
@@ -80,6 +86,17 @@ def split_codes(cell: str | None) -> list[str]:
     return [p.upper() for p in parts if p]
 
 
+def split_labels(cell: str | None) -> list[str]:
+    """'Decision; action' -> ['decision', 'action'] (lower case, order kept, no repeats)."""
+    if not cell:
+        return []
+    out = []
+    for p in re.split(r"[;,\s]+", str(cell).strip().lower()):
+        if p and p not in out:
+            out.append(p)
+    return out
+
+
 def layer_of(code: str) -> str:
     return code.split(".")[0]
 
@@ -103,6 +120,7 @@ def normalise_row(row: dict) -> dict:
     out["violation_evidence"] = clean("violation_evidence").lower()
     for column in LAYER_COLUMNS.values():
         out[column] = ";".join(split_codes(row.get(column)))
+    out["ezell_functions"] = ";".join(split_labels(row.get("ezell_functions")))
     return out
 
 
@@ -165,5 +183,15 @@ def validate_coding(row: dict, codes: dict[str, str]) -> tuple[list[str], list[s
     if evidence in VIOLATION_EVIDENCE and evidence not in EVIDENCE_FOR_FLAG[expected_flag]:
         allowed = " or ".join(sorted(EVIDENCE_FOR_FLAG[expected_flag]))
         warnings.append(f"violation_evidence is {evidence} but the L1 codes imply {allowed}")
+
+    functions = split_labels(row.get("ezell_functions"))
+    for f in functions:
+        if f not in EZELL_FUNCTIONS:
+            errors.append(f"ezell_functions: {f!r} is not one of {EZELL_FUNCTIONS}")
+    has_error = any(c in ERROR_CODES for c in all_codes)
+    if has_error and not functions:
+        warnings.append("an L1 error is coded but ezell_functions is empty")
+    if functions and not has_error:
+        warnings.append("ezell_functions given but no L1 error (E1-E3) is coded")
 
     return errors, warnings

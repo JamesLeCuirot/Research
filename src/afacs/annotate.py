@@ -58,6 +58,7 @@ from afacs.render import render_markdown
 from afacs.schema import (
     CONFIDENCE,
     CURRENT_CODEBOOK,
+    EZELL_FUNCTIONS,
     DEEPEST_LAYER,
     FAILURE_OBSERVED,
     LAYER_COLUMNS,
@@ -124,6 +125,7 @@ def output_schema(codes: dict[str, str]) -> dict:
         },
         "causal_summary": {"type": "string"},
         **{column: code_list(layer) for layer, column in LAYER_COLUMNS.items()},
+        "ezell_functions": {"type": "array", "items": {"type": "string", "enum": EZELL_FUNCTIONS}},
         "deepest_layer": {"type": "string", "enum": DEEPEST_LAYER},
         "violation_flag": {"type": "string", "enum": VIOLATION_FLAGS},
         "violation_evidence": {"type": "string", "enum": VIOLATION_EVIDENCE},
@@ -146,6 +148,7 @@ def coding_to_row(coding: dict) -> dict:
     }
     for column in LAYER_COLUMNS.values():
         row[column] = ";".join(coding[column])
+    row["ezell_functions"] = ";".join(coding.get("ezell_functions", []))
     return row
 
 

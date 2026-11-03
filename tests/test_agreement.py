@@ -6,8 +6,8 @@ from afacs.schema import load_codebook_codes
 CODES = sorted(load_codebook_codes("v0"))
 
 
-def row(l4="", l3="", l2="", l1="", deepest="L1", flag="none", failure="yes", evidence="none"):
-    return {"l4_codes": l4, "l3_codes": l3, "l2_codes": l2, "l1_codes": l1, "deepest_layer": deepest,
+def row(l4="", l3="", l2="", l1="", deepest="L1", flag="none", failure="yes", evidence="none", ezell=""):
+    return {"l4_codes": l4, "l3_codes": l3, "l2_codes": l2, "l1_codes": l1, "ezell_functions": ezell, "deepest_layer": deepest,
             "violation_flag": flag, "violation_evidence": evidence, "failure_observed": failure, "confidence": "high"}
 
 
@@ -37,6 +37,17 @@ def test_layer_disagreement_lowers_kappa():
     m = measures(A, B, list(A), CODES)
     assert m["layer_L3"] is not None and m["layer_L3"] < 1.0
     assert m["layer_L1"] is None  # both always coded L1: undefined
+
+
+def test_hfacs_and_ezell_error_schemes_are_compared():
+    # Both coders agree on the Ezell function every time but split E2/E3 differently.
+    A = {u: row(l1=e, ezell=f) for u, e, f in [("a", "L1.E2", "decision"), ("b", "L1.E3", "observation"),
+                                                 ("c", "L1.E2", "decision"), ("d", "L1.E3", "observation")]}
+    B = {u: row(l1=e, ezell=f) for u, e, f in [("a", "L1.E3", "decision"), ("b", "L1.E3", "observation"),
+                                                 ("c", "L1.E2", "decision"), ("d", "L1.E2", "observation")]}
+    m = measures(A, B, list(A), sorted(load_codebook_codes("v1", trace_only=True)))
+    assert m["ezell_macro"] == 1.0
+    assert m["hfacs_error_macro"] is not None and m["hfacs_error_macro"] < 1.0
 
 
 def test_helpers():

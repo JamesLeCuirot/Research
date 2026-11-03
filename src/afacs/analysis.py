@@ -37,7 +37,7 @@ from afacs import design, paths  # noqa: E402
 from afacs.agreement import RESULTS, any_violation, codes_of, has_layer, load_human, load_llm, usable  # noqa: E402
 from afacs.ingest import load_traces  # noqa: E402
 from afacs.quotes import report_lines  # noqa: E402
-from afacs.schema import CURRENT_CODEBOOK, load_codebook_codes, split_codes  # noqa: E402
+from afacs.schema import CURRENT_CODEBOOK, EZELL_FUNCTIONS, load_codebook_codes, split_codes, split_labels  # noqa: E402
 
 LAYERS = ["L4", "L3", "L2", "L1"]
 LAYER_NAMES = {"L4": "L4 Organisational/design", "L3": "L3 Supervision", "L2": "L2 Preconditions", "L1": "L1 Unsafe acts"}
@@ -304,6 +304,21 @@ def afacs_analysis(rows: dict[str, dict], name: str, weights: dict[str, float] |
         out += ["", f"Traces MAST labels **FM-1.1 Disobey Task Specification** (n={len(fm11)}): "
                 f"{pct(*v)} carry an AFACS violation code; the rest are coded as errors only. "
                 "If both groups are substantial, FM-1.1 mixes capability failures and departures from known requirements.", ""]
+
+    # RQ1, observed: how the two ways of typing an error line up in practice.
+    errs = [u for u in failed if any(c in codes_of(failed[u]) for c in ("L1.E1", "L1.E2", "L1.E3"))]
+    if errs:
+        out += ["## RQ1 (observed): HFACS error types × Ezell et al.'s cognitive functions", "",
+                f"Traces with an L1 error: {len(errs)}. Cells: number of those traces carrying both labels "
+                "(a trace can carry several of each). The cross-walk predicts E3 with observation and understanding, "
+                "E2 with decision, and E1 with action.", "",
+                "| HFACS error | " + " | ".join(EZELL_FUNCTIONS) + " | none given |", "|---|" + "---|" * (len(EZELL_FUNCTIONS) + 1)]
+        for code in ("L1.E1", "L1.E2", "L1.E3"):
+            us = [u for u in errs if code in codes_of(failed[u])]
+            cells = [sum(f in split_labels(failed[u].get("ezell_functions")) for u in us) for f in EZELL_FUNCTIONS]
+            none = sum(not split_labels(failed[u].get("ezell_functions")) for u in us)
+            out.append(f"| {code} (n={len(us)}) | " + " | ".join(map(str, cells)) + f" | {none} |")
+        out += [""]
 
     # RQ4 - cross-walk
     out += ["## RQ4: MAST × AFACS cross-walk", "",

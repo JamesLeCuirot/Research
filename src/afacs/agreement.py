@@ -16,6 +16,10 @@ What is measured, for the traces both coders coded:
 - Deepest layer: kappa, plus a weighted kappa that gives partial credit for
   near misses (L3 vs L4 counts as closer than L1 vs L4).
 - failure_observed: kappa.
+- Two ways of typing errors: the mean per-label kappa for HFACS's error types
+  (E1, E2, E3) and for Ezell et al.'s cognitive functions (observation,
+  understanding, decision, action). Which scheme coders apply more
+  consistently is one of the study's comparisons (codebook v1, note 5.11).
 
 Each headline kappa gets a 95% bootstrap confidence interval: we resample the
 traces with replacement 2,000 times and see how much kappa moves. With ~12 test
@@ -48,10 +52,13 @@ from afacs import paths
 from afacs.schema import (
     CODING_FIELDS,
     CURRENT_CODEBOOK,
+    ERROR_CODES,
+    EZELL_FUNCTIONS,
     LAYER_COLUMNS,
     load_codebook_codes,
     normalise_row,
     split_codes,
+    split_labels,
     validate_coding,
 )
 
@@ -159,6 +166,15 @@ def measures(A: dict, B: dict, uids: list[str], codes: list[str]) -> dict:
     # Strictest level: both coders gave exactly the same set of codes (reported as a plain share,
     # because LLM HFACS coding studies find exact matches far rarer than partial ones).
     m["exact_code_set"] = sum(codes_of(A[u]) == codes_of(B[u]) for u in uids) / len(uids) if uids else None
+    # HFACS error types vs Ezell et al.'s cognitive functions: which can coders apply more consistently?
+    def macro(per: dict) -> float | None:
+        vals = [k for k in per.values() if k is not None]
+        return sum(vals) / len(vals) if vals else None
+
+    m["per_ezell"] = {f: kappa([int(f in split_labels(A[u].get("ezell_functions"))) for u in uids],
+                               [int(f in split_labels(B[u].get("ezell_functions"))) for u in uids]) for f in EZELL_FUNCTIONS}
+    m["ezell_macro"] = macro(m["per_ezell"])
+    m["hfacs_error_macro"] = macro({c: k for c, k in per_code.items() if c in ERROR_CODES})
     return m
 
 
@@ -175,6 +191,8 @@ LABELS = {
     "deepest_layer": "Deepest layer (exact)",
     "deepest_layer_weighted": "Deepest layer (weighted, partial credit)",
     "failure_observed": "Failure observed (yes/no/unclear)",
+    "hfacs_error_macro": "Error type, HFACS (mean κ over E1, E2, E3)",
+    "ezell_macro": "Error type, Ezell et al. (mean κ over observation, understanding, decision, action)",
 }
 
 
@@ -221,7 +239,7 @@ def report(name: str, A: dict, B: dict, uids: list[str], label_a: str, label_b: 
         f"| Measure | Cohen's κ | 95% CI | \"Yes\" count ({label_a} / {label_b}) |",
         "|---|---|---|---|",
     ]
-    for k in HEADLINE + ["violation_flag", "violation_evidence", "deepest_layer"]:
+    for k in HEADLINE + ["violation_flag", "violation_evidence", "deepest_layer", "hfacs_error_macro", "ezell_macro"]:
         ci = cis.get(k)
         pos = m["positives"].get(k)
         lines.append(
@@ -238,6 +256,8 @@ def report(name: str, A: dict, B: dict, uids: list[str], label_a: str, label_b: 
         "",
     ]
     lines.append(", ".join(f"`{c}` {fmt(k)}" for c, k in m["per_code"].items()))
+    lines += ["", "Per-function κ (Ezell et al.):", "",
+              ", ".join(f"{f} {fmt(k)}" for f, k in m["per_ezell"].items())]
     text = "\n".join(lines) + "\n"
     RESULTS.mkdir(exist_ok=True)
     (RESULTS / f"agreement_{name}.md").write_text(text)

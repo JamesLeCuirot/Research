@@ -14,7 +14,7 @@ GOOD = {
     "failure_observed": "yes",
     "evidence": [{"step": 3, "quote": "your_code_here", "codes": ["L3.4"]}],
     "causal_summary": "The task text was empty [S2], so the coder emitted a placeholder [S3].",
-    "l4_codes": [], "l3_codes": ["L3.4"], "l2_codes": [], "l1_codes": ["L1.E2"],
+    "l4_codes": [], "l3_codes": ["L3.4"], "l2_codes": [], "l1_codes": ["L1.E2"], "ezell_functions": ["decision"],
     "deepest_layer": "L3", "violation_flag": "none", "violation_evidence": "none", "confidence": "medium", "notes": "",
 }
 
@@ -38,7 +38,8 @@ def test_good_reply_becomes_valid_row():
     assert rec["error"] is None
     assert rec["row"]["l3_codes"] == "L3.4"
     assert rec["row"]["evidence_quotes"] == '[S3] "your_code_here"'
-    assert rec["validation_errors"] == []
+    assert rec["validation_errors"] == [] and rec["validation_warnings"] == []
+    assert rec["row"]["ezell_functions"] == "decision"
     assert rec["usage"]["cache_read_input_tokens"] == 2000
     assert rec["model_served"] == "claude-sonnet-5-5"
 
@@ -86,6 +87,7 @@ def test_claude_code_error_is_recorded():
 def test_schema_includes_violation_evidence():
     schema = output_schema(CODES)
     assert schema["properties"]["violation_evidence"]["enum"] == ["none", "stated", "inferred", "thin"]
+    assert schema["properties"]["ezell_functions"]["items"]["enum"] == ["observation", "understanding", "decision", "action"]
     assert "L4.4" in schema["properties"]["l4_codes"]["items"]["enum"]  # full codebook passed in
 
 

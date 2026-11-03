@@ -105,7 +105,7 @@ Shares come with **Wilson 95% intervals**, a standard and well-behaved interval 
 
 ## 3. The codebook
 
-`codebook/v0.md` is your original draft. `codebook/v1.md` is the current draft: your decisions so far (see the table in section 5), the Ezell category for each layer, the operational notes carried over from v0 (5.1–5.5 and 5.7 still *[proposed]*, awaiting your review), and the three open questions still to decide (loops, omissions, and whether to record Ezell's cognitive-function labels). The codebook file is the single source of truth: the code list the software accepts is read straight from it (`CURRENT_CODEBOOK` in `src/afacs/schema.py` is now `"v1"`).
+`codebook/v0.md` is your original draft. `codebook/v1.md` is the current draft: your decisions so far (see the table in section 5), the Ezell category for each layer, and the operational notes carried over from v0 (5.1–5.5 and 5.7 still *[proposed]*, awaiting your review). All the open questions are now decided. The codebook file is the single source of truth: the code list the software accepts is read straight from it (`CURRENT_CODEBOOK` in `src/afacs/schema.py` is now `"v1"`).
 
 The proposed notes add **no new categories**. They add one field, `failure_observed` (yes / no / unclear), needed for the controls, and they spell out the violation rule as three questions in order. Accept, edit or delete them.
 
@@ -151,12 +151,15 @@ All study-design numbers live in `src/afacs/design.py` with their reasons.
 | L3.4 covers a bad task set by the human user *or* by an orchestrating agent | The user is the top of the supervision chain; the coder notes which one | **Decided by you** |
 | No fifth level for now | Keeps the direct mapping to HFACS; mentioned in the paper as an idea to explore | **Decided by you** |
 | A failure may have no L1 (unsafe act) code | When a tool fails and the agents respond reasonably, nobody at the sharp end did anything wrong; don't invent an act | **Decided by you** |
+| A loop is coded at L1, plus L3.3 where a supervising agent could have broken it | The agent repeated itself; the supervisor let it continue | **Decided by you** |
+| An omission ("never checked the result") is coded by whose job it was | Agent told to do it: L1; supervisor should have checked: L3.1; nobody given the job: L4.1/L4.3 | **Decided by you** |
+| Record Ezell et al.'s cognitive function (observation, understanding, decision, action) for every L1 error | Lets the paper test the cross-walk on real codings and compare which scheme is applied more consistently | **Decided by you** |
 | Humans don't quote; the AI does, and its quotes are checked automatically | Quoting takes people too long; for the AI, checking quotes against the trace measures whether its evidence is genuine | **Decided by you** (humans giving step references instead is my proposal) |
 | AI pilot on the bulk sample only, never the 30 calibration traces | Keeps those traces untouched for human coders in paper 2 | Recommended |
 
 ## 6. What you do next
 
-1. **Review codebook v1** (`codebook/v1.md`) and the cross-walk (`docs/crosswalk_ezell.md`). Decide on the "[proposed]" operational notes (5.1–5.5, 5.7) and the three open questions (loops, omissions, Ezell labels). Correct the cross-walk wherever your human-factors judgement differs from my draft.
+1. **Review codebook v1** (`codebook/v1.md`) and the cross-walk (`docs/crosswalk_ezell.md`). Decide on the "[proposed]" operational notes (5.1–5.5, 5.7). Correct the cross-walk wherever your human-factors judgement differs from my draft.
 2. **Approve the AI pilot.** Once codebook v1 is settled, Claude codes the 250 bulk traces through your subscription (it may take several sessions because of usage limits).
 3. **Expert case studies.** Review a handful of the AI's codings with the trace beside you, and say where you agree or disagree and why. These become the case studies.
 4. **Optional:** code the 10 short AG2 and MetaGPT calibration traces yourself (about 2 hours) as a small human anchor. Not required for paper 1.

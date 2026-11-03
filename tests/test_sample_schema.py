@@ -77,7 +77,7 @@ def test_split_codes_is_forgiving():
 def _row(**kw):
     base = {
         "failure_observed": "yes", "l4_codes": "", "l3_codes": "L3.4", "l2_codes": "", "l1_codes": "L1.E2",
-        "deepest_layer": "L3", "violation_flag": "none", "violation_evidence": "none", "confidence": "medium",
+        "ezell_functions": "decision", "deepest_layer": "L3", "violation_flag": "none", "violation_evidence": "none", "confidence": "medium",
         "evidence_quotes": "", "notes": "",
     }
     base.update(kw)
@@ -133,7 +133,7 @@ def test_codebook_v1_adds_l4_4_and_l4_5():
 
 def test_violation_evidence_grading_rules():
     codes = load_codebook_codes("v1")
-    ok = _row(l1_codes="L1.V2", violation_flag="V2", violation_evidence="stated")
+    ok = _row(l1_codes="L1.V2", violation_flag="V2", violation_evidence="stated", ezell_functions="")
     errors, warnings = validate_coding(ok, codes)
     assert errors == [] and warnings == []
     _, warnings = validate_coding(_row(l1_codes="L1.V2", violation_flag="V2", violation_evidence="thin"), codes)
@@ -142,6 +142,20 @@ def test_violation_evidence_grading_rules():
     assert not any("violation_evidence" in w for w in warnings)
     errors, _ = validate_coding(_row(violation_evidence="maybe"), codes)
     assert any("violation_evidence" in e for e in errors)
+
+
+def test_ezell_functions_rules():
+    codes = load_codebook_codes("v1")
+    assert normalise_row({"ezell_functions": " Decision ; ACTION,decision"})["ezell_functions"] == "decision;action"
+    errors, _ = validate_coding(_row(ezell_functions="intuition"), codes)
+    assert any("ezell_functions" in e for e in errors)
+    _, warnings = validate_coding(_row(ezell_functions=""), codes)  # an error with no function
+    assert any("ezell_functions is empty" in w for w in warnings)
+    _, warnings = validate_coding(_row(l1_codes="L1.V2", violation_flag="V2", violation_evidence="stated"), codes)
+    assert any("no L1 error" in w for w in warnings)  # functions belong to errors, not violations
+    errors, warnings = validate_coding(_row(l1_codes="L1.V2", violation_flag="V2", violation_evidence="stated",
+                                            ezell_functions=""), codes)
+    assert errors == [] and warnings == []
 
 
 def test_trace_only_codes_exclude_developer_evidence():

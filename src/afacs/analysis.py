@@ -36,6 +36,7 @@ from matplotlib.colors import LinearSegmentedColormap  # noqa: E402
 from afacs import design, paths  # noqa: E402
 from afacs.agreement import RESULTS, any_violation, codes_of, has_layer, load_human, load_llm, usable  # noqa: E402
 from afacs.ingest import load_traces  # noqa: E402
+from afacs.quotes import report_lines  # noqa: E402
 from afacs.schema import CURRENT_CODEBOOK, load_codebook_codes, split_codes  # noqa: E402
 
 LAYERS = ["L4", "L3", "L2", "L1"]
@@ -216,7 +217,8 @@ def mast_figures() -> None:
 # ---------------------------------------------------------------------------
 
 
-def afacs_analysis(rows: dict[str, dict], name: str, weights: dict[str, float] | None = None) -> None:
+def afacs_analysis(rows: dict[str, dict], name: str, weights: dict[str, float] | None = None,
+                   extra: list[str] | None = None) -> None:
     """RQ2-RQ4 tables and figures. With `weights` (bulk run), shares are weighted to the eligible pool."""
     traces = {t["uid"]: t for t in load_traces()}
     codes = list(load_codebook_codes(CURRENT_CODEBOOK, trace_only=True))  # codebook order: L4 first, L1 last
@@ -326,6 +328,7 @@ def afacs_analysis(rows: dict[str, dict], name: str, weights: dict[str, float] |
         heatmap(code_matrix, row_labels, codes, f"AFACS codes within each MAST label ({name})",
                 paths.FIGURES / f"crosswalk_codes_{name}.png", row_note=notes)
 
+    out += extra or []
     RESULTS.mkdir(exist_ok=True)
     (RESULTS / f"analysis_{name}.md").write_text("\n".join(out) + "\n")
     print("\n".join(out))
@@ -347,7 +350,11 @@ def main() -> None:
     elif args.human:
         afacs_analysis(usable(load_human(), "human"), "human_calibration")
     else:
-        afacs_analysis(usable(load_llm(args.run), args.run), args.run, weights=load_bulk_weights())
+        from afacs.annotate import check_quotes  # the AI's evidence quotes, checked against the traces
+
+        traces = {t["uid"]: t for t in load_traces()}
+        quote_lines = report_lines(check_quotes(args.run, traces, verbose=False))
+        afacs_analysis(usable(load_llm(args.run), args.run), args.run, weights=load_bulk_weights(), extra=quote_lines)
 
 
 if __name__ == "__main__":

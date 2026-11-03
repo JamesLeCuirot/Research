@@ -238,8 +238,8 @@ details.rule ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 
       </div>
       <div class="blk">
         <h3><b>5</b> Evidence</h3>
-        <p class="hint">Select text in a step and press <b>Cite</b>, or type. 1–4 short quotes, e.g. <span class="mono">[S4] "I will skip the tests"</span>.</p>
-        <textarea id="evidence" aria-label="Evidence quotes"></textarea>
+        <p class="hint">For each code, the steps that support it, e.g. <span class="mono">L3.3: [S14], [S17]</span>. Pressing a step's <b>Cite</b> button adds its reference. No quotes needed, except for a <b>stated</b> violation: select the agent's own words, then press <b>Cite</b> (codebook v1, note 5.6).</p>
+        <textarea id="evidence" aria-label="Evidence: step references"></textarea>
       </div>
       <div class="blk">
         <h3><b>6</b> Notes</h3>
@@ -318,7 +318,9 @@ details.rule ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 
     if ((derivedFlag(c) === "V1" || derivedFlag(c) === "V2") && !derivedEvidence(c))
       errors.push("Grade the evidence for the violation: stated or inferred (step 2).");
     if (!c.confidence) errors.push("Choose a confidence (step 4).");
-    if (codes.length && !c.evidence_quotes.trim()) warnings.push("No evidence quoted yet (step 5).");
+    if (codes.length && !/\[S\d+\]/.test(c.evidence_quotes)) warnings.push("No step references yet (step 5).");
+    if (derivedEvidence(c) === "stated" && !/["“”]/.test(c.evidence_quotes))
+      warnings.push("A stated violation needs one quote of the agent's own words (step 5).");
     return { errors: errors, warnings: warnings };
   }
   function status(id) {
@@ -449,7 +451,7 @@ details.rule ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 
       var art = document.createElement("article"); art.className = "step k-" + s.kind; art.id = "S" + s.n;
       art.innerHTML = '<header><span class="sn">[S' + s.n + ']</span><span class="ag">' + esc(s.agent) + '</span>' +
         (KIND[s.kind] ? '<span class="kd">' + KIND[s.kind] + '</span>' : '') +
-        (s.kind === "benchmark_info" ? '' : '<button type="button" class="cite" title="Add the selected text from this step to your evidence">Cite</button>') + '</header>';
+        (s.kind === "benchmark_info" ? '' : '<button type="button" class="cite" title="Add this step reference to your evidence (and the selected text, if any)">Cite</button>') + '</header>';
       var pre = document.createElement("pre");
       var long = s.text.length > LIMIT;
       pre.textContent = long ? s.text.slice(0, LIMIT) : s.text;
@@ -480,7 +482,7 @@ details.rule ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 
     var ev = document.getElementById("evidence");
     ev.value = ev.value.trim() ? ev.value.trim() + " | " + piece : piece;
     get(current).evidence_quotes = ev.value; touch(current);
-    toast(selTxt ? "Quote from S" + n + " added to evidence" : "S" + n + " added to evidence (select text first to quote it)");
+    toast(selTxt ? "Quote from S" + n + " added to evidence" : "S" + n + " added to evidence");
   }
 
   /* ---------- form ---------- */

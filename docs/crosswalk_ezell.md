@@ -25,7 +25,7 @@ Ezell et al. describe one causal chain: **system factors** and **contextual fact
 | Feedback: undesirable proxy goal; wrong trade-offs; poisoned feedback | **L4.4** *(developer evidence)* | The usual latent condition behind a violation (e.g. training that rewarded looking successful); a developer can test it by checking whether the training signal would have rewarded the behaviour. |
 | Learning methods: memorisation, forgetting, wrong inferences, reinforcing the wrong goal, poor generalisation | **L4.4** *(developer evidence)* | Testable by comparing model versions or checkpoints on the same scenario. |
 | System prompt underspecified, or inadvertently encourages undesirable behaviour | **L3.4** Deficient specification | AFACS treats the system prompt as part of the task specification. |
-| Scaffolding does not function as intended / functions ineffectively | **L4.1** Architecture and role design (design flaw) or **L2.1** Environment (fails during the run) | Which one is codebook open question 3. |
+| Scaffolding does not function as intended / functions ineffectively | **L4.1/L4.2** (limitation built into the design) or **L2.1** Environment (malfunction during the run) | Coded by cause (decided; codebook v1, open question 4). |
 
 ### Contextual factors (their A.2)
 
@@ -57,7 +57,7 @@ Ezell et al. describe one causal chain: **system factors** and **contextual fact
 ## What each framework adds
 
 **AFACS adds to Ezell et al.**
-1. A supervision tier for multi-agent systems: an orchestrator that fails to check output (L3.1), assigns a task beyond an agent's ability (L3.2), or leaves a visible problem uncorrected (L3.3).
+1. A supervision tier for multi-agent systems: an orchestrator that fails to check output (L3.1), assigns a task beyond an agent's ability (L3.2), or leaves a visible problem uncorrected (L3.3). The human user who sets the task sits at the top of this chain (L3.4), and the people who launch the run are treated as part of the organisation (L4.5 Operation set-up).
 2. Coordination between agents (L2.3), the crew-resource-management analogue.
 3. Violations, coded from behaviour with graded evidence (stated, inferred, thin).
 4. An empirical test on real traces (this study).

@@ -125,9 +125,10 @@ def test_render_hides_mast_labels_and_benchmark_info_by_default():
     assert '"success": true' in render_markdown(trace, show_benchmark=True)
 
 
-def test_codebook_v1_adds_l4_4():
+def test_codebook_v1_adds_l4_4_and_l4_5():
     codes = load_codebook_codes("v1")
-    assert len(codes) == 17 and "L4.4" in codes
+    assert len(codes) == 18 and {"L4.4", "L4.5"} <= set(codes)
+    assert len(load_codebook_codes("v1", trace_only=True)) == 17
 
 
 def test_violation_evidence_grading_rules():

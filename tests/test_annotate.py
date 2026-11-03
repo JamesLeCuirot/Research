@@ -93,4 +93,12 @@ def test_annotator_is_never_offered_developer_evidence_codes():
     trace_codes = load_codebook_codes("v1", trace_only=True)
     schema = output_schema(trace_codes)
     assert "L4.4" not in schema["properties"]["l4_codes"]["items"]["enum"]
-    assert schema["properties"]["l4_codes"]["items"]["enum"] == ["L4.1", "L4.2", "L4.3"]
+    assert schema["properties"]["l4_codes"]["items"]["enum"] == ["L4.1", "L4.2", "L4.3", "L4.5"]
+
+
+def test_run_records_carry_a_quote_check():
+    from afacs.annotate import attach_quote_check
+    trace = {"steps": [{"n": 1, "kind": "message", "text": "task"}, {"n": 2, "kind": "message", "text": "x"},
+                       {"n": 3, "kind": "message", "text": "def f():\n    your_code_here"}]}
+    rec = attach_quote_check(message_to_record(fake_message(json.dumps(GOOD)), "U1", META, CODES), trace)
+    assert rec["quote_check"]["verified"] == 1 and rec["quote_check"]["codes_without_evidence"] == ["L1.E2"]

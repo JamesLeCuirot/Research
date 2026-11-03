@@ -6,6 +6,7 @@ Run:
     uv run afacs-annotate run --set dev --model claude-sonnet-5-5 --run-name sonnet_dev_p0
     uv run afacs-annotate batch-submit --set bulk --run-name sonnet_bulk_p1   # 50% cheaper, async
     uv run afacs-annotate batch-collect --run-name sonnet_bulk_p1
+    uv run afacs-annotate check-quotes --run-name sonnet_bulk_p1   # are the evidence quotes genuine?
 
 Sets: calibration, dev, test (from the hidden calibration key), bulk (from the
 bulk sample), or a comma-separated list of trace uids / calibration ids.
@@ -21,6 +22,8 @@ How it works:
 - Every output line records the model, prompt version, codebook version, a
   hash of the full system prompt, token usage and the request id, so any
   annotation can be traced back to exactly what produced it.
+- Every evidence quote is checked against the step it cites (afacs.quotes);
+  the result is stored with the annotation as `quote_check`.
 - If the model declines a request (a "refusal"), the trace is recorded as an
   error. We deliberately do not fall back to a different model: an agreement
   study needs every annotation to come from the same annotator.
@@ -50,6 +53,7 @@ from pathlib import Path
 
 from afacs import paths
 from afacs.ingest import load_traces
+from afacs.quotes import check_coding, report_lines, summarise
 from afacs.render import render_markdown
 from afacs.schema import (
     CONFIDENCE,
@@ -335,6 +339,26 @@ def claude_code_to_record(out: dict, uid: str, meta: dict, codes: dict[str, str]
     return finish_record(record, coding, codes)
 
 
+def attach_quote_check(record: dict, trace: dict) -> dict:
+    """Check the evidence quotes of a successful annotation against the trace (codebook v1, note 5.6)."""
+    if record.get("coding"):
+        record["quote_check"] = check_coding(record["coding"], trace)
+    return record
+
+
+def check_quotes(run_name: str, traces: dict[str, dict], verbose: bool = True) -> dict:
+    """Re-check every successful annotation in a run file and print a summary."""
+    checks = []
+    with open(paths.LLM_ANNOTATIONS / f"{run_name}.jsonl") as f:
+        for r in map(json.loads, f):
+            if not r.get("error") and r.get("coding") and r["uid"] in traces:
+                checks.append(check_coding(r["coding"], traces[r["uid"]]))
+    summary = summarise(checks)
+    if verbose:
+        print("\n".join(report_lines(summary)))
+    return summary
+
+
 def run_meta(model: str, prompt_name: str, effort: str, run_name: str, system: str, backend: str = "api") -> dict:
     return {
         "run_name": run_name,
@@ -396,6 +420,7 @@ def run_sync(client, uids, traces, model, effort, prompt_name, run_name, backend
                 with client.messages.stream(**params) as stream:
                     msg = stream.get_final_message()
                 record = message_to_record(msg, uid, meta, codes)
+            attach_quote_check(record, traces[uid])
         except anthropic.APIStatusError as e:
             # The SDK already retried rate limits and server errors. What's left (e.g. a 400
             # for an over-long request) won't fix itself: record it and move on.
@@ -407,6 +432,9 @@ def run_sync(client, uids, traces, model, effort, prompt_name, run_name, backend
             f.write(json.dumps(record) + "\n")
         u = record.get("usage", {})
         status = record["error"] or ("ok" if not record.get("validation_errors") else "ok (validation errors)")
+        if record.get("quote_check"):
+            qc = record["quote_check"]
+            status += f" · quotes {qc['verified']}/{qc['n_quotes']} found"
         print(f"  [{i}/{len(todo)}] {uid}: {status} · in {u.get('input_tokens')} cache-read {u.get('cache_read_input_tokens')} out {u.get('output_tokens')}")
         errors_in_a_row = errors_in_a_row + 1 if record["error"] else 0
         if errors_in_a_row >= 3:
@@ -457,6 +485,7 @@ def batch_collect(client, run_name: str, wait: bool) -> None:
     codes = load_codebook_codes(manifest["codebook_version"], trace_only=True)
     meta = {k: manifest[k] for k in ("run_name", "model_requested", "prompt_version", "codebook_version", "system_prompt_sha", "effort")}
     out_path = paths.LLM_ANNOTATIONS / f"{run_name}.jsonl"
+    traces = {t["uid"]: t for t in load_traces()}
     already = done_uids(out_path)  # append; never overwrite earlier results
     n = errors = 0
     with open(out_path, "a") as f:
@@ -465,7 +494,7 @@ def batch_collect(client, run_name: str, wait: bool) -> None:
             if uid in already:
                 continue
             if result.result.type == "succeeded":
-                record = message_to_record(result.result.message, uid, meta, codes)
+                record = attach_quote_check(message_to_record(result.result.message, uid, meta, codes), traces[uid])
             else:
                 record = {"uid": uid, **meta, "error": f"batch result {result.result.type}"}
             errors += bool(record.get("error"))
@@ -499,6 +528,8 @@ def main() -> None:
     p = sub.add_parser("batch-collect")
     p.add_argument("--run-name", required=True)
     p.add_argument("--wait", action="store_true", help="keep polling until the batch ends")
+    p = sub.add_parser("check-quotes", help="check a run's evidence quotes against the traces")
+    p.add_argument("--run-name", required=True)
     p = sub.add_parser("show-prompt")
     p.add_argument("--uid", required=True, help="trace uid or calibration id")
     p.add_argument("--prompt", default=DEFAULT_PROMPT)
@@ -509,6 +540,9 @@ def main() -> None:
         return
 
     traces = {t["uid"]: t for t in load_traces()}
+    if args.command == "check-quotes":
+        check_quotes(args.run_name, traces)
+        return
     if args.command == "show-prompt":
         uid = resolve_set(args.uid)[0]
         print("=== SYSTEM PROMPT (cached) ===\n")

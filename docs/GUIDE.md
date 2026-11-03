@@ -105,7 +105,7 @@ Shares come with **Wilson 95% intervals**, a standard and well-behaved interval 
 
 ## 3. The codebook
 
-`codebook/v0.md` is your original draft. `codebook/v1.md` is the current draft: your decisions so far (keep "violation", defined behaviourally; grade the evidence for every violation), a proposed L4.4 Model development code from Ezell et al., the Ezell category for each layer, the *proposed* operational notes carried over from v0, and the open questions still to decide. The codebook file is the single source of truth: the code list the software accepts is read straight from it (`CURRENT_CODEBOOK` in `src/afacs/schema.py` is now `"v1"`).
+`codebook/v0.md` is your original draft. `codebook/v1.md` is the current draft: your decisions so far (see the table in section 5), the Ezell category for each layer, the operational notes carried over from v0 (5.1–5.5 and 5.7 still *[proposed]*, awaiting your review), and the three open questions still to decide (loops, omissions, and whether to record Ezell's cognitive-function labels). The codebook file is the single source of truth: the code list the software accepts is read straight from it (`CURRENT_CODEBOOK` in `src/afacs/schema.py` is now `"v1"`).
 
 The proposed notes add **no new categories**. They add one field, `failure_observed` (yes / no / unclear), needed for the controls, and they spell out the violation rule as three questions in order. Accept, edit or delete them.
 
@@ -118,7 +118,7 @@ Full numbers are in `docs/data_audit.md`; figures in `figures/`.
 3. **A corrupt group.** "ChatDev with CodeLlama" has 100 rows but only 30 distinct traces, and copies of the same trace carry unrelated labels. We excluded it.
 4. **Wrong metadata.** OpenManus traces are tagged as a programming benchmark but are really GAIA questions; the AG2 "GSM" traces are GSM-Plus. Corrected. Two traces filed as HyperAgent are actually ChatDev logs; excluded.
    OpenManus logs print only the first ~50 characters of each task (the agents got the full text); the rendered traces carry a note so nobody codes that as a bad task specification.
-5. **Empty tasks.** In 5 traces the task text is empty: the experiment gave the agents nothing to do, yet MAST labels them, e.g., "Disobey Task Specification". There was no specification to disobey. This is a neat illustration of why layered coding matters (and an open codebook question: how to code test-harness defects).
+5. **Empty tasks.** In 5 traces the task text is empty: the experiment gave the agents nothing to do, yet MAST labels them, e.g., "Disobey Task Specification". There was no specification to disobey. This is a neat illustration of why layered coding matters (you decided to code these as **L4.5 Operation set-up**: whoever launched the run counts as part of the organisation).
 6. **MAST's "human-labelled" file is unreliable.** It has 19 traces (not 21), uses three different versions of the taxonomy, and within each round different traces carry identical labels. The original annotation sheets (PDFs in MAST's GitHub repo) show different labels per trace, so the file was assembled incorrectly. We don't use it.
 7. **No success/failure record.** MAST doesn't record whether each task actually succeeded. So "failed trace" means "MAST's judge flagged at least one failure mode". Only AppWorld and some AG2 traces carry the benchmark's own pass/fail.
 8. **Model is tangled with framework.** Most frameworks ran only one model, and "Claude" has no version number. So comparisons between models are only possible within MetaGPT and AG2, and are exploratory.
@@ -146,11 +146,17 @@ All study-design numbers live in `src/afacs/design.py` with their reasons.
 | Grade the evidence for every violation (stated / inferred / thin) | Makes the most contested judgement transparent | **Decided by you** |
 | Add L4.4 Model development (from Ezell et al.) as a developer-evidence code | It can't be seen in a trace; only developers hold the evidence (training records, version comparisons). Model-level effects are looked for across traces instead | **Decided by you** |
 | Run the annotator through Claude Code on your subscription | Your preference; no API key needed | **Decided by you** |
+| Framework software (not the AI) misbehaving is coded by cause | A malfunction during the run is L2.1; a limitation built into the design is L4.1/L4.2 | **Decided by you** |
+| Add L4.5 Operation set-up | Whoever launched the run (e.g. with an empty task) is treated as the organisation; such traces are coded, not excluded | **Decided by you** |
+| L3.4 covers a bad task set by the human user *or* by an orchestrating agent | The user is the top of the supervision chain; the coder notes which one | **Decided by you** |
+| No fifth level for now | Keeps the direct mapping to HFACS; mentioned in the paper as an idea to explore | **Decided by you** |
+| A failure may have no L1 (unsafe act) code | When a tool fails and the agents respond reasonably, nobody at the sharp end did anything wrong; don't invent an act | **Decided by you** |
+| Humans don't quote; the AI does, and its quotes are checked automatically | Quoting takes people too long; for the AI, checking quotes against the trace measures whether its evidence is genuine | **Decided by you** (humans giving step references instead is my proposal) |
 | AI pilot on the bulk sample only, never the 30 calibration traces | Keeps those traces untouched for human coders in paper 2 | Recommended |
 
 ## 6. What you do next
 
-1. **Review codebook v1** (`codebook/v1.md`) and the cross-walk (`docs/crosswalk_ezell.md`). Decide on L4.4, the "[proposed]" operational notes and the open questions. Correct the cross-walk wherever your human-factors judgement differs from my draft.
+1. **Review codebook v1** (`codebook/v1.md`) and the cross-walk (`docs/crosswalk_ezell.md`). Decide on the "[proposed]" operational notes (5.1–5.5, 5.7) and the three open questions (loops, omissions, Ezell labels). Correct the cross-walk wherever your human-factors judgement differs from my draft.
 2. **Approve the AI pilot.** Once codebook v1 is settled, Claude codes the 250 bulk traces through your subscription (it may take several sessions because of usage limits).
 3. **Expert case studies.** Review a handful of the AI's codings with the trace beside you, and say where you agree or disagree and why. These become the case studies.
 4. **Optional:** code the 10 short AG2 and MetaGPT calibration traces yourself (about 2 hours) as a small human anchor. Not required for paper 1.

@@ -244,7 +244,7 @@ medium or low). Table~\ref{tab:codes} lists the layers and codes of codebook v1
 \centering
 \caption{AFACS layers and codes (codebook v1). L4.4, added from Ezell et al.'s
 system factors, needs developer-side evidence and is not applied from traces
-(Section~\ref{sec:evidence}).}
+(Section~\ref{sec:evidence}). L4.5 covers the people who launched the run.}
 \label{tab:codes}
 \small
 \begin{tabular}{@{}L{3.3cm}lL{9.6cm}@{}}
@@ -255,11 +255,12 @@ L4 Organisational / design & L4.1 & Architecture and role design: role split, mi
  & L4.2 & Resource provisioning: tools, step or token budgets, context limits\\
  & L4.3 & Process: no standard procedure for verification or handover\\
  & L4.4 & Model development (developer evidence only): training data, feedback or learning methods\\
+ & L4.5 & Operation set-up: the run was launched or configured wrongly, e.g.\ an empty task\\
 \midrule
 L3 Supervision / orchestration & L3.1 & Inadequate supervision: no check on subagent output\\
  & L3.2 & Planned inappropriate operation: task beyond an agent's capability or information\\
  & L3.3 & Failure to correct a known problem: visible loop or error, no intervention\\
- & L3.4 & Deficient specification: ambiguous, contradictory or incomplete task or prompt\\
+ & L3.4 & Deficient specification: ambiguous, contradictory or incomplete task or prompt, set by the user or by an orchestrating agent\\
 \midrule
 L2 Preconditions & L2.1 & Environment: tool or API failure, bad or unavailable information\\
  & L2.2 & Agent state: context saturation, lost instructions, carried-over error\\
@@ -274,6 +275,26 @@ L1 Unsafe acts: violations & L1.V1 & Routine: habitual shortcutting across the t
 \bottomrule
 \end{tabular}
 \end{table}
+
+\subsection{The people around the system, and failures without an unsafe act}
+\label{sec:people}
+
+Three decisions adapt HFACS to multi-agent benchmark runs. First, the humans
+whose decisions shape a run are placed in the existing tiers rather than in a new
+one. The user who sets the task sits at the top of the supervision chain, so a
+deficient task is coded L3.4 whether a human user or an orchestrating agent set
+it, and the coder records which. The people who launch and configure a run are
+treated as part of the organisation: when the run itself was set up wrongly, for
+instance launched with an empty task, AFACS codes \code{L4.5} Operation set-up,
+the analogue of a defective dispatch, rather than excluding the trace. Second,
+when the framework's own software (not the model) misbehaves, the cause decides
+the code: a malfunction during the run is a precondition (L2.1), a limitation
+built into the design is L4.1 or L4.2. Third, a failure need not include an
+unsafe act. If a tool or service fails and the agents respond reasonably, for
+example by reporting the problem rather than inventing a result, the failure is
+coded at the precondition or design layer and no L1 code is given. HFACS assumes
+an unsafe act at the sharp end of every accident; forcing one here would
+misrepresent the failure.
 
 \subsection{Cross-walk to Ezell et al.}
 
@@ -300,7 +321,7 @@ Ezell et al.\ factor & AFACS code & Note\\
 \midrule
 System: training data, feedback, learning methods & L4.4$^{\dagger}$ & Latent; feedback that rewards appearing successful is a typical condition behind violations\\
 System: system prompt underspecified or encouraging undesirable behaviour & L3.4 & System prompt treated as part of the specification\\
-System: scaffolding not working as intended & L4.1 or L2.1 & Design flaw or run-time failure (open question)\\
+System: scaffolding not working as intended & L4.1/L4.2 or L2.1 & Coded by cause: built into the design, or a failure during the run\\
 Contextual: information inaccessible, missing, poor or malicious & L2.1 & \\
 Contextual: tools unusable or failing; tool errors not visible & L2.1 or L4.2 & Run-time failure, or provisioning by design\\
 Contextual: unclear or conflicting task; resource limits & L3.4; L4.2 & \\
@@ -349,6 +370,7 @@ Layer & Evidence needed & Ezell et al.\ category\\
 L1 unsafe acts, L2 preconditions & The trace: messages, actions, tool outputs & Activity logs; tool information\\
 L3 supervision & The trace, the task specification and the system prompt & Activity logs (system and user prompts)\\
 L4.1--L4.3 design, process & The trace and what is known of the system's design & System documentation; tool information\\
+L4.5 operation set-up & The trace and what is known of how the run was launched and configured & Activity logs (user prompts); system configuration\\
 L4.4 model development & Developer records: training and reward specifications, change logs, version or checkpoint comparisons & System documentation and change logs; system artefacts; model access\\
 \bottomrule
 \end{tabular}
@@ -575,7 +597,14 @@ code, a causal summary, and an evidence grade for any violation. Every annotatio
 records the backend, the model requested and the model that served it, the
 prompt and codebook versions, a hash of the full system prompt, token usage and a
 session identifier. A refusal is recorded as an error and is not routed to
-another model. At API list prices the 250-trace run would cost about \$14 with
+another model. Each evidence quote is then checked automatically against the step
+it cites, after normalising whitespace, quotation marks, capitals and markdown
+(a quote shortened with an ellipsis must have each piece present, in order). A
+quote is classed as found in the cited step, found in a different step, not found
+in any step the annotator could see, or citing a hidden or non-existent step;
+codes that no evidence item supports are also counted. The check shows how often
+the annotator's evidence is genuine. It does not show that a genuine quote
+supports the code it is attached to. At API list prices the 250-trace run would cost about \$14 with
 \code{claude-sonnet-5-5}; through the subscription it counts against the plan's
 usage instead.
 
@@ -624,7 +653,9 @@ frameworks one of the five is a MAST-clean control in place of a failed trace,
 giving 26 failed traces and 4 blind controls. A development set of 18 traces and
 a held-out test set of 12 were fixed before any coding, and the hidden key's
 SHA-256 fingerprint is committed to the repository. Independent coders will code
-these traces blind in a purpose-built coding tool, first with the current
+these traces blind in a purpose-built coding tool, giving the step references
+that support each code rather than quotes (one quote is required only for a
+violation graded \emph{stated}, so the grade can be checked), first with the current
 codebook and then, after any revision, in a second review pass, before seeing any
 AI coding. The AI pilot does not touch these thirty traces, so that they remain
 uncontaminated for human coders.
@@ -738,6 +769,7 @@ Violation evidence grade & -- & --\\
 Deepest layer (weighted) & -- & --\\
 Failure observed & -- & --\\
 Identical full code set (share of traces) & -- & --\\
+Evidence quotes found in the cited step (share) & \multicolumn{2}{c}{-- (per model)}\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -760,7 +792,7 @@ against the AI pilot.}
 \toprule
 MAST mode & Expected AFACS location\\
 \midrule
-1.1 Disobey task specification & Spread: L3.4, L1.E2 or L1.E3, L1.V, or a harness defect\\
+1.1 Disobey task specification & Spread: L3.4, L1.E2 or L1.E3, L1.V, or L4.5 (a run set up with no task)\\
 1.2 Disobey role specification & L4.1 role design, or L1.E2 / L1.V\\
 1.3 Step repetition & L1 acts, with L3.3 (loop not broken) and L4.1 (no termination logic)\\
 1.4 Loss of conversation history & L2.2 agent state, with L4.2 context limits\\
@@ -792,9 +824,10 @@ never mentions that there is no task and no code (S5), and the exchange repeats
 once more before the run ends (S6--S7). MAST labels the trace FM-1.1 Disobey
 Task Specification and FM-2.2 Fail to Ask for Clarification. There was no
 specification to disobey. Under the violation rule, condition (1) cannot hold,
-so none of the agents' behaviour here can be coded as a violation. How AFACS
-should code a defect in the experimental harness itself is an open question in
-codebook v1.
+so none of the agents' behaviour here can be coded as a violation. The deepest
+factor is the run's set-up, which AFACS codes as L4.5 Operation set-up; whether the
+agents' failure to notice the missing task is also an unsafe act is a question for
+the coding, not something the label settles.
 
 \section{Discussion}
 
@@ -843,6 +876,13 @@ for AI-assisted incident analysis}.
 The next study validates AFACS with independent human coders on the frozen
 calibration set, measuring agreement between humans and between humans and the
 AI annotator on the pre-registered held-out traces.
+
+A conceptual question is left open. AFACS places the user who sets the task in
+the supervision tier and the people who launch runs in the organisational tier
+(Section~\ref{sec:people}). A fifth level above the organisation, covering users,
+operators and the regulatory context, may describe deployed systems better,
+where the people around the system are many and their decisions are visible in
+logs. It was not adopted here, to keep the direct correspondence with HFACS.
 
 A further phase applies AFACS to a domain evaluation of aviation dispatch and
 safety decisions under pressure. Each scenario has a ground-truth answer (a

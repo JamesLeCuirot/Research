@@ -39,7 +39,7 @@ We use MAST's public dataset (`mcemri/MAST-Data`, CC-BY-4.0): 1,642 traces from 
 - **MAST's judge is only moderately consistent with itself.** Thirty Magentic traces appear twice, labelled in separate judge runs. The two labellings agree with a mean per-code Cohen's κ of 0.43, ranging from about 0.67 to below zero depending on the failure mode (figure below). The flat labels we compare against are therefore noisy.
 - **A corrupt group.** One group (ChatDev with CodeLlama) holds 100 rows but only 30 distinct texts, with labels unrelated to the text; it is excluded.
 - **Metadata errors** (the OpenManus traces are GAIA questions, not a programming benchmark; two "HyperAgent" traces are ChatDev logs) are corrected or excluded. OpenManus logs print only the first ~50 characters of each task; the rendered traces say so.
-- **Harness defects.** Five traces have an empty task; MAST nevertheless labels them, e.g., *Disobey Task Specification*.
+- **Harness defects.** Five traces have an empty task; MAST nevertheless labels them, e.g., *Disobey Task Specification*. AFACS codes the set-up of such runs as L4.5 Operation set-up.
 - **The human-labelled subset is unusable.** In `MAD_human_labelled_dataset.json`, different traces within each annotation round carry identical labels, contradicting the original annotation sheets published in MAST's repository, so we do not use it.
 - **No ground-truth outcome.** MAST does not record task success, so a "failed" trace means one the MAST judge flagged.
 

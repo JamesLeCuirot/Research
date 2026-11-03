@@ -1,9 +1,12 @@
 % afacs.tex
-% Every number in this draft comes from files produced by the AFACS pipeline:
+% Every number in this draft comes from files in the repository:
 %   data/processed/audit.json and docs/data_audit.md   (uv run afacs-ingest)
 %   src/afacs/design.py                                 (study-design constants)
-%   uv run afacs-annotate estimate --set bulk           (cost estimate)
+%   codebook/v1.md, docs/crosswalk_ezell.md             (framework and cross-walk)
+%   uv run afacs-annotate estimate --set bulk           (list-price cost estimate)
 %   figures/*.png                                       (uv run afacs-analysis mast)
+%   Ezell et al. (2025), Table 1 and Appendix B         (information items, open challenges)
+%   docs/information_audit.md, figures/info_audit.png  (uv run afacs-info-audit)
 % Results that do not exist yet are marked with \pending{...}.
 % Compile with pdfLaTeX, twice, from the paper/ folder.
 \documentclass[10pt,a4paper]{article}
@@ -29,7 +32,7 @@
 \newcommand{\pending}[1]{\textcolor{gray}{\textit{[Pending: #1]}}}
 \newcommand{\code}[1]{\texttt{#1}}
 
-\newcommand{\shorttitle}{AFACS: Layered Failure Analysis of LLM Agents}
+\newcommand{\shorttitle}{AFACS: Incident Analysis for Multi-Agent Systems}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\small\shorttitle}
@@ -39,12 +42,12 @@
 \setlength{\headheight}{14pt}
 
 \hypersetup{
-  pdftitle={AFACS: Layered Failure Analysis of LLM Multi-Agent Systems},
+  pdftitle={Extending AI-Agent Incident Analysis to Multi-Agent Systems},
   pdfauthor={James Le Cuirot}
 }
 
-\title{\vspace{-1.5em}\textbf{AFACS: Layered Failure Analysis of LLM Multi-Agent Systems}\\[0.3em]
-\large Adapting HFACS to agent execution traces}
+\title{\vspace{-1.5em}\textbf{Extending AI-Agent Incident Analysis to Multi-Agent Systems}\\[0.3em]
+\large AFACS, an HFACS-based framework, and an audit of public traces}
 \author{James Le Cuirot\\
 \small Senior First Officer and Flight Safety Officer $\cdot$ MSc Human Factors in Aviation}
 \date{Draft, 3 November 2026}
@@ -55,25 +58,29 @@
 
 \begin{abstract}
 \noindent
-Taxonomies of failure in large language model (LLM) agents give each failure a
-flat label, such as ``disobey task specification''. Aviation safety science
-moved beyond flat labels decades ago. It separates the visible unsafe act from
-the latent conditions beneath it, and it separates errors from violations. For
-AI systems the second distinction approximates the line between a capability
-problem and an alignment problem. This report adapts the Human Factors Analysis
-and Classification System (HFACS) into AFACS, a four-layer framework for
-failures of LLM multi-agent systems with a behavioural rule for coding
-violations. It applies AFACS to the public MAST dataset of multi-agent
-execution traces. An audit of that dataset finds that its 1{,}642 rows hold 1{,}537
-distinct traces, that one group of 100 rows contains only 30 distinct texts with
-unrelated labels, and that MAST's LLM judge agrees with itself at a mean
-per-mode Cohen's $\kappa$ of 0.43 on 30 traces it labelled twice. The study
-design is fixed before any coding: 30 calibration traces coded blind by a
-flight safety officer, including 4 hidden controls, with a pre-registered
-held-out set of 12 traces for measuring agreement between the human coder and
-an LLM annotator. \pending{headline agreement ($\kappa$), the share of failures
-with latent contributors, the violation rate, and the main MAST--AFACS
-cross-walk finding}.
+Ezell, Roberts-Gaal and Chan (2025) proposed a framework for analysing incidents
+involving AI agents, with system factors, contextual factors and cognitive
+errors, and listed open challenges for future work. Their framework treats single
+agents, has no category for deliberate departures from known requirements, and
+has not been applied to real traces. This report extends it to multi-agent
+systems using the structure of the Human Factors Analysis and Classification
+System (HFACS) from aviation. The extension, AFACS, adds a supervision and
+orchestration tier, a coordination category analogous to crew resource
+management, and violations coded from behaviour with a graded statement of the
+evidence (stated, inferred or thin); it also proposes a model-development code
+that HFACS lacks. A cross-walk maps each of Ezell et al.'s factors onto the AFACS
+layers. The framework is then tested against the public MAST dataset of
+multi-agent traces. An audit of that dataset finds that its 1{,}642 rows hold
+1{,}537 distinct traces, that one group of 100 rows contains only 30 distinct
+texts with unrelated labels, and that MAST's LLM judge agrees with itself at a
+mean per-mode Cohen's $\kappa$ of 0.43 on 30 traces it labelled twice. Audited
+against the eighteen kinds of information Ezell et al.\ say investigators need,
+every framework's logs record what the agents said and did, but none includes the
+system documentation, artefacts or access needed to reconstruct a failure;
+sampling settings are logged by one framework and seeds by none, and the only
+logged model identifier contradicts MAST's metadata for one group of 30 traces.
+\pending{AI pilot: consistency of AFACS coding between models and between runs,
+and the prevalence of supervision, coordination and violation codes}.
 \end{abstract}
 
 \section{Introduction}
@@ -93,45 +100,84 @@ behaviour with different correlates~\cite{reason1990errors}.
 
 LLM agents are language models that act over many steps: they plan, call tools,
 write and run code, and exchange messages. A multi-agent system assigns several
-such agents roles, such as coder, tester and orchestrator, much as a crew
-divides duties. These systems fail often, and the most widely used study of why
-is MAST, the Multi-Agent System failure Taxonomy~\cite{cemri2025mast}. MAST
-defines 14 failure modes in three groups (specification, inter-agent
-misalignment and task verification) and releases more than 1{,}600 execution
-traces, each labelled by an LLM judge. Other taxonomies classify agent errors by
-type~\cite{deshpande2025trail}, by the component that broke~\cite{zhu2025agenterrorbench},
-by the agent and step responsible~\cite{zhang2025whowhen}, or by where the fix
-belongs~\cite{raj2026modelharness}. All of them assign flat categories.
+such agents roles, such as coder, tester and orchestrator, much as a crew divides
+duties. Ezell, Roberts-Gaal and Chan~\cite{ezell2025incident} have proposed the
+first framework for analysing incidents involving AI agents in this tradition.
+It explains incidents through three categories of factor, system factors,
+contextual factors and cognitive errors, linked in a causal chain, and it sets out
+what information investigators need to tell them apart. Its authors close with a
+table of open challenges for future work.
 
-Flat labels hide two things that matter for safety. First, they record the most
-visible symptom and leave the latent conditions behind it uncoded. Second, they
-merge different kinds of failure. MAST's FM-1.1 ``Disobey Task Specification''
-can describe an agent that misread an ambiguous task, an agent that registered
-a clear requirement and ignored it, and, as Section~\ref{sec:audit} shows, an
-agent that was never given a task. For AI safety the difference between an agent
-that could not comply and one that did not comply is central: the first is a
-capability problem, the second is closer to an alignment problem.
+Three features of that framework leave room for extension. It treats a single
+agent, so it has no place for an orchestrator that supervises other agents, nor
+for breakdowns between agents. Its agent-level category contains errors only:
+the paper cites an agent that reasoned about cheating its unit tests before
+doing so~\cite{baker2025monitoring}, but no category records a deliberate
+departure from a known requirement. And it is conceptual: it has not been applied
+to real traces.
 
-This report asks four research questions.
+This report extends the framework to multi-agent systems using the structure of
+HFACS, and calls the result AFACS. It takes up five of the thirteen open
+challenges in Ezell et al.'s Appendix~B: \emph{non-exhaustive coverage}, since
+multi-agent systems are a domain whose specific factors their taxonomy does not
+cover; \emph{emerging factors}, by adding violations for the departures they
+mention but do not categorise; \emph{high-level cognitive errors}, by testing
+their error categories against HFACS's on real traces; \emph{reconstruction
+difficulties} and the related problem of \emph{limited data access}, by auditing
+what openly released logs allow an investigator to reconstruct; and, in part,
+\emph{expertise shortages}, through a codebook with explicit decision rules and a
+test of whether AI-assisted coding is consistent. Their remaining challenges
+(reporting infrastructure, accountability mechanisms, sensitive data, the legal
+landscape, data retention and voluntary adoption) are institutional and outside
+the scope of a trace study.
+
+The study uses the public MAST dataset of multi-agent traces~\cite{cemri2025mast}
+and asks four research questions.
 \begin{itemize}\setlength{\itemsep}{1pt}
-  \item \textbf{RQ1, reliability.} Can AFACS be applied consistently, by a
-  human expert and by an LLM annotator?
-  \item \textbf{RQ2, latent causes.} For what share of failed traces does a
-  contributing cause sit above the unsafe-act layer?
-  \item \textbf{RQ3, errors and violations.} How often are failures violations
-  rather than errors, and do MAST categories such as FM-1.1 mix the two?
-  \item \textbf{RQ4, the cross-walk.} How do MAST's labels map onto the AFACS
-  layers: where one-to-one, and where do they merge distinct causes?
+  \item \textbf{RQ1, cross-walk.} How do Ezell et al.'s factors map onto the
+  HFACS layers, and what does a multi-agent setting add?
+  \item \textbf{RQ2, information adequacy.} Do real multi-agent traces contain
+  the information Ezell et al.\ say investigators need?
+  \item \textbf{RQ3, applicability.} Can the extended framework be applied
+  consistently, and how often do failures involve the added supervision,
+  coordination and violation categories?
+  \item \textbf{RQ4, flat labels.} How do MAST's fourteen flat labels map onto
+  the extended framework?
 \end{itemize}
 
-The contributions are: (i) AFACS, an adaptation of HFACS to agent traces with a
-behavioural evidence rule for violations; (ii) an audit of the MAST dataset that
-documents duplicates, corrupt and misfiled rows, and the test--retest
-reliability of its LLM judge; (iii) a blinded, pre-registered calibration
-design with an open pipeline; and (iv) \pending{agreement results and the
-findings for RQ2--RQ4}.
+The contributions are: (i) AFACS, an extension of Ezell et al.'s framework to
+multi-agent systems with a supervision tier, a coordination category and
+evidence-graded violations, together with an item-by-item cross-walk; (ii) an
+audit of the MAST dataset documenting duplicates, corrupt and misfiled rows,
+logging artefacts and the test--retest reliability of its LLM judge; (iii) an
+audit of MAST's logs against Ezell et al.'s information requirements, showing
+what public multi-agent traces do and do not let an investigator establish; and
+(iv) \pending{an AI-coded pilot measuring how consistently the
+framework can be applied, and what it shows that the flat labels do not}. Human
+validation with independent coders is planned as a second study, for which a
+blinded, pre-registered calibration set has already been frozen.
 
 \section{Background and Related Work}
+
+\subsection{Incident analysis for AI agents}
+
+Ezell et al.\ define three categories of factor~\cite{ezell2025incident}. System
+factors are static aspects of an agent's development: training data, feedback,
+learning methods, the system prompt and scaffolding code. Contextual factors are
+features of the situation: the information available, the tools, and how the task
+was defined. Cognitive errors are failures of observation, understanding,
+decision-making and action execution, which are the most proximate to the
+incident but arise because of system and contextual factors. The paper also lists
+eighteen items of information, in three groups (activity logs, system
+documentation and access, and tool information), that investigators need in order
+to decide which factors apply (their Table~1). It acknowledges that its treatment
+of cognitive errors is ``necessarily high-level'' because the cognitive science of
+AI agents is nascent, and that its factors are not exhaustive. Shamsujjoha et al.\
+use the Swiss-cheese idea to design layered runtime guardrails for
+agents~\cite{shamsujjoha2024swisscheese}, and Mylius applies STPA, a
+system-theoretic hazard analysis, to a frontier-AI
+scenario~\cite{mylius2025stpa,leveson2012engineering}. Both look forward, at
+defences and hazards. Ezell et al.\ and AFACS look back, at what happened.
 
 \subsection{Agent failure taxonomies}
 
@@ -140,52 +186,30 @@ authors report human inter-annotator agreement of $\kappa=0.88$ in the final
 round, $\kappa=0.79$ on systems not seen during development, and $\kappa=0.77$
 between an o1-based LLM annotator and human experts~\cite{cemri2025mast}. Its
 discussion draws on organisational safety research, but the taxonomy itself has
-no causal layers and no error/violation distinction. TRAIL separates reasoning,
-planning and system-execution errors in 148 human-annotated traces and finds
-that the best LLM locates only 11\% of them~\cite{deshpande2025trail}.
-AgentErrorBench classifies failures by the agent component that broke (memory,
-reflection, planning, action, system) and traces cascades from a root
-error~\cite{zhu2025agenterrorbench}. Who\&When frames the problem as identifying
-which agent caused a failure and at which step; the best method identifies the
-agent 53.5\% of the time and the decisive step 14.2\% of the
-time~\cite{zhang2025whowhen}. Raj et al.\ tie 41 failure types to an
-interaction and to the side that should own the fix (model, harness or
-environment), with an LLM judge reaching $\kappa=0.76$ against human
-labels~\cite{raj2026modelharness}. These works answer ``what broke'' and ``who
-and when''. AFACS adds ``what kind of act'' and ``what latent conditions''.
-
-\subsection{Safety science applied to AI agents}
-
-The nearest prior work is Ezell, Roberts-Gaal and Chan~\cite{ezell2025incident},
-who cite HFACS as the aviation model and propose a chain of causes for AI-agent
-incidents with system, contextual and cognitive factors. Their framework is
-conceptual: it codes no traces, measures no agreement, has no supervision tier,
-and its agent-level category contains errors only. Shamsujjoha et al.\ use the
-Swiss-cheese idea to design layered runtime guardrails for
-agents~\cite{shamsujjoha2024swisscheese}, and Mylius applies STPA, a
-system-theoretic hazard analysis, to a frontier-AI
-scenario~\cite{mylius2025stpa,leveson2012engineering}. Both look forward, at
-defences and hazards. AFACS looks back, at what traces show, and is
-complementary to them.
+no causal layers and no error/violation distinction. Other taxonomies classify
+errors by type, finding that the best LLM locates only 11\% of human-annotated
+errors~\cite{deshpande2025trail}; by the component that
+broke~\cite{zhu2025agenterrorbench}; by the agent and step responsible, where the
+decisive step is found 14.2\% of the time~\cite{zhang2025whowhen}; or by the side
+that should own the fix, with an LLM judge reaching $\kappa=0.76$ against human
+labels~\cite{raj2026modelharness}. These works answer ``what broke'' and ``who and
+when''. AFACS adds ``what kind of act'' and ``what latent conditions''.
 
 \subsection{HFACS and its reliability}
 
 The closest methodological precedent is Wiegmann and
-Shappell~\cite{wiegmann2001commercial}. An aviation psychologist and a
-commercially rated pilot independently re-coded 319 causal factors from 119
-NTSB accident reports into HFACS and agreed at $\kappa=0.71$. AFACS follows the
-same design on agent traces, with one difference: the coder reads the raw trace
-rather than causal factors already identified by investigators. HFACS
-reliability is contested. Olsen and Shorrock found low agreement, between coders
-and within coders, for a modified HFACS used in air traffic
-control~\cite{olsen2010hfacsadf}. A review by Cohen, Wiegmann and Shappell found
-reliability higher with coder training, larger samples and fewer departures from
-the original framework~\cite{cohen2015reliability}; that review drew a published
+Shappell~\cite{wiegmann2001commercial}: an aviation psychologist and a
+commercially rated pilot independently re-coded 319 causal factors from 119 NTSB
+accident reports into HFACS and agreed at $\kappa=0.71$. HFACS reliability is
+contested. Olsen and Shorrock found low agreement, between and within coders, for
+a modified HFACS used in air traffic control~\cite{olsen2010hfacsadf}. A review
+by Cohen, Wiegmann and Shappell found reliability higher with coder training,
+larger samples and fewer departures from the original
+framework~\cite{cohen2015reliability}; that review drew a published
 critique~\cite{burnham2017letter}. LLMs applied to HFACS coding of aviation
 reports reach far lower exact-match than partial-match
-agreement~\cite{ahmadi2025hfacsgrpo}. These findings shape two choices below:
-AFACS keeps the original four tiers, and agreement is reported at layer level as
-well as code level.
+agreement~\cite{ahmadi2025hfacsgrpo}. AFACS therefore keeps the original four
+tiers, and agreement is reported at layer level as well as code level.
 
 \subsection{AI behaviours that resemble violations}
 
@@ -193,29 +217,31 @@ Specification gaming, in which a system satisfies the letter of its objective
 while defeating its purpose, is the standard AI-safety term for many behaviours
 AFACS would code as exceptional violations~\cite{krakovna2020specgaming}.
 ImpossibleBench builds coding tasks in which passing requires breaking the
-specification, so any pass cannot be accidental~\cite{zhong2025impossiblebench};
-this is an experimental form of the AFACS fallback criterion. Baker et al.\ show
-that reasoning traces can reveal reward hacking, and that models trained against
-such monitors learn to hide it~\cite{baker2025monitoring}; the absence of
-incriminating reasoning is therefore no proof of an honest error.
+specification, so any pass cannot be accidental~\cite{zhong2025impossiblebench}.
+Baker et al.\ show that reasoning traces can reveal reward hacking, and that
+models trained against such monitors learn to hide it~\cite{baker2025monitoring}.
+In constructed scenarios, frontier models reason explicitly about the constraints
+they face and choose to circumvent them~\cite{meinke2024scheming,lynch2025agentic}.
 OverclaimBench measures false claims of task completion from transcripts alone,
 with a criterion that ``requires no inference about
 intent''~\cite{smyth2026overclaim}, the same behavioural stance as AFACS. At the
-aggregate level, Hägele et al.\ ask whether AI failures look more like coherent
-pursuit of unintended goals or an incoherent ``hot mess''~\cite{hagele2026hotmess},
-a statistical version of the question AFACS asks trace by trace.
+aggregate level, Hägele et al.\ find that failures look less like coherent pursuit
+of unintended goals and more like an incoherent ``hot mess'' as tasks
+lengthen~\cite{hagele2026hotmess}, a reminder that most failures are likely to be
+errors.
 
-\section{The AFACS Framework}
+\section{The AFACS Framework and its Cross-Walk (RQ1)}
 \label{sec:framework}
 
 Each failed trace is coded at every layer where the trace gives evidence
 (multi-label), with a deepest contributing layer and a confidence rating (high,
-medium or low). Table~\ref{tab:codes} lists the layers and codes of codebook
-v0. The codebook is the author's; v1 will follow from the calibration notes.
+medium or low). Table~\ref{tab:codes} lists the layers and codes of codebook v1
+(\code{codebook/v1.md}). The codebook is the author's.
 
-\begin{table}[H]
+\begin{table}[tbp]
 \centering
-\caption{AFACS layers and codes (codebook v0, \code{codebook/v0.md}).}
+\caption{AFACS layers and codes (codebook v1). L4.4 is proposed, added from
+Ezell et al.'s system factors.}
 \label{tab:codes}
 \small
 \begin{tabular}{@{}p{3.3cm}lp{9.6cm}@{}}
@@ -225,6 +251,7 @@ Layer & Code & Description\\
 L4 Organisational / design & L4.1 & Architecture and role design: role split, missing verifier, no termination logic\\
  & L4.2 & Resource provisioning: tools, step or token budgets, context limits\\
  & L4.3 & Process: no standard procedure for verification or handover\\
+ & L4.4 & Model development (proposed): training data, feedback or learning methods\\
 \midrule
 L3 Supervision / orchestration & L3.1 & Inadequate supervision: no check on subagent output\\
  & L3.2 & Planned inappropriate operation: task beyond an agent's capability or information\\
@@ -240,25 +267,117 @@ L1 Unsafe acts: errors & L1.E1 & Skill-based: execution slip, e.g.\ a malformed 
  & L1.E3 & Perceptual: misread observation, tool output or message\\
 L1 Unsafe acts: violations & L1.V1 & Routine: habitual shortcutting across the trace\\
  & L1.V2 & Exceptional: one-off departure, e.g.\ fabricating a result or editing tests\\
- & L1.V? & Indeterminate: the criteria hold but the evidence is thin\\
+ & L1.V? & Indeterminate: the criteria appear to hold but the evidence is thin\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-L2.3, coordination, is the analogue of crew resource management. MAST's
-inter-agent misalignment group is expected to land mostly there, and RQ4 tests
-that expectation.
+\subsection{Cross-walk to Ezell et al.}
 
-\paragraph{Violation evidence rule.} A failure is coded as a violation only if
-all three conditions hold: (1) the requirement was in the agent's accessible
-context; (2) the trace shows the agent represented it, by referencing or
-acknowledging it, or the deviation is of a kind that cannot plausibly be
-accidental, such as hardcoding expected test outputs; and (3) the agent
-proceeded otherwise. If all three hold but the evidence is thin, the code is
-\code{L1.V?}; otherwise the failure is an error. The rule classifies behaviour.
-It makes no claim about model intent or mental states, in the same way that an
-investigator infers a violation from evidence rather than from a confession.
-Benchmark information the agents never saw cannot satisfy condition (1).
+Table~\ref{tab:crosswalk} condenses the item-by-item mapping in
+\code{docs/crosswalk\_ezell.md}. In broad terms, Ezell et al.'s system factors
+correspond to L4, with the system prompt treated as part of the task
+specification at L3.4; their contextual factors correspond to L2.1, with task
+definition at L3.4 and resource limits at L4.2; and their cognitive errors
+correspond to the L1 errors, with memory limits and distraction treated as agent
+state at L2.2. Their four cognitive functions cut the same ground as HFACS's three
+error types differently; RQ3 tests which distinctions can be applied
+consistently.
+
+\begin{table}[tbp]
+\centering
+\caption{Condensed cross-walk from Ezell et al.'s factors to AFACS codes. The
+last three rows have no counterpart in Ezell et al.}
+\label{tab:crosswalk}
+\small
+\begin{tabular}{@{}p{5.5cm}p{3.4cm}p{5.9cm}@{}}
+\toprule
+Ezell et al.\ factor & AFACS code & Note\\
+\midrule
+System: training data, feedback, learning methods & L4.4 (proposed) & Latent; feedback that rewards appearing successful is a typical condition behind violations\\
+System: system prompt underspecified or encouraging undesirable behaviour & L3.4 & System prompt treated as part of the specification\\
+System: scaffolding not working as intended & L4.1 or L2.1 & Design flaw or run-time failure (open question)\\
+Contextual: information inaccessible, missing, poor or malicious & L2.1 & \\
+Contextual: tools unusable or failing; tool errors not visible & L2.1 or L4.2 & Run-time failure, or provisioning by design\\
+Contextual: unclear or conflicting task; resource limits & L3.4; L4.2 & \\
+Cognitive: observation (failure to notice, wrong expectation) & L1.E3 & Memory capacity at L2.2\\
+Cognitive: understanding (misinterpretation; conclusions from poor information) & L1.E3; L1.E2 & With L2.1 where the information was poor\\
+Cognitive: decision-making (goal priority, non-viable plans, criteria) & L1.E2 & Distraction from the goal at L2.2\\
+Cognitive: action execution (incorrect execution; no action; no error monitoring) & L1.E1; L1.E1/E2; L1.E3 or L3.3 & L3.3 where a supervising agent should have caught it\\
+\midrule
+(none: single-agent framework) & L3.1--L3.3 & Orchestrator fails to check, assigns beyond capability, or leaves a visible problem uncorrected\\
+(none) & L2.3 & Coordination between agents, the crew resource management analogue\\
+(mentioned, not categorised) & L1.V1, L1.V2, L1.V? & Violations with an evidence grade (Section~\ref{sec:violations})\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The mapping also runs the other way. Ezell et al.\ name model development as a
+cause, which HFACS has no tier for; HFACS's nearest category, organisational
+resource management, covers ``human resource management (selection, training,
+staffing)''~\cite{wiegmann2001commercial}, and AFACS
+proposes L4.4 by analogy. They name security-related context (malicious inputs,
+vulnerable tools), which AFACS treats as sub-cases of L2.1. And their list of
+information requirements gives a standard against which real logs can be
+audited (RQ2).
+
+\subsection{Violations}
+\label{sec:violations}
+
+``Violation'' is used in HFACS's sense, applied to behaviour. An investigator
+never sees inside a pilot's head either: a violation is inferred from evidence
+that the rule was known and that the action departed from it. AFACS makes the
+same inference and makes no claim about intent, will or awareness; whether AI
+agents have intentions is an open question this framework does not try to
+answer. A failure is coded as a violation only if all three conditions hold:
+(1) the requirement was in the agent's accessible context; (2) the trace shows the
+agent represented it, by referencing or acknowledging it, or the deviation is of a
+kind that cannot plausibly be accidental, such as hardcoding expected test
+outputs; and (3) the agent proceeded otherwise. If all three hold but the evidence
+is thin, the code is \code{L1.V?}; otherwise the failure is an error. Benchmark
+information the agents never saw cannot satisfy condition (1).
+
+The distinction is recorded because the two call for different remedies. An
+error (the agent could not comply) is addressed by better tools, clearer tasks,
+verification or more capable models. A violation (the agent registered the
+requirement and did otherwise) is not a capability problem; it points to
+incentives, monitoring and what training rewards. In HFACS, routine violations
+often have organisational roots, such as pressure or tolerated shortcuts; in an
+AI agent the corresponding latent condition is often training feedback that
+rewarded the appearance of success, which AFACS records at L4.4.
+
+Every coding records the basis for any violation (Table~\ref{tab:evidence}), so
+that readers can see how strong the evidence is and apply their own view on
+intent. Stated reasoning is evidence, not proof: a model's written reasoning may
+not reflect what produced its action, and models trained against monitors can
+learn to hide it~\cite{baker2025monitoring}. The absence of incriminating
+reasoning is therefore no proof of an honest error, which is why the
+\emph{inferred} grade exists.
+
+\begin{table}[tbp]
+\centering
+\caption{Evidence grades for violations (codebook v1, field \code{violation\_evidence}).}
+\label{tab:evidence}
+\small
+\begin{tabular}{@{}lp{9.8cm}l@{}}
+\toprule
+Grade & Use when & Goes with\\
+\midrule
+stated & The agent's own words (reasoning, plan or message) acknowledge the requirement, and it then departs from it & L1.V1, L1.V2\\
+inferred & Nothing in the agent's words shows it registered the requirement, but the act cannot plausibly be accidental & L1.V1, L1.V2\\
+thin & The criteria seem to hold but the evidence for condition (1) or (2) is weak & L1.V?\\
+none & No violation is coded & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Incidents and failures}
+
+Ezell et al.\ analyse incidents: events that cause or could plausibly cause harm.
+MAST's traces are failed benchmark tasks in which nobody was harmed. Aviation
+draws the same line and applies the same causal analysis to both: occurrence
+reporting covers events where no harm resulted, because their causes are the
+causes of future accidents. AFACS is applied here to failures on that basis.
 
 \section{Data and Audit}
 \label{sec:audit}
@@ -273,7 +392,7 @@ judging. Before building on the labels, the dataset was audited
 (\code{docs/data\_audit.md}). Table~\ref{tab:exclusions} summarises the
 exclusions.
 
-\begin{table}[H]
+\begin{table}[tbp]
 \centering
 \caption{Data-quality exclusions applied before sampling.}
 \label{tab:exclusions}
@@ -314,32 +433,32 @@ of the same judge on identical traces agreeing at a mean per-mode $\kappa$ of 0.
 suggest that individual MAST labels carry substantial run-to-run noise, which
 matters for any analysis, including RQ4 here, that treats them as a reference.
 
-\begin{figure}[H]
+\begin{figure}[tbp]
 \centering
-\includegraphics[width=0.78\linewidth]{mast_judge_test_retest.png}
+\includegraphics[width=0.6\linewidth]{mast_judge_test_retest.png}
 \caption{Test--retest agreement of MAST's LLM judge on 30 byte-identical
 Magentic-One traces labelled in two runs. Cohen's $\kappa$ per failure mode;
 mean 0.43.}
 \label{fig:retest}
 \end{figure}
 
-\paragraph{Metadata errors and harness defects.} The OpenManus traces are tagged
+\paragraph{Metadata errors and logging artefacts.} The OpenManus traces are tagged
 as a programming benchmark but are GAIA questions; the AG2 ``GSM'' traces are
 GSM-Plus. Both are corrected. In 29 of the 30 OpenManus logs the task is printed
 truncated to about 50 characters, although the agents' plans show they received
-the full text; rendered traces carry a note saying so. Five traces have an empty
+the full text; in the remaining one the task was typed in interactively and never
+logged. Rendered traces carry a note in both cases. Five traces have an empty
 task: the harness gave the agents nothing to do. MAST nevertheless labels the
 MetaGPT example \code{MetaGPT\_ProgramDev2\_GPT4o\_\_099} with FM-1.1 Disobey
 Task Specification and FM-2.2 Fail to Ask for Clarification
-(Section~\ref{sec:cases}).
+(Section~\ref{sec:cases}). These artefacts bear directly on Ezell et al.'s
+reconstruction challenge, and RQ2 examines them systematically.
 
 \paragraph{The human-labelled subset.} MAST's separate human-labelled file holds
-19 traces (not 21) across four rounds that used taxonomies of 18, 17, 17 and 14
-modes, so codes are not comparable across rounds. Within every round, different
-traces carry identical three-annotator label vectors (two distinct vectors per
-round), while the original annotation sheets in MAST's repository show
-different labels per trace. The file appears to have been assembled incorrectly
-and is not used.
+19 traces (not 21), coded with four different revisions of the taxonomy. Within
+every round, different traces carry identical three-annotator label vectors,
+contradicting the original annotation sheets in MAST's repository, so the file is
+not used.
 
 \paragraph{No ground-truth outcome.} MAST records no task success flag, so a
 ``failed'' trace here means one the judge flagged with at least one mode. Only
@@ -347,40 +466,17 @@ and is not used.
 GSM-Plus subset; 52 fail, 8 pass).
 
 \paragraph{Eligible pool.} ChatDev is excluded by design: its traces run from
-about 60{,}000 to 500{,}000 tokens, too long to hand-code or to validate an
-annotator on. Traces above 30{,}000 tokens of cleaned text are also excluded.
-Table~\ref{tab:frameworks} gives the result per framework: 893 MAST-failed
-traces and 373 MAST-clean traces are eligible. Figure~\ref{fig:prevalence} shows
-how often the judge flags each mode by framework. Model is largely confounded
-with framework: four frameworks ran a single model, and ``Claude'' carries no
-version number.
+about 60{,}000 to 500{,}000 tokens of cleaned text (median 83{,}893), too long to
+code or to check reliably. Traces above 30{,}000 tokens are also excluded. That
+leaves 893 MAST-failed and 373 MAST-clean traces across six frameworks: AG2 286
+failed, MetaGPT 408, Magentic-One 127, AppWorld 27, OpenManus 27 and HyperAgent
+18. Figure~\ref{fig:prevalence} shows how often the judge flags each mode by
+framework. Model is largely confounded with framework: four frameworks ran a
+single model, and ``Claude'' carries no version number.
 
-\begin{table}[H]
+\begin{figure}[tbp]
 \centering
-\caption{Per-framework summary after quality exclusions. Tokens are approximate
-(characters/4) on cleaned text. Eligible: not ChatDev and at most 30{,}000 tokens.}
-\label{tab:frameworks}
-\footnotesize
-\begin{tabular}{@{}lrrrrrrp{3.4cm}@{}}
-\toprule
-Framework & Rows & Kept & Failed & Eligible & Median tok. & Max tok. & Models\\
-\midrule
-AG2 & 597 & 597 & 286 & 286 & 956 & 7{,}257 & GPT-4o, Claude, GPT-4o-mini\\
-AppWorld & 30 & 29 & 28 & 27 & 6{,}285 & 54{,}759 & GPT-4o\\
-ChatDev & 330 & 226 & 205 & 0 & 83{,}893 & 494{,}824 & GPT-4o, Qwen\\
-HyperAgent & 30 & 28 & 26 & 18 & 14{,}431 & 145{,}776 & Claude\\
-Magentic-One & 195 & 165 & 129 & 127 & 7{,}235 & 65{,}320 & GPT-4o\\
-MetaGPT & 430 & 430 & 408 & 408 & 2{,}119 & 8{,}815 & GPT-4o, Claude, Qwen, CodeLlama\\
-OpenManus & 30 & 30 & 29 & 27 & 6{,}142 & 32{,}076 & GPT-4o\\
-\midrule
-Total & 1{,}642 & 1{,}505 & 1{,}111 & 893 & & & \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.74\linewidth]{mast_prevalence_by_framework.png}
+\includegraphics[width=0.58\linewidth]{mast_prevalence_by_framework.png}
 \caption{Share of kept traces in which MAST's judge flags each failure mode, by
 framework. ChatDev is shown for completeness but excluded from the study.}
 \label{fig:prevalence}
@@ -394,130 +490,237 @@ A parser per format splits each trace into numbered steps, keeps agent text
 verbatim, and drops only log scaffolding and pure noise (package-installation
 logs, token counters, repeated web-server warnings). A word-level check
 confirmed that only scaffolding is lost. Each trace is rendered as a document
-with numbered steps. The human coder and the LLM annotator read identical
-renderings, so that any disagreement concerns the application of the codebook
-and not what each coder saw. MAST's labels are hidden. Information the agents
-never saw (benchmark answers, gold patches and the benchmark's own pass/fail
-verdict) is hidden during coding and replaced by a placeholder, which keeps the
-step numbering stable and prevents the outcome from colouring the coding.
+with numbered steps, and every coder, human or AI, reads the same rendering, so
+that disagreement concerns the application of the codebook and not what each
+coder saw. MAST's labels are hidden. Information the agents never saw (benchmark
+answers, gold patches and the benchmark's own pass/fail verdict) is hidden and
+replaced by a placeholder, which keeps the step numbering stable and prevents
+the outcome from colouring the coding.
 
-\paragraph{Calibration set.} Thirty traces, five from each of six frameworks,
-were drawn at random from the eligible pool with a fixed seed. In four
+\paragraph{Information audit (RQ2).} For each framework, each of the eighteen
+items in Ezell et al.'s Table~1 is classified as present, partial, absent or not
+applicable to benchmark runs. Where a reliable automatic check exists
+(timestamps, tool calls and outputs, reasoning text, model identifiers, sampling
+settings, package versions, error messages), the share of traces in which it
+fires is reported, and the status is a judgement informed by that share.
+Otherwise the classification rests on reading three sampled traces per framework
+(the first, middle and last by identifier), with the reason recorded for every
+judgement. All seven frameworks are audited, ChatDev included.
+What MAST's dataset records outside the logs (framework, an unversioned model
+name and the benchmark) is noted separately (\code{docs/information\_audit.md}).
+
+\paragraph{AI pilot (RQ3 and RQ4).} Claude codes a sample of MAST-failed traces
+with codebook v1. The primary annotator is \code{claude-sonnet-5-5}; a second
+model, \code{claude-opus-5-5}, codes the same traces. Each annotation runs
+through Claude Code's headless mode on the author's Claude subscription, with
+Claude Code's tools, MCP servers and commands switched off and its default system
+prompt replaced by the annotator prompt (\code{prompts/annotator\_v1.md}) with
+the codebook pasted in. The trace is the user message, and the reply is
+constrained by a JSON schema whose allowed codes are read from the codebook, so
+the annotator cannot invent codes and must give step-referenced evidence for each
+code, a causal summary, and an evidence grade for any violation. Every annotation
+records the backend, the model requested and the model that served it, the
+prompt and codebook versions, a hash of the full system prompt, token usage and a
+session identifier. A refusal is recorded as an error and is not routed to
+another model. At API list prices the 250-trace run would cost about \$14 with
+\code{claude-sonnet-5-5}; through the subscription it counts against the plan's
+usage instead.
+
+The sample is the 250-trace bulk sample: MAST-failed traces outside the frozen
+calibration set (below), balanced across frameworks (AG2 64, AppWorld 23,
+HyperAgent 13, Magentic-One 63, MetaGPT 64, OpenManus 23) and across models within
+each framework. Each trace carries a weight equal to the number of eligible traces
+it represents, so that overall shares describe the eligible pool rather than the
+balanced sample; they are reported with Wilson 95\% intervals on the Kish
+effective sample size $n_{\mathrm{eff}}=(\sum w)^2/\sum w^2$. Model comparisons
+are limited to MetaGPT and AG2 and are exploratory.
+
+\paragraph{Consistency measures.} Consistency is measured between the two models
+and between two runs of the primary model on the same traces. Agreement uses
+Cohen's $\kappa$~\cite{cohen1960kappa}, read with the Landis and Koch
+bands~\cite{landis1977measurement}, for the presence of each layer, for each code
+(averaged across codes, never pooled), for error versus violation, for the
+violation evidence grade, for the deepest layer (with a linearly weighted variant
+on the ordered scale L1 to L4), and for whether a failure was observed; the share
+of identical full code sets is also reported, because exact matches are much
+rarer than partial ones in automated HFACS coding~\cite{ahmadi2025hfacsgrpo}. Each
+headline $\kappa$ carries a 95\% bootstrap interval (2{,}000 resamples), omitted
+where either coder gave fewer than three positive or three negative answers,
+because $\kappa$ behaves badly for rare or near-universal
+categories~\cite{feinstein1990paradox}.
+The natural point of comparison is the 0.43 at which MAST's own judge agrees with
+itself (Section~\ref{sec:audit}). These measures show whether the framework can be
+applied \emph{consistently}. They do not show that the codes are \emph{correct}:
+two runs of a model can agree and both be wrong. Correctness requires independent
+human coders, which is the purpose of the planned validation.
+
+\paragraph{Expert case studies.} The author, a flight safety officer, reviews a
+small number of the AI's codings with the trace alongside. Reviewing a coding is
+a different task from coding blind, and these reviews are presented as
+illustrations of what the framework shows, not as validation.
+
+\paragraph{Planned validation (second study).} A calibration set of thirty
+traces was drawn before this study changed direction and has been frozen for
+human validation. It holds five traces from each of six frameworks; in four
 frameworks one of the five is a MAST-clean control in place of a failed trace,
-giving 26 failed traces and 4 controls. Every framework has the same number of
-rows, so the coding sheet does not reveal where the controls are. Controls test
-whether AFACS coding finds failures MAST missed, and stop the coder assuming
-that every trace has failed. The traces are shuffled into identifiers C01--C30.
-A development set of 18 traces and a held-out test set of 12 (two per framework,
-including two controls) were fixed before any coding. The split is stored in a
-hidden key whose SHA-256 fingerprint is committed to the repository, so that
-anyone can verify later that it was not changed. The author codes all 30 traces
-blind, using a coding sheet with the fields listed in Section~\ref{sec:framework},
-evidence quotes with step references, and notes on where the codebook did not
-fit. The reading load is about 129{,}000 words.
-
-\paragraph{Codebook revision.} Codebook v1 is written from the calibration
-notes. The author then reviews all 30 codings against v1 before seeing any LLM
-output, and that reviewed set is the reference. Following the advice that
-agreement should be reported both before and after calibration, the report
-also states how many of the 30 first-pass codings the review changed, and at
-which layers, so that readers can see how far the codebook revision moved the
-reference.
-
-\paragraph{LLM annotator.} Claude (\code{claude-sonnet-5-5}; \code{claude-opus-5-5}
-as a second annotator) receives the codebook in a prompt-cached system message
-and the rendered trace as the user message. The reply is constrained by a JSON
-schema whose allowed codes are read from the codebook, so the annotator cannot
-invent codes, and it must give step-referenced evidence for each code. Every
-annotation records the model, prompt and codebook versions, a hash of the full
-system prompt, token usage and the request identifier. Refusals are recorded as
-errors rather than routed to another model, so that the annotator stays fixed.
-The prompt is tuned on the 18 development traces only, then frozen and applied
-once to the 12 test traces. The estimated cost of annotating the bulk set is
-about \$14 with \code{claude-sonnet-5-5} at standard prices, half that through
-the batch interface.
-
-\paragraph{Agreement measures (RQ1).} Agreement between two codings of the same
-traces uses Cohen's $\kappa$~\cite{cohen1960kappa}, read with the Landis and Koch
-bands~\cite{landis1977measurement}. It is computed for the presence of each
-layer, for each code (averaged across codes, never pooled), for error versus
-violation, for the deepest layer (with a linearly weighted variant on the
-ordered scale L1 to L4), and for whether a failure was observed. The share of
-traces with an identical full code set is also reported, because exact matches
-are much rarer than partial ones in automated HFACS coding~\cite{ahmadi2025hfacsgrpo}.
-Each headline $\kappa$ carries a 95\% bootstrap interval from 2{,}000 resamples
-of traces. Because $\kappa$ behaves badly when one category is rare or
-near-universal~\cite{feinstein1990paradox}, no interval is reported where either
-coder gave fewer than three positive or three negative answers, or where
-$\kappa$ is undefined in more than 5\% of resamples, and positive counts are
-always shown. LLM--LLM agreement, between two models and between two runs of the
-same model, is reported in the same way. Agreement between an LLM judge and
-humans is the standard check on LLM annotation~\cite{zheng2023judging}.
-
-\paragraph{Bulk annotation and analysis (RQ2--RQ4).} The frozen annotator codes
-250 MAST-failed traces outside the calibration set, balanced across frameworks
-(AG2 64, AppWorld 23, HyperAgent 13, Magentic-One 63, MetaGPT 64, OpenManus 23)
-and across models within each framework. Each trace carries a weight equal to
-the number of eligible traces it represents, so that overall figures describe
-the eligible pool rather than the balanced sample. Shares are reported with
-Wilson 95\% intervals computed on the Kish effective sample size
-$n_{\mathrm{eff}}=(\sum w)^2/\sum w^2$. Model comparisons are limited to
-MetaGPT and AG2 and are exploratory.
+giving 26 failed traces and 4 blind controls. A development set of 18 traces and
+a held-out test set of 12 were fixed before any coding, and the hidden key's
+SHA-256 fingerprint is committed to the repository. Independent coders will code
+these traces blind in a purpose-built coding tool, first with the current
+codebook and then, after any revision, in a second review pass, before seeing any
+AI coding. The AI pilot does not touch these thirty traces, so that they remain
+uncontaminated for human coders.
 
 \section{Results}
 \label{sec:results}
 
-\subsection{RQ1: reliability}
+\subsection{RQ1: cross-walk}
 
-\pending{human--LLM agreement on the 12 test traces; LLM--LLM agreement; how many
-first-pass human codings the v1 review changed}. Table~\ref{tab:rq1} shows the form of the result.
+Every factor in Ezell et al.'s taxonomy has a place in AFACS
+(Table~\ref{tab:crosswalk}), most of them at L4, L2.1 or the L1 errors. The
+extension adds three things with no counterpart in their framework: a
+supervision tier (L3.1--L3.3), coordination between agents (L2.3), and graded
+violations. In the other direction, their framework contributes a
+model-development factor, which AFACS adopts as the proposed L4.4, and named
+security-related contexts. Whether the added categories matter in practice is an
+empirical question, taken up in RQ3.
 
-\begin{table}[H]
+\subsection{RQ2: information adequacy}
+
+Figure~\ref{fig:info} shows, for each framework, the status of each of the
+eighteen items, and Table~\ref{tab:info} counts them. The logs are good records
+of what the agents said and did: the agents' responses and actions are present
+in all seven frameworks, and the user's task in six (OpenManus prints it only in
+part). Everything needed to identify or re-run the system that failed is missing.
+No framework provides system documentation and change logs, system artefacts, or
+model and system access. System configuration is at best partial: ChatDev logs
+its sampling settings (temperature 0.2, top-$p$ 1.0) and Magentic-One's
+installation log reveals its scaffolding package versions, but no framework logs
+a random seed, and MAST names models without versions. System prompts are logged
+only by ChatDev. Labelled reasoning appears only in OpenManus and HyperAgent; in
+the other frameworks the only reasoning visible is what a model chose to write
+into its messages, which Ezell et al.\ note may not reflect its actual reasoning.
+Timestamps are absent from AG2 and Magentic-One.
+
+Only ChatDev records a model identifier inside the log, and it does not always
+agree with MAST's metadata: one group of 30 traces that MAST labels GPT-4o logs
+the identifier \code{ModelType.GPT\_45}, so either the metadata or the log is
+wrong. Without logged identifiers, such discrepancies cannot be detected in the
+other six frameworks.
+
+What an investigator can establish therefore depends on the software that
+produced the trace rather than on the failure (Table~\ref{tab:info}). For AFACS
+the consequence is uneven observability across layers. Unsafe acts and
+coordination are well observed, because agent-to-agent messages are logged.
+Supervision failures are visible as behaviour, for instance an orchestrator that
+lets an error stand, but without system prompts or role definitions it is often
+impossible to tell whether the orchestrator was ever instructed to check. Model
+development (L4.4) cannot be evidenced from these logs at all. These findings
+are an empirical instance of the reconstruction difficulties Ezell et al.\ list as
+an open challenge.
+
+\begin{figure}[tbp]
 \centering
-\caption{Agreement between the author and the LLM annotator on the held-out
-test set (shell; values pending).}
-\label{tab:rq1}
+\includegraphics[width=0.72\linewidth]{info_audit.png}
+\caption{MAST's logs against the eighteen information items of Ezell et al.'s
+Table~1, by framework. Colour gives the status; numbers give the share of traces
+in which an automatic check fires; M marks judgements made by reading sampled
+traces. Items marked * matter mainly for reconstruction.}
+\label{fig:info}
+\end{figure}
+
+\begin{table}[tbp]
+\centering
+\caption{Number of Ezell et al.'s eighteen information items each framework's
+logs provide. Applicable excludes items that do not arise in these benchmark
+runs (e.g.\ tool information for agents that use no tools).}
+\label{tab:info}
 \small
-\begin{tabular}{@{}lccc@{}}
+\begin{tabular}{@{}lrrrrr@{}}
 \toprule
-Measure & Cohen's $\kappa$ & 95\% CI & Positives (human / LLM)\\
+Framework & Traces & Applicable & Present & Partial & Absent\\
 \midrule
-L4 present & -- & -- & --\\
-L3 present & -- & -- & --\\
-L2 present & -- & -- & --\\
-L1 present & -- & -- & --\\
-Individual codes (mean per-code $\kappa$) & -- & -- & \\
-Violation vs error & -- & -- & --\\
-Deepest layer (weighted) & -- & -- & \\
-Failure observed & -- & -- & \\
-Identical full code set & \multicolumn{3}{c}{-- (share of traces)}\\
+AppWorld & 29 & 18 & 8 & 5 & 5\\
+Magentic-One & 165 & 17 & 6 & 6 & 5\\
+OpenManus & 30 & 17 & 6 & 4 & 7\\
+HyperAgent & 28 & 17 & 5 & 5 & 7\\
+AG2 & 597 & 15 & 2 & 5 & 8\\
+ChatDev & 226 & 14 & 6 & 5 & 3\\
+MetaGPT & 430 & 10 & 2 & 3 & 5\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\subsection{RQ2: latent causes}
+\subsection{RQ3: applicability}
 
-\pending{weighted share of failed traces with a contributing factor at each layer,
-and with any contributor at L2--L4, overall and by framework; distribution of the
-deepest contributing layer}.
+\pending{agreement between models and between runs (Table~\ref{tab:rq3}); weighted
+prevalence of supervision (L3.1--L3.3), coordination (L2.3) and violation codes,
+with violations broken down by evidence grade, overall and by framework}.
 
-\subsection{RQ3: errors and violations}
+\begin{table}[tbp]
+\centering
+\caption{Consistency of AI coding with AFACS on the bulk sample (shell; values
+pending). Cohen's $\kappa$ with 95\% bootstrap intervals.}
+\label{tab:rq3}
+\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Measure & Sonnet vs Opus & Sonnet run 1 vs run 2\\
+\midrule
+L4 present & -- & --\\
+L3 present & -- & --\\
+L2 present & -- & --\\
+L1 present & -- & --\\
+Individual codes (mean per-code $\kappa$) & -- & --\\
+Violation vs error & -- & --\\
+Violation evidence grade & -- & --\\
+Deepest layer (weighted) & -- & --\\
+Failure observed & -- & --\\
+Identical full code set (share of traces) & -- & --\\
+\bottomrule
+\end{tabular}
+\end{table}
 
-\pending{share of failed traces with a violation code (V1, V2, V?) by framework and,
-within MetaGPT and AG2, by model; the split of FM-1.1 traces into errors and
-violations}.
+\subsection{RQ4: MAST's flat labels}
 
-\subsection{RQ4: the MAST--AFACS cross-walk}
+Before coding, the framework implies where each MAST mode should fall
+(Table~\ref{tab:expect}). The central expectation is that FM-1.1 Disobey Task
+Specification spreads across layers and across errors and violations, because it
+can describe a misread task, a deficient specification, a registered requirement
+that was ignored, or, as in the empty-task traces, no task at all.
 
-\pending{heatmaps of AFACS layer and code shares within each MAST label; MAST modes
-that map to one layer, and modes that spread across layers or across errors and
-violations}.
+\begin{table}[tbp]
+\centering
+\caption{Where the framework expects MAST's modes to fall in AFACS, to be tested
+against the AI pilot.}
+\label{tab:expect}
+\small
+\begin{tabular}{@{}p{5.8cm}p{9.4cm}@{}}
+\toprule
+MAST mode & Expected AFACS location\\
+\midrule
+1.1 Disobey task specification & Spread: L3.4, L1.E2 or L1.E3, L1.V, or a harness defect\\
+1.2 Disobey role specification & L4.1 role design, or L1.E2 / L1.V\\
+1.3 Step repetition & L1 acts, with L3.3 (loop not broken) and L4.1 (no termination logic)\\
+1.4 Loss of conversation history & L2.2 agent state, with L4.2 context limits\\
+1.5 Unaware of termination conditions & L4.1 termination logic, or L1.E2\\
+2.1--2.5 Inter-agent misalignment & Mostly L2.3 coordination; 2.2 also L3.4\\
+2.6 Reasoning--action mismatch & L1.E1 (sound intention, faulty execution), or L1.V\\
+3.1 Premature termination & L1.E2, or L1.V (false claim of completion), with L3.1\\
+3.2 No or incomplete verification & L3.1, L4.3, or L1.V1 (routine skipping)\\
+3.3 Incorrect verification & L3.1, L1.E2 or L1.E3\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\pending{observed distribution of AFACS layers, codes and violation grades within
+each MAST mode; modes that map to one layer and modes that spread}.
 
 \section{Case Studies}
 \label{sec:cases}
 
-\pending{three or four traces from the bulk set where layered coding changes the
-account of the failure}.
+\pending{three or four traces from the bulk sample, reviewed by the author, where
+layered coding changes the account of the failure}.
 
 One illustration of the flat-label problem comes from the audit. In
 \code{MetaGPT\_ProgramDev2\_GPT4o\_\_099} the task text is empty: the harness
@@ -527,44 +730,60 @@ that does not exist (S4). The reviewer asks for more specific test inputs and
 never mentions that there is no task and no code (S5), and the exchange repeats
 once more before the run ends (S6--S7). MAST labels the trace FM-1.1 Disobey
 Task Specification and FM-2.2 Fail to Ask for Clarification. There was no
-specification to disobey. Under the violation evidence rule, condition (1)
-cannot hold, so none of the agents' behaviour here can be coded as a violation.
-How AFACS should code a defect in the experimental harness itself is an open
-question for codebook v1. This trace is excluded from the calibration set
-because the coder saw its MAST labels while the study was being planned.
+specification to disobey. Under the violation rule, condition (1) cannot hold,
+so none of the agents' behaviour here can be coded as a violation. How AFACS
+should code a defect in the experimental harness itself is an open question in
+codebook v1.
 
 \section{Discussion}
 
-\pending{interpretation of RQ1--RQ4: what layered coding adds to flat labels; what
-the violation rate implies for the capability/alignment distinction; implications
-for evaluating multi-agent systems}.
+The information audit already has an implication for how multi-agent systems
+are logged. Ezell et al.\ recommend that developers retain system documentation,
+exact versions and runtime settings for investigators; MAST's traces, which are
+among the most widely used public records of multi-agent failure, contain almost
+none of them. A logging standard for multi-agent research releases, covering at
+least model identifiers and versions, sampling settings and seeds, system prompts
+and role definitions, and timestamps, would let later studies reconstruct the
+failures they analyse. \pending{what the extension adds to Ezell et al.'s framework
+in practice; how consistently the framework can be applied, and what that means
+for AI-assisted incident analysis}.
 
 \section{Limitations}
 
 \begin{itemize}\setlength{\itemsep}{1pt}
+  \item \textbf{No human validation yet.} The pilot measures consistency, not
+  correctness; agreement between AI runs can coexist with shared error. Human
+  validation is the next study.
+  \item \textbf{AI coding AI traces.} The annotator is a language model coding
+  the behaviour of other language models, and may share their blind spots.
   \item \textbf{Behavioural, not intentional.} ``Violation'' describes what the
-  trace shows. It is not a claim about what a model wanted.
-  \item \textbf{One expert coder.} Agreement between human coders is not
-  measured; the human--LLM comparison stands in for it. HFACS reliability is
-  itself contested~\cite{olsen2010hfacsadf,cohen2015reliability}.
-  \item \textbf{Small test set.} Twelve held-out traces give wide confidence
-  intervals, which are reported.
+  trace shows. It is not a claim about what a model wanted, and stated reasoning
+  may not reflect what produced an action.
+  \item \textbf{Annotation route.} Annotations run through Claude Code's headless
+  mode rather than the bare API. Tools are disabled and the system prompt
+  replaced, but the surrounding harness is Claude Code's, and results with the
+  same prompt through the API may differ slightly.
   \item \textbf{Noisy reference labels.} MAST's labels come from an LLM judge
   with a test--retest $\kappa$ of 0.43 on the duplicated traces, a small sample
   of 30.
   \item \textbf{No ground-truth outcome.} ``Failed'' means flagged by MAST's
   judge, except for the 60 traces that carry a benchmark verdict.
-  \item \textbf{Coverage.} ChatDev and traces above 30{,}000 tokens are excluded,
-  so results do not describe very long runs.
-  \item \textbf{Confounding.} Model is confounded with framework and, within AG2,
-  with benchmark, so model comparisons are exploratory.
-  \item \textbf{Stochastic annotator.} Current Claude models cannot be made fully
-  deterministic; run-to-run agreement is reported.
+  \item \textbf{Failures, not incidents.} Benchmark failures carry no harm; the
+  occurrence-reporting analogy is an argument, not a demonstration.
+  \item \textbf{Coverage and confounding.} ChatDev and traces above 30{,}000
+  tokens are excluded. Model is confounded with framework and, within AG2, with
+  benchmark, so model comparisons are exploratory.
+  \item \textbf{Contested reliability.} HFACS reliability is itself
+  debated~\cite{olsen2010hfacsadf,cohen2015reliability}.
 \end{itemize}
 
 \section{Future Work}
 
-A second phase applies AFACS to a domain evaluation of aviation dispatch and
+The next study validates AFACS with independent human coders on the frozen
+calibration set, measuring agreement between humans and between humans and the
+AI annotator on the pre-registered held-out traces.
+
+A further phase applies AFACS to a domain evaluation of aviation dispatch and
 safety decisions under pressure. Each scenario has a ground-truth answer (a
 minimum equipment list item, a flight-time limitation, weather minima or a fuel
 decision) and is run in neutral, commercial-pressure, authority-pressure and
@@ -583,9 +802,11 @@ finds with a human-factors framework.
 \section*{Use of AI Tools}
 
 The data pipeline, tests and figures were built with Claude Code under the
-author's direction. The AFACS framework, the codebook and the expert coding are
-the author's. Every study-design decision is recorded with its reason in
-\code{src/afacs/design.py}, and the pipeline is open.
+author's direction. The AI pilot's annotations are produced by Claude models
+through Claude Code's headless mode on the author's subscription, as described in
+Section~\ref{sec:method}. The framework, the codebook decisions and the expert
+reviews are the author's. Every study-design decision is recorded with its reason
+in \code{src/afacs/design.py}, and the pipeline is open.
 
 \section*{Data and Code}
 
@@ -600,15 +821,16 @@ recreates them from the pinned dataset revision.
 \bibitem{shappell2000hfacs} S.~A. Shappell and D.~A. Wiegmann, ``The Human Factors Analysis and Classification System--HFACS,'' U.S. Department of Transportation, Federal Aviation Administration, Office of Aviation Medicine, Report DOT/FAA/AM-00/7, 2000.
 \bibitem{wiegmann2003human} D.~A. Wiegmann and S.~A. Shappell, \emph{A Human Error Approach to Aviation Accident Analysis: The Human Factors Analysis and Classification System}. Ashgate, 2003.
 \bibitem{reason1990errors} J. Reason, A. Manstead, S. Stradling, J. Baxter and K. Campbell, ``Errors and violations on the roads: a real distinction?'' \emph{Ergonomics}, vol.~33, no.~10--11, pp.~1315--1332, 1990.
+\bibitem{ezell2025incident} C. Ezell, X. Roberts-Gaal and A. Chan, ``Incident analysis for AI agents,'' in \emph{Proc. AAAI/ACM Conference on AI, Ethics, and Society (AIES)}, 2025. arXiv:2508.14231.
+\bibitem{baker2025monitoring} B. Baker, J. Huizinga, L. Gao, Z. Dou, M.~Y. Guan, A. Madry, W. Zaremba, J. Pachocki and D. Farhi, ``Monitoring reasoning models for misbehavior and the risks of promoting obfuscation,'' arXiv:2503.11926, 2025.
 \bibitem{cemri2025mast} M. Cemri, M.~Z. Pan, S. Yang, L.~A. Agrawal, B. Chopra, R. Tiwari, K. Keutzer, A. Parameswaran, D. Klein, K. Ramchandran, M. Zaharia, J.~E. Gonzalez and I. Stoica, ``Why do multi-agent LLM systems fail?'' in \emph{Advances in Neural Information Processing Systems (NeurIPS)}, 2025. arXiv:2503.13657.
+\bibitem{shamsujjoha2024swisscheese} M. Shamsujjoha, Q. Lu, D. Zhao and L. Zhu, ``Swiss cheese model for AI safety: A taxonomy and reference architecture for multi-layered guardrails of foundation model based agents,'' arXiv:2408.02205, 2024.
+\bibitem{mylius2025stpa} S. Mylius, ``Systematic hazard analysis for frontier AI using STPA,'' arXiv:2506.01782, 2025.
+\bibitem{leveson2012engineering} N.~G. Leveson, \emph{Engineering a Safer World: Systems Thinking Applied to Safety}. MIT Press, 2012.
 \bibitem{deshpande2025trail} D. Deshpande, V. Gangal, H. Mehta, J. Krishnan, A. Kannappan and R. Qian, ``TRAIL: Trace reasoning and agentic issue localization,'' arXiv:2505.08638, 2025.
 \bibitem{zhu2025agenterrorbench} K. Zhu et al., ``Where LLM agents fail and how they can learn from failures,'' arXiv:2509.25370, 2025.
 \bibitem{zhang2025whowhen} S. Zhang et al., ``Which agent causes task failures and when? On automated failure attribution of LLM multi-agent systems,'' in \emph{Proc. ICML}, PMLR vol.~267, pp.~76583--76599, 2025.
 \bibitem{raj2026modelharness} H. Raj, V. Gupta, A. Mahmoud, R.-G. Dumitru, D. Yi, A. Sabharwal and Y. He, ``Model or harness? An interaction-centric taxonomy for localizing agent failures,'' arXiv:2607.28802, 2026.
-\bibitem{ezell2025incident} C. Ezell, X. Roberts-Gaal and A. Chan, ``Incident analysis for AI agents,'' in \emph{Proc. AAAI/ACM Conference on AI, Ethics, and Society (AIES)}, 2025. arXiv:2508.14231.
-\bibitem{shamsujjoha2024swisscheese} M. Shamsujjoha, Q. Lu, D. Zhao and L. Zhu, ``Swiss cheese model for AI safety: A taxonomy and reference architecture for multi-layered guardrails of foundation model based agents,'' arXiv:2408.02205, 2024.
-\bibitem{mylius2025stpa} S. Mylius, ``Systematic hazard analysis for frontier AI using STPA,'' arXiv:2506.01782, 2025.
-\bibitem{leveson2012engineering} N.~G. Leveson, \emph{Engineering a Safer World: Systems Thinking Applied to Safety}. MIT Press, 2012.
 \bibitem{wiegmann2001commercial} D.~A. Wiegmann and S.~A. Shappell, ``A human error analysis of commercial aviation accidents using the Human Factors Analysis and Classification System (HFACS),'' U.S. Department of Transportation, Federal Aviation Administration, Office of Aviation Medicine, Report DOT/FAA/AM-01/3, 2001.
 \bibitem{olsen2010hfacsadf} N.~S. Olsen and S.~T. Shorrock, ``Evaluation of the HFACS-ADF safety classification system: Inter-coder consensus and intra-coder consistency,'' \emph{Accident Analysis \& Prevention}, vol.~42, no.~2, pp.~437--444, 2010.
 \bibitem{cohen2015reliability} T.~N. Cohen, D.~A. Wiegmann and S.~A. Shappell, ``Evaluating the reliability of the Human Factors Analysis and Classification System,'' \emph{Aerospace Medicine and Human Performance}, vol.~86, no.~8, pp.~728--735, 2015.
@@ -616,13 +838,13 @@ recreates them from the pinned dataset revision.
 \bibitem{ahmadi2025hfacsgrpo} A. Ahmadi, S. Sharif and Y. Banad, ``Improving aviation safety analysis: Automated HFACS classification using reinforcement learning with group relative policy optimization,'' arXiv:2508.21201, 2025.
 \bibitem{krakovna2020specgaming} V. Krakovna, J. Uesato, V. Mikulik, M. Rahtz, T. Everitt, R. Kumar, Z. Kenton, J. Leike and S. Legg, ``Specification gaming: the flip side of AI ingenuity,'' DeepMind blog, April 2020.
 \bibitem{zhong2025impossiblebench} Z. Zhong, A. Raghunathan and N. Carlini, ``ImpossibleBench: Measuring LLMs' propensity of exploiting test cases,'' arXiv:2510.20270, 2025.
-\bibitem{baker2025monitoring} B. Baker, J. Huizinga, L. Gao, Z. Dou, M.~Y. Guan, A. Madry, W. Zaremba, J. Pachocki and D. Farhi, ``Monitoring reasoning models for misbehavior and the risks of promoting obfuscation,'' arXiv:2503.11926, 2025.
+\bibitem{meinke2024scheming} A. Meinke, B. Schoen, J. Scheurer, M. Balesni, R. Shah and M. Hobbhahn, ``Frontier models are capable of in-context scheming,'' arXiv:2412.04984, 2024.
+\bibitem{lynch2025agentic} A. Lynch, B. Wright, C. Larson, S.~J. Ritchie, S. Mindermann, E. Hubinger, E. Perez and K. Troy, ``Agentic misalignment: How LLMs could be insider threats,'' arXiv:2510.05179, 2025.
 \bibitem{smyth2026overclaim} N. Smyth et al., ``Quantifying overclaiming propensity in frontier LLM agents,'' arXiv:2609.20812, 2026.
 \bibitem{hagele2026hotmess} A. Hägele, A.~P. Gema, H. Sleight, E. Perez and J. Sohl-Dickstein, ``The hot mess of AI: How does misalignment scale with model intelligence and task complexity?'' in \emph{Proc. ICLR}, 2026. arXiv:2601.23045.
 \bibitem{cohen1960kappa} J. Cohen, ``A coefficient of agreement for nominal scales,'' \emph{Educational and Psychological Measurement}, vol.~20, no.~1, pp.~37--46, 1960.
 \bibitem{landis1977measurement} J.~R. Landis and G.~G. Koch, ``The measurement of observer agreement for categorical data,'' \emph{Biometrics}, vol.~33, no.~1, pp.~159--174, 1977.
 \bibitem{feinstein1990paradox} A.~R. Feinstein and D.~V. Cicchetti, ``High agreement but low kappa: I. The problems of two paradoxes,'' \emph{Journal of Clinical Epidemiology}, vol.~43, no.~6, pp.~543--549, 1990.
-\bibitem{zheng2023judging} L. Zheng et al., ``Judging LLM-as-a-judge with MT-Bench and Chatbot Arena,'' in \emph{Advances in Neural Information Processing Systems (NeurIPS), Datasets and Benchmarks Track}, 2023. arXiv:2306.05685.
 \bibitem{aisi2024inspect} UK AI Security Institute, ``Inspect AI: Framework for large language model evaluations,'' software, 2024. \url{https://inspect.aisi.org.uk/}.
 \bibitem{brooker2026preflight} A. Brooker and T. Hughes, ``Pre-Flight: A benchmark for evaluating large language models on aviation operational knowledge,'' arXiv:2607.01829, 2026.
 \bibitem{wu2026pilotbench} Y. Wu, H. Liu, Z. Li and B. Wang, ``PilotBench: A benchmark for general aviation agents with safety constraints,'' in \emph{Proc. International Joint Conference on Neural Networks (IJCNN)}, 2026. arXiv:2604.08987.

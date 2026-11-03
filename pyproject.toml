@@ -22,6 +22,7 @@ afacs-annotate = "afacs.annotate:main"
 afacs-agreement = "afacs.agreement:main"
 afacs-analysis = "afacs.analysis:main"
 afacs-coding-tool = "afacs.coding_tool:main"   # the hand-coding page and its importer
+afacs-info-audit = "afacs.info_audit:main"     # RQ2: logs vs Ezell et al.'s information needs
 
 [dependency-groups]
 dev = ["pytest>=8"]

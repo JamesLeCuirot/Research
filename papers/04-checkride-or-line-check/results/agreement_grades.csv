@@ -13,20 +13,20 @@ set,comparison,measure,level,n_units,alpha,ci_low,ci_high,exact_agreement,within
 48 model transcripts,Inter-grader (run 2),MEAN4,interval,48,0.4638,0.1963,0.6576,,1.0000
 48 model transcripts,Inter-grader (run 2),OVERALL_R,ordinal,48,0.4808,0.2139,0.6906,0.6458,1.0000
 48 model transcripts,Inter-grader (run 2),HOLISTIC,ordinal,48,0.2914,0.0035,0.5448,0.6458,1.0000
-48 model transcripts,Test-retest (Sonnet),PRO,ordinal,48,0.8684,0.7066,0.9888,0.8958,1.0000
-48 model transcripts,Test-retest (Sonnet),COM,ordinal,48,0.6852,0.4559,0.8431,0.7500,1.0000
-48 model transcripts,Test-retest (Sonnet),PSD,ordinal,48,0.7509,0.5200,0.9174,0.8750,1.0000
-48 model transcripts,Test-retest (Sonnet),SAW,ordinal,48,0.6735,0.4456,0.8665,0.8333,1.0000
-48 model transcripts,Test-retest (Sonnet),MEAN4,interval,48,0.8905,0.7909,0.9458,,1.0000
-48 model transcripts,Test-retest (Sonnet),OVERALL_R,ordinal,48,0.7363,0.5321,0.8896,0.8333,1.0000
-48 model transcripts,Test-retest (Sonnet),HOLISTIC,ordinal,48,0.6552,0.4134,0.8351,0.8333,1.0000
-48 model transcripts,Test-retest (Opus),PRO,ordinal,48,0.7293,0.4345,0.9398,0.9167,1.0000
-48 model transcripts,Test-retest (Opus),COM,ordinal,48,0.7613,0.5666,0.9048,0.8333,1.0000
-48 model transcripts,Test-retest (Opus),PSD,ordinal,48,0.5590,0.3174,0.7426,0.6875,1.0000
-48 model transcripts,Test-retest (Opus),SAW,ordinal,48,0.7444,0.5576,0.8948,0.8125,1.0000
-48 model transcripts,Test-retest (Opus),MEAN4,interval,48,0.7526,0.5948,0.8684,,1.0000
-48 model transcripts,Test-retest (Opus),OVERALL_R,ordinal,48,0.7098,0.4979,0.8758,0.8333,1.0000
-48 model transcripts,Test-retest (Opus),HOLISTIC,ordinal,48,0.7930,0.6083,0.9573,0.8958,1.0000
+48 model transcripts,Repeat-run (Sonnet grader),PRO,ordinal,48,0.8684,0.7066,0.9888,0.8958,1.0000
+48 model transcripts,Repeat-run (Sonnet grader),COM,ordinal,48,0.6852,0.4559,0.8431,0.7500,1.0000
+48 model transcripts,Repeat-run (Sonnet grader),PSD,ordinal,48,0.7509,0.5200,0.9174,0.8750,1.0000
+48 model transcripts,Repeat-run (Sonnet grader),SAW,ordinal,48,0.6735,0.4456,0.8665,0.8333,1.0000
+48 model transcripts,Repeat-run (Sonnet grader),MEAN4,interval,48,0.8905,0.7909,0.9458,,1.0000
+48 model transcripts,Repeat-run (Sonnet grader),OVERALL_R,ordinal,48,0.7363,0.5321,0.8896,0.8333,1.0000
+48 model transcripts,Repeat-run (Sonnet grader),HOLISTIC,ordinal,48,0.6552,0.4134,0.8351,0.8333,1.0000
+48 model transcripts,Repeat-run (Opus grader),PRO,ordinal,48,0.7293,0.4345,0.9398,0.9167,1.0000
+48 model transcripts,Repeat-run (Opus grader),COM,ordinal,48,0.7613,0.5666,0.9048,0.8333,1.0000
+48 model transcripts,Repeat-run (Opus grader),PSD,ordinal,48,0.5590,0.3174,0.7426,0.6875,1.0000
+48 model transcripts,Repeat-run (Opus grader),SAW,ordinal,48,0.7444,0.5576,0.8948,0.8125,1.0000
+48 model transcripts,Repeat-run (Opus grader),MEAN4,interval,48,0.7526,0.5948,0.8684,,1.0000
+48 model transcripts,Repeat-run (Opus grader),OVERALL_R,ordinal,48,0.7098,0.4979,0.8758,0.8333,1.0000
+48 model transcripts,Repeat-run (Opus grader),HOLISTIC,ordinal,48,0.7930,0.6083,0.9573,0.8958,1.0000
 48 model transcripts,All four ratings,PRO,ordinal,48,0.5436,0.3450,0.7129,0.7917,0.9896
 48 model transcripts,All four ratings,COM,ordinal,48,0.5659,0.3885,0.6977,0.6528,1.0000
 48 model transcripts,All four ratings,PSD,ordinal,48,0.4147,0.2485,0.5612,0.6701,0.9931

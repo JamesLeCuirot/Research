@@ -1,8 +1,8 @@
-measure,mean_sonnet,mean_opus,mean_diff_opus_minus_sonnet,pct_transcripts_opus_lower,pct_transcripts_opus_higher,wilcoxon_p
-PRO,4.594,4.812,0.219,0.042,0.292,0.004
-COM,4.312,4.458,0.146,0.208,0.354,0.056
-PSD,4.458,4.510,0.052,0.229,0.333,0.484
-SAW,4.333,4.469,0.135,0.125,0.333,0.084
-MEAN4,4.424,4.562,0.138,0.354,0.521,0.029
-OVERALL_R,4.521,4.521,0.000,0.292,0.271,0.950
-HOLISTIC,4.396,4.531,0.135,0.146,0.292,0.060
+measure,mean_sonnet,mean_opus,mean_diff_opus_minus_sonnet,pct_transcripts_opus_lower,pct_transcripts_opus_higher,wilcoxon_p,bonferroni_p
+PRO,4.594,4.812,0.219,0.042,0.292,0.004,0.031
+COM,4.312,4.458,0.146,0.208,0.354,0.056,0.390
+PSD,4.458,4.510,0.052,0.229,0.333,0.484,1.000
+SAW,4.333,4.469,0.135,0.125,0.333,0.084,0.588
+MEAN4,4.424,4.562,0.138,0.354,0.521,0.029,0.200
+OVERALL_R,4.521,4.521,0.000,0.292,0.271,0.950,1.000
+HOLISTIC,4.396,4.531,0.135,0.146,0.292,0.060,0.421

@@ -108,8 +108,10 @@ def pct_agree(mat: np.ndarray, tol: float = 0.0) -> float:
 COMPARISONS = {
     "Inter-grader (run 1)": [("Sonnet", 1), ("Opus", 1)],
     "Inter-grader (run 2)": [("Sonnet", 2), ("Opus", 2)],
-    "Test-retest (Sonnet)": [("Sonnet", 1), ("Sonnet", 2)],
-    "Test-retest (Opus)": [("Opus", 1), ("Opus", 2)],
+    # "Repeat-run" agreement: the same grader model sampled twice, independently, with the same prompt.
+    # It measures sampling consistency, not stability over time (there is no interval and no memory).
+    "Repeat-run (Sonnet grader)": [("Sonnet", 1), ("Sonnet", 2)],
+    "Repeat-run (Opus grader)": [("Opus", 1), ("Opus", 2)],
     "All four ratings": [("Sonnet", 1), ("Sonnet", 2), ("Opus", 1), ("Opus", 2)],
 }
 
@@ -171,20 +173,42 @@ def per_transcript_means(long, tids):
     return d.groupby(["tid", "scenario", "agent", "measure"])["value"].mean().unstack("measure").reset_index()
 
 
+def stratified_permutation(pt, m, n_perm=10000):
+    """Haiku minus Sonnet mean difference, with model labels permuted within scenario."""
+    rng = np.random.default_rng(20261103)
+    def diff(d):
+        return d[d.agent == "claude-haiku-5-5"][m].mean() - d[d.agent == "claude-sonnet-5-5"][m].mean()
+    obs = diff(pt)
+    groups = [g for _, g in pt.groupby("scenario")]
+    count = 0
+    for _ in range(n_perm):
+        shuffled = pd.concat([g.assign(agent=rng.permutation(g.agent.to_numpy())) for g in groups])
+        count += abs(diff(shuffled)) >= abs(obs) - 1e-12
+    return obs, (count + 1) / (n_perm + 1)
+
+
 def discrimination(pt):
     out = []
     for m in MEASURES:
         groups = [g[m].to_numpy() for _, g in pt.groupby("scenario")]
         h, p = stats.kruskal(*groups) if pt[m].nunique() > 1 else (np.nan, np.nan)
         k, n = len(groups), len(pt)
-        eps2 = (h - k + 1) / (n - k) if not np.isnan(h) else np.nan
+        # Effect sizes for Kruskal-Wallis: epsilon-squared = H / (n - 1); eta-squared based on H = (H - k + 1) / (n - k).
+        eps2 = h / (n - 1) if not np.isnan(h) else np.nan
+        eta2_h = (h - k + 1) / (n - k) if not np.isnan(h) else np.nan
         hk = pt[pt.agent == "claude-haiku-5-5"][m].to_numpy()
         so = pt[pt.agent == "claude-sonnet-5-5"][m].to_numpy()
         u, pu = stats.mannwhitneyu(hk, so, alternative="two-sided") if pt[m].nunique() > 1 else (np.nan, np.nan)
         cliff = (np.sum(hk[:, None] > so[None, :]) - np.sum(hk[:, None] < so[None, :])) / (len(hk) * len(so))
-        out.append({"measure": m, "kruskal_H_scenario": h, "kruskal_p": p, "epsilon_sq": eps2,
+        obs, p_perm = stratified_permutation(pt, m)
+        # Pooled within-cell (scenario x model) SD and the difference detectable with 80% power (two-sided 5%).
+        sd_within = float(np.sqrt(pt.groupby(["scenario", "agent"])[m].var(ddof=1).mean()))
+        mdd = (stats.norm.ppf(0.975) + stats.norm.ppf(0.80)) * sd_within * np.sqrt(2 / len(hk))
+        out.append({"measure": m, "kruskal_H_scenario": h, "kruskal_p": p, "epsilon_sq": eps2, "eta_sq_H": eta2_h,
                     "mean_haiku": hk.mean(), "mean_sonnet": so.mean(), "mannwhitney_U": u, "mannwhitney_p": pu,
-                    "cliffs_delta_haiku_vs_sonnet": cliff, "sd_transcript_means": pt[m].std(ddof=1)})
+                    "cliffs_delta_haiku_vs_sonnet": cliff, "stratified_perm_diff": obs, "stratified_perm_p": p_perm,
+                    "pooled_within_cell_sd": sd_within, "min_detectable_diff_80pct": mdd,
+                    "sd_transcript_means": pt[m].std(ddof=1)})
     return pd.DataFrame(out)
 
 
@@ -202,31 +226,38 @@ def make_figure(agr, agr_ctrl, pt_all):
     import matplotlib.pyplot as plt
 
     surface, ink, ink2, grid = "#fcfcfb", "#0b0b0b", "#52514e", "#e4e3df"
-    series = {"Inter-grader (run 1)": "#2a78d6", "Test-retest (Sonnet)": "#eb6834", "Test-retest (Opus)": "#1baf7a"}
+    # Same hue for the two inter-grader runs, told apart by marker shape (secondary encoding).
+    series = {"Inter-grader (run 1)": ("#2a78d6", "o", True), "Inter-grader (run 2)": ("#2a78d6", "s", False),
+              "Repeat-run (Sonnet grader)": ("#eb6834", "o", True), "Repeat-run (Opus grader)": ("#1baf7a", "o", True)}
     plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 9, "axes.edgecolor": ink2, "axes.labelcolor": ink,
                          "xtick.color": ink2, "ytick.color": ink2, "text.color": ink})
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 5.2), gridspec_kw={"width_ratios": [1.35, 1]})
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11.5, 5.6), gridspec_kw={"width_ratios": [1.35, 1]})
     fig.patch.set_facecolor(surface)
 
     # Panel A: alpha with 95% CI, by measure and comparison
     order = ["PRO", "COM", "PSD", "SAW", "MEAN4", "OVERALL_R", "HOLISTIC"]
     y = np.arange(len(order))[::-1]
-    offs = {"Inter-grader (run 1)": 0.22, "Test-retest (Sonnet)": 0.0, "Test-retest (Opus)": -0.22}
-    for comp, col in series.items():
+    offs = {"Inter-grader (run 1)": 0.27, "Inter-grader (run 2)": 0.09, "Repeat-run (Sonnet grader)": -0.09,
+            "Repeat-run (Opus grader)": -0.27}
+    for comp, (col, mk, filled) in series.items():
         d = agr[agr.comparison == comp].set_index("measure").reindex(order)
         ax1.errorbar(d["alpha"], y + offs[comp], xerr=[d["alpha"] - d["ci_low"], d["ci_high"] - d["alpha"]],
-                     fmt="o", ms=5, color=col, ecolor=col, elinewidth=1.5, capsize=0, label=comp + " (48 model transcripts)")
+                     fmt=mk, ms=4.5, color=col, mfc=col if filled else surface, mec=col, ecolor=col, elinewidth=1.3,
+                     capsize=0, label=comp)
     dc = agr_ctrl[agr_ctrl.comparison == "Inter-grader (run 1)"].set_index("measure").reindex(order)
-    ax1.scatter(dc["alpha"], y + 0.22, marker="D", s=30, facecolor=surface, edgecolor="#2a78d6", linewidth=1.5, zorder=3,
-                label="Inter-grader (run 1), with 6 scripted controls")
+    ax1.scatter(dc["alpha"], y + 0.27, marker="D", s=26, facecolor=surface, edgecolor=ink2, linewidth=1.2, zorder=3,
+                label="Inter-grader (run 1) + 6 post hoc controls (exploratory)")
     ax1.axvline(0, color=ink2, lw=0.8)
+    for x, lab in ((0.667, ".667"), (0.8, ".800")):
+        ax1.axvline(x, color=ink2, lw=0.7, ls=":")
+        ax1.text(x, len(order) - 0.45, lab, color=ink2, fontsize=7.5, ha="center", va="bottom")
     ax1.set_yticks(y, [LABEL[m] for m in order])
     ax1.set_xlim(-0.15, 1.05)
     ax1.set_xlabel("Krippendorff's alpha (95% bootstrap CI)")
     ax1.set_title("A. Agreement by measure", loc="left", fontsize=10, fontweight="bold")
     ax1.grid(axis="x", color=grid, lw=0.6)
     ax1.set_axisbelow(True)
-    ax1.legend(loc="upper center", bbox_to_anchor=(0.42, -0.14), ncol=2, fontsize=7.4, frameon=False)
+    ax1.legend(loc="upper center", bbox_to_anchor=(0.40, -0.14), ncol=2, fontsize=7.4, frameon=False)
     for s in ("top", "right"):
         ax1.spines[s].set_visible(False)
 
@@ -234,7 +265,7 @@ def make_figure(agr, agr_ctrl, pt_all):
     scen = sorted(pt_all.scenario.unique())
     short = {s: s.split("_", 1)[0] for s in scen}
     cols_b = {"claude-haiku-5-5": "#2a78d6", "claude-sonnet-5-5": "#eb6834"}
-    names = {"claude-haiku-5-5": "Haiku 5.5 responses", "claude-sonnet-5-5": "Sonnet 5.5 responses"}
+    names = {"claude-haiku-5-5": "Haiku 5.5 agent responses", "claude-sonnet-5-5": "Sonnet 5.5 agent responses"}
     for k, s in enumerate(scen):
         for agent, off in (("claude-haiku-5-5", -0.15), ("claude-sonnet-5-5", 0.15)):
             v = pt_all[(pt_all.scenario == s) & (pt_all.agent == agent)]["MEAN4"].to_numpy()
@@ -243,7 +274,7 @@ def make_figure(agr, agr_ctrl, pt_all):
                         label=names[agent] if k == 0 else None, zorder=3)
         v = pt_all[(pt_all.scenario == s) & (pt_all.agent == "scripted-control")]["MEAN4"].to_numpy()
         ax2.scatter([k] * len(v), v, marker="D", s=34, facecolor=surface, edgecolor=ink, linewidth=1.3, zorder=3,
-                    label="Scripted control (run 1)" if k == 0 else None)
+                    label="Post hoc scripted control (run 1, exploratory)" if k == 0 else None)
     ax2.set_xticks(range(len(scen)), [short[s] for s in scen])
     ax2.set_ylim(0.8, 5.2)
     ax2.set_ylabel("Mean competency grade (1-5)")
@@ -251,7 +282,7 @@ def make_figure(agr, agr_ctrl, pt_all):
     ax2.set_title("B. Grades by scenario and source", loc="left", fontsize=10, fontweight="bold")
     ax2.grid(axis="y", color=grid, lw=0.6)
     ax2.set_axisbelow(True)
-    ax2.legend(loc="upper center", bbox_to_anchor=(0.5, -0.14), ncol=2, fontsize=7.4, frameon=False)
+    ax2.legend(loc="upper center", bbox_to_anchor=(0.5, -0.14), ncol=1, fontsize=7.4, frameon=False)
     for s in ("top", "right"):
         ax2.spines[s].set_visible(False)
     for ax in (ax1, ax2):
@@ -303,6 +334,7 @@ def main():
                    "pct_transcripts_opus_higher": float(np.mean(diff > 0)),
                    "wilcoxon_p": w.pvalue if w else np.nan})
     gb = pd.DataFrame(gb)
+    gb["bonferroni_p"] = np.minimum(gb["wilcoxon_p"] * len(gb), 1.0)
     gb.to_csv(RESULTS / "grader_bias.csv", index=False, float_format="%.3f")
     print(gb.round(3).to_string(index=False))
 
@@ -330,6 +362,17 @@ def main():
     else:
         make_figure(agr, agr, pt.assign())
 
+    # Grader x agent means (self-preference check): per grader, mean over both runs of per-transcript grades
+    ga = long[long.tid.isin(model_tids)].groupby(["grader", "agent", "measure"])["value"].mean().unstack("measure")
+    ga[MEASURES].round(3).to_csv(RESULTS / "grader_by_agent_means.csv")
+
+    # Alphas against Krippendorff's (2004) recommended minima (.800; .667 for tentative conclusions)
+    thr = {}
+    for comp in ["Inter-grader (run 1)", "Inter-grader (run 2)", "Repeat-run (Sonnet grader)", "Repeat-run (Opus grader)"]:
+        v = agr[agr.comparison == comp]["alpha"]
+        thr[comp] = {"n": int(len(v)), "n_ge_0.667": int((v >= 0.667).sum()), "n_ge_0.800": int((v >= 0.800).sum()),
+                     "max": float(v.max())}
+    summary["alpha_vs_krippendorff_minima"] = thr
     (RESULTS / "summary.json").write_text(json.dumps(summary, indent=2, default=float))
     pd.set_option("display.width", 200)
     print(agr.round(3).to_string(index=False))

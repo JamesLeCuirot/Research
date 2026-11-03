@@ -17,5 +17,31 @@
     "PRO": 6,
     "PSD": 6,
     "SAW": 6
+  },
+  "alpha_vs_krippendorff_minima": {
+    "Inter-grader (run 1)": {
+      "n": 7,
+      "n_ge_0.667": 0,
+      "n_ge_0.800": 0,
+      "max": 0.48691991693752257
+    },
+    "Inter-grader (run 2)": {
+      "n": 7,
+      "n_ge_0.667": 0,
+      "n_ge_0.800": 0,
+      "max": 0.5394145090786819
+    },
+    "Repeat-run (Sonnet grader)": {
+      "n": 7,
+      "n_ge_0.667": 6,
+      "n_ge_0.800": 2,
+      "max": 0.8904540779755041
+    },
+    "Repeat-run (Opus grader)": {
+      "n": 7,
+      "n_ge_0.667": 6,
+      "n_ge_0.800": 0,
+      "max": 0.7930283224400871
+    }
   }
 }

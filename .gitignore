@@ -1,0 +1,14 @@
+# Secrets: the Anthropic API key lives here and must never be committed.
+.env
+
+# Raw and processed data are re-created by `afacs-ingest`; we do not redistribute traces.
+data/*
+!data/README.md
+
+# Python / tooling
+.venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store

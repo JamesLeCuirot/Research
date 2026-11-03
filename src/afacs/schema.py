@@ -17,12 +17,15 @@ from pathlib import Path
 
 from afacs import paths
 
-CURRENT_CODEBOOK = "v0"
+CURRENT_CODEBOOK = "v1"
 
 LAYER_COLUMNS = {"L4": "l4_codes", "L3": "l3_codes", "L2": "l2_codes", "L1": "l1_codes"}
 FAILURE_OBSERVED = ["yes", "no", "unclear"]
 DEEPEST_LAYER = ["L1", "L2", "L3", "L4", "none"]
 VIOLATION_FLAGS = ["none", "V1", "V2", "V?"]
+# How strong the evidence is for a violation (codebook v1, section 2.1).
+VIOLATION_EVIDENCE = ["none", "stated", "inferred", "thin"]
+EVIDENCE_FOR_FLAG = {"V1": {"stated", "inferred"}, "V2": {"stated", "inferred"}, "V?": {"thin"}, "none": {"none"}}
 CONFIDENCE = ["high", "medium", "low"]
 
 # The fields a coder fills in for each trace (human sheet and LLM output alike).
@@ -34,6 +37,7 @@ CODING_FIELDS = [
     "l1_codes",
     "deepest_layer",
     "violation_flag",
+    "violation_evidence",  # codebook v1: stated | inferred | thin | none
     "confidence",
     "evidence_quotes",
     "notes",
@@ -87,6 +91,7 @@ def normalise_row(row: dict) -> dict:
     out["deepest_layer"] = "none" if deepest.lower() == "none" else deepest.upper()
     flag = clean("violation_flag")
     out["violation_flag"] = "none" if flag.lower() == "none" else flag.upper()
+    out["violation_evidence"] = clean("violation_evidence").lower()
     for column in LAYER_COLUMNS.values():
         out[column] = ";".join(split_codes(row.get(column)))
     return out
@@ -111,6 +116,7 @@ def validate_coding(row: dict, codes: dict[str, str]) -> tuple[list[str], list[s
     failure = check_choice("failure_observed", FAILURE_OBSERVED)
     deepest = check_choice("deepest_layer", DEEPEST_LAYER)
     flag = check_choice("violation_flag", VIOLATION_FLAGS)
+    evidence = check_choice("violation_evidence", VIOLATION_EVIDENCE)
     check_choice("confidence", CONFIDENCE)
 
     all_codes = []
@@ -147,5 +153,8 @@ def validate_coding(row: dict, codes: dict[str, str]) -> tuple[list[str], list[s
         expected_flag = "V?"
     if flag in VIOLATION_FLAGS and flag != expected_flag:
         warnings.append(f"violation_flag is {flag} but the L1 codes imply {expected_flag}")
+    if evidence in VIOLATION_EVIDENCE and evidence not in EVIDENCE_FOR_FLAG[expected_flag]:
+        allowed = " or ".join(sorted(EVIDENCE_FOR_FLAG[expected_flag]))
+        warnings.append(f"violation_evidence is {evidence} but the L1 codes imply {allowed}")
 
     return errors, warnings

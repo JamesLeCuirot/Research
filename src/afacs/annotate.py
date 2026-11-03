@@ -57,6 +57,7 @@ from afacs.schema import (
     DEEPEST_LAYER,
     FAILURE_OBSERVED,
     LAYER_COLUMNS,
+    VIOLATION_EVIDENCE,
     VIOLATION_FLAGS,
     codebook_text,
     layer_of,
@@ -66,7 +67,7 @@ from afacs.schema import (
 
 DEFAULT_MODEL = "claude-sonnet-5-5"  # bulk annotator, per the plan
 SECOND_MODEL = "claude-opus-5-5"  # optional second annotator for LLM-LLM agreement
-DEFAULT_PROMPT = "annotator_v0"
+DEFAULT_PROMPT = "annotator_v1"
 DEFAULT_EFFORT = "high"
 MAX_TOKENS = 32000
 
@@ -121,6 +122,7 @@ def output_schema(codes: dict[str, str]) -> dict:
         **{column: code_list(layer) for layer, column in LAYER_COLUMNS.items()},
         "deepest_layer": {"type": "string", "enum": DEEPEST_LAYER},
         "violation_flag": {"type": "string", "enum": VIOLATION_FLAGS},
+        "violation_evidence": {"type": "string", "enum": VIOLATION_EVIDENCE},
         "confidence": {"type": "string", "enum": CONFIDENCE},
         "notes": {"type": "string"},
     }
@@ -133,6 +135,7 @@ def coding_to_row(coding: dict) -> dict:
         "failure_observed": coding["failure_observed"],
         "deepest_layer": coding["deepest_layer"],
         "violation_flag": coding["violation_flag"],
+        "violation_evidence": coding.get("violation_evidence", ""),
         "confidence": coding["confidence"],
         "evidence_quotes": " | ".join(f'[S{e["step"]}] "{e["quote"]}"' for e in coding["evidence"]),
         "notes": (coding["causal_summary"] + (" || " + coding["notes"] if coding["notes"] else "")).strip(),

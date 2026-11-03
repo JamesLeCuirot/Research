@@ -6,7 +6,7 @@ from types import SimpleNamespace
 from afacs.annotate import coding_to_row, message_to_record, output_schema, request_params, system_prompt
 from afacs.schema import load_codebook_codes
 
-CODES = load_codebook_codes("v0")
+CODES = load_codebook_codes("v1")
 META = {"run_name": "t", "model_requested": "claude-sonnet-5-5", "prompt_version": "annotator_v0",
         "codebook_version": "v0", "system_prompt_sha": "x", "effort": "high"}
 
@@ -15,7 +15,7 @@ GOOD = {
     "evidence": [{"step": 3, "quote": "your_code_here", "codes": ["L3.4"]}],
     "causal_summary": "The task text was empty [S2], so the coder emitted a placeholder [S3].",
     "l4_codes": [], "l3_codes": ["L3.4"], "l2_codes": [], "l1_codes": ["L1.E2"],
-    "deepest_layer": "L3", "violation_flag": "none", "confidence": "medium", "notes": "",
+    "deepest_layer": "L3", "violation_flag": "none", "violation_evidence": "none", "confidence": "medium", "notes": "",
 }
 
 
@@ -81,3 +81,9 @@ def test_claude_code_error_is_recorded():
     from afacs.annotate import claude_code_to_record
     rec = claude_code_to_record({"is_error": True, "result": "Usage limit reached"}, "U1", META, CODES)
     assert rec["error"].startswith("Claude Code: Usage limit") and "row" not in rec
+
+
+def test_schema_includes_violation_evidence():
+    schema = output_schema(CODES)
+    assert schema["properties"]["violation_evidence"]["enum"] == ["none", "stated", "inferred", "thin"]
+    assert "L4.4" in schema["properties"]["l4_codes"]["items"]["enum"]

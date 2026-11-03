@@ -198,6 +198,14 @@ details.rule ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 
         <p class="hint">Start with the unsafe act (L1), then ask what made it possible, layer by layer.</p>
         <div id="codeBoxes"></div>
         <div class="derived" id="vflag"></div>
+        <div id="evBox" style="margin-top:0.5rem">
+          <p class="hint" style="margin-bottom:0.3rem">Evidence for the violation (codebook section 2.1)</p>
+          <div class="seg">
+            <label><input type="radio" name="vev" id="ev_stated" value="stated"><span>Stated</span></label>
+            <label><input type="radio" name="vev" id="ev_inferred" value="inferred"><span>Inferred</span></label>
+          </div>
+          <p class="hint" style="margin:0.3rem 0 0">Stated: the agent's own words acknowledge the requirement, then it departs. Inferred: only the nature of the act shows it can't be accidental.</p>
+        </div>
         <details class="rule">
           <summary>Violation rule, step by step</summary>
           <ol>
@@ -271,7 +279,7 @@ details.rule ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 
 
   function blank(t) {
     return { cal_id: t.cal_id, uid: t.uid, failure_observed: "", l4_codes: [], l3_codes: [], l2_codes: [], l1_codes: [],
-             deepest_layer: "", violation_flag: "none", confidence: "", evidence_quotes: "", notes: "",
+             deepest_layer: "", violation_flag: "none", violation_evidence: "none", confidence: "", evidence_quotes: "", notes: "",
              minutes_spent: 0, status: "", codebook_version: CB, updated_at: "" };
   }
   function get(id) { if (!codings[id]) codings[id] = blank(byId[id]); return codings[id]; }
@@ -287,6 +295,12 @@ details.rule ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 
     if (v.indexOf("L1.V?") >= 0) return "V?";
     return "none";
   }
+  function derivedEvidence(c) {
+    var f = derivedFlag(c);
+    if (f === "none") return "none";
+    if (f === "V?") return "thin";
+    return (c.violation_evidence === "stated" || c.violation_evidence === "inferred") ? c.violation_evidence : "";
+  }
   function deepestCoded(c) {
     var d = 0; allCodes(c).forEach(function (x) { d = Math.max(d, +x.charAt(1)); });
     return d ? "L" + d : "none";
@@ -301,6 +315,8 @@ details.rule ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 
     if (c.deepest_layer === "none" && codes.length) warnings.push("Deepest layer is 'none' but codes are ticked.");
     if (codes.length && c.deepest_layer && c.deepest_layer !== "none" && c.deepest_layer !== deepestCoded(c))
       warnings.push("Deepest layer is " + c.deepest_layer + " but your deepest code is at " + deepestCoded(c) + ".");
+    if ((derivedFlag(c) === "V1" || derivedFlag(c) === "V2") && !derivedEvidence(c))
+      errors.push("Grade the evidence for the violation: stated or inferred (step 2).");
     if (!c.confidence) errors.push("Choose a confidence (step 4).");
     if (codes.length && !c.evidence_quotes.trim()) warnings.push("No evidence quoted yet (step 5).");
     return { errors: errors, warnings: warnings };
@@ -317,7 +333,7 @@ details.rule ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 
   function setSave(cls, text) { saveEl.className = "save" + (cls ? " " + cls : ""); saveEl.textContent = text; }
   function payload(c) {
     var p = {}; for (var k in c) if (k.charAt(0) !== "_") p[k] = c[k];
-    p.violation_flag = derivedFlag(c); p.updated_at = new Date().toISOString();
+    p.violation_flag = derivedFlag(c); p.violation_evidence = derivedEvidence(c); p.updated_at = new Date().toISOString();
     return p;
   }
   function touch(id) {
@@ -495,7 +511,7 @@ details.rule ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 
       r.addEventListener("change", function () { get(current)[field] = r.value; renderDerived(); touch(current); });
     });
   }
-  bindRadio("failure", "failure_observed"); bindRadio("conf", "confidence");
+  bindRadio("failure", "failure_observed"); bindRadio("conf", "confidence"); bindRadio("vev", "violation_evidence");
   document.getElementById("deepest").addEventListener("change", function () { get(current).deepest_layer = this.value; renderDerived(); touch(current); });
   ["evidence", "notes"].forEach(function (fid) {
     var field = fid === "evidence" ? "evidence_quotes" : "notes";
@@ -510,6 +526,7 @@ details.rule ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 
     var c = get(current);
     ["yes", "no", "unclear"].forEach(function (v) { document.getElementById("f_" + v).checked = c.failure_observed === v; });
     ["high", "medium", "low"].forEach(function (v) { document.getElementById("c_" + v).checked = c.confidence === v; });
+    ["stated", "inferred"].forEach(function (v) { document.getElementById("ev_" + v).checked = c.violation_evidence === v; });
     var all = allCodes(c);
     Array.prototype.forEach.call(boxes.querySelectorAll("input"), function (i) { i.checked = all.indexOf(i.value) >= 0; i.closest(".code").classList.toggle("checked", i.checked); });
     document.getElementById("deepest").value = c.deepest_layer || "";
@@ -520,7 +537,10 @@ details.rule ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 
   }
   function renderDerived() {
     var c = get(current), f = derivedFlag(c);
-    document.getElementById("vflag").innerHTML = "Violation flag (follows from your L1 codes): <b>" + f + "</b>";
+    var ev = derivedEvidence(c);
+    document.getElementById("vflag").innerHTML = "Violation flag (follows from your L1 codes): <b>" + f + "</b>" +
+      (f === "V?" ? " · evidence graded <b>thin</b>" : (f === "none" ? "" : " · evidence: <b>" + (ev || "choose below") + "</b>"));
+    document.getElementById("evBox").style.display = (f === "V1" || f === "V2") ? "block" : "none";
     var sug = deepestCoded(c), box = document.getElementById("deepSugg");
     if (allCodes(c).length && c.deepest_layer !== sug) {
       box.innerHTML = "Your deepest code is at <b>" + sug + "</b>. ";
@@ -576,7 +596,7 @@ details.rule ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 
 
   /* ---------- CSV export (same columns as annotations/human/calibration_sheet.csv) ---------- */
   var COLS = ["cal_id", "uid", "framework", "model", "benchmark", "failure_observed", "l4_codes", "l3_codes", "l2_codes", "l1_codes",
-              "deepest_layer", "violation_flag", "confidence", "evidence_quotes", "notes", "minutes_spent"];
+              "deepest_layer", "violation_flag", "violation_evidence", "confidence", "evidence_quotes", "notes", "minutes_spent"];
   function csvCell(v) { v = v == null ? "" : String(v); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
   function toCsv() {
     var lines = [COLS.join(",")];
@@ -585,6 +605,7 @@ details.rule ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 
       ["failure_observed", "deepest_layer", "confidence", "evidence_quotes", "notes", "minutes_spent"].forEach(function (k) { row[k] = c[k]; });
       ["l4_codes", "l3_codes", "l2_codes", "l1_codes"].forEach(function (k) { row[k] = (c[k] || []).join(";"); });
       row.violation_flag = c.failure_observed ? derivedFlag(c) : "";
+      row.violation_evidence = c.failure_observed ? derivedEvidence(c) : "";
       lines.push(COLS.map(function (k) { return csvCell(row[k]); }).join(","));
     });
     return lines.join("\n") + "\n";

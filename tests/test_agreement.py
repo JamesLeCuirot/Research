@@ -6,9 +6,9 @@ from afacs.schema import load_codebook_codes
 CODES = sorted(load_codebook_codes("v0"))
 
 
-def row(l4="", l3="", l2="", l1="", deepest="L1", flag="none", failure="yes"):
+def row(l4="", l3="", l2="", l1="", deepest="L1", flag="none", failure="yes", evidence="none"):
     return {"l4_codes": l4, "l3_codes": l3, "l2_codes": l2, "l1_codes": l1, "deepest_layer": deepest,
-            "violation_flag": flag, "failure_observed": failure, "confidence": "high"}
+            "violation_flag": flag, "violation_evidence": evidence, "failure_observed": failure, "confidence": "high"}
 
 
 def test_kappa_basics():
@@ -20,7 +20,7 @@ def test_kappa_basics():
 def test_identical_codings_agree_perfectly_where_defined():
     A = {
         "a": row(l3="L3.4", l1="L1.E2", deepest="L3"),
-        "b": row(l2="L2.1", l1="L1.V2", deepest="L2", flag="V2"),
+        "b": row(l2="L2.1", l1="L1.V2", deepest="L2", flag="V2", evidence="stated"),
         "c": row(l4="L4.1", l1="L1.E1", deepest="L4"),
         "d": row(failure="no", deepest="none"),
     }

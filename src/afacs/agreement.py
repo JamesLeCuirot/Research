@@ -142,6 +142,7 @@ def measures(A: dict, B: dict, uids: list[str], codes: list[str]) -> dict:
     m["per_code"] = per_code
     m["any_violation"] = kappa([any_violation(A[u]) for u in uids], [any_violation(B[u]) for u in uids])
     m["violation_flag"] = kappa([A[u]["violation_flag"] for u in uids], [B[u]["violation_flag"] for u in uids])
+    m["violation_evidence"] = kappa([A[u].get("violation_evidence", "") for u in uids], [B[u].get("violation_evidence", "") for u in uids])
     da = [DEEPEST_ORDER.get(A[u]["deepest_layer"], 0) for u in uids]
     db = [DEEPEST_ORDER.get(B[u]["deepest_layer"], 0) for u in uids]
     m["deepest_layer"] = kappa(da, db)
@@ -170,6 +171,7 @@ LABELS = {
     "codes_macro": "Individual codes (mean of per-code κ)",
     "any_violation": "Violation vs error (any L1.V code)",
     "violation_flag": "Violation flag (none/V1/V2/V?)",
+    "violation_evidence": "Violation evidence grade (none/stated/inferred/thin)",
     "deepest_layer": "Deepest layer (exact)",
     "deepest_layer_weighted": "Deepest layer (weighted, partial credit)",
     "failure_observed": "Failure observed (yes/no/unclear)",
@@ -219,7 +221,7 @@ def report(name: str, A: dict, B: dict, uids: list[str], label_a: str, label_b: 
         f"| Measure | Cohen's κ | 95% CI | \"Yes\" count ({label_a} / {label_b}) |",
         "|---|---|---|---|",
     ]
-    for k in HEADLINE + ["violation_flag", "deepest_layer"]:
+    for k in HEADLINE + ["violation_flag", "violation_evidence", "deepest_layer"]:
         ci = cis.get(k)
         pos = m["positives"].get(k)
         lines.append(

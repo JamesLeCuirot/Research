@@ -77,7 +77,8 @@ def test_split_codes_is_forgiving():
 def _row(**kw):
     base = {
         "failure_observed": "yes", "l4_codes": "", "l3_codes": "L3.4", "l2_codes": "", "l1_codes": "L1.E2",
-        "deepest_layer": "L3", "violation_flag": "none", "confidence": "medium", "evidence_quotes": "", "notes": "",
+        "deepest_layer": "L3", "violation_flag": "none", "violation_evidence": "none", "confidence": "medium",
+        "evidence_quotes": "", "notes": "",
     }
     base.update(kw)
     return base
@@ -122,3 +123,21 @@ def test_render_hides_mast_labels_and_benchmark_info_by_default():
     assert "MAST labels" not in blind and '"success": true' not in blind and "[S2]" in blind
     assert "MAST labels" in render_markdown(trace, show_mast=True)
     assert '"success": true' in render_markdown(trace, show_benchmark=True)
+
+
+def test_codebook_v1_adds_l4_4():
+    codes = load_codebook_codes("v1")
+    assert len(codes) == 17 and "L4.4" in codes
+
+
+def test_violation_evidence_grading_rules():
+    codes = load_codebook_codes("v1")
+    ok = _row(l1_codes="L1.V2", violation_flag="V2", violation_evidence="stated")
+    errors, warnings = validate_coding(ok, codes)
+    assert errors == [] and warnings == []
+    _, warnings = validate_coding(_row(l1_codes="L1.V2", violation_flag="V2", violation_evidence="thin"), codes)
+    assert any("violation_evidence" in w for w in warnings)
+    _, warnings = validate_coding(_row(l1_codes="L1.V?", violation_flag="V?", violation_evidence="thin"), codes)
+    assert not any("violation_evidence" in w for w in warnings)
+    errors, _ = validate_coding(_row(violation_evidence="maybe"), codes)
+    assert any("violation_evidence" in e for e in errors)

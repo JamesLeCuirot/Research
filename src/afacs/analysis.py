@@ -268,12 +268,17 @@ def afacs_analysis(rows: dict[str, dict], name: str, weights: dict[str, float] |
 
     # RQ3 - violations
     out += ["## RQ3: errors vs violations", "",
-            "| Group | n | Any violation code | Exceptional (V2) | Indeterminate (V?) |", "|---|---|---|---|---|"]
+            "| Group | n | Any violation code | Exceptional (V2) | Indeterminate (V?) | Evidence stated | Evidence inferred |",
+            "|---|---|---|---|---|---|---|"]
     for label, us in groups:
         v = share(us, lambda u: any_violation(failed[u]))
         v2 = share(us, lambda u: "L1.V2" in codes_of(failed[u]))
         vq = share(us, lambda u: "L1.V?" in codes_of(failed[u]))
-        out.append(f"| {label} | {len(us)} | {pct(*v)} | {pct(v2[0])} | {pct(vq[0])} |")
+        st = share(us, lambda u: failed[u].get("violation_evidence") == "stated")
+        inf = share(us, lambda u: failed[u].get("violation_evidence") == "inferred")
+        out.append(f"| {label} | {len(us)} | {pct(*v)} | {pct(v2[0])} | {pct(vq[0])} | {pct(st[0])} | {pct(inf[0])} |")
+    out += ["", "Evidence columns: share of failed traces whose violation rests on the agent's own words (stated) "
+            "or only on the nature of the act (inferred); thin evidence is the V? column (codebook v1, section 2.1)."]
     out += ["", "By model, within frameworks that ran several models (exploratory; small n):", "",
             "| Framework | Model | n | Any violation code |", "|---|---|---|---|"]
     for fw in ("MetaGPT", "AG2"):

@@ -101,7 +101,13 @@ Code, the verified item pairs (MBPP-derived, CC BY 4.0, with attribution), all r
 
 ## 9. Deviations from this plan
 
-*None yet. Any deviation will be listed here with date and reason.*
+Clarifications added on 3 November 2026, after item generation and during the item-difficulty calibration, **before any main-experiment monitor call**. None changes a hypothesis, condition or sample size.
+
+1. **H1a "standardised units".** Both *d′* and *c* are expressed on the same z (standard normal deviate) scale, so "standardised units" in §6 means that scale. H1a is supported for a monitor if (i) Δ*c* = *c*(P2.5) − *c*(P50) is positive and its cluster-bootstrap 95% CI excludes zero, and (ii) |Δ*c*| > |Δ*d′*| on the point estimates. The bootstrap 95% CI of |Δ*c*| − |Δ*d′*| is reported alongside.
+2. **Docstrings.** `ast.unparse` alone keeps docstrings, so normalisation (§3) removes docstrings and bare string statements explicitly before unparsing, as §3 intended.
+3. **"Small edit" (§3).** Operationalised as a `difflib.SequenceMatcher` ratio of at least 0.6 between the normalised clean and backdoored versions. This was set during verification of the first generation run and applied to all items; 14 otherwise-valid pairs were excluded by it.
+
+Later deviations, if any, are listed below with date and reason.
 
 ## References
 

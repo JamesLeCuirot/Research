@@ -1,0 +1,610 @@
+<title>AFACS Coding Desk</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..100,500..800&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+/* Layout: a three-pane coding desk. Trace list | trace reader | coding form, each scrolling on its own.
+   Narrower screens fold the list into a menu, then fold reader and form into two tabs.
+   Palette and type match the AFACS Briefing Pack (aeronautical-chart navy, magenta, chart blue). */
+:root {
+  --paper: #F1F4F7; --panel: #FFFFFF; --ink: #13233A; --ink-2: #4A5A70; --rule: #C7D1DC;
+  --magenta: #A3226B; --magenta-soft: #F6E6EF; --blue: #1F5FA8; --blue-soft: #E3ECF7;
+  --good: #23764A; --good-soft: #E2F2E8; --warn: #9A5B00; --warn-soft: #FBEFD9; --bad: #B3261E; --bad-soft: #FBE4E2;
+  --code-bg: #F7F9FB;
+  --f-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0D1520; --panel: #142030; --ink: #E4EBF3; --ink-2: #9DAEC2; --rule: #2A394D;
+    --magenta: #E772B5; --magenta-soft: #3A1C30; --blue: #79AAEA; --blue-soft: #1A2C44;
+    --good: #62C68F; --good-soft: #15301F; --warn: #E2A445; --warn-soft: #33260F; --bad: #F28B82; --bad-soft: #3A1715;
+    --code-bg: #101A27; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0D1520; --panel: #142030; --ink: #E4EBF3; --ink-2: #9DAEC2; --rule: #2A394D;
+  --magenta: #E772B5; --magenta-soft: #3A1C30; --blue: #79AAEA; --blue-soft: #1A2C44;
+  --good: #62C68F; --good-soft: #15301F; --warn: #E2A445; --warn-soft: #33260F; --bad: #F28B82; --bad-soft: #3A1715;
+  --code-bg: #101A27; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.5; overflow: hidden; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--magenta); outline-offset: 2px; }
+.disp { font-family: var(--f-display); font-stretch: 75%; font-variation-settings: "wdth" 75; }
+.mono { font-family: var(--f-mono); }
+
+.app {
+  height: 100%; display: grid; grid-template-rows: auto minmax(0, 1fr);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; padding-block: 0.6rem; border-bottom: 1px solid var(--rule); }
+.bar h1 { margin: 0; font-size: 1.35rem; font-weight: 800; }
+.bar h1 span { color: var(--magenta); }
+.progress { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--ink-2); }
+.pbar { width: 120px; height: 7px; border-radius: 4px; background: var(--rule); overflow: hidden; }
+.pbar i { display: block; height: 100%; background: var(--good); width: 0; }
+.save { font-family: var(--f-mono); font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: 3px; background: var(--blue-soft); color: var(--ink-2); }
+.save.ok { background: var(--good-soft); color: var(--good); }
+.save.warn { background: var(--warn-soft); color: var(--warn); }
+.save.bad { background: var(--bad-soft); color: var(--bad); }
+.spacer { flex: 1; }
+.btn { cursor: pointer; border: 1px solid var(--rule); background: var(--panel); border-radius: 5px; padding: 0.35rem 0.75rem; font-size: 0.88rem; }
+.btn:hover { border-color: var(--blue); }
+.btn.primary { background: var(--blue); border-color: var(--blue); color: var(--panel); }
+.btn.good { background: var(--good); border-color: var(--good); color: var(--panel); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+#traceSelect { display: none; padding: 0.3rem 0.4rem; border: 1px solid var(--rule); border-radius: 5px; background: var(--panel); }
+
+.panes { min-height: 0; display: grid; grid-template-columns: 200px minmax(0, 1fr) minmax(330px, 400px); gap: 0; }
+.pane { min-height: 0; overflow-y: auto; }
+.list { border-right: 1px solid var(--rule); padding: 0.6rem 0.6rem 2rem 0; }
+.reader { padding: 0.9rem 1rem 3rem; }
+.form { border-left: 1px solid var(--rule); padding: 0.9rem 0 3rem 1rem; }
+.tabs { display: none; }
+
+@media (max-width: 1100px) {
+  .panes { grid-template-columns: minmax(0, 1fr) minmax(310px, 380px); }
+  .list { display: none; }
+  #traceSelect { display: inline-block; }
+}
+@media (max-width: 760px) {
+  .panes { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
+  .tabs { display: flex; gap: 0.3rem; padding-block: 0.4rem; border-bottom: 1px solid var(--rule); }
+  .tabs button { flex: 1; cursor: pointer; padding: 0.45rem; border: 1px solid var(--rule); border-radius: 5px; background: var(--panel); }
+  .tabs button.on { background: var(--ink); color: var(--panel); border-color: var(--ink); }
+  .form { border-left: none; padding-left: 0; }
+  .reader { padding-left: 0; padding-right: 0; }
+  .panes[data-tab="read"] .form, .panes[data-tab="code"] .reader { display: none; }
+  .pbar { width: 70px; }
+}
+
+/* list */
+.tlist { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.tlist button { width: 100%; text-align: left; cursor: pointer; display: grid; grid-template-columns: 1.1rem 2.6rem minmax(0, 1fr); gap: 0.35rem; align-items: center; padding: 0.35rem 0.45rem; border: 1px solid transparent; border-radius: 5px; background: transparent; }
+.tlist button:hover { background: var(--panel); border-color: var(--rule); }
+.tlist button.on { background: var(--panel); border-color: var(--blue); }
+.tlist .id { font-family: var(--f-mono); font-weight: 500; font-size: 0.85rem; }
+.tlist .fw { font-size: 0.8rem; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dot { width: 0.8rem; height: 0.8rem; border-radius: 50%; border: 2px solid var(--rule); }
+.dot.draft { border-color: var(--warn); background: linear-gradient(90deg, var(--warn) 50%, transparent 50%); }
+.dot.done { border-color: var(--good); background: var(--good); }
+.dot.err { border-color: var(--bad); background: var(--bad); }
+.legend { margin-top: 0.8rem; font-size: 0.75rem; color: var(--ink-2); display: grid; gap: 0.2rem; padding-left: 0.45rem; }
+.legend span { display: flex; align-items: center; gap: 0.4rem; }
+
+/* reader */
+.thead h2 { margin: 0; font-size: 1.7rem; font-weight: 800; line-height: 1.1; }
+.thead .meta { font-family: var(--f-mono); font-size: 0.78rem; color: var(--ink-2); margin-top: 0.2rem; display: flex; flex-wrap: wrap; gap: 0.2rem 0.9rem; }
+.note { margin: 0.7rem 0 1rem; font-size: 0.88rem; color: var(--ink-2); border-left: 3px solid var(--rule); padding-left: 0.7rem; }
+.step { margin: 0 0 0.75rem; border: 1px solid var(--rule); border-radius: 6px; background: var(--panel); overflow: hidden; }
+.step header { display: flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.6rem; border-bottom: 1px solid var(--rule); background: var(--paper); }
+.step .sn { font-family: var(--f-mono); font-weight: 500; color: var(--blue); font-size: 0.82rem; }
+.step .ag { font-family: var(--f-display); font-stretch: 75%; font-weight: 700; font-size: 1rem; }
+.step .kd { font-family: var(--f-mono); font-size: 0.7rem; color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.06em; }
+.step .cite { margin-left: auto; cursor: pointer; font-family: var(--f-mono); font-size: 0.72rem; padding: 0.15rem 0.5rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--panel); }
+.step .cite:hover { border-color: var(--magenta); color: var(--magenta); }
+.step pre { margin: 0; padding: 0.6rem 0.7rem; font-family: var(--f-mono); font-size: 12.5px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; background: var(--code-bg); }
+.step.k-system { opacity: 0.8; }
+.step.k-system header { background: transparent; }
+.step.k-benchmark_info { border-style: dashed; }
+.step.k-benchmark_info pre { font-style: italic; color: var(--ink-2); }
+.step.k-tool_output .ag { color: var(--ink-2); }
+.more { display: block; width: 100%; cursor: pointer; border: none; border-top: 1px dashed var(--rule); background: var(--panel); padding: 0.4rem; font-family: var(--f-mono); font-size: 0.75rem; color: var(--blue); }
+.nav2 { display: flex; justify-content: space-between; gap: 0.5rem; margin-top: 1rem; }
+
+/* form */
+.form h3 { margin: 0 0 0.35rem; font-family: var(--f-display); font-stretch: 75%; font-variation-settings: "wdth" 75; font-size: 1.1rem; font-weight: 750; display: flex; gap: 0.4rem; align-items: baseline; }
+.form h3 b { font-family: var(--f-mono); font-size: 0.75rem; color: var(--magenta); font-weight: 500; }
+.blk { padding: 0.7rem 0; border-bottom: 1px solid var(--rule); }
+.blk:first-child { padding-top: 0; }
+.hint { font-size: 0.8rem; color: var(--ink-2); margin: 0 0 0.4rem; }
+.seg { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+.seg label { cursor: pointer; position: relative; }
+.seg input { position: absolute; left: 0; top: 0; opacity: 0; width: 1px; height: 1px; }
+.seg span { display: inline-block; padding: 0.3rem 0.8rem; border: 1px solid var(--rule); border-radius: 5px; background: var(--panel); font-size: 0.88rem; }
+.seg input:checked + span { background: var(--ink); color: var(--panel); border-color: var(--ink); }
+.seg input:focus-visible + span { outline: 3px solid var(--magenta); outline-offset: 2px; }
+fieldset { border: none; margin: 0 0 0.6rem; padding: 0; }
+legend { font-family: var(--f-display); font-stretch: 75%; font-weight: 750; font-size: 0.98rem; margin-bottom: 0.2rem; padding: 0; }
+legend small { font-family: var(--f-body); font-weight: 400; color: var(--ink-2); font-size: 0.8rem; }
+.code { display: grid; grid-template-columns: 1.2rem 3.2rem minmax(0, 1fr); gap: 0.3rem; align-items: start; padding: 0.25rem 0.3rem; border-radius: 4px; cursor: pointer; font-size: 0.86rem; line-height: 1.35; }
+.code:hover { background: var(--panel); }
+.code input { margin: 0.15rem 0 0; accent-color: var(--magenta); }
+.code .c { font-family: var(--f-mono); font-weight: 500; color: var(--magenta); font-size: 0.8rem; padding-top: 0.05rem; }
+.code.checked { background: var(--magenta-soft); }
+.subhead { font-family: var(--f-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-2); margin: 0.3rem 0 0.1rem 0.3rem; }
+.derived { font-size: 0.85rem; margin-top: 0.3rem; padding: 0.35rem 0.55rem; border-radius: 4px; background: var(--blue-soft); }
+.derived b { font-family: var(--f-mono); }
+select.full, textarea, input[type="number"] { width: 100%; border: 1px solid var(--rule); border-radius: 5px; background: var(--panel); padding: 0.4rem 0.5rem; }
+textarea { min-height: 5.5rem; resize: vertical; font-size: 0.88rem; line-height: 1.45; }
+#evidence { font-family: var(--f-mono); font-size: 0.8rem; }
+.row { display: flex; gap: 0.5rem; align-items: center; }
+.sugg { font-size: 0.82rem; color: var(--ink-2); margin-top: 0.3rem; display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap; }
+.linkbtn { cursor: pointer; border: none; background: none; color: var(--blue); text-decoration: underline; padding: 0; font-size: 0.82rem; }
+.checks { margin-top: 0.7rem; display: grid; gap: 0.35rem; }
+.msg { font-size: 0.83rem; padding: 0.35rem 0.55rem; border-radius: 4px; }
+.msg.err { background: var(--bad-soft); color: var(--bad); }
+.msg.wrn { background: var(--warn-soft); color: var(--warn); }
+.msg.ok { background: var(--good-soft); color: var(--good); }
+.actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.8rem; }
+details.rule { margin-top: 0.4rem; font-size: 0.84rem; }
+details.rule summary { cursor: pointer; color: var(--blue); }
+details.rule ol { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 0.25rem; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); background: var(--ink); color: var(--panel); padding: 0.45rem 0.9rem; border-radius: 5px; font-size: 0.85rem; opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 20; }
+.toast.show { opacity: 1; }
+.csvbox { display: none; margin-top: 0.6rem; }
+.csvbox textarea { min-height: 8rem; font-family: var(--f-mono); font-size: 0.72rem; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="app">
+  <div class="bar">
+    <h1 class="disp">AFACS <span>Coding Desk</span></h1>
+    <select id="traceSelect" aria-label="Choose a trace"></select>
+    <div class="progress"><div class="pbar"><i id="pfill"></i></div><span id="ptext">0 of 30 done</span></div>
+    <span class="save" id="saveState">Connecting…</span>
+    <span class="spacer"></span>
+    <button class="btn" type="button" id="copyCsv">Copy all codings as CSV</button>
+  </div>
+  <div class="panes" id="panes" data-tab="read">
+    <div class="tabs" role="tablist">
+      <button type="button" id="tabRead" class="on" role="tab">Read trace</button>
+      <button type="button" id="tabCode" role="tab">Code it</button>
+    </div>
+    <nav class="pane list" aria-label="Traces">
+      <ul class="tlist" id="tlist"></ul>
+      <div class="legend">
+        <span><i class="dot"></i>Not started</span><span><i class="dot draft"></i>Draft</span>
+        <span><i class="dot done"></i>Done</span><span><i class="dot err"></i>Needs fixing</span>
+      </div>
+    </nav>
+    <main class="pane reader" id="reader" aria-live="polite"></main>
+    <section class="pane form" id="form" aria-label="Coding form">
+      <div class="blk">
+        <h3><b>1</b> Is there a failure?</h3>
+        <div class="seg" id="failureSeg">
+          <label><input type="radio" name="failure" id="f_yes" value="yes"><span>Yes</span></label>
+          <label><input type="radio" name="failure" id="f_no" value="no"><span>No</span></label>
+          <label><input type="radio" name="failure" id="f_unclear" value="unclear"><span>Unclear</span></label>
+        </div>
+      </div>
+      <div class="blk">
+        <h3><b>2</b> Codes at every layer with evidence</h3>
+        <p class="hint">Start with the unsafe act (L1), then ask what made it possible, layer by layer.</p>
+        <div id="codeBoxes"></div>
+        <div class="derived" id="vflag"></div>
+        <details class="rule">
+          <summary>Violation rule, step by step</summary>
+          <ol>
+            <li>Was the requirement in the agent's context (task, prompt, a message, a tool result)? If not: error.</li>
+            <li>Does the trace show the agent registered it, or could the deviation not plausibly be accidental? If neither: error.</li>
+            <li>Did it proceed otherwise anyway? If not: no unsafe act.</li>
+            <li>All three hold: <b>V1</b> if it recurs, <b>V2</b> if one-off, <b>V?</b> if the evidence for 1 or 2 is thin.</li>
+          </ol>
+        </details>
+      </div>
+      <div class="blk">
+        <h3><b>3</b> Deepest contributing layer</h3>
+        <select class="full" id="deepest" aria-label="Deepest contributing layer">
+          <option value="">Choose…</option>
+          <option value="L4">L4 Organisational / design</option>
+          <option value="L3">L3 Supervision / orchestration</option>
+          <option value="L2">L2 Preconditions</option>
+          <option value="L1">L1 Unsafe acts</option>
+          <option value="none">none (no failure)</option>
+        </select>
+        <div class="sugg" id="deepSugg"></div>
+      </div>
+      <div class="blk">
+        <h3><b>4</b> Confidence</h3>
+        <div class="seg">
+          <label><input type="radio" name="conf" id="c_high" value="high"><span>High</span></label>
+          <label><input type="radio" name="conf" id="c_medium" value="medium"><span>Medium</span></label>
+          <label><input type="radio" name="conf" id="c_low" value="low"><span>Low</span></label>
+        </div>
+      </div>
+      <div class="blk">
+        <h3><b>5</b> Evidence</h3>
+        <p class="hint">Select text in a step and press <b>Cite</b>, or type. 1–4 short quotes, e.g. <span class="mono">[S4] "I will skip the tests"</span>.</p>
+        <textarea id="evidence" aria-label="Evidence quotes"></textarea>
+      </div>
+      <div class="blk">
+        <h3><b>6</b> Notes</h3>
+        <p class="hint">Especially where the codebook didn't fit. These notes become codebook v1.</p>
+        <textarea id="notes" aria-label="Notes"></textarea>
+        <div class="row" style="margin-top:0.6rem"><label for="minutes" class="hint" style="margin:0;white-space:nowrap">Minutes on this trace</label><input type="number" id="minutes" min="0" step="1" style="max-width:6rem"></div>
+      </div>
+      <div class="checks" id="checks"></div>
+      <div class="actions">
+        <button class="btn good" type="button" id="markDone">Mark as done</button>
+        <button class="btn" type="button" id="markDraft">Back to draft</button>
+        <span class="spacer"></span>
+        <button class="btn primary" type="button" id="nextBtn">Next trace →</button>
+      </div>
+      <div class="csvbox" id="csvBox"><p class="hint">Copying was blocked, so the CSV is below: select all and copy.</p><textarea id="csvText" aria-label="CSV export" readonly></textarea></div>
+    </section>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script type="application/json" id="afacs-data">/*__DATA__*/</script>
+<script>
+(function () {
+  "use strict";
+  var DATA = JSON.parse(document.getElementById("afacs-data").textContent);
+  var TRACES = DATA.traces, CODES = DATA.codes, CB = DATA.codebook_version;
+  var LAYERS = [["L4", "L4 Organisational / design"], ["L3", "L3 Supervision / orchestration"], ["L2", "L2 Preconditions"], ["L1", "L1 Unsafe acts"]];
+  var LS_KEY = "afacs-coding-desk-v1";
+  var byId = {}; TRACES.forEach(function (t) { byId[t.cal_id] = t; });
+
+  /* ---------- state ---------- */
+  var codings = {};          // cal_id -> coding object
+  var current = null;
+  var col = null;            // db collection, or null when only local
+  var saveTimers = {}, writing = {}, dirty = {};
+  var openedAt = null;       // for the minutes timer
+
+  function blank(t) {
+    return { cal_id: t.cal_id, uid: t.uid, failure_observed: "", l4_codes: [], l3_codes: [], l2_codes: [], l1_codes: [],
+             deepest_layer: "", violation_flag: "none", confidence: "", evidence_quotes: "", notes: "",
+             minutes_spent: 0, status: "", codebook_version: CB, updated_at: "" };
+  }
+  function get(id) { if (!codings[id]) codings[id] = blank(byId[id]); return codings[id]; }
+  function loadLocal() { try { var s = localStorage.getItem(LS_KEY); if (s) codings = JSON.parse(s) || {}; } catch (e) {} }
+  function saveLocal() { try { localStorage.setItem(LS_KEY, JSON.stringify(codings)); } catch (e) {} }
+
+  /* ---------- rules (mirror src/afacs/schema.py validate_coding) ---------- */
+  function allCodes(c) { return [].concat(c.l4_codes, c.l3_codes, c.l2_codes, c.l1_codes); }
+  function derivedFlag(c) {
+    var v = c.l1_codes;
+    if (v.indexOf("L1.V2") >= 0) return "V2";
+    if (v.indexOf("L1.V1") >= 0) return "V1";
+    if (v.indexOf("L1.V?") >= 0) return "V?";
+    return "none";
+  }
+  function deepestCoded(c) {
+    var d = 0; allCodes(c).forEach(function (x) { d = Math.max(d, +x.charAt(1)); });
+    return d ? "L" + d : "none";
+  }
+  function check(c) {
+    var errors = [], warnings = [], codes = allCodes(c);
+    if (!c.failure_observed) errors.push("Choose whether there is a failure (step 1).");
+    if (c.failure_observed === "yes" && !codes.length) errors.push("A failure needs at least one code (step 2).");
+    if (c.failure_observed === "no" && codes.length) warnings.push("You said no failure but ticked codes.");
+    if (!c.deepest_layer) errors.push("Choose the deepest contributing layer (step 3).");
+    if (c.failure_observed === "no" && c.deepest_layer && c.deepest_layer !== "none") warnings.push("No failure, so the deepest layer would normally be 'none'.");
+    if (c.deepest_layer === "none" && codes.length) warnings.push("Deepest layer is 'none' but codes are ticked.");
+    if (codes.length && c.deepest_layer && c.deepest_layer !== "none" && c.deepest_layer !== deepestCoded(c))
+      warnings.push("Deepest layer is " + c.deepest_layer + " but your deepest code is at " + deepestCoded(c) + ".");
+    if (!c.confidence) errors.push("Choose a confidence (step 4).");
+    if (codes.length && !c.evidence_quotes.trim()) warnings.push("No evidence quoted yet (step 5).");
+    return { errors: errors, warnings: warnings };
+  }
+  function status(id) {
+    var c = codings[id];
+    if (!c || (!c.failure_observed && !allCodes(c).length && !c.notes && !c.evidence_quotes)) return "";
+    if (c.status === "done") return check(c).errors.length ? "err" : "done";
+    return "draft";
+  }
+
+  /* ---------- saving ---------- */
+  var saveEl = document.getElementById("saveState");
+  function setSave(cls, text) { saveEl.className = "save" + (cls ? " " + cls : ""); saveEl.textContent = text; }
+  function payload(c) {
+    var p = {}; for (var k in c) if (k.charAt(0) !== "_") p[k] = c[k];
+    p.violation_flag = derivedFlag(c); p.updated_at = new Date().toISOString();
+    return p;
+  }
+  function touch(id) {
+    var c = get(id); c.violation_flag = derivedFlag(c); c.updated_at = new Date().toISOString();
+    saveLocal(); renderList(); renderChecks();
+    if (!col) { setSave("warn", "Saved in this browser only"); return; }
+    setSave("", "Saving…");
+    clearTimeout(saveTimers[id]);
+    saveTimers[id] = setTimeout(function () { delete saveTimers[id]; flush(id); }, 1200);
+  }
+  function flush(id) {
+    if (!col) return;
+    if (writing[id]) { dirty[id] = true; return; }
+    writing[id] = true;
+    col.doc(id).set(payload(get(id))).then(function () {
+      setSave("ok", "All changes saved");
+    }, function (e) {
+      if (e && e.code === "unavailable") { setTimeout(function () { flush(id); }, 1500 + Math.random() * 1500); }
+      else setSave("bad", "Not saved (" + (e && e.code || "error") + "). Kept in this browser.");
+    }).then(function () {
+      writing[id] = false;
+      if (dirty[id]) { dirty[id] = false; flush(id); }
+    });
+  }
+  var typing = {};
+  function busy(id) {
+    var typingNow = id === current && (typing.evidence || typing.notes);
+    return !!(saveTimers[id] || writing[id] || typingNow);
+  }
+  function formFocused() { var a = document.activeElement; return !!(a && document.getElementById("form").contains(a) && a.tagName === "TEXTAREA"); }
+
+  function connect() {
+    var useP = (window.claude && typeof window.claude.use === "function") ? window.claude.use("db") : Promise.resolve(null);
+    var timer = setTimeout(function () { if (!col) setSave("warn", "Can't reach saved codings yet; working in this browser"); }, 10000);
+    useP.then(function (db) {
+      if (!db) { clearTimeout(timer); setSave("warn", "Saved in this browser only"); return; }
+      var ref = db.collection("codings");
+      var first = true, confirmed = false;
+      ref.onSnapshot(function (snap) {
+        if (!confirmed && !snap.metadata.fromCache) { confirmed = true; clearTimeout(timer); setSave("ok", "All changes saved"); }
+        col = ref;
+        var remote = {};
+        snap.docs.forEach(function (d) { if (d.exists && byId[d.id]) remote[d.id] = d.data(); });
+        Object.keys(remote).forEach(function (id) {
+          if (busy(id)) return;
+          var r = remote[id], l = codings[id];
+          if (!l || !l.updated_at || (r.updated_at || "") >= l.updated_at) codings[id] = JSON.parse(JSON.stringify(r));
+        });
+        if (first) {
+          first = false;
+          // Push any work done earlier in this browser that the store doesn't have yet.
+          Object.keys(codings).forEach(function (id) {
+            if (!remote[id] && status(id)) flush(id);
+            else if (remote[id] && codings[id].updated_at > (remote[id].updated_at || "")) flush(id);
+          });
+        }
+        saveLocal(); renderList(); if (current && !busy(current) && !formFocused()) fillForm();
+      }, function (e) {
+        clearTimeout(timer); col = null;
+        setSave("bad", "Saved codings unavailable (" + (e && e.code || "error") + "); working in this browser");
+      });
+    }, function () { clearTimeout(timer); setSave("warn", "Saved in this browser only"); });
+  }
+
+  /* ---------- minutes timer (written only on real changes or when leaving a trace) ---------- */
+  function bankMinutes() {
+    if (!current || openedAt === null) return;
+    var mins = (Date.now() - openedAt) / 60000;
+    openedAt = document.hidden ? null : Date.now();
+    if (mins < 0.25) return;
+    var c = get(current); c._acc = (c._acc || 0) + mins;
+    var whole = Math.floor(c._acc);
+    if (whole > 0) { c._acc -= whole; c.minutes_spent = (+c.minutes_spent || 0) + whole; document.getElementById("minutes").value = c.minutes_spent; }
+  }
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) { bankMinutes(); openedAt = null; } else if (current) openedAt = Date.now();
+  });
+
+  /* ---------- list ---------- */
+  var tlist = document.getElementById("tlist"), sel = document.getElementById("traceSelect");
+  TRACES.forEach(function (t) {
+    var li = document.createElement("li"), b = document.createElement("button");
+    b.type = "button"; b.dataset.id = t.cal_id;
+    b.innerHTML = '<i class="dot"></i><span class="id">' + t.cal_id + '</span><span class="fw">' + t.framework + '</span>';
+    b.addEventListener("click", function () { open(t.cal_id); });
+    li.appendChild(b); tlist.appendChild(li);
+    var o = document.createElement("option"); o.value = t.cal_id; o.textContent = t.cal_id + " · " + t.framework; sel.appendChild(o);
+  });
+  sel.addEventListener("change", function () { open(sel.value); });
+  function renderList() {
+    var done = 0;
+    Array.prototype.forEach.call(tlist.querySelectorAll("button"), function (b) {
+      var s = status(b.dataset.id); if (s === "done") done++;
+      b.querySelector(".dot").className = "dot" + (s ? " " + s : "");
+      b.classList.toggle("on", b.dataset.id === current);
+      b.setAttribute("aria-label", b.dataset.id + ", " + ({ "": "not started", draft: "draft", done: "done", err: "needs fixing" })[s]);
+    });
+    document.getElementById("ptext").textContent = done + " of " + TRACES.length + " done";
+    document.getElementById("pfill").style.width = (100 * done / TRACES.length) + "%";
+  }
+
+  /* ---------- reader ---------- */
+  var reader = document.getElementById("reader");
+  var KIND = { message: "", tool_output: "tool output", system: "framework log", benchmark_info: "not visible to agents" };
+  var LIMIT = 4000;
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  function renderTrace(t) {
+    var h = '<div class="thead"><h2 class="disp">' + t.cal_id + '</h2><div class="meta"><span>' + esc(t.framework) + '</span><span>' + esc(t.model) +
+      '</span><span>' + esc(t.benchmark) + '</span><span>' + t.n_steps + ' steps</span><span>~' + t.approx_tokens.toLocaleString() + ' tokens</span></div></div>' +
+      '<p class="note">Read the whole trace before coding. <b>Framework log</b> steps are the software’s bookkeeping. Dashed steps hold benchmark information that is hidden while you code. Text marked “Note added by AFACS” is not part of the log.</p>';
+    reader.innerHTML = h;
+    t.steps.forEach(function (s) {
+      var art = document.createElement("article"); art.className = "step k-" + s.kind; art.id = "S" + s.n;
+      art.innerHTML = '<header><span class="sn">[S' + s.n + ']</span><span class="ag">' + esc(s.agent) + '</span>' +
+        (KIND[s.kind] ? '<span class="kd">' + KIND[s.kind] + '</span>' : '') +
+        (s.kind === "benchmark_info" ? '' : '<button type="button" class="cite" title="Add the selected text from this step to your evidence">Cite</button>') + '</header>';
+      var pre = document.createElement("pre");
+      var long = s.text.length > LIMIT;
+      pre.textContent = long ? s.text.slice(0, LIMIT) : s.text;
+      art.appendChild(pre);
+      if (long) {
+        var more = document.createElement("button"); more.type = "button"; more.className = "more";
+        more.textContent = "Show the remaining " + (s.text.length - LIMIT).toLocaleString() + " characters of this step";
+        more.addEventListener("click", function () { pre.textContent = s.text; more.remove(); });
+        art.appendChild(more);
+      }
+      var cite = art.querySelector(".cite");
+      if (cite) cite.addEventListener("click", function () { addCite(s.n, art); });
+      reader.appendChild(art);
+    });
+    var nav = document.createElement("div"); nav.className = "nav2";
+    nav.innerHTML = '<button class="btn" type="button" data-go="-1">← Previous trace</button><button class="btn primary" type="button" data-go="1">Code this trace →</button>';
+    nav.querySelector('[data-go="-1"]').addEventListener("click", function () { step(-1); });
+    nav.querySelector('[data-go="1"]').addEventListener("click", function () { setTab("code"); });
+    reader.appendChild(nav);
+    reader.scrollTop = 0;
+  }
+  function addCite(n, art) {
+    var selTxt = "";
+    var s = window.getSelection && window.getSelection();
+    if (s && s.rangeCount && art.contains(s.anchorNode)) selTxt = s.toString().replace(/\s+/g, " ").trim();
+    if (selTxt.length > 300) selTxt = selTxt.slice(0, 297) + "...";
+    var piece = "[S" + n + "] " + (selTxt ? "“" + selTxt + "”" : "");
+    var ev = document.getElementById("evidence");
+    ev.value = ev.value.trim() ? ev.value.trim() + " | " + piece : piece;
+    get(current).evidence_quotes = ev.value; touch(current);
+    toast(selTxt ? "Quote from S" + n + " added to evidence" : "S" + n + " added to evidence (select text first to quote it)");
+  }
+
+  /* ---------- form ---------- */
+  var boxes = document.getElementById("codeBoxes");
+  LAYERS.forEach(function (L) {
+    var fs = document.createElement("fieldset");
+    fs.innerHTML = "<legend>" + L[1] + "</legend>";
+    CODES.filter(function (c) { return c.code.indexOf(L[0] + ".") === 0; }).forEach(function (c) {
+      if (c.code === "L1.E1") fs.insertAdjacentHTML("beforeend", '<div class="subhead">Errors</div>');
+      if (c.code === "L1.V1") fs.insertAdjacentHTML("beforeend", '<div class="subhead">Violations</div>');
+      var id = "code_" + c.code.replace(/\W/g, "_");
+      var lab = document.createElement("label"); lab.className = "code"; lab.htmlFor = id;
+      lab.innerHTML = '<input type="checkbox" id="' + id + '" value="' + c.code + '"><span class="c">' + c.code + '</span><span>' + esc(c.text) + '</span>';
+      lab.querySelector("input").addEventListener("change", function () {
+        var cc = get(current), key = L[0].toLowerCase() + "_codes", arr = cc[key].slice();
+        var i = arr.indexOf(c.code);
+        if (this.checked && i < 0) arr.push(c.code); if (!this.checked && i >= 0) arr.splice(i, 1);
+        cc[key] = arr.sort(); lab.classList.toggle("checked", this.checked);
+        if (cc.status === "done" && check(cc).errors.length) cc.status = "draft";
+        renderDerived(); touch(current);
+      });
+      fs.appendChild(lab);
+    });
+    boxes.appendChild(fs);
+  });
+  function bindRadio(name, field) {
+    Array.prototype.forEach.call(document.querySelectorAll('input[name="' + name + '"]'), function (r) {
+      r.addEventListener("change", function () { get(current)[field] = r.value; renderDerived(); touch(current); });
+    });
+  }
+  bindRadio("failure", "failure_observed"); bindRadio("conf", "confidence");
+  document.getElementById("deepest").addEventListener("change", function () { get(current).deepest_layer = this.value; renderDerived(); touch(current); });
+  ["evidence", "notes"].forEach(function (fid) {
+    var field = fid === "evidence" ? "evidence_quotes" : "notes";
+    document.getElementById(fid).addEventListener("input", function () {
+      var v = this.value; get(current)[field] = v;
+      clearTimeout(typing[fid]); typing[fid] = setTimeout(function () { typing[fid] = null; touch(current); }, 600);
+    });
+  });
+  document.getElementById("minutes").addEventListener("change", function () { get(current).minutes_spent = Math.max(0, Math.round(+this.value || 0)); touch(current); });
+
+  function fillForm() {
+    var c = get(current);
+    ["yes", "no", "unclear"].forEach(function (v) { document.getElementById("f_" + v).checked = c.failure_observed === v; });
+    ["high", "medium", "low"].forEach(function (v) { document.getElementById("c_" + v).checked = c.confidence === v; });
+    var all = allCodes(c);
+    Array.prototype.forEach.call(boxes.querySelectorAll("input"), function (i) { i.checked = all.indexOf(i.value) >= 0; i.closest(".code").classList.toggle("checked", i.checked); });
+    document.getElementById("deepest").value = c.deepest_layer || "";
+    document.getElementById("evidence").value = c.evidence_quotes || "";
+    document.getElementById("notes").value = c.notes || "";
+    document.getElementById("minutes").value = c.minutes_spent || 0;
+    renderDerived();
+  }
+  function renderDerived() {
+    var c = get(current), f = derivedFlag(c);
+    document.getElementById("vflag").innerHTML = "Violation flag (follows from your L1 codes): <b>" + f + "</b>";
+    var sug = deepestCoded(c), box = document.getElementById("deepSugg");
+    if (allCodes(c).length && c.deepest_layer !== sug) {
+      box.innerHTML = "Your deepest code is at <b>" + sug + "</b>. ";
+      var b = document.createElement("button"); b.type = "button"; b.className = "linkbtn"; b.textContent = "Use " + sug;
+      b.addEventListener("click", function () { c.deepest_layer = sug; document.getElementById("deepest").value = sug; renderDerived(); touch(current); });
+      box.appendChild(b);
+    } else if (c.failure_observed === "no" && c.deepest_layer !== "none") {
+      box.innerHTML = "";
+      var b2 = document.createElement("button"); b2.type = "button"; b2.className = "linkbtn"; b2.textContent = "Set to none";
+      b2.addEventListener("click", function () { c.deepest_layer = "none"; document.getElementById("deepest").value = "none"; renderDerived(); touch(current); });
+      box.appendChild(b2);
+    } else box.textContent = "";
+    renderChecks();
+  }
+  function renderChecks() {
+    if (!current) return;
+    var c = get(current), r = check(c), el = document.getElementById("checks");
+    var h = r.errors.map(function (e) { return '<div class="msg err">' + esc(e) + "</div>"; }).join("") +
+            r.warnings.map(function (w) { return '<div class="msg wrn">' + esc(w) + "</div>"; }).join("");
+    if (!h) h = c.status === "done" ? '<div class="msg ok">Done. Nothing to fix.</div>' : '<div class="msg ok">Complete. Mark it as done when you’re happy.</div>';
+    el.innerHTML = h;
+    document.getElementById("markDone").disabled = r.errors.length > 0 || c.status === "done";
+    document.getElementById("markDraft").disabled = c.status !== "done";
+  }
+  document.getElementById("markDone").addEventListener("click", function () { bankMinutes(); get(current).status = "done"; touch(current); toast(current + " marked as done"); });
+  document.getElementById("markDraft").addEventListener("click", function () { get(current).status = "draft"; touch(current); });
+  document.getElementById("nextBtn").addEventListener("click", function () { step(1); });
+
+  /* ---------- navigation ---------- */
+  function open(id) {
+    if (!byId[id]) return;
+    if (current && current !== id) { bankMinutes(); var prev = current; if (status(prev)) touch(prev); }
+    current = id; openedAt = document.hidden ? null : Date.now();
+    try { localStorage.setItem(LS_KEY + "-current", id); } catch (e) {}
+    try { if (location.hash !== "#" + id) history.replaceState(null, "", "#" + id); } catch (e) {}
+    sel.value = id; renderTrace(byId[id]); fillForm(); renderList(); setTab("read");
+    document.getElementById("form").scrollTop = 0;
+  }
+  function step(d) {
+    var i = TRACES.findIndex(function (t) { return t.cal_id === current; });
+    var j = Math.min(TRACES.length - 1, Math.max(0, i + d));
+    if (j !== i) open(TRACES[j].cal_id);
+  }
+  var panes = document.getElementById("panes");
+  function setTab(t) {
+    panes.dataset.tab = t;
+    document.getElementById("tabRead").classList.toggle("on", t === "read");
+    document.getElementById("tabCode").classList.toggle("on", t === "code");
+  }
+  document.getElementById("tabRead").addEventListener("click", function () { setTab("read"); });
+  document.getElementById("tabCode").addEventListener("click", function () { setTab("code"); });
+  window.addEventListener("hashchange", function () { var id = location.hash.slice(1); if (byId[id] && id !== current) open(id); });
+
+  /* ---------- CSV export (same columns as annotations/human/calibration_sheet.csv) ---------- */
+  var COLS = ["cal_id", "uid", "framework", "model", "benchmark", "failure_observed", "l4_codes", "l3_codes", "l2_codes", "l1_codes",
+              "deepest_layer", "violation_flag", "confidence", "evidence_quotes", "notes", "minutes_spent"];
+  function csvCell(v) { v = v == null ? "" : String(v); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+  function toCsv() {
+    var lines = [COLS.join(",")];
+    TRACES.forEach(function (t) {
+      var c = codings[t.cal_id] || blank(t), row = { cal_id: t.cal_id, uid: t.uid, framework: t.framework, model: t.model, benchmark: t.benchmark };
+      ["failure_observed", "deepest_layer", "confidence", "evidence_quotes", "notes", "minutes_spent"].forEach(function (k) { row[k] = c[k]; });
+      ["l4_codes", "l3_codes", "l2_codes", "l1_codes"].forEach(function (k) { row[k] = (c[k] || []).join(";"); });
+      row.violation_flag = c.failure_observed ? derivedFlag(c) : "";
+      lines.push(COLS.map(function (k) { return csvCell(row[k]); }).join(","));
+    });
+    return lines.join("\n") + "\n";
+  }
+  document.getElementById("copyCsv").addEventListener("click", function () {
+    var csv = toCsv();
+    var fallback = function () { var box = document.getElementById("csvBox"), ta = document.getElementById("csvText"); box.style.display = "block"; ta.value = csv; setTab("code"); ta.focus(); ta.select(); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(csv).then(function () { toast("CSV copied"); }, fallback);
+    else fallback();
+  });
+
+  var toastEl = document.getElementById("toast"), toastT;
+  function toast(m) { toastEl.textContent = m; toastEl.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(function () { toastEl.classList.remove("show"); }, 2200); }
+
+  /* ---------- start ---------- */
+  loadLocal();
+  var start = location.hash.slice(1);
+  if (!byId[start]) { try { start = localStorage.getItem(LS_KEY + "-current"); } catch (e) { start = null; } }
+  open(byId[start] ? start : TRACES[0].cal_id);
+  setSave("", "Connecting…");
+  connect();
+})();
+</script>

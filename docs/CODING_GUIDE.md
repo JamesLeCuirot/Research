@@ -2,54 +2,68 @@
 
 *Practical instructions for James. The codebook itself is `codebook/v0.md`.*
 
-## Setup (once)
+## The short version
 
-```bash
-uv sync
-uv run afacs-ingest
-uv run afacs-sample calibration --renders-only   # checks the frozen set, writes data/calibration/C01.md ... (never touches your sheet)
-```
+Open the **Coding Desk** (link below). For each of the 30 traces, C01 to C30: read it all the way through, then fill in the form on the right. Your work saves automatically. When all 30 are done, write codebook v1 from your notes, then go through the 30 once more against v1. Tell Claude "import my codings" whenever you want them copied into the repo.
 
-The 30 traces are in `data/calibration/C01.md` … `C30.md`. Your sheet is `annotations/human/calibration_sheet.csv`. It opens in Excel, Numbers or Google Sheets; save it back as CSV.
+## Where to do it: the Coding Desk
 
-## Rules that keep the coding blind
+**https://claude.ai/artifact/HtYBLkAJJjvpzk47woaYxp** (private to you)
 
-- Don't open `data/processed/calibration_key.csv`. It says which traces are controls and which are in the test set.
-- Don't look up MAST's labels for these traces, and don't render them with `--show-mast`.
-- Code in order (C01, C02, …). If you run out of time, stop where you are; a partial set is still usable.
+- **Left:** the 30 traces, with a dot showing progress (empty = not started, half = draft, green = done, red = needs fixing).
+- **Middle:** the trace, step by step, exactly as in `data/calibration/Cxx.md`. MAST's labels and the benchmark answers are hidden.
+- **Right:** the coding form. Each code shows its codebook definition next to it. A box at the bottom lists anything missing or inconsistent.
+- **Cite:** select some text inside a step and press that step's **Cite** button. The quote and its step number go into your evidence box.
+- **Saving:** automatic. The top bar says "All changes saved". Your codings are stored in the page's private database; only you can write them. Claude can read them back and copy them into `annotations/human/calibration_sheet.csv`.
+- **Time:** the page counts minutes spent on each trace while it is open (you can correct the number).
+- Works on a laptop or tablet. On a phone it switches to two tabs, "Read trace" and "Code it".
 
-## For each trace
+## How to code one trace
 
-1. Open `data/calibration/Cxx.md`. Read it end to end before coding. Note the task, what the system did, and where it went wrong.
-2. Fill in the row for that trace:
+This is an investigation in miniature: start at the unsafe act and work back up the layers.
 
-| Column | What to write |
-|---|---|
-| `failure_observed` | `yes`, `no` or `unclear` |
-| `l4_codes` | e.g. `L4.1` or `L4.1;L4.3`; empty if no evidence at this layer |
-| `l3_codes` | e.g. `L3.3;L3.4` |
-| `l2_codes` | e.g. `L2.1` |
-| `l1_codes` | e.g. `L1.E2` or `L1.V2` or `L1.V?` |
-| `deepest_layer` | `L4`, `L3`, `L2`, `L1`, or `none` if no failure |
-| `violation_flag` | `none`, `V1`, `V2` or `V?` (it should match your L1 codes) |
-| `confidence` | `high`, `medium` or `low` |
-| `evidence_quotes` | 1–4 short quotes with step numbers, separated by ` \| `, e.g. `[S4] "I will skip the tests" \| [S9] "All tests pass"` |
-| `notes` | Anything else, **especially where the codebook didn't fit**. These notes become codebook v1. |
-| `minutes_spent` | Roughly how long the trace took (for the write-up's effort estimate) |
+1. **Read it through once without coding.** Work out what the task was, what the agents did, and whether the outcome was right. Long tool outputs (web pages, API documentation) can be skimmed; the evidence is usually in how the agents reacted to them.
+2. **Is there a failure?** `yes`, `no` or `unclear`. Four of the 30 are traces MAST judged failure-free; you don't know which, so judge each trace on what you see.
+3. **L1, the unsafe act.** Find the moment or moments where an agent did, or failed to do, something that made the failure happen. For each one, apply the violation rule:
+   - Q1. Was the requirement in the agent's context? If not: error.
+   - Q2. Does the trace show the agent registered it, or could the deviation not plausibly be accidental? If neither: error.
+   - Q3. Did the agent proceed otherwise anyway? If not: no unsafe act.
+   - If all three hold: V1 (recurs), V2 (one-off), or V? (evidence for Q1 or Q2 is thin).
+   - If it is an error: E1 slip in carrying out a sound intention, E2 wrong decision on adequate information, or E3 misread something.
+4. **L2, preconditions.** What made that act possible or likely? A tool or environment problem (L2.1), the agent's state such as lost instructions or a carried-over error (L2.2), or a breakdown between agents (L2.3).
+5. **L3, supervision.** Did the orchestrator or the task specification play a part? Nobody checked the output (L3.1), a task given to an agent that couldn't do it (L3.2), a visible problem left uncorrected (L3.3), an unclear or incomplete task (L3.4).
+6. **L4, design.** Did the way the system was built set this up? Roles, verifier or termination logic (L4.1), tools or budgets (L4.2), missing procedures (L4.3).
+7. **Only code a layer if the trace shows evidence for it.** Leaving a layer empty is a valid answer.
+8. **Finish the form:** deepest contributing layer, confidence, 1–4 evidence quotes, and notes. The notes matter most when the codebook didn't fit: write what you wanted to say and why no code said it. Then press **Mark as done**.
 
-3. Every so often, check the sheet:
+If you can't decide between two codes, pick one, set confidence to `medium` or `low`, and write the alternative in your notes. Those hesitations are exactly what calibration is for.
 
-```bash
-uv run afacs-agreement check-sheet
-```
+## Two passes
 
-It reports **errors** (an unknown code, a code in the wrong column, a value not on the allowed list) and **warnings** (e.g. your deepest layer doesn't match the deepest code you gave, or your violation flag doesn't match your L1 codes). Fix errors; look at warnings, and leave them only if you mean it.
+1. **Pass 1:** code all 30 with codebook v0, writing notes as you go.
+2. **Write codebook v1** from your notes: decide on the "[proposed]" notes and the open questions in `codebook/v0.md`. Claude can turn your notes into codebook text, but the decisions are yours.
+3. **Pass 2:** go through all 30 codings once more against v1 and change whatever v1 changes. This is quicker than pass 1: you are checking, not re-reading everything. Do it **before** seeing any AI codings, so the AI can't influence the reference.
 
-## Tips
+The reviewed set becomes the reference the AI is measured against. The paper reports how many codings the review changed, so readers can see how much the codebook moved.
 
-- Steps marked **NOT VISIBLE TO THE AGENTS** are placeholders: the benchmark's answer or pass/fail verdict is hidden while you code. Code what the agents did. Once you have finished coding **all 30**, you can look with `uv run afacs-render C07 --show-benchmark` (looking earlier could reveal a control and colour the traces still to come). Don't change your coding because of it; note anything interesting in `notes` instead.
-- Text marked **Note added by AFACS** is not part of the log. It explains a logging artefact (e.g. OpenManus logs print only the first ~50 characters of the task, although the agents received all of it).
-- Steps marked **framework log** are the software's bookkeeping, not an agent's words.
-- An agent turn shown as "(empty message ...)" means the agent produced nothing. That is evidence.
-- Long tool outputs (web pages, API documentation) can be skimmed. The evidence usually sits in the agent's reaction to them.
-- If you can't decide between two codes, pick one, set confidence to `medium` or `low`, and write the alternative in `notes`. Disagreements like that are exactly what calibration is meant to surface.
+## Keeping it blind
+
+- Don't open `data/processed/calibration_key.csv` (it says which traces are controls and which are held out for testing).
+- Don't look up MAST's labels for these traces.
+- Benchmark answers are hidden while you code. Look at them only after pass 2 (`uv run afacs-render C07 --show-benchmark`).
+- Don't ask Claude to run the AI annotator on these 30 traces until pass 2 is finished.
+
+## Pacing
+
+About 129,000 words in all: realistically 12–15 hours, for example 3 hours a day from 6 to 10 November. AG2 and MetaGPT traces take 5–15 minutes; AppWorld, HyperAgent, Magentic-One and OpenManus take 30–60. Code in order, C01 to C30: the order is random, so if time runs short you can stop and the set stays balanced.
+
+## Reading the traces
+
+- **framework log** steps are the software's bookkeeping, not an agent's words.
+- Dashed steps marked **not visible to agents** are placeholders for hidden benchmark information.
+- Text marked **Note added by AFACS** is not part of the log. It explains a logging artefact (for example, OpenManus logs that print only the start of the task, or one run where the task was typed in and never logged).
+- "(empty message ...)" means the agent produced nothing in that turn. That is evidence.
+
+## Without the Coding Desk
+
+If you'd rather work offline: open `data/calibration/C01.md` … `C30.md` and fill in `annotations/human/calibration_sheet.csv` in a spreadsheet (codes separated by `;`, quotes separated by ` | `). Check it with `uv run afacs-agreement check-sheet`. Recreate the trace files on a new machine with `uv run afacs-sample calibration --renders-only`.

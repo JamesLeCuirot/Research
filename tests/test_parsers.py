@@ -178,3 +178,14 @@ def test_chatdev_drops_noise_records():
     assert p.dropped_chars > 0
     assert any(s.agent == "Chief Executive Officer" for s in p.steps)
     assert "empty task requirement" not in p.notes
+
+
+def test_openmanus_interactive_prompt_gets_a_note():
+    raw = (
+        "INFO     [root] telemetry\n"
+        "Enter your prompt: 2025-03-31 20:33:26.397 | WARNING  | __main__:run_flow:25 - Processing your request...\n"
+        "2025-03-31 20:33:26.398 | INFO     | app.flow.planning:_create_initial_plan:138 - Creating initial plan\n"
+    )
+    p = parse_trace("OpenManus", raw)
+    assert "task text missing from log" in p.notes
+    assert p.steps[1].agent == "note" and "typed in interactively" in p.steps[1].text

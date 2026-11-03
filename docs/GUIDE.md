@@ -134,11 +134,11 @@ All study-design numbers live in `src/afacs/design.py` with their reasons.
 ## 6. What you do next
 
 1. **Read the codebook** (`codebook/v0.md`) and decide on the proposed notes (section 5 there). You can do this as you code.
-2. **Hand-code the 30 calibration traces.** Instructions: `docs/CODING_GUIDE.md`. Open `data/calibration/C01.md`, read it, fill in row C01 of `annotations/human/calibration_sheet.csv`, and repeat. Run `uv run afacs-agreement check-sheet` now and then.
+2. **Hand-code the 30 calibration traces** in the Coding Desk (https://claude.ai/artifact/HtYBLkAJJjvpzk47woaYxp): read each trace, fill in the form, and it saves automatically. Instructions, including how to think through a trace layer by layer: `docs/CODING_GUIDE.md`.
    - **Time:** the set is about 130,000 words. Realistically **12–15 hours**. AG2 and MetaGPT traces are short (5–15 minutes); AppWorld, HyperAgent, Magentic and OpenManus are long (30–60 minutes).
    - **If time runs short:** code in order C01, C02, ... and stop where you must. The order is random, so a partial set stays balanced.
    - **Keep notes** on where the codebook felt wrong. Those notes become codebook v1, and they are the most valuable part of your contribution.
-3. **Write `codebook/v1.md`** from your notes. I can help turn notes into text, but the decisions are yours.
+3. **Write `codebook/v1.md`** from your notes. I can help turn notes into text, but the decisions are yours. Then review all 30 codings against v1 (pass 2) before any AI coding is run on them.
 4. **Add your API key** to `.env`, then the annotator gets tuned on the dev traces and tested once on the test traces.
 
 ## 7. Questions you should be ready for

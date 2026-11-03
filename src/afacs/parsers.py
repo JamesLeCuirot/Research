@@ -230,6 +230,13 @@ OPENMANUS_TRUNCATION_NOTE = (
     "here). The truncation is an artefact of the logging, not of what the agents were given.]"
 )
 
+OPENMANUS_MISSING_TASK_NOTE = (
+    "[Note added by AFACS, not part of the log: in this run the task was typed in interactively "
+    "(\"Enter your prompt:\") and the log does not record its text. The agents' first plan, a few "
+    "steps below, shows what they understood the task to be. The missing text is an artefact of the "
+    "logging, not evidence that the agents were given no task.]"
+)
+
 OPENMANUS_RECORD = re.compile(
     r"^\d{4}-\d\d-\d\d \d\d:\d\d:\d\d\.\d+ \| (?P<level>\w+)\s*\| (?P<source>[\w.]+):(?P<func>\w+):\d+ - ",
     re.M,
@@ -243,6 +250,9 @@ def parse_openmanus(raw: str) -> ParsedTrace:
         out.add("system", raw, SYSTEM)
         return out
     out.add("system", raw[: starts[0].start()], SYSTEM)
+    if "Enter your prompt:" in raw and "Read prompt from task.txt" not in raw:
+        out.notes.append("task text missing from log")
+        out.add("note", OPENMANUS_MISSING_TASK_NOTE, SYSTEM)
 
     current_agent, current_lines = None, []
 

@@ -21,6 +21,7 @@ afacs-sample = "afacs.sample:main"
 afacs-annotate = "afacs.annotate:main"
 afacs-agreement = "afacs.agreement:main"
 afacs-analysis = "afacs.analysis:main"
+afacs-coding-tool = "afacs.coding_tool:main"   # the hand-coding page and its importer
 
 [dependency-groups]
 dev = ["pytest>=8"]

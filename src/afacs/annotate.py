@@ -25,7 +25,15 @@ How it works:
   error. We deliberately do not fall back to a different model: an agreement
   study needs every annotation to come from the same annotator.
 
-Needs ANTHROPIC_API_KEY in .env for everything except `estimate` and `show-prompt`.
+Two ways to reach Claude (`--backend`):
+- `claude-code` (default): runs each annotation through Claude Code's headless
+  mode, so it uses the Claude subscription you are signed in with. No API key.
+  Calls count against your plan's usage limits; a run stops after three errors
+  in a row (usually a usage limit) and resumes where it left off when re-run.
+- `api`: calls the Anthropic API directly. Needs ANTHROPIC_API_KEY in .env, is
+  billed per token, and is the only route for half-price batches.
+Both send the same system prompt, trace and JSON schema, and both record which
+backend and model produced each annotation.
 """
 
 from __future__ import annotations
@@ -35,6 +43,7 @@ import csv
 import hashlib
 import json
 import os
+import subprocess
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -193,6 +202,8 @@ def estimate(uids: list[str], traces: dict[str, dict], prompt_name: str, output_
             f"standard ≈ ${cost:,.2f} · batch ≈ ${cost / 2:,.2f}"
         )
     print("  (Output length is the big unknown: run ~5 dev traces first and use their real usage to refine this.)")
+    print("  On the default claude-code backend these are list-price equivalents: the calls count against your")
+    print("  Claude plan's usage limits instead of being billed. Batches (the half-price column) need the API backend.")
 
 
 # ---------------------------------------------------------------------------
@@ -260,6 +271,11 @@ def message_to_record(msg, uid: str, meta: dict, codes: dict[str, str]) -> dict:
     except json.JSONDecodeError as e:
         record["error"] = f"invalid JSON: {e}"
         return record
+    return finish_record(record, coding, codes)
+
+
+def finish_record(record: dict, coding: dict, codes: dict[str, str]) -> dict:
+    """Attach the model's coding, flattened to sheet columns and validated."""
     record["coding"] = coding
     record["row"] = coding_to_row(coding)
     errors, warnings = validate_coding(record["row"], codes)
@@ -267,9 +283,59 @@ def message_to_record(msg, uid: str, meta: dict, codes: dict[str, str]) -> dict:
     return record
 
 
-def run_meta(model: str, prompt_name: str, effort: str, run_name: str, system: str) -> dict:
+# ---------------------------------------------------------------------------
+# Claude Code backend (uses the signed-in Claude subscription)
+# ---------------------------------------------------------------------------
+
+
+def run_claude_code(system: str, user: str, model: str, effort: str, schema: dict, timeout: int = 1200) -> dict:
+    """One annotation through `claude -p` (headless Claude Code).
+
+    Tools, MCP servers and slash commands are switched off, and the system prompt
+    is replaced by ours, so the model sees only the annotator prompt, the trace
+    (sent on stdin, as traces can be long) and the JSON schema it must fill.
+    """
+    cmd = [
+        "claude", "-p", "--model", model, "--effort", effort, "--output-format", "json",
+        "--tools", "", "--strict-mcp-config", "--disable-slash-commands", "--no-session-persistence",
+        "--system-prompt", system, "--json-schema", json.dumps(schema),
+    ]
+    try:
+        proc = subprocess.run(cmd, input=user, capture_output=True, text=True, timeout=timeout)
+    except subprocess.TimeoutExpired:
+        return {"is_error": True, "result": f"timed out after {timeout} s"}
+    except FileNotFoundError:
+        raise SystemExit("The `claude` command was not found. Install Claude Code or use --backend api.")
+    try:
+        return json.loads(proc.stdout)
+    except json.JSONDecodeError:
+        return {"is_error": True, "result": (proc.stderr or proc.stdout or "no output").strip()[:500]}
+
+
+def claude_code_to_record(out: dict, uid: str, meta: dict, codes: dict[str, str]) -> dict:
+    """Turn Claude Code's JSON result into one line of the output file."""
+    usage = out.get("usage") or {}
+    record = {
+        "uid": uid,
+        **meta,
+        "model_served": ", ".join(out.get("modelUsage") or {}) or None,
+        "request_id": out.get("session_id"),
+        "stop_reason": out.get("stop_reason"),
+        "usage": {k: usage.get(k) for k in ("input_tokens", "output_tokens", "cache_read_input_tokens", "cache_creation_input_tokens")},
+        "created_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "error": None,
+    }
+    coding = out.get("structured_output")
+    if out.get("is_error") or not isinstance(coding, dict):
+        record["error"] = "Claude Code: " + str(out.get("result") or out.get("subtype") or "no structured output")[:300]
+        return record
+    return finish_record(record, coding, codes)
+
+
+def run_meta(model: str, prompt_name: str, effort: str, run_name: str, system: str, backend: str = "api") -> dict:
     return {
         "run_name": run_name,
+        "backend": backend,
         "model_requested": model,
         "prompt_version": prompt_name,
         "codebook_version": CURRENT_CODEBOOK,
@@ -278,7 +344,7 @@ def run_meta(model: str, prompt_name: str, effort: str, run_name: str, system: s
     }
 
 
-SETTINGS = ("model_requested", "prompt_version", "codebook_version", "system_prompt_sha", "effort")
+SETTINGS = ("backend", "model_requested", "prompt_version", "codebook_version", "system_prompt_sha", "effort")
 
 
 def done_uids(out_path: Path) -> set[str]:
@@ -303,11 +369,11 @@ def check_run_settings(out_path: Path, meta: dict) -> None:
                 )
 
 
-def run_sync(client, uids, traces, model, effort, prompt_name, run_name) -> None:
+def run_sync(client, uids, traces, model, effort, prompt_name, run_name, backend: str = "api") -> None:
     system = system_prompt(prompt_name, CURRENT_CODEBOOK)
     codes = load_codebook_codes(CURRENT_CODEBOOK)
     schema = output_schema(codes)
-    meta = run_meta(model, prompt_name, effort, run_name, system)
+    meta = run_meta(model, prompt_name, effort, run_name, system, backend)
     import anthropic
 
     out_path = paths.LLM_ANNOTATIONS / f"{run_name}.jsonl"
@@ -315,13 +381,18 @@ def run_sync(client, uids, traces, model, effort, prompt_name, run_name) -> None
     check_run_settings(out_path, meta)
     skip = done_uids(out_path)
     todo = [u for u in uids if u not in skip]
-    print(f"{len(todo)} to annotate ({len(skip)} already done) -> {out_path.relative_to(paths.ROOT)}")
+    print(f"{len(todo)} to annotate ({len(skip)} already done) via {backend} -> {out_path.relative_to(paths.ROOT)}")
+    errors_in_a_row = 0
     for i, uid in enumerate(todo, start=1):
         params = request_params(traces[uid], model, effort, system, schema)
         try:
-            with client.messages.stream(**params) as stream:
-                msg = stream.get_final_message()
-            record = message_to_record(msg, uid, meta, codes)
+            if backend == "claude-code":
+                out = run_claude_code(system, params["messages"][0]["content"], model, effort, schema)
+                record = claude_code_to_record(out, uid, meta, codes)
+            else:
+                with client.messages.stream(**params) as stream:
+                    msg = stream.get_final_message()
+                record = message_to_record(msg, uid, meta, codes)
         except anthropic.APIStatusError as e:
             # The SDK already retried rate limits and server errors. What's left (e.g. a 400
             # for an over-long request) won't fix itself: record it and move on.
@@ -334,6 +405,11 @@ def run_sync(client, uids, traces, model, effort, prompt_name, run_name) -> None
         u = record.get("usage", {})
         status = record["error"] or ("ok" if not record.get("validation_errors") else "ok (validation errors)")
         print(f"  [{i}/{len(todo)}] {uid}: {status} · in {u.get('input_tokens')} cache-read {u.get('cache_read_input_tokens')} out {u.get('output_tokens')}")
+        errors_in_a_row = errors_in_a_row + 1 if record["error"] else 0
+        if errors_in_a_row >= 3:
+            print("Stopping: three errors in a row (on a subscription this is usually a usage limit). "
+                  "Re-run the same command later; finished traces are skipped.")
+            return
 
 
 def batch_submit(client, uids, traces, model, effort, prompt_name, run_name) -> None:
@@ -414,6 +490,9 @@ def main() -> None:
             p.add_argument("--model", default=DEFAULT_MODEL)
             p.add_argument("--effort", default=DEFAULT_EFFORT, choices=["low", "medium", "high", "xhigh", "max"])
             p.add_argument("--run-name", required=True, help="output file name, e.g. sonnet_dev_p0")
+            if name == "run":
+                p.add_argument("--backend", choices=["claude-code", "api"], default="claude-code",
+                               help="claude-code (default) uses your Claude subscription; api needs ANTHROPIC_API_KEY")
     p = sub.add_parser("batch-collect")
     p.add_argument("--run-name", required=True)
     p.add_argument("--wait", action="store_true", help="keep polling until the batch ends")
@@ -442,7 +521,8 @@ def main() -> None:
     if args.command == "estimate":
         estimate(uids, traces, args.prompt, args.output_tokens, client=make_client() if args.exact else None)
     elif args.command == "run":
-        run_sync(make_client(), uids, traces, args.model, args.effort, args.prompt, args.run_name)
+        client = make_client() if args.backend == "api" else None
+        run_sync(client, uids, traces, args.model, args.effort, args.prompt, args.run_name, args.backend)
     elif args.command == "batch-submit":
         batch_submit(make_client(), uids, traces, args.model, args.effort, args.prompt, args.run_name)
 

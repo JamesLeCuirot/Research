@@ -66,7 +66,7 @@ Each stage is one Python file in `src/afacs/` and one command. You can run any o
 - *Cost:* estimated with `uv run afacs-annotate estimate --set bulk`. Roughly **$14 for 250 traces with Sonnet** (about $7 via the half-price "batch" service, which returns results within 24 hours), $28 with Opus. Calibration-size runs cost about $2. The whole project should cost well under $60.
 - *Refusals:* if Claude declines to process a trace, it is recorded as an error, not quietly handed to a different model, because an agreement study needs one fixed annotator.
 
-**Needs:** your Anthropic API key in a file called `.env` (copy `.env.example`). It is gitignored, so it never gets published.
+**Runs on:** your Claude subscription, through Claude Code's headless mode (the default `--backend claude-code`). No API key is needed; the calls count against your plan's usage limits, and a run that hits a limit stops and resumes where it left off. The direct API route (`--backend api`, key in `.env`) remains available, and is the only way to use the half-price batch service.
 
 ### Stage 5: agreement (`afacs-agreement`, `agreement.py`) — RQ1
 

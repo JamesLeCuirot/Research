@@ -65,3 +65,19 @@ def test_request_caches_system_prompt_and_hides_mast():
     assert params["system"][0]["cache_control"] == {"type": "ephemeral"}
     assert "MAST" not in params["messages"][0]["content"]
     assert params["output_config"]["format"]["type"] == "json_schema"
+
+
+def test_claude_code_result_becomes_record():
+    from afacs.annotate import claude_code_to_record
+    out = {"is_error": False, "structured_output": GOOD, "session_id": "s1", "stop_reason": "tool_use",
+           "modelUsage": {"claude-sonnet-5-5": {}}, "usage": {"input_tokens": 5, "output_tokens": 60,
+           "cache_read_input_tokens": 0, "cache_creation_input_tokens": 2000}}
+    rec = claude_code_to_record(out, "U1", {**META, "backend": "claude-code"}, CODES)
+    assert rec["error"] is None and rec["model_served"] == "claude-sonnet-5-5"
+    assert rec["row"]["l3_codes"] == "L3.4" and rec["backend"] == "claude-code"
+
+
+def test_claude_code_error_is_recorded():
+    from afacs.annotate import claude_code_to_record
+    rec = claude_code_to_record({"is_error": True, "result": "Usage limit reached"}, "U1", META, CODES)
+    assert rec["error"].startswith("Claude Code: Usage limit") and "row" not in rec

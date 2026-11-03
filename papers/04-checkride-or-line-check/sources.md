@@ -121,7 +121,7 @@ Verification methods used: arXiv export API (metadata and abstracts) and arXiv H
 
 ### McCain et al. (2026). Measuring AI agent autonomy in practice (Anthropic)
 - Verified: page text retrieved from https://www.anthropic.com/research/measuring-agent-autonomy ("Published Feb 18, 2026"; author list under "Authors & acknowledgements" and in the page's BibTeX).
-- §3.4, "Looking ahead": "Pre-deployment evaluations test what agents are capable of in controlled settings, but many of our findings cannot be observed through pre-deployment testing alone." The page states it analysed "millions of human-agent interactions ... using our privacy-preserving tool".
+- §3.4, "Looking ahead": "Pre-deployment evaluations test what agents are capable of in controlled settings, but many of our findings cannot be observed through pre-deployment testing alone." §3.4 quote: "We analyzed millions of human-agent interactions across both Claude Code and our public API using our privacy-preserving tool" (whether this tool is Clio was not checked, so the paper does not say so).
 
 ### McCambridge, Witton & Elbourne (2014)
 - Verified: Crossref DOI record 10.1016/j.jclinepi.2013.08.015 (J Clin Epidemiol 67(3), 267–277); PubMed abstract PMID 24275499.
@@ -129,7 +129,7 @@ Verification methods used: arXiv export API (metadata and abstracts) and arXiv H
 
 ### Needham et al. (2025), arXiv:2505.23836
 - Verified: arXiv API record and abstract (v3, 16 July 2025). Preprint.
-- §1, §3.1–3.2: "we construct a diverse benchmark of 1,000 prompts and transcripts from 61 distinct datasets"; "Gemini-2.5-Pro reaches an AUC of 0.83, but do not yet surpass our simple human baseline (AUC of 0.92)"; "both AI models and humans are better at identifying evaluations in agentic settings compared to chat settings"; definition: "a capability we call evaluation awareness".
+- §1, §3.1–3.2: "we construct a diverse benchmark of 1,000 prompts and transcripts from 61 distinct datasets"; "Gemini-2.5-Pro reaches an AUC of 0.83, but do not yet surpass our simple human baseline (AUC of 0.92)"; "both AI models and humans are better at identifying evaluations in agentic settings compared to chat settings"; definition: "a capability we call evaluation awareness"; §3.2 quote: "frontier models already exhibit a substantial, though not yet superhuman, level of evaluation-awareness".
 
 ### Nguyen et al. (2025), arXiv:2507.01786
 - Verified: arXiv API record and abstract (ICML 2025 workshop posters). Preprint.
@@ -221,7 +221,7 @@ All texts via the Citadel Aero regulation library (jurisdiction EU), source http
 - **AMC2 ORO.FC.232** (AMC; 2022/014/R; seen as an excerpt): table columns include "Desired outcome (includes performance criteria OR training outcome)" and "Guidance material (GM); Example scenario elements" (§6.5).
 - The reference list uses "(n.d.)" because the consolidated Easy Access Rules revision date was not shown by the library; the instrument versions are named instead.
 
-### UK: Regulation (EU) No 965/2012 as assimilated, ORO.FC.231 (UK; binding)
+### Regulation (EU) No 965/2012 [UK] (n.d.), ORO.FC.231 (UK assimilated law; binding)
 - Verified: Citadel Aero library (`uk:uk-reg-965-2012:oro.fc.231`, status binding, version "legislation.gov.uk eur (current, OGL)"), source https://www.legislation.gov.uk/eur/2012/965/annex/III. Text matches the EU rule with "the CAA" as approving authority (§2.3).
 
 ### IATA (2024). Evidence-Based Training Implementation Guide, Ed. 2

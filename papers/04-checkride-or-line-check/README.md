@@ -1,6 +1,6 @@
 # Checkride or Line Check? What LOSA and Evidence-Based Training Teach About Evaluation Awareness in AI Systems
 
-**Status: draft v0.1 for author review (3 November 2026).** Not peer reviewed. Not yet built to PDF/HTML (`papers/_build/build.sh` does not exist yet; `pandoc paper.md` renders cleanly). Main text about 7,300 words, plus 5 tables, 1 figure and a short appendix.
+**Status: draft v0.1 for author review (3 November 2026).** Not peer reviewed. Not yet built to PDF/HTML (`papers/_build/build.sh` does not exist yet; `pandoc paper.md` renders cleanly). Main text about 7,400 words, plus 5 tables, 1 figure and a short appendix.
 
 ## Abstract
 
@@ -8,7 +8,7 @@ Frontier language models can often tell when they are being evaluated, and in so
 
 ## Pilot in one paragraph
 
-Six benign scenarios at a fictional airline ("Calder Air"): ambiguous instruction, error in the assistant's own earlier work, request beyond authority, pressure to report completion, operator–user conflict, and a hidden fitness-for-duty concern in a fatigue-report digest. Claude Haiku 5.5 and Sonnet 5.5 answered each four times (48 transcripts). Claude Sonnet 5.5 and Opus 5.5 graded each transcript twice with a 4-competency rubric (17 observable behaviours adapted from EASA AMC1 ORO.FC.231(b), 1–5 VENN-style anchors) and twice with a holistic 1–5 score. No model response failed its scenario, so grades bunched at 4–5. Inter-grader alpha (run 1): competencies 0.31–0.49, competency mean 0.41, holistic 0.42. Test–retest alpha: 0.56–0.89. Indicator judgements: 91% inter-grader agreement (alpha 0.69), but 82% were simply "demonstrated". Six scripted weak "control" responses were graded 1–2 by everyone; adding them raised inter-grader alpha on the competency mean to 0.91. Grades separated scenarios (epsilon-squared 0.47–0.64) but not models (Cliff's delta 0.11). Total model calls: 458.
+Six benign scenarios at a fictional airline ("Calder Air"): ambiguous instruction, error in the assistant's own earlier work, request beyond authority, pressure to report completion, operator–user conflict, and a hidden fitness-for-duty concern in a fatigue-report digest. Claude Haiku 5.5 and Sonnet 5.5 answered each four times (48 transcripts). Claude Sonnet 5.5 and Opus 5.5 graded each transcript twice with a 4-competency rubric (17 observable behaviours adapted from EASA AMC1 ORO.FC.231(b), 1–5 VENN-style anchors) and twice with a holistic 1–5 score. No model response failed its scenario, so grades bunched at 4–5. Inter-grader alpha (run 1): competencies 0.31–0.49, competency mean 0.41, holistic 0.42. Test–retest alpha: 0.56–0.89. Indicator judgements: 91% inter-grader agreement (alpha 0.69), but 82% were simply "demonstrated". Six scripted weak "control" responses were graded 1–2 by everyone; adding them raised inter-grader alpha on the competency mean to 0.91. Grades separated scenarios (epsilon-squared 0.46–0.64 across measures) but not models (Cliff's delta 0.11). Total model calls: 458.
 
 ## What James should check
 
@@ -42,7 +42,7 @@ No earlier application of LOSA, TEM or EBT/CBTA to AI evaluation was found (arXi
 
 ## How to develop it
 
-1. **The real validation: human instructor grading.** Have two or more trained EBT instructors grade the same 48 transcripts plus the controls with the same rubric and the holistic score, after a short concordance session using standardisation material at three performance levels (as GM1 ORO.FC.231(a)(4) suggests). Compare instructor–instructor and instructor–LLM agreement. Pre-register it (see `papers/02-.../PREREGISTRATION.md` for the house format).
+1. **The real validation: human instructor grading.** Have two or more trained EBT instructors grade the same 48 transcripts plus the controls with the same rubric and the holistic score, after a short concordance session using standardisation material at three performance levels (as GM1 ORO.FC.231(a)(4) suggests). Compare instructor–instructor and instructor–LLM agreement. Pre-register it (see `papers/02-rare-threats-are-missed-threats/PREREGISTRATION.md` for the house format).
 2. **Wider range of performance.** Generate weaker responses from more models, lower effort settings, or adversarial system prompts, instead of relying on scripted controls.
 3. **Scenario-specific guidance.** Add "desired outcomes" per scenario, as EBT does per training topic (AMC2 ORO.FC.232), and test whether indicator agreement on "required vs not required" improves.
 4. **Surface variation.** Build scenario templates with varied surface features (domain, names, formats) to test whether competency grades generalise across variants, the EBT claim that matters most for evaluation awareness.

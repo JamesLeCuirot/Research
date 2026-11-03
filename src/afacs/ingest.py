@@ -104,6 +104,8 @@ def build_traces(records: list[dict]) -> list[dict]:
             quality_exclusion = "no_mast_labels"
         elif key in design.CORRUPT_SOURCE_KEYS:
             quality_exclusion = "corrupt_source_group"
+        elif uid in design.MISFILED_TRACES:
+            quality_exclusion = "misfiled_text"
         elif duplicate_of is not None:
             quality_exclusion = "duplicate_text"
         else:
@@ -274,6 +276,7 @@ def build_audit(records: list[dict], traces: list[dict], human: list[dict]) -> d
     # Metadata
     audit["benchmark_corrections"] = design.BENCHMARK_CORRECTIONS
     audit["empty_task_traces"] = [t["uid"] for t in traces if "empty task requirement" in t["parse_notes"]]
+    audit["truncated_task_traces"] = sum("task text truncated in log" in t["parse_notes"] for t in traces)
     audit["benchmark_outcome_available"] = dict(Counter(f"{t['framework']}:{t['benchmark_outcome']}" for t in traces if t["benchmark_outcome"]))
 
     # Per framework: size, parsing, labels, eligibility
@@ -361,9 +364,14 @@ def write_audit_markdown(audit: dict, path: Path) -> None:
     ]
     for key, bench in audit["benchmark_corrections"].items():
         lines.append(f"- `{key}`: benchmark set to **{bench}**")
+    for uid, reason in design.MISFILED_TRACES.items():
+        lines.append(f"- `{uid}`: excluded, {reason}")
     lines += [
         "",
         f"Traces whose task text is empty (a harness defect): {', '.join(f'`{u}`' for u in audit['empty_task_traces']) or 'none'}.",
+        "",
+        f"OpenManus traces whose log truncates the task text to ~50 characters (the agents saw the full task; "
+        f"the rendered trace carries a note saying so): {audit['truncated_task_traces']} of 30.",
         "",
         "Benchmark pass/fail recorded inside the log (most traces have none): "
         + ", ".join(f"{k} = {v}" for k, v in sorted(audit["benchmark_outcome_available"].items())),

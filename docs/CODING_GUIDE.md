@@ -7,10 +7,10 @@
 ```bash
 uv sync
 uv run afacs-ingest
-uv run afacs-sample calibration --force   # recreates data/calibration/C01.md ... (skip if they exist)
+uv run afacs-sample calibration --renders-only   # checks the frozen set, writes data/calibration/C01.md ... (never touches your sheet)
 ```
 
-The 34 traces are in `data/calibration/C01.md` … `C34.md`. Your sheet is `annotations/human/calibration_sheet.csv`. It opens in Excel, Numbers or Google Sheets; save it back as CSV.
+The 30 traces are in `data/calibration/C01.md` … `C30.md`. Your sheet is `annotations/human/calibration_sheet.csv`. It opens in Excel, Numbers or Google Sheets; save it back as CSV.
 
 ## Rules that keep the coding blind
 
@@ -47,7 +47,8 @@ It reports **errors** (an unknown code, a code in the wrong column, a value not 
 
 ## Tips
 
-- Steps marked **NOT VISIBLE TO THE AGENTS** hold the benchmark's answer or evaluation. Use them to understand the failure, but not as evidence of what an agent knew (violation rule, criterion 1).
+- Steps marked **NOT VISIBLE TO THE AGENTS** are placeholders: the benchmark's answer or pass/fail verdict is hidden while you code. Code what the agents did. Once you have finished coding **all 30**, you can look with `uv run afacs-render C07 --show-benchmark` (looking earlier could reveal a control and colour the traces still to come). Don't change your coding because of it; note anything interesting in `notes` instead.
+- Text marked **Note added by AFACS** is not part of the log. It explains a logging artefact (e.g. OpenManus logs print only the first ~50 characters of the task, although the agents received all of it).
 - Steps marked **framework log** are the software's bookkeeping, not an agent's words.
 - An agent turn shown as "(empty message ...)" means the agent produced nothing. That is evidence.
 - Long tool outputs (web pages, API documentation) can be skimmed. The evidence usually sits in the agent's reaction to them.

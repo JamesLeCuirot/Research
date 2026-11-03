@@ -34,7 +34,7 @@ import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib.colors import LinearSegmentedColormap  # noqa: E402
 
 from afacs import design, paths  # noqa: E402
-from afacs.agreement import RESULTS, any_violation, codes_of, has_layer, load_human, load_llm  # noqa: E402
+from afacs.agreement import RESULTS, any_violation, codes_of, has_layer, load_human, load_llm, usable  # noqa: E402
 from afacs.ingest import load_traces  # noqa: E402
 from afacs.schema import CURRENT_CODEBOOK, load_codebook_codes  # noqa: E402
 
@@ -58,15 +58,41 @@ plt.rcParams.update({
 })
 
 
-def wilson(k: int, n: int, z: float = 1.96) -> tuple[float, float, float]:
-    """Share k/n with its 95% Wilson interval: (p, low, high)."""
-    if n == 0:
+def wilson(k: float, n: float, z: float = 1.96) -> tuple[float, float, float]:
+    """Share k/n with its 95% Wilson interval: (p, low, high). n may be an effective (non-whole) size."""
+    if n <= 0:
         return (float("nan"),) * 3
     p = k / n
     centre = (p + z * z / (2 * n)) / (1 + z * z / n)
     half = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / (1 + z * z / n)
     # min/max guard against floating-point rounding putting p a hair outside its own interval
     return p, max(0.0, min(p, centre - half)), min(1.0, max(p, centre + half))
+
+
+def weighted_share(uids: list[str], flag, weights: dict[str, float]) -> tuple[float, float, float]:
+    """Weighted share of `uids` for which flag(uid) is true, with a Wilson interval.
+
+    The bulk sample is deliberately not proportional (small frameworks and models
+    are over-sampled), so each trace carries a weight: how many traces in the
+    eligible pool it stands for. The share is sum(weight x flag) / sum(weight).
+    Weighting makes the estimate less precise, so the interval uses the "effective
+    sample size" (Kish): (sum of weights)^2 / (sum of squared weights). With equal
+    weights this is simply n, and the result is the ordinary share.
+    """
+    if not uids:
+        return (float("nan"),) * 3
+    w = [weights.get(u, 1.0) for u in uids]
+    total = sum(w)
+    p = sum(wi for u, wi in zip(uids, w) if flag(u)) / total
+    n_eff = total**2 / sum(wi * wi for wi in w)
+    return wilson(p * n_eff, n_eff)
+
+
+def load_bulk_weights() -> dict[str, float]:
+    if not paths.BULK_SAMPLE.exists():
+        return {}
+    with open(paths.BULK_SAMPLE) as f:
+        return {r["uid"]: float(r["weight"]) for r in csv.DictReader(f)}
 
 
 def pct(p: float, lo: float | None = None, hi: float | None = None) -> str:
@@ -190,18 +216,35 @@ def mast_figures() -> None:
 # ---------------------------------------------------------------------------
 
 
-def afacs_analysis(rows: dict[str, dict], name: str) -> None:
+def afacs_analysis(rows: dict[str, dict], name: str, weights: dict[str, float] | None = None) -> None:
+    """RQ2-RQ4 tables and figures. With `weights` (bulk run), shares are weighted to the eligible pool."""
     traces = {t["uid"]: t for t in load_traces()}
     codes = list(load_codebook_codes(CURRENT_CODEBOOK))  # codebook order: L4 first, L1 last
+    # Weights only make sense if every coded trace came from the bulk sample.
+    weights = weights or {}
+    weighted = bool(rows) and all(u in weights for u in rows)
+    if weights and not weighted:
+        print("  (some traces are not in the bulk sample, so shares are left unweighted)")
+    if not weighted:
+        weights = {}
     failed = {u: r for u, r in rows.items() if r["failure_observed"] == "yes"}
     by_fw = defaultdict(list)
     for u in failed:
         by_fw[traces[u]["framework"]].append(u)
-    groups = [("All", sorted(failed))] + [(fw, us) for fw, us in sorted(by_fw.items())]
+    all_label = "All (weighted to eligible pool)" if weighted else "All"
+    groups = [(all_label, sorted(failed))] + [(fw, us) for fw, us in sorted(by_fw.items())]
+
+    def share(us, flag):
+        return weighted_share(us, flag, weights)
 
     out = [f"# AFACS analysis: {name}", "",
            f"Coded traces: {len(rows)}. Failure observed in {len(failed)} "
-           f"({pct(*wilson(len(failed), len(rows)))}). Shares below are of traces with a failure observed.", ""]
+           f"({pct(*wilson(len(failed), len(rows)))}). Shares below are of traces with a failure observed.", "",
+           ("Shares are **weighted** so they represent the eligible pool, not the balanced sample "
+            "(the sample over-represents small frameworks and models). n is the number of coded traces."
+            if weighted else
+            "Shares are **unweighted**: they describe these traces, which were chosen for balance, not to "
+            "represent MAST as a whole."), ""]
 
     # RQ2 - layers and latent contributors
     out += ["## RQ2: where in the layers do failures sit?", "",
@@ -209,31 +252,28 @@ def afacs_analysis(rows: dict[str, dict], name: str) -> None:
             "|---|---|" + "---|" * (len(LAYERS) + 1)]
     panels = {LAYER_NAMES[L]: [] for L in LAYERS}
     for label, us in groups:
-        n = len(us)
         cells = []
         for L in LAYERS:
-            k = sum(has_layer(failed[u], L) for u in us)
-            p = wilson(k, n)
+            p = share(us, lambda u, L=L: has_layer(failed[u], L))
             cells.append(pct(*p))
-            panels[LAYER_NAMES[L]].append((label, *p, n))
-        latent = sum(any(has_layer(failed[u], L) for L in ("L2", "L3", "L4")) for u in us)
-        out.append(f"| {label} | {n} | " + " | ".join(cells) + f" | {pct(*wilson(latent, n))} |")
-    deep = defaultdict(int)
-    for r in failed.values():
-        deep[r["deepest_layer"]] += 1
-    out += ["", "Deepest contributing layer: " + ", ".join(f"{L} {deep[L]} ({deep[L] / max(len(failed), 1):.0%})" for L in LAYERS) + "", ""]
+            panels[LAYER_NAMES[L]].append((label.split(" (")[0], *p, len(us)))
+        latent = share(us, lambda u: any(has_layer(failed[u], L) for L in ("L2", "L3", "L4")))
+        out.append(f"| {label} | {len(us)} | " + " | ".join(cells) + f" | {pct(*latent)} |")
+    all_us = sorted(failed)
+    out += ["", "Deepest contributing layer: " + ", ".join(
+        f"{L} {pct(share(all_us, lambda u, L=L: failed[u]['deepest_layer'] == L)[0])}" for L in LAYERS), ""]
     if failed:
         hbar_panels(panels, f"Share of failed traces with a contributing factor at each layer ({name})",
                     paths.FIGURES / f"layers_by_framework_{name}.png")
 
     # RQ3 - violations
-    out += ["## RQ3: errors vs violations", "", "| Group | n | Any violation code | of which V2 (exceptional) | V? (indeterminate) |", "|---|---|---|---|---|"]
+    out += ["## RQ3: errors vs violations", "",
+            "| Group | n | Any violation code | Exceptional (V2) | Indeterminate (V?) |", "|---|---|---|---|---|"]
     for label, us in groups:
-        n = len(us)
-        v = sum(any_violation(failed[u]) for u in us)
-        v2 = sum("L1.V2" in codes_of(failed[u]) for u in us)
-        vq = sum("L1.V?" in codes_of(failed[u]) for u in us)
-        out.append(f"| {label} | {n} | {pct(*wilson(v, n))} | {v2} | {vq} |")
+        v = share(us, lambda u: any_violation(failed[u]))
+        v2 = share(us, lambda u: "L1.V2" in codes_of(failed[u]))
+        vq = share(us, lambda u: "L1.V?" in codes_of(failed[u]))
+        out.append(f"| {label} | {len(us)} | {pct(*v)} | {pct(v2[0])} | {pct(vq[0])} |")
     out += ["", "By model, within frameworks that ran several models (exploratory; small n):", "",
             "| Framework | Model | n | Any violation code |", "|---|---|---|---|"]
     for fw in ("MetaGPT", "AG2"):
@@ -241,13 +281,12 @@ def afacs_analysis(rows: dict[str, dict], name: str) -> None:
         for u in by_fw.get(fw, []):
             by_model[(traces[u]["model"], traces[u]["benchmark"])].append(u)
         for (model, bench), us in sorted(by_model.items()):
-            v = sum(any_violation(failed[u]) for u in us)
-            out.append(f"| {fw} ({bench}) | {model} | {len(us)} | {pct(*wilson(v, len(us)))} |")
+            out.append(f"| {fw} ({bench}) | {model} | {len(us)} | {pct(*share(us, lambda u: any_violation(failed[u])))} |")
     fm11 = [u for u in failed if traces[u]["mast_labels"].get("1.1") == 1]
     if fm11:
-        v = sum(any_violation(failed[u]) for u in fm11)
+        v = share(fm11, lambda u: any_violation(failed[u]))
         out += ["", f"Traces MAST labels **FM-1.1 Disobey Task Specification** (n={len(fm11)}): "
-                f"{pct(*wilson(v, len(fm11)))} carry an AFACS violation code; the rest are coded as errors only. "
+                f"{pct(*v)} carry an AFACS violation code; the rest are coded as errors only. "
                 "If both groups are substantial, FM-1.1 mixes capability failures and departures from known requirements.", ""]
 
     # RQ4 - cross-walk
@@ -259,14 +298,13 @@ def afacs_analysis(rows: dict[str, dict], name: str) -> None:
         us = [u for u in failed if traces[u]["mast_labels"].get(c) == 1]
         if not us:
             continue
-        n = len(us)
-        lrow = [sum(has_layer(failed[u], L) for u in us) / n for L in LAYERS]
-        vio = sum(any_violation(failed[u]) for u in us) / n
+        lrow = [share(us, lambda u, L=L: has_layer(failed[u], L))[0] for L in LAYERS]
+        vio = share(us, lambda u: any_violation(failed[u]))[0]
         layer_matrix.append(lrow + [vio])
-        code_matrix.append([sum(code in codes_of(failed[u]) for u in us) / n for code in codes])
+        code_matrix.append([share(us, lambda u, code=code: code in codes_of(failed[u]))[0] for code in codes])
         row_labels.append(c)
-        row_n.append(n)
-        out.append(f"| {c} {design.MAST_NAMES[c]} | {n} | " + " | ".join(f"{x:.0%}" for x in lrow) + f" | {vio:.0%} |")
+        row_n.append(len(us))
+        out.append(f"| {c} {design.MAST_NAMES[c]} | {len(us)} | " + " | ".join(f"{x:.0%}" for x in lrow) + f" | {vio:.0%} |")
     if layer_matrix:
         notes = [f"{design.MAST_NAMES[c]} (n={n})" for c, n in zip(row_labels, row_n)]
         heatmap(layer_matrix, row_labels, LAYERS + ["Violation"], f"AFACS layers within each MAST label ({name})",
@@ -293,9 +331,9 @@ def main() -> None:
     if args.command == "mast":
         mast_figures()
     elif args.human:
-        afacs_analysis(load_human(), "human_calibration")
+        afacs_analysis(usable(load_human(), "human"), "human_calibration")
     else:
-        afacs_analysis(load_llm(args.run), args.run)
+        afacs_analysis(usable(load_llm(args.run), args.run), args.run, weights=load_bulk_weights())
 
 
 if __name__ == "__main__":

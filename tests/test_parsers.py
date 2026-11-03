@@ -96,7 +96,17 @@ def test_openmanus_groups_by_agent_step_and_drops_token_counts():
     assert "thoughts: search" in manus[0].text and "line two of result" in manus[0].text
     assert "Token usage" not in "\n".join(s.text for s in p.steps)
     assert p.dropped_chars > 0
-    assert any(s.agent == "planner" for s in p.steps)
+    assert any(s.agent == "planner" and s.kind == "message" for s in p.steps)  # plans are LLM output
+
+
+def test_openmanus_truncated_task_gets_a_note():
+    raw = (
+        "2025-03-31 21:52:44.052 | INFO     | __main__:run_flow:20 - Read prompt from task.txt: What country had the least...\n"
+        "2025-03-31 21:52:49.897 | INFO     | app.agent.base:run:140 - Executing step 1/20\n"
+    )
+    p = parse_trace("OpenManus", raw)
+    assert "task text truncated in log" in p.notes
+    assert any(s.agent == "note" and "Note added by AFACS" in s.text for s in p.steps)
 
 
 def test_appworld_headers_nested_and_evaluation():
@@ -116,7 +126,28 @@ def test_appworld_headers_nested_and_evaluation():
     assert [s.agent for s in p.steps[1:3]] == ["Response from Supervisor Agent", "Code Execution Output"]
     assert p.steps[2].kind == TOOL_OUTPUT and p.steps[2].text == "[1, 2]"
     assert any(s.agent == "Reply from phone Agent to Supervisor" and s.text == "done" for s in p.steps)
+    assert any(s.agent == "Message to phone Agent (request from the Supervisor)" and s.kind == "message" for s in p.steps)
     assert p.steps[-1].kind == BENCHMARK_INFO and '"success": false' in p.steps[-1].text
+
+
+def test_appworld_loop_outputs_and_repeats():
+    raw = (
+        "Task text.\n"
+        "Entering phone Agent message loop\n"
+        "    Message to phone Agent\n        list contacts\n"
+        "    Response from phone Agent\n        print(apis.phone.list())\n"
+        "    Message to phone Agent\n        [\"Ann\", \"Bob\"]\n"
+        "    Reply from phone Agent to Supervisor\n        Ann, Bob\n"
+        "Exiting phone Agent message loop\n"
+        "Response from send_message API\n    Ann, Bob\n"
+        "Message to Supervisor Agent\n    Ann, Bob\n"
+    )
+    p = parse_trace("AppWorld", raw)
+    second = [s for s in p.steps if s.agent.startswith("Message to phone Agent")][1]
+    assert second.kind == TOOL_OUTPUT and second.agent.endswith("(code execution output)")
+    last = p.steps[-1]
+    assert last.agent == "Message to Supervisor Agent" and last.kind == TOOL_OUTPUT
+    assert last.text.startswith("(identical to the previous step [S")
 
 
 def test_hyperagent_speakers():

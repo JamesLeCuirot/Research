@@ -8,10 +8,11 @@ Source: `mcemri/MAST-Data` at revision `95118ac`, 1,642 rows, 1,537 distinct tra
 
 | Reason | Rows |
 |---|---|
-| kept | 1,507 |
+| kept | 1,505 |
 | corrupt_source_group | 96 |
 | duplicate_text | 35 |
 | no_mast_labels | 4 |
+| misfiled_text | 2 |
 
 ## Duplicates and label consistency
 
@@ -33,8 +34,12 @@ The Magentic pairs are the same 30 traces filed under two group names; their κ 
 - `OpenManus_ProgramDev_GPT4o`: benchmark set to **GAIA**
 - `AG2_GSM_Plus_Claude`: benchmark set to **GSM-Plus**
 - `AG2_GSM_Plus_GPT4o`: benchmark set to **GSM-Plus**
+- `HyperAgent_SWE-Bench-Lite_Claude__028`: excluded, the text is a ChatDev log, not HyperAgent
+- `HyperAgent_SWE-Bench-Lite_Claude__029`: excluded, the text is a ChatDev log, not HyperAgent
 
 Traces whose task text is empty (a harness defect): `MetaGPT_ProgramDev2_GPT4o__099`, `MetaGPT_ProgramDev2_Claude__099`, `ChatDev_ProgramDev2_GPT4o__099`, `MetaGPT_ProgramDev-v2_Qwen__099`, `MetaGPT_ProgramDev-v2_CodeLlama__099`.
+
+OpenManus traces whose log truncates the task text to ~50 characters (the agents saw the full task; the rendered trace carries a note saying so): 29 of 30.
 
 Benchmark pass/fail recorded inside the log (most traces have none): AG2:fail = 26, AG2:pass = 4, AppWorld:fail = 26, AppWorld:pass = 4
 
@@ -45,12 +50,12 @@ Tokens are approximate (characters ÷ 4) and measured after cleaning. *Eligible*
 | Framework | Rows | Kept | MAST-failed | MAST-clean | Eligible failed | Eligible clean | Median tokens | Max tokens | Median steps | Min parse coverage |
 |---|---|---|---|---|---|---|---|---|---|---|
 | AG2 | 597 | 597 | 286 | 311 | 286 | 311 | 956 | 7,257 | 4 | 0.77 |
-| AppWorld | 30 | 29 | 28 | 1 | 27 | 1 | 7,277 | 58,714 | 85 | 0.72 |
+| AppWorld | 30 | 29 | 28 | 1 | 27 | 1 | 6,285 | 54,759 | 85 | 0.65 |
 | ChatDev | 330 | 226 | 205 | 21 | 0 | 0 | 83,893 | 494,824 | 95 | 0.98 |
-| HyperAgent | 30 | 30 | 27 | 3 | 18 | 2 | 15,318 | 145,776 | 50 | 0.88 |
+| HyperAgent | 30 | 28 | 26 | 2 | 18 | 2 | 14,431 | 145,776 | 56 | 0.88 |
 | Magentic | 195 | 165 | 129 | 36 | 127 | 36 | 7,235 | 65,320 | 20 | 0.96 |
 | MetaGPT | 430 | 430 | 408 | 22 | 408 | 22 | 2,119 | 8,815 | 8 | 0.74 |
-| OpenManus | 30 | 30 | 29 | 1 | 27 | 1 | 6,076 | 32,008 | 32 | 0.60 |
+| OpenManus | 30 | 30 | 29 | 1 | 27 | 1 | 6,142 | 32,076 | 33 | 0.61 |
 
 **Eligible pool:** 893 failed traces and 373 MAST-clean traces (available as controls).
 

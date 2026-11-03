@@ -18,12 +18,20 @@ What is measured, for the traces both coders coded:
 - failure_observed: kappa.
 
 Each headline kappa gets a 95% bootstrap confidence interval: we resample the
-traces with replacement 2,000 times and see how much kappa moves. With ~14 test
-traces the intervals will be wide, and the write-up should say so.
+traces with replacement 2,000 times and see how much kappa moves. With ~12 test
+traces the intervals will be wide, and the write-up should say so. No interval
+is shown when it would be meaningless: when either coder marked fewer than 3
+traces "yes" (or fewer than 3 "no"), or when kappa is undefined in more than 5%
+of resamples. The report always shows how many "yes" each coder gave.
 
 Kappa reads roughly as: <0.20 slight, 0.21-0.40 fair, 0.41-0.60 moderate,
 0.61-0.80 substantial, >0.80 almost perfect (Landis & Koch, 1977). It is
-"undefined" (n/a) when one coder used the same value for every trace.
+undefined (n/a) when both coders gave the same single value for every trace.
+If only one coder did that, kappa comes out as 0 by construction, which says
+"no information" rather than "no agreement"; check the "yes" counts.
+
+Rows are tidied (spaces, capitals) and validated before scoring. Rows with
+errors are left out and listed, so a typo can't silently change a result.
 """
 
 from __future__ import annotations
@@ -37,7 +45,15 @@ from pathlib import Path
 from sklearn.metrics import cohen_kappa_score
 
 from afacs import paths
-from afacs.schema import CODING_FIELDS, CURRENT_CODEBOOK, LAYER_COLUMNS, load_codebook_codes, split_codes, validate_coding
+from afacs.schema import (
+    CODING_FIELDS,
+    CURRENT_CODEBOOK,
+    LAYER_COLUMNS,
+    load_codebook_codes,
+    normalise_row,
+    split_codes,
+    validate_coding,
+)
 
 RESULTS = paths.ROOT / "results"
 LAYERS = ["L4", "L3", "L2", "L1"]
@@ -51,20 +67,33 @@ SEED = 7
 
 
 def load_human(path: Path = paths.CALIBRATION_SHEET) -> dict[str, dict]:
-    """Rows James has coded (rows with failure_observed still blank are skipped)."""
+    """Rows James has coded, tidied (rows with failure_observed still blank are skipped)."""
     with open(path) as f:
-        return {r["uid"]: r for r in csv.DictReader(f) if (r.get("failure_observed") or "").strip()}
+        return {r["uid"]: normalise_row(r) for r in csv.DictReader(f) if (r.get("failure_observed") or "").strip()}
 
 
 def load_llm(run_name: str) -> dict[str, dict]:
-    """Successful rows from an annotator run."""
+    """Successful rows from an annotator run, tidied."""
     out = {}
     with open(paths.LLM_ANNOTATIONS / f"{run_name}.jsonl") as f:
         for line in f:
             r = json.loads(line)
             if not r.get("error") and "row" in r:
-                out[r["uid"]] = r["row"]
+                out[r["uid"]] = normalise_row(r["row"])
     return out
+
+
+def usable(rows: dict[str, dict], label: str) -> dict[str, dict]:
+    """Drop rows that fail validation, saying which and why."""
+    codes = load_codebook_codes(CURRENT_CODEBOOK)
+    keep = {}
+    for uid, row in rows.items():
+        errors, _ = validate_coding(row, codes)
+        if errors:
+            print(f"  [{label}] left out {uid}: {'; '.join(errors)}")
+        else:
+            keep[uid] = row
+    return keep
 
 
 def load_key() -> dict[str, dict]:
@@ -89,11 +118,16 @@ def any_violation(row: dict) -> int:
     return int(any(c.startswith("L1.V") for c in codes_of(row)))
 
 
-def kappa(a: list, b: list, weights: str | None = None) -> float | None:
-    """Cohen's kappa, or None when it is undefined (no variation at all)."""
+def kappa(a: list, b: list, weights: str | None = None, labels: list | None = None) -> float | None:
+    """Cohen's kappa, or None when it is undefined (no variation at all).
+
+    `labels` fixes the full list of possible values. It matters for weighted kappa:
+    without it, sklearn spaces whatever values happen to appear evenly, so "L1 vs
+    L4" could count as only one step apart if L2 and L3 never occur.
+    """
     if len(a) < 2 or len(set(a) | set(b)) < 2:
         return None
-    k = cohen_kappa_score(a, b, weights=weights)
+    k = cohen_kappa_score(a, b, weights=weights, labels=labels)
     return None if k != k else float(k)  # NaN -> None
 
 
@@ -111,7 +145,12 @@ def measures(A: dict, B: dict, uids: list[str], codes: list[str]) -> dict:
     da = [DEEPEST_ORDER.get(A[u]["deepest_layer"], 0) for u in uids]
     db = [DEEPEST_ORDER.get(B[u]["deepest_layer"], 0) for u in uids]
     m["deepest_layer"] = kappa(da, db)
-    m["deepest_layer_weighted"] = kappa(da, db, weights="linear")
+    m["deepest_layer_weighted"] = kappa(da, db, weights="linear", labels=sorted(DEEPEST_ORDER.values()))
+    # How many traces each coder marked "yes", for the binary measures (needed to judge the CIs).
+    m["positives"] = {
+        **{f"layer_{L}": (sum(has_layer(A[u], L) for u in uids), sum(has_layer(B[u], L) for u in uids)) for L in LAYERS},
+        "any_violation": (sum(any_violation(A[u]) for u in uids), sum(any_violation(B[u]) for u in uids)),
+    }
     m["failure_observed"] = kappa([A[u]["failure_observed"] for u in uids], [B[u]["failure_observed"] for u in uids])
     m["raw_agreement_layers"] = (
         sum(has_layer(A[u], L) == has_layer(B[u], L) for u in uids for L in LAYERS) / (4 * len(uids)) if uids else None
@@ -146,10 +185,16 @@ def bootstrap(A: dict, B: dict, uids: list[str], codes: list[str]) -> dict[str, 
         for k in HEADLINE:
             if m[k] is not None:
                 samples[k].append(m[k])
+    full = measures(A, B, uids, codes)
+    n = len(uids)
     cis = {}
     for k, vals in samples.items():
-        if len(vals) < BOOTSTRAP_REPS * 0.5:  # undefined in most resamples: no meaningful interval
-            cis[k] = None
+        too_few = False
+        if k in full["positives"]:
+            pos_a, pos_b = full["positives"][k]
+            too_few = min(pos_a, pos_b, n - pos_a, n - pos_b) < 3
+        if too_few or len(vals) < BOOTSTRAP_REPS * 0.95:
+            cis[k] = None  # an interval here would look precise but mean nothing
         else:
             vals.sort()
             cis[k] = (vals[int(0.025 * len(vals))], vals[int(0.975 * len(vals)) - 1])
@@ -171,12 +216,17 @@ def report(name: str, A: dict, B: dict, uids: list[str], label_a: str, label_b: 
         "",
         f"Traces coded by both: **{m['n']}**. Codebook {CURRENT_CODEBOOK}. Bootstrap: {BOOTSTRAP_REPS} resamples.",
         "",
-        "| Measure | Cohen's κ | 95% CI |",
-        "|---|---|---|",
+        f"| Measure | Cohen's κ | 95% CI | \"Yes\" count ({label_a} / {label_b}) |",
+        "|---|---|---|---|",
     ]
     for k in HEADLINE + ["violation_flag", "deepest_layer"]:
         ci = cis.get(k)
-        lines.append(f"| {LABELS[k]} | {fmt(m[k])} | {'' if ci is None else f'{ci[0]:.2f} to {ci[1]:.2f}'} |")
+        pos = m["positives"].get(k)
+        lines.append(
+            f"| {LABELS[k]} | {fmt(m[k])} | {'—' if ci is None else f'{ci[0]:.2f} to {ci[1]:.2f}'} | "
+            f"{'' if pos is None else f'{pos[0]} / {pos[1]}'} |"
+        )
+    lines += ["", "— = no meaningful interval (too few 'yes' or 'no' answers, or κ often undefined when resampling)."]
     lines += [
         "",
         f"Raw agreement on layer presence: {m['raw_agreement_layers']:.0%}. "
@@ -230,11 +280,17 @@ def main() -> None:
     if args.command == "check-sheet":
         check_sheet()
     elif args.command == "human-vs-llm":
-        human, llm, key = load_human(), load_llm(args.run), load_key()
-        uids = sorted(u for u in human if u in llm and (args.split == "all" or key[u]["split"] == args.split))
-        report(f"human_vs_{args.run}_{args.split}", human, llm, uids, "James (human expert)", args.run)
+        key = load_key()
+        human, llm = usable(load_human(), "human"), usable(load_llm(args.run), args.run)
+        in_split = [u for u in human if args.split == "all" or key[u]["split"] == args.split]
+        missing = [u for u in in_split if u not in llm]
+        if missing:
+            print(f"  WARNING: {len(missing)} human-coded {args.split} trace(s) have no usable LLM coding "
+                  f"(API error, refusal or invalid row) and are left out: {', '.join(missing)}")
+        uids = sorted(u for u in in_split if u in llm)
+        report(f"human_vs_{args.run}_{args.split}", human, llm, uids, "James", args.run)
     else:
-        a, b = load_llm(args.run_a), load_llm(args.run_b)
+        a, b = usable(load_llm(args.run_a), args.run_a), usable(load_llm(args.run_b), args.run_b)
         uids = sorted(set(a) & set(b))
         report(f"{args.run_a}_vs_{args.run_b}", a, b, uids, args.run_a, args.run_b)
 

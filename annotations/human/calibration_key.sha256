@@ -1,0 +1,1 @@
+90fbd248bc40f6207bee2be9ecc2a47e880f83895f34c8f39926c75e92f941c8  SHA-256 of the hidden calibration key (data/processed/calibration_key.csv), frozen 2026-11-03. Check with: uv run afacs-sample calibration --verify

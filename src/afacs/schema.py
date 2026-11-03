@@ -71,6 +71,27 @@ def layer_of(code: str) -> str:
     return code.split(".")[0]
 
 
+def normalise_row(row: dict) -> dict:
+    """Tidy a coding row before checking or scoring it: trim spaces, fix capitals.
+
+    'yes ' -> 'yes', 'l1' -> 'L1', 'v2' -> 'V2', 'NONE' -> 'none', ' L3.1 ; l3.4' -> 'L3.1;L3.4'.
+    Scoring always uses the tidied row, so a stray space can't silently change a result.
+    """
+    def clean(field: str) -> str:
+        return str(row.get(field, "") or "").strip()
+
+    out = dict(row)
+    out["failure_observed"] = clean("failure_observed").lower()
+    out["confidence"] = clean("confidence").lower()
+    deepest = clean("deepest_layer")
+    out["deepest_layer"] = "none" if deepest.lower() == "none" else deepest.upper()
+    flag = clean("violation_flag")
+    out["violation_flag"] = "none" if flag.lower() == "none" else flag.upper()
+    for column in LAYER_COLUMNS.values():
+        out[column] = ";".join(split_codes(row.get(column)))
+    return out
+
+
 def validate_coding(row: dict, codes: dict[str, str]) -> tuple[list[str], list[str]]:
     """Check one coding row. Returns (errors, warnings).
 
@@ -79,9 +100,10 @@ def validate_coding(row: dict, codes: dict[str, str]) -> tuple[list[str], list[s
     worth a second look (e.g. deepest_layer doesn't match the deepest code given).
     """
     errors, warnings = [], []
+    row = normalise_row(row)
 
     def check_choice(field: str, allowed: list[str]) -> str:
-        value = str(row.get(field, "") or "").strip()
+        value = row[field]
         if value not in allowed:
             errors.append(f"{field}={value!r} is not one of {allowed}")
         return value
@@ -107,6 +129,8 @@ def validate_coding(row: dict, codes: dict[str, str]) -> tuple[list[str], list[s
             warnings.append("failure_observed is 'no' but deepest_layer is not 'none'")
     if failure == "yes" and not all_codes:
         errors.append("failure_observed is 'yes' but no codes were given")
+    if deepest == "none" and all_codes:
+        warnings.append("deepest_layer is 'none' but codes were given")
 
     if all_codes and deepest in DEEPEST_LAYER and deepest != "none":
         deepest_coded = max(int(layer_of(c)[1]) for c in all_codes)

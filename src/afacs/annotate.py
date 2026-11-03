@@ -278,6 +278,9 @@ def run_meta(model: str, prompt_name: str, effort: str, run_name: str, system: s
     }
 
 
+SETTINGS = ("model_requested", "prompt_version", "codebook_version", "system_prompt_sha", "effort")
+
+
 def done_uids(out_path: Path) -> set[str]:
     """Traces already annotated successfully in this run (so a run can be resumed)."""
     if not out_path.exists():
@@ -286,24 +289,49 @@ def done_uids(out_path: Path) -> set[str]:
         return {r["uid"] for r in map(json.loads, f) if not r.get("error")}
 
 
+def check_run_settings(out_path: Path, meta: dict) -> None:
+    """Refuse to add to a run file made with different settings (one file = one annotator)."""
+    if not out_path.exists():
+        return
+    with open(out_path) as f:
+        for r in map(json.loads, f):
+            differing = [k for k in SETTINGS if k in r and r[k] != meta[k]]
+            if differing:
+                raise SystemExit(
+                    f"{out_path.name} was made with different settings ({', '.join(differing)}). "
+                    "Use a new --run-name for a different model, prompt, codebook or effort."
+                )
+
+
 def run_sync(client, uids, traces, model, effort, prompt_name, run_name) -> None:
     system = system_prompt(prompt_name, CURRENT_CODEBOOK)
     codes = load_codebook_codes(CURRENT_CODEBOOK)
     schema = output_schema(codes)
     meta = run_meta(model, prompt_name, effort, run_name, system)
+    import anthropic
+
     out_path = paths.LLM_ANNOTATIONS / f"{run_name}.jsonl"
     paths.LLM_ANNOTATIONS.mkdir(parents=True, exist_ok=True)
+    check_run_settings(out_path, meta)
     skip = done_uids(out_path)
     todo = [u for u in uids if u not in skip]
     print(f"{len(todo)} to annotate ({len(skip)} already done) -> {out_path.relative_to(paths.ROOT)}")
     for i, uid in enumerate(todo, start=1):
         params = request_params(traces[uid], model, effort, system, schema)
-        with client.messages.stream(**params) as stream:
-            msg = stream.get_final_message()
-        record = message_to_record(msg, uid, meta, codes)
+        try:
+            with client.messages.stream(**params) as stream:
+                msg = stream.get_final_message()
+            record = message_to_record(msg, uid, meta, codes)
+        except anthropic.APIStatusError as e:
+            # The SDK already retried rate limits and server errors. What's left (e.g. a 400
+            # for an over-long request) won't fix itself: record it and move on.
+            if e.status_code == 429 or e.status_code >= 500:
+                raise
+            record = {"uid": uid, **meta, "error": f"API error {e.status_code}: {e.message}",
+                      "created_at": datetime.now(timezone.utc).isoformat(timespec="seconds")}
         with open(out_path, "a") as f:
             f.write(json.dumps(record) + "\n")
-        u = record["usage"]
+        u = record.get("usage", {})
         status = record["error"] or ("ok" if not record.get("validation_errors") else "ok (validation errors)")
         print(f"  [{i}/{len(todo)}] {uid}: {status} · in {u.get('input_tokens')} cache-read {u.get('cache_read_input_tokens')} out {u.get('output_tokens')}")
 
@@ -314,6 +342,14 @@ def batch_submit(client, uids, traces, model, effort, prompt_name, run_name) -> 
 
     system = system_prompt(prompt_name, CURRENT_CODEBOOK)
     schema = output_schema(load_codebook_codes(CURRENT_CODEBOOK))
+    meta = run_meta(model, prompt_name, effort, run_name, system)
+    out_path = paths.LLM_ANNOTATIONS / f"{run_name}.jsonl"
+    check_run_settings(out_path, meta)
+    done = done_uids(out_path)
+    uids = [u for u in uids if u not in done]  # resubmitting only sends what is missing or failed
+    if not uids:
+        print("Nothing to submit: every trace in this set is already annotated in this run.")
+        return
     # custom_id must be short and simple, so we use the position and keep a map.
     id_map = {f"t{i:04d}": uid for i, uid in enumerate(uids)}
     requests = [
@@ -321,7 +357,7 @@ def batch_submit(client, uids, traces, model, effort, prompt_name, run_name) -> 
         for cid, uid in id_map.items()
     ]
     batch = client.messages.batches.create(requests=requests)
-    manifest = {"batch_id": batch.id, "id_map": id_map, **run_meta(model, prompt_name, effort, run_name, system)}
+    manifest = {"batch_id": batch.id, "id_map": id_map, **meta}
     paths.LLM_ANNOTATIONS.mkdir(parents=True, exist_ok=True)
     (paths.LLM_ANNOTATIONS / f"{run_name}.batch.json").write_text(json.dumps(manifest, indent=2))
     print(f"Submitted batch {batch.id} with {len(requests)} requests. Collect later with:")
@@ -342,17 +378,23 @@ def batch_collect(client, run_name: str, wait: bool) -> None:
     codes = load_codebook_codes(manifest["codebook_version"])
     meta = {k: manifest[k] for k in ("run_name", "model_requested", "prompt_version", "codebook_version", "system_prompt_sha", "effort")}
     out_path = paths.LLM_ANNOTATIONS / f"{run_name}.jsonl"
-    n = 0
-    with open(out_path, "w") as f:
+    already = done_uids(out_path)  # append; never overwrite earlier results
+    n = errors = 0
+    with open(out_path, "a") as f:
         for result in client.messages.batches.results(manifest["batch_id"]):
             uid = manifest["id_map"][result.custom_id]
+            if uid in already:
+                continue
             if result.result.type == "succeeded":
                 record = message_to_record(result.result.message, uid, meta, codes)
             else:
                 record = {"uid": uid, **meta, "error": f"batch result {result.result.type}"}
+            errors += bool(record.get("error"))
             f.write(json.dumps(record) + "\n")
             n += 1
-    print(f"Wrote {n} annotations to {out_path.relative_to(paths.ROOT)}")
+    print(f"Added {n} annotations ({errors} errors) to {out_path.relative_to(paths.ROOT)}")
+    if errors:
+        print("Re-run batch-submit with the same --run-name to retry only the failed traces.")
 
 
 # ---------------------------------------------------------------------------

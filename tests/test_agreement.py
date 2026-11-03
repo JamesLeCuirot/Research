@@ -43,3 +43,20 @@ def test_helpers():
     r = row(l3="L3.1; L3.4", l1="L1.V?")
     assert codes_of(r) == {"L3.1", "L3.4", "L1.V?"}
     assert any_violation(r) == 1
+
+
+def test_weighted_kappa_uses_true_distances():
+    # Disagreeing "L1 vs L3" must cost more than "L1 vs L2". Without a fixed label list,
+    # sklearn only ranks the values that occur, so {1,3,4} and {1,2,4} would score the same.
+    a_far, b_far = [1, 3, 4, 1, 4, 3], [3, 1, 4, 1, 4, 3]
+    a_near, b_near = [1, 2, 4, 1, 4, 2], [2, 1, 4, 1, 4, 2]
+    labels = [0, 1, 2, 3, 4]
+    assert kappa(a_far, b_far, weights="linear") == kappa(a_near, b_near, weights="linear")  # the trap
+    assert kappa(a_far, b_far, weights="linear", labels=labels) < kappa(a_near, b_near, weights="linear", labels=labels)
+
+
+def test_positive_counts_reported():
+    A = {"a": row(l3="L3.1"), "b": row(), "c": row()}
+    B = {"a": row(l3="L3.1"), "b": row(l3="L3.2"), "c": row()}
+    m = measures(A, B, list(A), CODES)
+    assert m["positives"]["layer_L3"] == (1, 2)

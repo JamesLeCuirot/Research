@@ -31,8 +31,13 @@ READING_NOTE = (
     "is who produced it. Text inside the boxes is verbatim from the log. Steps marked "
     "*framework log* are bookkeeping by the multi-agent framework, not an agent's words. Steps marked "
     "*NOT VISIBLE TO THE AGENTS* hold benchmark information (correct answers, gold patches, the "
-    "benchmark's own pass/fail check) that the agents never saw; use it to understand what went "
-    "wrong, but not as evidence of what the agents knew. Cite evidence by step number, e.g. [S12]."
+    "benchmark's own pass/fail check) that the agents never saw; during coding their content is "
+    "hidden, so code from what the agents did. Cite evidence by step number, e.g. [S12]."
+)
+
+HIDDEN_BENCHMARK_TEXT = (
+    "[Hidden during coding: benchmark information the agents never saw. The step is kept so step "
+    "numbers stay the same. View it after coding with `afacs-render <id> --show-benchmark`.]"
 )
 
 
@@ -50,7 +55,14 @@ def shorten(text: str, max_chars: int | None) -> str:
     return f"{head}\n\n[... {len(text) - len(head) - len(tail):,} characters omitted ...]\n\n{tail}"
 
 
-def render_markdown(trace: dict, title: str | None = None, show_mast: bool = False, max_step_chars: int | None = None) -> str:
+def render_markdown(
+    trace: dict,
+    title: str | None = None,
+    show_mast: bool = False,
+    show_benchmark: bool = not design.HIDE_BENCHMARK_INFO_WHEN_CODING,
+    max_step_chars: int | None = None,
+) -> str:
+    """Markdown for one trace. Defaults are the blind-coding view: no MAST labels, benchmark info hidden."""
     lines = [f"# {title or trace['uid']}", ""]
     lines.append(f"- **Framework:** {trace['framework']} · **Model:** {trace['model']} · **Benchmark:** {trace['benchmark']}")
     lines.append(f"- **Trace id:** `{trace['uid']}` · **Steps:** {trace['n_steps']} · **Length:** about {trace['approx_tokens']:,} tokens")
@@ -59,7 +71,8 @@ def render_markdown(trace: dict, title: str | None = None, show_mast: bool = Fal
         lines.append(f"- **MAST labels:** {'; '.join(flagged) if flagged else 'none'}")
     lines += ["", f"> {READING_NOTE}", ""]
     for step in trace["steps"]:
-        text = shorten(step["text"], max_step_chars)
+        hidden = step["kind"] == BENCHMARK_INFO and not show_benchmark
+        text = HIDDEN_BENCHMARK_TEXT if hidden else shorten(step["text"], max_step_chars)
         fence = fence_for(text)
         lines.append(f"### [S{step['n']}] {step['agent']}{KIND_LABELS.get(step['kind'], '')}")
         lines += ["", f"{fence}text", text, fence, ""]
@@ -78,7 +91,8 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("trace", help="a calibration id like C07, or a trace uid")
     ap.add_argument("--out", type=Path, help="output file (default: print to screen)")
-    ap.add_argument("--show-mast", action="store_true", help="include MAST's labels in the header")
+    ap.add_argument("--show-mast", action="store_true", help="include MAST's labels in the header (not for blind coding)")
+    ap.add_argument("--show-benchmark", action="store_true", help="show benchmark information (not for blind coding)")
     ap.add_argument("--max-step-chars", type=int, help="shorten steps longer than this (default: never)")
     args = ap.parse_args()
 
@@ -89,7 +103,8 @@ def main() -> None:
     traces = {t["uid"]: t for t in load_traces()}
     if uid not in traces:
         raise SystemExit(f"Unknown trace {args.trace!r}")
-    md = render_markdown(traces[uid], title=title, show_mast=args.show_mast, max_step_chars=args.max_step_chars)
+    md = render_markdown(traces[uid], title=title, show_mast=args.show_mast,
+                         show_benchmark=args.show_benchmark, max_step_chars=args.max_step_chars)
     if args.out:
         args.out.write_text(md)
         print(f"wrote {args.out}")

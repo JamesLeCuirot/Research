@@ -38,7 +38,7 @@ We use MAST's public dataset (`mcemri/MAST-Data`, CC-BY-4.0): 1,642 traces from 
 - **Duplicates.** 1,642 rows hold 1,537 distinct traces.
 - **MAST's judge is only moderately consistent with itself.** Thirty Magentic traces appear twice, labelled in separate judge runs. The two labellings agree with a mean per-code Cohen's κ of 0.43, ranging from about 0.67 to below zero depending on the failure mode (figure below). The flat labels we compare against are therefore noisy.
 - **A corrupt group.** One group (ChatDev with CodeLlama) holds 100 rows but only 30 distinct texts, with labels unrelated to the text; it is excluded.
-- **Metadata errors** (the OpenManus traces are GAIA questions, not a programming benchmark) are corrected.
+- **Metadata errors** (the OpenManus traces are GAIA questions, not a programming benchmark; two "HyperAgent" traces are ChatDev logs) are corrected or excluded. OpenManus logs print only the first ~50 characters of each task; the rendered traces say so.
 - **Harness defects.** Five traces have an empty task; MAST nevertheless labels them, e.g., *Disobey Task Specification*.
 - **The human-labelled subset is unusable.** In `MAD_human_labelled_dataset.json`, different traces within each annotation round carry identical labels, contradicting the original annotation sheets published in MAST's repository, so we do not use it.
 - **No ground-truth outcome.** MAST does not record task success, so a "failed" trace means one the MAST judge flagged.
@@ -52,11 +52,11 @@ After quality exclusions, and excluding ChatDev (traces of 60k–500k tokens are
 ## 4. Method
 
 1. **Ingest and render.** Each trace is split into numbered steps by a framework-specific parser that keeps agent text verbatim, and rendered as markdown. The human coder and the LLM annotator read identical renderings, with MAST labels hidden.
-2. **Calibration set.** 30 MAST-failed traces (5 from each of 6 frameworks) plus 4 MAST-clean controls, shuffled and coded blind by the author, a flight safety officer with an MSc in Human Factors. The coder reads the raw trace, not MAST's labels. A dev/test split (20/14) was fixed before coding began.
+2. **Calibration set.** 30 traces, 5 from each of 6 frameworks; in 4 frameworks one of the five is a MAST-clean control in place of a failed trace (26 failed, 4 controls). They are shuffled and coded blind by the author, a flight safety officer with an MSc in Human Factors: the coder reads the raw trace, without MAST's labels and with the benchmark's answers and pass/fail verdicts hidden. A dev/test split (18/12) was fixed before coding began, and a SHA-256 fingerprint of the hidden key is committed.
 3. **Codebook revision.** Codebook v0 is revised to v1 from the calibration notes.
 4. **LLM annotator.** Claude (`claude-sonnet-5-5`; `claude-opus-5-5` as a second annotator) receives the codebook and returns structured JSON restricted to codebook codes, with step-referenced evidence. The prompt is tuned on dev traces only, then frozen.
-5. **Agreement (RQ1).** Cohen's κ between human and LLM on the 14 held-out test traces, per layer, per code (averaged, never pooled), for error vs violation, and for deepest layer, with bootstrap 95% CIs; plus LLM–LLM agreement.
-6. **Bulk annotation and analysis (RQ2–RQ4).** The frozen annotator codes a balanced sample of 250 failed traces.
+5. **Agreement (RQ1).** Cohen's κ between human and LLM on the 12 held-out test traces, per layer, per code (averaged, never pooled), for error vs violation, and for deepest layer, with bootstrap 95% CIs; plus LLM–LLM agreement.
+6. **Bulk annotation and analysis (RQ2–RQ4).** The frozen annotator codes a sample of 250 failed traces, balanced across frameworks and models; overall figures are weighted back to the eligible pool.
 
 ## 5. Results *[pending]*
 
@@ -73,7 +73,7 @@ After quality exclusions, and excluding ChatDev (traces of 60k–500k tokens are
 
 - **Behavioural, not intentional.** "Violation" describes what the trace shows, not what a model "wanted".
 - **One expert coder.** Human reliability is not measured between humans; the human–LLM comparison stands in for it. HFACS reliability is itself contested in the human-factors literature (Olsen & Shorrock, 2010; Cohen et al., 2015).
-- **Small test set.** Fourteen held-out traces give wide confidence intervals; they are reported, not hidden.
+- **Small test set.** Twelve held-out traces give wide confidence intervals; they are reported, not hidden.
 - **Noisy reference labels.** MAST's labels come from an LLM judge with moderate test-retest agreement and no ground-truth task outcome.
 - **Coverage.** ChatDev and very long traces are excluded; most frameworks ran a single model, so model comparisons are exploratory; "Claude" in MAST carries no version number.
 - **Stochastic annotator.** Current Claude models cannot be made fully deterministic; LLM–LLM agreement measures this.
@@ -99,7 +99,7 @@ After quality exclusions, and excluding ChatDev (traces of 60k–500k tokens are
 ```bash
 uv sync                          # Python 3.11+, installs pinned dependencies
 uv run afacs-ingest              # download (pinned, hash-checked), clean, parse, audit
-uv run afacs-sample calibration  # calibration set (refuses to overwrite an existing coding sheet)
+uv run afacs-sample calibration --renders-only  # check the frozen calibration set, write its renders
 uv run afacs-sample bulk
 uv run afacs-analysis mast       # figures above
 uv run pytest                    # tests

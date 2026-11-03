@@ -42,6 +42,12 @@ MAST_NAMES = {
 # appear to have been mismatched upstream, so none of these rows can be trusted.
 CORRUPT_SOURCE_KEYS = {"ChatDev_ProgramDev-v2_CodeLlama"}
 
+# Individual traces whose text belongs to a different framework than their label says.
+MISFILED_TRACES = {
+    "HyperAgent_SWE-Bench-Lite_Claude__028": "the text is a ChatDev log, not HyperAgent",
+    "HyperAgent_SWE-Bench-Lite_Claude__029": "the text is a ChatDev log, not HyperAgent",
+}
+
 # Metadata corrections: (field, wrong value) -> right value, per source key.
 # OpenManus traces are GAIA questions (MAST's own repo folder is "OpenManus_GAIA").
 # The AG2 "GSM" traces are GSM-Plus, a perturbed version of GSM8K.
@@ -72,18 +78,32 @@ SEED = 20261103
 # shown as examples while planning). Coding them would not be blind.
 SEEN_BY_CODER = {"MetaGPT_ProgramDev2_GPT4o__099", "Magentic_One_GPT4o__065"}
 
+# Benchmark information the agents never saw (correct answers, gold patches, the
+# benchmark's own pass/fail verdict) is hidden while coding, for the human and the
+# LLM alike. A visible "success: true" would give away the controls, and a correct
+# answer would let the coder judge the outcome rather than the process. The step
+# stays in place (so step numbers don't change) and can be shown after coding.
+HIDE_BENCHMARK_INFO_WHEN_CODING = True
+
 # Calibration set: hand-coded by the domain expert.
 # Equal numbers per framework (not proportional), so small frameworks are not
 # swamped by AG2 and MetaGPT.
 CALIBRATION_FRAMEWORKS = ["AG2", "MetaGPT", "Magentic", "AppWorld", "OpenManus", "HyperAgent"]
+# Traces per framework, controls included. Every framework has the same number
+# of rows, so the sheet does not reveal which frameworks hold a control.
 CALIBRATION_PER_FRAMEWORK = 5
 # Of the 5 per framework, how many go to the held-out test set (the rest are dev).
 CALIBRATION_TEST_PER_FRAMEWORK = 2
-# Controls: traces MAST judged failure-free, mixed in blind. They test whether
-# AFACS coding finds failures MAST missed, and stop the coder assuming every
-# trace is "guilty".
+# Controls: traces MAST judged failure-free, mixed in blind, each taking the place
+# of one failed trace in its framework. They test whether AFACS coding finds
+# failures MAST missed, and stop the coder assuming every trace is "guilty".
 CALIBRATION_CONTROLS = 4
 CALIBRATION_CONTROLS_TEST = 2
+
+# The calibration set was drawn and frozen on this date, before any coding. The
+# committed file annotations/human/calibration_key.sha256 lets anyone check later
+# that the hidden key was not changed (`uv run afacs-sample calibration --verify`).
+CALIBRATION_FROZEN_ON = "2026-11-03"
 
 # Bulk set for the LLM annotator (frozen codebook + prompt), stratified by framework.
 BULK_SIZE = 250

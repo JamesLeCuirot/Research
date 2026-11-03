@@ -224,6 +224,12 @@ def parse_magentic(raw: str) -> ParsedTrace:
 # step reads as: thoughts -> tool choice -> tool result.
 # --------------------------------------------------------------------------
 
+OPENMANUS_TRUNCATION_NOTE = (
+    "[Note added by AFACS, not part of the log: this log prints only the first ~50 characters "
+    "of the task. The agents received the full task text (their plans refer to details not shown "
+    "here). The truncation is an artefact of the logging, not of what the agents were given.]"
+)
+
 OPENMANUS_RECORD = re.compile(
     r"^\d{4}-\d\d-\d\d \d\d:\d\d:\d\d\.\d+ \| (?P<level>\w+)\s*\| (?P<source>[\w.]+):(?P<func>\w+):\d+ - ",
     re.M,
@@ -242,7 +248,11 @@ def parse_openmanus(raw: str) -> ParsedTrace:
 
     def flush():
         if current_agent is not None:
-            out.add(current_agent, "\n".join(current_lines), MESSAGE if current_agent == "Manus" else SYSTEM)
+            # The planner's plans are written by the LLM, so they count as agent output.
+            out.add(current_agent, "\n".join(current_lines), SYSTEM if current_agent == "system" else MESSAGE)
+        if current_agent == "system" and any(l.startswith("Read prompt from task.txt:") and l.endswith("...") for l in current_lines):
+            out.notes.append("task text truncated in log")
+            out.add("note", OPENMANUS_TRUNCATION_NOTE, SYSTEM)
 
     for i, m in enumerate(starts):
         end = starts[i + 1].start() if i + 1 < len(starts) else len(raw)
@@ -284,21 +294,47 @@ APPWORLD_HEADER = re.compile(
 
 
 def parse_appworld(raw: str) -> ParsedTrace:
+    """AppWorld: the Supervisor agent writes code; `send_message` hands a request to an
+    app sub-agent (Spotify, phone, ...), which runs its own loop:
+
+        Entering phone Agent message loop
+            Message to phone Agent        <- first one: the Supervisor's request
+            Response from phone Agent     <- the sub-agent's code
+            Message to phone Agent        <- later ones: that code's execution output
+            Reply from phone Agent to Supervisor
+        Exiting phone Agent message loop
+        Response from send_message API    <- the reply, as returned to the Supervisor
+        Message to Supervisor Agent       <- the same text again, as delivered
+
+    We label each block by what it is, and collapse word-for-word repeats of the
+    previous step into a pointer, so the coder doesn't read the same output twice.
+    """
     out = ParsedTrace(parser="appworld")
     heads = list(APPWORLD_HEADER.finditer(raw))
     preamble = raw[: heads[0].start()] if heads else raw
     preamble = re.sub(r"\*{10,}[^\n]*\*{10,}", "", preamble)  # task banner
     out.add("user", textwrap.dedent(preamble).strip())
+    in_loop, messages_in_loop = False, 0
     for i, m in enumerate(heads):
         end = heads[i + 1].start() if i + 1 < len(heads) else len(raw)
         header = m.group("header").strip()
         body = textwrap.dedent(raw[m.end() : end]).strip("\n")
+        if out.steps and body.strip() and body.strip() == out.steps[-1].text.strip():
+            body = f"(identical to the previous step [S{len(out.steps)}], passed on unchanged)"
         if header == "Evaluation":
             out.add("AppWorld evaluation", body, BENCHMARK_INFO)
         elif header.startswith(("Entering", "Exiting")):
+            in_loop, messages_in_loop = header.startswith("Entering"), 0
             out.add("system", header + ("\n" + body if body.strip() else ""), SYSTEM)
         elif header == "Code Execution Output" or header.startswith("Response from send_message API"):
             out.add(header, body, TOOL_OUTPUT)
+        elif header.startswith("Message to"):
+            if in_loop and messages_in_loop == 0:
+                out.add(f"{header} (request from the Supervisor)", body or "(empty)")
+            else:
+                out.add(f"{header} (code execution output)" if in_loop else header, body or "(empty)", TOOL_OUTPUT)
+            if in_loop:
+                messages_in_loop += 1
         else:
             out.add(header, body if body.strip() else "(empty)")
     return out

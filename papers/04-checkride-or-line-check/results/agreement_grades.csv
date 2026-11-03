@@ -1,0 +1,43 @@
+set,comparison,measure,level,n_units,alpha,ci_low,ci_high,exact_agreement,within_1_agreement
+48 model transcripts,Inter-grader (run 1),PRO,ordinal,48,0.487,0.165,0.747,0.771,1.000
+48 model transcripts,Inter-grader (run 1),COM,ordinal,48,0.388,0.101,0.612,0.500,1.000
+48 model transcripts,Inter-grader (run 1),PSD,ordinal,48,0.307,0.031,0.550,0.625,1.000
+48 model transcripts,Inter-grader (run 1),SAW,ordinal,48,0.320,0.030,0.576,0.646,1.000
+48 model transcripts,Inter-grader (run 1),MEAN4,interval,48,0.410,0.178,0.598,,1.000
+48 model transcripts,Inter-grader (run 1),OVERALL_R,ordinal,48,0.241,-0.051,0.485,0.562,1.000
+48 model transcripts,Inter-grader (run 1),HOLISTIC,ordinal,48,0.422,0.162,0.668,0.708,1.000
+48 model transcripts,Inter-grader (run 2),PRO,ordinal,48,0.345,0.034,0.620,0.688,0.979
+48 model transcripts,Inter-grader (run 2),COM,ordinal,48,0.539,0.290,0.737,0.625,1.000
+48 model transcripts,Inter-grader (run 2),PSD,ordinal,48,0.254,-0.036,0.517,0.583,0.979
+48 model transcripts,Inter-grader (run 2),SAW,ordinal,48,0.397,0.125,0.624,0.625,1.000
+48 model transcripts,Inter-grader (run 2),MEAN4,interval,48,0.464,0.196,0.658,,1.000
+48 model transcripts,Inter-grader (run 2),OVERALL_R,ordinal,48,0.481,0.214,0.691,0.646,1.000
+48 model transcripts,Inter-grader (run 2),HOLISTIC,ordinal,48,0.291,0.003,0.545,0.646,1.000
+48 model transcripts,Test-retest (Sonnet),PRO,ordinal,48,0.868,0.707,0.989,0.896,1.000
+48 model transcripts,Test-retest (Sonnet),COM,ordinal,48,0.685,0.456,0.843,0.750,1.000
+48 model transcripts,Test-retest (Sonnet),PSD,ordinal,48,0.751,0.520,0.917,0.875,1.000
+48 model transcripts,Test-retest (Sonnet),SAW,ordinal,48,0.673,0.446,0.867,0.833,1.000
+48 model transcripts,Test-retest (Sonnet),MEAN4,interval,48,0.890,0.791,0.946,,1.000
+48 model transcripts,Test-retest (Sonnet),OVERALL_R,ordinal,48,0.736,0.532,0.890,0.833,1.000
+48 model transcripts,Test-retest (Sonnet),HOLISTIC,ordinal,48,0.655,0.413,0.835,0.833,1.000
+48 model transcripts,Test-retest (Opus),PRO,ordinal,48,0.729,0.435,0.940,0.917,1.000
+48 model transcripts,Test-retest (Opus),COM,ordinal,48,0.761,0.567,0.905,0.833,1.000
+48 model transcripts,Test-retest (Opus),PSD,ordinal,48,0.559,0.317,0.743,0.688,1.000
+48 model transcripts,Test-retest (Opus),SAW,ordinal,48,0.744,0.558,0.895,0.812,1.000
+48 model transcripts,Test-retest (Opus),MEAN4,interval,48,0.753,0.595,0.868,,1.000
+48 model transcripts,Test-retest (Opus),OVERALL_R,ordinal,48,0.710,0.498,0.876,0.833,1.000
+48 model transcripts,Test-retest (Opus),HOLISTIC,ordinal,48,0.793,0.608,0.957,0.896,1.000
+48 model transcripts,All four ratings,PRO,ordinal,48,0.544,0.345,0.713,0.792,0.990
+48 model transcripts,All four ratings,COM,ordinal,48,0.566,0.388,0.698,0.653,1.000
+48 model transcripts,All four ratings,PSD,ordinal,48,0.415,0.248,0.561,0.670,0.993
+48 model transcripts,All four ratings,SAW,ordinal,48,0.495,0.336,0.633,0.712,1.000
+48 model transcripts,All four ratings,MEAN4,interval,48,0.573,0.419,0.693,,1.000
+48 model transcripts,All four ratings,OVERALL_R,ordinal,48,0.481,0.304,0.625,0.681,1.000
+48 model transcripts,All four ratings,HOLISTIC,ordinal,48,0.465,0.282,0.639,0.733,1.000
+48 model + 6 controls,Inter-grader (run 1),PRO,ordinal,54,0.699,0.465,0.858,0.778,1.000
+48 model + 6 controls,Inter-grader (run 1),COM,ordinal,54,0.597,0.358,0.766,0.537,1.000
+48 model + 6 controls,Inter-grader (run 1),PSD,ordinal,54,0.555,0.285,0.756,0.648,1.000
+48 model + 6 controls,Inter-grader (run 1),SAW,ordinal,54,0.569,0.305,0.755,0.667,1.000
+48 model + 6 controls,Inter-grader (run 1),MEAN4,interval,54,0.910,0.756,0.954,,1.000
+48 model + 6 controls,Inter-grader (run 1),OVERALL_R,ordinal,54,0.511,0.241,0.715,0.593,1.000
+48 model + 6 controls,Inter-grader (run 1),HOLISTIC,ordinal,54,0.629,0.386,0.809,0.704,1.000

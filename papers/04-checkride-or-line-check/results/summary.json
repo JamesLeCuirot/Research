@@ -1,0 +1,21 @@
+{
+  "n_model_transcripts": 48,
+  "n_controls": 6,
+  "spearman_holistic_vs_mean4": [
+    0.8903751489278857,
+    2.4820136705916733e-17
+  ],
+  "spearman_overall_after_rubric_vs_mean4": [
+    0.9482295515565231,
+    1.4992892682719034e-24
+  ],
+  "known_groups_control_below_all_model_by_measure": {
+    "COM": 6,
+    "HOLISTIC": 6,
+    "MEAN4": 6,
+    "OVERALL_R": 6,
+    "PRO": 6,
+    "PSD": 6,
+    "SAW": 6
+  }
+}

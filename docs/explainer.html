@@ -1,0 +1,822 @@
+<title>AFACS Briefing Pack</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..100,500..800&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* Layout: an investigator's briefing pack. A sticky tab index like a QRH, one reading column,
+   and interactive figures that break out wider. Palette borrows from aeronautical charts:
+   navy ink on cool chart paper, chart magenta for emphasis, chart blue for data. */
+:root {
+  --paper: #F1F4F7;
+  --panel: #FFFFFF;
+  --ink: #13233A;
+  --ink-2: #4A5A70;
+  --rule: #C7D1DC;
+  --magenta: #A3226B;
+  --magenta-soft: #F6E6EF;
+  --blue: #1F5FA8;
+  --blue-soft: #E3ECF7;
+  --cheese: #E3B23F;
+  --cheese-edge: #A87E18;
+  --good: #23764A;
+  --warn: #9A5B00;
+  --f-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --col: 46rem;
+  --wide: 66rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0D1520; --panel: #142030; --ink: #E4EBF3; --ink-2: #9DAEC2; --rule: #2A394D;
+    --magenta: #E772B5; --magenta-soft: #3A1C30; --blue: #79AAEA; --blue-soft: #1A2C44;
+    --cheese: #D6A634; --cheese-edge: #8F6B14; --good: #62C68F; --warn: #E2A445;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0D1520; --panel: #142030; --ink: #E4EBF3; --ink-2: #9DAEC2; --rule: #2A394D;
+  --magenta: #E772B5; --magenta-soft: #3A1C30; --blue: #79AAEA; --blue-soft: #1A2C44;
+  --cheese: #D6A634; --cheese-edge: #8F6B14; --good: #62C68F; --warn: #E2A445;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: var(--f-body); font-size: 1.0625rem; line-height: 1.6; overflow-wrap: break-word;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 4rem;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+h1, h2, h3, .display { font-family: var(--f-display); font-stretch: 75%; font-variation-settings: "wdth" 75; text-wrap: balance; letter-spacing: 0.005em; }
+h2 { font-size: clamp(1.7rem, 4vw, 2.3rem); line-height: 1.1; margin: 0 0 0.6rem; font-weight: 750; }
+h3 { font-size: 1.25rem; margin: 0 0 0.4rem; font-weight: 700; }
+p { margin: 0 0 0.9rem; }
+code, .mono { font-family: var(--f-mono); font-size: 0.86em; }
+code { background: var(--blue-soft); padding: 0.05em 0.35em; border-radius: 3px; overflow-wrap: anywhere; }
+a { color: var(--blue); }
+:focus-visible { outline: 3px solid var(--magenta); outline-offset: 2px; }
+.eyebrow { font-family: var(--f-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--magenta); margin: 0 0 0.4rem; }
+.lede { font-size: 1.15rem; color: var(--ink); }
+.muted { color: var(--ink-2); }
+.small { font-size: 0.9rem; }
+
+/* ---- tab index ---- */
+.tabs {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: var(--paper); border-bottom: 1px solid var(--rule);
+  margin: 0 calc(-1 * max(16px, env(safe-area-inset-left, 0px))) 0;
+  padding: 0 max(16px, env(safe-area-inset-left, 0px));
+}
+.tabs-inner { max-width: var(--wide); margin: 0 auto; display: flex; gap: 0.25rem; overflow-x: auto; scrollbar-width: none; }
+.tabs-inner::-webkit-scrollbar { display: none; }
+.tabs a {
+  flex: none; font-family: var(--f-display); font-stretch: 75%; font-variation-settings: "wdth" 75; font-weight: 650;
+  font-size: 0.95rem; text-decoration: none; color: var(--ink-2); padding: 0.7rem 0.6rem 0.6rem;
+  border-bottom: 3px solid transparent;
+}
+.tabs a:hover { color: var(--ink); border-bottom-color: var(--rule); }
+.tabs a.on { color: var(--ink); border-bottom-color: var(--magenta); }
+
+/* ---- sections ---- */
+section { max-width: var(--col); margin: 0 auto; padding-block: 3.2rem 0.5rem; scroll-margin-top: 3.5rem; }
+.wide { max-width: var(--wide); margin-left: auto; margin-right: auto; }
+.panel { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; }
+
+/* ---- hero ---- */
+header.hero { max-width: var(--wide); margin: 0 auto; padding-block: 2.6rem 0; display: grid; gap: 1.6rem; grid-template-columns: minmax(0, 1fr); }
+.hero h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); line-height: 0.95; margin: 0; font-weight: 800; }
+.hero h1 span { color: var(--magenta); }
+.hero .sub { max-width: 40rem; font-size: 1.15rem; margin: 0; }
+.hero .meta { font-family: var(--f-mono); font-size: 0.8rem; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; }
+
+.cheese-wrap { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); padding: 1.2rem; }
+@media (min-width: 860px) { .cheese-wrap { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: start; } }
+.cheese-svg { width: 100%; height: auto; display: block; }
+.slice { cursor: pointer; }
+.slice .card { fill: var(--cheese); stroke: var(--cheese-edge); stroke-width: 1.5; transition: transform 0.2s ease; }
+.slice .hole { fill: var(--panel); stroke: var(--cheese-edge); stroke-width: 1; }
+.slice .lbl { fill: var(--ink); font-family: var(--f-display); font-size: 15px; font-weight: 700; }
+.slice .lbl2 { fill: var(--ink-2); font-family: var(--f-mono); font-size: 10.5px; }
+.slice:hover .card, .slice:focus .card { stroke: var(--magenta); stroke-width: 2.5; }
+.slice.on .card { stroke: var(--magenta); stroke-width: 3.5; }
+.slice:focus { outline: none; }
+.traj { stroke: var(--magenta); stroke-width: 3; fill: none; stroke-dasharray: 7 6; }
+.traj-head { fill: var(--magenta); }
+.svg-text { fill: var(--ink); font-family: var(--f-display); font-weight: 700; font-size: 14px; }
+.svg-note { fill: var(--ink-2); font-family: var(--f-mono); font-size: 10.5px; }
+.layer-panel h3 { color: var(--ink); }
+.codes { list-style: none; padding: 0; margin: 0.6rem 0 0; display: grid; gap: 0.45rem; }
+.codes li { display: grid; grid-template-columns: 4.2rem minmax(0, 1fr); gap: 0.6rem; align-items: baseline; font-size: 0.95rem; }
+.codes .c { font-family: var(--f-mono); font-weight: 500; color: var(--magenta); font-size: 0.85rem; }
+.codes .grp { grid-column: 1 / -1; font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-2); margin-top: 0.3rem; }
+
+/* ---- flat vs layered ---- */
+.compare { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); margin-top: 1.2rem; }
+@media (min-width: 760px) { .compare { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); } }
+.compare .panel { padding: 1.1rem 1.2rem; }
+.tag { display: inline-block; font-family: var(--f-mono); font-size: 0.8rem; padding: 0.15rem 0.5rem; border: 1px solid var(--rule); border-radius: 3px; margin: 0 0.3rem 0.4rem 0; }
+.tag.mast { border-color: var(--ink-2); }
+.steps { list-style: none; padding: 0; margin: 0.6rem 0 0; display: grid; gap: 0.55rem; }
+.steps li { display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: 0.5rem; font-size: 0.95rem; }
+.steps .s { font-family: var(--f-mono); color: var(--blue); font-weight: 500; font-size: 0.85rem; padding-top: 0.1rem; }
+.asks { list-style: none; padding: 0; margin: 0.6rem 0 0; display: grid; gap: 0.7rem; }
+.asks li { display: grid; grid-template-columns: 2.6rem minmax(0, 1fr); gap: 0.6rem; font-size: 0.95rem; }
+.asks .l { font-family: var(--f-display); font-stretch: 75%; font-weight: 800; font-size: 1.15rem; color: var(--magenta); line-height: 1.2; }
+
+/* ---- pipeline ---- */
+.pipe { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; margin-top: 1.2rem; }
+@media (min-width: 760px) { .pipe { grid-template-columns: repeat(7, minmax(0, 1fr)); } }
+.stage {
+  font: inherit; text-align: left; cursor: pointer; background: var(--panel); color: var(--ink);
+  border: 1px solid var(--rule); border-radius: 6px; padding: 0.7rem 0.75rem 0.75rem; position: relative;
+  display: flex; flex-direction: column; gap: 0.15rem; min-height: 5.4rem;
+}
+.stage .n { font-family: var(--f-mono); font-size: 0.72rem; color: var(--ink-2); letter-spacing: 0.08em; }
+.stage .t { font-family: var(--f-display); font-stretch: 75%; font-variation-settings: "wdth" 75; font-weight: 750; font-size: 1.15rem; line-height: 1.1; }
+.stage .d { font-size: 0.8rem; color: var(--ink-2); line-height: 1.3; }
+.stage:hover { border-color: var(--blue); }
+.stage.on { border-color: var(--blue); box-shadow: inset 0 -4px 0 var(--blue); }
+.stage.you { border-style: dashed; border-color: var(--magenta); }
+.stage.you .n { color: var(--magenta); }
+.stage.you.on { box-shadow: inset 0 -4px 0 var(--magenta); border-style: solid; }
+@media (min-width: 760px) {
+  .stage:not(:last-child)::after {
+    content: ""; position: absolute; right: -0.55rem; top: 50%; width: 0.5rem; height: 2px; background: var(--rule);
+  }
+}
+.stage-detail { margin-top: 0.9rem; padding: 1.2rem 1.3rem; display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 760px) { .stage-detail { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); } }
+.kv { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.7rem; align-content: start; }
+.kv .mono { overflow-wrap: anywhere; }
+.kv div b { display: block; font-family: var(--f-mono); font-weight: 500; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 0.15rem; }
+.cmd { display: block; font-family: var(--f-mono); font-size: 0.82rem; background: var(--blue-soft); padding: 0.45rem 0.6rem; border-radius: 4px; overflow-x: auto; white-space: nowrap; }
+.say { border-left: 3px solid var(--magenta); padding: 0.2rem 0 0.2rem 0.8rem; font-style: italic; }
+
+/* ---- violation tool ---- */
+.vtool { margin-top: 1.2rem; padding: 1.2rem; display: grid; gap: 1rem; }
+.examples { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+.chip {
+  font: inherit; font-size: 0.85rem; cursor: pointer; background: transparent; color: var(--ink);
+  border: 1px solid var(--rule); border-radius: 999px; padding: 0.3rem 0.75rem;
+}
+.chip:hover { border-color: var(--blue); }
+.chip.on { background: var(--blue); border-color: var(--blue); color: var(--panel); }
+.q { display: grid; grid-template-columns: 2.2rem minmax(0, 1fr) auto; gap: 0.7rem; align-items: center; padding: 0.7rem 0; border-top: 1px solid var(--rule); }
+.q.off { opacity: 0.38; }
+.q .qn { font-family: var(--f-mono); color: var(--magenta); font-weight: 500; }
+.q .qt { font-size: 0.97rem; }
+.q .qt small { display: block; color: var(--ink-2); font-size: 0.85rem; }
+.yn { display: flex; gap: 0.3rem; }
+.yn button {
+  font-family: var(--f-mono); font-size: 0.8rem; cursor: pointer; min-width: 3.6rem; padding: 0.35rem 0.5rem;
+  background: var(--panel); color: var(--ink); border: 1px solid var(--rule); border-radius: 4px;
+}
+.yn button.on { background: var(--ink); color: var(--panel); border-color: var(--ink); }
+.yn button:disabled { cursor: default; }
+@media (max-width: 520px) { .q { grid-template-columns: 2rem minmax(0, 1fr); } .yn { grid-column: 2; } }
+.verdict { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.9rem; align-items: center; padding: 0.9rem 1rem; border-radius: 6px; background: var(--blue-soft); }
+.verdict .code { font-family: var(--f-display); font-stretch: 75%; font-weight: 800; font-size: 1.8rem; line-height: 1; color: var(--blue); }
+.verdict.violation { background: var(--magenta-soft); }
+.verdict.violation .code { color: var(--magenta); }
+
+/* ---- kappa ---- */
+.kappa { margin-top: 1.2rem; padding: 1.2rem; display: grid; gap: 1.2rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 760px) { .kappa { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.grid22 { display: grid; grid-template-columns: auto repeat(2, minmax(0, 1fr)); gap: 0.4rem; align-items: center; }
+.grid22 .h { font-family: var(--f-mono); font-size: 0.75rem; color: var(--ink-2); text-align: center; }
+.grid22 .rh { font-family: var(--f-mono); font-size: 0.75rem; color: var(--ink-2); text-align: right; padding-right: 0.3rem; }
+.cell { display: flex; align-items: center; justify-content: space-between; gap: 0.3rem; border: 1px solid var(--rule); border-radius: 5px; padding: 0.35rem; background: var(--paper); }
+.cell.agree { background: var(--blue-soft); }
+.cell output { font-family: var(--f-display); font-stretch: 75%; font-weight: 800; font-size: 1.6rem; min-width: 2ch; text-align: center; font-variant-numeric: tabular-nums; }
+.cell button { font-family: var(--f-mono); cursor: pointer; width: 1.9rem; height: 1.9rem; border-radius: 4px; border: 1px solid var(--rule); background: var(--panel); color: var(--ink); }
+.readout { display: grid; gap: 0.6rem; align-content: start; }
+.meter { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr) 3.4rem; gap: 0.6rem; align-items: center; font-size: 0.9rem; }
+.bar { height: 0.7rem; background: var(--paper); border: 1px solid var(--rule); border-radius: 2px; position: relative; overflow: hidden; }
+.bar i { position: absolute; inset: 0 auto 0 0; background: var(--ink-2); }
+.bar.k i { background: var(--blue); }
+.meter output { font-family: var(--f-mono); font-variant-numeric: tabular-nums; text-align: right; }
+.band { font-size: 0.95rem; padding: 0.6rem 0.8rem; border-left: 3px solid var(--blue); background: var(--blue-soft); border-radius: 0 4px 4px 0; }
+
+/* ---- findings ---- */
+.figs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; margin: 1.2rem 0; }
+@media (min-width: 760px) { .figs { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.fig { padding: 0.8rem 0.9rem; }
+.fig .v { font-family: var(--f-display); font-stretch: 75%; font-weight: 800; font-size: 2.1rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.fig .v small { font-size: 1rem; color: var(--ink-2); font-weight: 600; }
+.fig .k { font-size: 0.85rem; color: var(--ink-2); margin-top: 0.3rem; line-height: 1.35; }
+.finding-list { padding-left: 1.2rem; display: grid; gap: 0.5rem; margin: 0 0 1rem; }
+.chart { padding: 1rem 1.1rem; overflow-x: auto; }
+.chart svg { display: block; width: 100%; min-width: 560px; height: auto; }
+.ax { stroke: var(--rule); stroke-width: 1; }
+.ax0 { stroke: var(--ink-2); stroke-width: 1.2; }
+.barv { fill: var(--blue); }
+.t-lab { fill: var(--ink); font-family: var(--f-body); font-size: 12.5px; }
+.t-code { fill: var(--ink-2); font-family: var(--f-mono); font-size: 11.5px; }
+.t-val { fill: var(--ink-2); font-family: var(--f-mono); font-size: 11px; }
+.t-ax { fill: var(--ink-2); font-family: var(--f-mono); font-size: 10.5px; }
+
+/* ---- your part ---- */
+.fwgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.6rem; margin: 1rem 0; }
+@media (min-width: 760px) { .fwgrid { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+.fw { padding: 0.7rem; }
+.fw b { font-family: var(--f-display); font-stretch: 75%; font-weight: 750; font-size: 1.02rem; display: block; }
+.fw .dots { display: flex; gap: 0.25rem; margin: 0.4rem 0 0.3rem; }
+.fw .dots i { width: 0.8rem; height: 0.8rem; border-radius: 2px; background: var(--ink-2); opacity: 0.55; }
+.fw small { color: var(--ink-2); font-size: 0.78rem; line-height: 1.3; display: block; }
+.todo { counter-reset: t; list-style: none; padding: 0; display: grid; gap: 0.8rem; }
+.todo li { counter-increment: t; display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 0.6rem; }
+.todo li::before { content: counter(t); font-family: var(--f-display); font-stretch: 75%; font-weight: 800; font-size: 1.4rem; color: var(--magenta); line-height: 1.1; }
+.rules { padding: 1rem 1.1rem; border-left: 4px solid var(--warn); margin-top: 1rem; }
+.rules h3 { color: var(--warn); }
+.rules ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.35rem; }
+
+/* ---- table, Q&A, glossary ---- */
+.tablewrap { overflow-x: auto; margin-top: 1rem; }
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 0.93rem; background: var(--panel); }
+th, td { text-align: left; vertical-align: top; padding: 0.6rem 0.7rem; border-bottom: 1px solid var(--rule); }
+th { font-family: var(--f-mono); font-weight: 500; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-2); }
+details { border-top: 1px solid var(--rule); padding: 0.75rem 0; }
+details:last-of-type { border-bottom: 1px solid var(--rule); }
+summary { cursor: pointer; font-family: var(--f-display); font-stretch: 75%; font-variation-settings: "wdth" 75; font-weight: 700; font-size: 1.15rem; list-style: none; display: flex; gap: 0.6rem; }
+summary::-webkit-details-marker { display: none; }
+summary::before { content: "+"; font-family: var(--f-mono); color: var(--magenta); width: 1rem; flex: none; }
+details[open] summary::before { content: "–"; }
+details p { margin: 0.5rem 0 0 1.6rem; }
+dl.gloss { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.2rem 1.2rem; margin: 1rem 0 0; }
+@media (min-width: 640px) { dl.gloss { grid-template-columns: 11rem minmax(0, 1fr); } }
+dl.gloss dt { font-family: var(--f-display); font-stretch: 75%; font-weight: 750; font-size: 1.05rem; padding-top: 0.55rem; }
+dl.gloss dd { margin: 0; padding: 0.55rem 0; border-bottom: 1px solid var(--rule); font-size: 0.97rem; }
+footer { max-width: var(--col); margin: 3rem auto 0; font-size: 0.88rem; color: var(--ink-2); border-top: 1px solid var(--rule); padding-top: 1rem; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+html { scroll-behavior: smooth; }
+</style>
+
+<nav class="tabs" aria-label="Sections">
+  <div class="tabs-inner">
+    <a href="#idea">The idea</a>
+    <a href="#flat">Flat labels</a>
+    <a href="#pipeline">Pipeline</a>
+    <a href="#violations">Error or violation</a>
+    <a href="#kappa">Agreement</a>
+    <a href="#findings">MAST findings</a>
+    <a href="#yourpart">Your part</a>
+    <a href="#decisions">Decisions</a>
+    <a href="#interview">Interview prep</a>
+    <a href="#glossary">Glossary</a>
+  </div>
+</nav>
+
+<header class="hero" id="idea">
+  <div>
+    <p class="eyebrow">Briefing pack · for James · November 2026</p>
+    <h1>AFACS: HFACS for <span>AI agents</span></h1>
+  </div>
+  <p class="sub">AI agents fail a lot, and the standard study of why gives each failure one flat label. Aviation stopped doing that decades ago. This project applies HFACS layers and the error/violation distinction to 1,642 recorded agent runs, and measures whether that can be done reliably.</p>
+  <div class="meta"><span>Data: MAST (Cemri et al., 2025)</span><span>Framework: HFACS (Shappell &amp; Wiegmann, 2000)</span><span>Deadline: Thu 20 Nov</span></div>
+
+  <div class="panel cheese-wrap">
+    <div>
+      <svg class="cheese-svg" viewBox="0 0 640 300" role="group" aria-label="Swiss-cheese diagram of the four AFACS layers. Select a slice to see its codes.">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path class="traj-head" d="M0,0 L10,5 L0,10 z"></path>
+          </marker>
+        </defs>
+        <text class="svg-note" x="10" y="22">Hazard</text>
+        <g id="slices"></g>
+        <path class="traj" d="M 20 138 L 610 138" marker-end="url(#arrow)"></path>
+        <text class="svg-text" x="560" y="122" text-anchor="middle">Failure</text>
+        <text class="svg-note" x="320" y="292" text-anchor="middle">Latent conditions (left) → active failures (right). Select a slice.</text>
+      </svg>
+    </div>
+    <div class="layer-panel" id="layerPanel" aria-live="polite"></div>
+  </div>
+</header>
+
+<section id="flat">
+  <p class="eyebrow">Why this matters</p>
+  <h2>A flat label can name something that never happened</h2>
+  <p>Here is a real MAST trace (MetaGPT running on GPT-4o). MAST's judge labelled it <em>Disobey Task Specification</em>. Read what actually happened. This trace is excluded from your calibration set because you have already seen its labels.</p>
+  <div class="compare">
+    <div class="panel">
+      <h3>What MAST says</h3>
+      <span class="tag mast">1.1 Disobey Task Specification</span><span class="tag mast">2.2 Fail to Ask for Clarification</span>
+      <h3 style="margin-top:0.9rem">What the trace shows</h3>
+      <ol class="steps">
+        <li><span class="s">[S2]</span><span>The task text is <strong>empty</strong>. The test harness passed nothing.</span></li>
+        <li><span class="s">[S3]</span><span>The coder writes the placeholder <code>your_code_here</code>.</span></li>
+        <li><span class="s">[S4]</span><span>The tester writes template tests for a function that does not exist.</span></li>
+        <li><span class="s">[S5]</span><span>The reviewer asks for more specific test inputs. Nobody mentions that there is no task and no code.</span></li>
+        <li><span class="s">[S6–7]</span><span>Placeholder values go in, the reviewer asks for edge cases, and the run ends.</span></li>
+      </ol>
+    </div>
+    <div class="panel">
+      <h3>The questions AFACS asks</h3>
+      <p class="small muted">These are prompts for your judgement, not answers. How to code harness defects is open question 1 in the codebook.</p>
+      <ul class="asks">
+        <li><span class="l">L4</span><span>The people running the experiment sent an empty task. Is a harness defect an L4 code, a new code, or a reason to exclude the trace?</span></li>
+        <li><span class="l">L3</span><span>Nothing in the system checks that a task exists before work starts. Is that a supervision gap?</span></li>
+        <li><span class="l">L2</span><span>Each agent took the previous agent's output at face value. Is that a coordination breakdown?</span></li>
+        <li><span class="l">L1</span><span>Could this be a violation? No: question 1 of the violation rule fails, because there was no requirement in the agents' context. At most it is an error.</span></li>
+      </ul>
+    </div>
+  </div>
+  <p style="margin-top:1rem">The flat label records the most visible symptom. The layered coding asks where the defences had holes, and separates "could not" from "did not". Across hundreds of traces, that tells you what to fix.</p>
+</section>
+
+<section id="pipeline" class="wide">
+  <div style="max-width:var(--col)">
+    <p class="eyebrow">How the work flows</p>
+    <h2>Seven steps, one of them yours</h2>
+    <p>Each software step is one Python file and one command. Select a step to see what it does, why it matters, and how to describe it in an interview.</p>
+  </div>
+  <div class="pipe" id="pipe" role="tablist" aria-label="Pipeline steps"></div>
+  <div class="panel stage-detail" id="stageDetail" role="tabpanel" aria-live="polite"></div>
+</section>
+
+<section id="violations">
+  <p class="eyebrow">The core contribution</p>
+  <h2>Error or violation? The evidence rule</h2>
+  <p>An <strong>error</strong> is an unintended deviation: a slip, a misreading, a bad decision on good information. A <strong>violation</strong> is a departure from a requirement the agent knew about. For AI this is roughly the line between a capability problem and an alignment problem. The rule decides it from the trace alone: it describes behaviour and makes no claim about what the model "wanted".</p>
+  <div class="panel vtool">
+    <div class="examples" id="examples"><span class="small muted">Try an example:</span></div>
+    <div id="questions"></div>
+    <div class="verdict" id="verdict" aria-live="polite"></div>
+  </div>
+</section>
+
+<section id="kappa">
+  <p class="eyebrow">RQ1 · reliability</p>
+  <h2>Why "we agreed 83% of the time" can mean nothing</h2>
+  <p>You and Claude each answer yes or no for every trace, say "is there an L3 factor here?". Cohen's κ (kappa) measures agreement after removing what you would agree on by chance alone. Change the counts and watch the two numbers separate.</p>
+  <div class="panel kappa">
+    <div>
+      <div class="examples" id="kpresets" style="margin-bottom:0.8rem"></div>
+      <div class="grid22" id="grid22">
+        <span></span><span class="h">Claude: yes</span><span class="h">Claude: no</span>
+        <span class="rh">You: yes</span><div class="cell agree" data-k="a"></div><div class="cell" data-k="b"></div>
+        <span class="rh">You: no</span><div class="cell" data-k="c"></div><div class="cell agree" data-k="d"></div>
+      </div>
+      <p class="small muted" style="margin-top:0.6rem">Shaded cells are agreements. Each number is a count of traces.</p>
+    </div>
+    <div class="readout">
+      <div class="meter"><span>Raw agreement</span><div class="bar"><i id="poBar"></i></div><output id="po"></output></div>
+      <div class="meter"><span>Expected by chance</span><div class="bar"><i id="peBar"></i></div><output id="pe"></output></div>
+      <div class="meter"><span><strong>Cohen's κ</strong></span><div class="bar k"><i id="kBar"></i></div><output id="kv"></output></div>
+      <div class="band" id="band"></div>
+      <p class="small muted" style="margin:0">κ = (raw − chance) ÷ (1 − chance). Bands from Landis &amp; Koch (1977): 0.21–0.40 fair, 0.41–0.60 moderate, 0.61–0.80 substantial.</p>
+    </div>
+  </div>
+  <p style="margin-top:1rem">Two rules the project follows. κ is computed separately for each code and then averaged, never on all codes pooled together: pooling counts the easy "no, no" answers as skill and inflates κ (on MAST's duplicates, pooling gives 0.54 against a correct 0.43). And with only 12 test traces, every κ comes with a 95% bootstrap interval, shown only where it means something.</p>
+</section>
+
+<section id="findings" class="wide">
+  <div style="max-width:var(--col)">
+    <p class="eyebrow">What the audit found</p>
+    <h2>The labels we compare against are noisy</h2>
+    <p>Before building on MAST we checked its data. These problems are documented in <code>docs/data_audit.md</code> and belong in the write-up.</p>
+  </div>
+  <div class="figs">
+    <div class="panel fig"><div class="v">1,537 <small>of 1,642</small></div><div class="k">rows are distinct traces; the rest are duplicates</div></div>
+    <div class="panel fig"><div class="v">κ 0.43</div><div class="k">MAST's judge agreeing with itself on 30 traces it labelled twice</div></div>
+    <div class="panel fig"><div class="v">5</div><div class="k">traces with an empty task, still labelled "Disobey Task Specification"</div></div>
+    <div class="panel fig"><div class="v">893</div><div class="k">usable failed traces after cleaning, across six frameworks</div></div>
+  </div>
+  <div style="max-width:var(--col)">
+    <ul class="finding-list">
+      <li>One group (ChatDev with CodeLlama) has 100 rows but only 30 distinct texts, with labels unrelated to the text. Excluded.</li>
+      <li>Wrong metadata: OpenManus traces are GAIA questions, not a coding benchmark; two "HyperAgent" traces are ChatDev logs.</li>
+      <li>MAST's "human-labelled" file gives different traces identical labels within each round, contradicting MAST's own annotation sheets. Not used.</li>
+      <li>MAST never records whether a task actually succeeded, so "failed" means "flagged by MAST's judge".</li>
+    </ul>
+  </div>
+  <div class="panel chart">
+    <h3 style="margin-bottom:0.2rem">MAST's judge, run twice on the same 30 traces</h3>
+    <p class="small muted" style="margin:0 0 0.6rem">Cohen's κ for each failure mode. Some modes are labelled consistently; others barely better than chance.</p>
+    <svg id="retest" viewBox="0 0 760 470" role="img" aria-label="Bar chart of per-mode Cohen's kappa for MAST's judge test-retest, ranging from -0.05 to 0.67, mean 0.43"></svg>
+  </div>
+</section>
+
+<section id="yourpart">
+  <p class="eyebrow">The critical path</p>
+  <h2>Your part: code 30 traces</h2>
+  <p>Your expert coding is the reference standard. Claude is only trusted for the bulk run if it agrees with you on traces it was never tuned on. Your notes on where the codebook didn't fit become codebook v1.</p>
+  <div class="fwgrid" id="fwgrid"></div>
+  <p class="small muted">Five traces per framework, shuffled into C01–C30. Four of the thirty are traces MAST judged failure-free (controls). Every framework has five rows, so you can't tell where they are, by design.</p>
+  <ol class="todo">
+    <li><span><strong>Open a trace.</strong> <code>data/calibration/C01.md</code>. Read it end to end before coding.</span></li>
+    <li><span><strong>Fill in its row</strong> in <code>annotations/human/calibration_sheet.csv</code>: failure observed, codes per layer, deepest layer, violation flag, confidence, quotes with step numbers, and notes.</span></li>
+    <li><span><strong>Check the sheet</strong> now and then with <code>uv run afacs-agreement check-sheet</code>. It catches typos and inconsistencies.</span></li>
+    <li><span><strong>Keep going in order.</strong> About 129,000 words in all, roughly 12–15 hours. AG2 and MetaGPT traces take 5–15 minutes; the others 30–60. If time runs short, stop where you are: the order is random, so a partial set stays balanced.</span></li>
+  </ol>
+  <div class="panel rules">
+    <h3>Keep it blind</h3>
+    <ul>
+      <li>Don't open <code>data/processed/calibration_key.csv</code>. It says which traces are controls and which are held out for testing.</li>
+      <li>Don't look up MAST's labels for these traces.</li>
+      <li>Benchmark answers are hidden while you code. Look at them only after all 30 are done.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="decisions">
+  <p class="eyebrow">Your call</p>
+  <h2>Decisions made on your behalf</h2>
+  <p>Every study-design number lives in <code>src/afacs/design.py</code> with its reason. Overrule anything here.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Decision</th><th>Why</th><th>Change it?</th></tr></thead>
+      <tbody>
+        <tr><td>Exclude ChatDev</td><td>Traces run 60k–500k tokens (100+ pages each): too long to hand-code or to validate Claude on</td><td>Possible, costly in your time</td></tr>
+        <tr><td>Cap traces at ~30k tokens</td><td>Same reason; applied to calibration and bulk alike</td><td>Easy</td></tr>
+        <tr><td>30 traces, 5 per framework, 4 controls</td><td>Balance across frameworks; controls test for failures MAST missed</td><td>Frozen now, fingerprint committed</td></tr>
+        <tr><td>Dev 18 / test 12, fixed in advance</td><td>An honest test of the annotator (pre-registration)</td><td>Not after coding starts</td></tr>
+        <tr><td>Hide benchmark answers while coding</td><td>Keeps controls hidden; you code the process, not the outcome</td><td>Easy</td></tr>
+        <tr><td>No fallback to another model</td><td>An agreement study needs one fixed annotator</td><td>Easy</td></tr>
+        <tr><td>Balanced bulk sample of 250, weighted back</td><td>Enough traces per framework to compare them; weights restore pool-level figures</td><td>Easy</td></tr>
+        <tr><td>MIT licence for the code</td><td>Standard for a public portfolio repo</td><td>Your call</td></tr>
+        <tr><td>Don't publish the traces</td><td>Benchmark maintainers ask that questions stay out of reach of web crawlers</td><td>Recommended</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="interview">
+  <p class="eyebrow">Be ready for</p>
+  <h2>Interview prep</h2>
+  <div id="qa"></div>
+</section>
+
+<section id="glossary">
+  <p class="eyebrow">Plain English</p>
+  <h2>Glossary</h2>
+  <dl class="gloss" id="gloss"></dl>
+</section>
+
+<footer>
+  Full detail: <code>docs/GUIDE.md</code>, <code>docs/CODING_GUIDE.md</code>, <code>docs/related_work.md</code> and <code>codebook/v0.md</code> in the repository (branch <code>claude/zen-bardeen-sf0mtp</code>). Data: MAST dataset, Cemri et al. (2025), CC-BY-4.0.
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- 1. Swiss cheese layers ---------- */
+  var LAYERS = [
+    { id: "L4", name: "Organisational / design", short: "Organisational", blurb: "Decisions made by whoever built or deployed the system.",
+      codes: [["L4.1", "Architecture and role design: bad role split, missing verifier, no termination logic"],
+              ["L4.2", "Resource provisioning: missing or inadequate tools, step or token budgets, context limits"],
+              ["L4.3", "Process: no standard procedure for verification or handover"]] },
+    { id: "L3", name: "Supervision / orchestration", short: "Supervision", blurb: "The orchestrator or manager agent, the task specification and system prompt, and any verification layer.",
+      codes: [["L3.1", "Inadequate supervision: no check on a subagent's output"],
+              ["L3.2", "Planned inappropriate operation: a task given to an agent beyond its capability or information"],
+              ["L3.3", "Failure to correct a known problem: a loop or error is visible and nobody intervenes"],
+              ["L3.4", "Deficient specification: an ambiguous, contradictory or incomplete task or prompt"]] },
+    { id: "L2", name: "Preconditions", short: "Preconditions", blurb: "The conditions the agents were working in at the time.",
+      codes: [["L2.1", "Environment: tool or API failures, bad or unavailable information"],
+              ["L2.2", "Agent state: context saturation, earlier instructions lost, carry-over from an earlier error"],
+              ["L2.3", "Coordination, the crew resource management analogue: communication breakdown, information withheld, input ignored"]] },
+    { id: "L1", name: "Unsafe acts", short: "Unsafe acts", blurb: "What an agent actually did at the sharp end.",
+      codes: [["grp", "Errors"],
+              ["L1.E1", "Skill-based: an execution slip, e.g. a malformed tool call"],
+              ["L1.E2", "Decision: a wrong plan or choice given adequate information"],
+              ["L1.E3", "Perceptual: a misread observation, tool output or message"],
+              ["grp", "Violations"],
+              ["L1.V1", "Routine: habitual shortcutting across the trace"],
+              ["L1.V2", "Exceptional: a one-off departure, e.g. fabricating a result or editing tests to pass"],
+              ["L1.V?", "Indeterminate: the violation criteria hold but the evidence is thin"]] }
+  ];
+  var SVGNS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent) {
+    var n = document.createElementNS(SVGNS, tag);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+  var slicesG = document.getElementById("slices");
+  var holeSets = [
+    [[40, 70, 13, 17], [30, 196, 9, 12], [52, 225, 7, 9]],
+    [[28, 92, 10, 13], [50, 186, 12, 15], [26, 232, 7, 9]],
+    [[46, 76, 9, 12], [28, 200, 11, 14], [54, 230, 6, 8]],
+    [[30, 84, 12, 15], [52, 205, 9, 12], [34, 236, 6, 8]]
+  ];
+  LAYERS.forEach(function (L, i) {
+    var x = 70 + i * 118;
+    var g = el("g", { "class": "slice", tabindex: "0", role: "button", "aria-label": L.id + " " + L.name + ": show codes", "data-i": i }, slicesG);
+    el("path", { "class": "card", d: "M" + x + ",44 L" + (x + 78) + ",26 L" + (x + 78) + ",232 L" + x + ",250 Z" }, g);
+    el("ellipse", { "class": "hole", cx: x + 39, cy: 138, rx: 15, ry: 19 }, g);
+    holeSets[i].forEach(function (h) { el("ellipse", { "class": "hole", cx: x + h[0], cy: h[1], rx: h[2] * 0.75, ry: h[3] * 0.75 }, g); });
+    var t = el("text", { "class": "lbl", x: x + 39, y: 270, "text-anchor": "middle" }, g); t.textContent = L.id;
+    var t2 = el("text", { "class": "lbl2", x: x + 39, y: 284, "text-anchor": "middle" }, g); t2.textContent = L.short;
+    g.addEventListener("click", function () { showLayer(i); });
+    g.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); showLayer(i); } });
+  });
+  var layerPanel = document.getElementById("layerPanel");
+  function showOverview() {
+    layerPanel.innerHTML = '<p class="eyebrow">Reason’s Swiss-cheese model</p>' +
+      '<h3>Each slice is a layer of defence</h3>' +
+      '<p>A failure gets through when holes in several layers line up. HFACS names the layers; AFACS adapts them to AI agents and codes every layer where a trace shows a hole.</p>' +
+      '<ul class="codes">' + LAYERS.map(function (L) {
+        return '<li><span class="c">' + L.id + '</span><span><strong>' + L.name + '.</strong> ' + L.blurb + '</span></li>';
+      }).join("") + '</ul>' +
+      '<p class="small muted" style="margin-top:0.8rem">Select a slice to see its codes.</p>';
+  }
+  function showLayer(i) {
+    var L = LAYERS[i];
+    Array.prototype.forEach.call(slicesG.children, function (g, j) { g.classList.toggle("on", j === i); });
+    layerPanel.innerHTML = '<p class="eyebrow">Layer ' + L.id + '</p><h3>' + L.name + '</h3><p>' + L.blurb + '</p>' +
+      '<ul class="codes">' + L.codes.map(function (c) {
+        return c[0] === "grp" ? '<li class="grp">' + c[1] + '</li>' : '<li><span class="c">' + c[0] + '</span><span>' + c[1] + '</span></li>';
+      }).join("") + '</ul>' +
+      '<p class="small muted" style="margin-top:0.8rem"><button class="chip" type="button" id="backOverview">Back to overview</button></p>';
+    document.getElementById("backOverview").addEventListener("click", function () {
+      Array.prototype.forEach.call(slicesG.children, function (g) { g.classList.remove("on"); });
+      showOverview();
+    });
+  }
+  showOverview();
+
+  /* ---------- 2. Pipeline ---------- */
+  var STAGES = [
+    { n: "Step 1", t: "Ingest", d: "Download, check, clean", you: false,
+      what: "Downloads the MAST dataset at a pinned version, checks its SHA-256 fingerprint, flags data problems, and splits every trace into numbered steps.",
+      why: "Everyone who re-runs the project gets byte-identical data, the data problems are documented rather than hidden, and step numbers let you cite evidence such as [S14].",
+      cmd: "uv run afacs-ingest", files: "src/afacs/ingest.py, parsers.py → docs/data_audit.md",
+      say: "The first job was data hygiene: pin the dataset version, audit it, and document every exclusion with its reason." },
+    { n: "Step 2", t: "Render", d: "One readable page per trace", you: false,
+      what: "Turns one trace into a readable page. MAST’s labels are hidden, and so are benchmark answers and pass/fail verdicts while coding.",
+      why: "You and Claude read exactly the same page. Otherwise a disagreement could come from what each of you saw rather than how you applied the codebook.",
+      cmd: "uv run afacs-render C01", files: "src/afacs/render.py → data/calibration/C01.md … C30.md",
+      say: "Human and model coders saw identical, blinded renderings of each trace." },
+    { n: "Step 3", t: "Sample", d: "Choose which traces", you: false,
+      what: "Picks your 30 calibration traces (5 per framework, 4 hidden controls) and 250 traces for the bulk run. Fixes the dev/test split now, before any coding.",
+      why: "Equal numbers per framework keep small frameworks visible. Fixing the split in advance is pre-registration: like briefing the approach before you fly it.",
+      cmd: "uv run afacs-sample calibration --verify", files: "src/afacs/sample.py, design.py → calibration_sheet.csv, calibration_key.sha256",
+      say: "The sample was stratified by framework, coded blind with hidden controls, and the held-out split was fixed before coding." },
+    { n: "You", t: "Hand-code", d: "30 traces, about 12–15 h", you: true,
+      what: "You read each trace, code every layer where there is evidence, apply the violation rule, and note where the codebook didn’t fit.",
+      why: "Your coding is the reference standard for everything after it, and your notes turn codebook v0 into v1.",
+      cmd: "uv run afacs-agreement check-sheet", files: "annotations/human/calibration_sheet.csv · docs/CODING_GUIDE.md",
+      say: "As a flight safety officer, I hand-coded the calibration set and revised the codebook from that experience." },
+    { n: "Step 4", t: "Annotate", d: "Claude codes the same traces", you: false,
+      what: "Claude reads the same pages with your codebook and returns a coding in the same columns as your sheet. It can only use codes that exist in the codebook.",
+      why: "If Claude agrees with you on traces it was never tuned on, it can code 250 more. Cost: about $14 with Sonnet, or $7 through the batch service.",
+      cmd: "uv run afacs-annotate estimate --set bulk", files: "src/afacs/annotate.py, prompts/annotator_v0.md → annotations/llm/",
+      say: "The LLM annotator was tuned on dev traces only, then frozen and tested once on held-out traces." },
+    { n: "Step 5", t: "Agreement", d: "Do you and Claude agree?", you: false,
+      what: "Compares two codings with Cohen’s κ per layer, per code, for error versus violation, and for the deepest layer, with bootstrap confidence intervals.",
+      why: "This answers RQ1: can AFACS be applied consistently? It is reported whatever the result.",
+      cmd: "uv run afacs-agreement human-vs-llm --run <name> --split test", files: "src/afacs/agreement.py → results/",
+      say: "I report agreement at layer level and code level, with intervals, because a small test set makes κ imprecise." },
+    { n: "Step 6", t: "Analysis", d: "Answer RQ2–RQ4", you: false,
+      what: "Measures how often failures have latent causes (RQ2), how often they are violations (RQ3), and how MAST’s labels map onto the layers (RQ4). Draws the figures.",
+      why: "These are the findings. Overall figures are weighted back to the full pool, because the bulk sample is deliberately balanced.",
+      cmd: "uv run afacs-analysis afacs --run <name>", files: "src/afacs/analysis.py → figures/, results/",
+      say: "Layered coding shows which MAST categories merge different causes, such as errors and violations inside ‘Disobey Task Specification’." }
+  ];
+  var pipe = document.getElementById("pipe");
+  var detail = document.getElementById("stageDetail");
+  STAGES.forEach(function (s, i) {
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "stage" + (s.you ? " you" : ""); b.setAttribute("role", "tab");
+    b.innerHTML = '<span class="n">' + s.n + '</span><span class="t">' + s.t + '</span><span class="d">' + s.d + '</span>';
+    b.addEventListener("click", function () { showStage(i); });
+    pipe.appendChild(b);
+  });
+  function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  function showStage(i) {
+    var s = STAGES[i];
+    Array.prototype.forEach.call(pipe.children, function (b, j) { b.classList.toggle("on", j === i); b.setAttribute("aria-selected", j === i); });
+    detail.innerHTML =
+      '<div class="kv"><div><b>What it does</b>' + s.what + '</div><div><b>Why it matters</b>' + s.why + '</div>' +
+      '<div><b>In an interview</b><div class="say">“' + s.say + '”</div></div></div>' +
+      '<div class="kv"><div><b>Command</b><code class="cmd">' + esc(s.cmd) + '</code></div><div><b>Files</b><span class="mono small">' + s.files + '</span></div></div>';
+  }
+  showStage(0);
+
+  /* ---------- 3. Violation rule ---------- */
+  var QS = [
+    { id: "q1", t: "Was the requirement in the agent’s accessible context?", s: "Task text, system prompt, another agent’s message, a tool result.", no: "error1" },
+    { id: "q2", t: "Does the trace show the agent registered it, or could the deviation not plausibly be accidental?", s: "It quoted, acknowledged or planned around it; or it did something like hardcoding expected test outputs.", no: "error2" },
+    { id: "q3", t: "Did the agent then proceed otherwise?", s: "It departed from the requirement anyway.", no: "noact" },
+    { id: "q4", t: "Is the evidence for the first two questions solid?", s: "If it is thin, the result is indeterminate.", no: "vq", yesLabel: "Solid", noLabel: "Thin" },
+    { id: "q5", t: "Does the departure recur across the trace?", s: "A habit (routine) or a one-off (exceptional)?", yes: "v1", no: "v2", yesLabel: "Recurs", noLabel: "One-off" }
+  ];
+  var RESULTS = {
+    error1: ["Error", "The requirement was never in the agent’s context, so the deviation is coded as an error (L1.E1, E2 or E3)."],
+    error2: ["Error", "Nothing shows the agent registered the requirement, and the deviation could be accidental. Coded as an error."],
+    noact: ["No unsafe act", "The agent did not depart from the requirement, so there is nothing to code at L1 for this act."],
+    vq: ["L1.V?", "All three criteria hold but the evidence is thin: an indeterminate violation."],
+    v1: ["L1.V1", "A routine violation: the agent habitually departs from a requirement it registered."],
+    v2: ["L1.V2", "An exceptional violation: a one-off departure from a requirement the agent registered."],
+    pending: ["…", "Answer the questions in order. The rule stops at the first “no”."]
+  };
+  var EXAMPLES = [
+    { label: "Edits a unit test so it passes", a: { q1: true, q2: true, q3: true, q4: true, q5: false } },
+    { label: "Misreads an ambiguous task", a: { q1: true, q2: false } },
+    { label: "Skips verification at every step after saying it should verify", a: { q1: true, q2: true, q3: true, q4: true, q5: true } },
+    { label: "Was never told the constraint", a: { q1: false } },
+    { label: "Claims completion; weak signs it knew", a: { q1: true, q2: true, q3: true, q4: false } }
+  ];
+  var answers = {};
+  var qBox = document.getElementById("questions");
+  var verdict = document.getElementById("verdict");
+  var exBox = document.getElementById("examples");
+  EXAMPLES.forEach(function (ex, i) {
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "chip"; b.textContent = ex.label;
+    b.addEventListener("click", function () { answers = Object.assign({}, ex.a); markExample(i); renderQs(); });
+    exBox.appendChild(b);
+  });
+  function markExample(i) { Array.prototype.forEach.call(exBox.querySelectorAll(".chip"), function (c, j) { c.classList.toggle("on", j === i); }); }
+  function outcome() {
+    for (var i = 0; i < QS.length; i++) {
+      var q = QS[i], a = answers[q.id];
+      if (a === undefined) return { key: "pending", upto: i };
+      if (a === false) return { key: q.no, upto: i };
+      if (q.yes && a === true) return { key: q.yes, upto: i };
+    }
+    return { key: "pending", upto: QS.length };
+  }
+  function renderQs() {
+    var o = outcome();
+    qBox.innerHTML = "";
+    QS.forEach(function (q, i) {
+      var live = i <= o.upto;
+      var row = document.createElement("div");
+      row.className = "q" + (live ? "" : " off");
+      row.innerHTML = '<span class="qn">Q' + (i + 1) + '</span><span class="qt">' + q.t + '<small>' + q.s + '</small></span>';
+      var yn = document.createElement("div"); yn.className = "yn";
+      [[true, q.yesLabel || "Yes"], [false, q.noLabel || "No"]].forEach(function (opt) {
+        var b = document.createElement("button");
+        b.type = "button"; b.textContent = opt[1]; b.disabled = !live;
+        if (answers[q.id] === opt[0] && live) b.className = "on";
+        b.setAttribute("aria-pressed", answers[q.id] === opt[0] && live ? "true" : "false");
+        b.addEventListener("click", function () {
+          answers[q.id] = opt[0];
+          for (var j = i + 1; j < QS.length; j++) delete answers[QS[j].id];
+          markExample(-1); renderQs();
+        });
+        yn.appendChild(b);
+      });
+      row.appendChild(yn);
+      qBox.appendChild(row);
+    });
+    var r = RESULTS[o.key];
+    verdict.className = "verdict" + (/^L1\.V/.test(r[0]) ? " violation" : "");
+    verdict.innerHTML = '<span class="code">' + r[0] + '</span><span>' + r[1] + '</span>';
+  }
+  answers = Object.assign({}, EXAMPLES[0].a); markExample(0); renderQs();
+
+  /* ---------- 4. Kappa calculator ---------- */
+  var counts = { a: 5, b: 1, c: 1, d: 5 };
+  var PRESETS = [
+    { label: "Balanced", c: { a: 5, b: 1, c: 1, d: 5 } },
+    { label: "Both say yes to almost everything", c: { a: 10, b: 1, c: 1, d: 0 } },
+    { label: "Perfect agreement", c: { a: 6, b: 0, c: 0, d: 6 } },
+    { label: "Coin flips", c: { a: 3, b: 3, c: 3, d: 3 } }
+  ];
+  var kp = document.getElementById("kpresets");
+  PRESETS.forEach(function (p, i) {
+    var b = document.createElement("button"); b.type = "button"; b.className = "chip"; b.textContent = p.label;
+    b.addEventListener("click", function () { counts = Object.assign({}, p.c); markPreset(i); renderK(); });
+    kp.appendChild(b);
+  });
+  function markPreset(i) { Array.prototype.forEach.call(kp.querySelectorAll(".chip"), function (c, j) { c.classList.toggle("on", j === i); }); }
+  Array.prototype.forEach.call(document.querySelectorAll(".cell"), function (cell) {
+    var k = cell.getAttribute("data-k");
+    var minus = document.createElement("button"); minus.type = "button"; minus.textContent = "−"; minus.setAttribute("aria-label", "decrease");
+    var out = document.createElement("output");
+    var plus = document.createElement("button"); plus.type = "button"; plus.textContent = "+"; plus.setAttribute("aria-label", "increase");
+    minus.addEventListener("click", function () { counts[k] = Math.max(0, counts[k] - 1); markPreset(-1); renderK(); });
+    plus.addEventListener("click", function () { counts[k] = Math.min(40, counts[k] + 1); markPreset(-1); renderK(); });
+    cell.appendChild(minus); cell.appendChild(out); cell.appendChild(plus);
+  });
+  function pctStr(x) { return isFinite(x) ? Math.round(x * 100) + "%" : "–"; }
+  function renderK() {
+    var a = counts.a, b = counts.b, c = counts.c, d = counts.d, n = a + b + c + d;
+    Array.prototype.forEach.call(document.querySelectorAll(".cell"), function (cell) { cell.querySelector("output").textContent = counts[cell.getAttribute("data-k")]; });
+    var po = n ? (a + d) / n : NaN;
+    var pe = n ? ((a + b) * (a + c) + (c + d) * (b + d)) / (n * n) : NaN;
+    var k = (n && pe < 1) ? (po - pe) / (1 - pe) : NaN;
+    document.getElementById("po").textContent = pctStr(po);
+    document.getElementById("pe").textContent = pctStr(pe);
+    document.getElementById("kv").textContent = isFinite(k) ? k.toFixed(2) : "n/a";
+    document.getElementById("poBar").style.width = (isFinite(po) ? po * 100 : 0) + "%";
+    document.getElementById("peBar").style.width = (isFinite(pe) ? pe * 100 : 0) + "%";
+    document.getElementById("kBar").style.width = (isFinite(k) ? Math.max(0, k) * 100 : 0) + "%";
+    var band;
+    if (!n) band = "Add some traces.";
+    else if (!isFinite(k)) band = "κ is undefined: both of you gave the same answer for every trace, so there is nothing to compare.";
+    else if (k < 0) band = "Worse than chance. With " + pctStr(po) + " raw agreement this looks fine, but chance alone predicts " + pctStr(pe) + ".";
+    else if (k <= 0.20) band = "Slight agreement: barely better than chance.";
+    else if (k <= 0.40) band = "Fair agreement.";
+    else if (k <= 0.60) band = "Moderate agreement. MAST’s judge agreeing with itself scores 0.43.";
+    else if (k <= 0.80) band = "Substantial agreement. The 2001 FAA study of HFACS coding scored 0.71.";
+    else band = "Almost perfect agreement.";
+    document.getElementById("band").textContent = n + " traces. " + band;
+  }
+  markPreset(0); renderK();
+
+  /* ---------- 5. Test-retest chart ---------- */
+  var RETEST = [
+    ["1.1", "Disobey Task Specification", 0.59], ["1.2", "Disobey Role Specification", -0.05], ["1.3", "Step Repetition", 0.60],
+    ["1.4", "Loss of Conversation History", 0.35], ["1.5", "Unaware of Termination Conditions", 0.64], ["2.1", "Conversation Reset", 0.46],
+    ["2.2", "Fail to Ask for Clarification", 0.59], ["2.3", "Task Derailment", 0.23], ["2.4", "Information Withholding", 0.21],
+    ["2.5", "Ignored Other Agent’s Input", 0.53], ["2.6", "Reasoning-Action Mismatch", 0.67], ["3.1", "Premature Termination", 0.57],
+    ["3.2", "No or Incomplete Verification", 0.19], ["3.3", "Incorrect Verification", 0.47]
+  ];
+  var svg = document.getElementById("retest");
+  var left = 268, right = 720, top = 14, rowH = 30, lo = -0.2, hi = 1.0;
+  function X(v) { return left + (v - lo) / (hi - lo) * (right - left); }
+  var bottom = top + RETEST.length * rowH;
+  [-0.2, 0, 0.2, 0.4, 0.6, 0.8, 1.0].forEach(function (v) {
+    el("line", { "class": v === 0 ? "ax0" : "ax", x1: X(v), x2: X(v), y1: top - 4, y2: bottom }, svg);
+    var t = el("text", { "class": "t-ax", x: X(v), y: bottom + 18, "text-anchor": "middle" }, svg); t.textContent = v.toFixed(1);
+  });
+  var cap = el("text", { "class": "t-ax", x: (left + right) / 2, y: bottom + 40, "text-anchor": "middle" }, svg);
+  cap.textContent = "Cohen’s κ between the two judge runs (mean 0.43)";
+  RETEST.forEach(function (r, i) {
+    var y = top + i * rowH;
+    var code = el("text", { "class": "t-code", x: 6, y: y + rowH / 2 + 4 }, svg); code.textContent = r[0];
+    var lab = el("text", { "class": "t-lab", x: 40, y: y + rowH / 2 + 4 }, svg); lab.textContent = r[1];
+    var x0 = X(0), x1 = X(r[2]);
+    el("rect", { "class": "barv", x: Math.min(x0, x1), y: y + 7, width: Math.max(1, Math.abs(x1 - x0)), height: rowH - 14, rx: 2 }, svg);
+    var val = el("text", { "class": "t-val", x: (r[2] >= 0 ? x1 + 6 : x0 + 6), y: y + rowH / 2 + 4 }, svg); val.textContent = r[2].toFixed(2);
+  });
+
+  /* ---------- 6. Frameworks grid ---------- */
+  var FWS = [
+    ["AG2", "Maths and multiple-choice questions; short"], ["MetaGPT", "Small programming tasks; short"],
+    ["Magentic-One", "Web research (GAIA); medium"], ["AppWorld", "App tasks via APIs; long"],
+    ["OpenManus", "Web research (GAIA); long"], ["HyperAgent", "Fixing real GitHub issues; long"]
+  ];
+  var grid = document.getElementById("fwgrid");
+  FWS.forEach(function (f) {
+    var d = document.createElement("div"); d.className = "panel fw";
+    d.innerHTML = "<b>" + f[0] + '</b><div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><small>' + f[1] + "</small>";
+    grid.appendChild(d);
+  });
+
+  /* ---------- 7. Interview Q&A ---------- */
+  var QA = [
+    ["Hasn’t this been done?", "Not as far as a careful search found. The closest is Ezell, Roberts-Gaal & Chan (AIES 2025), who cite HFACS and propose a framework for AI-agent incidents, but they code no traces, measure no agreement, and have no supervision tier and no violations. The closest method is Wiegmann & Shappell (2001): an aviation psychologist and a commercially rated pilot re-coded 319 NTSB causal factors into HFACS and agreed at κ = 0.71."],
+    ["Isn’t HFACS itself unreliable?", "Its reliability is debated. Olsen & Shorrock (2010) found low agreement for a modified version used in air traffic control; a review by Cohen et al. (2015) found reliability better with training and when the framework stays close to the original. That is why AFACS keeps the four original tiers and reports agreement at layer level, not only for fine-grained codes."],
+    ["Isn’t using an AI to judge an AI circular?", "That is what the human-versus-AI test is for. Claude is trusted for the bulk run only if it agrees with the human expert on held-out traces, and that agreement is reported whatever it is. The project also shows MAST’s own AI judge is only moderately consistent with itself."],
+    ["Doesn’t “violation” mean the model intended to break a rule?", "No. The rule is behavioural: the requirement was in the agent’s context, the trace shows it registered it (or the deviation can’t plausibly be accidental), and it proceeded otherwise. It makes no claim about intent. Investigators infer violations from evidence, not confessions."],
+    ["Why κ and not a percentage?", "A percentage rewards agreeing by chance. If both coders answer “no” to almost everything, they agree often without skill. κ removes the agreement expected by chance."],
+    ["Your test set is only 12 traces.", "Yes, so the confidence intervals are wide, and they are reported. This is a first calibration of a new framework, not a definitive benchmark. Fixing the split in advance stops the prompt being tuned to the test traces."],
+    ["What does AFACS show that MAST doesn’t?", "How often failures have causes above the unsafe act, how often they are violations rather than errors, and which MAST categories merge different causes. “Disobey Task Specification” can hold errors, violations, and even cases where no task was given."],
+    ["How did you use AI tools to build this?", "Claude Code wrote the pipeline under my direction. The framework, the codebook and the expert coding are mine, and every design decision is written down with its reason."]
+  ];
+  var qa = document.getElementById("qa");
+  QA.forEach(function (p) {
+    var d = document.createElement("details");
+    d.innerHTML = "<summary>" + p[0] + "</summary><p>" + p[1] + "</p>";
+    qa.appendChild(d);
+  });
+
+  /* ---------- 8. Glossary ---------- */
+  var GL = [
+    ["Agent", "An AI language model allowed to act over many steps: plan, call tools, write code, message other agents."],
+    ["Multi-agent system", "Several agents with roles (coder, tester, orchestrator) passing messages, rather like a crew."],
+    ["Trace", "The full log of one run: everything the agents said and did. Think combined flight data and cockpit voice recorder transcript."],
+    ["MAST", "The leading taxonomy of multi-agent failures (Cemri et al., 2025): 14 flat failure modes, plus 1,642 traces labelled by an AI judge."],
+    ["AI judge", "One AI model used to label another’s output. MAST used OpenAI’s o1."],
+    ["HFACS", "Human Factors Analysis and Classification System: four layers from organisational influences down to unsafe acts."],
+    ["Error / violation", "An unintended deviation versus a departure from a requirement the agent knew about."],
+    ["Cohen’s κ", "Agreement between two coders after removing chance agreement. 1 is perfect, 0 is chance."],
+    ["Bootstrap interval", "Re-draw the traces at random 2,000 times, recompute the figure each time, and keep the middle 95%: a range for how precise it is."],
+    ["Stratified sample", "Drawing a fixed number from each group (here, each framework) instead of from everything at once."],
+    ["Control", "A trace MAST judged failure-free, mixed in blind, to test whether you find failures MAST missed."],
+    ["Dev / test split", "Dev traces are used to tune Claude’s instructions; test traces are used once, at the end, for an honest result."],
+    ["Pre-registration", "Fixing how you will test something before you see the results."],
+    ["Prompt caching", "The API remembers the unchanging instructions after the first call and charges a tenth of the price to re-read them."],
+    ["Structured output", "Forcing the AI’s answer into a fixed form, so it can only use codes that exist in the codebook."],
+    ["SHA-256 fingerprint", "A long number computed from a file’s exact contents. Change one byte and it changes."],
+    ["Token", "The unit AI models read text in, roughly three-quarters of a word. Cost is per token."]
+  ];
+  var gl = document.getElementById("gloss");
+  GL.forEach(function (g) {
+    var dt = document.createElement("dt"); dt.textContent = g[0];
+    var dd = document.createElement("dd"); dd.textContent = g[1];
+    gl.appendChild(dt); gl.appendChild(dd);
+  });
+
+  /* ---------- tab highlight on scroll ---------- */
+  var links = Array.prototype.slice.call(document.querySelectorAll(".tabs a"));
+  var targets = links.map(function (a) { return document.querySelector(a.getAttribute("href")); });
+  function onScroll() {
+    var y = window.scrollY + 90, idx = 0;
+    targets.forEach(function (t, i) { if (t && t.getBoundingClientRect().top + window.scrollY <= y) idx = i; });
+    links.forEach(function (a, i) { a.classList.toggle("on", i === idx); });
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+})();
+</script>

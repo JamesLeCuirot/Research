@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>$title$</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:wght@400;600&display=swap">
+$for(css)$
+<link rel="stylesheet" href="$css$">
+$endfor$
+$if(math)$
+$math$
+$endif$
+</head>
+<body>
+<header class="paper-head">
+$if(status)$<p class="status">$status$</p>$endif$
+<h1 class="title">$title$</h1>
+$if(subtitle)$<p class="subtitle">$subtitle$</p>$endif$
+<p class="author">$for(author)$$author$$sep$, $endfor$$if(affiliation)$ · <span class="affil">$affiliation$</span>$endif$</p>
+$if(date)$<p class="date">$date$</p>$endif$
+$if(abstract)$
+<section class="abstract"><h2>Abstract</h2>
+$abstract$
+</section>
+$endif$
+$if(keywords)$<p class="keywords"><b>Keywords:</b> $for(keywords)$$keywords$$sep$; $endfor$</p>$endif$
+</header>
+$if(toc)$
+<nav id="TOC" role="doc-toc"><h2>Contents</h2>
+$table-of-contents$
+</nav>
+$endif$
+<main>
+$body$
+</main>
+</body>
+</html>

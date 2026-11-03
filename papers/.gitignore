@@ -1,0 +1,5 @@
+# Downloaded third-party documents (EASA PDFs etc.) used while writing; not redistributed.
+scratch/
+**/scratch/
+# Python caches
+__pycache__/

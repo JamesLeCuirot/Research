@@ -417,7 +417,10 @@ answer. A failure is coded as a violation only if all three conditions hold:
 agent represented it, by referencing or acknowledging it, or the deviation is of a
 kind that cannot plausibly be accidental, such as hardcoding expected test
 outputs; and (3) the agent proceeded otherwise. If all three hold but the evidence
-is thin, the code is \code{L1.V?}; otherwise the failure is an error. Benchmark
+is thin, the code is \code{L1.V?}; otherwise the failure is an error. In HFACS a
+routine violation is a habitual departure, often tolerated by supervisors; a
+single trace can show only that a departure recurs within the run, which is what
+\code{L1.V1} means here. Benchmark
 information the agents never saw cannot satisfy condition (1).
 
 The distinction is recorded because the two call for different remedies. An

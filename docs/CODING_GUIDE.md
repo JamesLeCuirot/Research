@@ -43,9 +43,9 @@ If you can't decide between two codes, pick one, set confidence to `medium` or `
 
 ## Two passes
 
-1. **Pass 1:** code all 30 with codebook v0, writing notes as you go.
-2. **Write codebook v1** from your notes: decide on the "[proposed]" notes and the open questions in the current codebook. Claude can turn your notes into codebook text, but the decisions are yours.
-3. **Pass 2:** go through all 30 codings once more against v1 and change whatever v1 changes. This is quicker than pass 1: you are checking, not re-reading everything. Do it **before** seeing any AI codings, so the AI can't influence the reference.
+1. **Pass 1:** code all 30 with the current codebook (v1), writing notes as you go, especially where it didn't fit.
+2. **Revise the codebook if needed.** The notes may show a rule that needs changing; the author decides any change, and the new version gets a new number.
+3. **Pass 2:** go through all 30 codings once more against the revised codebook and change whatever it changes. This is quicker than pass 1: you are checking, not re-reading everything. Do it **before** seeing any AI codings, so the AI can't influence the reference.
 
 The reviewed set becomes the reference the AI is measured against. The paper reports how many codings the review changed, so readers can see how much the codebook moved.
 

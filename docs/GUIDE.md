@@ -105,9 +105,9 @@ Shares come with **Wilson 95% intervals**, a standard and well-behaved interval 
 
 ## 3. The codebook
 
-`codebook/v0.md` is your original draft. `codebook/v1.md` is the current draft: your decisions so far (see the table in section 5), the Ezell category for each layer, and the operational notes carried over from v0 (5.1–5.5 and 5.7 still *[proposed]*, awaiting your review). All the open questions are now decided. The codebook file is the single source of truth: the code list the software accepts is read straight from it (`CURRENT_CODEBOOK` in `src/afacs/schema.py` is now `"v1"`).
+`codebook/v0.md` is your original draft. `codebook/v1.md` is the current draft: your decisions so far (see the table in section 5), the Ezell category for each layer, and the operational notes (section 5), which you have accepted. All the open questions are now decided, so codebook v1 is ready for the AI pilot. The codebook file is the single source of truth: the code list the software accepts is read straight from it (`CURRENT_CODEBOOK` in `src/afacs/schema.py` is now `"v1"`).
 
-The proposed notes add **no new categories**. They add one field, `failure_observed` (yes / no / unclear), needed for the controls, and they spell out the violation rule as three questions in order. Accept, edit or delete them.
+The operational notes add **no new categories**. They add one field, `failure_observed` (yes / no / unclear), and spell out the violation rule as three questions in order.
 
 ## 4. What we found in the MAST data (and why it matters)
 
@@ -159,8 +159,8 @@ All study-design numbers live in `src/afacs/design.py` with their reasons.
 
 ## 6. What you do next
 
-1. **Review codebook v1** (`codebook/v1.md`) and the cross-walk (`docs/crosswalk_ezell.md`). Decide on the "[proposed]" operational notes (5.1–5.5, 5.7). Correct the cross-walk wherever your human-factors judgement differs from my draft.
-2. **Approve the AI pilot.** Once codebook v1 is settled, Claude codes the 250 bulk traces through your subscription (it may take several sessions because of usage limits).
+1. **Approve the AI pilot.** Codebook v1 is settled, so Claude can code the 250 bulk traces through your subscription (it may take several sessions because of usage limits).
+2. **Check the cross-walk** (`docs/crosswalk_ezell.md`) and correct it wherever your human-factors judgement differs from my draft.
 3. **Expert case studies.** Review a handful of the AI's codings with the trace beside you, and say where you agree or disagree and why. These become the case studies.
 4. **Optional:** code the 10 short AG2 and MetaGPT calibration traces yourself (about 2 hours) as a small human anchor. Not required for paper 1.
 5. **Read the paper draft** (`paper/afacs.pdf`) as it fills in.

@@ -79,12 +79,12 @@ I found no paper that applies HFACS (its four tiers or its error/violation split
 
 **Mylius, S. (2025). Systematic Hazard Analysis for Frontier AI using STPA.** arXiv:2506.01782. https://arxiv.org/abs/2506.01782
 
-- **What it does:** It applies Leveson's STPA (System-Theoretic Process Analysis) to the deployment of frontier AI. It argues that AI companies should adopt structured hazard analysis from safety-critical industries.
+- **What it does:** It applies Leveson's STPA (System-Theoretic Process Analysis) to an AI-control threat scenario (from Korbak et al.'s "Sketch of an AI Control Safety Case"), deriving unsafe control actions and loss scenarios. It argues that structured hazard analysis from safety-critical industries finds causal factors that unstructured methods miss.
 - **How it relates to AFACS:** It shows that safety-engineering methods are being imported into AI safety, but STPA looks forward (what could go wrong). It does not classify the behaviour seen in traces after the fact. Position HFACS (retrospective, behaviour-focused) as complementary to STPA (prospective, control-structure-focused). See also Doshi et al. 2026 under "Also seen".
 
 **Ahmadi, A., Sharif, S., & Banad, Y. (2025). Improving Aviation Safety Analysis: Automated HFACS Classification Using Reinforcement Learning with Group Relative Policy Optimization.** arXiv:2508.21201. https://arxiv.org/abs/2508.21201
 
-- **What it does:** It fine-tunes a small open LLM (Llama-3.1 8B) to assign HFACS categories to aviation accident reports. Exact-match accuracy across all labels is only 0.18, against 0.88 for partial match. Even so, it beats larger general-purpose models.
+- **What it does:** It fine-tunes a small open LLM (Llama-3.1 8B) to assign HFACS categories to aviation accident reports. Exact-match accuracy across all labels is only 0.18, against 0.88 for partial match. Even so, it beats general-purpose commercial models (GPT-5-mini, Gemini-2.5-flash) on key metrics.
 - **How it relates to AFACS:** It works in the opposite direction (LLMs coding *human* accidents with HFACS), but it is directly relevant to the AFACS LLM annotator. Multi-label HFACS coding is hard for LLMs, and exact agreement is far lower than partial agreement, so AFACS should report agreement at several levels: tier, category, and full label set.
 
 ### A2. Core agent-failure taxonomies and annotated trace datasets
@@ -184,11 +184,11 @@ I found no paper that applies HFACS (its four tiers or its error/violation split
 **Cohen, T. N., Wiegmann, D. A., & Shappell, S. A. (2015). Evaluating the Reliability of the Human Factors Analysis and Classification System.** *Aerospace Medicine and Human Performance*, 86(8), 728–735. https://doi.org/10.3357/AMHP.4218.2015
 
 - **What it does:** A systematic review of 14 reliability studies (2001–2014) found that most reported acceptable agreement. Reliability was higher with more training, larger samples, and fewer departures from the original framework.
-- **How it relates to AFACS:** It gives direct guidance for designing the AFACS kappa study: train the coders and stay close to the original HFACS structure. Note the published dispute: a letter by Burnham (2017, DOI 10.3357/AMHP.4555.2017) argued that most studies examining inter-rater reliability found HFACS unreliable, and Shappell replied. Acknowledge that the reliability of HFACS is contested.
+- **How it relates to AFACS:** It gives direct guidance for designing the AFACS kappa study: train the coders and stay close to the original HFACS structure. Note that the review drew a published letter disputing it (Burnham 2017, DOI 10.3357/AMHP.4555.2017) and a reply from Shappell. A secondary summary says the letter argued that most inter-rater studies found HFACS unreliable; I did not read the letter itself. Acknowledge that the reliability of HFACS is contested.
 
 **Ergai, A., Cohen, T., Sharp, J., Wiegmann, D., Gramopadhye, A., & Shappell, S. (2016). Assessment of the Human Factors Analysis and Classification System (HFACS): Intra-rater and inter-rater reliability.** *Safety Science*, 82, 393–398. https://doi.org/10.1016/j.ssci.2015.09.028
 
-- **What it does:** 125 trained safety professionals each coded 95 causal factors. Using Krippendorff's alpha, HFACS was judged reliable overall, but some categories fell below acceptable thresholds.
+- **What it does:** 125 trained safety professionals each coded 95 causal factors. Using Krippendorff's alpha, the authors judged HFACS reliable overall, both between and within coders. A related record of the same study design reports that some of the 19 categories fell below the minimum threshold; I did not see the exact values.
 - **How it relates to AFACS:** It shows that reliability should be reported per category, not only overall, and that Krippendorff's alpha is an accepted alternative to kappa.
 
 **Hulme, A., Stanton, N. A., Walker, G. H., Waterson, P., & Salmon, P. M. (2024). Testing the reliability of accident analysis methods: a comparison of AcciMap, STAMP-CAST and AcciNet.** *Ergonomics*, 67(5), 695–715. https://doi.org/10.1080/00140139.2023.2240048
@@ -210,8 +210,8 @@ I found no paper that applies HFACS (its four tiers or its error/violation split
 
 **Chen, S.-T., Wall, A., Davies, P., Yang, Z., Wang, J., & Chou, Y.-H. (2013). A Human and Organisational Factors (HOFs) analysis method for marine casualties using HFACS-Maritime Accidents (HFACS-MA).** *Safety Science*, 60, 105–114. https://doi.org/10.1016/j.ssci.2013.06.009
 
-- **What it does:** It adapts HFACS to maritime casualties, adding factors specific to that domain.
-- **How it relates to AFACS:** It shows that domain variants commonly add or re-define tiers, which supports AFACS's added inter-agent coordination (crew-resource-management-style) preconditions.
+- **What it does:** It builds a maritime version of HFACS (HFACS-MA) for analysing human and organisational factors in marine casualties.
+- **How it relates to AFACS:** It is another domain-specific variant, which supports the legitimacy of tailoring the tiers for AFACS, for example its added inter-agent coordination (crew-resource-management-style) preconditions.
 
 *(Rail: Reinach & Viale 2006, HFACS-RR, is listed under "Also seen".)*
 
@@ -266,7 +266,7 @@ I found no paper that applies HFACS (its four tiers or its error/violation split
 
 **Hägele, A., Gema, A. P., Sleight, H., Perez, E., & Sohl-Dickstein, J. (2026). The Hot Mess of AI: How Does Misalignment Scale With Model Intelligence and Task Complexity?** ICLR 2026. arXiv:2601.23045. https://arxiv.org/abs/2601.23045
 
-- **What it does:** It asks whether capable AIs fail by consistently pursuing unintended goals, or as an incoherent "hot mess". It finds that failures become more incoherent the longer models reason and act. The accompanying Anthropic blog likens future AI failures to industrial accidents.
+- **What it does:** It asks whether capable AIs fail by consistently pursuing unintended goals, or as an incoherent "hot mess". It finds that failures become more incoherent the longer models reason and act. The accompanying Anthropic Alignment Science blog post (February 2026, https://alignment.anthropic.com/2026/hot-mess-of-ai) says future AI failures may look more like industrial accidents.
 - **How it relates to AFACS:** **This is highly relevant framing.** It is essentially the error-versus-violation question asked statistically. AFACS offers the trace-level, case-by-case counterpart. Note that critics on LessWrong dispute its conclusions, which is not a reason to avoid citing it.
 
 **Smyth, N., Mantilla-Ramos, Y.-J., Notsawo, P. J. T., Helbling, S., Tosato, A., Merzouk, M. A., Dziri, N., Gidel, G., & Tosato, T. (2026). Quantifying Overclaiming Propensity in Frontier LLM Agents.** arXiv:2609.20812. https://arxiv.org/abs/2609.20812
@@ -315,7 +315,7 @@ I found no paper that applies HFACS (its four tiers or its error/violation split
 
 **Gilardi, F., Alizadeh, M., & Kubli, M. (2023). ChatGPT outperforms crowd workers for text-annotation tasks.** *Proceedings of the National Academy of Sciences*, 120(30), e2305016120. https://doi.org/10.1073/pnas.2305016120 (arXiv:2303.15056)
 
-- **What it does:** ChatGPT beat crowd workers on several tweet-annotation tasks and had higher agreement with itself across runs than human coders had with each other.
+- **What it does:** On 2,382 tweets, ChatGPT beat crowd workers on four of five annotation tasks. Its agreement with itself across repeated runs was higher than the agreement among crowd workers or among trained annotators.
 - **How it relates to AFACS:** It supports LLM annotation in principle, but the tasks were short and simple. AFACS involves expert judgement on long traces, so do not over-generalise from it.
 
 **Bavaresco, A., Bernardi, R., Bertolazzi, L., Elliott, D., Fernández, R., Gatt, A., Ghaleb, E., Giulianelli, M., Hanna, M., Koller, A., Martins, A. F. T., Mondorf, P., Neplenbroek, V., Pezzelle, S., Plank, B., Schlangen, D., Suglia, A., Surikuchi, A. K., Takmaz, E., & Testoni, A. (2025). LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks.** ACL 2025. arXiv:2406.18403. https://arxiv.org/abs/2406.18403

@@ -116,6 +116,9 @@ def measures(A: dict, B: dict, uids: list[str], codes: list[str]) -> dict:
     m["raw_agreement_layers"] = (
         sum(has_layer(A[u], L) == has_layer(B[u], L) for u in uids for L in LAYERS) / (4 * len(uids)) if uids else None
     )
+    # Strictest level: both coders gave exactly the same set of codes (reported as a plain share,
+    # because LLM HFACS coding studies find exact matches far rarer than partial ones).
+    m["exact_code_set"] = sum(codes_of(A[u]) == codes_of(B[u]) for u in uids) / len(uids) if uids else None
     return m
 
 
@@ -174,7 +177,14 @@ def report(name: str, A: dict, B: dict, uids: list[str], label_a: str, label_b: 
     for k in HEADLINE + ["violation_flag", "deepest_layer"]:
         ci = cis.get(k)
         lines.append(f"| {LABELS[k]} | {fmt(m[k])} | {'' if ci is None else f'{ci[0]:.2f} to {ci[1]:.2f}'} |")
-    lines += ["", f"Raw agreement on layer presence: {m['raw_agreement_layers']:.0%}.", "", "Per-code κ:", ""]
+    lines += [
+        "",
+        f"Raw agreement on layer presence: {m['raw_agreement_layers']:.0%}. "
+        f"Identical full code set: {m['exact_code_set']:.0%} of traces.",
+        "",
+        "Per-code κ:",
+        "",
+    ]
     lines.append(", ".join(f"`{c}` {fmt(k)}" for c, k in m["per_code"].items()))
     text = "\n".join(lines) + "\n"
     RESULTS.mkdir(exist_ok=True)

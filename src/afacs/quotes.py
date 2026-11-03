@@ -102,6 +102,7 @@ def summarise(checks: list[dict]) -> dict:
         "n_quotes": n_quotes,
         **total,
         "share_verified": total["verified"] / n_quotes if n_quotes else float("nan"),
+        "codings_with_quotes": sum(c["n_quotes"] > 0 for c in checks),
         "codings_all_verified": sum(c["n_quotes"] > 0 and c["verified"] == c["n_quotes"] for c in checks),
         "codings_with_unsupported_codes": sum(bool(c["codes_without_evidence"]) for c in checks),
     }
@@ -112,7 +113,7 @@ def report_lines(summary: dict) -> list[str]:
     n = summary["n_quotes"]
 
     def share(k):
-        return f"{summary[k]} ({summary[k] / n:.0%})" if n else "0"
+        return f"{summary[k]} ({summary[k] / n:.1%})" if n else "0"
 
     return [
         "## Evidence check: are the annotator's quotes genuine?", "",
@@ -124,6 +125,7 @@ def report_lines(summary: dict) -> list[str]:
         f"| Not found in any visible step (paraphrased or invented) | {share('not_found')} |",
         f"| Cites a hidden or non-existent step | {share('hidden_step')} |",
         f"| Too short to check | {share('too_short')} |", "",
-        f"Codings whose quotes were all found in the cited step: {summary['codings_all_verified']} of {summary['n_codings']}. "
+        f"Codings whose quotes were all found in the cited step: {summary['codings_all_verified']} of the "
+        f"{summary['codings_with_quotes']} that gave quotes (codings of traces judged failure-free usually give none). "
         f"Codings with at least one code that no evidence item supports: {summary['codings_with_unsupported_codes']}.", "",
     ]

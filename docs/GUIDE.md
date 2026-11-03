@@ -154,6 +154,7 @@ All study-design numbers live in `src/afacs/design.py` with their reasons.
 | A loop is coded at L1, plus L3.3 where a supervising agent could have broken it | The agent repeated itself; the supervisor let it continue | **Decided by you** |
 | An omission ("never checked the result") is coded by whose job it was | Agent told to do it: L1; supervisor should have checked: L3.1; nobody given the job: L4.1/L4.3 | **Decided by you** |
 | Record Ezell et al.'s cognitive function (observation, understanding, decision, action) for every L1 error | Lets the paper test the cross-walk on real codings and compare which scheme is applied more consistently | **Decided by you** |
+| Commit the AI's codings with quotes and summaries encoded | The quotes reproduce benchmark questions (e.g. GAIA) that must not be readable by web crawlers; codes stay readable, and `afacs-annotate restore` decodes the rest | Recommended |
 | Humans don't quote; the AI does, and its quotes are checked automatically | Quoting takes people too long; for the AI, checking quotes against the trace measures whether its evidence is genuine | **Decided by you** (humans giving step references instead is my proposal) |
 | AI pilot on the bulk sample only, never the 30 calibration traces | Keeps those traces untouched for human coders in paper 2 | Recommended |
 
@@ -195,7 +196,7 @@ All study-design numbers live in `src/afacs/design.py` with their reasons.
 | `paper/` | The paper (LaTeX source and PDF) |
 | `prompts/annotator_v0.md` | The instructions given to Claude (versioned) |
 | `annotations/human/calibration_sheet.csv` | Your coding sheet |
-| `annotations/llm/` | Claude's codings, one file per run |
+| `annotations/llm/public/` | Claude's codings, one file per run (quotes encoded; `uv run afacs-annotate restore --run-name <run>` decodes) |
 | `src/afacs/` | The code: `design.py` (all choices), `ingest.py`, `parsers.py`, `render.py`, `sample.py`, `schema.py`, `annotate.py`, `agreement.py`, `analysis.py` |
 | `tests/` | Automated checks (`uv run pytest`) |
 | `figures/` | Charts for the write-up |

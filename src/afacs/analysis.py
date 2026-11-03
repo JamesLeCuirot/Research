@@ -306,17 +306,25 @@ def afacs_analysis(rows: dict[str, dict], name: str, weights: dict[str, float] |
                 "If both groups are substantial, FM-1.1 mixes capability failures and departures from known requirements.", ""]
 
     # RQ1, observed: how the two ways of typing an error line up in practice.
+    # Pairs (error code, function) come from the annotator's `error_functions`; a coder who
+    # gave functions only per trace (e.g. a human sheet) contributes trace-level pairs instead.
     errs = [u for u in failed if any(c in codes_of(failed[u]) for c in ("L1.E1", "L1.E2", "L1.E3"))]
     if errs:
+        def pairs(u):
+            given = [p.split(":", 1) for p in split_labels(failed[u].get("error_functions")) if ":" in p]
+            if given:
+                return {(c.upper(), f) for c, f in given}
+            return {(c, f) for c in codes_of(failed[u]) if c.startswith("L1.E")
+                    for f in split_labels(failed[u].get("ezell_functions"))}
         out += ["## RQ1 (observed): HFACS error types × Ezell et al.'s cognitive functions", "",
-                f"Traces with an L1 error: {len(errs)}. Cells: number of those traces carrying both labels "
-                "(a trace can carry several of each). The cross-walk predicts E3 with observation and understanding, "
-                "E2 with decision, and E1 with action.", "",
+                f"Traces with an L1 error: {len(errs)}. Cells: number of traces in which that error type was "
+                "assigned that cognitive function (one error can involve several functions). The cross-walk "
+                "predicts E3 with observation and understanding, E2 with decision, and E1 with action.", "",
                 "| HFACS error | " + " | ".join(EZELL_FUNCTIONS) + " | none given |", "|---|" + "---|" * (len(EZELL_FUNCTIONS) + 1)]
         for code in ("L1.E1", "L1.E2", "L1.E3"):
             us = [u for u in errs if code in codes_of(failed[u])]
-            cells = [sum(f in split_labels(failed[u].get("ezell_functions")) for u in us) for f in EZELL_FUNCTIONS]
-            none = sum(not split_labels(failed[u].get("ezell_functions")) for u in us)
+            cells = [sum((code, f) in pairs(u) for u in us) for f in EZELL_FUNCTIONS]
+            none = sum(not any(c == code for c, _ in pairs(u)) for u in us)
             out.append(f"| {code} (n={len(us)}) | " + " | ".join(map(str, cells)) + f" | {none} |")
         out += [""]
 

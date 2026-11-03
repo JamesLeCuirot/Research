@@ -7,6 +7,8 @@ Run:
     uv run afacs-annotate batch-submit --set bulk --run-name sonnet_bulk_p1   # 50% cheaper, async
     uv run afacs-annotate batch-collect --run-name sonnet_bulk_p1
     uv run afacs-annotate check-quotes --run-name sonnet_bulk_p1   # are the evidence quotes genuine?
+    uv run afacs-annotate publish --run-name sonnet_bulk_p1        # refresh the committed (encoded) copy
+    uv run afacs-annotate restore --run-name sonnet_bulk_p1        # rebuild the working file from it
 
 Sets: calibration, dev, test (from the hidden calibration key), bulk (from the
 bulk sample), or a comma-separated list of trace uids / calibration ids.
@@ -24,6 +26,10 @@ How it works:
   annotation can be traced back to exactly what produced it.
 - Every evidence quote is checked against the step it cites (afacs.quotes);
   the result is stored with the annotation as `quote_check`.
+- Working files (annotations/llm/<run>.jsonl) stay out of git because the
+  quotes reproduce benchmark text. The committed copy is
+  annotations/llm/public/<run>.jsonl: codes in plain text, quotes and
+  summaries encoded (afacs.protect). It is refreshed at the end of each run.
 - If the model declines a request (a "refusal"), the trace is recorded as an
   error. We deliberately do not fall back to a different model: an agreement
   study needs every annotation to come from the same annotator.
@@ -53,11 +59,13 @@ from pathlib import Path
 
 from afacs import paths
 from afacs.ingest import load_traces
+from afacs.protect import protect, unprotect
 from afacs.quotes import check_coding, report_lines, summarise
 from afacs.render import render_markdown
 from afacs.schema import (
     CONFIDENCE,
     CURRENT_CODEBOOK,
+    ERROR_CODES,
     EZELL_FUNCTIONS,
     DEEPEST_LAYER,
     FAILURE_OBSERVED,
@@ -125,7 +133,20 @@ def output_schema(codes: dict[str, str]) -> dict:
         },
         "causal_summary": {"type": "string"},
         **{column: code_list(layer) for layer, column in LAYER_COLUMNS.items()},
-        "ezell_functions": {"type": "array", "items": {"type": "string", "enum": EZELL_FUNCTIONS}},
+        # One entry per L1 error code: which of Ezell et al.'s cognitive functions failed in it.
+        # The trace-level `ezell_functions` column is derived from these pairs.
+        "error_functions": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "code": {"type": "string", "enum": sorted(c for c in codes if c in ERROR_CODES)},
+                    "functions": {"type": "array", "items": {"type": "string", "enum": EZELL_FUNCTIONS}},
+                },
+                "required": ["code", "functions"],
+                "additionalProperties": False,
+            },
+        },
         "deepest_layer": {"type": "string", "enum": DEEPEST_LAYER},
         "violation_flag": {"type": "string", "enum": VIOLATION_FLAGS},
         "violation_evidence": {"type": "string", "enum": VIOLATION_EVIDENCE},
@@ -148,8 +169,20 @@ def coding_to_row(coding: dict) -> dict:
     }
     for column in LAYER_COLUMNS.values():
         row[column] = ";".join(coding[column])
-    row["ezell_functions"] = ";".join(coding.get("ezell_functions", []))
+    pairs = [(p["code"], f) for p in coding.get("error_functions", []) for f in p.get("functions", [])]
+    functions = list(dict.fromkeys(f for _, f in pairs)) or coding.get("ezell_functions", [])
+    row["ezell_functions"] = ";".join(functions)
+    row["error_functions"] = ";".join(f"{c}:{f}" for c, f in dict.fromkeys(pairs))  # e.g. L1.E3:understanding
     return row
+
+
+def pair_warnings(coding: dict) -> list[str]:
+    """Each L1 error should have its cognitive function(s), and only coded errors should."""
+    coded = [c for c in coding.get("l1_codes", []) if c in ERROR_CODES]
+    paired = {p["code"] for p in coding.get("error_functions", []) if p.get("functions")}
+    out = [f"error_functions has no function for {c}" for c in coded if c not in paired]
+    out += [f"error_functions names {c}, which is not in l1_codes" for c in sorted(paired - set(coded))]
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -289,7 +322,7 @@ def finish_record(record: dict, coding: dict, codes: dict[str, str]) -> dict:
     record["coding"] = coding
     record["row"] = coding_to_row(coding)
     errors, warnings = validate_coding(record["row"], codes)
-    record["validation_errors"], record["validation_warnings"] = errors, warnings
+    record["validation_errors"], record["validation_warnings"] = errors, warnings + pair_warnings(coding)
     return record
 
 
@@ -360,6 +393,35 @@ def check_quotes(run_name: str, traces: dict[str, dict], verbose: bool = True) -
     if verbose:
         print("\n".join(report_lines(summary)))
     return summary
+
+
+def public_path(run_name: str) -> Path:
+    return paths.LLM_ANNOTATIONS / "public" / f"{run_name}.jsonl"
+
+
+def publish(run_name: str) -> None:
+    """Write the committed copy of a run: codes plain, benchmark text encoded."""
+    src, dst = paths.LLM_ANNOTATIONS / f"{run_name}.jsonl", public_path(run_name)
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    with open(src) as f, open(dst, "w") as out:
+        n = 0
+        for line in f:
+            out.write(json.dumps(protect(json.loads(line))) + "\n")
+            n += 1
+    print(f"Wrote {n} records to {dst.relative_to(paths.ROOT)} (commit this file).")
+
+
+def restore(run_name: str, force: bool = False) -> None:
+    """Rebuild the working file of a run from its committed copy."""
+    src, dst = public_path(run_name), paths.LLM_ANNOTATIONS / f"{run_name}.jsonl"
+    if dst.exists() and not force:
+        raise SystemExit(f"{dst.relative_to(paths.ROOT)} already exists; add --force to overwrite it.")
+    with open(src) as f, open(dst, "w") as out:
+        n = 0
+        for line in f:
+            out.write(json.dumps(unprotect(json.loads(line))) + "\n")
+            n += 1
+    print(f"Restored {n} records to {dst.relative_to(paths.ROOT)}.")
 
 
 def run_meta(model: str, prompt_name: str, effort: str, run_name: str, system: str, backend: str = "api") -> dict:
@@ -443,7 +505,9 @@ def run_sync(client, uids, traces, model, effort, prompt_name, run_name, backend
         if errors_in_a_row >= 3:
             print("Stopping: three errors in a row (on a subscription this is usually a usage limit). "
                   "Re-run the same command later; finished traces are skipped.")
-            return
+            break
+    if out_path.exists():
+        publish(run_name)
 
 
 def batch_submit(client, uids, traces, model, effort, prompt_name, run_name) -> None:
@@ -504,6 +568,7 @@ def batch_collect(client, run_name: str, wait: bool) -> None:
             f.write(json.dumps(record) + "\n")
             n += 1
     print(f"Added {n} annotations ({errors} errors) to {out_path.relative_to(paths.ROOT)}")
+    publish(run_name)
     if errors:
         print("Re-run batch-submit with the same --run-name to retry only the failed traces.")
 
@@ -533,6 +598,12 @@ def main() -> None:
     p.add_argument("--wait", action="store_true", help="keep polling until the batch ends")
     p = sub.add_parser("check-quotes", help="check a run's evidence quotes against the traces")
     p.add_argument("--run-name", required=True)
+    for name in ("publish", "restore"):
+        p = sub.add_parser(name, help="write the committed copy of a run" if name == "publish"
+                           else "rebuild a run's working file from its committed copy")
+        p.add_argument("--run-name", required=True)
+        if name == "restore":
+            p.add_argument("--force", action="store_true")
     p = sub.add_parser("show-prompt")
     p.add_argument("--uid", required=True, help="trace uid or calibration id")
     p.add_argument("--prompt", default=DEFAULT_PROMPT)
@@ -540,6 +611,12 @@ def main() -> None:
 
     if args.command == "batch-collect":
         batch_collect(make_client(), args.run_name, args.wait)
+        return
+    if args.command == "publish":
+        publish(args.run_name)
+        return
+    if args.command == "restore":
+        restore(args.run_name, args.force)
         return
 
     traces = {t["uid"]: t for t in load_traces()}

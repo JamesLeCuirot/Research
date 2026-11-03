@@ -605,8 +605,8 @@ prompt replaced by the annotator prompt (\code{prompts/annotator\_v1.md}) with
 the codebook pasted in. The trace is the user message, and the reply is
 constrained by a JSON schema whose allowed codes are read from the codebook, so
 the annotator cannot invent codes and must give step-referenced evidence for each
-code, a causal summary, an evidence grade for any violation, and Ezell et al.'s
-cognitive function for any error. Every annotation
+code, a causal summary, an evidence grade for any violation, and, for each error code, the Ezell et
+al.\ cognitive function or functions involved. Every annotation
 records the backend, the model requested and the model that served it, the
 prompt and codebook versions, a hash of the full system prompt, token usage and a
 session identifier. A refusal is recorded as an error and is not routed to
@@ -934,7 +934,10 @@ in \code{src/afacs/design.py}, and the pipeline is open.
 MAST dataset: Cemri et al.~\cite{cemri2025mast}, CC-BY-4.0. Code: MIT licence.
 Traces are not redistributed because they contain benchmark questions whose
 maintainers ask that they not be reposted in crawlable form; the pipeline
-recreates them from the pinned dataset revision.
+recreates them from the pinned dataset revision. The AI codings are committed
+with their codes in plain text and their quotes and summaries encoded, with a
+canary string, so that benchmark text is not exposed to web crawlers; one
+command decodes them.
 
 \begin{thebibliography}{99}\small\setlength{\itemsep}{1pt}
 \bibitem{reason1990human} J. Reason, \emph{Human Error}. Cambridge University Press, 1990.

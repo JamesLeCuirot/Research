@@ -14,7 +14,7 @@ GOOD = {
     "failure_observed": "yes",
     "evidence": [{"step": 3, "quote": "your_code_here", "codes": ["L3.4"]}],
     "causal_summary": "The task text was empty [S2], so the coder emitted a placeholder [S3].",
-    "l4_codes": [], "l3_codes": ["L3.4"], "l2_codes": [], "l1_codes": ["L1.E2"], "ezell_functions": ["decision"],
+    "l4_codes": [], "l3_codes": ["L3.4"], "l2_codes": [], "l1_codes": ["L1.E2"], "error_functions": [{"code": "L1.E2", "functions": ["decision"]}],
     "deepest_layer": "L3", "violation_flag": "none", "violation_evidence": "none", "confidence": "medium", "notes": "",
 }
 
@@ -39,7 +39,7 @@ def test_good_reply_becomes_valid_row():
     assert rec["row"]["l3_codes"] == "L3.4"
     assert rec["row"]["evidence_quotes"] == '[S3] "your_code_here"'
     assert rec["validation_errors"] == [] and rec["validation_warnings"] == []
-    assert rec["row"]["ezell_functions"] == "decision"
+    assert rec["row"]["ezell_functions"] == "decision" and rec["row"]["error_functions"] == "L1.E2:decision"
     assert rec["usage"]["cache_read_input_tokens"] == 2000
     assert rec["model_served"] == "claude-sonnet-5-5"
 
@@ -87,8 +87,19 @@ def test_claude_code_error_is_recorded():
 def test_schema_includes_violation_evidence():
     schema = output_schema(CODES)
     assert schema["properties"]["violation_evidence"]["enum"] == ["none", "stated", "inferred", "thin"]
-    assert schema["properties"]["ezell_functions"]["items"]["enum"] == ["observation", "understanding", "decision", "action"]
     assert "L4.4" in schema["properties"]["l4_codes"]["items"]["enum"]  # full codebook passed in
+    pair = schema["properties"]["error_functions"]["items"]["properties"]
+    assert pair["code"]["enum"] == ["L1.E1", "L1.E2", "L1.E3"]
+    assert pair["functions"]["items"]["enum"] == ["observation", "understanding", "decision", "action"]
+
+
+def test_error_function_pairs_are_checked():
+    coding = {**GOOD, "l1_codes": ["L1.E2", "L1.E3"],
+              "error_functions": [{"code": "L1.E2", "functions": ["decision"]}, {"code": "L1.E1", "functions": ["action"]}]}
+    rec = message_to_record(fake_message(json.dumps(coding)), "U1", META, CODES)
+    assert "error_functions has no function for L1.E3" in rec["validation_warnings"]
+    assert "error_functions names L1.E1, which is not in l1_codes" in rec["validation_warnings"]
+    assert rec["row"]["ezell_functions"] == "decision;action"
 
 
 def test_annotator_is_never_offered_developer_evidence_codes():
@@ -104,3 +115,13 @@ def test_run_records_carry_a_quote_check():
                        {"n": 3, "kind": "message", "text": "def f():\n    your_code_here"}]}
     rec = attach_quote_check(message_to_record(fake_message(json.dumps(GOOD)), "U1", META, CODES), trace)
     assert rec["quote_check"]["verified"] == 1 and rec["quote_check"]["codes_without_evidence"] == ["L1.E2"]
+
+
+def test_committed_copy_encodes_text_and_restores_exactly():
+    from afacs.protect import CANARY, protect, unprotect
+    rec = message_to_record(fake_message(json.dumps(GOOD)), "U1", META, CODES)
+    pub = protect(rec)
+    assert pub["canary"] == CANARY
+    assert pub["row"]["l3_codes"] == "L3.4"  # codes stay readable
+    assert "your_code_here" not in json.dumps(pub)  # quotes and summaries do not
+    assert unprotect(pub) == rec

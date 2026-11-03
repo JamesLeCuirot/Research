@@ -12,3 +12,7 @@ __pycache__/
 .pytest_cache/
 .ipynb_checkpoints/
 .DS_Store
+
+# Annotation working files quote benchmark text; the committed copies are in
+# annotations/llm/public/ with that text encoded (see src/afacs/protect.py).
+annotations/llm/*.jsonl

@@ -103,7 +103,12 @@ CALIBRATION_CONTROLS_TEST = 2
 # The calibration set was drawn and frozen on this date, before any coding. The
 # committed file annotations/human/calibration_key.sha256 lets anyone check later
 # that the hidden key was not changed (`uv run afacs-sample calibration --verify`).
+# The key itself is not committed (that would break blinding); it is re-created
+# exactly by the code. If a later change to the parsers or these settings makes
+# --verify fail, re-create the key from the commit where it was frozen, 5e8bc78:
+#   git worktree add /tmp/frozen 5e8bc78 && cd /tmp/frozen && uv run afacs-ingest && uv run afacs-sample calibration --verify
 CALIBRATION_FROZEN_ON = "2026-11-03"
+CALIBRATION_FROZEN_AT_COMMIT = "5e8bc78"
 
 # Bulk set for the LLM annotator (frozen codebook + prompt), stratified by framework.
 BULK_SIZE = 250

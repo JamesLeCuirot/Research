@@ -85,7 +85,7 @@ def load_llm(run_name: str) -> dict[str, dict]:
 
 def usable(rows: dict[str, dict], label: str) -> dict[str, dict]:
     """Drop rows that fail validation, saying which and why."""
-    codes = load_codebook_codes(CURRENT_CODEBOOK)
+    codes = load_codebook_codes(CURRENT_CODEBOOK, trace_only=True)
     keep = {}
     for uid, row in rows.items():
         errors, _ = validate_coding(row, codes)
@@ -208,7 +208,7 @@ def fmt(k: float | None) -> str:
 
 
 def report(name: str, A: dict, B: dict, uids: list[str], label_a: str, label_b: str) -> dict:
-    codes = sorted(load_codebook_codes(CURRENT_CODEBOOK))
+    codes = sorted(load_codebook_codes(CURRENT_CODEBOOK, trace_only=True))
     if len(uids) < 2:
         raise SystemExit(f"Only {len(uids)} trace(s) coded by both; need at least 2.")
     m = measures(A, B, uids, codes)
@@ -251,7 +251,7 @@ def report(name: str, A: dict, B: dict, uids: list[str], label_a: str, label_b: 
 
 
 def check_sheet() -> None:
-    codes = load_codebook_codes(CURRENT_CODEBOOK)
+    codes = load_codebook_codes(CURRENT_CODEBOOK, trace_only=True)
     with open(paths.CALIBRATION_SHEET) as f:
         rows = list(csv.DictReader(f))
     coded = [r for r in rows if (r.get("failure_observed") or "").strip()]

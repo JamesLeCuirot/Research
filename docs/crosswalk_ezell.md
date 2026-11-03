@@ -8,7 +8,7 @@ Ezell et al. describe one causal chain: **system factors** and **contextual fact
 
 | Ezell et al. category | Closest AFACS layer | Comment |
 |---|---|---|
-| System factors (training, feedback, learning methods, system prompt, scaffolding) | **L4 Organisational / design**, with the system prompt at **L3.4** | AFACS v0 had no code for how the model was trained; v1 proposes **L4.4 Model development** for it. |
+| System factors (training, feedback, learning methods, system prompt, scaffolding) | **L4 Organisational / design**, with the system prompt at **L3.4** | AFACS v0 had no code for how the model was trained; v1 adds **L4.4 Model development**, a developer-evidence code that is not applied from traces alone. |
 | Contextual factors (information, tools, task definition) | **L2 Preconditions** (L2.1), with task definition at **L3.4** and budgets at **L4.2** | Close match. |
 | Cognitive errors (observation, understanding, decision-making, action execution) | **L1 Unsafe acts: errors** (E1–E3), with memory and distraction at **L2.2** | Their four functions cut the same ground as HFACS's three error types differently. |
 | *(no equivalent)* | **L3 Supervision / orchestration** (L3.1–L3.3) | Their framework is for single agents; there is no orchestrator, so no supervision tier. |
@@ -21,9 +21,9 @@ Ezell et al. describe one causal chain: **system factors** and **contextual fact
 
 | Ezell et al. factor | AFACS code | Note |
 |---|---|---|
-| Training data: poisoning; false or misleading data; misuse-enabling data; sensitive information; content gaps | **L4.4** Model development *[proposed]* | Latent; rarely visible in a trace. Content gaps can show up as an L1.E2 on a niche topic. |
-| Feedback: undesirable proxy goal; wrong trade-offs; poisoned feedback | **L4.4** | The usual latent condition behind a violation (e.g. training that rewarded looking successful). |
-| Learning methods: memorisation, forgetting, wrong inferences, reinforcing the wrong goal, poor generalisation | **L4.4** | |
+| Training data: poisoning; false or misleading data; misuse-enabling data; sensitive information; content gaps | **L4.4** Model development *(developer evidence)* | Not codable from a trace; needs training records or version comparisons. A content gap can surface in a trace as an L1.E2 on a niche topic. |
+| Feedback: undesirable proxy goal; wrong trade-offs; poisoned feedback | **L4.4** *(developer evidence)* | The usual latent condition behind a violation (e.g. training that rewarded looking successful); a developer can test it by checking whether the training signal would have rewarded the behaviour. |
+| Learning methods: memorisation, forgetting, wrong inferences, reinforcing the wrong goal, poor generalisation | **L4.4** *(developer evidence)* | Testable by comparing model versions or checkpoints on the same scenario. |
 | System prompt underspecified, or inadvertently encourages undesirable behaviour | **L3.4** Deficient specification | AFACS treats the system prompt as part of the task specification. |
 | Scaffolding does not function as intended / functions ineffectively | **L4.1** Architecture and role design (design flaw) or **L2.1** Environment (fails during the run) | Which one is codebook open question 3. |
 
@@ -63,7 +63,7 @@ Ezell et al. describe one causal chain: **system factors** and **contextual fact
 4. An empirical test on real traces (this study).
 
 **Ezell et al. add to AFACS**
-1. Model development as a latent condition (proposed L4.4).
+1. Model development as a latent condition (L4.4), together with the point that it needs a different kind of evidence: developer records, not traces (codebook v1, section 1.1).
 2. Security-related context (malicious inputs, vulnerable tools) as named sub-cases of L2.1.
 3. A finer description of cognitive functions (observation, understanding, decision, action), which the study can use to test which distinctions coders can make consistently.
 4. A specification of what information investigators need (their Table 1), which this study audits against MAST's logs (`docs/information_audit.md`).

@@ -374,7 +374,7 @@ def check_run_settings(out_path: Path, meta: dict) -> None:
 
 def run_sync(client, uids, traces, model, effort, prompt_name, run_name, backend: str = "api") -> None:
     system = system_prompt(prompt_name, CURRENT_CODEBOOK)
-    codes = load_codebook_codes(CURRENT_CODEBOOK)
+    codes = load_codebook_codes(CURRENT_CODEBOOK, trace_only=True)
     schema = output_schema(codes)
     meta = run_meta(model, prompt_name, effort, run_name, system, backend)
     import anthropic
@@ -420,7 +420,7 @@ def batch_submit(client, uids, traces, model, effort, prompt_name, run_name) -> 
     from anthropic.types.messages.batch_create_params import Request
 
     system = system_prompt(prompt_name, CURRENT_CODEBOOK)
-    schema = output_schema(load_codebook_codes(CURRENT_CODEBOOK))
+    schema = output_schema(load_codebook_codes(CURRENT_CODEBOOK, trace_only=True))
     meta = run_meta(model, prompt_name, effort, run_name, system)
     out_path = paths.LLM_ANNOTATIONS / f"{run_name}.jsonl"
     check_run_settings(out_path, meta)
@@ -454,7 +454,7 @@ def batch_collect(client, run_name: str, wait: bool) -> None:
     if batch.processing_status != "ended":
         print(f"Batch not finished yet ({batch.processing_status}). Re-run later, or add --wait.")
         return
-    codes = load_codebook_codes(manifest["codebook_version"])
+    codes = load_codebook_codes(manifest["codebook_version"], trace_only=True)
     meta = {k: manifest[k] for k in ("run_name", "model_requested", "prompt_version", "codebook_version", "system_prompt_sha", "effort")}
     out_path = paths.LLM_ANNOTATIONS / f"{run_name}.jsonl"
     already = done_uids(out_path)  # append; never overwrite earlier results

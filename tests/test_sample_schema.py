@@ -141,3 +141,11 @@ def test_violation_evidence_grading_rules():
     assert not any("violation_evidence" in w for w in warnings)
     errors, _ = validate_coding(_row(violation_evidence="maybe"), codes)
     assert any("violation_evidence" in e for e in errors)
+
+
+def test_trace_only_codes_exclude_developer_evidence():
+    full = load_codebook_codes("v1")
+    trace = load_codebook_codes("v1", trace_only=True)
+    assert set(full) - set(trace) == {"L4.4"}
+    errors, _ = validate_coding(_row(l4_codes="L4.4", deepest_layer="L4"), trace)
+    assert any("unknown code 'L4.4'" in e for e in errors)

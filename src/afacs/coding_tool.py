@@ -52,7 +52,7 @@ def build() -> None:
         })
     data = {
         "codebook_version": CURRENT_CODEBOOK,
-        "codes": [{"code": c, "text": d} for c, d in load_codebook_codes(CURRENT_CODEBOOK).items()],
+        "codes": [{"code": c, "text": d} for c, d in load_codebook_codes(CURRENT_CODEBOOK, trace_only=True).items()],
         "traces": items,
     }
     # "</" inside the JSON would end the <script> tag early, so escape it.
@@ -77,7 +77,7 @@ def load_export(folder: Path) -> dict[str, dict]:
 def import_codings(folder: Path) -> None:
     saved = load_export(folder)
     rows = read_sheet()
-    codes = load_codebook_codes(CURRENT_CODEBOOK)
+    codes = load_codebook_codes(CURRENT_CODEBOOK, trace_only=True)
     updated = 0
     for row in rows:
         doc = saved.get(row["cal_id"])

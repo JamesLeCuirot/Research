@@ -86,4 +86,11 @@ def test_claude_code_error_is_recorded():
 def test_schema_includes_violation_evidence():
     schema = output_schema(CODES)
     assert schema["properties"]["violation_evidence"]["enum"] == ["none", "stated", "inferred", "thin"]
-    assert "L4.4" in schema["properties"]["l4_codes"]["items"]["enum"]
+    assert "L4.4" in schema["properties"]["l4_codes"]["items"]["enum"]  # full codebook passed in
+
+
+def test_annotator_is_never_offered_developer_evidence_codes():
+    trace_codes = load_codebook_codes("v1", trace_only=True)
+    schema = output_schema(trace_codes)
+    assert "L4.4" not in schema["properties"]["l4_codes"]["items"]["enum"]
+    assert schema["properties"]["l4_codes"]["items"]["enum"] == ["L4.1", "L4.2", "L4.3"]

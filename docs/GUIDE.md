@@ -144,7 +144,7 @@ All study-design numbers live in `src/afacs/design.py` with their reasons.
 | Build paper 1 on Ezell et al. (2025); human validation in paper 2 | Positions AFACS as an extension; avoids a reference coding built on misread technical traces | **Decided by you** |
 | Keep the term "violation", defined behaviourally | Continuity with HFACS; no claim about intent | **Decided by you** |
 | Grade the evidence for every violation (stated / inferred / thin) | Makes the most contested judgement transparent | **Decided by you** |
-| Add L4.4 Model development (from Ezell et al.) | Their system factors include training and feedback, which v0 had no code for | **Proposed: your call** (codebook v1, open question 1) |
+| Add L4.4 Model development (from Ezell et al.) as a developer-evidence code | It can't be seen in a trace; only developers hold the evidence (training records, version comparisons). Model-level effects are looked for across traces instead | **Decided by you** |
 | Run the annotator through Claude Code on your subscription | Your preference; no API key needed | **Decided by you** |
 | AI pilot on the bulk sample only, never the 30 calibration traces | Keeps those traces untouched for human coders in paper 2 | Recommended |
 

@@ -46,13 +46,22 @@ CODING_FIELDS = [
 CODE_LINE = re.compile(r"^- `(L[1-4]\.[A-Z0-9?]+)`\s*(.+)$")
 
 
-def load_codebook_codes(version: str = CURRENT_CODEBOOK) -> dict[str, str]:
-    """Return {code: short description} parsed from codebook/<version>.md."""
+DEVELOPER_EVIDENCE_MARK = "[developer evidence]"
+
+
+def load_codebook_codes(version: str = CURRENT_CODEBOOK, trace_only: bool = False) -> dict[str, str]:
+    """Return {code: short description} parsed from codebook/<version>.md.
+
+    With trace_only=True, leave out codes the codebook marks "[developer evidence]"
+    (such as L4.4 Model development): they need evidence a coder working from a
+    trace does not have, so trace coders, including the AI annotator, are never
+    offered them (codebook v1, section 1.1).
+    """
     path = paths.CODEBOOK_DIR / f"{version}.md"
     codes = {}
     for line in path.read_text().splitlines():
         m = CODE_LINE.match(line.strip())
-        if m:
+        if m and not (trace_only and DEVELOPER_EVIDENCE_MARK in m.group(2)):
             codes[m.group(1)] = m.group(2).strip()
     if not codes:
         raise ValueError(f"No codes found in {path}")

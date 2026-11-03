@@ -32,7 +32,7 @@ This is an investigation in miniature: start at the unsafe act and work back up 
    - If it is an error: E1 slip in carrying out a sound intention, E2 wrong decision on adequate information, or E3 misread something.
 4. **L2, preconditions.** What made that act possible or likely? A tool or environment problem (L2.1), the agent's state such as lost instructions or a carried-over error (L2.2), or a breakdown between agents (L2.3).
 5. **L3, supervision.** Did the orchestrator or the task specification play a part? Nobody checked the output (L3.1), a task given to an agent that couldn't do it (L3.2), a visible problem left uncorrected (L3.3), an unclear or incomplete task (L3.4).
-6. **L4, design.** Did the way the system was built set this up? Roles, verifier or termination logic (L4.1), tools or budgets (L4.2), missing procedures (L4.3).
+6. **L4, design.** Did the way the system was built set this up? Roles, verifier or termination logic (L4.1), tools or budgets (L4.2), missing procedures (L4.3). L4.4 (model development) is not coded from traces: it needs developer records, so the Coding Desk doesn't offer it.
 7. **Only code a layer if the trace shows evidence for it.** Leaving a layer empty is a valid answer.
 8. **Finish the form:** deepest contributing layer, confidence, 1–4 evidence quotes, and notes. The notes matter most when the codebook didn't fit: write what you wanted to say and why no code said it. Then press **Mark as done**.
 

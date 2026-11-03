@@ -36,7 +36,7 @@ from matplotlib.colors import LinearSegmentedColormap  # noqa: E402
 from afacs import design, paths  # noqa: E402
 from afacs.agreement import RESULTS, any_violation, codes_of, has_layer, load_human, load_llm, usable  # noqa: E402
 from afacs.ingest import load_traces  # noqa: E402
-from afacs.schema import CURRENT_CODEBOOK, load_codebook_codes  # noqa: E402
+from afacs.schema import CURRENT_CODEBOOK, load_codebook_codes, split_codes  # noqa: E402
 
 LAYERS = ["L4", "L3", "L2", "L1"]
 LAYER_NAMES = {"L4": "L4 Organisational/design", "L3": "L3 Supervision", "L2": "L2 Preconditions", "L1": "L1 Unsafe acts"}
@@ -219,7 +219,7 @@ def mast_figures() -> None:
 def afacs_analysis(rows: dict[str, dict], name: str, weights: dict[str, float] | None = None) -> None:
     """RQ2-RQ4 tables and figures. With `weights` (bulk run), shares are weighted to the eligible pool."""
     traces = {t["uid"]: t for t in load_traces()}
-    codes = list(load_codebook_codes(CURRENT_CODEBOOK))  # codebook order: L4 first, L1 last
+    codes = list(load_codebook_codes(CURRENT_CODEBOOK, trace_only=True))  # codebook order: L4 first, L1 last
     # Weights only make sense if every coded trace came from the bulk sample.
     weights = weights or {}
     weighted = bool(rows) and all(u in weights for u in rows)
@@ -279,14 +279,23 @@ def afacs_analysis(rows: dict[str, dict], name: str, weights: dict[str, float] |
         out.append(f"| {label} | {len(us)} | {pct(*v)} | {pct(v2[0])} | {pct(vq[0])} | {pct(st[0])} | {pct(inf[0])} |")
     out += ["", "Evidence columns: share of failed traces whose violation rests on the agent's own words (stated) "
             "or only on the nature of the act (inferred); thin evidence is the V? column (codebook v1, section 2.1)."]
-    out += ["", "By model, within frameworks that ran several models (exploratory; small n):", "",
-            "| Framework | Model | n | Any violation code |", "|---|---|---|---|"]
+    # Model-level patterns. L4.4 (model development) is never coded from a trace
+    # (codebook v1, section 1.1). Instead we look across many traces: with the
+    # framework and benchmark held fixed, does a pattern follow the model?
+    out += ["", "### Model-level patterns (framework and benchmark held fixed)", "",
+            "AFACS does not code model development (L4.4) from traces. Here the framework and benchmark are held fixed "
+            "and only the model varies; a difference that follows the model suggests, but does not establish, a "
+            "model-level contribution. Exploratory: the groups are small.", "",
+            "| Framework (benchmark) | Model | n | Any violation code | Evidence stated | L1 errors only |", "|---|---|---|---|---|---|"]
     for fw in ("MetaGPT", "AG2"):
         by_model = defaultdict(list)
         for u in by_fw.get(fw, []):
             by_model[(traces[u]["model"], traces[u]["benchmark"])].append(u)
         for (model, bench), us in sorted(by_model.items()):
-            out.append(f"| {fw} ({bench}) | {model} | {len(us)} | {pct(*share(us, lambda u: any_violation(failed[u])))} |")
+            v = share(us, lambda u: any_violation(failed[u]))
+            st = share(us, lambda u: failed[u].get("violation_evidence") == "stated")
+            err = share(us, lambda u: bool(split_codes(failed[u].get("l1_codes"))) and not any_violation(failed[u]))
+            out.append(f"| {fw} ({bench}) | {model} | {len(us)} | {pct(*v)} | {pct(st[0])} | {pct(err[0])} |")
     fm11 = [u for u in failed if traces[u]["mast_labels"].get("1.1") == 1]
     if fm11:
         v = share(fm11, lambda u: any_violation(failed[u]))

@@ -18,6 +18,8 @@
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 \usepackage{booktabs}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \usepackage{caption}
 \usepackage{float}
 \usepackage{xcolor}
@@ -240,18 +242,19 @@ medium or low). Table~\ref{tab:codes} lists the layers and codes of codebook v1
 
 \begin{table}[tbp]
 \centering
-\caption{AFACS layers and codes (codebook v1). L4.4 is proposed, added from
-Ezell et al.'s system factors.}
+\caption{AFACS layers and codes (codebook v1). L4.4, added from Ezell et al.'s
+system factors, needs developer-side evidence and is not applied from traces
+(Section~\ref{sec:evidence}).}
 \label{tab:codes}
 \small
-\begin{tabular}{@{}p{3.3cm}lp{9.6cm}@{}}
+\begin{tabular}{@{}L{3.3cm}lL{9.6cm}@{}}
 \toprule
 Layer & Code & Description\\
 \midrule
 L4 Organisational / design & L4.1 & Architecture and role design: role split, missing verifier, no termination logic\\
  & L4.2 & Resource provisioning: tools, step or token budgets, context limits\\
  & L4.3 & Process: no standard procedure for verification or handover\\
- & L4.4 & Model development (proposed): training data, feedback or learning methods\\
+ & L4.4 & Model development (developer evidence only): training data, feedback or learning methods\\
 \midrule
 L3 Supervision / orchestration & L3.1 & Inadequate supervision: no check on subagent output\\
  & L3.2 & Planned inappropriate operation: task beyond an agent's capability or information\\
@@ -287,14 +290,15 @@ consistently.
 \begin{table}[tbp]
 \centering
 \caption{Condensed cross-walk from Ezell et al.'s factors to AFACS codes. The
-last three rows have no counterpart in Ezell et al.}
+last three rows have no counterpart in Ezell et al. $^{\dagger}$Needs
+developer evidence; not applied from traces (Section~\ref{sec:evidence}).}
 \label{tab:crosswalk}
 \small
-\begin{tabular}{@{}p{5.5cm}p{3.4cm}p{5.9cm}@{}}
+\begin{tabular}{@{}L{5.5cm}L{3.4cm}L{5.9cm}@{}}
 \toprule
 Ezell et al.\ factor & AFACS code & Note\\
 \midrule
-System: training data, feedback, learning methods & L4.4 (proposed) & Latent; feedback that rewards appearing successful is a typical condition behind violations\\
+System: training data, feedback, learning methods & L4.4$^{\dagger}$ & Latent; feedback that rewards appearing successful is a typical condition behind violations\\
 System: system prompt underspecified or encouraging undesirable behaviour & L3.4 & System prompt treated as part of the specification\\
 System: scaffolding not working as intended & L4.1 or L2.1 & Design flaw or run-time failure (open question)\\
 Contextual: information inaccessible, missing, poor or malicious & L2.1 & \\
@@ -316,10 +320,58 @@ The mapping also runs the other way. Ezell et al.\ name model development as a
 cause, which HFACS has no tier for; HFACS's nearest category, organisational
 resource management, covers ``human resource management (selection, training,
 staffing)''~\cite{wiegmann2001commercial}, and AFACS
-proposes L4.4 by analogy. They name security-related context (malicious inputs,
+adds L4.4 by analogy. They name security-related context (malicious inputs,
 vulnerable tools), which AFACS treats as sub-cases of L2.1. And their list of
 information requirements gives a standard against which real logs can be
 audited (RQ2).
+
+\subsection{Where the evidence for each layer comes from}
+\label{sec:evidence}
+
+A layered framework needs layered evidence. Each layer can be coded only from
+evidence an investigator in that position can hold (Table~\ref{tab:evsource}).
+Unsafe acts and preconditions are visible in the trace itself. Supervision
+failures need the trace together with the task specification and system prompt.
+Design and process factors need what is known of the system's design. Model
+development needs records that only the developer holds: training data and
+reward specifications, change logs, and comparisons between model versions.
+
+\begin{table}[tbp]
+\centering
+\caption{Evidence needed to code each AFACS layer, and the corresponding
+information category in Ezell et al.~\cite{ezell2025incident}.}
+\label{tab:evsource}
+\small
+\begin{tabular}{@{}L{3.4cm}L{6.2cm}L{4.6cm}@{}}
+\toprule
+Layer & Evidence needed & Ezell et al.\ category\\
+\midrule
+L1 unsafe acts, L2 preconditions & The trace: messages, actions, tool outputs & Activity logs; tool information\\
+L3 supervision & The trace, the task specification and the system prompt & Activity logs (system and user prompts)\\
+L4.1--L4.3 design, process & The trace and what is known of the system's design & System documentation; tool information\\
+L4.4 model development & Developer records: training and reward specifications, change logs, version or checkpoint comparisons & System documentation and change logs; system artefacts; model access\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For this reason AFACS does not apply L4.4 from traces, and the annotator in this
+study is never offered it. Developers can test a model-development
+contribution more directly: by running the same scenario on model versions or
+checkpoints from before and after a training stage, by checking whether the
+training signal would have rewarded the behaviour (an exploitable grader that
+checks only whether tests pass rewards editing the tests~\cite{baker2025monitoring}),
+and by running the same targeted behavioural tests on each version. Even then
+they can usually show that a training choice made a behaviour more likely, not
+that it caused one particular failure. From traces alone, a model-level
+contribution can only be looked for across many traces, by holding the framework
+and benchmark fixed and asking whether a pattern follows the model.
+
+HFACS met the same limit in aviation. When NTSB records were coded into HFACS,
+supervisory and organisational factors were scarce and ``organizational climate''
+did not appear at all; the authors suggested that such factors may contribute
+``yet they are rarely identified using existing accident investigation
+processes''~\cite{wiegmann2001commercial}. Organisational causes are established
+from company records, not from the flight recorder.
 
 \subsection{Violations}
 \label{sec:violations}
@@ -344,7 +396,8 @@ requirement and did otherwise) is not a capability problem; it points to
 incentives, monitoring and what training rewards. In HFACS, routine violations
 often have organisational roots, such as pressure or tolerated shortcuts; in an
 AI agent the corresponding latent condition is often training feedback that
-rewarded the appearance of success, which AFACS records at L4.4.
+rewarded the appearance of success, which AFACS places at L4.4 and which can
+be evidenced only from the developer's side (Section~\ref{sec:evidence}).
 
 Every coding records the basis for any violation (Table~\ref{tab:evidence}), so
 that readers can see how strong the evidence is and apply their own view on
@@ -359,7 +412,7 @@ reasoning is therefore no proof of an honest error, which is why the
 \caption{Evidence grades for violations (codebook v1, field \code{violation\_evidence}).}
 \label{tab:evidence}
 \small
-\begin{tabular}{@{}lp{9.8cm}l@{}}
+\begin{tabular}{@{}lL{9.8cm}l@{}}
 \toprule
 Grade & Use when & Goes with\\
 \midrule
@@ -532,8 +585,13 @@ HyperAgent 13, Magentic-One 63, MetaGPT 64, OpenManus 23) and across models with
 each framework. Each trace carries a weight equal to the number of eligible traces
 it represents, so that overall shares describe the eligible pool rather than the
 balanced sample; they are reported with Wilson 95\% intervals on the Kish
-effective sample size $n_{\mathrm{eff}}=(\sum w)^2/\sum w^2$. Model comparisons
-are limited to MetaGPT and AG2 and are exploratory.
+effective sample size $n_{\mathrm{eff}}=(\sum w)^2/\sum w^2$. The annotator is
+offered every trace-codable code but not L4.4 (Section~\ref{sec:evidence}).
+Instead, model-level patterns are examined across traces with the framework and
+benchmark held fixed: GPT-4o against Claude in MetaGPT on ProgramDev, Qwen against
+CodeLlama in MetaGPT on ProgramDev-v2, and Claude against GPT-4o in AG2 on
+GSM-Plus. A difference that follows the model suggests, but does not establish, a
+model-level contribution; the groups are small and the comparisons exploratory.
 
 \paragraph{Consistency measures.} Consistency is measured between the two models
 and between two runs of the primary model on the same traces. Agreement uses
@@ -581,7 +639,8 @@ Every factor in Ezell et al.'s taxonomy has a place in AFACS
 extension adds three things with no counterpart in their framework: a
 supervision tier (L3.1--L3.3), coordination between agents (L2.3), and graded
 violations. In the other direction, their framework contributes a
-model-development factor, which AFACS adopts as the proposed L4.4, and named
+model-development factor, which AFACS adopts as L4.4 with its own evidence
+requirement (Section~\ref{sec:evidence}), and named
 security-related contexts. Whether the added categories matter in practice is an
 empirical question, taken up in RQ3.
 
@@ -615,7 +674,9 @@ coordination are well observed, because agent-to-agent messages are logged.
 Supervision failures are visible as behaviour, for instance an orchestrator that
 lets an error stand, but without system prompts or role definitions it is often
 impossible to tell whether the orchestrator was ever instructed to check. Model
-development (L4.4) cannot be evidenced from these logs at all. These findings
+development (L4.4) cannot be evidenced from these logs at all, which is why
+AFACS reserves it for investigators with developer records
+(Section~\ref{sec:evidence}). These findings
 are an empirical instance of the reconstruction difficulties Ezell et al.\ list as
 an open challenge.
 
@@ -695,7 +756,7 @@ that was ignored, or, as in the empty-task traces, no task at all.
 against the AI pilot.}
 \label{tab:expect}
 \small
-\begin{tabular}{@{}p{5.8cm}p{9.4cm}@{}}
+\begin{tabular}{@{}L{5.8cm}L{9.4cm}@{}}
 \toprule
 MAST mode & Expected AFACS location\\
 \midrule

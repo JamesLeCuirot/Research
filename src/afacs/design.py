@@ -68,6 +68,10 @@ MAX_APPROX_TOKENS = 30_000
 # Random seed for every sampling step, so the samples are reproducible.
 SEED = 20261103
 
+# Traces the coder has already seen together with their MAST labels (they were
+# shown as examples while planning). Coding them would not be blind.
+SEEN_BY_CODER = {"MetaGPT_ProgramDev2_GPT4o__099", "Magentic_One_GPT4o__065"}
+
 # Calibration set: hand-coded by the domain expert.
 # Equal numbers per framework (not proportional), so small frameworks are not
 # swamped by AG2 and MetaGPT.

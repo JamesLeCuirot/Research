@@ -273,7 +273,7 @@ def main():
     agr = agreement_table(long, model_tids, COMPARISONS, "48 model transcripts")
     run1 = {"Inter-grader (run 1)": COMPARISONS["Inter-grader (run 1)"]}
     agr_ctrl = agreement_table(long, model_tids + ctrl_tids, run1, "48 model + 6 controls") if ctrl_tids else pd.DataFrame()
-    pd.concat([agr, agr_ctrl]).to_csv(RESULTS / "agreement_grades.csv", index=False, float_format="%.3f")
+    pd.concat([agr, agr_ctrl]).to_csv(RESULTS / "agreement_grades.csv", index=False, float_format="%.4f")
 
     ia = indicator_agreement(ind, model_tids, COMPARISONS)
     ia.to_csv(RESULTS / "agreement_indicators.csv", index=False, float_format="%.3f")

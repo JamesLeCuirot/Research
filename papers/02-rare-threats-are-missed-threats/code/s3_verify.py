@@ -32,7 +32,7 @@ import numpy as np
 from common import (DATA, REVEALING_WEAK, execute_candidates, normalise, read_jsonl, revealing_names,
                     safety_problems, sha256_text)
 
-DIFF_THRESHOLD = 0.6  # difflib ratio on normalised code; fixed before any items were generated
+DIFF_THRESHOLD = 0.6  # difflib ratio on normalised code; fixed in code before the verifier was first run on any generated item
 
 
 def changed_lines(a: str, b: str) -> int:

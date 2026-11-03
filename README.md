@@ -2,7 +2,7 @@
 
 **James Le Cuirot** · Senior First Officer and Flight Safety Officer · MSc Human Factors in Aviation
 
-> **Status (November 2026): work in progress.** The pipeline, codebook v0 and data audit are complete. Expert calibration coding is under way; the agreement results (RQ1) and findings (RQ2–RQ4) will be added when coding and annotation are complete. Sections marked *[pending]* are placeholders. A plain-English guide to the whole project is in [`docs/GUIDE.md`](docs/GUIDE.md).
+> **Status (November 2026): work in progress.** The pipeline, the MAST data audit, codebook v1 (draft) and the cross-walk to Ezell et al. (2025) are complete; the AI pilot results are pending. The paper draft is in [`paper/afacs.pdf`](paper/afacs.pdf). Sections marked *[pending]* are placeholders. A plain-English guide to the whole project is in [`docs/GUIDE.md`](docs/GUIDE.md).
 
 *AFACS is a working name (Agent Failure Analysis and Classification System).*
 
@@ -10,7 +10,7 @@
 
 ## Summary
 
-Existing taxonomies of LLM-agent failures give each failure one flat label, e.g. "Disobey Task Specification". Aviation safety science learned decades ago that flat labels hide two things: the **latent conditions** beneath the visible unsafe act (Reason's Swiss-cheese model; HFACS), and the difference between an **error** and a **violation**. For AI systems the second distinction roughly separates *capability* failures from *alignment* failures. This project adapts the Human Factors Analysis and Classification System (HFACS) into a layered framework for multi-agent LLM failures, re-codes a sample of the public MAST traces with it, measures whether it can be applied reliably by a human expert and by an LLM annotator, and asks what it reveals that flat labels miss.
+Existing taxonomies of LLM-agent failures give each failure one flat label, e.g. "Disobey Task Specification". Aviation safety science learned decades ago that flat labels hide two things: the **latent conditions** beneath the visible unsafe act (Reason's Swiss-cheese model; HFACS), and the difference between an **error** and a **violation**. For AI systems the second distinction roughly separates *capability* failures from *alignment* failures. This project builds on the AI-agent incident framework of Ezell, Roberts-Gaal & Chan (2025), which was written for single agents and not tested on data. It extends that framework to multi-agent systems using the structure of the Human Factors Analysis and Classification System (HFACS): a supervision/orchestration tier, coordination between agents, and violations with graded evidence. It then asks four questions of the public MAST traces: how the two frameworks map onto each other, whether real logs contain the information Ezell et al. say investigators need, whether the extended framework can be applied consistently, and how MAST's flat labels map onto it. Validation against human coders is planned as a second study.
 
 ## 1. Motivation
 
@@ -51,19 +51,18 @@ After quality exclusions, and excluding ChatDev (traces of 60k–500k tokens are
 
 ## 4. Method
 
-1. **Ingest and render.** Each trace is split into numbered steps by a framework-specific parser that keeps agent text verbatim, and rendered as markdown. The human coder and the LLM annotator read identical renderings, with MAST labels hidden.
-2. **Calibration set.** 30 traces, 5 from each of 6 frameworks; in 4 frameworks one of the five is a MAST-clean control in place of a failed trace (26 failed, 4 controls). They are shuffled and coded blind by the author, a flight safety officer with an MSc in Human Factors: the coder reads the raw trace, without MAST's labels and with the benchmark's answers and pass/fail verdicts hidden. A dev/test split (18/12) was fixed before coding began, and a SHA-256 fingerprint of the hidden key is committed.
-3. **Codebook revision.** Codebook v0 is revised to v1 from the calibration notes.
-4. **LLM annotator.** Claude (`claude-sonnet-5-5`; `claude-opus-5-5` as a second annotator) receives the codebook and returns structured JSON restricted to codebook codes, with step-referenced evidence. The prompt is tuned on dev traces only, then frozen.
-5. **Agreement (RQ1).** Cohen's κ between human and LLM on the 12 held-out test traces, per layer, per code (averaged, never pooled), for error vs violation, and for deepest layer, with bootstrap 95% CIs; plus LLM–LLM agreement.
-6. **Bulk annotation and analysis (RQ2–RQ4).** The frozen annotator codes a sample of 250 failed traces, balanced across frameworks and models; overall figures are weighted back to the eligible pool.
+1. **Ingest and render.** Each trace is split into numbered steps by a framework-specific parser that keeps agent text verbatim, and rendered as markdown with MAST labels and benchmark answers hidden.
+2. **Cross-walk (RQ1).** Ezell et al.'s Appendix A taxonomy is mapped item by item onto AFACS ([`docs/crosswalk_ezell.md`](docs/crosswalk_ezell.md)); the mapping motivates codebook v1 ([`codebook/v1.md`](codebook/v1.md)).
+3. **Information audit (RQ2).** MAST's logs are checked, framework by framework, against the 18 information items of Ezell et al.'s Table 1 ([`docs/information_audit.md`](docs/information_audit.md)).
+4. **AI pilot (RQ3, RQ4).** Claude (`claude-sonnet-5-5`, with `claude-opus-5-5` as a second annotator and a re-run for test-retest) codes a sample of 250 failed traces, balanced across frameworks and models, through Claude Code's headless mode. The reply is structured JSON restricted to codebook codes, with step-referenced evidence and an evidence grade for any violation. Agreement is Cohen's κ per layer and per code (averaged, never pooled), with bootstrap 95% CIs, set against MAST's judge agreeing with itself at κ 0.43. This measures consistency, not correctness. Overall figures are weighted back to the eligible pool.
+5. **Planned validation (second study).** A frozen, pre-registered calibration set of 30 traces (26 failed, 4 blind controls; dev/test 18/12; SHA-256 of the hidden key committed) will be coded by recruited human coders using the Coding Desk. The AI pilot never touches these traces.
 
 ## 5. Results *[pending]*
 
-- **RQ1, reliability:** *[pending: human–LLM κ on the test set; LLM–LLM κ]*
-- **RQ2, latent causes:** *[pending: share of failed traces with an L2–L4 contributor]*
-- **RQ3, errors vs violations:** *[pending: violation rate by framework and model; how FM-1.1 splits]*
-- **RQ4, the cross-walk:** *[pending: MAST × AFACS heatmap]*
+- **RQ1, cross-walk:** see [`docs/crosswalk_ezell.md`](docs/crosswalk_ezell.md).
+- **RQ2, information adequacy:** see [`docs/information_audit.md`](docs/information_audit.md).
+- **RQ3, applicability:** *[pending: model–model and run–rerun κ; prevalence of supervision, coordination and graded violations]*
+- **RQ4, MAST labels:** *[pending: MAST × AFACS heatmap]*
 
 ## 6. Case studies *[pending]*
 
@@ -72,8 +71,8 @@ After quality exclusions, and excluding ChatDev (traces of 60k–500k tokens are
 ## 7. Limitations
 
 - **Behavioural, not intentional.** "Violation" describes what the trace shows, not what a model "wanted".
-- **One expert coder.** Human reliability is not measured between humans; the human–LLM comparison stands in for it. HFACS reliability is itself contested in the human-factors literature (Olsen & Shorrock, 2010; Cohen et al., 2015).
-- **Small test set.** Twelve held-out traces give wide confidence intervals; they are reported, not hidden.
+- **No human validation yet.** The AI pilot shows whether the framework is applied consistently, not whether the codes are right; that needs the planned human study. HFACS reliability is itself contested in the human-factors literature (Olsen & Shorrock, 2010; Cohen et al., 2015).
+- **Small samples per framework.** Some frameworks contribute only 13–23 traces to the pilot; their intervals are wide, and they are reported, not hidden.
 - **Noisy reference labels.** MAST's labels come from an LLM judge with moderate test-retest agreement and no ground-truth task outcome.
 - **Coverage.** ChatDev and very long traces are excluded; most frameworks ran a single model, so model comparisons are exploratory; "Claude" in MAST carries no version number.
 - **Stochastic annotator.** Current Claude models cannot be made fully deterministic; LLM–LLM agreement measures this.

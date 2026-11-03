@@ -1,12 +1,23 @@
 # AFACS: a plain-English guide to what we are doing
 
-*For James. Read this before coding, and again before any interview. Every part of the project is explained here without assuming a machine-learning background. Where a decision was made on your behalf, it is listed in section 5 so you can overrule it.*
+*For James. Read this before any interview. Every part of the project is explained here without assuming a machine-learning background. Where a decision was made on your behalf, it is listed in section 5 so you can overrule it.*
 
 ---
 
 ## 1. The project in one paragraph
 
 AI "agents" are language models (like Claude or GPT-4o) that act in steps: they plan, call tools, write code, and talk to other agents. When several agents work together it is called a *multi-agent system*. These systems fail a lot. The best-known study of why (MAST, Cemri et al. 2025) collected 1,642 recordings of such systems running (*traces*) and had another AI label each failure with one of 14 flat categories, e.g. "1.1 Disobey Task Specification". Aviation learned long ago that flat labels hide two things: **layered causation** (Reason's Swiss cheese, HFACS: the visible unsafe act sits on top of preconditions, supervision and organisational factors), and the difference between an **error** (an unintended slip or mistake) and a **violation** (a departure from a known requirement). For AI, that second distinction is roughly *capability problem vs alignment problem*, which is what AI-safety people care most about. We adapt HFACS to agent traces (AFACS), re-code a sample of MAST traces with it, measure whether it can be applied reliably, and show what it reveals that the flat labels miss.
+
+### The direction, as decided on 3 November
+
+The first paper **builds on Ezell, Roberts-Gaal & Chan (2025), "Incident Analysis for AI Agents"**, rather than competing with it. Their framework has three categories of cause (system factors, contextual factors, cognitive errors) and was written for single agents, without data. AFACS extends it to multi-agent systems with the HFACS structure, and answers several of the open challenges in their Appendix B. The four research questions are now:
+
+1. **Cross-walk.** How do Ezell et al.'s categories map onto HFACS, and what does a multi-agent setting add? (A supervision/orchestration tier, coordination between agents, and violations with graded evidence.) Mapping: `docs/crosswalk_ezell.md`.
+2. **Information adequacy.** Do real multi-agent logs contain the 18 kinds of information Ezell et al. say investigators need? (`docs/information_audit.md`; no coding needed.)
+3. **Applicability.** Can the extended framework be applied consistently? Claude codes the 250-trace bulk sample twice (two models, and a re-run), and we measure agreement, set against MAST's own judge agreeing with itself at κ 0.43. This shows **consistency, not correctness**.
+4. **Flat labels.** How do MAST's 14 labels map onto the extended framework?
+
+**Human validation becomes paper 2.** Recruited coders who can read code will use the Coding Desk and the frozen 30-trace calibration set, which the AI pilot never touches. Your role in paper 1 is the framework itself: the cross-walk, codebook v1, and expert review of a few AI codings as case studies.
 
 ## 2. The pipeline, stage by stage
 
@@ -94,7 +105,7 @@ Shares come with **Wilson 95% intervals**, a standard and well-behaved interval 
 
 ## 3. The codebook
 
-`codebook/v0.md` is your draft, unchanged, plus a clearly marked section of *proposed* operational notes and a list of open questions for v1. The codebook file is the single source of truth: the code list the software accepts is read straight from it. When you write `codebook/v1.md`, change `CURRENT_CODEBOOK` in `src/afacs/schema.py` to `"v1"`.
+`codebook/v0.md` is your original draft. `codebook/v1.md` is the current draft: your decisions so far (keep "violation", defined behaviourally; grade the evidence for every violation), a proposed L4.4 Model development code from Ezell et al., the Ezell category for each layer, the *proposed* operational notes carried over from v0, and the open questions still to decide. The codebook file is the single source of truth: the code list the software accepts is read straight from it (`CURRENT_CODEBOOK` in `src/afacs/schema.py` is now `"v1"`).
 
 The proposed notes add **no new categories**. They add one field, `failure_observed` (yes / no / unclear), needed for the controls, and they spell out the violation rule as three questions in order. Accept, edit or delete them.
 
@@ -130,28 +141,34 @@ All study-design numbers live in `src/afacs/design.py` with their reasons.
 | Annotator effort "high" | Quality over cost; cost is small anyway | Easy |
 | MIT licence for the code | Standard for a public portfolio repo | Your call |
 | Don't commit the traces | Benchmark maintainers ask that questions (e.g. GAIA) not be reposted where web crawlers can find them | Recommended |
+| Build paper 1 on Ezell et al. (2025); human validation in paper 2 | Positions AFACS as an extension; avoids a reference coding built on misread technical traces | **Decided by you** |
+| Keep the term "violation", defined behaviourally | Continuity with HFACS; no claim about intent | **Decided by you** |
+| Grade the evidence for every violation (stated / inferred / thin) | Makes the most contested judgement transparent | **Decided by you** |
+| Add L4.4 Model development (from Ezell et al.) | Their system factors include training and feedback, which v0 had no code for | **Proposed: your call** (codebook v1, open question 1) |
+| Run the annotator through Claude Code on your subscription | Your preference; no API key needed | **Decided by you** |
+| AI pilot on the bulk sample only, never the 30 calibration traces | Keeps those traces untouched for human coders in paper 2 | Recommended |
 
 ## 6. What you do next
 
-1. **Read the codebook** (`codebook/v0.md`) and decide on the proposed notes (section 5 there). You can do this as you code.
-2. **Hand-code the 30 calibration traces** in the Coding Desk (https://claude.ai/artifact/HtYBLkAJJjvpzk47woaYxp): read each trace, fill in the form, and it saves automatically. Instructions, including how to think through a trace layer by layer: `docs/CODING_GUIDE.md`.
-   - **Time:** the set is about 130,000 words. Realistically **12–15 hours**. AG2 and MetaGPT traces are short (5–15 minutes); AppWorld, HyperAgent, Magentic and OpenManus are long (30–60 minutes).
-   - **If time runs short:** code in order C01, C02, ... and stop where you must. The order is random, so a partial set stays balanced.
-   - **Keep notes** on where the codebook felt wrong. Those notes become codebook v1, and they are the most valuable part of your contribution.
-3. **Write `codebook/v1.md`** from your notes. I can help turn notes into text, but the decisions are yours. Then review all 30 codings against v1 (pass 2) before any AI coding is run on them.
-4. **Add your API key** to `.env`, then the annotator gets tuned on the dev traces and tested once on the test traces.
+1. **Review codebook v1** (`codebook/v1.md`) and the cross-walk (`docs/crosswalk_ezell.md`). Decide on L4.4, the "[proposed]" operational notes and the open questions. Correct the cross-walk wherever your human-factors judgement differs from my draft.
+2. **Approve the AI pilot.** Once codebook v1 is settled, Claude codes the 250 bulk traces through your subscription (it may take several sessions because of usage limits).
+3. **Expert case studies.** Review a handful of the AI's codings with the trace beside you, and say where you agree or disagree and why. These become the case studies.
+4. **Optional:** code the 10 short AG2 and MetaGPT calibration traces yourself (about 2 hours) as a small human anchor. Not required for paper 1.
+5. **Read the paper draft** (`paper/afacs.pdf`) as it fills in.
 
 ## 7. Questions you should be ready for
 
-- **"Hasn't this been done?"** Not as far as a careful search found (`docs/related_work.md`). The closest is Ezell, Roberts-Gaal & Chan (AIES 2025), who cite HFACS and propose a three-part framework for AI-agent incidents, but they code no traces, measure no agreement, have no supervision tier and no violations. The closest *method* is Wiegmann & Shappell (2001): an aviation psychologist and a commercially rated pilot re-coded 319 NTSB causal factors into HFACS and got κ = 0.71. AFACS does the same kind of study on AI-agent traces, reading the raw traces rather than investigators' conclusions.
+- **"Hasn't this been done?"** Not as far as a careful search found (`docs/related_work.md`). The closest is Ezell, Roberts-Gaal & Chan (AIES 2025), who cite HFACS and propose a three-part framework for AI-agent incidents; this paper builds directly on theirs. They code no traces, measure no agreement, and their framework is for single agents with no supervision tier, no coordination and no violations. AFACS extends it on exactly those points and tests it on real traces. The closest *method* is Wiegmann & Shappell (2001): an aviation psychologist and a commercially rated pilot re-coded 319 NTSB causal factors into HFACS and got κ = 0.71. AFACS does the same kind of study on AI-agent traces, reading the raw traces rather than investigators' conclusions.
 - **"Isn't HFACS itself unreliable?"** It is contested: Olsen & Shorrock (2010) found low agreement for a modified version used in air traffic control; a review (Cohen et al., 2015) found reliability is better with training and when the framework stays close to the original. That is why AFACS keeps the original four tiers and reports agreement at layer level, not only for fine-grained codes.
-- **"Isn't using an LLM to judge an LLM circular?"** That is exactly why the human-vs-LLM agreement test exists. The LLM is only trusted for the bulk run *if* it agrees with the human expert on held-out traces, and we report that agreement whatever it is. We also show MAST's own LLM judge is only moderately consistent with itself.
+- **"Isn't using an LLM to judge an LLM circular?"** For correctness, yes, which is why paper 1 claims only consistency: whether the framework can be applied the same way twice, compared with MAST's own judge (κ 0.43 against itself). Whether the codes are *right* needs human coders, and that is paper 2, with a frozen, pre-registered set of traces the AI never touched.
+- **"Why didn't you hand-code the traces yourself?"** Coding needs two skills: human-factors judgement, which I have, and reading technical agent logs (code patches, API calls), which is a different expertise. A reference coding built on misread traces would undermine the agreement test, so I designed the framework and the validation protocol, and the validation will use coders who can read the code, as Wiegmann and Shappell paired a psychologist with a pilot.
+- **"Do AI agents really decide to break rules?"** We take no position on intent. Agents do weigh options, and their written reasoning sometimes names a rule and then departs from it (Baker et al., 2025). AFACS records that behaviour and grades its evidence (stated, inferred, thin), because "could not" and "registered the rule and did otherwise" need different fixes.
 - **"Doesn't 'violation' imply the model *intended* to break a rule?"** No. The violation rule is behavioural: the requirement was in the agent's context, the trace shows the agent registered it (or the deviation can't plausibly be accidental), and it proceeded otherwise. We make no claim about intent or mental states. HFACS itself works from observable behaviour.
 - **"Why κ and not percentage agreement?"** Percentage agreement rewards agreeing by chance: if both coders mark almost everything "no", they agree a lot without skill. κ removes chance agreement.
-- **"Your test set is only 12 traces."** Yes, so the confidence intervals are wide and we report them. The design is a first calibration of a new framework, not a definitive benchmark. The fixed split prevents overfitting the prompt to the test traces.
+- **"How will the human validation work?"** In paper 2: 30 traces fixed in advance (26 failed, 4 hidden controls), a held-out set of 12 chosen before any coding, with a fingerprint of the hidden key committed so nobody can quietly change it.
 - **"Why not use TRAIL?"** Its licence prohibits redistributing it. We cite it.
 - **"What's the unit of analysis?"** One trace = one coding, multi-label across layers.
-- **"What does AFACS show that MAST doesn't?"** That's RQ2–RQ4: the share of failures with latent causes above the unsafe act; how often failures are violations rather than errors; and which MAST labels merge different causes (e.g. 1.1 contains both, and sometimes neither, as in the empty-task traces).
+- **"What does AFACS show that MAST doesn't?"** Where failures sit in the layers, how often supervision and coordination are involved, how often failures are violations rather than errors (and on what evidence), and which MAST labels merge different causes (e.g. 1.1 can hold errors, violations, and even cases with no task at all).
 - **"How did you use AI tools to build this?"** Claude Code wrote the pipeline under my direction; the framework, the codebook and the expert coding are mine; every design decision is written down in `design.py` and this guide.
 
 ## 8. Map of the repository
@@ -163,7 +180,10 @@ All study-design numbers live in `src/afacs/design.py` with their reasons.
 | `docs/CODING_GUIDE.md` | How to hand-code the calibration traces |
 | `docs/data_audit.md` | Generated report on MAST data quality |
 | `docs/related_work.md`, `docs/references.bib` | Literature review and references |
-| `codebook/v0.md` | The AFACS codebook (versioned) |
+| `codebook/v0.md`, `codebook/v1.md` | The AFACS codebook (versioned; v1 is current) |
+| `docs/crosswalk_ezell.md` | How Ezell et al.'s framework maps onto AFACS |
+| `docs/information_audit.md` | What MAST's logs contain against Ezell et al.'s information needs |
+| `paper/` | The paper (LaTeX source and PDF) |
 | `prompts/annotator_v0.md` | The instructions given to Claude (versioned) |
 | `annotations/human/calibration_sheet.csv` | Your coding sheet |
 | `annotations/llm/` | Claude's codings, one file per run |

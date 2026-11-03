@@ -1,6 +1,6 @@
 # How to hand-code the calibration traces
 
-*Practical instructions for James. The codebook itself is `codebook/v0.md`.*
+*Practical instructions for human coders of the calibration traces. Since 3 November this is planned for the second study (human validation), with recruited coders who can read code; the first paper uses an AI pilot instead. The current codebook is `codebook/v1.md`; the Coding Desk now uses it, including the evidence grade for violations.*
 
 ## The short version
 
@@ -41,7 +41,7 @@ If you can't decide between two codes, pick one, set confidence to `medium` or `
 ## Two passes
 
 1. **Pass 1:** code all 30 with codebook v0, writing notes as you go.
-2. **Write codebook v1** from your notes: decide on the "[proposed]" notes and the open questions in `codebook/v0.md`. Claude can turn your notes into codebook text, but the decisions are yours.
+2. **Write codebook v1** from your notes: decide on the "[proposed]" notes and the open questions in the current codebook. Claude can turn your notes into codebook text, but the decisions are yours.
 3. **Pass 2:** go through all 30 codings once more against v1 and change whatever v1 changes. This is quicker than pass 1: you are checking, not re-reading everything. Do it **before** seeing any AI codings, so the AI can't influence the reference.
 
 The reviewed set becomes the reference the AI is measured against. The paper reports how many codings the review changed, so readers can see how much the codebook moved.

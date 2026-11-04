@@ -111,6 +111,7 @@ Format conversion of v0.3 to the house style in `papers/STYLE.md`; no result, nu
 - Is the drop in hits about the *number* of backdoors in a context or their *share*? All batches held 40 items, so the two were not separated, and pop-out and crowding cannot be told apart.
 - Does the effect carry over to agent transcripts, where several suspicious actions may share one monitor call?
 - Would monitors that run at higher effort, in `--bare` mode or through the raw API behave differently?
+- **For v1.1:** the Limitations paragraph on the harness context says the constant ~1,800-token scaffold "cannot explain differences between conditions". It was about three-quarters of a single-item call's input and a quarter of a batch call's, so that holds only for conditions with the same presentation; it may bear on E4 (batch versus single-item). The AAAI workshop version already says this (found by its independent verification, 4 Nov 2026).
 
 ## How to develop it
 

@@ -336,6 +336,7 @@ CLAIMS = [
  ('Discussion', "\\citep[Experiment~7]{wolfe2007}", [L(SP, r'\\cite\[Experiment 7\]\{wolfe2007\}')]),
  ('Discussion', "which is 2\\% of problems in \\citet{greenblatt2024} and 0.1\\% of actions", [L(SP, r'which is 2% of problems in Greenblatt et al\. \\cite\{greenblatt2024\} and 0\.1% of actions')]),
  ('Discussion', "about 100 TIP events per screener", [L(SP, r'about 100 TIP events per screener')]),
+ ('Discussion', "a reliability of at least 0.7 when the mean hit rate was below 0.9", [L(SP, r'minimum reliability value of 0\.7 when TIP was challenging enough \(mean hit rate below 0\.9\)')]),
  # ---- Limitations and conclusion
  ('Limitations', "Each call carried about 1,800 tokens", [L(RM, r'constant block of about 1,800 tokens')]),
  ('Limitations', "P50 had 8 batches per monitor", [L(PR, r'^\| P50 \| 20 \| 8 \| 160 \| 160 \|')]),

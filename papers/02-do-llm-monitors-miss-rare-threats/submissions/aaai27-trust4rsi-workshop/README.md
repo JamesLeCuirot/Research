@@ -45,7 +45,7 @@ How the kit's rules were applied:
 
 | File | Contents |
 |---|---|
-| `paper.pdf` | **The file to upload.** 13 pages: main content on pages 1–8, references on pages 8–9, Technical Appendix on pages 9–13. |
+| `paper.pdf` | **The file to upload.** 13 pages: main content on pages 1–8, references from the top of page 9, Technical Appendix on pages 9–13. |
 | `paper.tex`, `references.bib` | Source (single .tex file). `references.bib` holds the 27 cited entries, copied verbatim from the preprint's `references.bib`. |
 | `aaai2027.sty`, `aaai2027.bst` | From the official AAAI-27 author kit, unchanged. |
 | `figures/` | The preprint's vector figures (`figures/report/*.pdf`), same data and shared colours (Haiku orange #E69F00, Sonnet blue #0072B2), with their text converted to outlines. |
@@ -55,7 +55,7 @@ How the kit's rules were applied:
 
 Build: `sh check/build.sh`. TeX Live 2023 (Debian) needed these packages beyond the ones in the brief: `texlive-fonts-extra` (newtx, loaded by the kit), `texlive-plain-generic` (binhex.tex, needed by newtx) and `tex-gyre` (TS1 Termes metrics). The figure fonts were outlined once with Ghostscript 10.02.1: `gs -q -o out.pdf -dNoOutputFonts -sDEVICE=pdfwrite -dCompatibilityLevel=1.5 in.pdf`; a 200 dpi render of every figure before and after showed the plotted marks and colours unchanged (only glyph anti-aliasing differs).
 
-Build result: no errors, no undefined references or citations, no overfull boxes, no BibTeX warnings (four underfull lines remain, which the kit does not forbid). `pdfinfo`: 13 pages, US Letter, PDF 1.5, no Title, Author, Creator, Producer or dates. The main content (title to the AI-assistance disclosure) ends on page 8, with the References heading about four-fifths of the way down page 8's right column.
+Build result: no errors, no undefined references or citations, no overfull boxes, no BibTeX warnings (four underfull lines remain, which the kit does not forbid). `pdfinfo`: 13 pages, US Letter, PDF 1.5, no Title, Author, Creator, Producer or dates. The main content (title to the AI-assistance disclosure) ends at the foot of page 8's right column (after the independent-verification fixes in Section 8), and the References heading starts page 9. There is no spare room: any addition to the main text must be balanced by a cut.
 
 ## 3. What was cut from the full paper, and why
 
@@ -346,8 +346,29 @@ If accepted: the camera-ready version can carry the author block, the full Ackno
 
 ## 7. Open questions about the call's rules
 
-1. **AI-generated text (important).** The workshop page states no policy. The AAAI-27 main-conference policy (https://aaai.org/conference/aaai/aaai-27/policies-aaai-27-authors/) says: "Papers that include text generated from a large-scale language model (LLM) such as ChatGPT are prohibited unless the produced text is presented as a part of the paper's experimental analysis. Note that this policy does not prohibit authors from using LLMs for editing or polishing author-written text." The paper was drafted, and this version condensed, with AI assistance, and says so. If the workshop follows the AAAI-27 policy, the text would need rewriting in your own words first. Ask the organisers (contact address on the call page) before submitting.
+1. **AI-generated text (important).** The workshop page states no policy, and AAAI's own pages conflict (checked 4 Nov 2026): the AAAI-27 main-track call says authors "may judiciously use generative AI tools, such as large language models", and AAAI's publication policy (https://aaai.org/aaai-publications/aaai-publication-policies-guidelines/) allows AI use "only ... if its role is properly documented in the manuscript", which this paper does; the AAAI-27 author-policy page says its rules apply to "all co-located conference proceedings (AAAI, IAAI, and EAAI)", and the workshop is non-archival and organiser-run. That author-policy page (https://aaai.org/conference/aaai/aaai-27/policies-aaai-27-authors/) says: "Papers that include text generated from a large-scale language model (LLM) such as ChatGPT are prohibited unless the produced text is presented as a part of the paper's experimental analysis. Note that this policy does not prohibit authors from using LLMs for editing or polishing author-written text." The paper was drafted, and this version condensed, with AI assistance, and says so. If the workshop follows the AAAI-27 policy, the text would need rewriting in your own words first. Ask the organisers (trust4rsi.agent@gmail.com; primary contact Haolun Wu) before submitting.
 2. **Appendix.** "References and appendices are usually not included in the page limit." The main content fits in 8 pages regardless; Section 3 says how to drop the appendix if needed.
 3. **Attendance.** The call does not say whether presentation must be in person (the AAAI-27 main conference requires it).
 4. **Reproducibility checklist.** Required for the AAAI-27 main track, not mentioned by the workshop; not included.
 5. **Kit version line.** `aaai2027.sty` is dated "2027/10/21" in its own header while its zip entries are dated 21 Oct 2026; it is the file AAAI links as the AAAI-27 author kit.
+
+## 8. Independent verification and fixes (4 November 2026)
+
+A second agent that had not prepared this version checked it from the primary files: its own number extraction (770 of 927 numeric tokens checked automatically against `results/`, with hit and false-alarm rates, Wilson CIs, d′, c, AUROC, mean scores and score bands recomputed from the 30,880 rows of `judgments.csv`; the rest checked against the preprint), the timing claims against `git log` and `monitor_attempts.jsonl`, the anonymisation of the source, PDF text, decompressed PDF streams and every figure PDF, the kit files against a fresh download of the official zip (byte-identical), and a rebuild (byte-identical to the committed PDF). It found **0 number mismatches** and nothing identifying. Changes made on its findings:
+
+| # | Finding | Change |
+|---|---|---|
+| 1 | **Must fix.** Introduction said the design was committed to "a public repository"; the repository was private until 4 Nov 2026 | Now "a git repository" |
+| 2 | **Must fix.** Pre-registration record dropped *why* git cannot confirm the edit-size threshold's timing | Restored: the verifier and threshold were first committed after generation and verification, and a code comment there, later reworded, called the threshold "fixed before any items were generated" |
+| 3 | E1 caveat (lower P10 hit rates in the first eight positions) had moved to a figure caption only | Restored to the main text |
+| 4 | "the author" (singular) and "condensation of this paper" hinted at a single author and a longer version | "the authors"; disclosure reworded without "condensation" |
+| 5 | Remedies dropped the R-cal caveat (examples from different problems; probes help mainly with similar targets) | Restored, citing Becker et al. |
+| 6 | Harness context dropped its share of each input (about three-quarters of a single-item call, a quarter of a batch call) | Restored; the limitation now says the scaffold cannot explain differences between conditions *with the same presentation*, and may bear on E4 |
+| 7 | Figure 4 (`fig:sdt`) never referenced | Referenced in H1a |
+| 9 | Citation context lost: the term "subsequent search misses"; Buser's condition (reliability 0.7 when the mean hit rate is below 0.9); trained screeners' d′ also changing with prevalence | All three restored |
+| 10 | `aaai2027.bst` prints no URL, so the SLEIGHT-Bench blog post had no locator | URL added to its `howpublished` |
+
+Not changed: finding 8 (Figure 1 and Table 3 print two pages after first mention). Tables 1 and 2 fill page 6's float area, so page 7 is the earliest place a full-width float can go; reordering would not move them earlier.
+
+After the fixes: the build has no errors, overfull boxes or undefined references; `check/verify_numbers.py` has 194 checks with 0 mismatches (a check was added for the restored 0.7 and 0.9, which come from the preprint's Background quotation of Buser et al.; its fidelity heuristic flags them only because it compares with the preprint's Discussion); and the anonymisation scan of the source, bibliography, PDF text and decompressed PDF found nothing. Blind spots the reviewer noted in `verify_numbers.py` (it matches a number anywhere on a source line, reads results summaries rather than recomputing, and checks timing against prose) were covered by the reviewer's independent recomputation.
+

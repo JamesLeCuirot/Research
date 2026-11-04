@@ -15,7 +15,7 @@ This repository holds my research, complete and in progress. Most of it applies 
 | **Do LLM Monitors Miss Rare Threats?** A Pre-registered Test of the Low-Prevalence Effect | Pre-registered experiment | **Preprint v1.0** (4 Nov 2026), not peer reviewed | [`papers/02-do-llm-monitors-miss-rare-threats/`](papers/02-do-llm-monitors-miss-rare-threats/) |
 | **From RSP to SMS:** Reading Frontier AI Safety Frameworks Through ICAO's Safety Management System | Theory and document analysis | **Preprint v1.0** (4 Nov 2026), not peer reviewed | [`papers/03-from-rsp-to-sms/`](papers/03-from-rsp-to-sms/) |
 | **Checkride or Jump Seat?** What LOSA and Evidence-Based Training Teach About Evaluation Awareness in AI Systems | Theory and pilot study | **Preprint v1.0** (4 Nov 2026), not peer reviewed | [`papers/04-checkride-or-jump-seat/`](papers/04-checkride-or-jump-seat/) |
-| **Untrusted by Design:** Bringing AI Control into Aviation's Operational Oversight of AI | Theory and regulatory analysis | Working paper v0.4, in author review | [`papers/05-untrusted-by-design/`](papers/05-untrusted-by-design/) |
+| **Untrusted by Design:** Bringing AI Control into Aviation's Operational Oversight of AI | Theory and regulatory analysis | **Preprint v1.0** (4 Nov 2026), not peer reviewed | [`papers/05-untrusted-by-design/`](papers/05-untrusted-by-design/) |
 | **Research agenda:** aviation safety science for AI alignment | Proposals | 17 proposals; 5 written up as the papers above | [`agenda/`](agenda/) |
 
 Each paper folder has a PDF, its LaTeX source, a citation block, a verification log for every reference (`sources.md`) and the record of its independent audit (`AUDIT.md`). Empirical work includes its code, data, raw outputs and, where applicable, its pre-registration.

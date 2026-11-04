@@ -60,14 +60,14 @@ Other research repositories (pc24-study, CitadelAero research-studies and others
 | B4.6 | §5.3 framing of the ORO.FC.231(h)(3)(ii) parallel | ✔ | Default accepted: keep the narrowed §5.3 framing. |
 | B4.7 | Name Delta Air Lines (as Klinect et al. do) or keep "one US airline" | ✔ | Default accepted: keep "one US airline". |
 
-### 05 Untrusted by Design
+### 05 Untrusted by Design — **released as Preprint v1.0 (4 Nov 2026)**
 | # | Item | Status | Decision |
 |---|---|---|---|
 | B5.1 | Spot-check EASA quotations (DHO-01–07, Table 2, RU-04, ET-01, MOC ET-02-2, RO-01, levelling table) | ✔ | Default accepted: quotations were verified verbatim against the official EASA PDFs by two audits, and the v0.4 check confirmed all 199 quotations unchanged. |
 | B5.2 | The "alternating the end user" typo in MOC DHO-01: flag it or not | ✔ | Default accepted: keep the footnote flagging the apparent typo. |
-| B5.3 | Fairness of the gap analysis: has EASA deliberately scoped out an adversarial AI? | ☐ | |
+| B5.3 | Fairness of the gap analysis: has EASA deliberately scoped out an adversarial AI? | ✔ | James is not aware of EASA deliberately scoping it out; wording kept. |
 | B5.4 | AI Days slide statements characterised fairly as work in progress | ✔ | Default accepted: keep the slide-based statements characterised as work in progress. |
-| B5.5 | Operational realism of §5.4 (audit budgets), §5.7 (reportable AI events), §7 (ground tools) | ☐ | |
+| B5.5 | Operational realism of §5.4 (audit budgets), §5.7 (reportable AI events), §7 (ground tools) | ✔ | Judged realistic by James; kept as written. |
 | B5.6 | Paywalled standards (DO-178C, ARP4754B, ARP4761A): add precise references if you have access | ✔ | Default accepted: no access to the standards; keep the current references to FAA/EASA guidance and catalogue entries. |
 | B5.7 | Digital Omnibus (Reg (EU) 2026/1744) and what it means for implementing rules | ✔ | Default accepted: keep the Digital Omnibus text as written. |
-| B5.8 | Terminology: aviation-specific "trusted" (= conventionally assured) or AI-control usage | ☐ | |
+| B5.8 | Terminology: aviation-specific "trusted" (= conventionally assured) or AI-control usage | ✔ | Keep the stricter aviation meaning (trusted = conventionally assured), as explained in Section 5.1. |

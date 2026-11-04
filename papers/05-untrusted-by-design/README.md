@@ -1,6 +1,6 @@
 # Untrusted by Design: Bringing AI Control into Aviation's Operational Oversight of AI
 
-**James Le Cuirot** · CitadelAero · Working draft v0.4, 4 November 2026. Not peer reviewed.
+**James Le Cuirot** · CitadelAero · Preprint v1.0, 4 November 2026. Not peer reviewed.
 
 **[Read the paper (PDF)](paper.pdf)** · Part of the [research repository](../../README.md) · [All papers](../README.md)
 
@@ -15,8 +15,8 @@ The European Union Aviation Safety Agency (EASA) is moving its guidance on artif
   author      = {Le Cuirot, James},
   title       = {Untrusted by Design: Bringing AI Control into Aviation's Operational Oversight of AI},
   institution = {CitadelAero},
-  type        = {Working paper},
-  number      = {v0.4},
+  type        = {Preprint},
+  number      = {v1.0},
   year        = {2026},
   month       = nov,
   note        = {Not peer reviewed},

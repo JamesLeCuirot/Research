@@ -188,7 +188,7 @@ To re-run the annotation itself, use `uv run python scripts/pilot.py`. It calls 
 
 ## Licences, AI use and citation
 
-- **Code:** MIT licence, © 2026 CitadelAero. **Data:** MAST dataset by Cemri et al., CC-BY-4.0, used with attribution.
+- **Code:** MIT licence, © 2026 CitadelAero Limited. **Data:** MAST dataset by Cemri et al., CC-BY-4.0, used with attribution.
 - **Competing interests:** the author's company, CitadelAero, works on AI for aviation, the area of the aviation evaluation proposed as future work. This study received no external funding and uses only public data.
 - **AI use:**
   - The data pipeline, tests, figures and much of the drafting were done with Claude Code under the author's direction.

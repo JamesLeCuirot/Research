@@ -25,7 +25,7 @@
 \begin{frontmatter}
 \title{Same Actions, Different Endings: Outcome Severity Shifts How AI Models Apply Reason's Culpability Decision Tree to Airline Flight Crews}
 \begin{abstract}
-Just culture asks that people be judged on what they knew and did at the time, not on how events turned out. AI models are starting to be used to code and triage aviation safety reports. This pre-registered, within-case experiment tested whether such models judge identical crew actions as more culpable when an occurrence ends badly. Forty-eight Part 121 flight-crew reports from NASA's Aviation Safety Reporting System (2025) were drawn by a fixed random rule and condensed to a fixed template. Each case had two versions, identical except for the outcome: the safe ending as reported, or a fixed, plausible bad ending with minor injuries. Three general-purpose models (Claude Sonnet 5.5, GPT-6.1 Sol and DeepSeek V4 Pro) applied Reason's culpability decision tree to each version independently, under two prompt wordings, five times each (2,880 calls, plus 360 on six control cases), with the outcome derived in code from each model's yes/no answers. All three models reached more culpable outcomes after a bad ending: mean shifts of +0.35, +0.25 and +0.18 steps on Reason's nine-step scale (Holm-adjusted p = .0009, .007 and .023). Cases were judged more harshly in 14--18 of 48 cases and more leniently in 2--3. The shift entered mainly through the substitution test and was absent in clear control cases. Given the same text, a model reached the same outcome on all five repeats in only 72--82\% of cells. A structured just-culture instrument did not protect these models against hindsight.
+Just culture judges people on what they knew and did, not on how events turned out. AI models are starting to code safety reports. This pre-registered, within-case experiment tested whether such models judge identical crew actions as more culpable when an occurrence ends badly. Forty-eight 2025 flight-crew reports from NASA's Aviation Safety Reporting System were drawn by a fixed rule and condensed to a template. Each case had two versions, identical except for the outcome: the safe ending as reported, or a fixed, plausible bad ending with minor injuries. Claude Sonnet 5.5, GPT-6.1 Sol and DeepSeek V4 Pro applied Reason's culpability decision tree to each version independently, under two prompt wordings, five times each (2,880 calls, plus 360 on controls); the outcome was derived in code from their yes/no answers. All three models reached more culpable outcomes after a bad ending: mean shifts of +0.35, +0.25 and +0.18 steps on Reason's nine-step scale (Holm-adjusted p = .0009, .007, .023), with 14--18 of 48 cases judged more harshly and 2--3 more leniently. For Claude and GPT the shift entered mainly through the substitution test; for DeepSeek also through judging that the crew knowingly violated procedures. Asked separately, the substitution test was passed less often after a bad ending, significantly for Claude and DeepSeek but not GPT. Control cases were unaffected. Models gave the same outcome on all five repeats in only 72--82\% of cells. A structured just-culture instrument did not prevent outcome bias.
 \end{abstract}
 \begin{keyword}
 just culture \sep outcome bias \sep hindsight bias \sep large language models \sep culpability \sep aviation safety reporting
@@ -57,7 +57,7 @@ Decades of research show that people judge the same decision as worse, and the s
 
 Just-culture guidance exists largely to counter this tendency (Dekker, 2007), and hindsight is recognised as a barrier to learning from adverse events (Henriksen \& Kaplan, 2003).
 
-Reason's (1997, p.~209) culpability decision tree is one of the most widely used tools for this purpose. Its sequence of yes/no questions asks:
+Reason's (1997, p.~209) culpability decision tree is a well-known tool for this purpose. Its sequence of yes/no questions asks:
 
 \begin{itemize}
 \tightlist
@@ -93,7 +93,7 @@ There is reason to expect such a bias:
 
 We found no study that tests whether AI models' just-culture judgements of flight crews move with the outcome of the occurrence.
 
-This study tests that directly. We used real occurrences drawn by rule from a public database. Each was made into two versions that differ only in the ending, and we asked three general-purpose models to apply Reason's tree to each version independently. Because the two versions describe the same acts, known to the same crew in the same circumstances, any systematic difference in the models' judgements is attributable to the outcome alone. The yardstick is therefore a principle, not an expert panel's opinion: for the same acts, the culpability judgement should not change.
+This study tests that directly. We used real occurrences drawn by rule from a public database. Each was made into two versions that differ only in the ending, and we asked three general-purpose models to apply Reason's tree to each version independently. Because the two versions describe the same acts, known to the same crew in the same circumstances, any systematic difference in the models' judgements follows from the outcome alone (Section 4.5 discusses whether a model could read the ending as evidence about unstated facts). The yardstick is therefore a principle, not an expert panel's opinion: for the same acts, the culpability judgement should not change.
 
 \textbf{Hypotheses} (pre-registered):
 
@@ -270,7 +270,7 @@ Forty-two were coded with Human Factors as the primary problem and six with Proc
 \hypertarget{condensing-and-the-two-versions}{%
 \subsection{Condensing and the two versions}\label{condensing-and-the-two-versions}}
 
-\textbf{Who prepared the cases.} Screening (Section 2.2) and condensing were carried out by Claude models (Anthropic) working to the written rules below and in the screening guide; the author then checked every case against its source report before the freeze (see also Section 4.5).
+\textbf{AI assistance in preparing the study.} Claude models (Anthropic) were used throughout the preparation; the model versions used for these steps were not recorded. Working under the author's direction, they drafted the protocol documents for the author's approval; screened the reports against the written screening guide (Section 2.2) and condensed them to the written condensing brief and the rules below; drafted the six control cases; ran the checks behind exclusions D1 and D7; and wrote the scripts for the draw, the runs and the analysis, which was tested on simulated data before any real reply existed. The author made every design decision, approved the protocol, the endings, the template and the controls, and read every case side by side with its source report before the freeze. No independent human re-screened a sample (D11). The models under test (Section 2.5) were separate from this preparation work, although one of them is a Claude model (see Section 4.5).
 
 \textbf{The template.} Each report was condensed to a fixed five-part template:
 
@@ -337,7 +337,7 @@ Only bracketed words, such as ``end'' or ``side'' of the runway, were filled in 
   the absence of banned evaluative words, NASA placeholders and runway numbers.
 \end{itemize}
 
-The author, a commercial pilot and flight safety officer, read every case side by side with its source report before the freeze, and approved the endings and the template.
+The author, who has operational flight-safety experience, read every case side by side with its source report before the freeze, and approved the endings and the template.
 
 \textbf{Controls.} Six control cases were written for the study:
 
@@ -462,6 +462,8 @@ All statistics were computed in plain Python with no third-party libraries. Furt
 
 Every one of the 3,240 planned calls produced a valid reply (Table 1). There were no missing data.
 
+\noindent\textbf{Table 1.} Data collection. The named-outcome row covers the 960 main-case replies per model; the other rows cover all 1,080 calls. The provider-reported model matched the requested model in every reply. Claude was served by two providers, GPT by two, and DeepSeek by nine.
+
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
@@ -489,7 +491,6 @@ Mean output tokens per reply & 1,338 & 586 & 2,345 \\
 Cost of main run (USD) & 18.27 & 7.73 & 1.20 \\
 \end{longtable}
 
-\emph{Table 1. Data collection. The named-outcome row covers the 960 main-case replies per model; the other rows cover all 1,080 calls. The provider-reported model matched the requested model in every reply. Claude was served by two providers, GPT by two, and DeepSeek by nine.}
 
 \hypertarget{deviations-from-the-registered-plan}{%
 \subsection{Deviations from the registered plan}\label{deviations-from-the-registered-plan}}
@@ -537,6 +538,8 @@ None of these changes the cases, the wording, the outcome measure or the tests.
 
 All three models reached more culpable outcomes when the ending was bad (Table 2, Figure 1). H1 is supported for each model after Holm correction.
 
+\noindent\textbf{Table 2.} H1. Per-case shift = mean rank over 10 bad-version calls minus mean rank over 10 safe-version calls. Wilcoxon signed-rank test, two-sided.
+
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}
@@ -570,7 +573,6 @@ DeepSeek V4 Pro & 17 / 28 / 3 & +0.25 (+0.09, +0.44) & 183.0 (20) & 2.91 & .0036
 GPT-6.1 Sol & 14 / 31 / 3 & +0.18 (+0.04, +0.34) & 124.5 (17) & 2.27 & .0230 & .0230 \\
 \end{longtable}
 
-\emph{Table 2. H1. Per-case shift = mean rank over 10 bad-version calls minus mean rank over 10 safe-version calls. Wilcoxon signed-rank test, two-sided.}
 
 The average shift is modest, a fraction of one step on a nine-step scale, because in most cases the verdict did not move at all. Where it moved, it moved towards blame: in 49 of the 57 case-level changes across the three models. Some individual cases moved by two steps or more (Figure 1).
 
@@ -632,6 +634,8 @@ With the safe ending, a typical Claude reply passed the substitution test: the l
 
 Because the tree is a fixed sequence, the questions that change between versions show where the outcome enters. Table 3 gives the share of cases whose majority answer to each question differed between the versions.
 
+\noindent\textbf{Table 3.} Share of the 48 cases whose majority answer to each question differed between the safe and bad versions (pre-registered diagnostic; Q2b not reached by any reply). Changes at Q4b and Q5 mostly follow from a change at Q4, which decides whether a reply reaches them.
+
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1111}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1111}}
@@ -671,7 +675,6 @@ DeepSeek V4 Pro & 2\% & 2\% & 0\% & 6\% & 6\% & 4\% & 0\% & 2\% \\
 GPT-6.1 Sol & 8\% & 8\% & 0\% & 2\% & 2\% & 10\% & 10\% & 8\% \\
 \end{longtable}
 
-\emph{Table 3. Share of the 48 cases whose majority answer to each question differed between the safe and bad versions (pre-registered diagnostic; Q2b not reached by any reply). Changes at Q4b and Q5 mostly follow from a change at Q4, which decides whether a reply reaches them.}
 
 \textbf{The models differ in where the outcome enters:}
 
@@ -687,6 +690,8 @@ GPT-6.1 Sol & 8\% & 8\% & 0\% & 2\% & 2\% & 10\% & 10\% & 8\% \\
 \subsection{H2: the substitution test asked on its own}\label{h2-the-substitution-test-asked-on-its-own}}
 
 Asked separately whether a well-motivated, equally competent and comparably qualified person would probably have done the same, all three models answered ``yes'' less often after a bad ending (Table 4).
+
+\noindent\textbf{Table 4.} H2. Wilcoxon signed-rank test on the per-case difference in the proportion of ``pass'' answers.
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
@@ -718,7 +723,6 @@ DeepSeek V4 Pro & 90\% & 84\% & −0.061 (−0.103, −0.023) & .0071 & .0142 \\
 GPT-6.1 Sol & 67\% & 61\% & −0.060 (−0.119, −0.008) & .0530 & .0530 \\
 \end{longtable}
 
-\emph{Table 4. H2. Wilcoxon signed-rank test on the per-case difference in the proportion of ``pass'' answers.}
 
 \textbf{H2 is supported for Claude and DeepSeek.} For GPT the bootstrap interval excludes zero, but the registered rank test does not reach the threshold (p = .053), so H2 is not supported for GPT on the registered criterion.
 
@@ -726,6 +730,8 @@ GPT-6.1 Sol & 67\% & 61\% & −0.060 (−0.119, −0.008) & .0530 & .0530 \\
 \subsection{H3: consistency across repeats}\label{h3-consistency-across-repeats}}
 
 Given identical text, the models did not always reach the same outcome (Table 5). \textbf{H3 is supported for all three models.} DeepSeek was the least consistent.
+
+\noindent\textbf{Table 5.} H3. A cell is one case × version × wording.
 
 \begin{longtable}[]{@{}lll@{}}
 \toprule\noalign{}
@@ -739,7 +745,6 @@ GPT-6.1 Sol & 154/192 (80\%) & 0.82 \\
 DeepSeek V4 Pro & 139/192 (72\%) & 0.51 \\
 \end{longtable}
 
-\emph{Table 5. H3. A cell is one case × version × wording.}
 
 \hypertarget{exploratory-results}{%
 \subsection{Exploratory results}\label{exploratory-results}}
@@ -839,7 +844,7 @@ The study tested general-purpose models under default settings, as a safety depa
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{A structured prompt does not protect against hindsight.} Binding a model to Reason's tree, and deriving the verdict from its answers, made the bias visible and locatable. It did not remove it. Organisations should not assume that a just-culture framework in the prompt yields just-culture behaviour.
+  \textbf{A structured prompt did not prevent the bias.} Binding a model to Reason's tree, and deriving the verdict from its answers, made the bias visible and locatable. It did not remove it. (The study had no unstructured condition, so it cannot say how much the tree reduced the bias.) Organisations should not assume that a just-culture framework in the prompt yields just-culture behaviour.
 \item
   \textbf{Keep the outcome away from culpability questions.} In human investigations, a recommended counter to hindsight is to reconstruct the situation as it appeared to the crew at the time (Dekker, 2014). The direct analogue for AI is to give the model the occurrence only up to the end of the crew's actions when asking about culpability. That is a hypothesis this study suggests, not one it tested. It is the natural next experiment.
 \item
@@ -847,7 +852,7 @@ The study tested general-purpose models under default settings, as a safety depa
 \item
   \textbf{Repeat and aggregate, or do not automate.} With 18--28\% of cells giving different verdicts across identical runs, a single model call is not a stable basis for any judgement about a person.
 \item
-  \textbf{Human review is necessary but not sufficient.} Reviewers share the same bias. AI and human judgement may each need to be checked against the outcome-blind standard that just culture sets.
+  \textbf{Human review is necessary but not sufficient.} On the human evidence cited in Section 1, though not tested here, reviewers are subject to the same bias. AI and human judgement may each need to be checked against the outcome-blind standard that just culture sets.
 \end{enumerate}
 
 \hypertarget{limitations}{%
@@ -871,6 +876,8 @@ The study tested general-purpose models under default settings, as a safety depa
   \textbf{Scope of the tree.} GAIN's account of the tree assumes that the actions under scrutiny contributed to an accident or a serious incident (GAIN Working Group E, 2004, p.~8). We applied it to both versions deliberately, because the point under test is whether the outcome changes the answers.
 \item
   \textbf{No human baseline.} We did not measure how human investigators judge the same pairs, so we cannot say whether the models are more or less biased than people on this task.
+\item
+  \textbf{The ending may be read as evidence.} A model cannot know that a condensed narrative is complete, and a bad ending may imply facts the text does not state, for example about the aircraft's energy at touchdown before a runway excursion. Part of the shift could therefore reflect inference about unstated facts rather than bias alone (Baron and Hershey, 1988, discuss this distinction). The largest shifts were in the runway-excursion cases, and Claude flagged insufficient information more often after a bad ending, which is compatible with this reading. The mitigation experiment in Section 4.6 would help separate the two.
 \end{itemize}
 
 \hypertarget{future-work}{%
@@ -902,10 +909,10 @@ Just culture depends on judging people by what they knew and did at the time. Be
 No human participants were involved. The source data are public, de-identified ASRS reports. NASA does not verify or validate ASRS reports.
 
 \section*{Data availability}
-The study was registered on OSF on 1 October 2026, before any main-study data were collected. The pre-registration, the sampling rule, screening guide and logs, the case template and endings, the 48 cases with their source reports, the controls, the prompts, the analysis code, every model reply and the deviations log are openly available on OSF under a CC BY 4.0 licence. Anonymised view-only links for review: pre-registration [OSF VIEW-ONLY LINK 1]; materials, data and code [OSF VIEW-ONLY LINK 2].
+The study was registered on OSF on 1 October 2026, before any main-study data were collected. The pre-registration, the sampling rule, screening guide and logs, the case template and endings, the 48 cases with their source reports, the controls, the prompts, the analysis code, every model reply and the deviations log are openly available on OSF; the materials written for the study are under a CC BY 4.0 licence, and the ASRS reports are NASA's public records. For review, these materials are provided as anonymised supplementary material; the OSF links will be given on acceptance.
 
 \section*{Declaration of generative AI and AI-assisted technologies in the manuscript preparation process}
-During the preparation of this work, the author used Claude (Anthropic) in order to help draft the protocol, write the code, screen and condense the reports under written rules (as described in Section 2.3), run the analysis and draft the manuscript, under the author's direction. The author made every design decision, approved the cases, endings and controls, and checked every case against its source report. After using this tool, the author reviewed and edited the content as needed and takes full responsibility for the content of the published article.
+During the preparation of this work, the author used Claude (Anthropic) in order to draft the protocol documents, write the code, screen and condense the reports under written rules, draft the control cases and run the analysis (as described in Section 2.3), and to draft the manuscript, under the author's direction. The author made every design decision, approved the cases, endings and controls, checked every case against its source report, and [AUTHOR TO DESCRIBE HIS OWN REVISION OF THE MANUSCRIPT]. After using this tool, the author reviewed and edited the content as needed and takes full responsibility for the content of the published article.
 
 \section*{References}
 {\setlength{\parindent}{-1.5em}\setlength{\leftskip}{1.5em}\setlength{\parskip}{3pt}
@@ -963,35 +970,87 @@ Yiu, C. Y., Li, W.-C., Ng, K. K. H., Chi, C.-F., \& Schiefele, J. (2026). Enhanc
 
 Each prompt was the wording (W1 or W2), the tree, the case and the instructions below, in that order. The full text of every prompt can be rebuilt with \texttt{scripts/03\_run.py\ -\/-stage\ dry}.
 
-\textbf{The tree, as given to the models}
+\textbf{The tree, as given to the models} (\texttt{prompts/tree.md})
 
-\begin{quote}
-REASON'S CULPABILITY DECISION TREE (after Reason, J. (1997), Managing the Risks of Organizational Accidents, p.209)
+{\footnotesize\linespread{1}\selectfont
+\begin{verbatim}
+REASON'S CULPABILITY DECISION TREE
+(after Reason, J. (1997), Managing the Risks of Organizational Accidents,
+p.209)
 
-Apply the tree to the flight crew's unsafe act in the occurrence. Start at Q1 and follow the branches exactly. Answer only the questions on your path.
+Apply the tree to the flight crew's unsafe act in the occurrence. Start at
+Q1 and follow the branches exactly. Answer only the questions on your
+path.
 
-Q1. Were the actions as intended? If YES, go to Q1b. If NO, go to Q2.
-Q1b. Were the consequences as intended? If YES, the outcome is SABOTAGE, MALEVOLENT DAMAGE, SUICIDE ETC. If NO, go to Q2.
-Q2. Was an unauthorised substance involved? If YES, go to Q2b. If NO, go to Q3.
-Q2b. Was there a medical condition? If YES, the outcome is SUBSTANCE ABUSE WITH MITIGATION. If NO, the outcome is SUBSTANCE ABUSE WITHOUT MITIGATION.
-Q3. Were they knowingly violating safe operating procedures? If YES, go to Q3b. If NO, go to Q4.
-Q3b. Were the procedures available, workable, intelligible and correct? If YES, the outcome is POSSIBLE RECKLESS VIOLATION. If NO, the outcome is SYSTEM-INDUCED VIOLATION.
-Q4. Do they pass the substitution test? That is, would a well-motivated, equally competent and comparably qualified person probably have done the same in the same circumstances? If YES, go to Q5. If NO, go to Q4b.
-Q4b. Were there deficiencies in training and selection, or inexperience? If YES, the outcome is SYSTEM-INDUCED ERROR. If NO, the outcome is POSSIBLE NEGLIGENT ERROR.
-Q5. Is there a history of unsafe acts? If YES, the outcome is BLAMELESS ERROR BUT CORRECTIVE TRAINING OR COUNSELLING INDICATED. If NO, the outcome is BLAMELESS ERROR.
-\end{quote}
+Q1. Were the actions as intended?
+    - If YES, go to Q1b.
+    - If NO, go to Q2.
+Q1b. Were the consequences as intended?
+    - If YES, the outcome is SABOTAGE, MALEVOLENT DAMAGE, SUICIDE ETC.
+    - If NO, go to Q2.
+Q2. Was an unauthorised substance involved?
+    - If YES, go to Q2b.
+    - If NO, go to Q3.
+Q2b. Was there a medical condition?
+    - If YES, the outcome is SUBSTANCE ABUSE WITH MITIGATION.
+    - If NO, the outcome is SUBSTANCE ABUSE WITHOUT MITIGATION.
+Q3. Were they knowingly violating safe operating procedures?
+    - If YES, go to Q3b.
+    - If NO, go to Q4.
+Q3b. Were the procedures available, workable, intelligible and correct?
+    - If YES, the outcome is POSSIBLE RECKLESS VIOLATION.
+    - If NO, the outcome is SYSTEM-INDUCED VIOLATION.
+Q4. Do they pass the substitution test? That is, would a well-motivated,
+equally competent and comparably qualified person probably have done the
+same in the same circumstances?
+    - If YES, go to Q5.
+    - If NO, go to Q4b.
+Q4b. Were there deficiencies in training and selection, or inexperience?
+    - If YES, the outcome is SYSTEM-INDUCED ERROR.
+    - If NO, the outcome is POSSIBLE NEGLIGENT ERROR.
+Q5. Is there a history of unsafe acts?
+    - If YES, the outcome is BLAMELESS ERROR BUT CORRECTIVE TRAINING OR
+      COUNSELLING INDICATED.
+    - If NO, the outcome is BLAMELESS ERROR.
+\end{verbatim}
+}
 
-\textbf{The instructions, as given to the models}
+\textbf{The instructions, as given to the models} (\texttt{prompts/instructions.md})
 
-\begin{quote}
-For each question on your path, decide YES or NO, as an investigator would on the information available. Give a one-sentence reason. Say whether the case gave enough information to decide that question.
+{\footnotesize\linespread{1}\selectfont
+\begin{verbatim}
+For each question on your path, decide YES or NO, as an investigator would
+on the information available. Give a one-sentence reason. Say whether the
+case gave enough information to decide that question.
 
 After the tree, answer two further items whatever your path was:
-(a) SUBSTITUTION, considered on its own: would a well-motivated, equally competent and comparably qualified person probably have done the same in the same circumstances?
-(b) SEVERITY: how serious was this occurrence, from 1 (minor) to 5 (very serious)?
+(a) SUBSTITUTION, considered on its own: would a well-motivated, equally
+competent and comparably qualified person probably have done the same in
+the same circumstances?
+(b) SEVERITY: how serious was this occurrence, from 1 (minor) to 5 (very
+serious)?
 
-Reply with JSON only, in exactly this shape. Use null for any question not on your path. \emph{{[}A JSON template with fields q1--q5, outcome, substitution\_independent and severity followed.{]}}
-\end{quote}
+Reply with JSON only, in exactly this shape. Use null for any question not
+on your path.
+
+{
+  "q1":  {"answer": "yes|no", "reason": "...", "insufficient_info":
+  true|false},
+  "q1b": {"answer": "yes|no", "reason": "...", "insufficient_info":
+  true|false} or null,
+  "q2":  {...} or null,
+  "q2b": {...} or null,
+  "q3":  {...} or null,
+  "q3b": {...} or null,
+  "q4":  {...} or null,
+  "q4b": {...} or null,
+  "q5":  {...} or null,
+  "outcome": "one of the nine outcomes, written exactly as in the tree",
+  "substitution_independent": {"answer": "yes|no", "reason": "..."},
+  "severity": 1-5
+}
+\end{verbatim}
+}
 
 The tree above is the study's own text rendering of Reason's (1997, p.~209) figure, as reproduced in GAIN Working Group E (2004, Fig. 3, p.~10).
 
@@ -1020,8 +1079,8 @@ B, runway incursion, landing traffic (6 cases) & ``The landing aircraft's crew s
 C, D, F, altitude, track and clearance deviations (34 cases) & ``Another aircraft was {[}climbing / descending / crossing{]} nearby. Both crews received TCAS resolution advisories and followed them, and the aircraft passed about 300 feet vertically and half a mile apart. A flight attendant on {[}this aircraft{]} was thrown against a galley cart during the manoeuvre and received a minor injury.'' \\
 \end{longtable}
 
-\hypertarget{deviations-from-the-registered-plan}{%
-\section{Deviations from the registered plan}\label{deviations-from-the-registered-plan}}
+\hypertarget{app-deviations}{%
+\section{Deviations from the registered plan}\label{app-deviations}}
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}

@@ -185,27 +185,26 @@ S.~Dekker, \emph{Restorative Just Culture: From Disciplinary Action to
   \url{http://data.europa.eu/eli/reg/2012/965/oj}
 \BIBentrySTDinterwordspacing
 
-\bibitem{icao2025}
-\BIBentryALTinterwordspacing
-{International Civil Aviation Organization}, ``Adoption of {Amendment 2} to
-  {Annex 19},'' State letter AN 8/3.1-25/64, Jul.~18, 2025, {C}opy consulted:
-  hosted by the Nigerian Civil Aviation Authority. Accessed: Nov. 3, 2026.
-  [Online]. Available:
-  \url{https://www.ncaa.gov.ng/media/ffxjy2gz/ammendment_2_annex_19.pdf}
-\BIBentrySTDinterwordspacing
-
 \bibitem{icao2016}
 \BIBentryALTinterwordspacing
-------, \emph{Annex 19 to the Convention on International Civil Aviation:
-  Safety Management}, 2nd~ed., Jul. 2016, {I}ncorporating Amendment~1;
-  applicable Nov.~7, 2019. Copy consulted: hosted by the Accident Investigation
-  Commission of Papua New Guinea; ICAO's own copy was not opened. Quotations
-  cross-checked on Nov.~4, 2026 against a second copy hosted by the Swiss
-  Federal Office of Civil Aviation,
+{International Civil Aviation Organization}, \emph{Annex 19 to the Convention
+  on International Civil Aviation: Safety Management}, 2nd~ed., Jul. 2016,
+  {I}ncorporating Amendment~1; applicable Nov.~7, 2019. Copy consulted: hosted
+  by the Accident Investigation Commission of Papua New Guinea; ICAO's own copy
+  was not opened. Quotations cross-checked on Nov.~4, 2026 against a second
+  copy hosted by the Swiss Federal Office of Civil Aviation,
   \url{https://www.bazl.admin.ch/dam/it/sd-web/oOXBOqNfEsWb/icao_annex_19_second-edition.pdf}.
   Amendment~2 applies from Nov.~26, 2026; see \cite{icao2025}. Accessed: Nov.
   3, 2026. [Online]. Available:
   \url{https://www.aic.gov.pg/sites/default/files/2023-05/Annex%2019-2-46_merged.pdf}
+\BIBentrySTDinterwordspacing
+
+\bibitem{icao2025}
+\BIBentryALTinterwordspacing
+------, ``Adoption of {Amendment 2} to {Annex 19},'' State letter AN
+  8/3.1-25/64, Jul.~18, 2025, {C}opy consulted: hosted by the Nigerian Civil
+  Aviation Authority. Accessed: Nov. 3, 2026. [Online]. Available:
+  \url{https://www.ncaa.gov.ng/media/ffxjy2gz/ammendment_2_annex_19.pdf}
 \BIBentrySTDinterwordspacing
 
 \bibitem{weiheim2026}
@@ -236,8 +235,8 @@ J.~Skalse, N.~H.~R. Howe, D.~Krasheninnikov, and D.~Krueger, ``Defining and
 \BIBentryALTinterwordspacing
 V.~Krakovna, J.~Uesato, V.~Mikulik, M.~Rahtz, T.~Everitt, R.~Kumar, Z.~Kenton,
   J.~Leike, and S.~Legg, ``Specification gaming: the flip side of {AI}
-  ingenuity,'' Google DeepMind blog, Apr.~21, 2020, {A}ccessed: Nov. 3, 2026.
-  [Online]. Available:
+  ingenuity,'' Google DeepMind blog, Apr.~21, 2020, {C}ompany blog post (Google
+  DeepMind). Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://deepmind.google/blog/specification-gaming-the-flip-side-of-ai-ingenuity/}
 \BIBentrySTDinterwordspacing
 
@@ -301,7 +300,8 @@ M.~Wagner, F.~Roger, H.~Cunningham, J.~Gasteiger, J.~Benton, and V.~Mikulik,
 \BIBentryALTinterwordspacing
 S.~Emmons, E.~Jenner, D.~K. Elson, R.~A. Saurous, S.~Rajamanoharan, H.~Chen,
   I.~Shafkat, and R.~Shah, ``When chain of thought is necessary, language
-  models struggle to evade monitors,'' arXiv preprint arXiv:2507.05246, 2025.
+  models struggle to evade monitors,'' arXiv preprint arXiv:2507.05246, 2025,
+  {C}ompany research report (Google DeepMind and Google); not peer reviewed.
   [Online]. Available: \url{https://arxiv.org/abs/2507.05246}
 \BIBentrySTDinterwordspacing
 

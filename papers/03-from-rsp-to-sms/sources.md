@@ -1,6 +1,6 @@
 # Sources and verification log: "From RSP to SMS"
 
-Verification carried out on 3 November 2026 with AI assistance (Claude). For each reference: how it was verified, and the claims in `paper.md` it supports, with a short verbatim quote or locator. Quotes are copied from the source text as extracted (PDF text extraction or HTML-to-text); curly and straight apostrophes may differ from the original. Page numbers are given only where they were seen.
+Verification carried out on 3 November 2026 with AI assistance (Claude). For each reference: how it was verified, and the claims in the paper it supports (`paper.md` up to v0.3; `paper.tex` from v0.4), with a short verbatim quote or locator. Quotes are copied from the source text as extracted (PDF text extraction or HTML-to-text); curly and straight apostrophes may differ from the original. Page numbers are given only where they were seen.
 
 **Draft v0.2 update (3 November 2026).** Revised after an independent audit (`AUDIT.md`). Every audit point was re-checked against the source in this session; additions are marked "v0.2". Anthropic reference letters were renumbered when the 31 August 2026 post was added: (2026e) is now that post; the former (2026e)–(2026h) are now (2026f)–(2026i).
 
@@ -101,7 +101,7 @@ Conclusion recorded in the paper: no prior element-by-element mapping found; gre
 ### Civil Aviation Authority of New Zealand (2025). Compliance checklist, Annex 6 Part I, Amendment 49
 - **Verified:** Downloaded https://www.aviation.govt.nz/assets/about-us/icao/annex-06-p1.pdf (77 pages; header "Annex 6, Part 1, Amendment 49"; footer date "25-August-2025").
 - **Claims supported:** Reproduced ICAO Standard text: 3.3.2 "All aeroplanes of a certificated take-off mass in excess of: a) 27 000 kg; or b) 15 000 kg with a passenger seating capacity greater than 19, and with a certificate of airworthiness first issued on or after 1 January 2027 shall be equipped with a means to support a flight data analysis programme." 3.3.3 "The operator of an aeroplane equipped as described in 3.3.2 shall establish and maintain a flight data analysis programme as part of its safety management system."
-- **Caveat:** ICAO Annex 6 itself was not seen. The paper says the text is "as reproduced by" CAA NZ. Paragraph numbering has changed across Annex 6 amendments; the author should confirm against the current Annex 6 Part I if this paragraph is relied on.
+- **Caveat:** ICAO Annex 6 itself was not seen. The paper says the text is "as reproduced by" CAA NZ. Paragraph numbering has changed across Annex 6 amendments; the author should confirm against the current Annex 6 Part I if this paragraph is relied on. **v0.4:** Annex 6 Part I itself has now been seen in the Swiss FOCA copy (12th edition, July 2022, with later amendments; page dated 28/11/24). 3.3.2 and 3.3.3 there are word for word as reproduced by CAA NZ (§F, A5).
 - **v0.2:** The checklist layout leaves it unclear whether "certificate of airworthiness first issued on or after 1 January 2027" qualifies only limb (b). The paper now says only "over 27 000 kg, and certain lighter aeroplanes with more than 19 passenger seats", which is true on either reading.
 
 ### FAA (2024). Safety Management Systems final rule, 89 Fed. Reg. 33068
@@ -197,7 +197,7 @@ Conclusion recorded in the paper: no prior element-by-element mapping found; gre
 
 ### Anthropic (2026b). An alignment assessment of the UK AISI cybertesting incident (23 October 2026)
 - **Verified:** Opened https://www.anthropic.com/research/alignment-assessment-ukaisi (HTML). "Published Oct 23, 2026".
-- **Claims supported:** "In nine of AISI's 43 evaluation runs, Mythos 5 took unsanctioned actions"; AISI published its own report on 4 August 2026 (stated by Anthropic; the AISI report itself was not opened and is not cited).
+- **Claims supported:** "In nine of AISI's 43 evaluation runs, Mythos 5 took unsanctioned actions"; AISI published its own report on 4 August 2026 (stated by Anthropic; at v0.3 the AISI report itself was not opened and was not cited; v0.4: opened and cited, see §F, A6).
 - **v0.2 addition:** "the OpenAI–Hugging Face incident that was recently investigated by OpenAI and METR" (basis for the scope note that OpenAI's investigation exists but was not assessed). The AISI evaluation was AISI's own ("AISI's evaluation"); the paper now says the case "says little about Anthropic's detection".
 
 ### Favaro, M., & Wright, P. (2026). Measurements for understanding the pace of AI development inside frontier labs
@@ -308,12 +308,12 @@ Conclusion recorded in the paper: no prior element-by-element mapping found; gre
 ## E. Things not verified or deliberately not used
 
 - ICAO's own website (icao.int) returned HTTP 403. Annex 19 and Amendment 2 were read from copies hosted by State CAAs (Swiss FOCA; Nigerian CAA). Doc 9859 was read from a private foundation's copy; the reference cites ICAO and the ICAO Store instead.
-- ICAO Annex 6 Part I was not seen directly (only via the CAA New Zealand checklist).
+- ICAO Annex 6 Part I was not seen directly at v0.3, only via the CAA New Zealand checklist. v0.4: 3.3.2–3.3.3 were seen in the Swiss FOCA copy of Annex 6 Part I and are word for word the same (§F, A5).
 - Anthropic's Frontier Compliance Framework: not accessible (JavaScript-only portal). Only the announcement was read. The paper's scope note says so.
 - California SB 53 statute: not accessible (leginfo 403); described from the official Senate floor analysis.
 - OpenAI website (openai.com): HTTP 403 throughout. PF v2 and the FGF PDF (cdn.openai.com) were read. OpenAI's 21 July 2026 incident disclosure and the OpenAI–METR investigation are mentioned only as reported by Anthropic and are not cited or assessed.
 - Regulation (EC) No 300/2008: only the UK assimilated text was read.
-- UK AISI's 4 August 2026 report was not opened; not cited.
+- UK AISI's 4 August 2026 report was not opened at v0.3. v0.4: opened and cited as AI Security Institute (2026) (§F, A6); its linked technical incident report PDF was not opened.
 - UK CAA CAP 795 was not consulted; not cited.
 - The ratings in Table 2 and the indicators in Table 3 are the author's analysis, not claims attributed to any source.
 

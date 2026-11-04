@@ -140,7 +140,7 @@ Second-round verification fixes applied by the lead session (see AUDIT.md, "Seco
 
 ### v0.4 (4 November 2026): LaTeX conversion
 
-Format conversion only: no argument, number, quotation or claim was changed.
+The conversion itself changed format only: no argument, number, quotation or claim was changed. The author-decision edits that followed (A3–A6) are listed separately below.
 
 - **Source.** `paper.md` (Pandoc Markdown, APA author–date) replaced by `paper.tex` (house preamble from `papers/STYLE.md`, `techreport.sty`) and `references.bib` (IEEE numeric, `IEEEtran.bst`). Title now "Just Culture for Machines: Why Penalising Disclosure Teaches Concealment"; date line "Working draft v0.4, 4 November 2026. Not peer reviewed."; no keywords or status box.
 - **Citations.** Every author–date citation became `\cite` (numbered in order of first use), with locators kept (e.g. [n, §3.2], [n, ¶16.4, Note]); narrative citations read "Baker et al. [n]". Bare locators that referred to a cited work, such as "(§3.2)" or Baker et al.'s "(Table 1)", now carry the citation number so they cannot be confused with this paper's own sections and table. "As cited in" information for Marx (2001) is kept by citing PSNet and GAIN alongside it. Regulations keep their legal designation in the text, now written "14 CFR §91.25" (was "14 C.F.R. § 91.25").
@@ -164,3 +164,18 @@ Format conversion only: no argument, number, quotation or claim was changed.
   - No arXiv or peer-reviewed versions were found of the blog posts by Wang et al., Hopkins et al. or Wagner et al.
   - A sentence in §7 ("Limits of the evidence") names the results that rest on a single company's account, and where other groups report the same direction.
 - **Checks after the decisions.** `build.sh`: 22 pages, no errors, no undefined references, no overfull boxes. `check_bib.py`: 52 entries, all cited, none missing; 22 OK, the same 3 explained CHECKs, 27 NO-ID, no NOT-FOUND.
+
+**Fixes after the independent v0.4 conversion check (`AUDIT.md`, "v0.4 conversion check", 4 November 2026).** The check found the conversion clean. Applied:
+- **Required (4d, 4e, 5b).** The §2.4 Amendment 2 footnote now:
+  - opens its list "Among other changes" and also names the redefinition of "safety information";
+  - spells out SDCPS (safety data collection and processing system);
+  - uses double quotation marks for its verbatim quotations;
+  - is marked at the end of the first sentence of §2.4, not directly after "Annex 19".
+
+  The other changes in the amendment are recorded in `sources.md` under ICAO (2025): redefined "safety performance", new "safety objective", trimmed "safety performance target", replaced Appendix 2 3.1.1.
+- **Optional (applied).**
+  - The §7 limitations sentence lists Wichers et al.'s inoculation results among the Anthropic results that Tan et al. corroborate.
+  - Emmons et al. (Google DeepMind and Google) and Krakovna et al. (DeepMind blog) are labelled as company outputs, as the OpenAI and Anthropic entries are.
+  - The bib header comment now gives 52 entries, and the `sources.md` header the current version.
+  - Shared items (PDF author metadata, footnote links, sorted and compressed citations, `et~al.`, braced note fields) were done centrally and are not repeated here. The Materials URL is unchanged.
+- **Checks after these fixes.** `build.sh`: 22 pages, no errors, no undefined references, no overfull boxes. `check_bib.py`: 52 entries, all cited, none missing; 22 OK, the same 3 explained CHECKs, 27 NO-ID, no NOT-FOUND.

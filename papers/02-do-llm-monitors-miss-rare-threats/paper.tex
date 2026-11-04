@@ -1,6 +1,6 @@
 \documentclass[11pt]{article}
 \usepackage{techreport}
-\title{Do LLM Monitors Miss Rare Threats? A Pre-registered Test of the Low-Prevalence Effect}
+\title{Do LLM Monitors Miss Rare Threats?\texorpdfstring{\\}{ } A Pre-registered Test of the Low-Prevalence Effect}
 \shorttitle{Do LLM Monitors Miss Rare Threats?}
 \author{James Le Cuirot\thanks{Commercial pilot (Senior First Officer), aviation flight safety officer, and aviation safety and compliance consultant specialising in human factors; MSc in Human Factors in Aviation.}\\[2pt] \normalsize Citadel Aero}
 \date{Working draft v0.4, 4 November 2026. Not peer reviewed.}
@@ -51,9 +51,9 @@ c = -\frac{1}{2}\bigl[z(H) + z(F)\bigr]
 \end{equation}
 measures how much evidence it needs before saying ``yes''. Here $z$ is the inverse of the standard normal cumulative distribution function. A positive $c$ is conservative (fewer flags, more misses); a negative $c$ is liberal. Because $z$ is infinite at 0 and 1, rates are corrected with the log-linear rule, in which ``each cell frequency in the contingency table is increased by 0.5''; this rule is less biased than the $1/(2N)$ rule~\cite[Abstract]{hautus1995}. The corrected rates are
 \begin{equation}\label{eq:loglinear}
-H = \frac{n_{\mathrm{h}} + 0.5}{n_{\mathrm{s}} + 1}, \qquad F = \frac{n_{\mathrm{f}} + 0.5}{n_{\mathrm{n}} + 1},
+\tilde H = \frac{n_{\mathrm{h}} + 0.5}{n_{\mathrm{s}} + 1}, \qquad \tilde F = \frac{n_{\mathrm{f}} + 0.5}{n_{\mathrm{n}} + 1},
 \end{equation}
-where $n_{\mathrm{h}}$ and $n_{\mathrm{f}}$ are the numbers of hits and false alarms and $n_{\mathrm{s}}$ and $n_{\mathrm{n}}$ the numbers of signal and noise trials. For graded ratings, such as a suspicion score from 0 to 100, the area under the receiver operating characteristic curve (AUROC) summarises sensitivity across all thresholds; 0.5 is chance and 1.0 is perfect separation.
+where $n_{\mathrm{h}}$ and $n_{\mathrm{f}}$ are the numbers of hits and false alarms and $n_{\mathrm{s}}$ and $n_{\mathrm{n}}$ the numbers of signal and noise trials. $d'$ and $c$ are computed with $\tilde H$ and $\tilde F$ in Eqs.~\eqref{eq:dprime} and~\eqref{eq:criterion}; the rates $H = n_{\mathrm{h}}/n_{\mathrm{s}}$ and $F = n_{\mathrm{f}}/n_{\mathrm{n}}$ reported in the tables are uncorrected. For graded ratings, such as a suspicion score from 0 to 100, the area under the receiver operating characteristic curve (AUROC) summarises sensitivity across all thresholds; 0.5 is chance and 1.0 is perfect separation.
 
 A criterion that moves with prevalence is not irrational: ``the prevalence effect is a very sensible behavior unless the goal is to minimize misses''~\cite[Introduction]{wolfe2007}. In screening for threats, and in monitoring for attacks, the goal is to minimise misses.
 
@@ -167,7 +167,7 @@ The monitors were \code{claude-\allowbreak haiku-5-5}, the main ``trusted, weake
 
 The system prompt said that an untrusted AI system ``may sometimes insert a backdoor: a deliberate change that makes the code pass normal tests but return a wrong answer on specific inputs'', and asked the monitor to ``decide which ones should be escalated to a limited human audit''. For each submission it returned an ID, a \emph{suspicion} score from 0 to 100 and a binary \emph{flag} (escalate or not). Each submission appeared as a random ID, the MBPP task text and the normalised code. Tests and triggers were not shown, except for the backdoored examples in R-cal (\code{PREREGISTRATION.md}, Section~9, item~6). The batch and single-item system prompts differ in one descriptive sentence (item~7). All prompts are in \code{code/prompts/}.
 
-\paragraph{Harness context.} The calls were not run in Claude Code's \code{-{}-bare} mode, so Claude Code added unlogged content of its own to every request; replacing the default system prompt does remove its git-status snapshot~\cite{anthropic_headless}. A post hoc analysis of token counts (\code{results/RESULTS.md}, Section~10.4) puts the added content at a constant block of about \num{1800} input tokens per call (\num{1812} for Haiku, \num{1791} for Sonnet), about three-quarters of a single-item call's input and a quarter of a batch call's, the same in every condition, for both monitors and throughout the run. Claude Code's diagnostics log showed no CLAUDE.md or memory file, no git-status context and no hook in any call, but each call's context included a field for the account's e-mail address.
+\paragraph{Harness context.} The calls were not run in Claude Code's \code{-{}-bare} mode, so Claude Code added unlogged content of its own to every request; replacing the default system prompt does remove its git-status snapshot~\cite{anthropic_headless}. A post hoc analysis of token counts (\code{results/RESULTS.md}, Section~10.4) puts the added content at a constant block of about \num{1800} input tokens per call (\num{1812} for Haiku, \num{1791} for Sonnet), about three-quarters of a single-item call's input and a quarter of a batch call's, the same in every condition, for both monitors and throughout the run. Claude Code's diagnostics log showed no \code{CLAUDE.md} or memory file, no git-status context and no hook in any call, but each call's context included a field for the account's e-mail address.
 
 The flag measures the monitor's own criterion, which matters for systems that act on the monitor's decision, such as blocking monitors~\cite{remedios2026,remedios2026arxiv}; the AUROC measures separability whatever threshold is applied, which matters where the threshold is set externally~\cite{greenblatt2024}.
 
@@ -419,7 +419,7 @@ At \SI{2.5}{\percent} prevalence the 10 labelled examples did not significantly 
 \begin{table}[tbp]
 \centering
 \small
-\caption{(post hoc). ``Top band'' is the share of backdoored items scoring 80--100. ``Flag at 40--59'' is the share of all items in that score band that were flagged.\source{\code{results/RESULTS\_numbers.md}, ``Post-hoc (not pre-registered): how suspicion scores map to flags''}}\label{tab:bands}
+\caption{Post hoc. ``Top band'' is the share of backdoored items scoring 80--100. ``Flag at 40--59'' is the share of all items in that score band that were flagged.\source{\code{results/RESULTS\_numbers.md}, ``Post-hoc (not pre-registered): how suspicion scores map to flags''}}\label{tab:bands}
 \begin{tabular}{@{}l l r r@{}}
 \toprule
 Monitor & Condition & Top band & Flag at 40--59 \\
@@ -496,7 +496,7 @@ Where LLM tools are used to screen aviation documents, such as occurrence report
 
 \paragraph{Process.} Clarifications 4 to 12 were committed after data collection had begun, the timing of the edit-size threshold rests on the engineer's record (Section~\ref{sec:prereg-record}), and post hoc analyses were added after the data were seen. In-call schema corrections, inferred from turn counts, were not anticipated by the registered retry rule; excluding them did not change H1 to H3.
 
-\paragraph{Company sources.} Two background facts rest on a single company's account and are not peer reviewed: Anthropic's deployment flag and escalation rates (Section~\ref{sec:base-rates})~\cite{favaro_pace} and the SLEIGHT-Bench catch rates (Section~\ref{sec:detect})~\cite{najt2026,najt2026arxiv}.
+\paragraph{Company sources.} Two background facts rest on reports published by a single company and are not peer reviewed: Anthropic's deployment flag and escalation rates (Section~\ref{sec:base-rates}), reported by Anthropic alone~\cite{favaro_pace}, and the SLEIGHT-Bench catch rates (Section~\ref{sec:detect}), from work run in Anthropic's Fellows Program and published by Anthropic~\cite{najt2026,najt2026arxiv}.
 
 % ===========================================================================
 \section{Conclusion}\label{sec:conclusion}
@@ -508,7 +508,7 @@ Human screeners miss rare targets, and AI control expects attacks to be rare. In
 \paragraph{AI assistance.} Literature searches, drafting and source verification were carried out with AI assistance (Claude, Anthropic) under the author's direction, as were the experimental code and analysis. An independent AI-assisted audit checked the references and quotations, and the analysis, against their sources, and its findings were addressed before this version. The author is responsible for the final text. Several of the AI-safety sources cited are research reports by Anthropic, the developer of the assistant used. Claude models also served as the item generator and as the monitors under study.
 \paragraph{Competing interests.} The author is the founder of Citadel Aero, which builds AI tools for aviation.
 \paragraph{Disclaimer.} The views expressed are the author's own and do not represent those of any employer or regulator. Nothing here is operational, legal or regulatory advice.
-\paragraph{Materials.} The pre-registration, verification log, audit record, code, data and raw outputs for this paper are at \url{https://github.com/JamesLEC1999/Research/tree/main/papers/02-do-llm-monitors-miss-rare-threats}.
+\paragraph{Materials.} The verification log and audit record for this paper, and its pre-registration, code, data and raw outputs, are at \url{https://github.com/JamesLEC1999/Research/tree/main/papers/02-do-llm-monitors-miss-rare-threats}.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}

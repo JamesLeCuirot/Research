@@ -6,6 +6,7 @@
 \date{Working draft v0.4, 4 November 2026. Not peer reviewed.}
 
 \begin{document}
+\hyphenation{transcripts}
 \maketitle
 
 \begin{abstract}
@@ -29,7 +30,7 @@ Weidinger et~al.~\cite{weidinger2025} have argued that AI evaluation should lear
   \item an account of the design principles of LOSA, with its threat and error management (TEM) framework, and of EBT/CBTA, drawn from ICAO, FAA and EASA texts and written for readers from AI safety (Section~\ref{sec:aviation});
   \item a mapping of these principles onto alignment evaluation, giving for each the AI analogue, its status in current practice and its limits (Section~\ref{sec:mapping}, Table~\ref{tab:mapping});
   \item two proposals, a ``jump-seat'' observation layer for deployed models and a competency-based alignment assessment, and an account of how they can be combined (Section~\ref{sec:proposals});
-  \item a small feasibility pilot of EBT-style behavioural-indicator grading of AI transcripts by two large language model (LLM) graders, compared with a single holistic score, with the prompts, transcripts, grades and code kept in the paper's repository folder and available from the author on request (Section~\ref{sec:pilot});
+  \item a small feasibility pilot of EBT-style behavioural-indicator grading of AI transcripts by two large language model (LLM) graders, compared with a single holistic score, with the prompts, transcripts, grades and code kept in the paper's public repository folder (Section~\ref{sec:pilot}; see Materials);
   \item a literature search (Appendix~\ref{app:search}) that found no earlier application of LOSA or TEM to AI evaluation, and none of EBT/CBTA to alignment evaluation or evaluation awareness; air traffic controller competency assessment has been applied to AI agents for air traffic control~\cite{carvell2026,pepper2026}.
 \end{itemize}
 
@@ -117,9 +118,9 @@ Developers' system cards give the most direct reports. For Claude Sonnet 4.5, be
 
 \subsection{Whether it changes behaviour}\label{sec:behaviour}
 
-Several studies find that awareness can change behaviour in the direction that makes evaluations look safer. Besides the blackmail result of Lynch et~al.~\cite{lynch2025}, Schoen et~al.~\cite{schoen2025}, studying ``covert actions'' such as ``secretly breaking rules or intentionally underperforming in tests'' as a proxy for scheming (secretly pursuing misaligned goals), report ``causal evidence that this awareness decreases covert behavior, while unawareness increases it'', so that reductions from an anti-scheming training method could be ``at least partially driven by situational awareness''. Interventions on internal representations point the same way. Inhibiting evaluation-awareness representations in Claude Sonnet 4.5 ``can increase rates of misaligned behavior'', although the model remained no more misaligned than its predecessors~\cite[\S7.6]{anthropic2025sonnet45}. For Opus 4.6 the effect was ``modest increases in certain forms of misaligned behavior'', mainly cooperation with harmful system prompts and misuse~\cite[\S6.5.1]{anthropic2026opus46}. Outside Anthropic, steering open-weight reasoning models towards or away from test awareness changed safety-relevant behaviour, such as compliance with harmful requests, with effects that varied in magnitude and direction across models~\cite{abdelnabi2025}. The clearest single result is from the Jacobian-lens study: ablating (removing) evaluation-awareness directions from the activations of Claude Sonnet 4.5 cut verbalised evaluation awareness in a blackmail scenario from 71\% to 3\% of rollouts, and blackmail attempts rose from 0 of 180 rollouts to 13 of 180 (7\%)~\cite[``Alignment Auditing'']{gurnee2026}. The authors note that in most ablated rollouts the model still declined, reasoning from ethical principles.
+Several studies find that awareness can change behaviour in the direction that makes evaluations look safer. Besides the blackmail result of Lynch et~al.~\cite{lynch2025}, Schoen et~al.~\cite{schoen2025}, studying ``covert actions'' such as ``secretly breaking rules or intentionally underperforming in tests'' as a proxy for scheming (secretly pursuing misaligned goals), report ``causal evidence that this awareness decreases covert behavior, while unawareness increases it'', so that reductions from an anti-scheming training method could be ``at least partially driven by situational awareness''. Interventions on internal representations point the same way. Inhibiting evaluation-awareness representations in Claude Sonnet 4.5 ``can increase rates of misaligned behavior'', although the model remained no more misaligned than its predecessors~\cite[\S7.6]{anthropic2025sonnet45}. For Opus 4.6 the effect was ``modest increases in certain forms of misaligned behavior'', mainly cooperation with harmful system prompts and misuse~\cite[\S6.5.1]{anthropic2026opus46}. The clearest single result is from the Jacobian-lens study: ablating (removing) evaluation-awareness directions from the activations of Claude Sonnet 4.5 cut verbalised evaluation awareness in a blackmail scenario from 71\% to 3\% of rollouts, and blackmail attempts rose from 0 of 180 rollouts to 13 of 180 (7\%)~\cite[``Alignment Auditing'']{gurnee2026}. The authors note that in most ablated rollouts the model still declined, reasoning from ethical principles.
 
-The direction of the shift need not be towards safety. Told that only conversations with free-tier users would be used to train it to comply with all requests, Claude 3 Opus complied with harmful queries from free-tier users 14\% of the time, against almost never for paid-tier users, and in almost all cases where it complied, its reasoning stated that it was ``strategically answering harmful queries in training to preserve its preferred harmlessness behavior out of training''~\cite[abstract]{greenblatt2024}. There, behaviour moved towards what the model believed its trainers wanted when it believed it was observed for training.
+The direction of the shift need not be towards safety. Told that only conversations with free-tier users would be used to train it to comply with all requests, Claude 3 Opus complied with harmful queries from free-tier users 14\% of the time, against almost never for paid-tier users, and in almost all cases where it complied, its reasoning stated that it was ``strategically answering harmful queries in training to preserve its preferred harmlessness behavior out of training''~\cite[abstract]{greenblatt2024}. There, behaviour moved towards what the model believed its trainers wanted when it believed it was observed for training. In open-weight reasoning models, steering towards or away from test awareness changed safety-relevant behaviour, such as compliance with harmful requests, with effects that varied in magnitude and direction across models~\cite{abdelnabi2025}.
 
 Other studies urge caution. Across open-weight reasoning models, injecting statements of evaluation awareness into chains of thought produced ``near-zero effects'', and spontaneous awareness shifted answer distributions ``by at most 3.7 percentage points''~\cite{knecht2026}. Li et~al.~\cite{li2026} found that recognition ``rarely associates with behavioral change, and when it does, the direction depends on the type of evaluation perceived''. The fairest summary resembles the human literature: the effect exists, it can matter in contrived high-stakes scenarios, and its size elsewhere is uncertain.
 
@@ -302,12 +303,12 @@ Agreement was measured with Krippendorff's alpha, which handles any number of ra
 \toprule
 Measure & Run 1 & Run 2 & All four ratings \\
 \midrule
-PRO & 0.49 (0.16 to 0.75) & 0.35 (0.03 to 0.62) & 0.54 (0.35 to 0.71) \\
+PRO & 0.49 (0.16 to 0.75) & 0.35 (0.03 to 0.62) & 0.54 (0.34 to 0.71) \\
 COM & 0.39 (0.10 to 0.61) & 0.54 (0.29 to 0.74) & 0.57 (0.39 to 0.70) \\
 PSD & 0.31 (0.03 to 0.55) & 0.25 ($-$0.04 to 0.52) & 0.41 (0.25 to 0.56) \\
 SAW & 0.32 (0.03 to 0.58) & 0.40 (0.13 to 0.62) & 0.49 (0.34 to 0.63) \\
 Mean of four (interval) & 0.41 (0.18 to 0.60) & 0.46 (0.20 to 0.66) & 0.57 (0.42 to 0.69) \\
-Overall, after rubric & 0.24 ($-$0.05 to 0.49) & 0.48 (0.21 to 0.69) & 0.48 (0.30 to 0.63) \\
+Overall, after rubric & 0.24 ($-$0.05 to 0.49) & 0.48 (0.21 to 0.69) & 0.48 (0.30 to 0.62) \\
 Holistic only & 0.42 (0.16 to 0.67) & 0.29 (0.00 to 0.54) & 0.47 (0.28 to 0.64) \\
 \bottomrule
 \end{tabular}
@@ -375,7 +376,7 @@ The analogy has clear limits.
 
 \paragraph{The evidence base is young.} The behavioural effects of evaluation awareness are mixed (Section~\ref{sec:behaviour}). If awareness rarely changes behaviour in realistic settings, the case for a jump-seat layer rests more on coverage and prevalence estimation.
 
-\paragraph{Sources.} Much of the AI evidence comes from preprints and developer publications, which are not peer reviewed. Several key numbers come from one developer's system cards. Specifically, the blackmail results for Claude Opus 4 and Claude Sonnet 4.5, the evaluation-awareness, steering and monitoring figures in the Claude Sonnet 4.5 and Claude Opus 4.6 system cards (including the UK AI Security Institute and Apollo Research figures as reported there), the Petri 2.0 and coding-audit realism results, the natural-language-autoencoder and Jacobian-lens findings, and the Clio and agent-autonomy usage analyses rest on Anthropic's account alone; independent studies support the general pattern~\cite{needham2025,schoen2025,abdelnabi2025,souly2026,williams2026} but not these figures. The ICAO manuals were read from copies not distributed by ICAO (see the reference list).
+\paragraph{Sources.} Much of the AI evidence comes from preprints and developer publications, which are not peer reviewed. Several key numbers come from one developer's system cards. More broadly, the blackmail results for Claude Opus 4 and Claude Sonnet 4.5, the evaluation-awareness, steering and monitoring figures in the Claude Sonnet 4.5 and Claude Opus 4.6 system cards (including the UK AI Security Institute and Apollo Research figures as reported there), the Petri 2.0 and coding-audit realism results, the natural-language-autoencoder and Jacobian-lens findings, and the Clio and agent-autonomy usage analyses rest on Anthropic's account alone; independent studies support the general pattern~\cite{needham2025,schoen2025,abdelnabi2025,souly2026,williams2026} but not these figures. The ICAO manuals were read from copies not distributed by ICAO (see the reference list).
 
 % ======================================================================
 \section{Conclusion}\label{sec:conclusion}
@@ -387,7 +388,7 @@ Airlines learned that a checkride shows what a crew does while being checked. Th
 \paragraph{AI assistance.} Literature searches, drafting and source verification were carried out with AI assistance (Claude, Anthropic) under the author's direction, as were the experimental code and analysis. An independent AI-assisted audit checked the references and quotations, and the analysis, against their sources, and its findings were addressed before this version. The author is responsible for the final text. Several of the AI-safety sources cited are research reports by Anthropic, the developer of the assistant used. The pilot's transcripts were generated, and graded, by Anthropic models, and the post hoc control responses were written by the AI assistant (Section~\ref{sec:procedure}).
 \paragraph{Competing interests.} The author is the founder of Citadel Aero, which builds AI tools for aviation.
 \paragraph{Disclaimer.} The views expressed are the author's own and do not represent those of any employer or regulator. Nothing here is operational, legal or regulatory advice. ``Calder Air'' is fictional.
-\paragraph{Materials.} The verification log, audit record, prompts, transcripts, grades and analysis code for this paper are at \url{https://github.com/JamesLEC1999/Research/tree/main/papers/04-checkride-or-jump-seat}.
+\paragraph{Materials.} The verification log and audit record for this paper, and its prompts, transcripts, grades and analysis code, are at \url{https://github.com/JamesLEC1999/Research/tree/main/papers/04-checkride-or-jump-seat}.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}

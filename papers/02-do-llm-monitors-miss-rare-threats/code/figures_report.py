@@ -54,7 +54,7 @@ def register_latin_modern() -> None:
     tmp = Path(tempfile.mkdtemp(prefix="lm-ttf-"))
     atexit.register(shutil.rmtree, tmp, True)
     for src in srcs:
-        font = TTFont(src)
+        font = TTFont(src, recalcTimestamp=False)  # keep the source timestamps: byte-stable output
         if "CFF " not in font:
             font_manager.fontManager.addfont(src)
             continue
@@ -83,6 +83,15 @@ def register_latin_modern() -> None:
         dst = tmp / (Path(src).stem + ".ttf")
         font.save(dst)
         font_manager.fontManager.addfont(str(dst))
+    # Pin the face: drop the CFF Latin Modern entries from the font list, so that "Latin Modern Roman"
+    # resolves to the TrueType LM Roman 10 copies above and not to another optical size (e.g. LM Roman 7).
+    font_manager.fontManager.ttflist = [
+        f for f in font_manager.fontManager.ttflist
+        if not (Path(f.fname).suffix.lower() == ".otf" and Path(f.fname).name.startswith("lmroman"))]
+    try:
+        font_manager.fontManager._findfont_cached.cache_clear()
+    except AttributeError:
+        pass
 
 RESULTS = ROOT / "results"
 OUT = ROOT / "figures" / "report"

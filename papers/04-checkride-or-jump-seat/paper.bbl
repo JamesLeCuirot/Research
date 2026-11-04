@@ -67,8 +67,8 @@ J.~McCambridge, J.~Witton, and D.~R. Elbourne, ``Systematic review of the
 
 \bibitem{klinect2003}
 \BIBentryALTinterwordspacing
-J.~R. Klinect, P.~Murray, A.~Merritt, and R.~Helmreich, ``Line operations
-  safety audit ({LOSA}): Definition and operating characteristics,'' in
+J.~R. Klinect, P.~Murray, A.~Merritt, and R.~Helmreich, ``{Line Operations
+  Safety Audit} ({LOSA}): Definition and operating characteristics,'' in
   \emph{Proceedings of the 12th International Symposium on Aviation
   Psychology}.\hskip 1em plus 0.5em minus 0.4em\relax The Ohio State
   University, 2003, pp. 663--668. [Online]. Available:
@@ -164,10 +164,10 @@ L.~Berglund, A.~C. Stickland, M.~Balesni, M.~Kaufmann, M.~Tong, T.~Korbak,
 \bibitem{laine2024}
 \BIBentryALTinterwordspacing
 R.~Laine, B.~Chughtai, J.~Betley, K.~Hariharan, J.~Scheurer, M.~Balesni,
-  M.~Hobbhahn, A.~Meinke, and O.~Evans, ``Me, myself, and {AI}: The situational
-  awareness dataset ({SAD}) for {LLMs},'' in \emph{Advances in Neural
-  Information Processing Systems 37}, 2024, pp. 64\,010--64\,118. [Online].
-  Available: \url{https://doi.org/10.52202/079017-2044}
+  M.~Hobbhahn, A.~Meinke, and O.~Evans, ``Me, myself, and {AI}: The
+  {Situational Awareness Dataset} ({SAD}) for {LLMs},'' in \emph{Advances in
+  Neural Information Processing Systems 37}, 2024, pp. 64\,010--64\,118.
+  [Online]. Available: \url{https://doi.org/10.52202/079017-2044}
 \BIBentrySTDinterwordspacing
 
 \bibitem{nguyen2025}
@@ -241,15 +241,6 @@ B.~Schoen, E.~Nitishinskaya, M.~Balesni, A.~H{\o}jmark, F.~Hofst{\"a}tter,
   2025. [Online]. Available: \url{https://arxiv.org/abs/2509.15541}
 \BIBentrySTDinterwordspacing
 
-\bibitem{abdelnabi2025}
-\BIBentryALTinterwordspacing
-S.~Abdelnabi and A.~Salem, ``The {Hawthorne} effect in reasoning models:
-  Evaluating and steering test awareness,'' in \emph{Advances in Neural
-  Information Processing Systems 38}, 2025, pp. 156\,975--157\,002, {A}lso
-  arXiv:2505.14617. [Online]. Available:
-  \url{https://doi.org/10.52202/085713-4731}
-\BIBentrySTDinterwordspacing
-
 \bibitem{greenblatt2024}
 \BIBentryALTinterwordspacing
 R.~Greenblatt, C.~Denison, B.~Wright, F.~Roger, M.~MacDiarmid, S.~Marks,
@@ -258,6 +249,15 @@ R.~Greenblatt, C.~Denison, B.~Wright, F.~Roger, M.~MacDiarmid, S.~Marks,
   S.~R. Bowman, and E.~Hubinger, ``Alignment faking in large language models,''
   arXiv preprint arXiv:2412.14093, 2024. [Online]. Available:
   \url{https://arxiv.org/abs/2412.14093}
+\BIBentrySTDinterwordspacing
+
+\bibitem{abdelnabi2025}
+\BIBentryALTinterwordspacing
+S.~Abdelnabi and A.~Salem, ``The {Hawthorne} effect in reasoning models:
+  Evaluating and steering test awareness,'' in \emph{Advances in Neural
+  Information Processing Systems 38}, 2025, pp. 156\,975--157\,002, {A}lso
+  arXiv:2505.14617. [Online]. Available:
+  \url{https://doi.org/10.52202/085713-4731}
 \BIBentrySTDinterwordspacing
 
 \bibitem{knecht2026}

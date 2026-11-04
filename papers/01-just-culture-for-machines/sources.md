@@ -1,6 +1,6 @@
 # Sources and verification log
 
-Paper: *Just Culture for Machines: Why Penalising Disclosure Teaches Concealment* (draft v0.2; revised after the independent audit in `AUDIT.md`). Entries marked **[v0.2]** were added or changed in the revision; each change was re-checked against the source itself.
+Paper: *Just Culture for Machines: Why Penalising Disclosure Teaches Concealment* (working draft v0.4; revised after the independent audit in `AUDIT.md`, converted to LaTeX, author decisions A3–A6 applied). Entries marked **[v0.2]** or **[v0.4]** were added or changed in those revisions; each change was re-checked against the source itself.
 All sources were checked on **3 November 2026** unless stated otherwise. "Library" means the Citadel Aero regulation library (`lookup_citation` / `get_provision` / `browse_library`), which returns verbatim text with a source link and version date. Quotations below are verbatim from the source as seen; "[...]" marks an omission.
 
 Status labels: **Full** = the source itself was opened and the quoted text located. **Partial** = metadata and/or a secondary account seen, not the full primary text. Every reference in the paper has an entry.
@@ -115,6 +115,14 @@ Status labels: **Full** = the source itself was opened and the quoted text locat
   - p. 36 [15], Chapter 1: "Safety performance indicator. A ~~data-based parameter used for monitoring and assessing~~ metric used to measure and monitor a State or a service provider's safety performance, including the progress towards achieving a safety objective." The SMS definition on the same page is unchanged.
   - p. 26 [5] (contents) and p. 50 [29]: "5.~~3~~4 Safety data and safety information protection"; 5.3.1–5.3.7 become 5.4.1–5.4.7, with the texts of 5.4.1 and 5.4.4 otherwise unchanged.
   - pp. 59–61 [38–40], Appendix 3: Note 1, 2.1 and section 3 are unchanged, and section 5 changes "~~each~~ the SDCPS".
+  - **[v0.4] Other changes not itemised in the footnote**, which therefore opens "Among other changes" (v0.4 conversion check, item 4d). All are on p. 36 [15], Chapter 1, viewed as an image:
+    - "Safety information. Safety data processed, organized or analysed in a given context ~~so as to make it useful for~~ to support safety management ~~purposes~~ and the development of safety intelligence." The footnote now names this redefinition, because the term occurs in the Appendix 3 passages quoted in §2.4.
+    - "Safety performance. A State or a service provider's measurable effect on safety achievement ~~as defined by its safety performance targets and safety performance indicators~~."
+    - New definition: "Safety objective. A statement of a desired safety outcome."
+    - Safety performance target: "that aligns with the safety objectives" struck through.
+    - Appendix 2 3.1.1 replaced by "The service provider shall establish means to: a) measure and monitor the safety performance of the organization; b) measure and monitor the progress towards achieving its safety objectives; and c) validate the effectiveness of safety risk controls" (p. 57 [36]).
+    The State letter itself (paras 4–9) also describes further changes: SSP provisions, ALoSP, RPAS operators, heliports, discretionary SMS applicability, and safety intelligence in Chapter 5. These are not relevant to the passages the paper quotes.
+  - **[v0.4]** The footnote also spells out SDCPS ("safety data collection and processing system"; Appendix 3, Note 3 of the 2nd edition reads "safety data collection and processing systems (SDCPS)").
 
 ### GAIN Working Group E (2004). *A Roadmap to a Just Culture: Enhancing the Safety Environment* (1st ed., September 2004)
 - **Verified:** Full. PDF from SKYbrary (https://www.skybrary.aero/sites/default/files/bookshelf/233.pdf), 30+ pages; title page "First Edition • September 2004"; foreword signed "James Reason".

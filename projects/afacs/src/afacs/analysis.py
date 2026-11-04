@@ -129,6 +129,7 @@ def heatmap(matrix, row_labels, col_labels, title, path, row_note=None, fmt="{:.
     cbar.ax.tick_params(length=0)
     paths.FIGURES.mkdir(exist_ok=True)
     fig.savefig(path, dpi=200, bbox_inches="tight")
+    fig.savefig(path.with_suffix(".pdf"), bbox_inches="tight")  # vector copy for the paper
     plt.close(fig)
     print(f"  wrote {path.relative_to(paths.ROOT)}")
 
@@ -158,6 +159,7 @@ def hbar_panels(panels: dict[str, list[tuple[str, float, float, float, int]]], t
     fig.supxlabel(xlabel, color=INK_2, fontsize=9)
     fig.tight_layout()
     fig.savefig(path, dpi=200)
+    fig.savefig(path.with_suffix(".pdf"))  # vector copy for the paper
     plt.close(fig)
     print(f"  wrote {path.relative_to(paths.ROOT)}")
 
@@ -208,6 +210,7 @@ def mast_figures() -> None:
         fig.tight_layout()
         path = paths.FIGURES / "mast_judge_test_retest.png"
         fig.savefig(path, dpi=200)
+        fig.savefig(path.with_suffix(".pdf"))  # vector copy for the paper
         plt.close(fig)
         print(f"  wrote {path.relative_to(paths.ROOT)}")
 

@@ -4,11 +4,11 @@
 
 James Le Cuirot · [CitadelAero](https://citadelaero.com) · Senior First Officer and Flight Safety Officer · MSc Human Factors in Aviation
 
-**Paper (Preprint v1.0, 4 November 2026): [`paper.pdf`](paper.pdf)** · Plain-English guide to the project: [`docs/GUIDE.md`](docs/GUIDE.md)
+**Paper (Preprint v1.1, 4 November 2026): [`paper.pdf`](paper.pdf)** · Plain-English guide to the project: [`docs/GUIDE.md`](docs/GUIDE.md)
 
 *AFACS stands for Agent Failure Analysis and Classification System.*
 
-*Status: Preprint v1.0, 4 November 2026. Not peer reviewed. Part of James Le Cuirot's [research repository](../../README.md).*
+*Status: Preprint v1.1, 4 November 2026. Not peer reviewed. Part of James Le Cuirot's [research repository](../../README.md).*
 
 ---
 
@@ -30,7 +30,7 @@ The framework is then tested on the public [MAST](https://github.com/multi-agent
   - MAST's AI judge agrees with itself at a mean Cohen's κ of only 0.43 on traces it labelled twice.
   - Its descriptions of some systems differ from what its logs show was run.
 - **The logs record actions but not systems.** Every framework's logs record what the agents said and did. None contains the system documentation, versions or settings that an investigator would need to reconstruct a failure.
-- **AFACS can be applied consistently.** Claude coded 250 failed traces three times. Agreement on which layers were involved was κ 0.63–0.76 between two models and 0.74–0.87 between two runs of one model. Individual codes agreed less (0.52 and 0.59).
+- **AFACS can be applied with moderate to substantial consistency.** Claude coded 250 failed traces three times. On the traces both coders judged failed, agreement on which layers were involved was κ 0.49–0.68 between two models and 0.64–0.70 between two runs of one model, lowest for supervision (L3); individual codes agreed at 0.49 and 0.57. Over all 250 traces, which include traces judged failure-free, the figures are higher (0.63–0.76 and 0.74–0.87).
 - **Most failures have causes below the sharp end.**
   - 85–91% of failures have a contributing factor beneath the unsafe act.
   - Supervision failures appear in about two-thirds of failures and coordination breakdowns in about two-fifths.
@@ -93,7 +93,7 @@ MAST's logs were checked against the eighteen kinds of information Ezell et al. 
 
 ### How consistently AFACS can be applied (RQ3)
 
-Claude coded the 250-trace bulk sample three times (`claude-sonnet-5-5` twice, `claude-opus-5-5` once) through Claude Code. Cohen's κ, with 95% bootstrap intervals:
+Claude coded the 250-trace bulk sample three times (`claude-sonnet-5-5` twice, `claude-opus-5-5` once) through Claude Code. Cohen's κ over all 250 traces, with 95% bootstrap intervals, is below. These figures include traces at least one coder judged failure-free, where every layer is absent for both. On the traces both coders judged failed, layer agreement is lower: L4 0.68, L3 0.49 and L2 0.65 between models; 0.70, 0.64 and 0.69 between runs (post hoc, added in v1.1: [`results/agreement_both_failed.md`](results/agreement_both_failed.md)).
 
 | Measure | Sonnet vs Opus | Sonnet run 1 vs run 2 |
 |---|---|---|
@@ -203,7 +203,7 @@ To re-run the annotation itself, use `uv run python scripts/pilot.py`. It calls 
   author = {Le Cuirot, James},
   title  = {Extending AI-Agent Incident Analysis to Multi-Agent Systems: AFACS, an HFACS-based Framework, and an Audit of Public Traces},
   year   = {2026},
-  note   = {CitadelAero. Preprint v1.0, 4 November 2026. Not peer reviewed},
+  note   = {CitadelAero. Preprint v1.1, 4 November 2026. Not peer reviewed},
   url    = {https://github.com/JamesLeCuirot/Research}
 }
 ```

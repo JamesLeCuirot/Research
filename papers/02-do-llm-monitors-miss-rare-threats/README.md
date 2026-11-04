@@ -25,7 +25,7 @@ AI control protocols use language-model monitors to review the work of more capa
 | Pre-registration and §9 clarifications | Done; the timing of items 4–12 is disclosed in the paper (Section 5.8) |
 | Experiment, analysis, figures | Done (engineer); `results/RESULTS.md` |
 | Paper | **Complete draft v0.1.** About 7,800 words of prose (about 8,400 with tables and captions), 5 tables, 5 figures, 40 references |
-| Folder name | Still `02-rare-threats-are-missed-threats`; the lead will rename it to match the new title |
+| Folder name | Still `02-do-llm-monitors-miss-rare-threats`; the lead will rename it to match the new title |
 | Not done | `paper.html` / `paper.pdf` not built; nothing committed |
 
 ## What James should check

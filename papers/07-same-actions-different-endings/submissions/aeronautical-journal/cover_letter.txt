@@ -1,0 +1,14 @@
+Dear Editor,
+
+Please consider the enclosed manuscript, "Outcome Bias in AI Models Applying a Culpability Decision Tree to Airline Occurrence Reports: A Pre-registered Within-Case Experiment", for publication in The Aeronautical Journal as a research article.
+
+Airline safety departments are beginning to use general-purpose AI models to read, code and triage occurrence reports, which brings those models close to the judgements that just culture protects. Just culture asks that crews be judged on what they knew and did at the time, not on how events turned out. This pre-registered experiment tested whether three current models judge identical flight-crew actions as more culpable when an occurrence ends badly. The cases are 48 real NASA ASRS reports from Part 121 operations, drawn by a fixed rule, each in two versions that differ only in the outcome. The culpability outcome was derived in code from each model's answers to Reason's culpability decision tree.
+
+On average, all three models judged the crew more culpable after a bad ending. The effect was modest, concentrated in ambiguous cases and absent in clear control cases. It entered mainly through the substitution test for two of the models, and through the judgement of a knowing violation for the third. The models were also inconsistent across identical repeats. The paper draws practical implications for operators, investigators and regulators considering AI in occurrence analysis, and describes a cheap matched-pair test that any safety department can apply to its own tools. I believe it will interest the journal's readers in flight operations, safety management and accident investigation.
+
+The manuscript is original and is not under consideration elsewhere. The study was pre-registered on OSF, and its materials, data and code are openly available there. An earlier version was posted as a preprint under the title "Same Actions, Different Endings" (2 October 2026), the results were summarised in a plain-language write-up on my company's website, and the company cites the findings in its own published material on the risks of general-purpose AI in aviation safety work. Generative AI was used in preparing the study and the manuscript, as declared in the manuscript, and I take full responsibility for the content. I am the founder of CitadelAero, which develops AI tools for aviation safety and compliance teams; no company product was tested. I am a commercial pilot, a flight safety officer and a member of the Royal Aeronautical Society.
+
+Yours faithfully,
+
+James Le Cuirot
+CitadelAero, Jersey

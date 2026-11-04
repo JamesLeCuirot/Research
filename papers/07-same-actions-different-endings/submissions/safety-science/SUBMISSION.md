@@ -1,7 +1,7 @@
 # Paper 07: journal submission to Safety Science
 
 **Target:** *Safety Science* (Elsevier), research paper, through Elsevier's Editorial Manager.
-**Status (4 November 2026):** package drafted and independently checked. **Not ready to submit** until James makes the decisions below, revises the text himself and completes the AI declaration. Not yet submitted.
+**Status (4 November 2026):** fallback. *The Aeronautical Journal* was chosen first for this paper (`../aeronautical-journal/`); use this package if that journal declines. Not submitted.
 
 ## Why Safety Science
 

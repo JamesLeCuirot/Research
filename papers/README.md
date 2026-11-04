@@ -8,11 +8,11 @@ This folder is separate from the AFACS project in the rest of this repository.
 
 | # | Paper | Kind | Version | Read |
 |---|---|---|---|---|
-| 01 | **Just Culture for Machines:** Why Penalising Disclosure Teaches Concealment | Theory | v0.3 | [PDF](01-just-culture-for-machines/paper.pdf) · [source](01-just-culture-for-machines/paper.md) |
-| 02 | **Do LLM Monitors Miss Rare Threats?** A Pre-registered Test of the Low-Prevalence Effect | Experiment (pre-registered) | v0.3 | [PDF](02-do-llm-monitors-miss-rare-threats/paper.pdf) · [source](02-do-llm-monitors-miss-rare-threats/paper.md) |
-| 03 | **From RSP to SMS:** Reading Frontier AI Safety Frameworks Through ICAO's Safety Management System | Theory and document analysis | v0.3 | [PDF](03-from-rsp-to-sms/paper.pdf) · [source](03-from-rsp-to-sms/paper.md) |
-| 04 | **Checkride or Jump Seat?** What LOSA and Evidence-Based Training Teach About Evaluation Awareness in AI Systems | Theory and a small pilot | v0.3 | [PDF](04-checkride-or-jump-seat/paper.pdf) · [source](04-checkride-or-jump-seat/paper.md) |
-| 05 | **Untrusted by Design:** Bringing AI Control into Aviation's Operational Oversight of AI | Theory and regulatory analysis | v0.3 | [PDF](05-untrusted-by-design/paper.pdf) · [source](05-untrusted-by-design/paper.md) |
+| 01 | **Just Culture for Machines:** Why Penalising Disclosure Teaches Concealment | Theory | v0.4 | [PDF](01-just-culture-for-machines/paper.pdf) · [LaTeX](01-just-culture-for-machines/paper.tex) |
+| 02 | **Do LLM Monitors Miss Rare Threats?** A Pre-registered Test of the Low-Prevalence Effect | Experiment (pre-registered) | v0.4 | [PDF](02-do-llm-monitors-miss-rare-threats/paper.pdf) · [LaTeX](02-do-llm-monitors-miss-rare-threats/paper.tex) |
+| 03 | **From RSP to SMS:** Reading Frontier AI Safety Frameworks Through ICAO's Safety Management System | Theory and document analysis | v0.4 | [PDF](03-from-rsp-to-sms/paper.pdf) · [LaTeX](03-from-rsp-to-sms/paper.tex) |
+| 04 | **Checkride or Jump Seat?** What LOSA and Evidence-Based Training Teach About Evaluation Awareness in AI Systems | Theory and a small pilot | v0.4 | [PDF](04-checkride-or-jump-seat/paper.pdf) · [LaTeX](04-checkride-or-jump-seat/paper.tex) |
+| 05 | **Untrusted by Design:** Bringing AI Control into Aviation's Operational Oversight of AI | Theory and regulatory analysis | v0.4 | [PDF](05-untrusted-by-design/paper.pdf) · [LaTeX](05-untrusted-by-design/paper.tex) |
 
 ## The papers in brief
 
@@ -36,13 +36,21 @@ This folder is separate from the AFACS project in the rest of this repository.
 
 This is a strong process, but it is not peer review, and AI agents can share blind spots. Treat the drafts as well-sourced starting points that need your expert read.
 
+## Format
+
+Since v0.4 every paper is a LaTeX-typeset, single-column technical report in one house style (`_build/techreport.sty`): Latin Modern on A4, a running header, numbered sections, booktabs tables with captions above, numbered equations, vector figures in a shared colour scheme (one colour per model), and IEEE-style numbered references from `references.bib`. The rules are in [`STYLE.md`](STYLE.md).
+
+## Author review
+
+Decisions taken on the review points are recorded in [`REVIEW_CHECKLIST.md`](REVIEW_CHECKLIST.md).
+
 ## Before you publish any of them
 
 - **Read each folder's `README.md` → "What James should check".** These list the judgement calls made on your behalf (framing, analogies, ratings, wording about Anthropic and Citadel Aero).
 - **ICAO documents.** ICAO's website blocked access, so Annex 19, Doc 9859, Doc 9995 and Doc 9868 were read from copies hosted by other authorities or third parties, and the papers say so. Check the quoted text against your own licensed copies.
 - **Annex 19 Amendment 2 applies from 26 November 2026.** It renames some SMS elements and renumbers some provisions. Papers 01 and 03 use the 2nd edition and flag the change.
 - **Disclosure statements.** Each paper has an AI-assistance statement and a disclaimer. Several note that many sources are Anthropic's own and that the drafting AI is Anthropic's. Paper 03 has a competing-interests line naming Citadel Aero. Keep, edit or extend these as you see fit.
-- **Venue formatting.** Papers are in Pandoc Markdown with APA 7 author–date references. Converting to a venue template (arXiv LaTeX, a journal's Word template) is straightforward from `paper.md`.
+- **Venue formatting.** The LaTeX sources (`paper.tex`, `references.bib`, `paper.bbl`) are arXiv-ready. A journal template needs only the document class and bibliography style swapped.
 
 ## Folder layout
 
@@ -50,7 +58,8 @@ This is a strong process, but it is not peer review, and AI agents can share bli
 papers/
 ├── README.md            this index
 ├── STYLE.md             house style and citation rules used for all five
-├── _build/              pandoc template, CSS and PDF script
+├── REVIEW_CHECKLIST.md  author decisions on the review points
+├── _build/              LaTeX style, build script, bib checker, figure palette
 ├── 01-just-culture-for-machines/
 ├── 02-do-llm-monitors-miss-rare-threats/   (+ PREREGISTRATION.md, code/, data/, results/, figures/)
 ├── 03-from-rsp-to-sms/
@@ -58,7 +67,7 @@ papers/
 └── 05-untrusted-by-design/
 ```
 
-Each paper folder has `paper.md` (the source of truth), `paper.pdf` and `paper.html` (built), `README.md` (summary, checks, open questions, ideas for developing it, revision log), `sources.md` (verification log) and `AUDIT.md` (independent audit and second-round verification).
+Each paper folder has `paper.tex` and `references.bib` (the source), `paper.pdf` (built), `README.md` (summary, checks, open questions, ideas for developing it, revision log), `sources.md` (verification log) and `AUDIT.md` (independent audit and second-round verification).
 
 ## Rebuilding the PDFs
 
@@ -67,4 +76,8 @@ papers/_build/build.sh                      # all papers
 papers/_build/build.sh papers/03-from-rsp-to-sms   # one paper
 ```
 
-Needs `pandoc` and Node Playwright with Chromium (both present in the Claude Code cloud environment).
+Needs TeX Live with `latexmk` (the script installs the Debian/Ubuntu packages if they are missing). Helper scripts: `_build/check_bib.py` checks every reference against Crossref and arXiv; `_build/compare_text.sh` word-diffs a paper against its v0.3 Markdown.
+
+## Licence
+
+Paper text © 2026 James Le Cuirot. All rights reserved. Code in this repository is under the MIT licence (`LICENSE`). Item data derived from MBPP (paper 02) is released under CC BY 4.0 with attribution to Austin et al. (2021).

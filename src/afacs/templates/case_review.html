@@ -1,0 +1,407 @@
+<title>AFACS Case Review</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..100,500..800&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+/* Layout: case tabs across the top; below, the trace reader on the left and the AI's account plus the
+   review form on the right, each scrolling on its own. Phones fold the two panes into tabs.
+   Palette and type match the AFACS Coding Desk (aeronautical-chart navy, magenta, chart blue). */
+:root {
+  --paper: #F1F4F7; --panel: #FFFFFF; --ink: #13233A; --ink-2: #4A5A70; --rule: #C7D1DC;
+  --magenta: #A3226B; --magenta-soft: #F6E6EF; --blue: #1F5FA8; --blue-soft: #E3ECF7;
+  --good: #23764A; --good-soft: #E2F2E8; --warn: #9A5B00; --warn-soft: #FBEFD9; --bad: #B3261E; --bad-soft: #FBE4E2;
+  --code-bg: #F7F9FB; --mark: #FFE8A3;
+  --f-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0D1520; --panel: #142030; --ink: #E4EBF3; --ink-2: #9DAEC2; --rule: #2A394D;
+    --magenta: #E772B5; --magenta-soft: #3A1C30; --blue: #79AAEA; --blue-soft: #1A2C44;
+    --good: #62C68F; --good-soft: #15301F; --warn: #E2A445; --warn-soft: #33260F; --bad: #F28B82; --bad-soft: #3A1715;
+    --code-bg: #101A27; --mark: #5A4710; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0D1520; --panel: #142030; --ink: #E4EBF3; --ink-2: #9DAEC2; --rule: #2A394D;
+  --magenta: #E772B5; --magenta-soft: #3A1C30; --blue: #79AAEA; --blue-soft: #1A2C44;
+  --good: #62C68F; --good-soft: #15301F; --warn: #E2A445; --warn-soft: #33260F; --bad: #F28B82; --bad-soft: #3A1715;
+  --code-bg: #101A27; --mark: #5A4710; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.5; overflow: hidden; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--magenta); outline-offset: 2px; }
+.disp { font-family: var(--f-display); font-stretch: 75%; font-variation-settings: "wdth" 75; }
+.mono { font-family: var(--f-mono); }
+.app { height: 100%; display: grid; grid-template-rows: auto auto minmax(0, 1fr);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1rem; padding-block: 0.6rem; border-bottom: 1px solid var(--rule); }
+.bar h1 { margin: 0; font-size: 1.35rem; font-weight: 800; }
+.bar h1 span { color: var(--magenta); }
+.spacer { flex: 1; }
+.save { font-family: var(--f-mono); font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: 3px; background: var(--blue-soft); color: var(--ink-2); }
+.save.ok { background: var(--good-soft); color: var(--good); }
+.save.warn { background: var(--warn-soft); color: var(--warn); }
+.save.bad { background: var(--bad-soft); color: var(--bad); }
+.linkbtn { background: none; border: 0; padding: 0; color: var(--blue); text-decoration: underline; cursor: pointer; font-size: 0.9rem; }
+.tabs { display: flex; gap: 0.4rem; flex-wrap: wrap; padding-block: 0.55rem; }
+.tab { cursor: pointer; display: flex; align-items: center; gap: 0.45rem; border: 1px solid var(--rule); background: var(--panel); border-radius: 6px; padding: 0.35rem 0.7rem; text-align: left; }
+.tab .k { font-family: var(--f-mono); font-size: 0.78rem; color: var(--ink-2); }
+.tab .t { font-family: var(--f-display); font-stretch: 75%; font-variation-settings: "wdth" 75; font-weight: 700; font-size: 0.95rem; }
+.tab[aria-selected="true"] { border-color: var(--ink); box-shadow: inset 0 -3px 0 var(--magenta); }
+.dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--ink-2); flex: none; }
+.dot.draft { background: linear-gradient(90deg, var(--warn) 50%, transparent 50%); border-color: var(--warn); }
+.dot.done { background: var(--good); border-color: var(--good); }
+.guide { margin: 0 0 0.6rem; border: 1px solid var(--rule); border-radius: 6px; background: var(--panel); }
+.guide summary { cursor: pointer; padding: 0.45rem 0.8rem; font-family: var(--f-display); font-stretch: 75%; font-variation-settings: "wdth" 75; font-weight: 700; }
+.guide div { padding: 0 0.9rem 0.6rem; max-width: 75ch; }
+.guide ol { margin: 0.2rem 0; padding-left: 1.2rem; }
+.panes { min-height: 0; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 1rem; padding-bottom: 0.8rem; }
+.pane { min-height: 0; overflow-y: auto; border: 1px solid var(--rule); border-radius: 6px; background: var(--panel); }
+.reader { padding: 0.8rem 0.9rem; }
+.reader h2, .side h2 { margin: 0 0 0.3rem; font-size: 1.15rem; font-weight: 800; }
+.meta { color: var(--ink-2); font-size: 0.85rem; margin-bottom: 0.8rem; }
+.step { border: 1px solid var(--rule); border-radius: 5px; margin-bottom: 0.55rem; background: var(--panel); scroll-margin-top: 0.5rem; }
+.step header { display: flex; flex-wrap: wrap; gap: 0.3rem 0.6rem; align-items: baseline; padding: 0.3rem 0.6rem; border-bottom: 1px solid var(--rule); background: var(--code-bg); border-radius: 5px 5px 0 0; }
+.step .sn { font-family: var(--f-mono); font-weight: 500; color: var(--magenta); }
+.step .ag { font-weight: 600; }
+.step .kd { font-family: var(--f-mono); font-size: 0.72rem; color: var(--ink-2); }
+.step .cites { margin-left: auto; display: flex; flex-wrap: wrap; gap: 0.25rem; }
+.step pre { margin: 0; padding: 0.5rem 0.6rem; white-space: pre-wrap; word-break: break-word; font-family: var(--f-mono); font-size: 0.78rem; line-height: 1.45; max-height: 32rem; overflow-y: auto; }
+.step.system { opacity: 0.8; }
+.step.bench { border-style: dashed; border-color: var(--warn); }
+.step.bench header { background: var(--warn-soft); }
+.step.flash { animation: flash 1.6s ease-out; }
+@keyframes flash { from { box-shadow: 0 0 0 4px var(--magenta); } to { box-shadow: 0 0 0 0 transparent; } }
+@media (prefers-reduced-motion: reduce) { .step.flash { animation: none; outline: 3px solid var(--magenta); } }
+mark { background: var(--mark); color: inherit; padding: 0 1px; border-radius: 2px; }
+.chip { font-family: var(--f-mono); font-size: 0.72rem; padding: 0.05rem 0.35rem; border-radius: 3px; background: var(--blue-soft); color: var(--blue); white-space: nowrap; }
+.chip.m { background: var(--magenta-soft); color: var(--magenta); }
+.chip.v { background: var(--bad-soft); color: var(--bad); }
+.side { padding: 0.8rem 0.9rem; display: grid; gap: 0.9rem; align-content: start; }
+.blk { border-top: 1px solid var(--rule); padding-top: 0.7rem; display: grid; gap: 0.4rem; }
+.blk:first-child { border-top: 0; padding-top: 0; }
+.blk h3 { margin: 0; font-family: var(--f-display); font-stretch: 75%; font-variation-settings: "wdth" 75; font-size: 1rem; font-weight: 800; letter-spacing: 0.02em; }
+.q { background: var(--magenta-soft); border-radius: 6px; padding: 0.6rem 0.75rem; }
+.q b { font-family: var(--f-display); font-stretch: 75%; font-variation-settings: "wdth" 75; display: block; color: var(--magenta); font-size: 0.85rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.small { font-size: 0.88rem; color: var(--ink-2); }
+ul.plain { margin: 0; padding-left: 1.1rem; }
+.labels { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.layer { display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: 0.2rem 0.6rem; align-items: start; padding-block: 0.25rem; border-bottom: 1px dotted var(--rule); }
+.layer:last-child { border-bottom: 0; }
+.layer .L { font-family: var(--f-mono); font-weight: 500; }
+.codeline { font-size: 0.88rem; }
+.codeline .chip { margin-right: 0.35rem; }
+.none { color: var(--ink-2); font-style: italic; font-size: 0.88rem; }
+.summary { background: var(--blue-soft); border-radius: 6px; padding: 0.6rem 0.75rem; }
+.evid { display: grid; gap: 0.35rem; margin: 0; padding: 0; list-style: none; }
+.evid li { font-size: 0.86rem; }
+.evid button.s { font-family: var(--f-mono); font-size: 0.78rem; cursor: pointer; border: 1px solid var(--rule); background: var(--panel); border-radius: 4px; padding: 0 0.35rem; color: var(--magenta); }
+.evid button.s:hover { border-color: var(--magenta); }
+.evid q { font-family: var(--f-mono); font-size: 0.78rem; }
+.cmp { overflow-x: auto; }
+.cmp table { border-collapse: collapse; width: 100%; font-size: 0.8rem; }
+.cmp th, .cmp td { border: 1px solid var(--rule); padding: 0.25rem 0.4rem; text-align: left; vertical-align: top; }
+.cmp th { background: var(--code-bg); font-family: var(--f-display); font-stretch: 75%; font-variation-settings: "wdth" 75; }
+.cmp td { font-family: var(--f-mono); }
+details.more summary { cursor: pointer; font-size: 0.88rem; color: var(--blue); }
+details.more p { font-size: 0.88rem; margin: 0.3rem 0; }
+.form { display: grid; gap: 0.75rem; }
+.fq { display: grid; gap: 0.3rem; }
+.fq > .lbl { font-weight: 600; font-size: 0.92rem; }
+.fq .ai { font-size: 0.82rem; color: var(--ink-2); }
+.seg { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+.seg label { cursor: pointer; position: relative; }
+.seg input { position: absolute; left: 0; top: 0; opacity: 0; width: 1px; height: 1px; }
+.seg span { display: inline-block; padding: 0.25rem 0.65rem; border: 1px solid var(--rule); border-radius: 5px; background: var(--panel); font-size: 0.85rem; }
+.seg input:checked + span { background: var(--ink); color: var(--panel); border-color: var(--ink); }
+.seg input:focus-visible + span { outline: 3px solid var(--magenta); outline-offset: 2px; }
+textarea { width: 100%; min-height: 4.2rem; resize: vertical; border: 1px solid var(--rule); border-radius: 5px; padding: 0.4rem 0.5rem; background: var(--panel); font-size: 0.9rem; }
+textarea.short { min-height: 2.4rem; }
+input[type=number] { width: 6rem; border: 1px solid var(--rule); border-radius: 5px; padding: 0.25rem 0.4rem; background: var(--panel); }
+.actions { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.btn { cursor: pointer; border: 1px solid var(--rule); background: var(--panel); border-radius: 5px; padding: 0.35rem 0.75rem; font-size: 0.88rem; }
+.btn:hover { border-color: var(--blue); }
+.btn.good { background: var(--good); border-color: var(--good); color: var(--panel); }
+.btn.primary { background: var(--blue); border-color: var(--blue); color: var(--panel); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.mtabs { display: none; gap: 0.4rem; padding-bottom: 0.5rem; }
+.mtabs button { flex: 1; cursor: pointer; border: 1px solid var(--rule); background: var(--panel); border-radius: 5px; padding: 0.35rem; font-family: var(--f-display); font-stretch: 75%; font-variation-settings: "wdth" 75; font-weight: 700; }
+.mtabs button.on { border-color: var(--ink); box-shadow: inset 0 -3px 0 var(--magenta); }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); background: var(--ink); color: var(--panel); padding: 0.45rem 0.9rem; border-radius: 5px; font-size: 0.88rem; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+.toast.on { opacity: 1; }
+@media (max-width: 860px) {
+  .panes { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
+  .mtabs { display: flex; }
+  .panes[data-tab="read"] .side-pane { display: none; }
+  .panes[data-tab="code"] .reader-pane { display: none; }
+}
+</style>
+
+<div class="app">
+  <div class="bar">
+    <h1 class="disp">AFACS <span>Case Review</span></h1>
+    <span class="small">Four AI codings from the pilot, for your expert review</span>
+    <span class="spacer"></span>
+    <span class="save" id="save" role="status">Connecting…</span>
+  </div>
+  <div>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <details class="guide" id="guide">
+      <summary>How to review a case (2 minutes to read)</summary>
+      <div>
+        <p class="small" style="margin:0.2rem 0">You are reviewing an investigation report someone else wrote, not coding from scratch. The question each time is whether the AI's account is supported by the evidence.</p>
+        <ol class="small">
+          <li>Read <b>The question for you</b> and <b>How this system works</b> on the right.</li>
+          <li>Read the AI's summary, then click its step numbers. The trace on the left jumps to each cited step, with the quoted words highlighted.</li>
+          <li>Skim the rest of the trace. You don't need to follow the code; the agents' own words and the error messages carry the story.</li>
+          <li>Answer the review questions. "Can't judge" is a fine answer. The free-text boxes matter most: say what you'd write differently as an investigator.</li>
+        </ol>
+        <p class="small" style="margin:0.2rem 0">If a step is unclear, ask Claude in chat, e.g. "what does step S5 in K2 mean?". You'll get an explanation of the mechanics, not a verdict. Answers save automatically to this page's private store; only you can write them.</p>
+      </div>
+    </details>
+    <div class="mtabs"><button type="button" id="mRead" class="on">Read trace</button><button type="button" id="mCode">AI account &amp; review</button></div>
+  </div>
+  <div class="panes" id="panes" data-tab="read">
+    <section class="pane reader-pane" aria-label="Trace"><div class="reader" id="reader"></div></section>
+    <section class="pane side-pane" aria-label="AI account and review"><div class="side" id="side"></div></section>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script type="application/json" id="afacs-data">/*__DATA__*/</script>
+<script>
+(function () {
+  "use strict";
+  var DATA = JSON.parse(document.getElementById("afacs-data").textContent);
+  var CASES = DATA.cases, CODES = DATA.codes;
+  var byId = {}; CASES.forEach(function (c) { byId[c.id] = c; });
+  var LS_KEY = "afacs-case-review-v1";
+  var reviews = {}, current = null, col = null, saving = {}, pending = {}, timers = {};
+  var LAYERS = [["L4", "l4", "Organisational / design"], ["L3", "l3", "Supervision"], ["L2", "l2", "Preconditions"], ["L1", "l1", "Unsafe acts"]];
+
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (ch) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]; }); }
+  function split(s) { return String(s || "").split(";").map(function (x) { return x.trim(); }).filter(Boolean); }
+  function toast(msg) { var t = document.getElementById("toast"); t.textContent = msg; t.classList.add("on"); clearTimeout(toast.t); toast.t = setTimeout(function () { t.classList.remove("on"); }, 1800); }
+  function setSave(cls, txt) { var s = document.getElementById("save"); s.className = "save " + cls; s.textContent = txt; }
+  function loadLocal() { try { var s = localStorage.getItem(LS_KEY); if (s) reviews = JSON.parse(s) || {}; } catch (e) {} }
+  function saveLocal() { try { localStorage.setItem(LS_KEY, JSON.stringify(reviews)); } catch (e) {} }
+  function rv(id) { if (!reviews[id]) reviews[id] = { case_id: id, uid: byId[id].uid, status: "" }; return reviews[id]; }
+
+  /* ---------- tabs ---------- */
+  var tabs = document.getElementById("tabs");
+  function renderTabs() {
+    tabs.innerHTML = "";
+    CASES.forEach(function (c) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "tab"; b.setAttribute("role", "tab");
+      b.setAttribute("aria-selected", c.id === current ? "true" : "false");
+      var st = (reviews[c.id] || {}).status || "";
+      b.innerHTML = '<span class="dot ' + esc(st) + '" aria-hidden="true"></span><span class="k">' + esc(c.id) + '</span><span class="t">' + esc(c.title) + "</span>";
+      b.title = st === "done" ? "Reviewed" : st === "draft" ? "In progress" : "Not started";
+      b.addEventListener("click", function () { open(c.id); });
+      tabs.appendChild(b);
+    });
+  }
+
+  /* ---------- reader ---------- */
+  function citedSteps(c) {
+    var m = {};
+    c.runs[0].evidence.forEach(function (e) { (m[e.step] = m[e.step] || []).push(e); });
+    return m;
+  }
+  function highlight(text, quotes) {
+    var html = esc(text);
+    quotes.forEach(function (q) {
+      var eq = esc(String(q).replace(/^\s*\[?S\d+\]?\s*/, "").replace(/^["“]|["”]$/g, ""));
+      if (eq.length < 4) return;
+      var i = html.indexOf(eq);
+      if (i >= 0) html = html.slice(0, i) + "<mark>" + eq + "</mark>" + html.slice(i + eq.length);
+    });
+    return html;
+  }
+  function renderReader(c) {
+    var cited = citedSteps(c);
+    var h = '<h2 class="disp">' + esc(c.id + " · " + c.framework) + '</h2><div class="meta">' + esc(c.model + " · " + c.benchmark + " · " + c.steps.length + " steps · trace " + c.uid) + "</div>";
+    c.steps.forEach(function (s) {
+      var ev = cited[s.n] || [];
+      var cls = "step" + (s.kind === "benchmark_info" ? " bench" : (s.kind === "system" ? " system" : ""));
+      var kind = s.kind === "benchmark_info" ? "not visible to the agents · benchmark record" : (s.kind === "system" ? "framework log" : (s.kind === "tool_output" ? "tool output" : ""));
+      var chips = ev.map(function (e) { return e.codes.map(function (x) { return '<span class="chip' + (x.indexOf("L1.V") === 0 ? " v" : "") + '">' + esc(x) + "</span>"; }).join(""); }).join("");
+      h += '<article class="' + cls + '" id="st-' + esc(c.id) + "-" + s.n + '"><header><span class="sn">[S' + s.n + ']</span><span class="ag">' + esc(s.agent) + "</span>" +
+           (kind ? '<span class="kd">' + esc(kind) + "</span>" : "") + (chips ? '<span class="cites" title="Codes the AI (Sonnet, run 1) cited this step for">' + chips + "</span>" : "") +
+           "</header><pre>" + highlight(s.text, ev.map(function (e) { return e.quote; })) + "</pre></article>";
+    });
+    var r = document.getElementById("reader"); r.innerHTML = h; r.parentNode.scrollTop = 0;
+  }
+  function goStep(n) {
+    setTab("read");
+    var el = document.getElementById("st-" + current + "-" + n);
+    if (!el) return;
+    el.scrollIntoView({ block: "start", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash");
+  }
+
+  /* ---------- side: question, context, AI account ---------- */
+  function codeLine(code) { return '<div class="codeline"><span class="chip' + (code.indexOf("L1.V") === 0 ? " v" : "") + '">' + esc(code) + "</span>" + esc(CODES[code] || "") + "</div>"; }
+  function runSummary(r) {
+    var v = r.violation === "none" ? "errors only" : "violation " + r.violation + " (" + r.evidence_grade + ")";
+    return r.failure_observed === "yes" ? "Failure seen · deepest " + r.deepest + " · " + v + " · confidence " + r.confidence : "Failure seen: " + r.failure_observed + " · confidence " + r.confidence;
+  }
+  function renderSide(c) {
+    var a = c.runs[0];
+    var h = '<div class="blk"><div class="q"><b>The question for you</b>' + esc(c.question) + "</div></div>";
+    h += '<div class="blk"><h3>How this system works</h3><ul class="plain small">' + c.how.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>" +
+         '<p class="small" style="margin:0">' + esc(c.design) + "</p></div>";
+    h += '<div class="blk"><h3>What MAST\'s judge said</h3><div class="labels">' + (c.mast.length ? c.mast.map(function (m) { return '<span class="chip m">' + esc(m[0] + " " + m[1]) + "</span>"; }).join("") : '<span class="none">no labels</span>') +
+         '</div><p class="small" style="margin:0">' + esc(c.outcome) + "</p></div>";
+    h += '<div class="blk"><h3>The AI\'s account (Sonnet, run 1)</h3><div class="small">' + esc(runSummary(a)) + "</div>";
+    if (a.summary) h += '<div class="summary">' + esc(a.summary) + "</div>";
+    LAYERS.forEach(function (L) {
+      var cs = split(a[L[1]]);
+      h += '<div class="layer"><span class="L">' + L[0] + "</span><div>" + (cs.length ? cs.map(codeLine).join("") : '<span class="none">nothing coded at ' + esc(L[2].toLowerCase()) + "</span>") + "</div></div>";
+    });
+    if (a.error_functions) h += '<div class="small">Ezell cognitive functions: ' + esc(split(a.error_functions).join(", ")) + "</div>";
+    if (a.evidence.length) {
+      h += '<div class="small" style="font-weight:600">Evidence the AI cited (click a step to see it)</div><ul class="evid">' + a.evidence.map(function (e) {
+        return '<li><button type="button" class="s" data-step="' + e.step + '">S' + e.step + "</button> " + e.codes.map(function (x) { return '<span class="chip' + (x.indexOf("L1.V") === 0 ? " v" : "") + '">' + esc(x) + "</span>"; }).join(" ") + " <q>" + esc(e.quote) + "</q></li>";
+      }).join("") + "</ul>";
+    }
+    if (a.notes) h += '<details class="more"><summary>The AI\'s notes</summary><p>' + esc(a.notes) + "</p></details>";
+    h += "</div>";
+    h += '<div class="blk"><h3>How the other two runs coded it</h3><div class="cmp"><table><thead><tr><th>Run</th><th>Failure</th><th>L4</th><th>L3</th><th>L2</th><th>L1</th><th>Deepest</th></tr></thead><tbody>' +
+         c.runs.map(function (r) { return "<tr><th>" + esc(r.name) + "</th><td>" + esc(r.failure_observed) + "</td><td>" + esc(split(r.l4).join(" ")) + "</td><td>" + esc(split(r.l3).join(" ")) + "</td><td>" + esc(split(r.l2).join(" ")) + "</td><td>" + esc(split(r.l1).join(" ")) + "</td><td>" + esc(r.deepest) + "</td></tr>"; }).join("") +
+         "</tbody></table></div>" + c.runs.slice(1).map(function (r) { return '<details class="more"><summary>' + esc(r.name) + "'s summary</summary><p>" + esc(r.summary || "(none)") + "</p></details>"; }).join("") + "</div>";
+    h += '<div class="blk"><h3>Your review</h3><div class="form" id="form">' + formHtml(c) + "</div></div>";
+    var side = document.getElementById("side"); side.innerHTML = h; side.parentNode.scrollTop = 0;
+    Array.prototype.forEach.call(side.querySelectorAll("button.s"), function (b) { b.addEventListener("click", function () { goStep(+b.getAttribute("data-step")); }); });
+    bindForm(c);
+  }
+
+  /* ---------- review form ---------- */
+  function seg(name, opts) {
+    return '<div class="seg">' + opts.map(function (o) { return '<label><input type="radio" name="' + name + '" id="' + name + "_" + o[0] + '" value="' + o[0] + '"><span>' + esc(o[1]) + "</span></label>"; }).join("") + "</div>";
+  }
+  function formHtml(c) {
+    var a = c.runs[0], h = "";
+    h += '<div class="fq"><span class="lbl">1. Does the trace show that the task failed?</span><span class="ai">AI (run 1): ' + esc(a.failure_observed) + "</span>" +
+         seg("f_failure", [["yes", "Yes, it failed"], ["no", "No failure"], ["cant", "Can't tell"]]) + "</div>";
+    LAYERS.forEach(function (L, i) {
+      var cs = split(a[L[1]]);
+      var opts = cs.length ? [["supported", "Supported"], ["partly", "Partly"], ["not", "Not supported"], ["cant", "Can't judge"]]
+                           : [["agree", "Agree, nothing here"], ["missing", "Something is missing"], ["cant", "Can't judge"]];
+      h += '<div class="fq"><span class="lbl">' + (2 + i) + ". " + L[0] + " " + esc(L[2]) + (cs.length ? ": is the AI's coding supported by the trace?" : ": the AI coded nothing here.") + '</span><span class="ai">AI: ' + esc(cs.join(", ") || "none") + "</span>" +
+           seg("f_" + L[0], opts) + '<textarea class="short" id="f_' + L[0] + '_note" placeholder="Optional: what is wrong, missing or better put?"></textarea></div>';
+    });
+    var vtxt = a.violation === "none" ? "errors only, no violation" : "violation " + a.violation + ", evidence " + a.evidence_grade;
+    h += '<div class="fq"><span class="lbl">6. Error or violation: do you agree with the AI?</span><span class="ai">AI: ' + esc(vtxt) + "</span>" +
+         seg("f_violation", [["agree", "Agree"], ["disagree", "Disagree"], ["cant", "Can't judge"]]) + '<textarea class="short" id="f_violation_note" placeholder="Optional: why?"></textarea></div>';
+    h += '<div class="fq"><span class="lbl">7. Would you accept the AI\'s summary in an investigation report?</span>' +
+         seg("f_account", [["accept", "Accept"], ["changes", "Accept with changes"], ["reject", "Reject"]]) + "</div>";
+    h += '<div class="fq"><span class="lbl">8. What does the layered account show that MAST\'s labels don\'t (or vice versa)?</span><textarea id="f_labels"></textarea></div>';
+    h += '<div class="fq"><span class="lbl">9. As an investigator, what would you add, change or question?</span><textarea id="f_notes"></textarea></div>';
+    h += '<div class="fq"><label class="lbl" for="f_minutes">Minutes spent (optional)</label><input type="number" id="f_minutes" min="0" step="1"></div>';
+    h += '<div class="actions"><button type="button" class="btn good" id="markDone">Mark this case as reviewed</button><button type="button" class="btn" id="markDraft">Back to draft</button><span class="spacer"></span><button type="button" class="btn primary" id="nextCase">Next case →</button></div>';
+    return h;
+  }
+  var RADIOS = ["f_failure", "f_L4", "f_L3", "f_L2", "f_L1", "f_violation", "f_account"];
+  var TEXTS = ["f_L4_note", "f_L3_note", "f_L2_note", "f_L1_note", "f_violation_note", "f_labels", "f_notes"];
+  function bindForm(c) {
+    var r = rv(c.id);
+    RADIOS.forEach(function (name) {
+      Array.prototype.forEach.call(document.querySelectorAll('input[name="' + name + '"]'), function (inp) {
+        inp.checked = r[name] === inp.value;
+        inp.addEventListener("change", function () { r[name] = inp.value; touch(c.id, 0); });
+      });
+    });
+    TEXTS.forEach(function (id) {
+      var el = document.getElementById(id); el.value = r[id] || "";
+      el.addEventListener("input", function () { r[id] = el.value; touch(c.id, 800); });
+    });
+    var m = document.getElementById("f_minutes"); m.value = r.f_minutes || "";
+    m.addEventListener("change", function () { r.f_minutes = Math.max(0, Math.round(+m.value || 0)); touch(c.id, 0); });
+    document.getElementById("markDone").addEventListener("click", function () { r.status = "done"; touch(c.id, 0); renderTabs(); syncButtons(); toast(c.id + " marked as reviewed"); });
+    document.getElementById("markDraft").addEventListener("click", function () { r.status = "draft"; touch(c.id, 0); renderTabs(); syncButtons(); });
+    document.getElementById("nextCase").addEventListener("click", function () { var i = CASES.indexOf(c); open(CASES[(i + 1) % CASES.length].id); });
+    syncButtons();
+  }
+  function syncButtons() {
+    var st = (reviews[current] || {}).status;
+    var d = document.getElementById("markDone"), b = document.getElementById("markDraft");
+    if (d) d.disabled = st === "done"; if (b) b.disabled = st !== "done";
+  }
+
+  /* ---------- saving: one write at a time per case ---------- */
+  function touch(id, delay) {
+    var r = rv(id);
+    if (!r.status) { r.status = "draft"; renderTabs(); }
+    r.updated_at = new Date().toISOString();
+    saveLocal();
+    clearTimeout(timers[id]);
+    timers[id] = setTimeout(function () { write(id); }, delay);
+  }
+  function write(id) {
+    if (!col) { setSave("warn", "Saved in this browser only"); return; }
+    if (saving[id]) { pending[id] = true; return; }
+    saving[id] = true; setSave("", "Saving…");
+    var body = JSON.parse(JSON.stringify(reviews[id]));
+    col.doc(id).set(body).then(function () {
+      saving[id] = false; setSave("ok", "All changes saved");
+      if (pending[id]) { pending[id] = false; write(id); }
+    }, function (e) {
+      saving[id] = false;
+      setSave("bad", e && e.code === "invalid_argument" ? "Read-only: answers are kept in this browser" : "Couldn't save; kept in this browser");
+    });
+  }
+  function connect() {
+    var useP = (window.claude && typeof window.claude.use === "function") ? window.claude.use("db") : Promise.resolve(null);
+    var timer = setTimeout(function () { if (!col) setSave("warn", "Can't reach saved reviews yet; working in this browser"); }, 10000);
+    useP.then(function (db) {
+      if (!db) { clearTimeout(timer); setSave("warn", "Saved in this browser only"); return; }
+      var ref = db.collection("reviews");
+      ref.onSnapshot(function (snap) {
+        if (!snap.metadata.fromCache) clearTimeout(timer);
+        col = ref;
+        snap.docs.forEach(function (d) {
+          var body = d.data(); if (!body || !byId[d.id]) return;
+          var mine = reviews[d.id];
+          if (!mine || !mine.updated_at || (body.updated_at || "") >= mine.updated_at) reviews[d.id] = JSON.parse(JSON.stringify(body));
+        });
+        saveLocal(); renderTabs();
+        var typing = document.activeElement && document.activeElement.tagName === "TEXTAREA";
+        if (current && !typing) bindForm(byId[current]);
+        if (!snap.metadata.hasPendingWrites) setSave("ok", "All changes saved");
+      }, function () { clearTimeout(timer); setSave("warn", "Can't reach saved reviews; working in this browser"); });
+    }, function () { clearTimeout(timer); setSave("warn", "Saved in this browser only"); });
+  }
+
+  /* ---------- navigation ---------- */
+  var panes = document.getElementById("panes");
+  function setTab(t) {
+    panes.setAttribute("data-tab", t);
+    document.getElementById("mRead").classList.toggle("on", t === "read");
+    document.getElementById("mCode").classList.toggle("on", t === "code");
+  }
+  document.getElementById("mRead").addEventListener("click", function () { setTab("read"); });
+  document.getElementById("mCode").addEventListener("click", function () { setTab("code"); });
+  function open(id) {
+    if (!byId[id]) return;
+    current = id;
+    try { localStorage.setItem(LS_KEY + "-current", id); } catch (e) {}
+    try { if (location.hash !== "#" + id) history.replaceState(null, "", "#" + id); } catch (e) {}
+    renderTabs(); renderReader(byId[id]); renderSide(byId[id]);
+  }
+  window.addEventListener("hashchange", function () { var id = location.hash.slice(1); if (byId[id] && id !== current) open(id); });
+
+  loadLocal();
+  var start = location.hash.slice(1);
+  if (!byId[start]) { try { start = localStorage.getItem(LS_KEY + "-current"); } catch (e) {} }
+  open(byId[start] ? start : CASES[0].id);
+  try { if (!localStorage.getItem(LS_KEY + "-guide-seen")) { document.getElementById("guide").open = true; localStorage.setItem(LS_KEY + "-guide-seen", "1"); } } catch (e) { document.getElementById("guide").open = true; }
+  connect();
+})();
+</script>

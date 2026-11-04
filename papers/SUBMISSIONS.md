@@ -33,7 +33,7 @@ Where each paper could go after its preprint release, with the rules that matter
 | 3 | ICLR 2027 workshop | ~1 Feb 2027 (workshop list out 29 Nov 2026) | Per workshop | Feedback route; workshop review does not satisfy arXiv |
 | — | arXiv | Any time | — | cs.CY, framed around the testable predictions |
 
-## Paper 03: From RSP to SMS (governance)
+## Paper 03: Applying Aviation Safety Management to Frontier AI (governance)
 
 | Priority | Venue | Deadline | Length / format | Notes |
 |---|---|---|---|---|
@@ -42,7 +42,7 @@ Where each paper could go after its preprint release, with the rules that matter
 | 3 | IASEAI '27 (Paris, 9–12 Feb 2027) | Talk proposals ~8–9 Jan 2027 (not verified on the official page) | Proposal | Governance audience |
 | — | arXiv | Any time | — | cs.CY |
 
-## Paper 04: Checkride or Jump Seat? (evaluation)
+## Paper 04: Observing AI Systems in Normal Operations (evaluation)
 
 | Priority | Venue | Deadline | Length / format | Notes |
 |---|---|---|---|---|
@@ -52,7 +52,7 @@ Where each paper could go after its preprint release, with the rules that matter
 | 4 | ISAP 2027 (Auburn, 18–21 May 2027) | Call not open | — | Aviation psychology audience |
 | — | arXiv | Any time | — | cs.AI (cs.HC, cs.CY) |
 
-## Paper 05: Untrusted by Design (regulatory)
+## Paper 05: AI Control for Aviation (regulatory)
 
 | Priority | Channel | Deadline | Format | Notes |
 |---|---|---|---|---|

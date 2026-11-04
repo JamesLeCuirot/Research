@@ -1,4 +1,4 @@
-# Author notes: From RSP to SMS: Reading Frontier AI Safety Frameworks Through ICAO's Safety Management System
+# Author notes: Applying Aviation Safety Management to Frontier AI: A Gap Analysis of Developer Safety Frameworks
 
 *Working notes for the author: review points, open questions, development ideas and the revision log. The reader-facing summary is [`README.md`](README.md).*
 
@@ -158,3 +158,7 @@ Format conversion only: wording, numbers, quotations, table cells and ratings ar
 ### v1.0 (4 November 2026): released as a preprint
 
 James agreed the Table 2 ratings as coded (B3.1) and accepted the twelve SPIs as proposals (B3.4); B3.2, B3.3 and B3.5 closed with the recommended defaults. Date line changed to "Preprint v1.0"; affiliation CitadelAero; § signs replaced by words. No change to arguments, ratings, numbers or quotations.
+
+### v1.1 (4 November 2026): retitled
+
+Retitled by James to be clearer and more professional (REVIEW_CHECKLIST A10). Old title: "From RSP to SMS: Reading Frontier AI Safety Frameworks Through ICAO's Safety Management System". New title: "Applying Aviation Safety Management to Frontier AI: A Gap Analysis of Developer Safety Frameworks". Running header "Aviation Safety Management for Frontier AI" (was "From RSP to SMS"). Date line changed to "Preprint v1.1". Manual line breaks in `\title` keep "Frontier AI" together on the title page. The folder name is unchanged so that links keep working. No change to the text, arguments, numbers or quotations.

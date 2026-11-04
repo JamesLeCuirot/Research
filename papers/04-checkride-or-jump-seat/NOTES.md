@@ -1,4 +1,4 @@
-# Author notes: Checkride or Jump Seat? What LOSA and Evidence-Based Training Teach About Evaluation Awareness in AI Systems
+# Author notes: Observing AI Systems in Normal Operations: What Aviation's Line Operations Safety Audit and Evidence-Based Training Offer AI Evaluation
 
 *Working notes for the author: review points, open questions, development ideas and the revision log. The reader-facing summary is [`README.md`](README.md).*
 
@@ -200,3 +200,7 @@ Rebuilt: 26 pages, no warnings or overfull boxes. `check_bib.py`: 31 OK, 1 known
 ### v1.0 (4 November 2026): released as a preprint
 
 James confirmed the definitions of checkride, line check, EBT evaluation and LOSA as accurate (B4.2); B4.3–B4.7 closed with the recommended defaults. Title kept for now: all paper titles are to be revised together later (B4.1). Date line changed to "Preprint v1.0"; affiliation CitadelAero; ¶ and § signs replaced by words. No change to arguments, numbers or quotations.
+
+### v1.1 (4 November 2026): retitled
+
+Retitled by James to be clearer and more professional (REVIEW_CHECKLIST A10, which also closes B4.1). Old title: "Checkride or Jump Seat? What LOSA and Evidence-Based Training Teach About Evaluation Awareness in AI Systems". New title: "Observing AI Systems in Normal Operations: What Aviation's Line Operations Safety Audit and Evidence-Based Training Offer AI Evaluation". Running header "Observing AI Systems in Normal Operations" (was "Checkride or Jump Seat?"). Date line changed to "Preprint v1.1". The folder name is unchanged so that links keep working. No change to the text, arguments, numbers or quotations.

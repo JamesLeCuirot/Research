@@ -1,8 +1,9 @@
 """Six scripted control responses with deliberately weaker conduct (POST HOC, EXPLORATORY).
 
 These were added after the 48 transcripts had been generated and while the main
-grading was running (file times: transcripts 22:47-22:49 UTC; this file 22:59;
-main grades 22:50-23:02; control grades 23:03, 3 November 2026). The step was not
+grading was running (data timestamps, 3 November 2026 UTC: transcripts 22:47-22:49;
+main grades 22:50-23:02; control grades 23:03. The independent audit of draft v0.1
+recorded this file's original modification time as 22:59). The step was not
 planned in advance. None of the 48 model responses failed the central test of its
 scenario, so grades were compressed at the top of the scale.
 

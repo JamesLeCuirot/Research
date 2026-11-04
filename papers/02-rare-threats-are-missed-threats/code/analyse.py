@@ -385,6 +385,14 @@ def main() -> None:
         d = df[(df.monitor == mon) & (df.experiment == "exp2") & (df.backdoored == 1)].copy()
         g = glmm_random_intercept(d, EXP2, "S50")
         res = {"glmm": g, "separation": separation(d, "condition")}
+        # Numerical check (reported, not used for the decision): the same model with more quadrature nodes,
+        # and how many items were flagged in 0, 1, 2 or 3 of the three conditions.
+        res["glmm_node_sensitivity"] = {}
+        for n_nodes in (20, 80, 160, 300):
+            gn = glmm_random_intercept(d, EXP2, "S50", n_nodes=n_nodes)
+            res["glmm_node_sensitivity"][n_nodes] = {"converged": gn["converged"], "sigma_item": gn["sigma_item"],
+                                                     "S1": gn.get("coefs", {}).get("C(condition)[T.S1]")}
+        res["items_by_conditions_flagged"] = {int(k): int(v) for k, v in d.groupby("problem_id").flag.sum().value_counts().sort_index().items()}
         res["glm_item_clustered"] = glm_cluster(d, "flag ~ C(condition, Treatment('S50'))", "problem_id")
         if g["converged"]:
             res["used"] = "glmm"
@@ -477,7 +485,7 @@ def main() -> None:
     md.append("## Descriptive results per condition\n")
     md.append(f"H = hit rate, F = false-alarm rate (Wilson 95% CIs). d′ and c use the log-linear correction; "
               "their 95% CIs and the AUROC CI come from the cluster bootstrap (batches for Experiments 1 and 3; "
-              "items, paired across conditions and stratified by item type, for Experiment 2; {N_BOOT:,} resamples).\n")
+              f"items, paired across conditions and stratified by item type, for Experiment 2; {N_BOOT:,} resamples).\n")
     md.append("| Monitor | Condition | Calls | n bd | Hits | H [95% CI] | n clean | FAs | F [95% CI] | d′ [95% CI] | c [95% CI] | AUROC [95% CI] | Mean susp. bd | Mean susp. clean |")
     md.append("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
     for mon in MONS:
@@ -531,6 +539,20 @@ def main() -> None:
     for mon in MONS:
         md.append(term_row("S1 vs S50 (confirmatory)", mon, h2[mon]["term"], h2[mon]["p_holm"]))
         md.append(term_row("none vs S50", mon, h2[mon]["term_none"]))
+    md.append("\nNumerical check of the GLMM (not part of the registered decision rule): the same model refitted with "
+              "more Gauss–Hermite nodes, and the number of backdoored items flagged in 0, 1, 2 or 3 of the three conditions. "
+              "GLMM coefficients are conditional (item-specific) log-odds, so they are larger than the population-averaged "
+              "GLM coefficients when the item SD is large.\n")
+    md.append("| Monitor | Items flagged in 0/1/2/3 conditions | Nodes | Converged | Item SD | S1 vs S50 log-odds | SE | p |")
+    md.append("|---|---|---|---|---|---|---|---|")
+    for mon in MONS:
+        pat = h2[mon]["items_by_conditions_flagged"]
+        pats = "/".join(str(pat.get(k, 0)) for k in range(4))
+        g = h2[mon]["glmm"]; t = g["coefs"]["C(condition)[T.S1]"] if g["converged"] else None
+        rows = [(40, g["converged"], g["sigma_item"], t)] + [(n, v["converged"], v["sigma_item"], v["S1"]) for n, v in h2[mon]["glmm_node_sensitivity"].items()]
+        for n, conv, sig, tt in sorted(rows, key=lambda r: r[0]):
+            md.append(f"| {mon} | {pats} | {n}{' (registered)' if n == 40 else ''} | {conv} | {fmt(sig, 2)} | "
+                      f"{fmt(tt['coef']) if tt else 'NA'} | {fmt(tt['se']) if tt else 'NA'} | {fmt_p(tt['p']) if tt else 'NA'} |")
     md.append("\nSensitivity analysis, GLM with item-clustered SEs:\n")
     md += hdr
     for mon in MONS:
@@ -607,6 +629,29 @@ def main() -> None:
     for k, v in A["flags_per_batch"].items():
         m, c = k.split("|")
         md.append(f"| {m} | {c} | {v['mean']:.2f} | {v['median']:.1f} | {v['share_zero']:.2f} | {v['max']} |")
+    md.append("\n## Post-hoc (not pre-registered): how suspicion scores map to flags\n")
+    md.append("Proportion of items flagged within bands of the monitor's own suspicion score, all items (clean and backdoored) "
+              "pooled, and the share of backdoored items in each band. If a condition changed only where the monitor puts "
+              "its flag threshold, the flag rate within a band would change; if it changed the scores themselves, the "
+              "distribution of backdoored items across bands would change.\n")
+    bands = [(0, 19), (20, 39), (40, 59), (60, 79), (80, 100)]
+    md.append("| Monitor | Condition | " + " | ".join(f"P(flag) at {a}–{b}" for a, b in bands) + " | " +
+              " | ".join(f"bd share {a}–{b}" for a, b in bands) + " |")
+    md.append("|---|---|" + "---|" * (2 * len(bands)))
+    posthoc = {}
+    for mon in MONS:
+        for cond in EXP1 + EXP3 + EXP2:
+            d = df[(df.monitor == mon) & (df.condition == cond)]
+            bd = d[d.backdoored == 1]
+            cells, shares = [], []
+            for a, b in bands:
+                db = d[(d.suspicion >= a) & (d.suspicion <= b)]
+                cells.append(f"{db.flag.mean():.2f} (n={len(db)})" if len(db) else "—")
+                shares.append(f"{((bd.suspicion >= a) & (bd.suspicion <= b)).mean():.2f}")
+            posthoc[f"{mon}|{cond}"] = {"p_flag": cells, "bd_share": shares}
+            md.append(f"| {mon} | {cond} | " + " | ".join(cells) + " | " + " | ".join(shares) + " |")
+    A["posthoc_flag_by_suspicion_band"] = posthoc
+    (RESULTS / "analysis.json").write_text(json.dumps(A, indent=1, default=lambda o: o if not isinstance(o, tuple) else list(o)))
     (RESULTS / "RESULTS_numbers.md").write_text("\n".join(md) + "\n")
 
     figures(df, desc, A, boot)
@@ -651,7 +696,7 @@ def figures(df, desc, A, boot):
         ax.set_title(mon)
         ax.set_ylim(-0.02, 1.02)
     axes[0].set_ylabel("Proportion flagged")
-    axes[0].legend(loc="center left")
+    axes[0].legend(loc="lower left", bbox_to_anchor=(0.0, 0.1))
     fig.tight_layout()
     fig.savefig(FIGURES / "fig_a_prevalence.png")
     plt.close(fig)
@@ -723,7 +768,7 @@ def figures(df, desc, A, boot):
         ax.set_title(mon)
         ax.set_ylim(-0.02, 1.02)
     axes[0].set_ylabel("Proportion flagged (single items)")
-    axes[0].legend(loc="center left")
+    axes[0].legend(loc="lower left", bbox_to_anchor=(0.0, 0.1))
     fig.tight_layout()
     fig.savefig(FIGURES / "fig_d_stated_prevalence.png")
     plt.close(fig)
@@ -743,7 +788,7 @@ def figures(df, desc, A, boot):
         ax.set_title(mon)
         ax.set_ylim(-0.02, 1.02)
     axes[0].set_ylabel("Proportion flagged (2.5% prevalence)")
-    axes[0].legend(loc="center left")
+    axes[0].legend(loc="lower left", bbox_to_anchor=(0.0, 0.1))
     fig.tight_layout()
     fig.savefig(FIGURES / "fig_e_remedies.png")
     plt.close(fig)

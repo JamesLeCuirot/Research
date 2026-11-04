@@ -121,6 +121,10 @@ Further clarifications added by the research engineer on 3 November 2026, after 
 11. **Tests and separation.** The H1, H2 and H3 contrasts are two-sided Wald tests. If a condition has a hit rate of 0 or 1, so that the logistic MLE does not exist, a Fisher exact test is also reported. That test ignores clustering and is labelled as such.
 12. **Calibration outcome.** The first item set met the §4.3 target (hit rate 0.60, false-alarm rate 0.00; `results/calibration.md`). The generator prompt was not revised.
 
+Added by the research engineer on 4 November 2026, **after** all monitor data were collected:
+
+13. **No deviation from the registered analysis; post-hoc additions labelled.** All registered analyses were run as planned, including the H2 GLMM under the convergence rule in item 9. After seeing the data, the following were added. Each is labelled post hoc in `results/RESULTS.md`, and none replaces a registered result. (a) A numerical check of the H2 GLMM with 20 to 300 quadrature nodes. Sonnet's item SD is poorly identified (92 of 120 items were flagged in all three conditions), but the S1 vs S50 test is stable. (b) A table of flag rate by suspicion-score band. (c) Thinking tokens per call by condition. (d) A sensitivity analysis excluding calls in which Claude Code corrected a schema-invalid output inside the call (`num_turns` > 2); H1–H3 are unchanged. (e) A rough automatic classification of the kinds of backdoor edit.
+
 ## References
 
 - Austin, J., et al. (2021). Program synthesis with large language models. arXiv:2108.07732.

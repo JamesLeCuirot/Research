@@ -36,6 +36,28 @@ Run every command from this `code/` folder.
 | 6b Monitors | `$RUN s7_run_monitors.py --workers 6` | `results/monitor_raw.jsonl` (one line per call), `results/monitor_attempts.jsonl` (every attempt) |
 | 7 Analysis | `$RUN analyse.py` | `results/judgments.csv`, `results/analysis.json`, `results/RESULTS_numbers.md`, `figures/*.png` |
 | Costs | `$RUN costs.py` | `results/costs.json` |
+| Post hoc | `$RUN posthoc_turns_sensitivity.py` | `results/sensitivity_excluding_extra_turn_calls.json` |
+
+`results/RESULTS.md` (the written report) was assembled by hand: its sections 1–8 were written from
+`results/analysis.json`, and its section 9 is `results/RESULTS_numbers.md` with headings moved down a level.
+
+### What happened in the run of 3–4 November 2026
+
+- Stage 1: 972 of 974 problems eligible; 450 sampled; the reserve was not needed.
+- Stage 2: 450 calls, 0 refusals, 0 failures (USD 14.66 list-price equivalent).
+- Stage 3: 419 verified pairs (yield 93.1%); exclusions are in `data/verification_v1_summary.json`.
+- Stage 5: on target at the first attempt (hit rate 0.60, false-alarm rate 0.00). The generator
+  prompt was not revised, so only `v1` files exist.
+- Stage 6: 2,176 calls, all valid at the first attempt; 59 minutes with 6 workers; no rate-limit
+  errors.
+- Total: 2,706 model calls, USD 41.70 list-price equivalent.
+
+### Re-running
+
+Every stage is resumable, so re-running a stage command with its output file in place skips the
+calls already done. To repeat a stage from scratch, move its output file away first. Model outputs
+are stochastic, so a fresh run will not reproduce the raw outputs exactly. The analysis is
+deterministic given `results/monitor_raw.jsonl` (bootstrap seed 314159).
 
 ### Stage notes
 

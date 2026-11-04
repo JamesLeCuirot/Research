@@ -35,7 +35,7 @@
 - 3–5 highlights of 85 characters or fewer, in a separate file (done: `highlights.txt`, 72–85 characters);
 - any word limit, and whether any reference style is accepted at first submission. The references are numeric; if the journal requires its own style at first submission, switch `elsarticle-num` to `elsarticle-harv`.
 
-## What changed from the preprint (`../paper.pdf`)
+## What changed from the preprint (`../../paper.pdf`)
 
 Length, by one consistent count: about 7,690 words of body text in the preprint and about 7,380 in the journal version, excluding the table, footnotes and citation keys. The cut is modest, because the independent check led to several hedges being restored (below).
 

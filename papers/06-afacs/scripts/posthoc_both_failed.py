@@ -1,6 +1,6 @@
 """Post hoc (journal version, 4 November 2026): agreement restricted to traces both coders judged failed.
 
-Run from papers/06-afacs: uv run python scripts/posthoc_both_failed.py
+Run from the project folder: uv run python scripts/posthoc_both_failed.py
 Writes results/agreement_both_failed.md. Needs the local working codings in annotations/llm/.
 """
 from pathlib import Path

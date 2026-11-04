@@ -6,7 +6,7 @@ text, data, cases, prompts, scripts, results) into build/supplement/, replaces t
 and company, removes contact details and commit identifiers, leaves out the preprint itself,
 checks for a list of identifying patterns, and writes build/supplement.zip.
 
-    python3 papers/07-same-actions-different-endings/journal/make_supplement.py
+    python3 papers/07-same-actions-different-endings/submissions/safety-science/make_supplement.py
 """
 import re
 import shutil
@@ -15,7 +15,7 @@ import zipfile
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-STUDY = HERE.parent
+STUDY = HERE.parents[1]
 OUT = HERE / "build" / "supplement"
 ZIP = HERE / "build" / "supplement.zip"
 

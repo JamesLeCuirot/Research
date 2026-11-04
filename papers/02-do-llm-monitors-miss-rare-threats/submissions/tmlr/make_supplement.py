@@ -5,7 +5,7 @@ build/supplement/, removes the author line, withholds commit identifiers and
 repository paths, adds a neutral README, checks that no identifying string is
 left, and writes build/supplement.zip. Run from anywhere:
 
-    python3 papers/02-do-llm-monitors-miss-rare-threats/journal/make_supplement.py
+    python3 papers/02-do-llm-monitors-miss-rare-threats/submissions/tmlr/make_supplement.py
 """
 import re
 import shutil
@@ -15,7 +15,7 @@ import zipfile
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-PAPER = HERE.parent
+PAPER = HERE.parents[1]
 OUT = HERE / "build" / "supplement"
 ZIP = HERE / "build" / "supplement.zip"
 
@@ -85,7 +85,7 @@ def version_history() -> str:
             for f in folders:
                 if l.startswith(f + "/"):
                     files.append(l[len(f) + 1:])
-        files = [f for f in files if not f.startswith(("journal/", "paper.", "NOTES", "README", "AUDIT", "sources", "references"))]
+        files = [f for f in files if not f.startswith(("submissions/", "journal/", "paper.", "NOTES", "README", "AUDIT", "sources", "references"))]
         if files:
             out.append(when)
             out += ["    " + f for f in files[:40]] + (["    ... and %d more files" % (len(files) - 40)] if len(files) > 40 else [])

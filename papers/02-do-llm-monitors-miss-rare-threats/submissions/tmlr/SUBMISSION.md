@@ -15,7 +15,7 @@ TMLR rules checked on its own pages on 4 November 2026 ([author guide](https://j
 - **Double-blind review:** the submission must be anonymous.
 - **No page limit,** but length must be justified and long papers take longer to review.
 
-## What changed from the preprint (`../paper.pdf`)
+## What changed from the preprint (`../../paper.pdf`)
 
 | | Preprint v1.0 | Journal version (`paper.pdf` here) |
 |---|---|---|
@@ -29,7 +29,7 @@ TMLR rules checked on its own pages on 4 November 2026 ([author guide](https://j
 | Removed | | "Implications for aviation AI developers" (outside TMLR's audience); "What the human analogy did and did not predict" (its points are kept in the discussion of mechanisms); the fifth contribution bullet (the account for aviation readers); the vigilance and alarm-reliability background; secondary citations (Kale et al., Liu et al., Remedios et al., Ye et al., and others in the cut background) |
 | Clarified | "the research engineer" | "the AI coding agent that implemented the pipeline under the investigator's direction". A single-author paper that mentions a "research engineer" would puzzle reviewers, and the AI assistance statement already says the code was written with AI help |
 
-No result or number changed; every number was carried over from the preprint, which takes them from `../results/`.
+No result or number changed; every number was carried over from the preprint, which takes them from `../../results/`.
 
 **Independent check of this version (4 November 2026).** A separate AI auditor compared this version with the preprint. It confirmed every number, table row, quotation, citation key and appendix, and the PDF's anonymity. It found places where cutting had changed a claim or lost a hedge, and all of them have been put right:
 - the second contribution had become "not a criterion shift"; it is again "not a *conservative* criterion shift", the wording the preprint's audit required (Sonnet's criterion became more liberal);
@@ -41,7 +41,7 @@ The supplement builder was also fixed. It now removes the working title and "pap
 
 ## The AAAI-27 workshop version
 
-Another session prepared an anonymised 8-page version of this paper for the AAAI-27 Trustworthy Evolution of AI Agents workshop (`../submissions/aaai27-trust4rsi-workshop/`; deadline 20 November 2026). The workshop is non-archival, and TMLR's editorial policy accepts overlap with work shared at venues "publicly declared, in writing, to be non-archival, such as workshops". So both can be used. If both are submitted, mention the workshop submission on the TMLR form. James has said he couldn't present at AAAI; check with the organisers whether presentation in person is required.
+Another session prepared an anonymised 8-page version of this paper for the AAAI-27 Trustworthy Evolution of AI Agents workshop (`../aaai27-trust4rsi-workshop/`; deadline 20 November 2026). The workshop is non-archival, and TMLR's editorial policy accepts overlap with work shared at venues "publicly declared, in writing, to be non-archival, such as workshops". So both can be used. If both are submitted, mention the workshop submission on the TMLR form. James has said he couldn't present at AAAI; check with the organisers whether presentation in person is required.
 
 ## Remaining weaknesses a reviewer may raise
 
@@ -58,7 +58,7 @@ These don't block submission, but they are the likeliest requests:
 
 1. **Create an OpenReview profile now.** TMLR requires every author to have "complete and active OpenReview profiles". Profiles without an institutional email address go through moderation that [can take up to two weeks](https://docs.openreview.net/getting-started/frequently-asked-questions/why-does-it-take-two-weeks-to-moderate-my-profile). To speed it up, use `james@citadelaero.com`, and add a homepage that shows your name and email (citadelaero.com or lecuirot.je), your ORCID (0009-0009-6014-1298) and your career history ([OpenReview: expediting activation](https://docs.openreview.net/getting-started/creating-an-openreview-profile/expediting-profile-activation)).
 2. **Read the journal version** (`paper.pdf` in this folder) and decide whether to add a non-Claude monitor before submitting (weakness 1 above) or to offer it in the rebuttal.
-3. **Build the supplement:** `python3 papers/02-do-llm-monitors-miss-rare-threats/journal/make_supplement.py` writes `journal/build/supplement.zip` (about 3 MB; TMLR allows up to 100 MB). The script checks for a list of identifying patterns. That list can't catch everything, so look through `journal/build/supplement/` before uploading.
+3. **Build the supplement:** `python3 papers/02-do-llm-monitors-miss-rare-threats/submissions/tmlr/make_supplement.py` writes `submissions/tmlr/build/supplement.zip` (about 3 MB; TMLR allows up to 100 MB). The script checks for a list of identifying patterns. That list can't catch everything, so look through `submissions/tmlr/build/supplement/` before uploading.
 4. **Submit on OpenReview** (TMLR venue: https://openreview.net/group?id=TMLR). Upload `paper.pdf` and `supplement.zip`, and fill in the form from the answers below.
 
 ## Answers for the OpenReview form
@@ -86,7 +86,7 @@ Check the field names against the live form; these were prepared from TMLR's aut
 
 | File | What it is |
 |---|---|
-| `paper.tex`, `paper.pdf` | The anonymised TMLR submission. Build with `latexmk -pdf paper.tex` from this folder (figures are read from `../figures/report/`) |
+| `paper.tex`, `paper.pdf` | The anonymised TMLR submission. Build with `latexmk -pdf paper.tex` from this folder (figures are read from `../../figures/report/`) |
 | `references.bib` | The preprint's references, with "n.d." added as the year of the two undated web pages, which author-year citations need |
 | `tmlr.sty`, `tmlr.bst`, `fancyhdr.sty` | The official TMLR style files (github.com/JmlrOrg/tmlr-style-file, Apache 2.0; licence in `TMLR-STYLE-LICENSE`) |
 | `make_supplement.py` | Builds the anonymised supplementary ZIP into `build/` (git-ignored) |
@@ -98,4 +98,4 @@ Switch to `\usepackage[accepted]{tmlr}`, fill in `\month`, `\year` and `\openrev
 
 ## Note on this file
 
-This file is in the public repository, next to the anonymised paper, and names the author. TMLR allows public preprints, so this breaks no rule, but anyone who looks can connect the two. If you'd rather keep the submission package private, move the `journal/` folders out of the public repository before submitting.
+This file is in the public repository, next to the anonymised paper, and names the author. TMLR allows public preprints, so this breaks no rule, but anyone who looks can connect the two. If you'd rather keep the submission package private, move the `submissions/` folders out of the public repository before submitting.

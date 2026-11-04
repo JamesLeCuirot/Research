@@ -25,7 +25,7 @@ The journal's guide page blocks automated access, so its exact limits are unveri
 ## What James needs to do
 
 1. Decide points 1, 2 and 4 (3 is decided); revise the manuscript; complete the declaration; rebuild with `latexmk -pdf paper.tex`.
-2. Build the supplement: `python3 papers/07-same-actions-different-endings/journal/make_supplement.py` writes `journal/build/supplement.zip` (about 2.5 MB). It replaces your name and company, removes contact details, registry links and the freeze commit, leaves out the preprint, and checks for a list of identifying patterns. The analysis reproduces from the supplement. The list can't catch everything, so look through `journal/build/supplement/` before uploading.
+2. Build the supplement: `python3 papers/07-same-actions-different-endings/submissions/safety-science/make_supplement.py` writes `submissions/safety-science/build/supplement.zip` (about 2.5 MB). It replaces your name and company, removes contact details, registry links and the freeze commit, leaves out the preprint, and checks for a list of identifying patterns. The analysis reproduces from the supplement. The list can't catch everything, so look through `submissions/safety-science/build/supplement/` before uploading.
 3. Check the journal's guide for the unverified points.
 4. Upload to Editorial Manager:
    - the manuscript (`paper.pdf`, or `paper.tex` with the two figure PDFs);
@@ -39,7 +39,7 @@ The journal's guide page blocks automated access, so its exact limits are unveri
    - Markus Kneer (outcome effects in LLMs);
    - Andrew Gilbey (outcome bias among pilots).
 
-## What changed from the preprint (`../paper/same-actions-different-endings-preprint-v1.pdf`)
+## What changed from the preprint (`../../paper/same-actions-different-endings-preprint-v1.pdf`)
 
 | | Preprint v1 | Journal version |
 |---|---|---|
@@ -99,7 +99,7 @@ A separate AI auditor compared the manuscript with the preprint token by token a
 | File | What it is |
 |---|---|
 | `paper.tex`, `paper.pdf` | The anonymised manuscript (review layout) |
-| `fig1-case-shifts.pdf`, `fig2-outcomes.pdf` | Figures from `../results/analysis/*.svg` without their drawn titles |
+| `fig1-case-shifts.pdf`, `fig2-outcomes.pdf` | Figures from `../../results/analysis/*.svg` without their drawn titles |
 | `title_page.tex`, `title_page.pdf` | Title page with author details and declarations |
 | `highlights.txt` | Highlights |
 | `cover_letter.txt` | Cover letter (plain text) |

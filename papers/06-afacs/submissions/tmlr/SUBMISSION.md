@@ -5,7 +5,7 @@
 
 ## Why TMLR, and the alternative
 
-TMLR's rules are summarised in `papers/02-do-llm-monitors-miss-rare-threats/journal/SUBMISSION.md` (checked on TMLR's own pages on 4 November 2026). In short: no fees, open access, double-blind, preprints allowed, and acceptance turns on whether the claims are supported by the evidence, not on novelty. AI assistance is allowed as a "general-purpose assistive tool", but submissions that "appear to be largely LLM-generated will be closely examined". AFACS's drafting, pipeline, analysis, documentation check and all coding were done by AI under James's direction, so expect that scrutiny, and make sure the paper is his own after his read.
+TMLR's rules are summarised in `papers/02-do-llm-monitors-miss-rare-threats/submissions/tmlr/SUBMISSION.md` (checked on TMLR's own pages on 4 November 2026). In short: no fees, open access, double-blind, preprints allowed, and acceptance turns on whether the claims are supported by the evidence, not on novelty. AI assistance is allowed as a "general-purpose assistive tool", but submissions that "appear to be largely LLM-generated will be closely examined". AFACS's drafting, pipeline, analysis, documentation check and all coding were done by AI under James's direction, so expect that scrutiny, and make sure the paper is his own after his read.
 
 **Quota.** TMLR allows a sole author two single-author submissions a year ("Generalized Harmonic Quota Rule, with parameters N_1 = 2"), and desk rejections count. Papers 02 and 06 together use the whole budget, leaving none for a resubmission. **Recommendation:** submit paper 02 first; submit AFACS once the year boundary has passed (check TMLR's quota tool), which also leaves time for the human-coder study if James wants it first.
 
@@ -13,7 +13,7 @@ AFACS fits TMLR because its claims are deliberately limited: a framework, an aud
 
 **The alternative is a safety journal** such as *Safety Science*, whose readers know HFACS. Those reviewers would almost certainly ask for human inter-rater reliability, which HFACS papers normally report and this paper does not yet have. That route therefore needs the human-coder study first (the calibration set is frozen; it needs at least two independent coders who can read software traces). The two routes don't conflict: the human validation can be its own paper.
 
-## What changed from the preprint (`../paper.pdf`)
+## What changed from the preprint (`../../paper.pdf`)
 
 | | Preprint v1.0 | Journal version (`paper.pdf` here) |
 |---|---|---|
@@ -52,7 +52,7 @@ A separate AI auditor compared this version with the preprint and recomputed the
 
 1. **OpenReview profile:** the same account serves both TMLR submissions (see paper 02's `SUBMISSION.md`, step 1).
 2. **Read the journal version** (`paper.pdf` in this folder).
-3. **Build the supplement:** `python3 papers/06-afacs/journal/make_supplement.py` writes `journal/build/supplement.zip` (about 7 MB). It replaces your name in the codebook and code comments with "the investigator", removes session links, leaves out the plain-English guide, the coding guide, the internal related-work note and the full reference library, adds `version_history.txt`, and checks for a list of identifying patterns. The list can't catch everything, so look through `journal/build/supplement/` before uploading. Traces are not included (benchmark questions); the pipeline recreates them from MAST.
+3. **Build the supplement:** `python3 papers/06-afacs/submissions/tmlr/make_supplement.py` writes `submissions/tmlr/build/supplement.zip` (about 7 MB). It replaces your name in the codebook and code comments with "the investigator", removes session links, leaves out the plain-English guide, the coding guide, the internal related-work note and the full reference library, adds `version_history.txt`, and checks for a list of identifying patterns. The list can't catch everything, so look through `submissions/tmlr/build/supplement/` before uploading. Traces are not included (benchmark questions); the pipeline recreates them from MAST.
 4. **Submit on OpenReview** (https://openreview.net/group?id=TMLR) with `paper.pdf` and `supplement.zip`.
 
 Submitting both papers to TMLR is allowed but uses the whole year's quota (see above). They share no results, but their AI-use and data-availability statements are near-identical, which links the two anonymous submissions; reword one of them if that matters to you.

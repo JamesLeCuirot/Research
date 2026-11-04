@@ -8,7 +8,7 @@ is left, and writes build/supplement.zip. Traces are not included: they contain
 benchmark questions whose maintainers ask that they not be reposted, and the
 pipeline recreates them from MAST's pinned revision.
 
-    python3 papers/06-afacs/journal/make_supplement.py
+    python3 papers/06-afacs/submissions/tmlr/make_supplement.py
 """
 import re
 import shutil
@@ -18,7 +18,7 @@ import zipfile
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-PAPER = HERE.parent
+PAPER = HERE.parents[1]
 OUT = HERE / "build" / "supplement"
 ZIP = HERE / "build" / "supplement.zip"
 

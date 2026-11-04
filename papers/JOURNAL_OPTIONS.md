@@ -13,7 +13,7 @@ Checked on 4 November 2026 on each journal's or publisher's own pages where they
 
 ### 01 Just Culture for Machines (theory, ~7,400 words)
 
-1. ***Safety Science*** (Elsevier). Readers know just culture. Free unless you choose open access ($4,150). Package ready; strengthen the safety-science grounding first (reading pack in `01-…/journal/READING_PACK.md`).
+1. ***Safety Science*** (Elsevier). Readers know just culture. Free unless you choose open access ($4,150). Package ready; strengthen the safety-science grounding first (reading pack in `01-…/READING_PACK.md`).
 2. ***Cognition, Technology & Work*** (Springer). Safety and accidents in sociotechnical systems, aviation named in its scope; takes theory papers. LLM use allowed if documented. Impact factor 2.8; median 8 days to first decision; free route.
 3. ***Philosophy & Technology*** (Springer). Suits the conceptual argument and the "where the analogy fails" section; double-anonymised. Alternative: *AI and Ethics* (Springer), with a wider AI-ethics readership.
 4. ***The Aeronautical Journal*** (RAeS/Cambridge), only if reframed for aviation readers (what ASRS, ASAP and Regulation 376/2014 teach about AI used in aviation). It is engineering-led, so there is some risk of rejection as out of scope.

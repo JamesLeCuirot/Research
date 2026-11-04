@@ -1,6 +1,6 @@
 # Reading pack: the safety-science grounding of "Just Culture for Machines"
 
-Prepared 4 November 2026 for James, before he revises the *Safety Science* version (`journal/paper.tex`). This is literature preparation only. It contains no text for the paper.
+Prepared 4 November 2026 for James, before he revises the *Safety Science* version (`submissions/safety-science/paper.tex`). This is literature preparation only. It contains no text for the paper.
 
 ## What this pack is for
 
@@ -32,7 +32,7 @@ The 29 entries below address those gaps. They include five *Safety Science* arti
   - **Secondary summary:** another source's account of the work.
 
   Quotations are verbatim from what was seen. Page numbers are given only where they were visible.
-- **Where a source fits** refers to the section numbers of `journal/paper.tex`:
+- **Where a source fits** refers to the section numbers of `submissions/safety-science/paper.tex`:
   - §2.1 culture;
   - §2.2 US;
   - §2.3 EU/UK;

@@ -60,7 +60,7 @@ Decisions taken on the review points are recorded in [`REVIEW_CHECKLIST.md`](REV
 - **ICAO documents.** ICAO's website blocked access, so Annex 19, Doc 9859, Doc 9995 and Doc 9868 were read from copies hosted by other authorities or third parties, and the papers say so. Check the quoted text against your own licensed copies.
 - **Annex 19 Amendment 2 applies from 26 November 2026.** It renames some SMS elements and renumbers some provisions. Papers 01 and 03 use the 2nd edition and flag the change.
 - **Disclosure statements.** Each paper has an AI-assistance statement and a disclaimer. Several note that many sources are Anthropic's own and that the drafting AI is Anthropic's. Paper 03 has a competing-interests line naming CitadelAero. Keep, edit or extend these as you see fit.
-- **Venue formatting.** The LaTeX sources (`paper.tex`, `references.bib`, `paper.bbl`) are arXiv-ready. Journal versions live in each paper's `journal/` folder, so the preprint stays as released.
+- **Venue formatting.** The LaTeX sources (`paper.tex`, `references.bib`, `paper.bbl`) are arXiv-ready. Journal submission versions live in each paper's `submissions/<journal>/` folder, so the preprint stays as released.
 
 ## Folder layout
 
@@ -80,7 +80,7 @@ papers/
 └── 07-same-actions-different-endings/      (+ protocol/, prereg/, data/, cases/, prompts/, scripts/, results/; paper in paper/)
 ```
 
-Each paper folder has `paper.tex` and `references.bib` (the source), `paper.pdf` (built), `README.md` (abstract, how to cite, files), `NOTES.md` (author notes: review points, open questions, ideas for developing it, revision log), `sources.md` (verification log) and `AUDIT.md` (independent audit and second-round verification). Exceptions: 06 has no `sources.md` yet; 07 keeps the layout of its OSF deposit (Markdown paper under `paper/`, no `sources.md` or `AUDIT.md` yet). A `journal/` folder holds a journal submission version once one is being prepared.
+Each paper folder has `paper.tex` and `references.bib` (the source), `paper.pdf` (built), `README.md` (abstract, how to cite, files), `NOTES.md` (author notes: review points, open questions, ideas for developing it, revision log), `sources.md` (verification log) and `AUDIT.md` (independent audit and second-round verification). Exceptions: 06 has no `sources.md` yet; 07 keeps the layout of its OSF deposit (Markdown paper under `paper/`, no `sources.md` or `AUDIT.md` yet). A `submissions/<journal>/` folder holds each journal submission version, one folder per journal tried.
 
 ## Rebuilding the PDFs
 

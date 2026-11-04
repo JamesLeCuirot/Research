@@ -1,7 +1,7 @@
 # Paper 02: journal submission to TMLR
 
 **Target:** *Transactions on Machine Learning Research* (TMLR), submitted through OpenReview.
-**Status (4 November 2026):** submission version drafted and anonymised; waiting for James's read and his OpenReview account. Not yet submitted.
+**Status (4 November 2026):** fallback. James chose JAIR first for this paper (`../jair/`); use this package if JAIR declines. Not submitted.
 
 ## Why TMLR
 

@@ -13,7 +13,9 @@ Four papers have a journal submission package in their own `journal/` folder. Ea
 | 07 Same Actions, Different Endings | *Safety Science* (Elsevier) | [`07-…/journal/`](07-same-actions-different-endings/journal/SUBMISSION.md) | Two anonymised OSF view-only links; Elsevier's rule that the text must reflect his own intellectual contribution; CitadelAero's 2 October rule against journal submissions |
 | 01 Just Culture for Machines | *Safety Science* | [`01-…/journal/`](01-just-culture-for-machines/journal/SUBMISSION.md) | Elsevier's rule as above; strengthen the safety-science grounding (read and cite Reason, Dekker, research on under-reporting) or choose another venue |
 
-The venue research for each paper, the original submission plan, follows. The AAAI-27 workshop route for paper 02 was dropped because it needs an in-person presentation.
+**Paper 02 also has a workshop version.** Another session prepared an anonymised version for the AAAI-27 Trustworthy Evolution of AI Agents workshop (deadline 20 November 2026), in [`02-…/submissions/aaai27-trust4rsi-workshop/`](02-do-llm-monitors-miss-rare-threats/submissions/aaai27-trust4rsi-workshop/README.md). James has said he could not present at AAAI in person. The workshop page does not state an in-person requirement, so ask the organisers before submitting. The workshop is non-archival, and TMLR accepts overlap with work shared at venues "publicly declared, in writing, to be non-archival, such as workshops", so the two routes can run together.
+
+The venue research for each paper, the original submission plan, follows.
 
 ## Rules that apply to every submission
 

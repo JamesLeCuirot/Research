@@ -39,6 +39,10 @@ No result or number changed; every number was carried over from the preprint, wh
 
 The supplement builder was also fixed. It now removes the working title and "paper 02", ships the figure palette so the figure script runs, explains who "the research engineer" is (the AI coding agent), and adds `version_history.txt`: the times and files of every commit that touched the materials during the study, without identifiers. That lets reviewers check the pre-registration timing.
 
+## The AAAI-27 workshop version
+
+Another session prepared an anonymised 8-page version of this paper for the AAAI-27 Trustworthy Evolution of AI Agents workshop (`../submissions/aaai27-trust4rsi-workshop/`; deadline 20 November 2026). The workshop is non-archival, and TMLR's editorial policy accepts overlap with work shared at venues "publicly declared, in writing, to be non-archival, such as workshops". So both can be used. If both are submitted, mention the workshop submission on the TMLR form. James has said he couldn't present at AAAI; check with the organisers whether presentation in person is required.
+
 ## Remaining weaknesses a reviewer may raise
 
 These don't block submission, but they are the likeliest requests:

@@ -2,6 +2,19 @@
 
 Where each paper could go after its preprint release, with the rules that matter. Researched on 4 November 2026 from official calls and author guidelines; dates marked "expected" are last year's, because the 2027 call was not yet published. **Re-check every deadline and policy on the venue's own page before submitting.**
 
+## Journal packages (4 November 2026)
+
+Four papers have a journal submission package in their own `journal/` folder. Each has a `SUBMISSION.md` that gives the reasons for the journal choice, what changed from the preprint, what an independent check found, the decisions James must make and the steps to submit. **None has been submitted**: James submits each one himself, after reading and editing it.
+
+| Paper | Journal | Package | Main open points for James |
+|---|---|---|---|
+| 02 Do LLM Monitors Miss Rare Threats? | *Transactions on Machine Learning Research* (TMLR) | [`02-…/journal/`](02-do-llm-monitors-miss-rare-threats/journal/SUBMISSION.md) | OpenReview profile (moderation can take two weeks); his own read; whether to add a non-Claude monitor now or offer it in the rebuttal |
+| 06 AFACS | TMLR | [`06-afacs/journal/`](06-afacs/journal/SUBMISSION.md) | TMLR allows a sole author two submissions a year, so submit after paper 02, ideally once the quota year turns; or run the human-coder study first |
+| 07 Same Actions, Different Endings | *Safety Science* (Elsevier) | [`07-…/journal/`](07-same-actions-different-endings/journal/SUBMISSION.md) | Two anonymised OSF view-only links; Elsevier's rule that the text must reflect his own intellectual contribution; CitadelAero's 2 October rule against journal submissions |
+| 01 Just Culture for Machines | *Safety Science* | [`01-…/journal/`](01-just-culture-for-machines/journal/SUBMISSION.md) | Elsevier's rule as above; strengthen the safety-science grounding (read and cite Reason, Dekker, research on under-reporting) or choose another venue |
+
+The venue research for each paper, the original submission plan, follows. The AAAI-27 workshop route for paper 02 was dropped because it needs an in-person presentation.
+
 ## Rules that apply to every submission
 
 - **AI-assisted drafting.** These papers were drafted with AI assistance, and say so. Venues differ:

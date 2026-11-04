@@ -17,7 +17,7 @@ The first paper **builds on Ezell, Roberts-Gaal & Chan (2025), "Incident Analysi
 3. **Applicability.** Can the extended framework be applied consistently? Claude codes the 250-trace bulk sample twice (two models, and a re-run), and we measure agreement, set against MAST's own judge agreeing with itself at κ 0.43. This shows **consistency, not correctness**.
 4. **Flat labels.** How do MAST's 14 labels map onto the extended framework?
 
-**Human validation becomes paper 2.** Recruited coders who can read code will use the Coding Desk and the frozen 30-trace calibration set, which the AI pilot never touches. Your role in paper 1 is the framework itself: the cross-walk, codebook v1, and expert review of a few AI codings as case studies.
+**Human validation becomes paper 2.** Recruited coders who can read code will use the Coding Desk and the frozen 30-trace calibration set, which the AI pilot never touches. Your role in paper 1 is the framework itself: the cross-walk and the codebook decisions. The case studies are worked examples whose claims rest on the traces, the benchmark verdicts and the frameworks' documentation, not on judging the agents' code (you decided on 4 November that reviewing technical traces needs technical coders, who come in paper 2).
 
 ## 2. The pipeline, stage by stage
 
@@ -162,7 +162,7 @@ All study-design numbers live in `src/afacs/design.py` with their reasons.
 
 1. **Approve the AI pilot.** Codebook v1 is settled, so Claude can code the 250 bulk traces through your subscription (it may take several sessions because of usage limits).
 2. **Check the cross-walk** (`docs/crosswalk_ezell.md`) and correct it wherever your human-factors judgement differs from my draft.
-3. **Expert case studies.** Review a handful of the AI's codings with the trace beside you, and say where you agree or disagree and why. These become the case studies.
+3. **Case studies:** written as worked examples (paper section 7). The Case Review page (https://claude.ai/artifact/VqKkHidKjkwsaBMzhDVXL6) is kept for the technical coders in paper 2.
 4. **Optional:** code the 10 short AG2 and MetaGPT calibration traces yourself (about 2 hours) as a small human anchor. Not required for paper 1.
 5. **Read the paper draft** (`paper/afacs.pdf`) as it fills in.
 

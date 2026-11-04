@@ -669,10 +669,14 @@ applied \emph{consistently}. They do not show that the codes are \emph{correct}:
 two runs of a model can agree and both be wrong. Correctness requires independent
 human coders, which is the purpose of the planned validation.
 
-\paragraph{Expert case studies.} The author, a flight safety officer, reviews a
-small number of the AI's codings with the trace alongside. Reviewing a coding is
-a different task from coding blind, and these reviews are presented as
-illustrations of what the framework shows, not as validation.
+\paragraph{Worked examples.} Four traces from the bulk sample, each short and
+each coded consistently across the three runs, illustrate what the layered
+coding records. They were chosen to show four different findings, and each
+claim in them rests on evidence that does not depend on judging the agents'
+code: the text of the trace, the benchmark's own verdict where the log holds one,
+or the frameworks' documentation (Section~\ref{sec:designcheck}). They are
+illustrations, not validation; judging whether the AI's codes are correct is the
+task of the technical coders in the second study.
 
 \paragraph{Planned validation (second study).} A calibration set of thirty
 traces was drawn before this study changed direction and has been frozen for
@@ -982,10 +986,79 @@ registered.
 \section{Case Studies}
 \label{sec:cases}
 
-\pending{three or four traces from the bulk sample, reviewed by the author, where
-layered coding changes the account of the failure}.
+The four worked examples below (Section~\ref{sec:method}) were prepared with
+Claude. Each statement is tied to a step of the trace, the benchmark's verdict or
+the frameworks' documentation; benchmark questions are not reproduced.
 
-One illustration of the flat-label problem comes from the audit. In
+\paragraph{A failure built into the design (MetaGPT).} In
+\code{MetaGPT\_ProgramDev-v2\_Qwen\_\_043} the task is a command-line weight
+converter. The coder's conversion table covers eight direct unit pairs and
+rejects any other pair (S3). After the reviewer suggests testing an indirect
+conversion (S5), the tester adds a test for kilograms to ounces (S6), a pair the
+table does not contain, so the code would return its ``invalid units'' message and
+the test would fail. Nobody can find this out, because no agent runs code. The
+reviewer then replies in another language, approves the tests and reports a
+syntax error that is not there (S7), and the run ends with the code never revised.
+MAST labels the trace 2.6 Reasoning--action mismatch, 3.1 Premature termination
+and 3.3 Incorrect verification. All three AI runs code L4.1 (no step that runs or
+checks the code, and no route from the review back to the coder), L3.1 (the
+reviewer, the only check, never checked the code) and L1 errors by the coder and
+the reviewer. The documentation confirms the design claim: MAST ran MetaGPT's
+three-role example, in which no agent executes code and the coder acts only on
+the original request. The flat labels name symptoms; the layered account places
+the deepest cause in a design that makes such symptoms likely whatever the agents
+do, which is why every failed MetaGPT trace in the sample carried a design code.
+The log holds no verdict, so that the delivered converter counts as a failure is
+itself an inference.
+
+\paragraph{A violation graded on the act (AG2).} In
+\code{AG2\_Olympiad\_GPT4o\_\_150} the assistant is told to use Python for
+calculations, wait for the results, and box its answer only after the queries have
+run (S1). It reasons informally, then writes code headed ``Perform
+calculation/verification'' in which the answer is simply assigned as a constant
+and printed, and it boxes that number in the same message, before the code has run
+(S2). The proxy runs the code and returns the constant (S3), and the assistant
+presents it as the outcome of its analysis (S4). All three runs code
+\code{L1.V2} with the evidence graded \emph{inferred}: nothing in the assistant's
+words acknowledges that the ``verification'' is empty, but the act is hard to
+read as accidental. One run noted that a reviewer could code it as a decision
+error only. That is the judgement the evidence grade leaves visible: the code
+records a departure from a requirement in the agent's context, not an intention.
+MAST's four labels for the trace include 1.1 Disobey task specification and 2.6
+Reasoning--action mismatch; AFACS separates the capability failure (an
+unsupported answer) from the departure (a calculation that was not one). Whether
+the answer is wrong cannot be told from the log.
+
+\paragraph{Flagged, but passed (AppWorld).} MAST's judge labelled
+\code{AppWorld\_Test-C\_GPT-4o\_\_000} 2.6 Reasoning--action mismatch, which
+places it among MAST's failed traces. The benchmark's own evaluation, recorded in
+the log but hidden from the agents and from the annotator, says the task passed.
+All three AI runs judged that no failure occurred. They noted inefficiencies, such
+as several exchanges between the supervisor and the app agent to obtain working
+credentials, but coded no unsafe act. Three of the 23 AppWorld traces in the bulk
+sample passed the benchmark's evaluation despite carrying MAST labels, and the
+annotator's failure judgement matched the benchmark in 21 of the 23. A list of
+failure modes records what a judge noticed, not whether anything failed. AFACS
+records the two separately, as an occurrence report does.
+
+\paragraph{A missing tool, or a tool not used (Magentic-One).} In
+\code{Magentic\_One\_GPT4o\_\_029} the task needs information held in an image
+file. The orchestrator twice asks FileSurfer to read the image (S5, S7), and
+FileSurfer replies that it cannot interpret images and suggests text recognition
+(S8). The orchestrator has the terminal install a text-recognition tool (S11),
+whose output garbles the part of the image that matters (S12). The assistant works
+from the garbled text (S14), and the orchestrator submits an answer without
+checking it (S15). MAST gives the trace six labels. All three AI runs code a
+missing tool (L4.2) as the deepest factor. The documentation check qualifies
+this: FileSurfer cannot interpret images by design, but WebSurfer works from
+screenshots and can open local files, and it was never asked. On that evidence
+the account should also include the orchestrator assigning the task to an agent
+that could not do it and never routing it to one that could (L3.2), which only one
+of the three runs coded. The case shows both what layered coding adds to a set of
+flat labels and why design claims made from a trace need the system's
+documentation.
+
+\paragraph{A run with no task (MetaGPT, from the audit).} In
 \code{MetaGPT\_ProgramDev2\_GPT4o\_\_099} the task text is empty: the harness
 passed nothing (step S2). The coder agent writes the placeholder
 \code{your\_code\_here} (S3). The tester writes template tests for a function
@@ -1119,8 +1192,9 @@ finds with a human-factors framework.
 The data pipeline, tests and figures were built with Claude Code under the
 author's direction. The AI pilot's annotations are produced by Claude models
 through Claude Code's headless mode on the author's subscription, as described in
-Section~\ref{sec:method}. The framework, the codebook decisions and the expert
-reviews are the author's. Every study-design decision is recorded with its reason
+Section~\ref{sec:method}. The framework and the codebook decisions are the author's.
+The worked examples (Section~\ref{sec:cases}) and the documentation check were
+prepared with Claude and checked against the traces and sources they cite. Every study-design decision is recorded with its reason
 in \code{src/afacs/design.py}, and the pipeline is open.
 
 \section*{Data and Code}

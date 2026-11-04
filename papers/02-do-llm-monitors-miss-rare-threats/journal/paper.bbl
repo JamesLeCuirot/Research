@@ -1,0 +1,265 @@
+\begin{thebibliography}{29}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Abbasi et~al.(2026)Abbasi, {N{\'u}{\~n}ez V.}, and
+  Shahraki]{abbasi2026}
+Mahmoud Abbasi, Juan~M. {N{\'u}{\~n}ez V.}, and Amin Shahraki.
+\newblock What standard evaluations hide about detectors of hijacked {LLM}
+  agents: Rare attacks, unseen tools and benchmark transfer.
+\newblock arXiv preprint arXiv:2610.41803, 2026.
+\newblock URL \url{https://arxiv.org/abs/2610.41803}.
+
+\bibitem[{Anthropic}(n.d.)]{anthropic_headless}
+{Anthropic}.
+\newblock Run {Claude Code} programmatically.
+\newblock Claude Code Docs, n.d.
+\newblock URL \url{https://code.claude.com/docs/en/headless}.
+\newblock {C}ompany product documentation. Accessed: Nov. 3, 2026.
+
+\bibitem[Austin et~al.(2021)Austin, Odena, Nye, Bosma, Michalewski, Dohan,
+  Jiang, Cai, Terry, Le, and Sutton]{austin2021}
+Jacob Austin, Augustus Odena, Maxwell Nye, Maarten Bosma, Henryk Michalewski,
+  David Dohan, Ellen Jiang, Carrie Cai, Michael Terry, Quoc Le, and Charles
+  Sutton.
+\newblock Program synthesis with large language models.
+\newblock arXiv preprint arXiv:2108.07732, 2021.
+\newblock URL \url{https://arxiv.org/abs/2108.07732}.
+
+\bibitem[Becker et~al.(2026)Becker, Rodriguez, Montalvo, and
+  Peltier]{becker2026}
+Mark~W. Becker, Andrew Rodriguez, Derrek~T. Montalvo, and Chad Peltier.
+\newblock Reducing the low-prevalence effect with probe trials.
+\newblock \emph{Cognitive Research: Principles and Implications}, 11\penalty0
+  (1), January 2026.
+\newblock \doi{10.1186/s41235-025-00702-w}.
+\newblock URL \url{https://doi.org/10.1186/s41235-025-00702-w}.
+\newblock {A}rt. no. 5.
+
+\bibitem[Bhatt et~al.(2025)Bhatt, Rushing, Kaufman, Tracy, Georgiev, Matolcsi,
+  Khan, and Shlegeris]{bhatt2025}
+Aryan Bhatt, Cody Rushing, Adam Kaufman, Tyler Tracy, Vasil Georgiev, David
+  Matolcsi, Akbir Khan, and Buck Shlegeris.
+\newblock {Ctrl-Z}: Controlling {AI} agents via resampling.
+\newblock arXiv preprint arXiv:2504.10374, 2025.
+\newblock URL \url{https://arxiv.org/abs/2504.10374}.
+
+\bibitem[Buser et~al.(2025)Buser, Schwaninger, Rehor, and Sterchi]{buser2025}
+D.~Buser, A.~Schwaninger, V.~Rehor, and Y.~Sterchi.
+\newblock Reliability and validity of threat image projection data as a measure
+  of performance in {X}-ray baggage screening.
+\newblock \emph{Transportation Research Part A: Policy and Practice}, 200,
+  October 2025.
+\newblock \doi{10.1016/j.tra.2025.104640}.
+\newblock URL \url{https://doi.org/10.1016/j.tra.2025.104640}.
+\newblock {A}rt. no. 104640.
+
+\bibitem[Cai et~al.(2026)Cai, Wang, Yang, Lin, Lee, and Yang]{cai2026}
+Anglin Cai, Zhiqi Wang, Xiaozhi Yang, Yurun Lin, Dongwon Lee, and Yuchen Yang.
+\newblock A plausible explanation is enough to mislead multimodal judges.
+\newblock arXiv preprint arXiv:2610.22631, 2026.
+\newblock URL \url{https://arxiv.org/abs/2610.22631}.
+
+\bibitem[Cain et~al.(2013)Cain, Adamo, and Mitroff]{cain2013}
+Matthew~S. Cain, Stephen~H. Adamo, and Stephen~R. Mitroff.
+\newblock A taxonomy of errors in multiple-target visual search.
+\newblock \emph{Visual Cognition}, 21\penalty0 (7):\penalty0 899--921, August
+  2013.
+\newblock \doi{10.1080/13506285.2013.843627}.
+\newblock URL \url{https://doi.org/10.1080/13506285.2013.843627}.
+
+\bibitem[Chen et~al.(2026)Chen, Zhu, Zheng, and Li]{chen2026}
+Zihan Chen, Di~Zhu, Lei Zheng, and Weiling Li.
+\newblock Beyond accuracy: How procedural traces shift the decision criterion
+  of {LLM} overseers.
+\newblock arXiv preprint arXiv:2609.18204, 2026.
+\newblock URL \url{https://arxiv.org/abs/2609.18204}.
+\newblock {A}ccepted at the 60th Hawaii International Conference on System
+  Sciences.
+
+\bibitem[Cutler \& Paddock(2009)Cutler and Paddock]{cutler2009}
+Victoria Cutler and Susan Paddock.
+\newblock Use of threat image projection ({TIP}) to enhance security
+  performance.
+\newblock In \emph{43rd Annual 2009 International Carnahan Conference on
+  Security Technology}, pp.\  46--51, Zurich, Switzerland, October 2009. IEEE.
+\newblock \doi{10.1109/CCST.2009.5335565}.
+\newblock URL \url{https://doi.org/10.1109/CCST.2009.5335565}.
+
+\bibitem[Favaro \& Wright(n.d.)Favaro and Wright]{favaro_pace}
+Marina Favaro and Phillie Wright.
+\newblock Measurements for understanding the pace of {AI} development inside
+  frontier labs.
+\newblock Anthropic, n.d.
+\newblock URL
+  \url{https://www.anthropic.com/institute/measuring-pace-of-ai-development}.
+\newblock {C}ompany research report, not peer reviewed. Accessed: Nov. 3, 2026.
+
+\bibitem[Green \& Swets(1966)Green and Swets]{green1966}
+David~M. Green and John~A. Swets.
+\newblock \emph{Signal Detection Theory and Psychophysics}.
+\newblock Wiley, 1966.
+
+\bibitem[Greenblatt et~al.(2024)Greenblatt, Shlegeris, Sachan, and
+  Roger]{greenblatt2024}
+Ryan Greenblatt, Buck Shlegeris, Kshitij Sachan, and Fabien Roger.
+\newblock {AI} control: Improving safety despite intentional subversion.
+\newblock In \emph{Proceedings of the 41st International Conference on Machine
+  Learning}, volume 235 of \emph{Proceedings of Machine Learning Research},
+  pp.\  16295--16336. PMLR, 2024.
+\newblock URL \url{https://proceedings.mlr.press/v235/greenblatt24a.html}.
+\newblock {P}reprint version: arXiv:2312.06942.
+
+\bibitem[Griffin et~al.(2024)Griffin, Thomson, Shlegeris, and
+  Abate]{griffin2024}
+Charlie Griffin, Louis Thomson, Buck Shlegeris, and Alessandro Abate.
+\newblock Games for {AI} control: Models of safety evaluations of {AI}
+  deployment protocols.
+\newblock arXiv preprint arXiv:2409.07985, 2024.
+\newblock URL \url{https://arxiv.org/abs/2409.07985}.
+\newblock {V}ersion 2, 2026; presented at the Second IASEAI Conference (IASEAI
+  '26).
+
+\bibitem[Hautus(1995)]{hautus1995}
+Michael~J. Hautus.
+\newblock Corrections for extreme proportions and their biasing effects on
+  estimated values of $d'$.
+\newblock \emph{Behavior Research Methods, Instruments, \& Computers},
+  27\penalty0 (1):\penalty0 46--51, March 1995.
+\newblock \doi{10.3758/BF03203619}.
+\newblock URL \url{https://doi.org/10.3758/BF03203619}.
+
+\bibitem[Hautus et~al.(2021)Hautus, Macmillan, and Creelman]{hautus2021}
+Michael~J. Hautus, Neil~A. Macmillan, and C.~Douglas Creelman.
+\newblock \emph{Detection Theory: A User's Guide}.
+\newblock Routledge, 3rd edition, 2021.
+\newblock \doi{10.4324/9781003203636}.
+\newblock URL \url{https://doi.org/10.4324/9781003203636}.
+
+\bibitem[Hida et~al.(2026)Hida, Ribeiro, and Hida]{hida2026}
+Gilberto~Sussumu Hida, Danilo~Monteiro Ribeiro, and Clayton~Suguio Hida.
+\newblock Class imbalance and batch effects in {LLM}-based screening for
+  systematic reviews.
+\newblock arXiv preprint arXiv:2608.14737, 2026.
+\newblock URL \url{https://arxiv.org/abs/2608.14737}.
+\newblock {A}ccepted at ENIAC 2026, part of BRACIS 2026.
+
+\bibitem[Kapetanovic et~al.(2026)Kapetanovic, Altwlkany, Mercep, Duricic, and
+  Lacic]{kapetanovic2026}
+Ante Kapetanovic, Kemal Altwlkany, Andro Mercep, Tomislav Duricic, and Emanuel
+  Lacic.
+\newblock Anchoring bias in {LLM}-as-a-judge systems: Prior scores compromise
+  evaluation independence.
+\newblock In \emph{Proceedings of the 35th {ACM} International Conference on
+  Information and Knowledge Management ({CIKM} '26)}, Rome, Italy, November
+  2026. ACM.
+\newblock \doi{10.1145/3799682.3840879}.
+\newblock URL \url{https://doi.org/10.1145/3799682.3840879}.
+\newblock {I}n press. Preprint: arXiv:2608.25869.
+
+\bibitem[Kim et~al.(2026)Kim, Kim, Lee, and Kim]{kim2026}
+Kihyun Kim, Hee-Seon Kim, Wonjun Lee, and Changick Kim.
+\newblock Safety in batches? {U}nderstanding and mitigating safety failures in
+  batch prompting.
+\newblock arXiv preprint arXiv:2608.02681, 2026.
+\newblock URL \url{https://arxiv.org/abs/2608.02681}.
+
+\bibitem[Korbak et~al.(2025)Korbak, Clymer, Hilton, Shlegeris, and
+  Irving]{korbak2025}
+Tomek Korbak, Joshua Clymer, Benjamin Hilton, Buck Shlegeris, and Geoffrey
+  Irving.
+\newblock A sketch of an {AI} control safety case.
+\newblock arXiv preprint arXiv:2501.17315, 2025.
+\newblock URL \url{https://arxiv.org/abs/2501.17315}.
+
+\bibitem[Kutasov et~al.(2025)Kutasov, Sun, Colognese, van~der Weij, Petrini,
+  Zhang, Hughes, Deng, Sleight, Tracy, Shlegeris, and Benton]{kutasov2025}
+Jonathan Kutasov, Yuqi Sun, Paul Colognese, Teun van~der Weij, Linda Petrini,
+  Chen Bo~Calvin Zhang, John Hughes, Xiang Deng, Henry Sleight, Tyler Tracy,
+  Buck Shlegeris, and Joe Benton.
+\newblock {SHADE-Arena}: Evaluating sabotage and monitoring in {LLM} agents.
+\newblock arXiv preprint arXiv:2506.15740, 2025.
+\newblock URL \url{https://arxiv.org/abs/2506.15740}.
+\newblock {R}esearch report led by Anthropic, with co-authors from other
+  organisations; not peer reviewed.
+
+\bibitem[Najt et~al.(2026{\natexlab{a}})Najt, Toft, Tracy, Roger, and
+  Benton]{najt2026}
+E.~Najt, C.~Toft, T.~Tracy, F.~Roger, and J.~Benton.
+\newblock {SLEIGHT-Bench}: Finding blind spots in {AI} monitors.
+\newblock Alignment Science Blog, Anthropic, May~19, 2026{\natexlab{a}}.
+\newblock URL \url{https://alignment.anthropic.com/2026/sleight-bench/}.
+\newblock {C}ompany research blog post, not peer reviewed. Accessed: Nov. 3,
+  2026.
+
+\bibitem[Najt et~al.(2026{\natexlab{b}})Najt, Toft, Tracy, Roger, and
+  Benton]{najt2026arxiv}
+Elle Najt, Colin Toft, Tyler Tracy, Fabien Roger, and Joe Benton.
+\newblock {SLEIGHT-Bench}: A benchmark of evasion attacks against agent
+  monitors.
+\newblock arXiv preprint arXiv:2605.16626, 2026{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2605.16626}.
+\newblock {V}ersion 2. Research by the Anthropic Fellows Program and Anthropic,
+  with the University of Waterloo and Redwood Research; not peer reviewed.
+
+\bibitem[Srivastav et~al.(2026)Srivastav, Pape, and
+  Sch{\"o}nherr]{srivastav2026}
+Devansh Srivastav, David Pape, and Lea Sch{\"o}nherr.
+\newblock Unknown unknowns: Do hidden intentions in {LLMs} evade detection?
+\newblock arXiv preprint arXiv:2601.18552, 2026.
+\newblock URL \url{https://arxiv.org/abs/2601.18552}.
+\newblock {A}ccepted to Findings of the Association for Computational
+  Linguistics: EMNLP 2026.
+
+\bibitem[Wolfe et~al.(2013)Wolfe, Brunelli, Rubinstein, and
+  Horowitz]{wolfe2013}
+J.~M. Wolfe, D.~N. Brunelli, J.~Rubinstein, and T.~S. Horowitz.
+\newblock Prevalence effects in newly trained airport checkpoint screeners:
+  Trained observers miss rare targets, too.
+\newblock \emph{Journal of Vision}, 13\penalty0 (3), December 2013.
+\newblock \doi{10.1167/13.3.33}.
+\newblock URL \url{https://doi.org/10.1167/13.3.33}.
+\newblock {A}rt. no. 33.
+
+\bibitem[Wolfe et~al.(2005)Wolfe, Horowitz, and Kenner]{wolfe2005}
+Jeremy~M. Wolfe, Todd~S. Horowitz, and Naomi~M. Kenner.
+\newblock Rare items often missed in visual searches.
+\newblock \emph{Nature}, 435\penalty0 (7041):\penalty0 439--440, May 2005.
+\newblock \doi{10.1038/435439a}.
+\newblock URL \url{https://doi.org/10.1038/435439a}.
+
+\bibitem[Wolfe et~al.(2007)Wolfe, Horowitz, Van~Wert, Kenner, Place, and
+  Kibbi]{wolfe2007}
+Jeremy~M. Wolfe, Todd~S. Horowitz, Michael~J. Van~Wert, Naomi~M. Kenner,
+  Skyler~S. Place, and Nour Kibbi.
+\newblock Low target prevalence is a stubborn source of errors in visual search
+  tasks.
+\newblock \emph{Journal of Experimental Psychology: General}, 136\penalty0
+  (4):\penalty0 623--638, 2007.
+\newblock \doi{10.1037/0096-3445.136.4.623}.
+\newblock URL \url{https://doi.org/10.1037/0096-3445.136.4.623}.
+
+\bibitem[Zhao et~al.(2021)Zhao, Wallace, Feng, Klein, and Singh]{zhao2021}
+Tony~Z. Zhao, Eric Wallace, Shi Feng, Dan Klein, and Sameer Singh.
+\newblock Calibrate before use: Improving few-shot performance of language
+  models.
+\newblock In \emph{Proceedings of the 38th International Conference on Machine
+  Learning}, volume 139 of \emph{Proceedings of Machine Learning Research},
+  pp.\  12697--12706. PMLR, 2021.
+\newblock URL \url{https://proceedings.mlr.press/v139/zhao21c.html}.
+
+\bibitem[Zheng et~al.(2023)Zheng, Chiang, Sheng, Zhuang, Wu, Zhuang, Lin, Li,
+  Li, Xing, Zhang, Gonzalez, and Stoica]{zheng2023}
+Lianmin Zheng, Wei-Lin Chiang, Ying Sheng, Siyuan Zhuang, Zhanghao Wu, Yonghao
+  Zhuang, Zi~Lin, Zhuohan Li, Dacheng Li, Eric~P. Xing, Hao Zhang, Joseph~E.
+  Gonzalez, and Ion Stoica.
+\newblock Judging {LLM}-as-a-judge with {MT-Bench} and {Chatbot Arena}.
+\newblock In \emph{Advances in Neural Information Processing Systems 36
+  (NeurIPS 2023), Datasets and Benchmarks Track}, pp.\  46595--46623, 2023.
+\newblock \doi{10.52202/075280-2020}.
+\newblock URL \url{https://doi.org/10.52202/075280-2020}.
+
+\end{thebibliography}

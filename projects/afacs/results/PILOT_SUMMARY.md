@@ -90,12 +90,12 @@ The check proves the words are in the trace. It does not prove they support the 
 ## 6a. Update: the documentation check (L4)
 
 The AI's 24 most frequent design claims were checked against each framework's paper, documentation and code (`docs/design_check.md`):
-- 8 confirmed in full, 13 partly true, 2 contradicted, 1 not settled.
+- 7 confirmed in full, 14 partly true, 2 contradicted, 1 not settled (corrected from 8 and 13 after the independent audit: one confirmed claim put a set-up problem at the design layer).
 - **The typical error is overstating a weakness as an absence.** The AI says "no verifier" or "no loop detection" where a weak version of the mechanism exists. A trace can't tell the two apart.
 - **Two claims put a failure at the wrong layer:** a run-time fault, and an environment set-up problem.
 - **The check also found errors in MAST's own documentation:**
   - MetaGPT is not the system MAST describes.
-  - MAST's HyperAgent model label (Claude-3.7-Sonnet) can't be right for a September 2024 submission.
+  - The HyperAgent model label in MAST's paper (Claude-3.7-Sonnet) can't be right for a September 2024 submission.
 
 ## 7. What's next (as planned on 4 November; superseded)
 

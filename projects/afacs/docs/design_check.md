@@ -13,10 +13,10 @@
 | MetaGPT | 5 | 2 | 3 | 0 | 0 |
 | AG2 | 4 | 1 | 2 | 1 | 0 |
 | Magentic-One | 6 | 2 | 3 | 1 | 0 |
-| OpenManus | 4 | 2 | 2 | 0 | 0 |
+| OpenManus | 4 | 1 | 3 | 0 | 0 |
 | HyperAgent | 3 | 0 | 3 | 0 | 0 |
 | AppWorld | 2 | 1 | 0 | 0 | 1 |
-| **All** | **24** | **8** | **13** | **2** | **1** |
+| **All** | **24** | **7** | **14** | **2** | **1** |
 
 **The pattern.** The annotator usually pointed at the right weakness but overstated it as an absence. It said "no verifier", "no termination logic" or "no loop detection" where the system has the mechanism but in a weak form:
 - MetaGPT has a reviewer, but it reviews only the tests; it also has round and budget caps.
@@ -46,12 +46,12 @@ The check also found discrepancies in MAST's documentation, which add to the rec
 2. **MathChat's roles are described the other way round.** MAST describes a student agent working with an assistant "capable of Python code execution". In AG2's MathChat, it is the proxy (no LLM) that runs the code.
 3. **The HyperAgent model label is doubtful.**
    - MAST's HyperAgent traces are taken from a public SWE-bench submission (`20240925_hyperagent_lite1`), not from MAST's own runs.
-   - MAST labels them Claude-3.7-Sonnet, a model released after that submission's September 2024 date.
+   - MAST's paper labels them Claude-3.7-Sonnet, a model released in February 2025, after that submission's September 2024 date (MAST's dataset itself just says "Claude").
    - The submission's metadata says GPT-4o, and HyperAgent's own run script uses Claude-3.5-Sonnet with Claude-3-Haiku.
 4. **Some set-ups are MAST's own and unpublished.**
    - **AppWorld:** the multi-agent set-up was built by MAST's authors from AppWorld's single-agent baseline. Its prompts and code are not published.
-   - **AG2 MMLU:** the team (Problem Solver, Code Executor, Verifier) is MAST's own topology; its MMLU-specific prompts are not published.
-5. **No versions or configurations are published.** For Magentic-One the version can be inferred only from line numbers in a traceback (autogen-ext 0.4.7–0.4.9, run through AutoGen's agbench GAIA template). OpenManus appears to have been run from a local checkout around 30 March 2025. Its one-hour timeout is OpenManus's own default, not MAST's harness.
+   - **AG2 MMLU:** the team (Problem Solver, Code Executor, Verifier) adapts the three-agent topology whose prompts MAST publishes for GSM-Plus; the MMLU-specific prompts are not published.
+5. **No versions or configurations are published.** For Magentic-One the version appears only in each log's installation output (autogen-agentchat, autogen-core and autogen-ext 0.4.9, built from a local checkout; traceback line numbers agree), run through AutoGen's agbench GAIA template. OpenManus appears to have been run from a local checkout around 30 March 2025. Its one-hour timeout is OpenManus's own default, not MAST's harness.
 
 ## Claim by claim
 
@@ -123,7 +123,7 @@ Sources:
 | No loop detection or termination beyond a step cap and a one-hour timeout (~14) | Partly true | `is_stuck()` adds "Observed duplicate responses. Consider new strategies…" (fired in 11 of 30 traces) | A detector exists but only nudges, never stops the run, and misses loops of repeated tool calls |
 | Plan steps are marked completed without checking their output (~11) | Confirmed | The planning flow marks a step completed after any normal return, including "reached max steps" | Design (L4.1) |
 | A 20-step budget and a one-hour timeout limit the run (~14) | Partly true | `max_steps = 20`; `timeout=3600` (OpenManus's own default) | The step cap applies per plan step and never ended a task. The timeout ended 24 of 30 runs |
-| Missing tools or packages (~6) | Confirmed (deployment) | Missing modules (e.g. pptx, matplotlib, pytesseract); no install tool | Comes from MAST's environment set-up, not OpenManus's design |
+| Missing tools or packages (~6) | Partly true (true, but a set-up cause, not design) | Missing modules (e.g. pptx, matplotlib, pytesseract); no install tool | Comes from MAST's environment set-up, not OpenManus's design |
 
 ### HyperAgent (L4 in 7 of 13 failed traces)
 

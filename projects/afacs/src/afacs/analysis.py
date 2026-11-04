@@ -248,7 +248,9 @@ def afacs_analysis(rows: dict[str, dict], name: str, weights: dict[str, float] |
 
     out = [f"# AFACS analysis: {name}", "",
            f"Coded traces: {len(rows)}. Failure observed in {len(failed)} "
-           f"({pct(*wilson(len(failed), len(rows)))}). Shares below are of traces with a failure observed.", "",
+           f"({pct(*wilson(len(failed), len(rows)))} of the sample"
+           + (f"; {pct(*share(sorted(rows), lambda u: rows[u]['failure_observed'] == 'yes'))} weighted to the pool" if weighted else "")
+           + "). Shares below are of traces with a failure observed.", "",
            ("Shares are **weighted** so they represent the eligible pool, not the balanced sample "
             "(the sample over-represents small frameworks and models). n is the number of coded traces."
             if weighted else

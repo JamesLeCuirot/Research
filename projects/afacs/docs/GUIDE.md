@@ -129,7 +129,7 @@ All study-design numbers live in `src/afacs/design.py` with their reasons.
 
 | Decision | Why | Change it? |
 |---|---|---|
-| Exclude ChatDev | Traces are 60k–500k tokens (100+ pages each): too long to hand-code or to validate the annotator on | Possible, but costly in your time |
+| Exclude ChatDev | Traces are about 40k–495k tokens (median 84k; 100+ pages each): too long to hand-code or to validate the annotator on | Possible, but costly in your time |
 | Length cap ~30k tokens | Same reason; applied equally to calibration and bulk so the annotator is validated on the same kind of trace it codes | Easy |
 | 30 traces: 5 per framework, 4 of them controls in place of a failed trace | Balance across frameworks; controls test for failures MAST missed; equal rows per framework keep the controls hidden | Frozen now (fingerprint committed) |
 | Dev 18 / test 12, fixed in advance | Honest test of the annotator | Don't change after coding starts |

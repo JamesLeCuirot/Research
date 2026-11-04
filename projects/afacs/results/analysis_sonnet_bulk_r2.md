@@ -1,6 +1,6 @@
 # AFACS analysis: sonnet_bulk_r2
 
-Coded traces: 250. Failure observed in 197 (79% (73%–83%)). Shares below are of traces with a failure observed.
+Coded traces: 250. Failure observed in 197 (79% (73%–83%) of the sample; 77% (70%–83%) weighted to the pool). Shares below are of traces with a failure observed.
 
 Shares are **weighted** so they represent the eligible pool, not the balanced sample (the sample over-represents small frameworks and models). n is the number of coded traces.
 

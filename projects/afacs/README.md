@@ -4,11 +4,11 @@
 
 James Le Cuirot · [CitadelAero](https://citadelaero.com) · Senior First Officer and Flight Safety Officer · MSc Human Factors in Aviation
 
-**Paper (draft, November 2026): [`paper/afacs.pdf`](paper/afacs.pdf)** · Plain-English guide to the project: [`docs/GUIDE.md`](docs/GUIDE.md)
+**Paper (Preprint v1.0, 4 November 2026): [`paper/afacs.pdf`](paper/afacs.pdf)** · Plain-English guide to the project: [`docs/GUIDE.md`](docs/GUIDE.md)
 
 *AFACS stands for Agent Failure Analysis and Classification System.*
 
-*Status: in progress. Part of James Le Cuirot's [research repository](../../README.md).*
+*Status: Preprint v1.0, 4 November 2026. Not peer reviewed. Part of James Le Cuirot's [research repository](../../README.md).*
 
 ---
 
@@ -36,7 +36,7 @@ The framework is then tested on the public [MAST](https://github.com/multi-agent
   - Supervision failures appear in about two-thirds of failures and coordination breakdowns in about two-fifths.
   - Violations appear in 9–13% and are concentrated in two frameworks.
   - MAST's "Disobey Task Specification" label mixes errors with violations.
-- **Design causes need design evidence.** The AI's design-level codes are inferences from traces. Checked against the frameworks' documentation and code, its design claims usually pointed at a real weakness but overstated it as an absence: 8 of 24 were confirmed in full, 13 in part and 2 were contradicted.
+- **Design causes need design evidence.** The AI's design-level codes are inferences from traces. Checked against the frameworks' documentation and code, its design claims usually pointed at a real weakness but overstated it as an absence: 7 of 24 were confirmed in full, 14 in part and 2 were contradicted.
 
 This study measures **consistency, not correctness**. Validation with independent human coders is planned as a second study, on a calibration set that has already been frozen and pre-registered.
 
@@ -81,7 +81,7 @@ This is a behavioural classification. It makes no claim about intent.
 - **No outcome record:** there is no record of whether tasks succeeded.
 - **Discrepancies with MAST's own descriptions:**
   - MetaGPT is described as having a verifier, but the logs show a three-role example in which nothing checks the code.
-  - The HyperAgent traces, taken from a September 2024 public submission, are labelled with a model released later.
+  - The HyperAgent traces, taken from a September 2024 public submission, are labelled in MAST's paper with a model released later.
 
 ![MAST judge test-retest agreement](figures/mast_judge_test_retest.png)
 
@@ -124,8 +124,8 @@ The AI's 24 most frequent design claims were checked against each framework's pa
 
 | Verdict | Claims |
 |---|---|
-| Confirmed in full | 8 |
-| Partly true | 13 |
+| Confirmed in full | 7 |
+| Partly true | 14 |
 | Contradicted | 2 |
 | Not settled | 1 |
 
@@ -203,7 +203,7 @@ To re-run the annotation itself, use `uv run python scripts/pilot.py`. It calls 
   author = {Le Cuirot, James},
   title  = {Extending AI-Agent Incident Analysis to Multi-Agent Systems: AFACS, an HFACS-based Framework, and an Audit of Public Traces},
   year   = {2026},
-  note   = {CitadelAero. Draft, November 2026},
+  note   = {CitadelAero. Preprint v1.0, 4 November 2026. Not peer reviewed},
   url    = {https://github.com/JamesLeCuirot/Research}
 }
 ```

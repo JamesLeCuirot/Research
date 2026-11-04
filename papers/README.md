@@ -8,11 +8,11 @@ Part of James Le Cuirot's [research repository](../README.md).
 
 | # | Paper | Kind | Version | Read |
 |---|---|---|---|---|
-| 01 | **Just Culture for Machines:** Why Penalising Disclosure Teaches Concealment | Theory | v0.4 | [PDF](01-just-culture-for-machines/paper.pdf) · [LaTeX](01-just-culture-for-machines/paper.tex) |
+| 01 | **Just Culture for Machines:** Why Penalising Disclosure Teaches Concealment | Theory | **v1.0 preprint** | [PDF](01-just-culture-for-machines/paper.pdf) · [LaTeX](01-just-culture-for-machines/paper.tex) |
 | 02 | **Do LLM Monitors Miss Rare Threats?** A Pre-registered Test of the Low-Prevalence Effect | Experiment (pre-registered) | **v1.0 preprint** | [PDF](02-do-llm-monitors-miss-rare-threats/paper.pdf) · [LaTeX](02-do-llm-monitors-miss-rare-threats/paper.tex) |
-| 03 | **From RSP to SMS:** Reading Frontier AI Safety Frameworks Through ICAO's Safety Management System | Theory and document analysis | v0.4 | [PDF](03-from-rsp-to-sms/paper.pdf) · [LaTeX](03-from-rsp-to-sms/paper.tex) |
-| 04 | **Checkride or Jump Seat?** What LOSA and Evidence-Based Training Teach About Evaluation Awareness in AI Systems | Theory and a small pilot | v0.4 | [PDF](04-checkride-or-jump-seat/paper.pdf) · [LaTeX](04-checkride-or-jump-seat/paper.tex) |
-| 05 | **Untrusted by Design:** Bringing AI Control into Aviation's Operational Oversight of AI | Theory and regulatory analysis | v0.4 | [PDF](05-untrusted-by-design/paper.pdf) · [LaTeX](05-untrusted-by-design/paper.tex) |
+| 03 | **From RSP to SMS:** Reading Frontier AI Safety Frameworks Through ICAO's Safety Management System | Theory and document analysis | **v1.0 preprint** | [PDF](03-from-rsp-to-sms/paper.pdf) · [LaTeX](03-from-rsp-to-sms/paper.tex) |
+| 04 | **Checkride or Jump Seat?** What LOSA and Evidence-Based Training Teach About Evaluation Awareness in AI Systems | Theory and a small pilot | **v1.0 preprint** | [PDF](04-checkride-or-jump-seat/paper.pdf) · [LaTeX](04-checkride-or-jump-seat/paper.tex) |
+| 05 | **Untrusted by Design:** Bringing AI Control into Aviation's Operational Oversight of AI | Theory and regulatory analysis | **v1.0 preprint** | [PDF](05-untrusted-by-design/paper.pdf) · [LaTeX](05-untrusted-by-design/paper.tex) |
 
 ## The papers in brief
 
@@ -39,6 +39,10 @@ This is a strong process, but it is not peer review, and AI agents can share bli
 ## Format
 
 Since v0.4 every paper is a LaTeX-typeset, single-column technical report in one house style (`_build/techreport.sty`): Latin Modern on A4, a running header, numbered sections, booktabs tables with captions above, numbered equations, vector figures in a shared colour scheme (one colour per model), and IEEE-style numbered references from `references.bib`. The rules are in [`STYLE.md`](STYLE.md).
+
+## Submission plan
+
+Where each paper could be submitted, with deadlines and the rules on AI-assisted drafting, arXiv endorsement and anonymisation: [`SUBMISSIONS.md`](SUBMISSIONS.md).
 
 ## Author review
 

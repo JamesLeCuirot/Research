@@ -181,3 +181,7 @@ The conversion itself changed format only: no argument, number, quotation or cla
   - The bib header comment now gives 52 entries, and the `sources.md` header the current version.
   - Shared items (PDF author metadata, footnote links, sorted and compressed citations, `et~al.`, braced note fields) were done centrally and are not repeated here. The Materials URL is unchanged.
 - **Checks after these fixes.** `build.sh`: 22 pages, no errors, no undefined references, no overfull boxes. `check_bib.py`: 52 entries, all cited, none missing; 22 OK, the same 3 explained CHECKs, 27 NO-ID, no NOT-FOUND.
+
+### v1.0 (4 November 2026): released as a preprint
+
+B1.1 approved by James ("01 fine") after reviewing the Section 2 passages; B1.2–B1.4 closed with the recommended defaults. Date line changed to "Preprint v1.0"; affiliation CitadelAero; § and ¶ signs replaced by words; one mis-converted CFR reference fixed; Annex 19 2nd edition described as applicable rather than in force. No change to arguments, numbers or quotations.

@@ -13,12 +13,15 @@ is committed and pushed, so a restarted machine loses at most one chunk
 skipped, so the script can be stopped and started at any time.
 
 A trace that fails twice in a row (e.g. a refusal) is left out of that run.
-Exit codes: 0 all runs complete; 3 a chunk stopped early (on a subscription
+`--chunk N --max-chunks M` does a bounded slice of the work (exit code 4 if
+more remains), for running in steps rather than one long job.
+Exit codes: 0 all runs complete; 4 stopped after --max-chunks; 3 a chunk stopped early (on a subscription
 this is usually a usage limit): run the script again later.
 """
 
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 import subprocess
@@ -63,6 +66,11 @@ def commit(run: str, n_done: int, total: int) -> None:
 
 
 def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--chunk", type=int, default=CHUNK, help="traces per chunk (committed after each)")
+    ap.add_argument("--max-chunks", type=int, default=0, help="stop after this many chunks (0 = no limit); exit code 4")
+    args = ap.parse_args()
+    chunks_run = 0
     uids = bulk_uids()
     for run, model in RUNS:
         attempts: dict[str, int] = {}
@@ -74,7 +82,11 @@ def main() -> int:
                 print(f"{run}: complete ({len(uids) - len(gave_up)}/{len(uids)} coded"
                       + (f"; gave up on {', '.join(gave_up)}" if gave_up else "") + ")", flush=True)
                 break
-            chunk = todo[:CHUNK]
+            if args.max_chunks and chunks_run >= args.max_chunks:
+                print(f"Stopped after {chunks_run} chunk(s) as asked; run again to continue.", flush=True)
+                return 4
+            chunk = todo[:args.chunk]
+            chunks_run += 1
             print(f"{run}: {len(done(run))}/{len(uids)} done; coding {len(chunk)} more with {model}", flush=True)
             sh("uv", "run", "afacs-annotate", "run", "--set", ",".join(chunk), "--model", model, "--run-name", run)
             left = [u for u in chunk if u not in done(run)]

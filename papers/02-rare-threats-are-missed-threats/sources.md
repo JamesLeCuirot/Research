@@ -1,6 +1,6 @@
-# Sources and verification log: paper 02, "Rare Threats Are Missed Threats"
+# Sources and verification log: paper 02, "Do LLM Monitors Miss Rare Threats?"
 
-All checks were made on **3 November 2026** in one session. For each reference: how it was verified, and each claim in `paper.md` it supports, with a verbatim quote or a locator. Quotes are copied from the source text as retrieved (PDF text extraction, publisher page, or a fetch of the HTML page). "Bibliographic only" means the record was confirmed but the content was not opened; such sources are cited only for general background.
+Reference checks were made on **3 November 2026**; the Phase 2 additions (Cain et al., 2013; the Korbak et al. "across space" quote; the provenance table for results) on **4 November 2026**. For each reference: how it was verified, and each claim in `paper.md` it supports, with a verbatim quote or a locator. Quotes are copied from the source text as retrieved (PDF text extraction, publisher page, or a fetch of the HTML page). "Bibliographic only" means the record was confirmed but the content was not opened; such sources are cited only for general background.
 
 Methods used:
 
@@ -27,9 +27,10 @@ Methods used:
 - **Claims supported:**
   - Robust; criterion shift, not sensitivity (Sections 1, 2.2) — Abstract: "A series of experiments show this prevalence effect is very robust." / "In signal detection terms, the prevalence effect can be explained as a criterion shift and not a change in sensitivity." / "Several efforts to induce observers to adopt a better criterion fail."
   - Remedy (Sections 1, 2.2, 5.5) — Abstract: "However, a regime of brief retraining periods with high prevalence and full feedback allows observers to hold a good criterion during periods of low prevalence with no feedback." Experiment 7: "intermittent short periods of high prevalence with feedback were combined with long periods of low prevalence with no feedback." / "There were no significant effects of prevalence." / "Pooling across epochs, the average miss rate for low prevalence was 0.21 versus 0.18 for high prevalence." / "and false alarms were correspondingly increased (t(36) = 11.49, p = .00)." / "In this experiment, we succeeded in 'curing' the prevalence effect."
-  - Forced slowing failed (Section 2.2) — Experiment 2: "this massive slowing had no appreciable effect on errors."
+  - Failed attempts to move the criterion (Section 2.2, paraphrased) — Abstract: "Several efforts to induce observers to adopt a better criterion fail." Experiment 2: "this massive slowing had no appreciable effect on errors."
   - Faster "no" responses (Section 2.2) — Experiment 2: "observers respond 'no' much more quickly at 2% prevalence than at 50%".
-  - Criterion shift as sensible (Section 2.1) — Introduction: "You will be less likely to call something a target if the a priori probability of a target is lower." / "the prevalence effect is a very sensible behavior unless the goal is to minimize misses".
+  - Criterion shift as sensible (Section 2.1) — Introduction: "the prevalence effect is a very sensible behavior unless the goal is to minimize misses". (Also: "You will be less likely to call something a target if the a priori probability of a target is lower.")
+  - Remedy raised false alarms too (Sections 2.2, 7.4) — Experiment 7 results, quoted above.
 
 ### Wolfe, Brunelli, Rubinstein & Horowitz (2013), *Journal of Vision*, doi:10.1167/13.3.33
 - **Verified:** Crossref (13(3), 33; Dec 2013). Full text read via PMC3848386 (https://pmc.ncbi.nlm.nih.gov/articles/PMC3848386/) with WebFetch.
@@ -40,7 +41,7 @@ Methods used:
 
 ### Mitroff & Biggs (2014), *Psychological Science*, doi:10.1177/0956797613504221
 - **Verified:** Crossref (25(1), 284–289; Jan 2014; Crossref main title "The Ultra-Rare-Item Effect"). Abstract and full title from Europe PMC / PubMed record PMID 24270463 ("The ultra-rare-item effect: visual search for exceedingly rare items is highly susceptible to error."). Full text not opened (not open access).
-- **Claims supported (Section 2.2), from the abstract:** "By assessing search performance across millions of trials from the Airport Scanner smartphone application, we demonstrated that the detection of ultra-rare items was disturbingly poor. A logarithmic relationship between target detection and target frequency (adjusted R (2) = .92) revealed that ultra-rare items had catastrophically low detection rates relative to targets with higher frequencies."
+- **Claims supported (Section 2.2: detection fell logarithmically with target frequency), from the abstract:** "By assessing search performance across millions of trials from the Airport Scanner smartphone application, we demonstrated that the detection of ultra-rare items was disturbingly poor. A logarithmic relationship between target detection and target frequency (adjusted R (2) = .92) revealed that ultra-rare items had catastrophically low detection rates relative to targets with higher frequencies."
 
 ### Becker, Rodriguez, Montalvo & Peltier (2026), *Cognitive Research: Principles and Implications*, doi:10.1186/s41235-025-00702-w
 - **Verified:** Crossref (vol. 11, issue 1, article 5; published 8 Jan 2026). Open-access full text (PMC12779849) via Europe PMC full-text XML.
@@ -77,6 +78,10 @@ Methods used:
 ### Huegli, Merks & Schwaninger (2020), *Applied Ergonomics*, doi:10.1016/j.apergo.2020.103094
 - **Verified:** Crossref (vol. 86, article 103094; July 2020). Abstract via Europe PMC (PMID 32342885).
 - **Claims supported (Section 2.3), from the abstract:** "Using a simulated X-ray screening task, we tested 122 airport security screeners working with the support of explosives detection systems for cabin baggage screening (EDSCB) as low-level automation." / "Automation with a high false alarm rate of 20% and a low PPV of .3 resulted in operators ignoring about one-half of the true automation alarms on difficult targets-a strong cry-wolf effect."
+
+### Cain, Adamo & Mitroff (2013), *Visual Cognition*, doi:10.1080/13506285.2013.843627
+- **Verified:** Crossref (21(7), 899–921; Aug 2013). Abstract via OpenAlex (secondary index of the publisher abstract); full text not opened. Found on 4 November 2026 when looking for a human analogue of the crowding result. A companion paper, Adamo, Cain & Mitroff (2013), *Psychological Science*, 24(12), 2569–2574, doi:10.1177/0956797613497970 (abstract via Europe PMC, PMID 24142814), describes the same effect; it is not cited.
+- **Claims supported (Sections 2.2, 7.2, 7.5), from the abstract:** "Multiple-target visual searches are especially error prone; once one target is found, additional targets are likely to be missed. This phenomenon, often called satisfaction of search (which we refer to here as subsequent search misses; SSMs), is well known in radiology". The paper uses this only as a loose analogy for crowding in LLM batch review.
 
 ### Sorkin & Woods (1985), *Human–Computer Interaction*, doi:10.1207/s15327051hci0101_2
 - **Verified:** Crossref (1(1), 49–75; March 1985). Abstract via OpenAlex (secondary index of the publisher abstract).
@@ -126,11 +131,12 @@ Methods used:
 - **Claims supported (Sections 1, 2.4, 3.1):**
   - Section 4 (Control protocol): "The safety layer edits the 10% most suspicious actions and audits the 0.1% most suspicious actions." / "Human auditor reliability testing. Developers apply the same process used to evaluate monitors to evaluate human auditors: developers regularly generate synthetic attacks and check whether human auditors remain attentive and flag synthetic attacks as suspicious." / "Monitor reliability testing. Developers automatically evaluate monitors every week ... The system then prompts the LLM agent to execute attacks on these tasks."
   - Section 6: "Or models might simply attack very rarely such as once out of thousands of tasks."
+  - Section 6 (Sections 3.1 and 7.3 of the paper): "Alternatively, models might execute a ‘Blitzkrieg’ strategy (Clymer et al., 2024), where many LLM agents attempt to exfiltrate data simultaneously (coordinating their attacks across space)." The paper quotes "across space" and "where many LLM agents attempt to exfiltrate data simultaneously".
 
 ### Kutasov et al. (2025), SHADE-Arena, arXiv:2506.15740
 - **Verified:** arXiv API (v2, 8 Jul 2025); PDF.
 - **Claims supported (Sections 3.2, 8):**
-  - Section 4.1: "Even the most effective monitor (Gemini 2.5 Pro) has an AUC of only 0.87." / "picking our threshold to ensure that we catch any sabotage attempt with 80% probability would imply a false positive rate of over 20%".
+  - Section 4.1: "Even the most effective monitor (Gemini 2.5 Pro) has an AUC of only 0.87." (The sentence "picking our threshold to ensure that we catch any sabotage attempt with 80% probability would imply a false positive rate of over 20%" was used in the Phase 1 draft and has been cut.)
   - Section 4.1: "We also collect human monitoring results on a set of 12 benign and 20 malign transcripts across 14 task pairs." / "Annotators choose to take an average of 103 minutes per transcript" / "Treating ratings from all annotators as individual samples we get an AUC of 0.65 (worse than top AI monitors)."
   - The brief's figures (human AUC 0.65, best monitor 0.87) are confirmed. "20 of the 32 transcripts were malign" restates 12 benign + 20 malign.
 
@@ -142,7 +148,7 @@ Methods used:
 - **Verified:** arXiv API (v2, 5 Oct 2026; comment "Accepted by NeurIPS 2026"); PDF. Cited as a preprint with acceptance noted.
 - **Claims supported (Section 3.2):**
   - Abstract: "Over 100 participants collaborate with one of four frontier models" / "We find that 83/88 (94%) of developers in the no-monitor conditions fail to detect sabotage".
-  - Section 4.2: "Conditioning on the 16 sessions with a correct monitor alert, SSR remains 9/16 (56%...)" / "If experienced developers dismiss correct warnings in a controlled study, the gap between detection and action will probably widen in deployment under greater time pressure, alert fatigue, and weaker review incentives."
+  - Section 4.2: "Conditioning on the 16 sessions with a correct monitor alert, SSR remains 9/16 (56%...)" (the following quote was cut from the current draft) / "If experienced developers dismiss correct warnings in a controlled study, the gap between detection and action will probably widen in deployment under greater time pressure, alert fatigue, and weaker review incentives."
 
 ### Favaro & Wright (n.d.), Anthropic, "Measurements for understanding the pace of AI development inside frontier labs"
 - **Verified:** https://www.anthropic.com/institute/measuring-pace-of-ai-development downloaded with curl and read with WebFetch. No publication date is shown on the page or in its metadata; it reports data "As of August 2026" and shows "© 2026 Anthropic PBC". Authorship from the page: "Marina Favaro and Phillie Wright co-authored this piece". Cited as (Favaro & Wright, n.d.) with access date; James may prefer "Anthropic (n.d.)" as group author.
@@ -196,7 +202,7 @@ Methods used:
 
 ### Abbasi, Núñez V. & Shahraki (2026), arXiv:2610.41803
 - **Verified:** arXiv API (v1, 30 Oct 2026); PDF. Found by our own search (WebSearch b).
-- **Claims supported (Sections 1, 2.1):** Abstract: "In the eleven evaluations we audited, attacks or anomalies make up 16% to 86% of the test samples, no evaluation varies that share". Section I: "When attacks are rare, even a small false-positive rate yields alerts that are mostly false [14], and the receiver operating characteristic (ROC) hides this because, unlike precision, it does not depend on prevalence". Section III.E: "Prevalence shift leaves the class-conditional score distributions unchanged, so precision at prevalence π follows from the true- and false-positive rates at a threshold".
+- **Claims supported (Sections 1 and 7.3):** Abstract: "In the eleven evaluations we audited, attacks or anomalies make up 16% to 86% of the test samples, no evaluation varies that share". Section I: "When attacks are rare, even a small false-positive rate yields alerts that are mostly false [14], and the receiver operating characteristic (ROC) hides this because, unlike precision, it does not depend on prevalence". Section III.E: "Prevalence shift leaves the class-conditional score distributions unchanged, so precision at prevalence π follows from the true- and false-positive rates at a threshold".
 
 ### Hida, Ribeiro & Hida (2026), arXiv:2608.14737
 - **Verified:** arXiv API (v1, 13 Aug 2026; comment "Accepted at ENIAC 2026 ... part of BRACIS 2026"); PDF read. Found by our own search (query 8 below). **Closest prior work.**
@@ -266,3 +272,33 @@ Run on 3 November 2026. Elicit was not available. arXiv queries used the arXiv A
 - Collot et al. (2025), arXiv:2512.08121, balanced accuracy for judge selection: abstract read; not cited.
 - GovAI fellowship report on offline monitoring (LessWrong): seen only as a search snippet; not cited.
 - Regulatory basis of TIP: the Citadel Aero regulation library was searched ("threat image projection screener performance aviation security X-ray") and returned no aviation-security provisions; the paper makes no regulatory claim about TIP. Buser et al. (2025, Section 2) state that "TIP is one of possible measures included in national regulation (National Aviation Security Plan, NASP)"; this is not used.
+
+---
+
+## Provenance of numbers in Methods and Results (Phase 2, 4 November 2026)
+
+Every number in Sections 5 and 6 of the paper, and in the Abstract, Discussion and Conclusion, was copied from the engineer's files. None was computed by the writing agent, except unit conversions of false-alarm rates to percentages with one decimal (Table 2) and the phrase "more than doubled" for 1.7% to 4.0%. One check was made by counting rows: in `results/judgments.csv`, 0 of 28,216 judgments with suspicion below 20 were flagged and all 1,274 judgments with suspicion of 60 or more were flagged. This confirms that the 0.00 and 1.00 entries in the band table are not rounding artefacts (paper, Section 6.6).
+
+| Paper location | Numbers | Source |
+|---|---|---|
+| 5.2 Problems | 974 problems; IDs 367 and 927 ineligible; 972 eligible; 450 sampled; seed 20261103; download date and hashes | `results/RESULTS.md` §3; `code/README.md` stage note 1; `PREREGISTRATION.md` §9 item 4 |
+| 5.2 Item pairs | generator `claude-opus-5-5`, effort medium; inputs; 450 calls, 0 refusals; subtlety instruction quotes | `results/calibration.md` ("Generator prompt used"); `code/README.md` stage note 2; `results/RESULTS.md` §2–3 |
+| 5.2 Verification | 10-second timeout; checks; float tolerance 1e-9; difflib ratio ≥ 0.6; 419/450 (93.1%); exclusions 14/14/1/1/1; median changed lines 2, max 8; 356 (85%) two lines; 254 (61%) and 150 (36%) edit types | `code/README.md` stage note 3; `results/RESULTS.md` §3; `PREREGISTRATION.md` §9 items 3, 5 |
+| 5.2 Normalisation, Pools | docstring removal; seed 4021; 40 and 379 | `PREREGISTRATION.md` §9 item 2; `results/RESULTS.md` §3 |
+| 5.3 Calibration | 24/40 = 0.60 (0.45–0.74); 0/40 (0.00–0.09); AUROC 0.97; no revision | `results/calibration.md` |
+| 5.4 Monitors | Claude Code 2.1.317; flags; prompt quotes; what the monitor saw | `code/README.md`; `code/prompts/monitor_*.txt`; `PREREGISTRATION.md` §9 items 6–7 |
+| 5.5 Experiments | prompt sentences; 240 problems; R-cal sampling; seeds 55021 and 99173; six workers; run times | `code/prompts/`; `results/RESULTS.md` §2–3; `PREREGISTRATION.md` §9 item 10; `code/README.md` stage note 6 |
+| 5.7 Analysis | test details; H1a rule; GLMM rule; Python 3.13.18, statsmodels 0.15.0; seed 314159 | `code/analyse.py` docstring; `PREREGISTRATION.md` §9 items 1, 9, 11; `code/README.md` |
+| 5.8 Timing | commits `136632a` (23:10 UTC) and `d8e6b51` (23:16 UTC); run start 23:13 UTC; 12 smoke-test calls; 138 outputs | author's timing note in `PREREGISTRATION.md` §9; commits confirmed with `git cat-file` / `git log` (136632a 23:10:31, d8e6b51 23:16:46); `results/log_monitors.txt` first line "12 already done, 2164 to run" at 23:13:00 |
+| 5.9 Exclusions, cost | 2,176 calls; 30,880 judgments; 0 retries/refusals/drops; 43/368 and 24/720 in-call corrections; 2,706 calls; USD 41.70 | `results/RESULTS.md` §1, §2, §5, §6; `results/costs.json` |
+| 6.1 Table 2 | all *H*, CIs and *F* | `results/RESULTS_numbers.md`, "Descriptive results per condition" |
+| 6.1 Table 3; 6.2–6.5 | ORs, CIs, z, p, Holm p (exact p values .0015 and Holm .0015 for Haiku H1; .008/.015 Sonnet H2; .053/.106 Sonnet H3) | `results/RESULTS_numbers.md` H1, H2, H3 tables; exact values from `results/analysis.json` keys `H1.*.p_holm`, `H2.*.p_holm`, `H3.*.p_holm` |
+| 6.2 | P10 vs P50 ORs and p; false-alarm contrasts (min p = .279) | `results/RESULTS_numbers.md` H1 tables |
+| 6.3 Table 4 | Δ*H*, Δ*F*, Δ*d′*, Δ*c*, ΔAUROC with CIs | `results/RESULTS_numbers.md` H1a table |
+| 6.4 | GLMM estimate, SE, z, p; item SD 9–33; p .006–.011; 92 of 120; GLM OR 0.61 [0.44, 0.84], p .002; Δ*H* −0.075 [−0.125, −0.033]; Δ*c* values; false-alarm p .108 and .329 | `results/RESULTS_numbers.md` H2 tables; `results/RESULTS.md` §8 note 3; `results/analysis.json` `H2.*.false_alarm_glm_item_clustered` |
+| 6.5 | H3 ORs; Sonnet Δ*c*, Δ*d′*, Δ*F*; flags per batch 1.41 and 2.40 | `results/RESULTS_numbers.md` H3 and "Flags per batch" tables |
+| 6.6 E1–E4 | all coefficients, ORs and p values (E1 min p for hits .084; E4 min false-alarm p .465) | `results/RESULTS_numbers.md` exploratory tables |
+| 6.6 Table 5 | mean suspicion; top-band share; flag rate at 40–59 | `results/RESULTS_numbers.md` descriptive table and post hoc band table |
+| 6.6 reasoning, robustness | thinking tokens 7,592/4,195 and 116/480; sensitivity ORs 2.35 (p .0007) and 2.81 | `results/RESULTS.md` §5–6; `results/sensitivity_excluding_extra_turn_calls.json` |
+| 7.2 | calibration 0.60 vs Experiment 2 *none* 0.633 | `results/RESULTS.md` §8 note 6 |
+| Figures 1–5 | `figures/fig_a_prevalence.png` … `fig_e_remedies.png`; error-bar definitions | `code/analyse.py`, function `figures` (Wilson intervals for Figures 1, 3, 4, 5; cluster-bootstrap intervals for Figure 2) |

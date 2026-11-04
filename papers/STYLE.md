@@ -1,67 +1,82 @@
 # House style for the papers in this folder
 
-These rules apply to every paper under `papers/`. They exist so that each paper can be reviewed, cited and developed further without surprises.
+All five papers use one format: a **LaTeX-typeset, single-column technical report** in the style of an engineering research paper or preprint, not tied to any journal template. The shared style is `papers/_build/techreport.sty`; build with `papers/_build/build.sh`.
 
 ## Files in each paper folder
 
 | File | What it holds |
 |---|---|
-| `paper.md` | The paper. Pandoc Markdown with a YAML header (below). This is the source of truth. |
-| `README.md` | One-page summary for the author: abstract, status, what to check, open questions, ideas for developing it further. |
-| `sources.md` | Verification log. One entry per reference: how it was verified (URL/DOI opened, date), and the exact claim(s) in the paper it supports, with a short verbatim quote or locator (section, page, table) from the source. |
-| `paper.pdf` / `paper.html` | Built from `paper.md` by `papers/_build/build.sh`. Do not edit by hand. |
-| `code/`, `data/`, `results/`, `figures/` | Only for papers with empirical work. |
+| `paper.tex` | The paper (source of truth). |
+| `references.bib` | BibTeX entries for every cited work, rendered in IEEE style (`IEEEtran.bst`). |
+| `paper.pdf` | Built by `papers/_build/build.sh`. Do not edit by hand. `paper.bbl` is kept for arXiv submission. |
+| `figures/` | Figures as vector PDF (Matplotlib, shared palette in `papers/_build/palette.py`). |
+| `README.md` | Author summary: abstract, status, checks, open questions, development ideas, revision log. |
+| `sources.md` | Verification log: how each reference was verified and the exact claims it supports. |
+| `AUDIT.md` | Independent audit and second-round verification. |
+| `code/`, `data/`, `results/` | Empirical papers only. |
 
-## YAML header for `paper.md`
+## Typesetting and layout (set by `techreport.sty`)
 
-```yaml
----
-title: "Full title"
-subtitle: "Optional subtitle"
-author: "James Le Cuirot"
-affiliation: "Citadel Aero"
-date: "Draft v0.1, 3 November 2026"
-status: "Working draft for author review. Not peer reviewed."
-abstract: |
-  150–250 words.
-keywords: [comma, separated]
----
+- Latin Modern serif, A4, single column, generous margins, 11 pt.
+- Running header on every page: short title left (`\shorttitle{...}`), author right, rule underneath. Page number centred in the footer.
+- Simple title block: bold title, author (with a credentials footnote), affiliation, date line. No masthead and no keywords.
+
+## Preamble (identical in every paper except the title fields)
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{techreport}
+\title{Full Title: Subtitle}
+\shorttitle{Short Title}
+\author{James Le Cuirot\thanks{Commercial pilot (Senior First Officer), aviation flight safety officer, and aviation safety and compliance consultant specialising in human factors; MSc in Human Factors in Aviation.}\\[2pt] \normalsize Citadel Aero}
+\date{Working draft v0.4, 4 November 2026. Not peer reviewed.}
 ```
+
+## Structure
+
+Abstract; numbered sections (`\section`) and subsections (`\subsection`); an unnumbered **Acknowledgement** section (`\section*{Acknowledgement}`); References. Within sections, use **bold run-in paragraph headings** with `\paragraph{Heading.} Text...`. Appendices, if any, come after the references (`\appendix`).
+
+## Standard closing text (Acknowledgement section)
+
+Use these run-in paragraphs, in this order, in every paper. Square-bracketed parts apply only where stated.
+
+```latex
+\section*{Acknowledgement}
+\paragraph{AI assistance.} Literature searches, drafting and source verification were carried out with AI assistance (Claude, Anthropic) under the author's direction[, as were the experimental code and analysis]. An independent AI-assisted audit checked the references, quotations[ and analysis] against their sources, and its findings were addressed before this version. The author is responsible for the final text. Several of the AI-safety sources cited are research reports by Anthropic, the developer of the assistant used. [Paper-specific sentence where Claude models were also study material, e.g. generator, monitors, transcript authors or graders.]
+\paragraph{Competing interests.} The author is the founder of Citadel Aero, which builds AI tools for aviation.
+\paragraph{Disclaimer.} The views expressed are the author's own and do not represent those of any employer or regulator. Nothing here is operational, legal or regulatory advice.
+\paragraph{Materials.} The verification log and audit record for this paper[, and its code, data and raw outputs,] are available from the author.
+```
+
+## Citations and references
+
+- **Numeric, bracketed, in order of first citation**: `\cite{key}` → [1]; several: `\cite{a,b}` → [1], [2]. Narrative use: `Wolfe et al.~\cite{wolfe2005} showed ...`. Never write author–year citations in the text.
+- **IEEE-style list** via `\bibliographystyle{IEEEtran}` and `\bibliography{references}`: initials, quoted article titles, italic venues, vol./no./pp.
+- BibTeX entries must carry the verified bibliographic data: full author list (as given by the source), exact title (protect capitals with braces, e.g. `{AI}`, `{ICAO}`), journal/booktitle, volume, number, pages, year, `doi`, and `url` (use `https://doi.org/<doi>` when a DOI exists). Preprints: `@misc` with `howpublished = {arXiv preprint arXiv:XXXX.XXXXX}`. Web pages and blog posts: `@misc` with `howpublished`, `url` and `note = {Accessed: Nov. 3, 2026}`. Regulations and standards: `@misc` or `@manual` with the issuing body as `{{author}}` in double braces, the edition/amendment, and the URL. Where a document was read from a copy not distributed by its publisher, say so in `note`.
+- Regulations may also be referred to in text by their legal designation (e.g. "14 CFR §91.25", "Art. 16(6)"), with the citation number where the source is first used.
+- Run `uv run --no-project --with bibtexparser==1.4.3 --with requests python papers/_build/check_bib.py <folder>` before finishing; resolve every `CHECK`, `*-NOT-FOUND` and missing key.
+
+## Tables, figures, equations, units, code
+
+- **Tables**: booktabs (`\toprule`, `\midrule`, `\bottomrule`), horizontal rules only, no vertical lines. **Caption above the table.** Where a table comes from a data file, end the caption with `\source{\code{results/RESULTS\_numbers.md}}`; where it summarises documents, cite them. Long tables: `longtable`; wide text tables: `tabularx`.
+- **Figures**: Matplotlib, vector PDF, shared style and colours (`palette.py`): one fixed colour per model across every figure in every paper (Haiku orange, Sonnet blue, Opus green). Captions are small with a bold label ("Figure 3:"), set automatically. Use `subcaption` for (a)/(b) panels.
+- **Equations**: displayed equations numbered on the right (`equation`, `align`); define every symbol in the text immediately after.
+- **Units and numbers**: `siunitx` (`\num{100000}`, `\SI{27000}{kg}`, `\SI{10}{\hour}`), thin-space digit grouping.
+- **Code identifiers, file names and model IDs** in monospace: `\code{src/env/aircraft_env.py}`, `\code{claude-haiku-5-5}`.
 
 ## Author and voice
 
-- Single author: **James Le Cuirot** (Citadel Aero). Professional background that may be stated: airline Senior First Officer and Flight Safety Officer; MSc in Human Factors in Aviation. **Never name his airline employer** and never invent personal anecdotes, flight experiences, incidents or opinions attributed to him. Where operational experience is relevant, describe the practice from published sources ("in airline operations, ..."), not from invented memory.
-- Write in UK English (behaviour, organisation, programme, analyse). Plain, precise academic prose: short sentences, defined terms, no hype. Avoid em-dash asides and rhetorical "not X, but Y" constructions where a plain sentence works.
-- Readers are two audiences at once: AI-safety researchers who do not know aviation, and aviation safety professionals who do not know AI safety. Define each side's jargon on first use (for example "reward hacking", "chain of thought", "SMS", "LOSA").
-- Make claims no stronger than the evidence. Mark analogies as analogies and give their limits ("disanalogies") explicitly.
+- Single author: **James Le Cuirot** (Citadel Aero). Never name his airline employer, and never invent personal anecdotes or experience.
+- **British spelling** throughout (behaviour, organisation, optimisation, judgement, centreline). Plain, precise prose: short sentences, defined terms, no hype. Mark analogies as analogies and give their limits.
+- Write for two audiences at once: AI-safety researchers who do not know aviation, and aviation safety professionals who do not know AI safety.
 
-## Required sections (theory papers)
+## Verification rules (unchanged)
 
-Abstract; 1 Introduction (problem, contribution in 3–5 bullets); background on the aviation practice; background on the AI-safety problem; the mapping or argument; proposals/design principles/recommendations; limitations and disanalogies; conclusion; **Acknowledgements and AI-assistance statement**; **Disclaimer**; References. Empirical papers add Methods, Results, Discussion and a link to the pre-registration.
-
-Standard closing statements (adapt wording, keep the substance):
-
-> **AI-assistance statement.** Literature searches, drafting and source verification were carried out with AI assistance (Claude, Anthropic) under the author's direction. The author is responsible for the final text. Every reference was checked against the original source; see `sources.md`.
->
-> **Disclaimer.** The views expressed are the author's own and do not represent those of any employer or regulator. Nothing here is operational, legal or regulatory advice.
-
-## Citations
-
-- **Author–date in text, APA 7 reference list.** In text: (Reason, 1997), (Baker et al., 2025), Wolfe et al. (2005). Three or more authors: "et al." from the first citation.
-- Reference list: alphabetical by first author. Include DOI as `https://doi.org/...` when one exists; otherwise a stable URL (arXiv abstract page, official page). arXiv: `arXiv:XXXX.XXXXX` plus the abs URL. Regulations and standards: issuing body, title, edition/amendment, year, URL (e.g. "ICAO. (2018). *Safety Management Manual* (Doc 9859, 4th ed.)."). Web pages: include the date accessed (3 November 2026) where the content can change.
-- **Every reference must be verified** by opening the abstract page, DOI record, publisher page or official document in this session. If a source cannot be opened, either drop it or say in `sources.md` exactly what was and was not seen. Never cite from memory alone. Never invent page numbers; use section or paragraph locators you actually saw.
-- **Every number, quotation and specific factual claim** about a source (percentages, dates, sample sizes, quoted phrases, regulation paragraph numbers) must be traceable in `sources.md` to the place it came from. Quotations must be verbatim.
-- Regulation text (FAA, EASA, UK, ICAO) may be checked with the Citadel Aero regulation library MCP tools (`mcp__CitadelAero_Regulations__lookup_citation` / `search_regulations`, loaded with ToolSearch) or the official source. Say whose law it is (EU, UK, US) and whether the text is binding, AMC/GM or guidance.
-- Preprints are fine to cite but must be labelled as preprints (arXiv) in the reference list. Do not describe a preprint as peer reviewed.
-- Prefer primary sources over secondary summaries. If a figure is only available from a secondary source, say so.
-
-## Length
-
-Theory papers: about 6,000–8,500 words of main text (excluding references). Empirical paper: about 5,000–7,000 words plus figures and tables.
+Every reference must have been opened and checked; every number, quotation and specific claim must be traceable in `sources.md`; quotations are verbatim; preprints are labelled as such; nothing is cited from memory alone.
 
 ## Things not to do
 
-- No commits or pushes from agents; the lead session commits.
+- Agents do not commit or push; the lead session does.
 - Do not edit files outside your own paper folder (except reading shared files).
-- Do not include the author's email address or any personal data.
-- Do not present Citadel Aero commercially; a short, factual "implications for aviation AI developers" paragraph is fine.
+- No e-mail addresses or personal data.
+- No commercial promotion of Citadel Aero.

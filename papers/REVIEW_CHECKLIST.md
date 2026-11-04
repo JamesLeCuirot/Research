@@ -8,7 +8,8 @@ Status: ☐ open · ▶ in progress · ✔ done
 
 | # | Item | Papers | Status | Decision |
 |---|---|---|---|---|
-| A1 | Byline, author note and disclosure statements (affiliation, credentials, competing interests, AI-assistance wording, the Anthropic-sources note) | all | ▶ | |
+| A1 | Byline, author note and disclosure statements (affiliation, credentials, competing interests, AI-assistance wording, the Anthropic-sources note) | all | ✔ | Affiliation **Citadel Aero**. Credentials as an author footnote: commercial pilot (Senior First Officer), aviation flight safety officer, aviation safety and compliance consultant (human factors); MSc Human Factors in Aviation. Competing-interest line and AI-assistance text **standardised across all five** (text in `STYLE.md`). Applied in the v0.4 LaTeX conversion. |
+| A7 | **Format**: LaTeX-typeset single-column technical report (Latin Modern, A4, running header with rule, centred page numbers, simple title block without keywords, numbered sections, bold run-in headings, numbered equations, booktabs tables with captions above and source file, consistent Matplotlib colours, small bold-label captions, IEEE numeric citations, siunitx, British spelling, monospace code) | all | ▶ | Requested by James with A1. Shared style `_build/techreport.sty`; house rules rewritten in `STYLE.md`. Conversion of all five to `paper.tex` + `references.bib` in progress (v0.4). |
 | A2 | Where and how the papers will be published (arXiv, website, journal/workshop), which sets length, format and whether repository links can be cited | all | ☐ | |
 | A3 | Voice: "I" or "this paper" | all (05 uses "I") | ☐ | |
 | A4 | ICAO Annex 19 Amendment 2 (applies 26 Nov 2026): which edition is the baseline | 01, 03 | ☐ | |

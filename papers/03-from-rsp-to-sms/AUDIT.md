@@ -183,3 +183,54 @@ References with issues (8): Anthropic (2026a) and (2026b) (R6); Favaro & Wright 
 4. Replace the ffac.ch Doc 9859 link (R1) and name the hosts of the Annex 19 and Amendment 2 copies (R2, R3).
 5. Add the METR caveat (O6), the fourth-incident latency (O9) and the balancing statements (O15, O10, O11).
 6. Minor fixes: W4–W8, O12–O14, S4, S5, R6–R8.
+
+---
+
+## Second-round verification (4 November 2026)
+
+Scope: every item above re-checked against `paper.md` v0.2 (README revision log used to locate changes); every new or changed reference re-opened. `paper.md` was not edited. Re-opened this round: OpenAI PF v2 PDF (App. B, C.1, C.3, §5.1) and Frontier Governance Framework PDF (§§1, 2.5, 2.6, 3, 4, 6, 7); EU Code Safety & Security chapter PDF (Measures 1.3, 2.1, 7.6, 8.3, App. 4.4–4.5, Glossary); GDM FSF v3.1 PDF; Anthropic RSP v3.4 PDF, RSP web page, Roadmap, Risk Report (Aug 2026), Favaro & Wright page, and the 30 Jul, 31 Aug, 9 Sep, 9 Oct, 23 Oct and 19 Dec 2025 (FCF) posts; SB 53 Senate floor analysis (mirror PDF); ICAO Amendment 2 State letter (NCAA copy; SPI redline and the "any sector" recommendation); Citadel library for AMC1 ORO.GEN.200(a)(3), AI Act Arts 55 and 113, Reg. 996/2010 Art. 16; legislation.gov.uk for UK Reg 300/2008 Annex II 1.1(12) and 8.1; arXiv API for Tamkin (21 authors) and Stelling (v1 1 Dec 2025; v5 30 Apr 2026).
+
+**Counts (42 items: W1–W8, O1–O15, U1, S1–S5, N1–N4, R1–R8, A7):** FIXED 38 · REJECTED WITH GOOD REASON 2 (R7, R8) · FIXED WITH A JUSTIFIED QUALIFICATION 1 (O5; the writer's qualification is correct) · PARTLY FIXED 1 (U1: body fixed, abstract and §9 not) · FIXED BUT WRONG 0 · REJECTED WITHOUT GOOD REASON 0. **Residual or new issues: 5** (3 required, 2 optional).
+
+| Item | Status | Note / required fix |
+|---|---|---|
+| W1 | FIXED | Glossary definition and M1.3(2), M2.1(1)(a)(ii), M7.6(4) verified. |
+| W2 | FIXED | "100% of these agents' actions are ingested by the monitor after they are taken" (offline column) and RR "most internal users", 25%/5%, "About half of agent scaffold tokens" verified. |
+| W3 | FIXED | PF App. C.3 change-management sentence verbatim. Re-rating O to D on 3.2 is defensible but generous: the practice is listed under "We will require the following practices for High capability models" (see optional R5). |
+| W4–W6 | FIXED | "can review decisions" / "the Board may reverse" verified. |
+| W7 | FIXED | Citadel: only (a)(1) and (d)(2) carry dated versions; (c)(1) and (e) quoted correctly. |
+| W8 | FIXED | Tamkin: 19 authors, ellipsis, Ganguli. |
+| O1 | FIXED | Roadmap "with defined targets" and "coverage of attack techniques, time to detect threats, and accuracy" (target 1 July 2027); PF C.1 SLA and "Time to patching a new known jailbreak" verified; indicator 10 credited. |
+| O2, O3 | FIXED | RSP §3.2 full sentence verbatim; RR §5.2.3, §2.23.2.3, Roadmap configuration-approval goal and 31 Aug freeze, specification and re-certification all verified. |
+| O4 | FIXED (residual R2) | FGF §2.6 AIRP, PF 24x7, FSF "24/7 incident response" (SL2+) and 9 Oct "detection and response procedures" verified. |
+| O5 | FIXED WITH QUALIFICATION (justified) | App. 4.5(1) reads "independent external validation … if internal expertise is inadequate, through (a) regular independent external security reviews": the writer's conditional wording is correct and the audit's was too strong. FGF SOC 2 Type II / ISO 27001 and FSF penetration testing verified. |
+| O6 | FIXED | Both METR caveats verbatim (RR Table 2.23.1.2.B caption; p. 79). |
+| O7 | FIXED | RSP page "October 15, 2024 / Planned ASL-3 Safeguards" ("non-binding descriptions") verified, so "2024 planned safeguards" is accurate; FGF "are screened and subject to regular training"; CoP App. 4.4(2) verbatim. |
+| O8 | FIXED | 30 Jul post ("On July 21, OpenAI disclosed …") and 23 Oct post ("investigated by OpenAI and METR") verified. |
+| O9 | FIXED | 9 Sep post: fourth incident "from January 2026", found "in August"; first scan "missed" it. Contractor gap May 2025 → April 2026 ≈ 11 months. |
+| O10 | FIXED | UK Reg 300/2008 Annex II 1.1(12) verbatim; 8.1 lists access control and screening tests. |
+| O11 | FIXED | Reg 996/2010 Art. 16(6) verbatim (Citadel, EU). |
+| O12–O15 | FIXED | RR App. 6.5 "identified through our own testing and monitoring rather than surfaced by external exploitation" verbatim. |
+| U1 | PARTLY FIXED (R1) | §5.3 and row 3.1a now say "in the documents assessed" and note the unread FCF; abstract and §9 still state the absence without that limit. |
+| S1 | FIXED | 31 Aug post verified ("Roughly 150 product engineers"; "strict exit criteria"; reviewers "dismissed environments … as false positives"; "tightening the criteria for dismissing a flag"). |
+| S2 | FIXED | FGF incorporated; FCF still behind trust.anthropic.com portal (announcement page links only there; confirmed); exclusion stated in §1.3 and §8. SB 53 15-day / 24-hour wording is the analysis's own (Comments section, p. 5). |
+| S3 | FIXED | Art. 55(1)(c) verbatim; Art. 113(b) applies Chapter V from 2 August 2025. |
+| S4 | FIXED | Amendment 2 redline SPI definition verified. |
+| S5 | FIXED | RSP page lists "Redacted Risk Report February 2026". |
+| N1–N4 | FIXED (acknowledged) | Recorded in §1.3, §8 and README. |
+| R1–R6 | FIXED | Doc 9859 now cited to ICAO Store; FOCA and NCAA hosts named; retrieval dates added. |
+| R7 | REJECTED WITH GOOD REASON | Option allowed by the audit; v1/v5 dates verified. |
+| R8 | REJECTED WITH GOOD REASON | Year inferred and recorded. |
+| A7 | FIXED (optional R4) | Near-miss inconsistency gone; "framework" scope defined in §4. |
+
+**Consistency checks.** Table 2 recount: A = 10 D, O = 6 D, G = 3 D; N only for G (1.3, 4.1); matches §4, README and the conclusion. Anthropic reference letters (2026a–i) re-mapped after renumbering: every in-text letter points to the right document. Citation script: 40 entries, all cited; every in-text citation has an entry. Abstract 250 words.
+
+**Residual or new issues**
+
+| # | Location | Problem | Required fix |
+|---|---|---|---|
+| R1 | Abstract, sentences 7–9; §9 para 2 | "No developer publishes …", "None documents …", "None publishes an occurrence taxonomy …" are stated absolutely, but Anthropic's Frontier Compliance Framework, which "covers how we … respond to safety incidents", was not read (§1.3). The body (§5.3, row 3.1a) is correctly limited. | Abstract: "In the documents assessed, no developer publishes …" (and keep "None …" sentences under that scope). §9: "In the documents assessed, no developer publishes …; Anthropic's Frontier Compliance Framework could not be read." |
+| R2 | §3.2 para 4 ("practices that evaluation partners must adopt"); Table 2 row 1.4 ("partners must halt out-of-scope runs") | Source: Anthropic "asked every organization that tests pre-release models with reduced cyber safeguards to commit to a set of best practices"; the monitor "should flag this to a human and end the exercise". Not a mandatory requirement. | §3.2: "best practices that Anthropic has asked evaluation partners to commit to, including …". Row 1.4: "partners asked to commit to halting out-of-scope runs (2026e)". |
+| R3 | Table 2 row 3.1b, O column | "anomaly monitoring (FGF §3)" is the FGF's insider-threat sentence ("Internal monitoring for anomalous activity is used for early identification of potential risks", under "Insider threats"), i.e. monitoring of personnel, not routine monitoring of AI operations. | Delete "anomaly monitoring (FGF §3)" or relabel "insider-threat anomaly monitoring (FGF §3)". The P rating stands on §2.5. |
+| R4 (optional) | Length | ≈8,700 words of main text including tables (README states this), above STYLE's "about 6,000–8,500". | Trim ~200 words (README suggests §2). |
+| R5 (optional) | Table 2 row 3.2, O comment | The D rests on a practice OpenAI "will require … for High capability models". | Add "(required for High capability models)" after "(PF App. C.3)". |

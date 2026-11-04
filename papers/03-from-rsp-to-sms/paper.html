@@ -97,7 +97,7 @@ reviewed.</p>
 Safety Management System</p>
 <p class="author">James Le Cuirot · <span class="affil">Citadel
 Aero</span></p>
-<p class="date">Draft v0.2, 3 November 2026</p>
+<p class="date">Draft v0.3, 4 November 2026</p>
 <section class="abstract"><h2>Abstract</h2>
 <p>Frontier AI developers publish safety frameworks, such as Anthropic’s
 Responsible Scaling Policy, OpenAI’s Preparedness Framework and Google
@@ -115,17 +115,18 @@ documents contain more SMS-like machinery than a reading of the headline
 frameworks alone suggests: hazard identification and risk acceptance
 throughout, incident response plans, security change management and
 audits, and security detection targets set as goals. The remaining gaps
-are specific. No developer publishes indicators with targets, alert
-levels and trends for its safety controls, such as monitors and
-classifiers. None documents a change process aimed at those controls’
-settings with hazard assessment. None publishes an occurrence taxonomy
-or measures detection latency. Training for safety-assurance roles is
-not described, and independent assurance covers security controls more
-than safety controls in practice. Anthropic’s oversight metrics
-(coverage, review latency and escalation rate) are safety performance
-indicators in all but name. The paper proposes twelve AI safety
-performance indicators for testing and notes practices aviation could
-adopt. No prior element-by-element mapping was found.</p>
+are specific. In the documents assessed, no developer publishes
+indicators with targets, alert levels and trends for its safety
+controls, such as monitors and classifiers. None documents a change
+process aimed at those controls’ settings with hazard assessment. None
+publishes an occurrence taxonomy or measures detection latency. Training
+for safety-assurance roles is not described, and independent assurance
+covers security controls more than safety controls in practice.
+Anthropic’s oversight metrics (coverage, review latency and escalation
+rate) are safety performance indicators in all but name. The paper
+proposes twelve AI safety performance indicators for testing and notes
+practices aviation could adopt. No prior element-by-element mapping was
+found.</p>
 </section>
 <p class="keywords"><b>Keywords:</b> safety management system; ICAO
 Annex 19; frontier AI; responsible scaling policy; safety performance
@@ -558,13 +559,13 @@ observed by the UK AI Security Institute in its own testing (Anthropic,
 <p>The <strong>remediation post</strong> of 31 August describes a
 classifier that, on detecting an attempted sandbox escape or unexpected
 internet access, “blocks the action before the tool call is run, ends
-the task, and alerts a human”; practices that evaluation partners must
-adopt, including monitoring that should “flag this to a human and end
-the exercise”; expanded offline monitoring “to cover most other forms of
-internal frontier agentic usage”; and an April freeze of training
-environments, after which “Rewards and environments now have to conform
-to an agreed specification” and fixed environments had to be
-“re-certified” (Anthropic, 2026e).</p>
+the task, and alerts a human”; best practices that Anthropic has asked
+evaluation partners to commit to, including monitoring that should “flag
+this to a human and end the exercise”; expanded offline monitoring “to
+cover most other forms of internal frontier agentic usage”; and an April
+freeze of training environments, after which “Rewards and environments
+now have to conform to an agreed specification” and fixed environments
+had to be “re-certified” (Anthropic, 2026e).</p>
 <p>The <strong>oversight metrics</strong> (Favaro &amp; Wright, 2026)
 define coverage as “the share of an agent’s actions that pass through a
 monitor before or after execution”, review latency as “the time between
@@ -723,10 +724,10 @@ executive roles. OpenAI assigns oversight to a committee.</td>
 <tr class="even">
 <td>1.4 Emergency response planning</td>
 <td>A: activity contained “within 90 minutes” (Risk Report §4.5.8.2.1);
-security “detection and response procedures” (2026g); partners must halt
-out-of-scope runs (2026e). O: AI Safety Incident Response Plan (FGF
-§2.6); 24x7 security response (PF App. C.3). G: 24/7 response among
-possible security measures (§2.1.1).</td>
+security “detection and response procedures” (2026g); partners asked to
+commit to halting out-of-scope runs (2026e). O: AI Safety Incident
+Response Plan (FGF §2.6); 24x7 security response (PF App. C.3). G: 24/7
+response among possible security measures (§2.1.1).</td>
 <td>P / P / P</td>
 <td>Response plans exist. A plan coordinated in advance with interfacing
 organisations (evaluation vendors, affected operators, package
@@ -786,9 +787,8 @@ documents assessed.</td>
 <tr class="even">
 <td>3.1b Routine operations monitoring (FDM and LOSA analogue)</td>
 <td>A: online and offline monitoring of internal agents (Risk Report
-§2.23); Clio. O: post-launch classifiers and human review (FGF §2.5);
-anomaly monitoring (FGF §3). G: “monitoring and escalation” among
-possible safeguards (§3.1.2).</td>
+§2.23); Clio. O: post-launch classifiers and human review (FGF §2.5). G:
+“monitoring and escalation” among possible safeguards (§3.1.2).</td>
 <td>D / P / P</td>
 <td>The closest analogue to FDM is at Anthropic; coverage is incomplete
 and reported differently in different documents (Section 5.1).</td>
@@ -1315,16 +1315,18 @@ investigations, remediation post and oversight metrics are outputs of a
 working safety assurance function, published more openly than aviation
 operators publish their own safety data.</p>
 <p>The remaining gaps share a theme: SMS functions applied to the safety
-controls themselves. No developer publishes indicators with targets,
-alert levels and trends for its monitors and classifiers. None documents
-a change process aimed at their settings with hazard assessment,
-although Anthropic’s own disclosures show such settings failing. None
-publishes an occurrence taxonomy or measures detection latency, which in
-2026 ran from months to nearly a year. Training for safety-assurance
-roles is not described, and independent assurance covers security
-controls more than safety controls in practice. This paper’s
-contribution is the systematic mapping that locates these gaps and
-twelve indicators that need testing against real data. Aviation, in
+controls themselves. In the documents assessed, no developer publishes
+indicators with targets, alert levels and trends for its monitors and
+classifiers. None documents a change process aimed at their settings
+with hazard assessment, although Anthropic’s own disclosures show such
+settings failing. None publishes an occurrence taxonomy or measures
+detection latency, which in 2026 ran from months to nearly a year;
+Anthropic’s Frontier Compliance Framework, which covers incident
+response, could not be read and may contain such a taxonomy. Training
+for safety-assurance roles is not described, and independent assurance
+covers security controls more than safety controls in practice. This
+paper’s contribution is the systematic mapping that locates these gaps
+and twelve indicators that need testing against real data. Aviation, in
 turn, can take from frontier AI a disciplined way to name hazards before
 they occur, adversarial testing extended from security to safety
 detection, and a model of candid organisational reporting.</p>

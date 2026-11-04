@@ -85,3 +85,7 @@ Each audit item was re-checked against the source before changing the text. `sou
 **Removed during trimming (not audit findings):** the Korbak et al. "randomly audit 0.1%" quotation; the SHADE-Arena "hidden scratchpad" quotation; the FAA p. 10 sentence in §6; the McDermid et al. ODD citation; the sentence on developers evaluating their own models in §6; the Art. 113(d) application date (verified, recorded in `sources.md`). Status bumped to v0.2 in `paper.md`.
 
 **No audit items were rejected.** One suggested wording (item 13, "14 models") was corrected against the source, as noted.
+
+### v0.3 (4 November 2026)
+
+Second-round verification fixes applied by the lead session (see AUDIT.md, "Second-round verification"): all required items applied verbatim as specified by the verifier.

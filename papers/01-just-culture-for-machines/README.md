@@ -133,3 +133,7 @@ Every finding was re-checked against the source itself before it was applied. No
 | n21 | PSNet byline | Author changed to "UC Davis PSNet Editorial Team". |
 
 **Also corrected:** `sources.md` now records § 13.401 in Part 13 Subpart I, not Subpart E. The paper's YAML date and the AI-assistance statement mark the draft as v0.2.
+
+### v0.3 (4 November 2026)
+
+Second-round verification fixes applied by the lead session (see AUDIT.md, "Second-round verification"): all required items applied verbatim as specified by the verifier.

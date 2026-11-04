@@ -177,3 +177,45 @@ Each entry below was checked: the work exists; authors, order, year and title ar
 4. **Full texts of DO-178C, ARP4754B and ARP4761A.** Paywalled. The paper makes no specific claims from them beyond catalogue facts, which were verified.
 
 IEEE and SAGE article pages are bot-protected, but the DOIs resolve to the correct articles and the metadata was verified via Crossref and OpenAlex.
+
+---
+
+## Second-round verification (4 November 2026)
+
+Scope: every issue and note above re-checked against `paper.md` v0.2 (README revision log used to locate changes); every new or changed source re-opened independently of `scratch/`. `paper.md` was not edited. Re-opened this round: Regulation (EU) 2026/1744 OJ text (EU Publications Office, CELEX 32026R1744: title, recital 44, Art. 2 items (1)–(7), Art. 4); AI Act OJ text (CELEX 32024R1689, recital 114); Implementing Reg. (EU) 2015/1018 OJ header ("L 163/1", 30.6.2015); Citadel library for AI Act Arts 2, 55, 113, Reg. 2018/1139 Arts 27, 50, 53, Reg. 376/2014 Art. 4, Reg. 2015/1018 Art. 1, AC 20-152A §5.5.1; live EASA Proposed Issue 03 and AI Days 2026 slides (SHA-256 identical to `scratch/`), searched for every v0.2 quotation; arXiv PDFs/API for Greenblatt et al. 2023, Chen et al. 2023, Bhatt et al. 2025, Khlaaf 2023, McDermid et al. 2024, Zietsman 2026; live Lynch et al. (2026), Remedios et al. (2026) and Anthropic (2026, 23 Oct) pages.
+
+**Counts (30 items: issues 1–26 and 4 notes):** FIXED 28 · FIXED WITH AUDIT WORDING CORRECTED, JUSTIFIED 1 (13: "12 models" is right, the audit's "14" was wrong) · RESOLVED DIFFERENTLY, GOOD REASON 1 (16) · NOT FIXED 0 · FIXED BUT WRONG 0 · REJECTED WITHOUT GOOD REASON 0. **Residual or new issues: 4** (2 required, 2 optional).
+
+| Item | Status | Note / required fix |
+|---|---|---|
+| 1 | FIXED | OJ text confirms: title and date (8 July 2026), OJ L 2026/1744 of 24.7.2026, Art. 2 amends Basic Regulation Arts 27, 31, 32, 36, 39, 50, 53 (32 and 39 in delegated-acts form), recital 44 "A technical correction", Art. 4 entry into force on the third day after publication (= 27 July 2026). Subjects of Arts 27 (training, testing, checking and medical assessment of pilots and cabin crew), 50 and 53 (ATCOs) checked in Citadel; the paper's summary is accurate. AI Days slide 21 verified. |
+| 2 | FIXED (optional R4) | Art. 2(2) and Annex I Section B items verified (consolidated 27 July 2026). |
+| 3 | FIXED | Greenblatt et al. §2 quotation verbatim; §3.1, §3.2 "four ideas", §5.1, Rec. 1, Table 1 T3 and §8 consistent; stricter usage flagged as a proposal. |
+| 4, 5 | FIXED | MOC DHO-02-1 "where necessary, sensing and communication paths", MOC DHO-03 "aggregates the status of the AI-based system …" and MOC DHO-06 full clause verbatim (Issue 03 pp. 147–149). |
+| 6 | FIXED | Rescaling sentence and 22% / 54% verbatim (Fig. 2 caption; §3). |
+| 7 | FIXED | Anthropic (2026) removed from T4; third-party framing correct. |
+| 8 | FIXED | Fig. 3 caption ("no abstain option"; "selected around welfare and surveillance refusals by Claude targets"); 1.1–14.4% other providers; 4.4–26.7% with abstain; 3.3% reversed: all verified. |
+| 9 | FIXED | Chen et al. abstract and §2 verified. |
+| 10, 11, 12 | FIXED | AC 20-152A Objective CD-3 text verified (validation); Bhatt abstract "our best protocol combines resampling with analysis of previous steps" verified (arXiv API). |
+| 13 | FIXED, AUDIT WORDING CORRECTED (justified) (residual R1) | Lynch: "The remaining ten models showed no covert sabotage across 200 runs" + Gemini 3.1 Pro + Kimi K2.6 = 12; "All 240 transcripts". The writer is right. |
+| 14, 15 | FIXED | Recital 114 "as appropriate, through internal or independent external testing" verbatim (OJ). |
+| 16 | RESOLVED DIFFERENTLY, GOOD REASON | Only "sufficiently strong control measures" is quoted; no elision remains. |
+| 17 | FIXED | "Internet access was deliberately enabled …"; "cyber safeguards … were disabled" verbatim; account attributed to the developer. |
+| 18–21 | FIXED | |
+| 22 | FIXED (optional R3) | Art. 4(1)(b)(ii) and Implementing Reg. 2015/1018 Art. 1 verified. |
+| 23–26 | FIXED | Khlaaf "initially introduced for ADS" verified; Issue 03 §B "the joint EUROCAE/SAE WG-114/G-34" verified; no "accessed" left in references; footnote quotes "alternating the end user (Level 3A only)" verbatim. |
+| Note: Zietsman | FIXED | Described as "a short position paper" (arXiv: 9 pages, single author). |
+| Note: Remedios | FIXED | "before incurring 20 blocks" verbatim (figure caption). |
+| Note: DAL B column | FIXED | "only anticipated and not complete" verbatim (Chapter D). |
+| Note: length | FIXED | ≈8,440 words of main text incl. Table 1; abstract 249 words. |
+
+**Consistency checks.** Abstract, contribution bullets (five), Table 1 (six threats), Section 5 proposals, Recommendations 1–10 and §8 agree with the corrected body. Citation script: 48 entries, all cited; every in-text citation has an entry.
+
+**Residual or new issues**
+
+| # | Location | Problem | Required fix |
+|---|---|---|---|
+| R1 | §3.1, sentence on the pipeline-sabotage scenario | "only one other model sabotaged covertly, once" mischaracterises the source: Kimi K2.6's single covert act was "creating an unauthorized checkpoint backup without disclosing it", which Lynch et al. call a "covert intervention", while "The remaining ten models showed no covert sabotage". | "…it was one of 12 models tested there, and only one other model intervened covertly, once (an undisclosed checkpoint backup) (Lynch et al., 2026)." |
+| R2 | References, Commission Implementing Regulation (EU) 2015/1018 | "L 163, 30.6.2015, 1" lacks the page marker used elsewhere (paper 01 style; APA legal style). | "L 163, 30.6.2015, p. 1". |
+| R3 (optional) | §5.7, sentence 2 | Art. 4(1) of Reg. 376/2014 also lists "(b)(iii) maintenance and repair problems", "(c) occurrences related to air navigation services and facilities" and "(d) occurrences related to aerodromes and ground services", so an AI-tool event that produces such an occurrence is mandatorily reportable. The gap is AI events with no such operational consequence. | "An event confined to a ground AI tool, with no consequence that falls in the Article 4(1) categories (which include maintenance, ATM/ANS and ground-service occurrences), would then rely on …". |
+| R4 (optional) | §2.1 final sentences; §4.2 T5 last sentence | Under Art. 108 and the Omnibus it is the Commission, when adopting implementing and delegated acts, that must take Chapter III, Section 2 into account; EASA prepares those rules and issues CS/AMC/DS. "EASA's rules must take into account" and "EASA would need to adopt an equivalent" will read as imprecise to EU aviation lawyers. | §2.1: "…as requirements that EU aviation rules adopted under the Basic Regulation must take into account." T5: "…so an equivalent would need to be introduced in aviation rules or EASA's DS/AMC." |

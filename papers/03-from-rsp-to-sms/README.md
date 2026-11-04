@@ -101,3 +101,7 @@ No audit finding was rejected outright. Two were applied with qualifications (O5
 ### v0.1, 3 November 2026
 
 First full draft.
+
+### v0.3 (4 November 2026)
+
+Second-round verification fixes applied by the lead session (see AUDIT.md, "Second-round verification"): all required items applied verbatim as specified by the verifier.

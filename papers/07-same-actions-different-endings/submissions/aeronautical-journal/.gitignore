@@ -1,0 +1,8 @@
+# Built locally (latexmk -pdf paper.tex), not kept in the public repository:
+# it carries the journal's name and the Society's line, and could be taken for a published article.
+paper.pdf
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk

@@ -79,7 +79,7 @@ No number or finding changed.
 
 | File | What it is |
 |---|---|
-| `paper.tex`, `paper.pdf` | The manuscript, in the journal's class (named; single column) |
+| `paper.tex` | The manuscript, in the journal's class (named; single column). Build the PDF with `latexmk -pdf paper.tex`; the PDF is not kept in the public repository, because it carries the journal's name and the Society's line and could be taken for a published article |
 | `aer.cls` | The journal's LaTeX class, from its template files |
 | `fig1-case-shifts.pdf`, `fig2-outcomes.pdf` | The figures |
 | `cover_letter.txt` | Cover letter |
@@ -91,4 +91,5 @@ No number or finding changed.
 |---|---|
 | 4 Nov 2026 | Package prepared |
 | 4 Nov 2026 | James overrides CitadelAero's no-submission rule for this paper; he is reading the manuscript before submission |
+| 4 Nov 2026 | Journal-styled PDF taken out of the public repository (kept locally and sent to James) |
 | 4 Nov 2026 | Set in the journal's template (`aer.cls`) and checked against Cambridge's "Preparing your materials" page; submission system is Editorial Manager |

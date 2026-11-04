@@ -2,7 +2,7 @@
 
 *A Pre-registered Test of the Low-Prevalence Effect* (paper 02; working title was "Rare Threats Are Missed Threats")
 
-**James Le Cuirot** · Citadel Aero · Draft v0.2, 4 November 2026
+**James Le Cuirot** · Citadel Aero · Working draft v0.4, 4 November 2026. Not peer reviewed.
 
 ## Abstract
 
@@ -26,8 +26,8 @@ AI control protocols use language-model monitors to review the work of more capa
 | Pre-registration and §9 clarifications | Done; timing of item 3 and items 4–12 disclosed in the paper (Section 5.8) |
 | Experiment, analysis, figures, post hoc audit checks | Done (engineer); `results/RESULTS.md`, including §10 |
 | Independent audit | Done; `AUDIT.md` (0 major, 6 moderate, 19 minor, 2 suggestions) |
-| Paper | **Draft v0.3**, all audit and second-round fixes applied. About 7,650 words of prose (about 8,550 with tables and captions), 6 tables, 5 figures, 38 references |
-| Built | `paper.html` and `paper.pdf` built from `paper.md` and committed. Prose is about 7,500 words, above the house guide of 7,000; trim to the target venue's limit. |
+| Paper | **Working draft v0.4**: the v0.3 text (all audit and second-round fixes applied) converted to the LaTeX house style with IEEE numeric references. About 7,650 words of prose (about 8,550 with tables and captions), 6 tables, 5 figures, 38 references |
+| Built | `paper.pdf` (23 pages) built from `paper.tex` and `references.bib` with `papers/_build/build.sh`; `paper.bbl` kept for arXiv. Prose is above the house guide of 7,000 words; trim to the target venue's limit. |
 
 ## What James should check
 
@@ -35,9 +35,20 @@ AI control protocols use language-model monitors to review the work of more capa
 2. **Harness disclosure (Section 5.4).** It says each call's context included a field for the account's e-mail address, without giving the address. Check that you are content to disclose this.
 3. **H2 for Sonnet.** The paper keeps the registered GLMM numbers as the registered result. It reports the accurate refit and the exact paired test as post hoc, and Table 4 has a note explaining the odds ratio of 0.04.
 4. **Item 3 timing.** The paper follows your correction in §9: the threshold was coded before verification began, per the engineer's record. It says plainly that git cannot confirm this.
-5. **Unchanged.** The Anthropic page is cited as Favaro & Wright (n.d.), and Greenblatt et al. as ICML 2024. Several human-factors sources were seen as abstracts only (`sources.md`).
+5. **Unchanged.** The Anthropic page is cited under Favaro and Wright, with no date, and Greenblatt et al. as ICML 2024. Several human-factors sources were seen as abstracts only (`sources.md`).
+6. **Added in the LaTeX conversion (v0.4).** Besides format, the conversion added only notation, which you may wish to check or drop: the sentence defining $z$ as the inverse of the standard normal cumulative distribution function (§2.1); Eq. (3), the log-linear correction written out, $H = (n_h + 0.5)/(n_s + 1)$ and the same for $F$, with its symbols defined (§2.1); and Eqs. (4) and (5), the H1/H3 logistic regression and the H2 random-intercept model, with their symbols defined (§5.7). All follow `code/analyse.py` (`sdt`, `contrast`, `glmm_random_intercept`) and make no new claim. Figure 2's caption now says (a) and (b) instead of (left) and (right), because its panels are stacked. The data-availability paragraph was replaced by the standard Materials sentence, so the paper no longer names the folder paths, `results/RESULTS.md` or `AUDIT.md` there; the MBPP CC BY 4.0 attribution moved to a footnote in §5.2.
 
 ## Revision log
+
+**v0.4 (4 November 2026): LaTeX conversion**
+
+Format conversion of v0.3 to the house style in `papers/STYLE.md`; no result, number, quotation or claim changed.
+
+- `paper.md` became `paper.tex` (exact STYLE.md preamble, `techreport.sty`; title "Do LLM Monitors Miss Rare Threats? A Pre-registered Test of the Low-Prevalence Effect"; date "Working draft v0.4, 4 November 2026. Not peer reviewed."; no keywords or status box). `paper.md` and `paper.html` deleted (in git history).
+- References: APA author–date citations became numeric IEEE citations (`\cite`, order of first use; narrative form "Wolfe et al. [4]"; section and abstract locators kept, e.g. "[1, Sec. 2.2]"). `references.bib` holds all 38 references (38 before and after), with titles and author names from the arXiv and Crossref records logged in `sources.md`; preprints as arXiv preprints, web pages with access notes, Kapetanovic et al. as in press. Page ranges added where Crossref gives them (Zheng et al.), and issue/article numbers and months where Crossref gives them.
+- Tables: booktabs, captions above, each with a source line naming its results file. Figures: redrawn by the new `code/figures_report.py` with `papers/_build/palette.py` (Haiku orange, Sonnet blue, Latin Modern serif, vector PDF), same data and error bars, panels as subfigures (a)/(b). Equations: d′ and c as numbered equations, plus the notation listed under "What James should check", item 6. Units and large numbers via `siunitx` (percentages now print with a thin space, e.g. "2.5 %"); file names, commits and model IDs in monospace.
+- Closing: the acknowledgement, AI-assistance, disclaimer and data-availability text replaced by the standard STYLE.md Acknowledgement (AI assistance with the code-and-analysis options and the sentence "Claude models also served as the item generator and as the monitors under study."; competing interests; disclaimer; materials). MBPP CC BY 4.0 attribution kept as a footnote in §5.2.
+- Checks: `papers/_build/build.sh` builds a 23-page PDF with no errors, no undefined references or citations and no overfull lines. `check_bib.py`: 30 OK; 2 CHECK, both expected (Hautus et al. 2021: Crossref stores the subtitle "A User's Guide" separately; Greenblatt et al.: arXiv v1 is 2023 but the 2024 ICML version is cited); 6 NO-ID (Green and Swets; the Favaro and Wright, Najt et al., Remedios et al. and Claude Code pages; Zhao et al. in PMLR), checked by hand against `sources.md`; no missing or uncited keys. `compare_text.sh`: every word difference is citation format, standard closing text, title block, section numbering and cross-references, caption placement, table layout or typographic markup (`siunitx`, math), apart from the notation added in item 6; a separate check confirmed that every number in the v0.3 text, abstract and tables appears in the new PDF, and that the abstract is unchanged.
 
 **v0.2, 4 November 2026, after the independent audit (`AUDIT.md`)**
 
@@ -92,11 +103,12 @@ AI control protocols use language-model monitors to review the work of more capa
 
 ## Files
 
-- `paper.md`: the paper (source of truth). Build with `papers/_build/build.sh`.
+- `paper.tex`: the paper (source of truth), and `references.bib`: its BibTeX references (IEEE style). Build `paper.pdf` with `papers/_build/build.sh papers/02-do-llm-monitors-miss-rare-threats` from the repository root; `paper.bbl` is kept for arXiv. The Markdown source `paper.md` and `paper.html` (v0.3) were removed in v0.4 and remain in git history.
+- `figures/report/fig_*.pdf`: the paper's figures (vector PDF, house style, one file per panel), drawn by `code/figures_report.py` from `results/analysis.json` and `results/judgments.csv`. The registered PNGs in `figures/` (from `code/analyse.py`) are unchanged and not used by the paper.
 - `sources.md`: verification log, gap-search record and a table tracing every number to the results files.
 - `PREREGISTRATION.md`: the registered design and §9 clarifications.
 - `AUDIT.md`: the independent audit.
-- `code/`, `data/`, `results/`, `figures/`: experiment, by the research engineer; `results/RESULTS.md` is the full numerical report.
+- `code/`, `data/`, `results/`, `figures/`: experiment, by the research engineer; `results/RESULTS.md` is the full numerical report. `code/figures_report.py` (v0.4) only redraws the figures.
 
 
 ### v0.3 (4 November 2026)

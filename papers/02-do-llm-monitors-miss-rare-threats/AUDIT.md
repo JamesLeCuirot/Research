@@ -145,3 +145,30 @@ The citation cross-check by script found all 40 references cited in the text and
 ## Auditor's files
 
 In the scratchpad (`/tmp/claude-0/-home-user-Research/daaac745-27bf-52cd-80c6-ef95e9ce6f1a/scratchpad/audit02/`): `scripts/integrity.py`, `scripts/recompute.py`, `scripts/glmm_check.py`, `scripts/h1_item.py`, `scripts/tokens.py`, `scripts/drift.py`, `scripts/drift2.py`, `scripts/citecheck.py`, `scripts/grepq.py`; the copied repository `repo_copy/` with re-run outputs; and the downloaded sources in `dl/`.
+
+## Second-round verification (4 November 2026)
+
+Verifier: second-round verification agent (Claude). Scope: `paper.md` v0.2 (commit `46d23f1`), `README.md`, `sources.md`, `results/RESULTS.md` §10, new scripts. Nothing but this section was edited; re-runs used a copy in the verifier's scratchpad; no model calls.
+
+Checks run: `posthoc_h2.py`, `registered_measures_table.py` and `posthoc_descriptives.py` re-run on a copy, outputs byte-identical to `results/` and matching the paper; Tables 2 and 3 checked cell by cell against the re-run table (0 mismatches); Tables 4–5 and all H1/H3/abstract numbers unchanged from v0.1 and equal to `analysis.json`; sensitivity, harness-context and §5.8 timings checked against `results/*.json`, `monitor_attempts.jsonl` (first output 23:12:32), `log_monitors.txt` (23:13:00, "12 already done") and git (`136632a` 23:10:31; `7fe31dc` 23:10:45 holds `analyse.py` with the item 9 rule and `s3_verify.py`, plus generation and verification outputs; `d8e6b51` 23:16:46 holds 138 outputs); citation script (38 references, all cited, none missing, alphabetical; Mitroff & Biggs and Makins et al. not cited); all quotations found in `sources.md` or the source texts; Kapetanovic (Crossref: print 7 Nov 2026), Hida and Griffin (arXiv) and Wolfe 2013 (13(3), 33) confirmed; no author or account e-mail address in the folder.
+
+| Item | Status | Note / required fix |
+|---|---|---|
+| 1 | FIXED | Numbers match `posthoc_h2.json` (re-run identical). |
+| 2 | FIXED | Table 3 = `registered_measures_table.md`; Table 6 post hoc only. |
+| 3 | FIXED | Minor wording: see N2. |
+| 4 | FIXED | Quote of item 3 and correction verbatim; git claims true. Optional: see N3. |
+| 5 | FIXED | Abstract, §7.1–7.2, §8, §9 now present pop-out and crowding as candidates. The §1 rewrite introduced N1. |
+| 6 | FIXED | 1,812 / 1,791 tokens, 74% / 24% match `harness_context.json`; an independent fit including the schema in the overhead gives about 1,950, consistent. |
+| 7–15 | FIXED | |
+| 16 | FIXED BUT WRONG | §6.4 and §7.5 correct. §7.1 "partly through its criterion and partly through its scores" still asserts a Sonnet criterion effect (Δ*c* CI −0.01 to 0.58; band flag rate rose 0.83 → 1.00). Change to "a small effect on Sonnet that ran at least partly through its scores; its criterion moved in the conservative direction, but not reliably". |
+| 17–23 | FIXED | 21: `posthoc_descriptives.py` reproduces 254/150/15 and thinking tokens. |
+| 24 | NOT FIXED | Prose about 7,400–7,650 words (method-dependent), above the 5,000–7,000 house range; README acknowledges. Cut a further 400–650 words. |
+| 25–27 | FIXED | 26: the dip is mainly Sonnet's (0.31 at positions 1–8 against 0.61–0.69); Haiku 0.40 against 0.42 at 9–16. Optional: say so. |
+| N1 (new, moderate) | Required | §1, second contribution bullet: "this reversal was not a criterion shift" contradicts §6.3/Table 5 (Sonnet Δ*c* −0.44 [−0.70, −0.28], a liberal shift). v0.1 said "conservative". Restore: "was not a conservative criterion shift". |
+| N2 (new, minor) | Required | §5.7: "so this applies to them with more force" is wrong for Experiment 2, whose paired design adds power. Write: "so this applies with more force to Experiment 3; Experiment 2 has fewer items but a paired design". |
+| N3 (new, minor) | Optional | §5.8: the engineer's first committed record (`7fe31dc` comment) said the threshold was "fixed before any items were generated"; it was reworded in `d8e6b51`, and the `s3_verify.py` docstring (line 13) still says "fixed before seeing any generated items". Add one clause to §5.8 and align the docstring. |
+| N4 (new, minor) | Required | README Status: "not rebuilt; nothing committed" is stale (`46d23f1` rebuilt HTML/PDF and committed). |
+| N5 (new, minor) | Required | `sources.md`: provenance rows still say Table 3/4/5 for what are now Tables 4/5/6; gap-search row b says Makins et al. "(cited)"; Remedios entry lists §3.2 (now §5.4 only). |
+| N6 (new, cosmetic) | Required | `paper.md` References: remove the extra blank line between Mackworth and Najt. |
+| Privacy | PASS | No author or account address. `@` occurs only as the matrix operator in code, CSS rules in `paper.html`, and third-party test strings from the public MBPP data (`data/mbpp_problems.jsonl` tasks such as 774; "ankit@gmail.info" in `data/items*.jsonl`, `generations_v1.jsonl`, `verification_v1.jsonl`). No action needed. |

@@ -97,7 +97,7 @@ reviewed.</p>
 Effect</p>
 <p class="author">James Le Cuirot · <span class="affil">Citadel
 Aero</span></p>
-<p class="date">Draft v0.2, 4 November 2026</p>
+<p class="date">Draft v0.3, 4 November 2026</p>
 <section class="abstract"><h2>Abstract</h2>
 <p>AI control protocols use language-model monitors to review the work
 of more capable, untrusted AI systems and to send the most suspicious
@@ -181,8 +181,8 @@ predictions with LLM monitors of code. Its contributions are:</p>
 <em>stated</em> prevalence (a sentence in the prompt). Both monitors
 caught more backdoors at 2.5% prevalence than at 50%.</li>
 <li>A signal detection analysis showing that this reversal was not a
-criterion shift; post hoc, backdoored items scored lower when several
-shared a batch.</li>
+conservative criterion shift; post hoc, backdoored items scored lower
+when several shared a batch.</li>
 <li>A test of two remedies at low prevalence: a TIP-style labelled
 calibration block, taken from screening research, and an instruction to
 judge each item independently. Neither reliably raised hit rates.</li>
@@ -676,10 +676,10 @@ condition. These are not corrected for multiplicity.</li>
 from 0.80 to 0.65 with 160 backdoored judgements per cell, ignoring
 clustering, and stated that effects smaller than about 15 percentage
 points may be missed. Experiment 2 has 120 backdoored items per
-condition and Experiment 3 has 80 backdoored judgements per remedy, so
-this applies to them with more force. Analyses used Python 3.13.18 and
-statsmodels 0.15.0 (<code>code/analyse.py</code>; bootstrap seed
-314159).</p>
+condition and Experiment 3 has 80 backdoored judgements per remedy. This
+applies with more force to Experiment 3; Experiment 2 has fewer items
+but a paired design. Analyses used Python 3.13.18 and statsmodels 0.15.0
+(<code>code/analyse.py</code>; bootstrap seed 314159).</p>
 <h2 id="pre-registration-record-and-clarifications">5.8 Pre-registration
 record and clarifications</h2>
 <p>There were no deviations from the registered design, sample sizes or
@@ -693,7 +693,11 @@ replaces this with the engineer’s record that the threshold was “coded
 before the verifier was first run on any generated item, while
 generation was still under way”. The git history cannot confirm that
 timing, because the verifier and its threshold first appear in git in
-commit <code>7fe31dc</code>, after generation and verification.</p>
+commit <code>7fe31dc</code>, after generation and verification. In that
+commit a code comment described the threshold as “fixed before any items
+were generated”; in commit <code>d8e6b51</code> it was reworded to
+“fixed in code before the verifier was first run on any generated
+item”.</p>
 <p>Items 4 to 12, by the research engineer, record implementation
 choices such as what the monitor sees, retries, sampling and the GLMM
 convergence rule. As the author’s note in Section 9 states, they first
@@ -1329,11 +1333,11 @@ and the criterion did not become more conservative. The clearest
 contrast is between batches with one backdoor and batches with several.
 P2.5 batches and single-item review gave similar hit rates, while P10
 and P50 batches, which behaved alike, gave lower ones. A stated base
-rate of 1 in 100 had a small effect on Sonnet, partly through its
-criterion and partly through its scores. The TIP-style calibration block
-did not reliably help and raised Sonnet’s false alarms. Position in the
-batch and an instruction to judge independently made no detectable
-difference.</p>
+rate of 1 in 100 had a small effect on Sonnet that ran at least partly
+through its scores; its criterion moved in the conservative direction,
+but not reliably. The TIP-style calibration block did not reliably help
+and raised Sonnet’s false alarms. Position in the batch and an
+instruction to judge independently made no detectable difference.</p>
 <h2 id="why-llm-monitors-may-differ-from-human-screeners">7.2 Why LLM
 monitors may differ from human screeners</h2>
 <p><em>Why no low-prevalence effect.</em> The human effect builds up

@@ -9,7 +9,7 @@ This folder is separate from the AFACS project in the rest of this repository.
 | # | Paper | Kind | Version | Read |
 |---|---|---|---|---|
 | 01 | **Just Culture for Machines:** Why Penalising Disclosure Teaches Concealment | Theory | v0.3 | [PDF](01-just-culture-for-machines/paper.pdf) · [source](01-just-culture-for-machines/paper.md) |
-| 02 | **Do LLM Monitors Miss Rare Threats?** A Pre-registered Test of the Low-Prevalence Effect | Experiment (pre-registered) | see folder | [PDF](02-do-llm-monitors-miss-rare-threats/paper.pdf) · [source](02-do-llm-monitors-miss-rare-threats/paper.md) |
+| 02 | **Do LLM Monitors Miss Rare Threats?** A Pre-registered Test of the Low-Prevalence Effect | Experiment (pre-registered) | v0.3 | [PDF](02-do-llm-monitors-miss-rare-threats/paper.pdf) · [source](02-do-llm-monitors-miss-rare-threats/paper.md) |
 | 03 | **From RSP to SMS:** Reading Frontier AI Safety Frameworks Through ICAO's Safety Management System | Theory and document analysis | v0.3 | [PDF](03-from-rsp-to-sms/paper.pdf) · [source](03-from-rsp-to-sms/paper.md) |
 | 04 | **Checkride or Jump Seat?** What LOSA and Evidence-Based Training Teach About Evaluation Awareness in AI Systems | Theory and a small pilot | v0.3 | [PDF](04-checkride-or-jump-seat/paper.pdf) · [source](04-checkride-or-jump-seat/paper.md) |
 | 05 | **Untrusted by Design:** Bringing AI Control into Aviation's Operational Oversight of AI | Theory and regulatory analysis | v0.3 | [PDF](05-untrusted-by-design/paper.pdf) · [source](05-untrusted-by-design/paper.md) |

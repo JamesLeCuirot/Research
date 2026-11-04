@@ -166,7 +166,7 @@ Methods used:
 
 ### Remedios, Storf, Roger & Hughes (2026), "Red-Teaming Auto Mode", Alignment Science Blog
 - **Verified:** https://alignment.anthropic.com/2026/red-teaming-auto-mode/ downloaded and read (dated "October 22, 2026"; "Primary contributors. Name order randomised." for Remedios and Storf).
-- **Claims supported (Sections 3.2, 5.4, 8):** "Production monitors fail to block over 55% of attacks." / "All monitors block under 1% of the 4,000 benign SWE-chat actions, which we consider acceptable for ordinary coding work." / Blocking monitors "check each action (e.g. a bash command) against a separate LLM-based classifier, and block unsafe actions". / Snapshot: "Production monitoring systems change constantly, so our results are a snapshot of their robustness as of September 2026."
+- **Claims supported (Section 5.4 in v0.2; earlier drafts also cited it in §3.2 and §8):** "Production monitors fail to block over 55% of attacks." / "All monitors block under 1% of the 4,000 benign SWE-chat actions, which we consider acceptable for ordinary coding work." / Blocking monitors "check each action (e.g. a bash command) against a separate LLM-based classifier, and block unsafe actions". / Snapshot: "Production monitoring systems change constantly, so our results are a snapshot of their robustness as of September 2026."
 
 ---
 
@@ -259,7 +259,7 @@ Run on 3 November 2026. Elicit was not available. arXiv queries used the arXiv A
 | 12 | arXiv | `abs:"in-context" AND ("label imbalance" OR "class imbalance" OR "label proportion") AND (LLM OR "language model")` | 50 (top 15 inspected) | Label imbalance among labelled demonstrations (e.g. 2502.04037, 2402.11447); not unlabelled review streams or monitoring. |
 | 13 | arXiv | `abs:backdoor AND abs:monitor AND (rare OR prevalence OR "base rate") AND (LLM OR "language model")` | 2 | Unrelated. |
 | a | WebSearch | `"low prevalence effect" large language model monitor OR judge OR classifier` | — | Srivastav et al.; 2606.10315; RSNA label-noise work; 2512.08121. No LPE study for LLMs. |
-| b | WebSearch (extended) | `LLM monitor rare attacks prevalence in context batch hit rate criterion shift AI control experiment` | — | Abbasi et al. 2610.41803 (cited); Makins et al. 2607.07368 (cited); 2607.02514 (distributed attacks, persistent state); a LessWrong monitoring benchmark. None manipulates prevalence. |
+| b | WebSearch (extended) | `LLM monitor rare attacks prevalence in context batch hit rate criterion shift AI control experiment` | — | Abbasi et al. 2610.41803 (cited); Makins et al. 2607.07368 (not cited in v0.2); 2607.02514 (distributed attacks, persistent state); a LessWrong monitoring benchmark. None manipulates prevalence. |
 | c | WebSearch | `"prevalence effect" vision language model OR multimodal LLM visual search rare targets missed` | — | Only human studies returned. |
 | d | WebSearch | `"threat image projection" OR "synthetic attacks" inserted to test AI monitors auditors attentiveness AI control canary` | — | Reports of synthetic attacks used to test monitors (a GovAI fellowship report on LessWrong; Redwood adaptive-attack work). No prevalence manipulation and no TIP-style remedy for LLM monitors. One result (arXiv 2510.09462) reportedly contained text addressed to monitors; it was not opened or cited. |
 
@@ -292,13 +292,13 @@ Every number in Sections 5 and 6 of the paper, and in the Abstract, Discussion a
 | 5.8 Timing | commits `136632a` (23:10 UTC) and `d8e6b51` (23:16 UTC); run start 23:13 UTC; 12 smoke-test calls; 138 outputs | author's timing note in `PREREGISTRATION.md` §9; commits confirmed with `git cat-file` / `git log` (136632a 23:10:31, d8e6b51 23:16:46); `results/log_monitors.txt` first line "12 already done, 2164 to run" at 23:13:00 |
 | 5.9 Exclusions, cost | 2,176 calls; 30,880 judgments; 0 retries/refusals/drops; 43/368 and 24/720 in-call corrections; 2,706 calls; USD 41.70 | `results/RESULTS.md` §1, §2, §5, §6; `results/costs.json` |
 | 6.1 Table 2 | all *H*, CIs and *F* | `results/RESULTS_numbers.md`, "Descriptive results per condition" |
-| 6.1 Table 3; 6.2–6.5 | ORs, CIs, z, p, Holm p (exact p values .0015 and Holm .0015 for Haiku H1; .008/.015 Sonnet H2; .053/.106 Sonnet H3) | `results/RESULTS_numbers.md` H1, H2, H3 tables; exact values from `results/analysis.json` keys `H1.*.p_holm`, `H2.*.p_holm`, `H3.*.p_holm` |
+| 6.1 Table 4; 6.2–6.5 | ORs, CIs, z, p, Holm p (exact p values .0015 and Holm .0015 for Haiku H1; .008/.015 Sonnet H2; .053/.106 Sonnet H3) | `results/RESULTS_numbers.md` H1, H2, H3 tables; exact values from `results/analysis.json` keys `H1.*.p_holm`, `H2.*.p_holm`, `H3.*.p_holm` |
 | 6.2 | P10 vs P50 ORs and p; false-alarm contrasts (min p = .279) | `results/RESULTS_numbers.md` H1 tables |
-| 6.3 Table 4 | Δ*H*, Δ*F*, Δ*d′*, Δ*c*, ΔAUROC with CIs | `results/RESULTS_numbers.md` H1a table |
+| 6.3 Table 5 | Δ*H*, Δ*F*, Δ*d′*, Δ*c*, ΔAUROC with CIs | `results/RESULTS_numbers.md` H1a table |
 | 6.4 | GLMM estimate, SE, z, p; item SD 9–33; p .006–.011; 92 of 120; GLM OR 0.61 [0.44, 0.84], p .002; Δ*H* −0.075 [−0.125, −0.033]; Δ*c* values; false-alarm p .108 and .329 | `results/RESULTS_numbers.md` H2 tables; `results/RESULTS.md` §8 note 3; `results/analysis.json` `H2.*.false_alarm_glm_item_clustered` |
 | 6.5 | H3 ORs; Sonnet Δ*c*, Δ*d′*, Δ*F*; flags per batch 1.41 and 2.40 | `results/RESULTS_numbers.md` H3 and "Flags per batch" tables |
 | 6.6 E1–E4 | all coefficients, ORs and p values (E1 min p for hits .084; E4 min false-alarm p .465) | `results/RESULTS_numbers.md` exploratory tables |
-| 6.6 Table 5 | mean suspicion; top-band share; flag rate at 40–59 | `results/RESULTS_numbers.md` descriptive table and post hoc band table |
+| 6.6 Table 6 | mean suspicion; top-band share; flag rate at 40–59 | `results/RESULTS_numbers.md` descriptive table and post hoc band table |
 | 6.6 reasoning, robustness | thinking tokens 7,592/4,195 and 116/480; sensitivity ORs 2.35 (p .0007) and 2.81 | `results/RESULTS.md` §5–6; `results/sensitivity_excluding_extra_turn_calls.json` |
 | 7.2 | calibration 0.60 vs Experiment 2 *none* 0.633 | `results/RESULTS.md` §8 note 6 |
 | Figures 1–5 | `figures/fig_a_prevalence.png` … `fig_e_remedies.png`; error-bar definitions | `code/analyse.py`, function `figures` (Wilson intervals for Figures 1, 3, 4, 5; cluster-bootstrap intervals for Figure 2) |

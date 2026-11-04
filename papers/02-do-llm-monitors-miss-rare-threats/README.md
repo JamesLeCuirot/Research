@@ -26,8 +26,8 @@ AI control protocols use language-model monitors to review the work of more capa
 | Pre-registration and §9 clarifications | Done; timing of item 3 and items 4–12 disclosed in the paper (Section 5.8) |
 | Experiment, analysis, figures, post hoc audit checks | Done (engineer); `results/RESULTS.md`, including §10 |
 | Independent audit | Done; `AUDIT.md` (0 major, 6 moderate, 19 minor, 2 suggestions) |
-| Paper | **Draft v0.2**, all audit fixes applied. About 7,650 words of prose (about 8,550 with tables and captions), 6 tables, 5 figures, 38 references |
-| Not done | `paper.html` / `paper.pdf` not rebuilt; nothing committed |
+| Paper | **Draft v0.3**, all audit and second-round fixes applied. About 7,650 words of prose (about 8,550 with tables and captions), 6 tables, 5 figures, 38 references |
+| Built | `paper.html` and `paper.pdf` built from `paper.md` and committed. Prose is about 7,500 words, above the house guide of 7,000; trim to the target venue's limit. |
 
 ## What James should check
 
@@ -97,3 +97,8 @@ AI control protocols use language-model monitors to review the work of more capa
 - `PREREGISTRATION.md`: the registered design and §9 clarifications.
 - `AUDIT.md`: the independent audit.
 - `code/`, `data/`, `results/`, `figures/`: experiment, by the research engineer; `results/RESULTS.md` is the full numerical report.
+
+
+### v0.3 (4 November 2026)
+
+Second-round verification fixes (see AUDIT.md, "Second-round verification") applied by the lead session: §1 contribution now says "not a *conservative* criterion shift"; §7.1 Sonnet H2 wording corrected (effect at least partly through scores; criterion moved conservative but not reliably); §5.7 power sentence distinguishes Experiment 3 from the paired Experiment 2; §5.8 adds the history of the threshold code comment (`7fe31dc` → `d8e6b51`); sources.md table numbers, Makins status and Remedios locator corrected; stray blank line in references removed. Length (item 24) not cut further: left for venue-specific trimming.

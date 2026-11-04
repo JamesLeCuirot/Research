@@ -65,7 +65,7 @@ def main():
 
     apply_style()
     plt.rcParams.update({"axes.grid": False})
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(5.0, 3.8), gridspec_kw={"width_ratios": [1.5, 1], "wspace": 0.32})
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(6.0, 7.6), gridspec_kw={"height_ratios": [1.9, 1], "hspace": 0.56})
 
     # Panel A: alpha with 95% bootstrap CI, by measure and comparison.
     series = [  # comparison, colour, marker, filled, vertical offset
@@ -115,15 +115,14 @@ def main():
     ax2.grid(axis="y", alpha=0.25, lw=0.5)
     ax2.set_axisbelow(True)
 
-    # One legend under both panels: panel A entries in the left column, panel B entries in the right.
+    # Legends: panel A's under it (inter-grader entries left, repeat-run entries right); panel B's in its empty band.
     h1, l1 = ax1.get_legend_handles_labels()
-    k = [i for i, lab in enumerate(l1) if "controls" in lab][0]  # list the control overlay after the four series
-    h1, l1 = h1[:k] + h1[k + 1:] + [h1[k]], l1[:k] + l1[k + 1:] + [l1[k]]
-    h2, l2 = ax2.get_legend_handles_labels()
-    blank = plt.Line2D([], [], linestyle="none")
-    pad = len(h1) - len(h2)
-    fig.legend(h1 + h2 + [blank] * pad, l1 + l2 + [""] * pad, loc="upper center", bbox_to_anchor=(0.5, 0.0), ncol=2,
-               frameon=False, handletextpad=0.4, columnspacing=1.5)
+    lab = {l: h for h, l in zip(h1, l1)}
+    order = ["Inter-grader (run 1)", "Inter-grader (run 2)", "Inter-grader (run 1) + 6 post hoc controls (exploratory)",
+             "Repeat-run (Sonnet grader)", "Repeat-run (Opus grader)"]
+    ax1.legend([lab[o] for o in order], order, loc="upper center", bbox_to_anchor=(0.42, -0.14),
+               ncol=2, frameon=False, handletextpad=0.4, columnspacing=1.5, borderaxespad=0)
+    ax2.legend(loc="center", bbox_to_anchor=(0.5, (2.75 - 0.8) / 4.4), ncol=1, frameon=False, handletextpad=0.4)
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(OUT)

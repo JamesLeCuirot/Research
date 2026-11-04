@@ -198,20 +198,13 @@ The domains also differ: aviation mostly protects inadvertent errors, so couplin
 
 Table~\ref{tab:correspondence} maps aviation's reporting institutions to AI training and monitoring; the third column matters as much as the second.
 
-\begingroup\small
-\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.27\dimexpr\linewidth-4\tabcolsep\relax}>{\raggedright\arraybackslash}p{0.30\dimexpr\linewidth-4\tabcolsep\relax}>{\raggedright\arraybackslash}p{0.43\dimexpr\linewidth-4\tabcolsep\relax}@{}}
-\caption{Aviation reporting concepts, their AI-training analogues, and the limits of each analogy.}\label{tab:correspondence}\\
+\begin{table}[tbp]
+\small
+\caption{Aviation reporting concepts, their AI-training analogues, and the limits of each analogy.}\label{tab:correspondence}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash\hsize=0.81\hsize}X>{\raggedright\arraybackslash\hsize=0.90\hsize}X>{\raggedright\arraybackslash\hsize=1.29\hsize}X@{}}
 \toprule
 Aviation concept & AI-training analogue & Where the analogy breaks \\
 \midrule
-\endfirsthead
-\multicolumn{3}{@{}l}{\footnotesize\itshape Table~\ref{tab:correspondence} (continued)}\\
-\toprule
-Aviation concept & AI-training analogue & Where the analogy breaks \\
-\midrule
-\endhead
-\bottomrule
-\endlastfoot
 Front-line operator who may report & The model under training (the policy) & Not a moral agent; its tendency to disclose is learned from every reward. Reporter and behaviour share weights. \\[3pt]
 Voluntary safety report (ASRS, ASAP) & Confession, self-report or chain of thought & Elicited, or part of the computation itself. A model cannot report what it does not represent~\cite[§7.4]{joglekar2025}. \\[3pt]
 Enforcement or discipline based on a report & Reward penalty, preference label or data filter computed from disclosure content & In ML, correction and sanction are the same operation (a weight update). \\[3pt]
@@ -224,8 +217,9 @@ Exclusions: wilful misconduct, gross negligence, criminal acts, intentional fals
 Safety action permitted (Annex~19, 5.3.4~\cite{icao2016}; Art.~16(5)~\cite{eu376}) & Blocking outputs, halting runs, rolling back checkpoints, class-wide fixes & Acting on ``the system'' includes acting on the model. These are low-bandwidth selection, not zero selection. \\[3pt]
 Trusted third party and custodian (NASA, ERC, gatekeeper, Annex~19 custodian) & A disclosure custodian separate from reward and data teams; separate monitor models & No statute protects the channel, and internal teams share commercial incentives. \\[3pt]
 Report intake and feedback (ASRS metrics, alert messages) & Disclosure recall measured against independently detected misbehaviour; monitorability evaluations & Ground truth can be engineered in AI (planted flaws), which aviation cannot do. \\
-\end{longtable}
-\endgroup
+\bottomrule
+\end{tabularx}
+\end{table}
 
 Aviation protects FOQA data although they are behavioural evidence, because its protection attaches to \emph{use}: safety-programme data, reported or recorded, are used for safety, de-identified and in aggregate, and not for enforcement. This paper draws its line differently, by \emph{decoupling cost}: how cheaply the policy can change a signal without changing the behaviour it measures. Text disclosures are cheapest to change, so they are protected from training use (P1). Telemetry usually cannot be ``concealed'' by changing words alone, so P2 uses it for correction, although it too can be gamed. Aviation's use-based logic still carries over: disclosures remain usable for safety action and aggregate analysis (Section~\ref{sec:channels}), and some telemetry should be held out of training, for evaluation only, as an audit.
 

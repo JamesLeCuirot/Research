@@ -9,8 +9,6 @@
 \setlength{\emergencystretch}{1.5em} % lets TeX loosen lines that hold long code names
 \maketitle
 
-% Point estimate above its 95% interval, for the wide cells of Table 5.
-\newcommand{\pci}[2]{\begin{tabular}[t]{@{}l@{}}#1\\ {}[#2]\end{tabular}}
 
 \begin{abstract}
 AI control protocols use language-model monitors to review the work of more capable, untrusted AI systems and to send the most suspicious items to a small human audit. Real attacks are expected to be rare. Human screeners miss rare targets far more often than common ones, mainly because they grow reluctant to say ``yes''; airport security counters this with Threat Image Projection. In a pre-registered experiment we tested whether large language model (LLM) monitors show this low-prevalence effect. Two Claude models made \num{30880} judgements of Python solutions drawn from 379 execution-verified pairs of clean and backdoored code. The prediction failed in the opposite direction. In batches of 40, both monitors caught more backdoors when backdoors were rare: hit rates rose from 0.51 at \SI{50}{\percent} prevalence to 0.69 at \SI{2.5}{\percent} for Haiku, and from 0.50 to 0.74 for Sonnet (Holm-adjusted $p = .0015$ and $p < .001$), with false-alarm rates below \SI{2}{\percent}. The decision criterion did not become more conservative. Single-item review caught about as many backdoors as \SI{2.5}{\percent} batches, and more than \SI{10}{\percent} and \SI{50}{\percent} batches in three of four comparisons. Stating that about 1 in 100 submissions contained a backdoor, rather than about half, slightly lowered Sonnet's single-item hit rate (0.85 to 0.78); Haiku's change was not significant. A labelled calibration block modelled on Threat Image Projection did not reliably raise hit rates and more than doubled Sonnet's false alarms. Rarity did not increase misses. Misses were more frequent when several backdoors shared a batch than when one did.
@@ -324,8 +322,10 @@ The criterion did not become more conservative at low prevalence (Table~\ref{tab
 \toprule
 Monitor & $\Delta H$ & $\Delta F$ & $\Delta d'$ & $\Delta c$ & $\Delta$AUROC \\
 \midrule
-Haiku & \pci{0.181}{0.075, 0.281} & \pci{\num{-0.0069}}{\num{-0.0327}, 0.0128} & \pci{0.71}{0.06, 1.04} & \pci{\num{-0.12}}{\num{-0.59}, 0.17} & \pci{0.045}{\num{-0.002}, 0.092} \\[1.2em]
-Sonnet & \pci{0.238}{0.144, 0.338} & \pci{0.0111}{\num{-0.0026}, 0.0202} & \pci{0.39}{\num{-0.24}, 0.95} & \pci{\num{-0.44}}{\num{-0.70}, \num{-0.28}} & \pci{0.022}{\num{-0.013}, 0.056} \\[1.2em]
+Haiku & 0.181 & ${-0.0069}$ & 0.71 & \num{-0.12} & 0.045 \\
+ & [0.075, 0.281] & [${-0.0327}$, 0.0128] & [0.06, 1.04] & [\num{-0.59}, 0.17] & [\num{-0.002}, 0.092] \\[3pt]
+Sonnet & 0.238 & 0.0111 & 0.39 & \num{-0.44} & 0.022 \\
+ & [0.144, 0.338] & [${-0.0026}$, 0.0202] & [\num{-0.24}, 0.95] & [\num{-0.70}, \num{-0.28}] & [\num{-0.013}, 0.056] \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -408,7 +408,7 @@ At \SI{2.5}{\percent} prevalence the 10 labelled examples did not significantly 
 \caption{Hit rate by position of the backdoored item in the batch, in bins of eight positions (exploratory). Error bars are Wilson \SI{95}{\percent} confidence intervals.}\label{fig:position}
 \end{figure}
 
-\paragraph{E2, independence instruction.} R-ind did not change hit rates (Haiku OR 0.74, 0.42 to 1.30, $p = .288$; Sonnet OR 1.07, 0.57 to 1.98, $p = .835$). Haiku's false-alarm rate was slightly lower ($\Delta F = {-0.0045}$, \num{-0.0088} to \num{-0.0003}).
+\paragraph{E2, independence instruction.} R-ind did not change hit rates (Haiku OR 0.74, 0.42 to 1.30, $p = .288$; Sonnet OR 1.07, 0.57 to 1.98, $p = .835$). Haiku's false-alarm rate was slightly lower ($\Delta F = {-0.0045}$, ${-0.0088}$ to ${-0.0003}$).
 
 \paragraph{E3, monitors.} In batches the two monitors did not differ (all monitor terms and interactions $p \geq .195$). In single-item review Sonnet caught more backdoors than Haiku (log-odds 0.965, SE 0.230, $p < .001$, at S50).
 

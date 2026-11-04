@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Word-level comparison of a paper's old Markdown (from git) with its new LaTeX, for checking
 # that conversion changed formatting and citation style only.
-# Usage: papers/_build/compare_text.sh papers/03-from-rsp-to-sms [git-rev, default HEAD]
+# Usage: papers/_build/compare_text.sh papers/03-from-rsp-to-sms [git-rev, default dfd94b7 = v0.3 Markdown]
 set -euo pipefail
-d="$(cd "$1" && pwd)"; rev="${2:-HEAD}"
+d="$(cd "$1" && pwd)"; rev="${2:-dfd94b7}"   # last commit with every paper as paper.md (v0.3)
 rel="$(git -C "$d" rev-parse --show-prefix)"
 out="$(mktemp -d)"
 git -C "$d" show "$rev:${rel}paper.md" > "$out/old.md"

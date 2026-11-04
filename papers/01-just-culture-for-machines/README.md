@@ -1,9 +1,9 @@
 # Just Culture for Machines: Why Penalising Disclosure Teaches Concealment
 
 **Author:** James Le Cuirot (Citadel Aero)
-**Status:** draft v0.2 for author review (4 November 2026), revised after the independent audit in `AUDIT.md`. Not peer reviewed. Not committed.
-**Files:** `paper.md` (source of truth), `sources.md` (verification log for every reference and the literature-search log; entries changed in v0.2 are marked **[v0.2]**), `AUDIT.md` (independent audit of v0.1; not edited).
-**Length:** about 8,040 words of main text excluding Table 1 (about 8,490 including it, counted as whitespace-separated tokens from §1 to §8); abstract 248 words; 51 references.
+**Status:** working draft v0.4 for author review (4 November 2026): the audited v0.3 text converted to the LaTeX technical-report house style with IEEE numeric references. Not peer reviewed.
+**Files:** `paper.tex` and `references.bib` (source of truth; build with `papers/_build/build.sh papers/01-just-culture-for-machines`), `paper.pdf` (built; do not edit), `paper.bbl` (kept for arXiv submission), `sources.md` (verification log for every reference and the literature-search log; entries changed in v0.2 are marked **[v0.2]**), `AUDIT.md` (independent audit and second-round verification; not edited). The v0.3 Markdown source (`paper.md`, `paper.html`) remains in git history.
+**Length:** about 7,670 words of main text excluding Table 1 (about 8,050 including it), counted as whitespace-separated tokens from §1 to §8 without citation numbers (v0.3, with author–date citations: about 8,040 and 8,490); abstract 248 words; 51 references; 21 pages.
 
 ## Abstract
 
@@ -41,7 +41,7 @@ The cost is stated plainly (§7). Misbehaviour that is visible only in a disclos
    If you hold the books, please check the wording against them and add page numbers.
 4. **The formal argument (§4.1).** It is now stated with assumptions A1–A4 and presented as close to definitional. Check that this is clear to aviation readers.
 5. **Balance.** The paper cites Anthropic's and OpenAI's reporting policies and several Anthropic studies, and it was drafted with Claude. The AI-assistance statement says so.
-6. **Reference style.** Regulations are cited in text in legal form (e.g., "14 C.F.R. § 91.25", "Art. 16(10)"). Group authors are abbreviated after first use (FAA, ICAO, NASA ASRS, GAIN). Two choices go beyond strict APA. Marx (2001) and Reason (1997) keep their own entries in the reference list although only secondary accounts were seen, and the in-text "as cited in" wording says so. LessWrong authors are cited by the names shown on the site; "mako yass" is a screen name.
+6. **Reference style (IEEE numeric since v0.4).** Regulations keep their legal designation in the text (e.g., "14 CFR §91.25", "Art. 16(10)") with the citation number where the source is used. Marx (2001) and Reason (1997) keep their own entries in the reference list although only secondary accounts were seen; the in-text wording ("as cited in", "summary of") and each entry's note say so. Dekker (2025), the ICAO documents (read from copies hosted by national authorities), GAIN (SKYbrary copy) and the EU texts carry similar notes on what was consulted. LessWrong authors are cited by the names shown on the site; "mako yass" is a screen name.
 
 ## Open questions
 
@@ -137,3 +137,14 @@ Every finding was re-checked against the source itself before it was applied. No
 ### v0.3 (4 November 2026)
 
 Second-round verification fixes applied by the lead session (see AUDIT.md, "Second-round verification"): all required items applied verbatim as specified by the verifier.
+
+### v0.4 (4 November 2026): LaTeX conversion
+
+Format conversion only: no argument, number, quotation or claim was changed.
+
+- **Source.** `paper.md` (Pandoc Markdown, APA author–date) replaced by `paper.tex` (house preamble from `papers/STYLE.md`, `techreport.sty`) and `references.bib` (IEEE numeric, `IEEEtran.bst`). Title now "Just Culture for Machines: Why Penalising Disclosure Teaches Concealment"; date line "Working draft v0.4, 4 November 2026. Not peer reviewed."; no keywords or status box.
+- **Citations.** Every author–date citation became `\cite` (numbered in order of first use), with locators kept (e.g. [n, §3.2], [n, ¶16.4, Note]); narrative citations read "Baker et al. [n]". Bare locators that referred to a cited work, such as "(§3.2)" or Baker et al.'s "(Table 1)", now carry the citation number so they cannot be confused with this paper's own sections and table. "As cited in" information for Marx (2001) is kept by citing PSNet and GAIN alongside it. Regulations keep their legal designation in the text, now written "14 CFR §91.25" (was "14 C.F.R. § 91.25").
+- **Structure and typography.** Numbered `\section`/`\subsection` as before, with `\label`/`\ref` cross-references; bold lead-ins (ASRS, ASAP, FOQA, S1–S6, P1–P6, H1–H5, §7 objections) as run-in `\paragraph` headings; A1–A4 as a list; the §4.1 inequality as numbered Equation (1) (the text has no equation references); Table 1 as a booktabs `tabularx` table with the caption above; large counts via `siunitx` (`\num`); `sources.md` via `\code`. No US spellings were found outside quotations, titles and proper names.
+- **Closing text.** "Acknowledgements and AI-assistance statement" and "Disclaimer" replaced by the standard Acknowledgement section from `STYLE.md` (AI assistance, Competing interests, Disclaimer, Materials). The audit sentence reads "checked the references and quotations against their sources" (the template's "references, quotations" without the bracketed "and analysis"). Paper-specific provenance notes (ICAO texts read from copies hosted by national authorities; EU texts via the Publications Office and EASA Easy Access Rules; GAIN via SKYbrary; Reason, Marx and Dekker not seen in full) moved to the `note` fields in `references.bib`.
+- **Check 8a (`check_bib.py`).** 51 entries, the same 51 references as the v0.3 list, all cited; no missing or unused keys. 21 OK against Crossref/arXiv. 3 CHECK, all resolved: Dekker (Crossref stores the subtitle separately, so the title match is 0.47), Mitrani Hadida (checker takes "Hadida" as the arXiv surname), Li et al. (ICLR 2026 version cited; arXiv v1 is 2025). 27 NO-ID (regulations, ACs, ICAO, GAIN, books, web pages and blog posts) confirmed field by field against `sources.md`; the three 14 CFR section headings were re-checked in the regulation library (eCFR 2026-10-29). Author lists for arXiv papers, including the full 41-author Korbak et al. and 22-author MacDiarmid et al. lists, come from the arXiv API, except "Georgiev" (Skaf et al.), which follows the PDF byline as recorded in `sources.md`.
+- **Check 8b (`compare_text.sh`).** The whole word diff was read. Every difference is citation format (author–date removed, legal designations re-spaced), section numbers now generated by LaTeX, list bullets turned into run-in headings, digit grouping by `siunitx`, the `\code{sources.md}` identifier (dropped by Pandoc's LaTeX reader, present in the PDF), the title block and author footnote, the standard closing text and the reference list. The abstract was compared separately and is identical (248 words). No lost sentence, changed number, dropped table row or altered quotation was found.

@@ -42,7 +42,7 @@ R.~Greenblatt, B.~Shlegeris, K.~Sachan, and F.~Roger, ``{AI} control: Improving
 \BIBentryALTinterwordspacing
 {European Union Aviation Safety Agency}, ``{EASA AI Days} 2026: High-level
   conference, day 2,'' Presentation slides; work in progress, not adopted text,
-  Cologne, Germany, Sep. 10 2026. [Online]. Available:
+  Cologne, Germany, Sep.~10, 2026. [Online]. Available:
   \url{https://www.easa.europa.eu/en/downloads/144161/en}
 \BIBentrySTDinterwordspacing
 
@@ -91,7 +91,7 @@ R.~Greenblatt, B.~Shlegeris, K.~Sachan, and F.~Roger, ``{AI} control: Improving
 \bibitem{easa2026news}
 \BIBentryALTinterwordspacing
 ------, ``{EASA} releases latest issue of its {Concept Paper on Artificial
-  Intelligence} for comment,'' News release, Jun. 3 2026, accessed: Nov. 3,
+  Intelligence} for comment,'' News release, Jun.~3, 2026, accessed: Nov. 3,
   2026. [Online]. Available:
   \url{https://www.easa.europa.eu/en/newsroom-and-events/news/easa-releases-latest-issue-its-concept-paper-artificial-intelligence}
 \BIBentrySTDinterwordspacing
@@ -163,7 +163,7 @@ J.~Needham, G.~Edkins, G.~Pimpale, H.~Bartsch, and M.~Hobbhahn, ``Large
 \bibitem{lynch2026agentic}
 \BIBentryALTinterwordspacing
 A.~Lynch, J.~Hughes, A.~Serrano, R.~Kirk, and S.~R. Bowman, ``Agentic
-  misalignment in summer 2026,'' Anthropic Alignment Science Blog, Jul. 13
+  misalignment in summer 2026,'' Anthropic Alignment Science Blog, Jul.~13,
   2026, accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://alignment.anthropic.com/2026/agentic-misalignment-summer-2026/}
 \BIBentrySTDinterwordspacing
@@ -171,7 +171,7 @@ A.~Lynch, J.~Hughes, A.~Serrano, R.~Kirk, and S.~R. Bowman, ``Agentic
 \bibitem{anthropic2026aisi}
 \BIBentryALTinterwordspacing
 {Anthropic}, ``An alignment assessment of the {UK AISI} cybertesting
-  incident,'' Research web page, Oct. 23 2026, accessed: Nov. 3, 2026.
+  incident,'' Research web page, Oct.~23, 2026, accessed: Nov. 3, 2026.
   [Online]. Available:
   \url{https://www.anthropic.com/research/alignment-assessment-ukaisi}
 \BIBentrySTDinterwordspacing
@@ -221,7 +221,7 @@ M.~Terekhov, A.~Panfilov, D.~Dzenhaliou, C.~Gulcehre, M.~Andriushchenko,
 \BIBentryALTinterwordspacing
 A.~Remedios, S.~Storf, F.~Roger, and J.~Hughes, ``Red-teaming auto mode:
   Improving blocking classifiers against malign coding agents,'' Anthropic
-  Alignment Science Blog, Oct. 22 2026, accessed: Nov. 3, 2026. [Online].
+  Alignment Science Blog, Oct.~22, 2026, accessed: Nov. 3, 2026. [Online].
   Available: \url{https://alignment.anthropic.com/2026/red-teaming-auto-mode/}
 \BIBentrySTDinterwordspacing
 
@@ -284,7 +284,7 @@ P.~Traverse, I.~Lacaze, and J.~Souyris, ``{Airbus} fly-by-wire: A process
 
 \bibitem{easa2021amc25}
 \BIBentryALTinterwordspacing
-{European Union Aviation Safety Agency}, ``{AMC 25.1309} system design and
+{European Union Aviation Safety Agency}, ``{AMC 25.1309 System} design and
   analysis,'' Acceptable means of compliance, ED Decision 2021/015/R (CS-25
   Amendment 27), in \emph{Easy Access Rules for Large Aeroplanes (CS-25)},
   2021, accessed: Nov. 3, 2026. [Online]. Available:
@@ -336,7 +336,7 @@ F.~Hofer and A.~Schwaninger, ``Using threat image projection data for assessing
 
 \bibitem{easa2020cs25}
 \BIBentryALTinterwordspacing
-{European Union Aviation Safety Agency}, ``{CS 25.1309} equipment, systems and
+{European Union Aviation Safety Agency}, ``{CS 25.1309 Equipment}, systems and
   installations,'' Certification specification, ED Decision 2020/001/R (CS-25
   Amendment 24), in \emph{Easy Access Rules for Large Aeroplanes (CS-25)},
   2020, accessed: Nov. 3, 2026. [Online]. Available:
@@ -346,15 +346,15 @@ F.~Hofer and A.~Schwaninger, ``Using threat image projection data for assessing
 \bibitem{sae2023arp4754b}
 \BIBentryALTinterwordspacing
 {SAE International}, \emph{Guidelines for development of civil aircraft and
-  systems}, SAE Standard ARP4754B, revised Dec. 2023, 2023, catalogue entry;
-  the standard itself was not read for this paper. [Online]. Available:
+  systems}, SAE Standard ARP4754B (revised), Dec. 2023, catalogue entry; the
+  standard itself was not read for this paper. [Online]. Available:
   \url{https://doi.org/10.4271/ARP4754B}
 \BIBentrySTDinterwordspacing
 
 \bibitem{sae2023arp4761a}
 \BIBentryALTinterwordspacing
 ------, \emph{Guidelines for conducting the safety assessment process on civil
-  aircraft, systems, and equipment}, SAE Standard ARP4761A, revised Dec. 2023,
+  aircraft, systems, and equipment}, SAE Standard ARP4761A (revised), Dec.
   2023, catalogue entry; the standard itself was not read for this paper.
   [Online]. Available: \url{https://doi.org/10.4271/ARP4761A}
 \BIBentrySTDinterwordspacing
@@ -370,7 +370,7 @@ I.~Habli, R.~Hawkins, C.~Paterson, P.~Ryan, Y.~Jia, M.~Sujan, and J.~McDermid,
 \bibitem{khlaaf2023toward}
 \BIBentryALTinterwordspacing
 H.~Khlaaf, ``Toward comprehensive risk assessments and assurance of {AI}-based
-  systems,'' Trail of Bits, White paper, 2023, also available as
+  systems,'' Trail of Bits, White paper, Mar. 2023, also available as
   arXiv:2606.29390, the copy read for this paper. [Online]. Available:
   \url{https://arxiv.org/abs/2606.29390}
 \BIBentrySTDinterwordspacing

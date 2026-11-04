@@ -25,9 +25,9 @@
 \BIBentryALTinterwordspacing
 {ICAO}, \emph{Annex 19 to the Convention on International Civil Aviation:
   Safety Management}, 2nd~ed., International Civil Aviation Organization, Jul.
-  2016, applicable 7 Nov. 2019; current consolidated text until Amendment 2
-  applies on 26 Nov. 2026. Copy consulted hosted by the Swiss Federal Office of
-  Civil Aviation (FOCA). [Online]. Available:
+  2016, applicable Nov. 7, 2019; current consolidated text until Amendment 2
+  applies on Nov. 26, 2026. Copy consulted hosted by the Swiss Federal Office
+  of Civil Aviation (FOCA). [Online]. Available:
   \url{https://www.bazl.admin.ch/dam/it/sd-web/oOXBOqNfEsWb/icao_annex_19_second-edition.pdf}
 \BIBentrySTDinterwordspacing
 
@@ -35,22 +35,22 @@
 \BIBentryALTinterwordspacing
 L.~Stelling, M.~Murray, B.~Galizzi, M.~Schaffelder, S.~Campos, and
   H.~Papadatos, ``Evaluating {AI} providers' frontier safety frameworks,''
-  arXiv preprint arXiv:2512.01166, 2025, version 1 posted 1 Dec. 2025; version
-  5 (30 Apr. 2026) consulted. [Online]. Available:
+  arXiv preprint arXiv:2512.01166, 2025, version 1 posted Dec. 1, 2025; version
+  5 (Apr. 30, 2026) consulted. [Online]. Available:
   \url{https://arxiv.org/abs/2512.01166}
 \BIBentrySTDinterwordspacing
 
 \bibitem{anthropic2026rsppage}
 \BIBentryALTinterwordspacing
 {Anthropic}, ``{Anthropic's Responsible Scaling Policy},'' Web page, last
-  updated Aug. 14, 2026, 2026, accessed: Nov. 3, 2026. [Online]. Available:
+  updated Aug.~14, 2026, accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://www.anthropic.com/responsible-scaling-policy}
 \BIBentrySTDinterwordspacing
 
 \bibitem{anthropic2026riskreport}
 \BIBentryALTinterwordspacing
 ------, ``{Risk Report: August 2026},'' Redacted public version; coverage date
-  Jul. 15, 2026; announced Aug. 14, 2026, 2026. [Online]. Available:
+  Jul. 15, 2026, announced Aug.~14, 2026. [Online]. Available:
   \url{https://anthropic.com/aug-2026-risk-report}
 \BIBentrySTDinterwordspacing
 
@@ -121,17 +121,16 @@ M.~Favaro and P.~Wright, ``Measurements for understanding the pace of {AI}
 \bibitem{icao2018doc9859}
 \BIBentryALTinterwordspacing
 ------, \emph{Safety Management Manual ({Doc} 9859)}, 4th~ed., International
-  Civil Aviation Organization, 2018, iCAO Store page cited; the copy read was
-  not distributed by ICAO. [Online]. Available:
+  Civil Aviation Organization, 2018, the copy read was not distributed by
+  {ICAO}; the {URL} is the {ICAO} Store page. [Online]. Available:
   \url{https://store.icao.int/en/safety-management-manual-doc-9859}
 \BIBentrySTDinterwordspacing
 
 \bibitem{cfr14part5}
 \BIBentryALTinterwordspacing
 {Federal Aviation Administration}, ``{Safety Management Systems}, 14 {C.F.R.}
-  pt. 5,'' eCFR, current as of Oct. 29, 2026, 2026, uS federal regulation,
-  binding. [Online]. Available:
-  \url{https://www.ecfr.gov/current/title-14/part-5}
+  pt. 5,'' eCFR, current as of Oct.~29, 2026, {US} federal regulation, binding.
+  [Online]. Available: \url{https://www.ecfr.gov/current/title-14/part-5}
 \BIBentrySTDinterwordspacing
 
 \bibitem{koessler2023}
@@ -227,10 +226,10 @@ E.~Barkett, A.~Kimpton, D.~Graham, and Y.~Kundgol, ``The normalization of
 {European Commission}, ``{Commission Regulation (EU) No 965/2012 of 5 October
   2012} laying down technical requirements and administrative procedures
   related to air operations,'' Annex III (Part-ORO), ORO.GEN.200 and
-  ORO.AOC.130 (as amended by Commission Regulation (EU) 2015/1329).
-  Consolidated text: European Union Aviation Safety Agency, \emph{Easy Access
-  Rules for Air Operations}, 2012, eU law, binding; the same provisions apply
-  in the United Kingdom as assimilated law,
+  ORO.AOC.130, as amended by Commission Regulation (EU) 2015/1329, 2012, {EU}
+  law, binding. Consolidated text: European Union Aviation Safety Agency,
+  \emph{Easy Access Rules for Air Operations}. The same provisions apply in the
+  United Kingdom as assimilated law,
   \url{https://www.legislation.gov.uk/eur/2012/965/annex/III}. [Online].
   Available:
   \url{https://www.easa.europa.eu/en/document-library/easy-access-rules/easy-access-rules-air-operations}
@@ -241,8 +240,8 @@ E.~Barkett, A.~Kimpton, D.~Graham, and Y.~Kundgol, ``The normalization of
 {European Union Aviation Safety Agency}, ``{AMC1 ORO.GEN.200(a)(3) Management
   system},'' Acceptable means of compliance for complex operators, consolidated
   by ED Decision 2025/020/R, in \emph{Easy Access Rules for Air Operations},
-  2025, eU acceptable means of compliance, not binding. Paragraphs (c)(1) and
-  (e) are unchanged in the version applicable from 1 January 2028. [Online].
+  2025, {EU} acceptable means of compliance, not binding. Paragraphs (c)(1) and
+  (e) are unchanged in the version applicable from Jan. 1, 2028. [Online].
   Available:
   \url{https://www.easa.europa.eu/en/document-library/easy-access-rules/easy-access-rules-air-operations}
 \BIBentrySTDinterwordspacing
@@ -257,15 +256,15 @@ E.~Barkett, A.~Kimpton, D.~Graham, and Y.~Kundgol, ``The normalization of
 
 \bibitem{anthropic2026rsp}
 \BIBentryALTinterwordspacing
-{Anthropic}, ``{Responsible Scaling Policy},'' Version 3.4, effective Jul. 8,
-  2026, 2026. [Online]. Available:
+{Anthropic}, ``{Responsible Scaling Policy},'' Version 3.4, effective Jul.~8,
+  2026. [Online]. Available:
   \url{https://www-cdn.anthropic.com/files/4zrzovbb/website/0bacdc8440ea96e62a8766d99ebe1d4eea6d5f3a.pdf}
 \BIBentrySTDinterwordspacing
 
 \bibitem{anthropic2026roadmap}
 \BIBentryALTinterwordspacing
-------, ``{Frontier Safety Roadmap},'' Web page, goals as of Oct. 19, 2026,
-  2026, accessed: Nov. 3, 2026. [Online]. Available:
+------, ``{Frontier Safety Roadmap},'' Web page, goals as of Oct.~19, 2026,
+  accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://www.anthropic.com/responsible-scaling-policy/roadmap}
 \BIBentrySTDinterwordspacing
 
@@ -289,15 +288,15 @@ A.~Tamkin, M.~McCain, K.~Handa, E.~Durmus, L.~Lovitt, A.~Rathi, S.~Huang,
 
 \bibitem{openai2025pf}
 \BIBentryALTinterwordspacing
-{OpenAI}, ``{Preparedness Framework},'' Version 2, last updated Apr. 15, 2025,
-  2025. [Online]. Available:
+{OpenAI}, ``{Preparedness Framework},'' Version 2, last updated Apr.~15, 2025.
+  [Online]. Available:
   \url{https://cdn.openai.com/pdf/18a02b5d-6b67-4cec-ab64-68cdfbddebcd/preparedness-framework-v2.pdf}
 \BIBentrySTDinterwordspacing
 
 \bibitem{gdm2026fsf}
 \BIBentryALTinterwordspacing
-{Google DeepMind}, ``{Frontier Safety Framework},'' Version 3.1, published Apr.
-  17, 2026, 2026. [Online]. Available:
+{Google DeepMind}, ``{Frontier Safety Framework},'' Version 3.1, published
+  Apr.~17, 2026. [Online]. Available:
   \url{https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/strengthening-our-frontier-safety-framework/frontier-safety-framework_3-1.pdf}
 \BIBentrySTDinterwordspacing
 
@@ -306,8 +305,8 @@ A.~Tamkin, M.~McCain, K.~Handa, E.~Durmus, L.~Lovitt, A.~Rathi, S.~Huang,
 {European Parliament and Council of the European Union}, ``{Regulation (EU)
   2024/1689 of the European Parliament and of the Council of 13 June 2024}
   laying down harmonised rules on artificial intelligence ({Artificial
-  Intelligence Act}),'' Articles 55 and 113. EUR-Lex consolidated version of 27
-  July 2026, 2024, eU law, binding. [Online]. Available:
+  Intelligence Act}),'' Articles 55 and 113, 2024, {EU} law, binding. EUR-Lex
+  consolidated version of Jul. 27, 2026. [Online]. Available:
   \url{https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02024R1689-20260727}
 \BIBentrySTDinterwordspacing
 
@@ -320,8 +319,8 @@ A.~Tamkin, M.~McCain, K.~Handa, E.~Durmus, L.~Lovitt, A.~Rathi, S.~Huang,
 
 \bibitem{ec2025code}
 \BIBentryALTinterwordspacing
-------, ``{Code of Practice for General-Purpose AI Models}: Safety and security
-  chapter,'' Published Jul. 10, 2025, 2025. [Online]. Available:
+------, ``{Code of Practice for General-Purpose AI Models: Safety and Security
+  Chapter},'' Jul.~10, 2025. [Online]. Available:
   \url{https://ec.europa.eu/newsroom/dae/redirection/document/118119}
 \BIBentrySTDinterwordspacing
 
@@ -329,9 +328,9 @@ A.~Tamkin, M.~McCain, K.~Handa, E.~Durmus, L.~Lovitt, A.~Rathi, S.~Huang,
 \BIBentryALTinterwordspacing
 {California Senate Rules Committee, Office of Senate Floor Analyses}, ``{SB} 53
   ({Wiener}): Unfinished business analysis,'' Legislative analysis of the bill
-  as amended 5 Sep. 2025; analysis dated 12 Sep. 2025, Sep. 2025, copy
-  consulted on a third-party mirror (leginfo.legislature.ca.gov returned HTTP
-  403). [Online]. Available:
+  as amended Sep. 5, 2025, analysis dated Sep.~12, 2025, copy consulted on a
+  third-party mirror (leginfo.legislature.ca.gov returned HTTP 403). [Online].
+  Available:
   \url{https://billtexts.s3.amazonaws.com/ca/ca-analysishttps-leginfo-legislature-ca-gov-faces-billAnalysisClient-xhtml-bill-id-202520260SB53-ca-analysis-393579.pdf}
 \BIBentrySTDinterwordspacing
 
@@ -349,8 +348,8 @@ A.~Tamkin, M.~McCain, K.~Handa, E.~Durmus, L.~Lovitt, A.~Rathi, S.~Huang,
 \BIBentryALTinterwordspacing
 ------, ``{Regulation (EU) No 996/2010 of the European Parliament and of the
   Council of 20 October 2010} on the investigation and prevention of accidents
-  and incidents in civil aviation,'' Article 16(6). EUR-Lex consolidated
-  version of 19 May 2024, 2010, eU law, binding; UK assimilated text identical
+  and incidents in civil aviation,'' Article 16(6), 2010, {EU} law, binding.
+  EUR-Lex consolidated version of May 19, 2024; UK assimilated text identical
   in Art. 16(6). [Online]. Available:
   \url{https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02010R0996-20240519}
 \BIBentrySTDinterwordspacing

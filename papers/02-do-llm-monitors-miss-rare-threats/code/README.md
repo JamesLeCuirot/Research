@@ -41,6 +41,7 @@ Run every command from this `code/` folder.
 | Post hoc (audit) | `$RUN posthoc_descriptives.py` | `results/posthoc_descriptives.json`: edit-type classification and thinking tokens per call |
 | Post hoc (audit) | `$RUN posthoc_harness_context.py [/tmp/claude-code-<id>.diag.log]` | `results/harness_context.json`: size and constancy of Claude Code's added context; summary of Claude Code's diagnostics log (kept from an earlier run if the log is not given) |
 | Registered table | `$RUN registered_measures_table.py > ../results/registered_measures_table.md` | Per-condition registered measures, laid out from `results/analysis.json` |
+| Report figures | from the repository root: `uv run --no-project --with matplotlib python papers/02-do-llm-monitors-miss-rare-threats/code/figures_report.py` | `figures/report/fig_*.pdf`: the paper's five figures redrawn in the shared house style (`papers/_build/palette.py`; one colour per model, serif text, vector PDF, one file per panel) from `results/analysis.json` and `results/judgments.csv`. Same data and error bars as the registered PNGs from `analyse.py`, which are left unchanged |
 
 `results/RESULTS.md` (the written report) was assembled by hand: its sections 1–8 were written from
 `results/analysis.json`, and its section 9 is `results/RESULTS_numbers.md` with headings moved down a level.

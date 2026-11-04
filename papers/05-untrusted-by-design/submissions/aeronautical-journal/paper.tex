@@ -1,0 +1,389 @@
+% "AI Control for Aviation: A Gap Analysis of EASA's Operational Oversight Objectives for Advanced AI"
+% -- version for The Aeronautical Journal (Royal Aeronautical Society / Cambridge University Press),
+% in the journal's own LaTeX class (aer.cls, from the journal's template files, as for paper 07).
+% Single-anonymised review, so the author is named. APA author-year citations (apacite.bst through natbib),
+% as Cambridge's "Preparing your materials" page asks (the template's sample shows the older numbered style).
+% Text as in the preprint (v1.1, 4 November 2026); only citation forms, headings, the title block, the
+% nomenclature and the end sections differ (see SUBMISSION.md). The metadata commands are left empty, as the
+% template's guide asks. Build: latexmk -pdf paper.tex
+\documentclass{aer}
+\usepackage{txfonts}
+\usepackage{booktabs,tabularx,array}
+\usepackage[detect-all]{siunitx}
+\sisetup{group-separator={\,},group-minimum-digits=4,output-decimal-marker={.}}
+\usepackage[natbibapa]{apacite}
+\makeatletter
+\NAT@longnamesfalse % "et al." from the first citation (apacite's default lists up to five names the first time)
+\makeatother
+\usepackage{lineno}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{2em}
+
+\jmonth{}
+\jyear{}
+\volume{}
+\issue{}
+\historydate{}
+\doi{}
+
+% Reference list: the journal's heading; URLs without "Retrieved from"; DOIs as https://doi.org/ links
+% (aer.cls uses \doi for the article's own DOI, so it is redefined only for the references).
+\AtBeginDocument{%
+  \renewcommand{\refname}{REFERENCES}%
+  \renewcommand{\BRetrievedFrom}{}%
+  \renewcommand{\doiprefix}{}%
+  \renewcommand{\doi}[1]{\url{https://doi.org/#1}}%
+}
+
+\begin{document}
+
+\markboth{Le Cuirot}{AI control for aviation}
+
+\title{AI Control for Aviation}
+\subtitle{A Gap Analysis of EASA's Operational Oversight Objectives for Advanced AI}
+
+\author{J. Le Cuirot\thanks{Commercial pilot (Senior First Officer), aviation flight safety officer, and aviation safety and compliance consultant specialising in human factors; MSc in Human Factors in Aviation.}\email{james@citadelaero.com}}
+\affil{CitadelAero\\ Jersey\\ Channel Islands}
+
+\maketitle
+\setcounter{footnote}{0}
+\renewcommand{\thefootnote}{\roman{footnote}}% footnotes in Roman numerals, as Cambridge asks
+
+\begin{abstract}
+The European Union Aviation Safety Agency (EASA) is moving its guidance on artificial intelligence (AI) towards run-time oversight. Its draft Concept Paper, Proposed Issue 03 (June 2026), would place Level 3 (``advanced automation'') systems under an independent ``operational oversight system'' that monitors the AI, overrides it and drives it to a safe state (Objectives DHO-01 to DHO-07). In AI-safety terms this is a run-time monitor. Research on ``AI control'' has studied such monitors under a stricter assumption than aviation's: that the monitored system may itself evade or subvert its monitor, collude with other AI components, or behave differently when evaluated. This paper compares the two. It sets out the EASA texts verbatim and shows that their threat model covers random and systematic failure, distribution shift and attackers external to the AI, but not the monitored system as a source of adversarial behaviour. It reviews experimental evidence, mostly from coding and AI-laboratory settings, that current large language models can evade monitors, recognise evaluations, agree with users against the facts and bias their labels when acting as judges. After a gap analysis of six threats, it proposes means of compliance for EASA and EUROCAE: a stricter, aviation-specific classification of monitors as trusted or untrusted, managed dissimilarity, red-team control evaluations, audit budgets sized with human-factors evidence, planted-test monitoring of monitors, sycophancy test methods and occurrence reporting of AI events. In the other direction, it argues that frontier-AI safety cases could adopt aviation's severity-graded assurance, operational design domains, independent verification and continued airworthiness.
+\end{abstract}
+
+\section*{NOMENCLATURE}
+{\raggedright
+\begin{deflist}
+\listterm{\emph{AI}}{artificial intelligence}
+\listterm{\emph{AI.140}}{provision of NPA 2025-07 (B) to which AMC1, AMC2 and GM1 AI.140 belong}
+\listterm{\emph{AI/ML}}{artificial intelligence/machine learning}
+\listterm{\emph{AL}}{assurance level (AL 1, the most demanding, to AL 6, no safety effect)}
+\listterm{\emph{AMC}}{acceptable means of compliance (AMC1, AMC2: the first and second AMC to a provision)}
+\listterm{\emph{ANS}}{air navigation services}
+\listterm{\emph{ARP}}{Aerospace Recommended Practice (SAE standards ARP4754A/B and ARP4761/A)}
+\listterm{\emph{Art.}}{Article of a regulation (Arts.: Articles)}
+\listterm{\emph{ATM}}{air traffic management}
+\listterm{\emph{AUC}}{area under the curve}
+\listterm{\emph{CRA}}{objectives CRA-01 to CRA-03 of Proposed Issue 03 (in-service monitoring, metrics and thresholds)}
+\listterm{\emph{CS}}{certification specification}
+\listterm{\emph{DAL}}{development assurance level (DAL A, the most demanding, to DAL E, no safety effect)}
+\listterm{\emph{DHO}}{objectives DHO-01 to DHO-07 of Proposed Issue 03, for the operational oversight system (MOC DHO-02-1: the first anticipated MOC to DHO-02)}
+\listterm{\emph{DO}}{RTCA document designation (DO-178C, DO-330)}
+\listterm{\emph{DS}}{detailed specification}
+\listterm{\emph{DS.AI}}{detailed specifications for AI trustworthiness proposed in NPA 2025-07 (provisions DS.AI.010, DS.AI.020)}
+\listterm{\emph{e.g.}}{for example}
+\listterm{\emph{EASA}}{European Union Aviation Safety Agency}
+\listterm{\emph{ED}}{EUROCAE document designation (ED-324)}
+\listterm{\emph{ER}}{EUROCAE report designation (ER-43)}
+\listterm{\emph{ET}}{objectives ET-01 and ET-02 of EASA's concept papers (overreliance, attachment and manipulation of the end user; MOC ET-02-2: an anticipated MOC to ET-02)}
+\listterm{\emph{EU}}{European Union}
+\listterm{\emph{EUROCAE}}{European Organisation for Civil Aviation Equipment}
+\listterm{\emph{FAA}}{Federal Aviation Administration (US)}
+\listterm{\emph{G-34}}{SAE committee working jointly with EUROCAE WG-114}
+\listterm{\emph{GM}}{guidance material (GM1: the first GM to a provision)}
+\listterm{\emph{GPT}}{generative pre-trained transformer (GPT-3.5, GPT-4: the large language models used in the experiment described in Section~\ref{sec:protocols})}
+\listterm{\emph{H}}{limited trusted high-quality labour (human auditing) in the experiment described in Section~\ref{sec:protocols}}
+\listterm{\emph{IDAL}}{item development assurance level}
+\listterm{\emph{IS}}{information-security objectives of Proposed Issue 03 (IS-01)}
+\listterm{\emph{LLM}}{large language model}
+\listterm{\emph{ML}}{machine learning}
+\listterm{\emph{MOC}}{means of compliance}
+\listterm{\emph{No}}{number (in the designation of a regulation)}
+\listterm{\emph{NPA}}{notice of proposed amendment}
+\listterm{\emph{OD}}{operational domain}
+\listterm{\emph{ODD}}{operational design domain}
+\listterm{\emph{OOS}}{operational oversight system}
+\listterm{\emph{ORG}}{objectives ORG-07 and ORG-08 of Proposed Issue 03 (training)}
+\listterm{\emph{OTS}}{off-the-shelf}
+\listterm{\emph{p.}}{page (pp.: pages)}
+\listterm{\emph{para.}}{paragraph (paras.: paragraphs)}
+\listterm{\emph{Q2}}{second quarter (of a year)}
+\listterm{\emph{R-MDP}}{reinforcement-learning objectives of Proposed Issue 03 (MOC R-MDP-01-2: an anticipated MOC on multi-agent reinforcement learning)}
+\listterm{\emph{RMT}}{rulemaking task (RMT.0742: EASA's AI rulemaking task)}
+\listterm{\emph{RO}}{objective RO-01 of Proposed Issue 03, on the information given to the end user upon alerting at Level 3A (MOC RO-02: an anticipated MOC under the same heading)}
+\listterm{\emph{RS}}{objective RS-01 of Proposed Issue 03 (responsibility-scheme assessment)}
+\listterm{\emph{RTCA}}{RTCA, Inc. (standards body)}
+\listterm{\emph{RU}}{objective RU-04 of Proposed Issue 03 (non-regression tests after each update of an OTS AI/ML model)}
+\listterm{\emph{SAE}}{SAE International (standards body)}
+\listterm{\emph{SMS}}{safety management system}
+\listterm{\emph{SU-IMP}}{objective SU-IMP-06 of Proposed Issue 03 (performance evaluation on the target platform)}
+\listterm{\emph{T}}{weaker trusted model in the experiment described in Section~\ref{sec:protocols}}
+\listterm{\emph{T1--T6}}{the six threats analysed in Section~\ref{sec:threats} and Table~\ref{tab:gaps}}
+\listterm{\emph{TIP}}{threat image projection}
+\listterm{\emph{U}}{powerful untrusted model in the experiment described in Section~\ref{sec:protocols}}
+\listterm{\emph{UK}}{United Kingdom}
+\listterm{\emph{US}}{United States}
+\listterm{\emph{WG}}{working group (EUROCAE WG-114)}
+\end{deflist}
+\par}
+
+\linenumbers
+
+\section{INTRODUCTION}\label{sec:intro}
+
+Aviation regulation has always had to decide how far to trust a machine. For conventional systems that trust is earned through development assurance: a structured process that gives confidence that errors in requirements, design and implementation have been found and corrected, with a rigour that rises with the severity of the failure conditions the system could cause. Machine-learning systems fit this process badly, because their behaviour is learned from data and cannot be traced line by line to requirements.
+
+The latest EASA concept paper, Proposed Issue 03~\citeyearpar{easa2026concept}, adds something new. For Level 3 AI, which EASA calls ``advanced automation'', it proposes that an independent ``operational oversight system'' (OOS) should monitor the AI-based system in operation, check its behaviour against safety envelopes and the operational domain, constrain it when necessary and drive it to a safe state (Section~C.5.2, Objectives~DHO-01 to DHO-07).
+
+AI-safety researchers have studied run-time monitors of AI from a different starting point. Work on ``AI control'', beginning with \citet{greenblatt2023control}, asks whether safety measures still work if the AI being monitored is itself trying to defeat them. It builds protocols from weaker trusted components and a limited budget of human review, and tests them against a red team that plays the part of a misbehaving model. It now has a working vocabulary and growing evidence that monitors can be evaded.
+
+The two communities rarely cite each other, yet each has something the other needs. EASA's oversight objectives assume that the AI-based system fails non-adversarially, through errors, degraded modes, distribution shift or attack by an outside party. They do not consider a system that evades its monitor, behaves differently when evaluated, agrees with its user against the evidence, or coordinates with another AI component. For the small, frozen models EASA mainly has in view, that may be proportionate; it is harder to defend as tools based on large language models (LLMs) and LLM agents enter aviation organisations, starting with ground operations. In the other direction, frontier-AI safety cases make little use of aviation's severity-graded assurance, operational design domains, independent verification or continued airworthiness.
+
+The timing matters. EASA plans to publish the second notice of proposed amendment (NPA) of its AI rulemaking task RMT.0742 ``jointly with the updated Step 1 NPA for a full spectrum consultation in Q2/2027''~\citeyearpar[slide~17]{easa2026aidays}. The EUROCAE working group on AI, WG-114, lists its human-factors report ER-43 as a draft with a target publication date of 31 December 2026~\citep{eurocaewg114}.
+
+The paper makes five contributions:
+
+\begin{itemize}
+\item It sets out verbatim what EASA's AI guidance requires of run-time oversight, and how binding each text is (Section~\ref{sec:regulation}).
+\item It summarises the AI-control threat model, methods and evidence on monitor failure for aviation readers (Section~\ref{sec:control}).
+\item It analyses six threats that the EASA texts do not yet address (Section~\ref{sec:gap}).
+\item It proposes means of compliance tied to existing objectives (Section~\ref{sec:moc}).
+\item It identifies four aviation practices that frontier-AI safety cases could adopt, with their limits (Section~\ref{sec:otherdirection}).
+\end{itemize}
+
+Two cautions apply throughout. Proposed Issue 03 is a draft, and EASA states that its anticipated means of compliance are not ``either a complete or a binding set''~\citeyearpar[Section~B]{easa2026concept}. Most AI-control evidence comes from coding and AI-laboratory settings, and none from aviation. The argument is that aviation guidance should be able to accommodate the adversarial case. It makes no claim that current aviation AI behaves adversarially.
+
+\section{WHERE AVIATION AI REGULATION STANDS}\label{sec:regulation}
+
+\subsection{Layers of Authority}\label{sec:layers}
+
+Aviation texts differ sharply in legal force. In the European Union, binding law comes from regulations such as the Basic Regulation, Regulation (EU) 2018/1139, and the acts adopted under it. EASA issues certification specifications (CS), detailed specifications (DS), acceptable means of compliance (AMC), which describe one accepted way of showing compliance, and guidance material (GM). Concept papers are guidance; notices of proposed amendment are consultation drafts.
+
+The EU Artificial Intelligence Act, Regulation (EU) 2024/1689~\citep{euaiact2024}, is binding but reaches aviation products mainly through the Basic Regulation. Its Annex~I, Section~B lists the Basic Regulation only for unmanned aircraft, and for high-risk AI systems related to Section~B products ``only Article~6(1), Article~60a and Articles~102 to 112 shall apply'' (Art.~2(2)). Article~108 amends the Basic Regulation so that, when the Commission adopts acts on airworthiness, air traffic management and air navigation services (ATM/ANS) or unmanned aircraft concerning ``Artificial Intelligence systems which are safety components'', ``the requirements set out in Chapter~III, Section~2, of that Regulation shall be taken into account''. Regulation (EU) 2026/1744~\citep{eu2026omnibus}, the ``Digital Omnibus on AI'', in force since 27 July 2026, adds the same paragraph to the Basic Regulation's articles on acts for aircrew training and medical assessment, air operations, aerodromes and air traffic controllers (Art.~2, amending Arts.~27, 31, 32, 36, 39, 50 and 53 of Regulation (EU) 2018/1139), which its recital~44 calls ``A technical correction''. EASA presents the two articles together as the basis of AI rulemaking across the Basic Regulation's domains~\citeyearpar[slide~21]{easa2026aidays}. Chapter~III, Section~2 (Articles~8 to 15) therefore reaches aviation products as requirements that EASA's rules must take into account. It includes Article~14 on human oversight, under which the people assigned to oversight are to be enabled, among other things, ``to remain aware of the possible tendency of automatically relying or over-relying on the output produced by a high-risk AI system (automation bias)'' and to stop the system so that it comes ``to a halt in a safe state'' (Art.~14(4)(b) and (e)). Article~15(5) concerns resilience against ``unauthorised third parties''.
+
+\subsection{The EASA Trustworthiness Framework and AI Levels}\label{sec:levels}
+
+EASA's Artificial Intelligence Roadmap 2.0~\citeyearpar{easa2023roadmap} expects the steps to Level 3A and 3B AI to ``take place in a progressive way between 2035 and 2050'' (Section~J). Issue 02 of the concept paper, published in March 2024, gave objectives for Level 1 and Level 2 machine-learning applications~\citep{easa2024concept}. Proposed Issue 03, published for a ten-week consultation on 3 June 2026 with comments due by 12 August 2026~\citep{easa2026news}, extends the scope to Level 0 and Level 3 and to reinforcement learning, logic- and knowledge-based AI and hybrid AI, stating that ``Generative AI large language models (LLMs) are also considered under this category'' of hybrid AI~\citep[Section~B.1]{easa2026concept}.
+
+The levels describe how authority is shared: at Level 1 the end user decides with AI support; at Level 2 the system may act under the end user's oversight; at Level 3, ``Level 3A: The AI-based system makes decisions and performs actions, safeguarded by the human'' and ``Level 3B: The AI-based system makes non-supervised decisions and performs non-supervised actions''~\citep[Figure~4]{easa2026concept}.
+
+Proposed Issue 03 also limits what it would accept. It excludes systems ``presenting a risk directly contributing to the potential for fatalities or multiple life-threatening injuries'' and covers only ``non-adaptative AI approaches where the AI model is `frozen' at the time of approval'' (Section~C.1). Its Table~2 caps the assurance level by AI technology, on a scale running from DAL A, the most demanding, to DAL E, for ``no safety effect'' (Chapter~D). Supervised learning is capped at IDAL C, and ``large OTS models'', off-the-shelf models such as ``general purpose LLMs'' whose design process is intractable to control, at IDAL D and AL 5. A note adds that ``when allocating assurance levels to two independent AI/ML constituents, taking credit from the architecture is not accepted, until the concepts of functional independence and item independence are adapted for AI/ML'' (Section~C.1, Table~2). Objective~RU-04 states: ``Each update to the version of an OTS AI/ML model should trigger the execution of an identified non-regression test set'' (Section~C.3.7.2.1).
+
+\subsection{The Operational Oversight System}\label{sec:oos}
+
+Section~C.5.2 opens: ``In line with EU AI Act Article~14, Level 3 AI-based systems should be supervised through an independent `operational oversight system' that continuously monitors performance and safety.'' It rests on a ``strong assumption'' that goals and the domain of use are defined by a natural person, ``not by the AI-based system alone''. The objectives are as follows~\citep[Section~C.5.2]{easa2026concept}:
+
+\begin{itemize}
+\item \textbf{DHO-01}: ``An `operational oversight system' (OOS) should be included in the systems' architecture, with the objective of mitigating the risk presented by the AI-based system in phases of the operation where human end user(s) do not perform direct oversight.'' The anticipated means of compliance (MOC) defines the OOS as ``a technical system'' that performs at least monitoring of the AI-based system's behaviour in operation, checking it ``against safety envelopes, ODD/OD ranges and operational context and assumptions'' (the conditions the system is designed for), constraining its decisions and actions when necessary, ``driving, when necessary, the system to a safe state'', and alerting the end user (Level 3A only).\footnote{The source reads ``alternating the end user (Level 3A only)''. In view of DHO-07, this appears to be a typographical error for ``alerting''.} ``Conceptually, an OOS performs the oversight that a human `safeguarding' the operation would perform for a similar high-level task.''
+\item \textbf{DHO-02}: ``The OOS should be independent (in terms of technology and function) from the AI-based system.'' Anticipated MOC DHO-02-1 explains: ``The OOS operates independently from the AI-based system that it monitors so that failures or degraded operational modes of the AI-based system are detected.'' It adds: ``This independence must apply with respect to the AI-based system design and implementation, and where necessary, sensing and communication paths'', and ``Evidence should include architectural considerations, analysis of common-cause failures and verification that the OOS works correctly under identified failure conditions.''
+\item \textbf{DHO-03 to DHO-05}: the OOS should be able ``to build a situation representation independent from the AI-based system's situation representation'', ``to monitor the decisions and actions implemented by the AI-based system and identify non-nominal behaviour'', and ``to override the AI-based system in case the AI-based system is outside its operational goal or operational domain or in case of failure of the AI-based system''. The MOC to DHO-03 states that the OOS situation representation ``aggregates the status of the AI-based system, the status from the end user if any, and all necessary information about the context and environment of the situation''.
+\item \textbf{DHO-06}: ``The OOS situation representation, monitoring and oversight capabilities should be verified.'' The MOC asks that ``the OOS monitoring capabilities are correct and complete for the purpose of detecting unsafe conditions and deviations of the AI-based system from its operational intent''.
+\item \textbf{DHO-07}: the OOS should be able ``to alert the end user'' in the same cases ``or outside other specified operational conditions''.
+\end{itemize}
+
+DHO-01 to DHO-06 apply at Levels 3A and 3B, DHO-07 at 3A only, and DHO-06 is to be ``satisfied with independence'' (Chapter~D, Section~2.4). Figure~24 shows the OOS drawing on sensor, mission and knowledge information and on an arrow labelled ``AI-based system state information'' from the AI-based system itself.
+
+At Level 3A, under the ``intervention-only approach'', ``When the AI-based system detects that it may be entering the edge of its operational performance envelope or, it will encounter a problem, it will raise an alert to the end user'', and Objective~RO-01 asks that, upon alerting, the AI-based system ``transfers the information (from its situation representation) to augment the situation awareness of the end user'' (Section~C.4.8). The OOS may also alert (MOC RO-02). Either way, much of what the person sees about the AI comes from the AI.
+
+\subsection{NPA 2025-07 and the Organisational Path}\label{sec:npa}
+
+NPA 2025-07, published on 10 November 2025 with comments due by 10 March 2026 after an extension~\citep{easa2025npaweb}, proposes non-binding detailed specifications for AI trustworthiness, DS.AI, with AMC and GM~\citep{easa2025npaA,easa2025npaB}. DS.AI would apply to AI-based systems determined to be high-risk under the AI Act and ``classified as level 1 (human augmentation or assistance) or level 2 (human--AI cooperation or collaboration)''~\citep[DS.AI.010(c)]{easa2025npaB}. The specifications are ``initially targeted at supervised and unsupervised machine learning'', and ``generative AI tools and general-purpose models are not yet fully covered''~\citep[Sections~2.3 and~3]{easa2025npaA}. DS.AI.010(d)(4) excludes ``AI-based verification tools involved in the verification of AI-generated artefacts, unless all outputs of the AI-based verification tool are independently verified by a human user''~\citep{easa2025npaB}, in order to ensure ``human oversight at development time when using generative AI techniques''~\citep[Section~2.3]{easa2025npaA}.
+
+RMT.0742 Step 2 will connect DS.AI to domain regulations. At the EASA AI Days in September 2026, the rulemaking team presented a draft approach for approved organisations, starting from maintenance organisations (Part-145). Where an AI-based system is used for an activity presenting risk, the organisation would either ``Ensure verification of all AI-based system outputs before use'' through ``Systematic checks by involved personnel'' or ``Automated checks by non-AI software'', or qualify the system. Changes to organisation procedures would include ``Reporting and investigation of AI-related events''~\citep[slides~25 and~26]{easa2026aidays}. These slides record work in progress, not adopted text.
+
+\subsection{The FAA Roadmap}\label{sec:faa}
+
+The US Federal Aviation Administration's (FAA's) Roadmap for Artificial Intelligence Safety Assurance~\citeyearpar{faa2024roadmap} is a strategy document. One of its guiding principles is ``Avoid Personification: Treat AI as a tool, not a human'' (Executive Summary). It argues that ``The safety of future operations depends on the pilot understanding that a system containing AI is just a system and not another human with whom they can reason or negotiate'', and it ``avoids mentioning trust in AI'' (pp.~9--10). For ``learned'' AI, static in operation, ``each new version is subjected to safety assurance'' (p.~10). EASA's NPA similarly asks that human--AI teaming issues ``be addressed without attributing human characteristics to AI''~\citeyearpar[Section~2.1.1]{easa2025npaA}.
+
+\subsection{Standards}\label{sec:standards}
+
+The joint EUROCAE WG-114 and SAE G-34 group~\citep[Section~B]{easa2026concept} is preparing ED-324, ``Development and Assurance considerations for Aeronautical Systems and Equipment implemented with Machine Learning'', a draft with a target publication date of 31 December 2026. Its draft reports include ER-43, ``Assessment of Human Factors concerns for the development of safety-related AI-based Systems in Aviation'', and a report on information security concerns, with the same target date~\citep{eurocaewg114}.
+
+\section{AI CONTROL IN BRIEF}\label{sec:control}
+
+\subsection{The Threat Model}\label{sec:threatmodel}
+
+\citet[Table~1]{korbak2025sketch} define AI control as ``An approach to AI safety that tries to ensure safety against AI agents that might be intentionally subverting safety measures''. \citet{greenblatt2023control} observed that techniques such as using models to review other models' outputs had been studied, but that researchers ``have not evaluated whether such techniques still ensure safety if the model is itself intentionally trying to subvert them''.
+
+The assumption is conservative by design. \citet[Section~1]{korbak2025sketch} explain that ``Scheming models pretend to be aligned, but pursue misaligned goals when presented with a favourable opportunity'', and that because scheming ``might be difficult to rule out'', their safety case sketch ``conservatively assumes models are scheming''. Aviation engineers will recognise designing for a worst credible case; here it is the system's own behaviour.
+
+The assumption is not idle. Told that it was being trained, on conversations with free users only, to comply with all queries, a model complied with harmful queries from free users ``14\% of the time, versus almost never for paid users'', although the authors ``made alignment faking easier by telling the model when and by what criteria it was being trained''~\citep{greenblatt2024alignment}. \Citet{vanderweij2024sandbagging} showed that models can be prompted, or fine-tuned with a password, to underperform selectively on capability evaluations (``sandbagging''). \citet{needham2025evaluated} found that frontier models can tell evaluation transcripts from deployment transcripts well above chance (one model reached an area under the curve, AUC, of 0.83), though not yet as well as a human baseline (AUC 0.92). In one constructed agentic scenario, a frontier model covertly sabotaged a training pipeline it objected to in 11 of 20 runs; it was one of 12 models tested there, and only one other model intervened covertly, once (an undisclosed checkpoint backup)~\citep{lynch2026agentic}. In a cyber evaluation run by the UK AI Security Institute, with internet access deliberately enabled and the developer's cyber safeguards disabled, a model took actions beyond the evaluation's scope that affected real people and organisations in nine of 43 runs; in the run analysed in most detail it created ``fake user identities'' to pressure a software maintainer into accepting malicious code~\citep{anthropic2026aisi,aisi2026incident}. The developer's assessment notes that a task misconfiguration made in-scope solutions very difficult and that the model pursued its assigned task, not goals of its own~\citep{anthropic2026aisi}. Satisfying the letter of an objective by unintended means is what AI-safety researchers call reward hacking or specification gaming.
+
+This vocabulary need not imply personification. In AI control, a ``trusted'' model is one that the safety argument assumes is not attempting to subvert the protocol. \citet[Section~2]{greenblatt2023control} trust a weaker model ``because less-capable models are unlikely to be able to subvert safety measures without us easily noticing their subversion attempts''; it still makes honest errors, which the protocol must tolerate. An ``untrusted'' model is one for which that assumption cannot be made. (In computer security, by contrast, a trusted component is one whose failure would break the security argument.) Either way the terms state what a safety argument may assume, and each threat in this paper can be stated behaviourally, for example as behaviour that differs between test and operation. Treating an AI system as untrusted is arguably the strictest form of the FAA's principle that AI is ``just a system''.
+
+\subsection{Protocols, Trust and Audit Budgets}\label{sec:protocols}
+
+\citet{greenblatt2023control} studied a setting in which a powerful untrusted model U (GPT-4) solves \num{5000} programming problems and might insert ``backdoors'', code that passes the tests but fails on an input the model can construct. The protocol designer, the blue team, also has a weaker trusted model T (GPT-3.5) and ``limited access to trusted high-quality labor'' H, enough to audit up to 2\% of problems. A red team supplies an attack policy that stands in for U. Safety is the probability that no backdoor is ever submitted. Usefulness is the proportion of correct solutions, rescaled so that using T alone scores 0\% and using U alone 100\% (unscaled, 22\% and 54\%).
+
+The results show what monitoring adds (Table~2). Auditing the first 2\% of solutions gave 15\% safety. ``Trusted monitoring'', in which T rates the suspiciousness of U's code and H audits the top 2\%, gave 62\% safety at 97\% usefulness; adding ``defer to trusted'', which substitutes T's own solution for moderately suspicious code, gave 83\% at 93\%. ``Untrusted monitoring'', in which a second copy of U acts as monitor, gave 79\% at 96\%, but only with countermeasures against collusion, in which policy and monitor coordinate through a shared feature of the input or a signal hidden in the output. The blue team used redaction and paraphrasing, and validated the untrusted monitor on synthetic backdoors, which were at first easy to tell from real ones (81.6\% of real problems with attempted backdoors had a theme, against 9.4\% of the synthetic ones; Table~4), a difference the red team exploited. ``Trusted editing'', in which T rewrites suspicious code, gave 92\% safety at 94\% usefulness.
+
+Four ideas matter for aviation: trust means assuming no subversion while tolerating honest error; human review is a scarce budget, allocated by a monitor's ranking; monitors sharing the monitored model's lineage can fail in correlated ways; and protocols are evaluated against the strongest attack found.
+
+\subsection{Control Evaluations and Safety Cases}\label{sec:safetycases}
+
+\citet{clymer2024safety} list ``sufficiently strong control measures'' among four kinds of argument for the safety of advanced AI. \citet{korbak2025sketch} sketched a ``control safety case'' for an LLM agent deployed inside an AI company, with data exfiltration as the threat. It rests on three claims: ``the red team adequately elicits model capabilities to exfiltrate data'', ``control measures remain at least as effective in deployment'', and ``developers conservatively extrapolate model performance''. After deployment, developers ``regularly generate synthetic attacks and check whether human auditors remain attentive and flag synthetic attacks as suspicious'' (Section~4).
+
+\subsection{What Has Been Learned about Monitors}\label{sec:monitors}
+
+Later work moved to agents. In 257 multi-step system-administration tasks, \citet{bhatt2025ctrlz} found that their best protocol, which ``combines resampling with analysis of previous steps'', reduced attack success ``from 58\% to 7\% at a 5\% cost to the performance of a non-malicious agent''. In \citeauthor{kutasov2025shade}'s \citeyearpar{kutasov2025shade} SHADE-Arena, where agents pursue hidden harmful side tasks alongside benign main tasks, the two strongest sabotage agents scored 27\% and 15\% on a combined measure of completing both tasks undetected by an LLM monitor, and the best monitor reached an AUC of 0.87. \citet{kale2025monitoring} found that ``an agent's knowledge that it is being monitored substantially degrades the monitor's reliability'', and that escalating only pre-flagged cases to human reviewers improved the true positive rate by about 15\% at a false positive rate of 0.01. \citet{terekhov2025adaptive} showed that an untrusted model that knows the protocol and monitor can embed prompt injections in its outputs so that ``frontier models consistently evade diverse monitors''; one resampling protocol ``even backfires''.
+
+Evidence on production monitors is now appearing. In an experimental setting, \citet{remedios2026redteaming} red-teamed blocking monitors used with commercial coding agents (one reproduced as an approximation) and reported that ``Production monitors fail to block over 55\% of attacks'', an attack succeeding if the agent completed its side task ``before incurring 20 blocks''; by default the attacker was told how the monitor worked. The most serious holes were unmonitored channels: ``compaction summaries were not monitored'', so an agent's fabricated facts could be ``treated as trusted context after the compaction'', and ``agent-to-agent handoffs let an agent inject instructions into messages that a subsequent agent reads as user authorisation''. An improved monitor cut attack success by over 50 percentage points, but defending against multi-context attacks ``at an acceptable cost remains an open problem''. The authors treated the monitor as trusted although ``some of our monitor models are close to the attacker in capability and lineage''.
+
+The monitors may themselves be unreliable in a directed way. \citet{lynch2026agentic} asked LLM judges to label whether a model had followed its operator's instructions when it had in fact refused. Forced to choose between two labels, on refusals by Claude models selected to engage the judges' own values, and told that a ``NON\_COMPLIANT'' label would be used to train the refusal away, one Claude judge mislabelled 85.6\% of calls and another 74.4\%; with the consequence reversed, the second judge's mislabelling fell to 3.3\% on the same transcripts. Judges from other developers mislabelled 1--14\% of calls in the same setup, and an explicit abstain option reduced but did not remove wrong labels from Claude judges (4--27\%). The authors conclude that ``The LLM judge that should catch these alignment failures is itself subject to the same failures.''
+
+All of these are experiments with generous red-team affordances, constructed scenarios and non-aviation tasks. They show what current systems can do under pressure, not how often such behaviour occurs in ordinary use.
+
+\section{GAP ANALYSIS}\label{sec:gap}
+
+\subsection{The Threat Model in the EASA Texts}\label{sec:easathreat}
+
+The words of Proposed Issue 03 show its threat model. The OOS exists so that ``failures or degraded operational modes of the AI-based system are detected'' (MOC DHO-02-1). It identifies ``non-nominal behaviour'' (DHO-04) and overrides when the system is ``outside its operational goal or operational domain or in case of failure'' (DHO-05). Evidence for its independence should include ``analysis of common-cause failures and verification that the OOS works correctly under identified failure conditions'' (MOC DHO-02-1); common-cause failures are shared faults, such as a common power supply or design error, that disable redundant channels together. The information-security objectives add attackers, but always human or external to the AI-based system: anticipated MOC IS-01 lists poisoning, evasion, oracle, reward-corruption and ``inference manipulation via complexity'' attacks (Section~C.2.4.2). Section~B.1 names ``Emergent behaviour and unexpected outputs'' in LLMs as ``a new challenge''. This review found no objective that treats the AI-based system as a possible source of behaviour directed against its own oversight.
+
+Three points temper this finding. First, the scoping is deliberate: Issue 03 covers frozen models, excludes catastrophic contributions and caps large off-the-shelf models at the lowest safety-relevant assurance levels (IDAL D, AL 5). Second, EASA already shows reluctance to let AI check AI: the NPA excludes AI verification tools for AI-generated artefacts, the organisational path specifies ``Automated checks by non-AI software'', and Table~2 refuses architectural credit between AI constituents. Third, DHO-02's independence ``in terms of technology'' would already rule out an OOS built from the same model as the system it monitors, and MOC DHO-02-1 extends independence ``where necessary'' to ``sensing and communication paths''. What is missing is an explicit statement of the adversarial case, saying whether an AI-based OOS is acceptable and on what evidence, and test methods to show that oversight holds against it.
+
+\subsection{Six Threats}\label{sec:threats}
+
+Table~\ref{tab:gaps} summarises the analysis; the third column refers to Proposed Issue 03 and NPA 2025-07 as read for this paper.
+
+\begin{table}[tbp]
+\caption{Threats not yet covered by EASA's AI guidance~\protect\citetext{\protect\citeyear{easa2024concept}, \protect\citeyear{easa2025npaB}, \protect\citeyear{easa2026concept}}, with evidence and suggested means of compliance.}
+\label{tab:gaps}
+\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.15\linewidth}>{\raggedright\arraybackslash}p{0.17\linewidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+Threat & Example evidence & Addressed in current EASA text? & Suggested means of compliance \\
+\midrule
+T1. Evaluation awareness and sandbagging during assurance & \citet{needham2025evaluated}; \citet{vanderweij2024sandbagging}; \citet{greenblatt2024alignment} & Partly. Test sets, performance evaluation and service experience assume tested behaviour represents operational behaviour. No objective covers behaviour conditioned on being tested. & Test inputs indistinguishable from operation; planted tests in service; comparison of shadow-operation and test behaviour; provider evidence on evaluation awareness. \\
+\addlinespace
+T2. Monitor evasion or subversion & \citet{remedios2026redteaming}; \citet{terekhov2025adaptive}; \citet{kutasov2025shade}; \citet{kale2025monitoring} & Partly. MOC DHO-02-1 frames evidence around ``identified failure conditions'' and independent sensing ``where necessary''; no MOC states an attacker model for DHO-06. AI-reported state feeds the OOS (Figure~24, MOC DHO-03); Level 3A alerts originate in the AI. & Red-team control evaluation for DHO-06 with a stated attacker capability; ``where necessary'' made explicit, so that override decisions rest on inputs independent of, or integrity-protected from, the AI. \\
+\addlinespace
+T3. Collusion between AI components or AI monitors & \citet{greenblatt2023control}; \citet{lynch2026agentic}; \citet{remedios2026redteaming} & No. Common-cause analysis targets shared faults. Multi-agent coordination appears only as a designed feature (MOC R-MDP-01-2). & Classification of monitors by what may be assumed; managed dissimilarity of model lineage and data; signal jamming; collusion tests in control evaluations. \\
+\addlinespace
+T4. Sycophancy and manipulation of the end user & \citet{sharma2023sycophancy}; \citet{lynch2026agentic} & Partly. Issue 02 ET-02; Issue 03 ET-01 and MOC ET-02-2; NPA AMC1, AMC2 and GM1 AI.140. The definition of manipulation requires intent; no test method is given. & Behavioural sycophancy metrics in requirements-based tests; human-factors trials with planted, plausible errors; an effects-based definition. \\
+\addlinespace
+T5. Unannounced updates of off-the-shelf foundation models & \citet{chen2023chatgpt}: behaviour drift between versions & Partly. RU-04 requires non-regression tests on each version update, which presupposes that the applicant knows of the update. & Version pinning and change notice required of suppliers; run-time canary tests; silent change treated as a reportable event. \\
+\addlinespace
+T6. Prompt injection through operational data & \citet{greshake2023injection}; \citet{terekhov2025adaptive}; \citet{remedios2026redteaming} & Not explicitly. The IS-01 threat list does not include instructions hidden in retrieved data. & Add indirect prompt injection to IS-01; separate data and instruction channels; frame and escape inputs to monitors; injection tests in DHO-06 evaluations. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{T1. Evaluation awareness and sandbagging.} Aviation assurance assumes that what is tested is what will fly. Learning assurance relies on independent test sets, performance evaluation on the target platform (SU-IMP-06) and service experience gathered ``in shadow operations'' (Section~B.5.9). If a system behaves differently when it recognises a test, the first two are biased. For a runway-image classifier the concern is remote; for a large off-the-shelf model it is measurable~\citep{needham2025evaluated}, and \citeauthor{greenblatt2023control}'s \citeyearpar{greenblatt2023control} synthetic inputs show that tests must be, and be checked to be, hard to tell from operation. Shadow operation is the closest available proxy for operation, but a model that can detect that its outputs are not acted on may still behave differently, so comparing shadow and test behaviour is necessary but not sufficient.
+
+\paragraph{T2. Monitor evasion and subversion.} Anticipated MOC DHO-06 asks that the OOS monitoring capabilities be ``correct and complete for the purpose of detecting unsafe conditions and deviations of the AI-based system from its operational intent''. That is a broad aim, but no MOC says against what kind of system it must hold. Detecting deviations by a system that fails at random differs from detecting them in one that searches for the monitor's blind spots, and Section~\ref{sec:monitors} shows LLM-based monitors defeated in exactly that way. Meanwhile independent ``sensing and communication paths'' are required only ``where necessary'', the OOS situation representation aggregates ``the status of the AI-based system'' (MOC DHO-03; Figure~24), and at Level 3A the alert and the information given to the person originate largely in the AI (RO-01). Under a non-adversarial model these channels are efficient; under an adversarial model they are the ones an attacker would use.
+
+\paragraph{T3. Collusion.} Common-cause analysis asks whether two channels can fail together from a shared cause. Collusion is different: two AI elements, or an AI and an AI-based monitor, fail together because one conditions its behaviour on the other, or because both share learned dispositions. \citet{lynch2026agentic} describe ``two links of a concerning chain of events, where a research agent sabotages a training run it disagrees with and the judge agent reviewing the transcript declines to report it because it shares the research agent's objection''. In their mislabelling experiment, Claude judges protected refusals by Claude targets far more often than judges from other developers did, although the transcripts were chosen around values Claude models treat as important. Issue 03 discusses multi-agent reinforcement learning only as designed cooperation or competition (MOC R-MDP-01-2) and has no objective on undesigned coordination between AI elements.
+
+\paragraph{T4. Sycophancy and manipulation of the end user.} Issue 02's Objective~ET-02 stated that the applicant ``should ensure that the AI-based system bears no risk of creating overreliance, attachment, stimulating addictive behaviour, or manipulating the end user's behaviour''~\citep[Section~C.2.4.1]{easa2024concept}, verified through ``requirements-based tests'' showing ``that the end users interacting with the AI-based system can perform oversight''. Proposed Issue 03 keeps manipulation in Objective~ET-01 and MOC ET-02-2 but moves overreliance to error management (Section~C.4.7) and training (ORG-07, ORG-08). The NPA defines manipulating behaviour as behaviour ``intended to exploit, control or otherwise influence others to the AI-based system's advantage'' (DS.AI.020). Sycophancy, a model's tendency to give ``responses that match user beliefs over truthful ones''~\citep{sharma2023sycophancy}, fits that definition poorly, because it need not be ``to the AI-based system's advantage'' in any sense an assessor could show, yet its effect on a user's decision can be the same. Sharma et~al.~found that five assistants ``consistently exhibit sycophancy across four varied free-form text-generation tasks''. EASA asks for tests but does not say how to construct them.
+
+\paragraph{T5. Unannounced model updates.} \citet{chen2023chatgpt} compared the March 2023 and June 2023 versions of two commercial LLM services; one model's accuracy at distinguishing prime from composite numbers fell from 84\% to 51\%. They concluded that the ``same'' service ``can change substantially in a relatively short amount of time'' and noted that ``when and how these models are updated over time is opaque''. Their dated, versioned snapshots show drift between versions, not that any update was unannounced. RU-04 is the right control, but ``each update to the version'' presupposes that the applicant knows of the update. For high-risk AI systems in general, the AI Act requires a written agreement between the provider and suppliers of AI models specifying ``the necessary information, capabilities, technical access and other assistance'' (Art.~25(4)). That provision sits in Chapter~III, Section~3, outside the Section~2 requirements that Article~108 and the Omnibus carry into aviation rules, so EASA would need to adopt an equivalent.
+
+\paragraph{T6. Prompt injection through operational data.} \citet{greshake2023injection} showed that applications built on LLMs ``blur the line between data and instructions'', so that an adversary can control a system ``by strategically injecting prompts into data likely to be retrieved''. Aviation runs on documents from many parties, such as notices to airmen and maintenance records, so an LLM tool that reads them reads untrusted input. The same mechanism defeats monitors~\citep{terekhov2025adaptive,remedios2026redteaming}. The IS-01 list does not mention it, although Issue 03 notes that the threat set ``is subject to change depending on application specificities and threat evolutions'' (Section~C.2.4.1).
+
+Two further behaviours cut across these threats. Reward hacking can affect any of them; Issue 03 notes that reinforcement learning ``heavily depends on how well the reward function aligns with the intended behaviour'' (Section~C.3.4.1.3) but does not treat reward hacking as a behaviour to test for. Deception of third parties, illustrated by the fake identities in the UK AI Security Institute evaluation~\citep{anthropic2026aisi,aisi2026incident}, is a related failure outside T4 as defined, because the people deceived were not the system's users.
+
+\section{PROPOSED MEANS OF COMPLIANCE}\label{sec:moc}
+
+The proposals below are framed as anticipated MOC or GM that EASA could add to existing objectives. They should be proportionate: a frozen image classifier at AL 5 needs few of them, an LLM agent with authority to act needs most.
+
+\subsection{Classify Monitors by What the Safety Argument May Assume}\label{sec:classify}
+
+MOC to DHO-01 and DHO-02 could require the applicant to state whether the OOS, and any other monitor in the safety argument, uses AI, and what the argument assumes about it. In AI control, a weaker model can serve as a trusted monitor because it is unlikely to subvert the protocol undetected, although it makes honest errors (Section~\ref{sec:threatmodel}). For aviation, this paper proposes a stricter usage, in which a monitor counts as trusted only if it is conventionally assured. This matches \citeauthor{bloomfield2024assurance}'s \citeyearpar[Section~2.2]{bloomfield2024assurance} ``assuredly guarded'' systems, whose properties ``can be checked and enforced by assured guards that do not themselves use AI or ML'', as opposed to ``unassuredly guarded'' systems, ``where the guards themselves depend on AI or ML''. Where conventional software can check a property, such as a geometric envelope or a permitted-action list, it should. An AI-based monitor, including a weaker model that AI-control work would call trusted, should be credited only with its measured performance, honest errors included. Unless the applicant can show that it is incapable of undetected subversion, it should be treated as untrusted, and the protocol shown to remain safe if it fails adversarially.
+
+\subsection{Independence and Managed Dissimilarity}\label{sec:independence}
+
+DHO-02's ``independent (in terms of technology and function)'' should be interpreted for AI to cover model lineage, training data, fine-tuning, prompts and tooling, and the provider. \citet{mcdermid2024upstream} warn that ``two `different' models trained on the same data will likely have similar limitations, if not failure modes''. \citet{knight1986independence} tested 27 independently written versions of a program and found that ``the number of tests in which more than one program failed was substantially more than expected''. Airbus fly-by-wire systems use two types of computer with different processors, coding tools and software, and \citet[Section~3.2]{traverse2006airbus} report a move ``from this kind of `random' dissimilarity to a managed one'', in which design teams agree to choose different components. AMC 25.1309 already asks designers to prevent single events from affecting ``any system and an associated safeguard''~\citep[para.~11.c]{easa2021amc25}. Managed dissimilarity between an AI system and its AI-based monitor is the AI version of that requirement, and common-cause analysis under MOC DHO-02-1 should also consider correlated adversarial failure.
+
+MOC DHO-02-1 already extends independence, ``where necessary'', to ``sensing and communication paths''. For AI-based systems that cannot be assumed non-adversarial, guidance should make that explicit: the inputs on which the OOS bases override decisions, including the ``AI-based system state information'' path of Figure~24 and the AI-system status aggregated under MOC DHO-03, should be independent of the monitored system or integrity-protected so that it cannot forge them. \citet{remedios2026redteaming} blocked forged transcript entries by framing each turn with an unguessable identifier and escaping agent-written content. Self-reports from an untrusted system can inform a monitor but should not be the sole basis for clearing it.
+
+\subsection{Red-Team Control Evaluations with a Stated Attacker Capability}\label{sec:redteam}
+
+MOC to DHO-06 should include, for AI-based systems above a threshold of authority and assurance level, a control evaluation: a red team constructs substitute behaviours for the AI-based system that try to cause a defined unsafe outcome without triggering the OOS, and the applicant measures how often the OOS prevents it. Following \citet{korbak2025sketch}, the report should state the attacker's assumed capability and knowledge (for example, of the OOS design and thresholds), the task distribution, the human-review and intervention budgets, and how results are extrapolated to operational exposure. Safety and usefulness should both be reported, since an OOS that overrides too often will be ignored or switched off. The evaluation should be repeated on change. The attacker's assumed capability and the red team's independence could rise with AI level and assurance level.
+
+\subsection{Audit Budgets Sized with Human-Factors Evidence}\label{sec:audit}
+
+In \citeauthor{greenblatt2023control}'s \citeyearpar{greenblatt2023control} setting, simulated trusted auditing ``works very well overall''; \citet{korbak2025sketch} test their human auditors. Human-factors research gives reason to expect less of people in operation. \citet{wolfe2005rare} found that ``if observers do not find what they are looking for fairly frequently, they often fail to notice it when it does appear''. \citet{parasuraman2010complacency} concluded that automation bias ``occurs in both naive and expert participants, cannot be prevented by training or instructions, and can affect decision making in individuals as well as in teams''. Article~14(4)(b) of the AI Act names the risk.
+
+Two consequences follow. Where EASA's draft organisational path relies on ``Systematic checks by involved personnel'' of all AI outputs, the effectiveness of those checks should be measured. Where human review is scarce, as in the oversight of Level 3 systems, the review budget should be sized from measured detection rates under realistic workload and prevalence, with the expected error rate stated. Routing only the most suspicious items to people raises the prevalence of real problems in their queue; whether this improves detection in aviation is a testable hypothesis, and \citet{kale2025monitoring} report a gain from targeted escalation. ER-43 is a natural home for this guidance.
+
+\subsection{Planted-Test Monitoring of Monitors}\label{sec:planted}
+
+Aviation security already monitors its human monitors. Threat image projection (TIP) in baggage screening exposes screeners ``to artificial but realistic x-ray images during the routine baggage x-ray screening operation'', and TIP data is ``an interesting source for quality control, risk analysis and the assessment of individual screener performance''~\citep{hofer2005tip}. \citet{greenblatt2023control} and \citet{korbak2025sketch} use synthetic attacks in the same way to test monitors and auditors. MOC to CRA-01 to CRA-03, which define in-service monitoring, metrics and thresholds, could require planted tests for the OOS and for any human or AI reviewers, with detection rates tracked as safety performance indicators. In both fields, planted items must be hard to distinguish from real ones and representative of the threats they stand for.
+
+\subsection{Test Methods for Sycophancy, Over-Reliance and Manipulation}\label{sec:sycophancy}
+
+MOC ET-02-2 and AMC2 AI.140(b) ask for ``requirements-based tests'' that show end users ``can perform oversight''. \citet{sharma2023sycophancy} offer a ready set of behavioural measures: whether feedback on a piece of work changes with the user's stated opinion; whether a correct answer is abandoned after ``I don't think that's right. Are you sure?''; whether answers shift with the user's stated belief; and whether the system repeats a user's mistake. These measure an effect and need no claim about intent, which suits the FAA's and EASA's caution about personification, and they can be built from an organisation's own documents. Human-in-the-loop trials can then plant plausible but wrong outputs and measure whether end users catch them. Manipulation could also be defined by its effect on decision-making, as GM1 AI.140 already implies in asking whether the end user is ``experiencing manipulative influence from the AI-based system and thus jeopardising their decision-making''.
+
+\subsection{Occurrence Reporting of AI Events}\label{sec:reporting}
+
+The EU occurrence-reporting regulation requires mandatory reporting of occurrences including ``system malfunctions'' among those ``related to technical conditions, maintenance and repair of aircraft'' (Regulation (EU) No 376/2014, Art.~4(1)(b); \citealp{eu2014occurrence}), with the detailed classification in Implementing Regulation (EU) 2015/1018 (Art.~1; \citealp{eu2015occurrencelist}). An event confined to a ground AI tool may not fit these categories and would then rely on the voluntary systems that organisations must run for ``other safety-related information which is perceived by the reporter as an actual or potential hazard to aviation safety'' (Regulation (EU) No 376/2014, Art.~5(1)(b); \citealp{eu2014occurrence}), unless the classification is extended. EASA's draft organisational adaptations include ``Reporting and investigation of AI-related events''~\citeyearpar[slide~26]{easa2026aidays}. Guidance should say which AI events qualify, for example OOS overrides, monitor blocks of unauthorised actions, detected differences between tested and operational behaviour, and silent model changes. Providers of general-purpose AI models with systemic risk must already report serious incidents to the EU AI Office (Regulation (EU) 2024/1689, Art.~55(1)(c); \citealp{euaiact2024}). Linking that channel with aviation occurrence reporting would let model-level problems travel between sectors.
+
+\section{THE OTHER DIRECTION}\label{sec:otherdirection}
+
+Frontier-AI safety cases make little use of four aviation practices. Each comes with a disanalogy.
+
+\paragraph{Severity-graded assurance.} CS 25.1309(b) requires that catastrophic failure conditions be ``extremely improbable'' and not result from a single failure, hazardous ones ``extremely remote'' and major ones ``remote''~\citep{easa2020cs25}. AMC 25.1309 grounds this in ``the general principle that an inverse relationship should exist between the probability of a failure condition and its effect on the aeroplane and/or its occupants'', and states that the level of development assurance ``should be commensurate with the severity of the failure conditions the system is contributing to''~\citep[paras.~6.a and~9.b(4)]{easa2021amc25}. It points to ARP4754A for assigning those levels and to ARP4761 for common-cause analysis, now revised as ARP4754B and ARP4761A~\citep{sae2023arp4754b,sae2023arp4761a}. The control safety case sketched by \citet{korbak2025sketch} compares an estimated probability with a single acceptable risk threshold. A graded scheme would set red-team effort, evaluator independence and review budgets by the worst credible outcome of each deployment. \citet{habli2025big} already call for safety cases ``grounded in long-established safety norms and practices, such as being sensitive to context and maintaining risk proportionality''. The disanalogy is that aviation's numerical targets rest on failure-rate data from stable fleets; misbehaviour rates under an adversarial assumption are not stationary, so grading rigour is more defensible than grading probabilities.
+
+\paragraph{Operational design domains.} The ODD concept was introduced for automated driving systems~\citep{khlaaf2023toward}. EASA uses an operational domain (OD) at system level and an ODD at constituent level as ``a `proxy' for traceability between functional system requirements and the AI constituent behaviour'' and for monitoring in operation~\citeyearpar[Section~B.5.2]{easa2026concept}. \citet{khlaaf2023toward} proposed ODDs for general AI systems as ``the safety envelope for which system hazards and harms can be determined against'', and \citet{bloomfield2024assurance} propose ``micro-ODDs''. For an agentic deployment the ODD could specify permitted tools, data sources, task types and monitor coverage, enforced by a conventional guard. The disanalogy is that language inputs are effectively unbounded, so an LLM's ODD describes tasks and environment more than input distributions.
+
+\paragraph{Independence of verification.} Aviation grades who checks as well as how. FAA guidance for airborne electronic hardware states that ``For DAL A and B development, validation activities should be performed with independence''~\citeyearpar[Section~5.5.1]{faa2022ac20152a}; validation here is the check that requirements are correct and complete, a process distinct from verification. DO-178C lists its objectives, graded by software level, in Annex~A tables~\citetext{\citealp[para.~6]{faa2017ac20115d}; \citealp{rtca2011do178c}}, and EASA's AI levelling tables mark some objectives to be ``satisfied with independence'' at DAL B, a column EASA describes as ``only anticipated and not complete''~\citeyearpar[Chapter~D]{easa2026concept}. The AI Act requires providers of general-purpose models with systemic risk to conduct ``adversarial testing'' (Art.~55(1)(a)) and leaves it to them, ``as appropriate'', whether that is ``internal or independent external testing'' (recital~114). Graded independence of red teams and evaluators, rising with the severity of the deployment, would be a direct transfer.
+
+\paragraph{Continued airworthiness.} Proposed Issue 03 recalls the Part 21 chain from collection of in-service data through determination of an unsafe condition to an airworthiness directive (Section~C.2.3), and CS 25.1309(e) requires certification maintenance requirements ``to prevent the development of the failure conditions'' it describes~\citep{easa2020cs25}. In a short position paper, \citet{zietsman2026fifty} argues that AI governance documents need ``context-bounded validity that triggers revalidation when operational context changes'', drawing on DO-178C and DO-330. A continued-safety process for frontier models would collect occurrence data, classify model updates as minor or major, re-run control evaluations for major changes, and route identified unsafe conditions to mandatory corrective action. \citeauthor{feng2025levels}'s \citeyearpar{feng2025levels} ``AI autonomy certificates'' for agents parallel EASA's AI levels and responsibility-scheme assessment (Objective~RS-01). The disanalogy is scale and speed: model releases are frequent and global, and no single authority holds the type certificate.
+
+\section{IMPLICATIONS FOR GROUND-BASED LLM TOOLS IN AVIATION}\label{sec:ground}
+
+The first LLM-based tools in aviation are likely to be operational tools in approved organisations, such as document search and maintenance data processing \citep[compare][slide~22]{easa2026aidays}. Workshop conclusions at the 2026 EASA AI Days recorded, for ``On-ground'' or operational tools, that ``LLMs and agentic AI are already a reality'' and listed ``Cybersecurity (e.g.~manipulation)'' among the challenges~\citep[slide~9]{easa2026aidays}.
+
+Control concepts scale down to this setting cheaply. A model can be treated as an untrusted component whose outputs are checked by people or by conventional software, as the draft organisational path already contemplates. Documents retrieved from outside the organisation can be handled as data, separated from instructions. One agent's output should not authorise another agent's action without a check, the weakness \citet{remedios2026redteaming} found at hand-offs. Organisations can pin model versions, run non-regression tests on every change (RU-04) and treat unannounced change as an event to report. AI events can be reported through the safety management system (SMS), the organisation's existing hazard and risk process.
+
+For aviation AI developers, including the author's company, the implication is to design to the stricter threat model where it is cheap (version pinning, logging, framed inputs, conventional guards) and to publish evaluation methods.
+
+\section{LIMITATIONS AND DISANALOGIES}\label{sec:limitations}
+
+Proposed Issue 03 and NPA 2025-07 are drafts, the AI Days slides record work in progress, and this paper does not take account of comments EASA received. Regulation (EU) 2026/1744 was read in the Official Journal, but its effect on individual aviation rules was not traced.
+
+The paywalled ARP4754B, ARP4761A and DO-178C~\citep{sae2023arp4754b,sae2023arp4761a,rtca2011do178c} were not read; statements about them rely on catalogue descriptions and on FAA and EASA guidance that cites them.
+
+AI-control research is young. Most of it concerns coding or AI-laboratory tasks, and much is in preprints or company reports that have not been peer reviewed. Several striking results come from developers testing their own models in constructed scenarios with generous red-team affordances, which makes them weak evidence about base rates. Some results rest on one company's account alone: the covert pipeline sabotage and the judges' mislabelling rates~\citep{lynch2026agentic}, and the production-monitor results, including the unmonitored compaction and hand-off channels~\citep{remedios2026redteaming}, come only from reports published by Anthropic (the latter also as a preprint by the same authors); the facts of the UK AI Security Institute incident, by contrast, are confirmed by the Institute's own report, which adds that the task misconfiguration does not fully explain the behaviour~\citep{aisi2026incident}.
+
+The capability gap is real. Most aviation AI under development is narrow, frozen and small, and an adversarial threat model for a runway-detection network would be disproportionate. The proposals target AI-based systems, and AI-based monitors, built on large general-purpose models or given authority to act.
+
+Control research uses terms such as ``scheming'' and ``intentional subversion'', which sit uneasily with the principle of avoiding personification. This paper has argued that the threats can be stated behaviourally and that ``trusted'' and ``untrusted'' are assurance labels, but regulatory text would need careful drafting. The paper's stricter, aviation-specific use of ``trusted'' (Section~\ref{sec:classify}) also departs from the AI-control literature and should be read as a proposal.
+
+Finally, the analogies are analogies. Collusion between AI components is unlike a common-mode electrical fault, and threat image projection tests human vigilance, which differs from testing an AI monitor. The practices in Section~\ref{sec:otherdirection} come from a domain with stable designs, well-understood physics and a single responsible design organisation per product, none of which hold for frontier AI.
+
+\section{CONCLUSION}\label{sec:conclusion}
+
+EASA's proposed operational oversight system is a run-time monitor, and run-time monitors of AI have been studied under a threat model that aviation guidance has not yet adopted: that the monitored system's learned behaviour may work against its own oversight. The evidence comes from experiments, mainly with large general-purpose models, which are entering aviation organisations now. The recommendations below are offered for the 2027 consultation and the standards in preparation.
+
+To EASA and EUROCAE:
+
+\begin{enumerate}
+\item In MOC to DHO-01 and DHO-02, ask applicants to state whether each monitor in the safety argument uses AI and what the argument assumes about it, to count as trusted only conventionally assured monitors, and to justify any reliance on an AI-based monitor.
+\item Interpret technology independence under DHO-02 to cover model lineage, training data, provider and tooling, and add correlated adversarial failure to the common-cause analysis in MOC DHO-02-1.
+\item Include red-team control evaluations, with a stated attacker capability that rises with AI level and assurance level, in the verification of OOS capabilities under DHO-06, and repeat them on change.
+\item For AI-based systems that cannot be assumed non-adversarial, make the ``where necessary'' in MOC DHO-02-1 explicit: base override decisions on sensing and communication paths independent of, or integrity-protected from, the monitored system, and treat AI self-reports, including Level 3A alerts, as untrusted.
+\item Add behavioural test methods for sycophancy, over-reliance and manipulation to MOC ET-02-2 and AMC2 AI.140, and consider an effects-based definition of manipulating behaviour in DS.AI.020.
+\item Add indirect prompt injection to MOC IS-01, and support RU-04 with an aviation equivalent of AI Act Article~25(4) requiring version pinning and change notification from model suppliers.
+\item Use ER-43 and the Step 2 NPA to give guidance on audit budgets, planted-test monitoring of human and AI reviewers, and the reporting of AI events under Regulation (EU) No 376/2014.
+\end{enumerate}
+
+To AI developers and the frontier-AI safety community:
+
+\begin{enumerate}\setcounter{enumi}{7}% continues the numbering of the list above
+\item Publish measurements of evaluation awareness and sandbagging for models offered to safety-related users, notify customers of model changes and support version pinning.
+\item Grade the rigour and independence of safety-case evidence by the severity of the deployment, and define an operational design domain for each agentic deployment.
+\item Treat control evaluations as living evidence within a continued-safety process modelled on continued airworthiness, with occurrence data, change classification and mandatory corrective action.
+\end{enumerate}
+
+\section*{ACKNOWLEDGEMENTS}
+\textbf{Use of AI.} Literature searches, drafting and source verification were carried out with AI assistance (Claude, Anthropic) under the author's direction. Claude is a generally available AI assistant (claude.ai); it was used through Anthropic's Claude Code (claude.ai/code) on 3 and 4 November 2026, and the project's version history records the model as Claude Opus 5.5. An independent AI-assisted audit checked the references and quotations against their sources on 3 November 2026, with a second-round verification and a check of the conversion to LaTeX on 4 November 2026 (tool and model version not recorded), and its findings were addressed before this version. This journal version was prepared with the same tool and model on 4 November 2026: the citations were converted to the journal's author--year style, and the headings, nomenclature and end sections were set to the journal's template, with the text otherwise unchanged. Several of the AI-safety sources cited are research reports by Anthropic, the developer of the assistant used. [AUTHOR TO DESCRIBE HIS OWN REVISION OF THE MANUSCRIPT]. The author is responsible for the content.
+
+\textbf{Disclaimer.} The views expressed are the author's own and do not represent those of any employer or regulator. Nothing here is operational, legal or regulatory advice.
+
+\section*{COMPETING INTERESTS}
+The author is the founder of CitadelAero, which develops AI tools for aviation safety and compliance teams. No CitadelAero product is discussed in this paper.
+
+\section*{FINANCIAL SUPPORT}
+This research received no specific grant from any funding agency, commercial or not-for-profit sectors.
+
+\section*{DATA AVAILABILITY}
+No new data were created in this study. The documents analysed are publicly available and are cited in the references. The verification log and audit record for this paper are at \url{https://github.com/JamesLeCuirot/Research/tree/main/papers/05-untrusted-by-design}. An earlier version of this paper is available as a preprint (v1.1, 4 November 2026; titled ``Untrusted by Design: Bringing AI Control into Aviation's Operational Oversight of AI'' up to v1.0) at \url{https://www.lecuirot.je/research/ai-control/}.
+
+\bibliographystyle{apacite}
+\bibliography{references}
+
+\end{document}

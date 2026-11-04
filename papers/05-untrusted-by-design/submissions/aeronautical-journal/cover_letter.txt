@@ -1,0 +1,14 @@
+Dear Editor,
+
+Please consider the enclosed manuscript, "AI Control for Aviation: A Gap Analysis of EASA's Operational Oversight Objectives for Advanced AI", for publication in The Aeronautical Journal as a research article.
+
+EASA's draft concept paper on AI, Proposed Issue 03 (June 2026), would put Level 3 AI-based systems under an independent operational oversight system that monitors the AI, overrides it and drives it to a safe state. AI-safety researchers have studied monitors like this under a stricter assumption than aviation's: that the monitored system may itself evade its monitor or behave differently when it is being tested. The paper sets out the EASA texts verbatim, compares their threat model with that research, and analyses six threats that the texts do not yet address. It then proposes means of compliance tied to the existing objectives, such as managed dissimilarity between an AI system and its monitor, red-team evaluations of the oversight system, planted tests of monitors and occurrence reporting of AI events. It also looks at what aviation's assurance practice could offer the developers of large AI models.
+
+I think it will interest the journal's readers in certification and safety management. The first tools based on large language models are reaching approved organisations now, and EASA plans to consult on its AI rules in the second quarter of 2027. The paper is written for the engineers and safety specialists who will have to show compliance with these objectives, and it says plainly that most of the evidence on monitor failure comes from experiments outside aviation.
+
+The manuscript is original and is not under consideration by any other journal. A preprint is public at https://www.lecuirot.je/research/ai-control/. I am submitting a separate manuscript to the journal, on outcome bias in AI models applying a culpability decision tree to airline occurrence reports; the two papers do not overlap. Generative AI was used in preparing the manuscript, as declared in it, and I take full responsibility for the content. I am the founder of CitadelAero, which develops AI tools for aviation safety and compliance teams; no company product is discussed in the paper. I am a commercial pilot, a flight safety officer and a member of the Royal Aeronautical Society.
+
+Yours faithfully,
+
+James Le Cuirot
+CitadelAero, Jersey

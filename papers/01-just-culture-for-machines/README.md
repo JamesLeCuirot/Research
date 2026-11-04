@@ -1,6 +1,6 @@
 # Just Culture for Machines: Why Penalising Disclosure Teaches Concealment
 
-**James Le Cuirot** · CitadelAero · Preprint v1.0, 4 November 2026. Not peer reviewed.
+**James Le Cuirot** · CitadelAero · Preprint v1.0, 4 November 2026
 
 **[Read the paper (PDF)](paper.pdf)** · Part of the [research repository](../../README.md) · [All papers](../README.md)
 

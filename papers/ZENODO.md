@@ -30,7 +30,7 @@ Everything needed to publish each preprint on Zenodo (zenodo.org), so that each 
 | Publication date | 2026-11-04 |
 | Keywords | just culture; safety reporting; AI safety; reinforcement learning; chain-of-thought monitoring; AI alignment |
 | Related work (is supplemented by) | https://github.com/JamesLeCuirot/Research/tree/main/papers/01-just-culture-for-machines |
-| Notes | Not peer reviewed. Prepared with AI assistance (Claude, Anthropic) under the author's direction, as stated in the paper. |
+| Notes | Prepared with AI assistance (Claude, Anthropic) under the author's direction, as stated in the paper. |
 
 **Description** (paste into the description box):
 
@@ -46,7 +46,7 @@ Everything needed to publish each preprint on Zenodo (zenodo.org), so that each 
 | Publication date | 2026-11-04 |
 | Keywords | AI control; LLM monitors; low-prevalence effect; signal detection theory; code backdoors; pre-registration |
 | Related work (is supplemented by) | https://github.com/JamesLeCuirot/Research/tree/main/papers/02-do-llm-monitors-miss-rare-threats |
-| Notes | Not peer reviewed. Prepared with AI assistance (Claude, Anthropic) under the author's direction, as stated in the paper. |
+| Notes | Prepared with AI assistance (Claude, Anthropic) under the author's direction, as stated in the paper. |
 
 **Description** (paste into the description box):
 
@@ -62,7 +62,7 @@ Everything needed to publish each preprint on Zenodo (zenodo.org), so that each 
 | Publication date | 2026-11-04 |
 | Keywords | safety management systems; ICAO Annex 19; frontier AI; AI safety frameworks; safety performance indicators; AI governance |
 | Related work (is supplemented by) | https://github.com/JamesLeCuirot/Research/tree/main/papers/03-from-rsp-to-sms |
-| Notes | Not peer reviewed. Prepared with AI assistance (Claude, Anthropic) under the author's direction, as stated in the paper. |
+| Notes | Prepared with AI assistance (Claude, Anthropic) under the author's direction, as stated in the paper. |
 
 **Description** (paste into the description box):
 
@@ -78,7 +78,7 @@ Everything needed to publish each preprint on Zenodo (zenodo.org), so that each 
 | Publication date | 2026-11-04 |
 | Keywords | LOSA; evidence-based training; AI evaluation; evaluation awareness; competency-based assessment; AI safety |
 | Related work (is supplemented by) | https://github.com/JamesLeCuirot/Research/tree/main/papers/04-checkride-or-jump-seat |
-| Notes | Not peer reviewed. Prepared with AI assistance (Claude, Anthropic) under the author's direction, as stated in the paper. |
+| Notes | Prepared with AI assistance (Claude, Anthropic) under the author's direction, as stated in the paper. |
 
 **Description** (paste into the description box):
 
@@ -94,7 +94,7 @@ Everything needed to publish each preprint on Zenodo (zenodo.org), so that each 
 | Publication date | 2026-11-04 |
 | Keywords | EASA; AI control; aviation regulation; runtime monitoring; AI assurance; certification |
 | Related work (is supplemented by) | https://github.com/JamesLeCuirot/Research/tree/main/papers/05-untrusted-by-design |
-| Notes | Not peer reviewed. Prepared with AI assistance (Claude, Anthropic) under the author's direction, as stated in the paper. |
+| Notes | Prepared with AI assistance (Claude, Anthropic) under the author's direction, as stated in the paper. |
 
 **Description** (paste into the description box):
 
@@ -110,7 +110,7 @@ Everything needed to publish each preprint on Zenodo (zenodo.org), so that each 
 | Publication date | 2026-11-04 |
 | Keywords | HFACS; incident analysis; multi-agent systems; LLM agents; human factors; AI safety |
 | Related work (is supplemented by) | https://github.com/JamesLeCuirot/Research/tree/main/papers/06-afacs |
-| Notes | Not peer reviewed. Prepared with AI assistance (Claude, Anthropic) under the author's direction, as stated in the paper. |
+| Notes | Prepared with AI assistance (Claude, Anthropic) under the author's direction, as stated in the paper. |
 
 **Description** (paste into the description box):
 

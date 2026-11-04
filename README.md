@@ -18,7 +18,7 @@ If you have ten minutes, read these three.
 
 ## All papers
 
-Each paper has its own folder in [`papers/`](papers/). None is peer reviewed yet; all are preprints.
+Each paper has its own folder in [`papers/`](papers/).
 
 | # | Paper | What it found | Read |
 |---|---|---|---|

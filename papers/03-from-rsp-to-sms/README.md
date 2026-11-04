@@ -1,6 +1,6 @@
 # Applying Aviation Safety Management to Frontier AI: A Gap Analysis of Developer Safety Frameworks
 
-**James Le Cuirot** · CitadelAero · Preprint v1.1, 4 November 2026. Not peer reviewed.
+**James Le Cuirot** · CitadelAero · Preprint v1.1, 4 November 2026
 
 *Titled "From RSP to SMS: Reading Frontier AI Safety Frameworks Through ICAO's Safety Management System" up to v1.0.*
 

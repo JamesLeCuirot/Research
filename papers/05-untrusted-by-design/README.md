@@ -1,6 +1,6 @@
 # AI Control for Aviation: A Gap Analysis of EASA's Operational Oversight Objectives for Advanced AI
 
-**James Le Cuirot** · CitadelAero · Preprint v1.1, 4 November 2026. Not peer reviewed.
+**James Le Cuirot** · CitadelAero · Preprint v1.1, 4 November 2026
 
 *Titled "Untrusted by Design: Bringing AI Control into Aviation's Operational Oversight of AI" up to v1.0.*
 

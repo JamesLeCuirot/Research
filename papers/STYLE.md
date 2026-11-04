@@ -29,10 +29,10 @@ All five papers use one format: a **LaTeX-typeset, single-column technical repor
 \title{Full Title: Subtitle}
 \shorttitle{Short Title}
 \author{James Le Cuirot\thanks{Commercial pilot (Senior First Officer), aviation flight safety officer, and aviation safety and compliance consultant specialising in human factors; MSc in Human Factors in Aviation.}\\[2pt] \normalsize CitadelAero}
-\date{Working draft v0.4, 4 November 2026. Not peer reviewed.}
+\date{Working draft v0.4, 4 November 2026}
 ```
 
-Version labels: drafts under review read "Working draft v0.x, <date>. Not peer reviewed." A paper released for linking reads "Preprint v1.0, <date>. Not peer reviewed."; later releases increment the version (v1.1, v2.0) and are logged in `NOTES.md`.
+Version labels: drafts under review read "Working draft v0.x, <date>". A paper released for linking reads "Preprint v1.0, <date>"; later releases increment the version (v1.1, v2.0) and are logged in `NOTES.md`. No "Not peer reviewed" on the paper or in its citation (the author's decision, November 2026).
 
 ## Structure
 

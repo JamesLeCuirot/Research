@@ -1,6 +1,6 @@
 # Do LLM Monitors Miss Rare Threats? A Pre-registered Test of the Low-Prevalence Effect
 
-**James Le Cuirot** · CitadelAero · Preprint v1.0, 4 November 2026. Not peer reviewed.
+**James Le Cuirot** · CitadelAero · Preprint v1.0, 4 November 2026
 
 **[Read the paper (PDF)](paper.pdf)** · Part of the [research repository](../../README.md) · [All papers](../README.md)
 

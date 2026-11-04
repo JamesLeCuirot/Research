@@ -8,7 +8,7 @@ James Le Cuirot · [CitadelAero](https://citadelaero.com) · Senior First Office
 
 *AFACS stands for Agent Failure Analysis and Classification System.*
 
-*Status: Preprint v1.1, 4 November 2026. Not peer reviewed. Part of James Le Cuirot's [research repository](../../README.md).*
+*Status: Preprint v1.1, 4 November 2026. Part of James Le Cuirot's [research repository](../../README.md).*
 
 ---
 

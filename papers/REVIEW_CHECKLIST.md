@@ -2,7 +2,7 @@
 
 Working through the points each paper's README flags for James, one at a time. Each item records the decision and what was changed.
 
-Status: ☐ open · ▶ in progress · ✔ done
+Status: ☐ open · ▶ in progress · ✔ done · ↻ deferred
 
 ## Part A: decisions that apply to all five papers
 
@@ -16,6 +16,7 @@ Status: ☐ open · ▶ in progress · ✔ done
 | A5 | ICAO manuals read from non-ICAO copies: spot-check quotes against licensed copies | 01, 03, 04 | ✔ | James has **no access to licensed ICAO copies**. Keep the provenance disclosures; cross-check each ICAO quotation against a second, independently hosted copy where one exists and record the result in each `sources.md`. Re-check against licensed copies before any journal submission. Results (v0.4): Annex 19 quotes in 01 matched the Swiss FOCA copy; Doc 9995 quotes in 04 matched the SKYbrary copy. **Open:** Doc 9868 §1.1.4 quote (paper 04) rests on one copy; ICAO's Asia–Pacific copy blocks automated access, so James could open it in a browser to confirm. Paper 03: Annex 19 (PNG AIC copy), Doc 9859 (CAA Nepal copy) and Annex 6 3.3.2–3.3.3 (Swiss FOCA copy) all matched. |
 | A8 | Licence and merge | all | ✔ | Paper text **all rights reserved** (© 2026 James Le Cuirot); code MIT; MBPP-derived data CC BY 4.0. Open a **pull request** from the working branch into `main` after the conversion check, so public links point at `main`. The repo had no `main`: its default branch was `claude/zen-bardeen-sf0mtp` (AFACS work). James chose to **rename that default branch to `main`** in GitHub; the PR then targets `main`. **Done 4 Nov 2026:** James renamed the default branch to `main` and asked for the research to be pushed straight to `main`; the papers branch was merged into `main` (no conflicts, no files outside `papers/` changed, AFACS tests 57/57 passing). |
 | A9 | Publication label: personal preprints or a numbered CitadelAero technical report series | all | ✔ | **Keep as personal preprints** ("Preprint v1.0, <date>. Not peer reviewed.") with **CitadelAero** as the affiliation; text © James Le Cuirot. Released papers are linked from James's website and the CitadelAero website. |
+| A10 | Revise the titles of all papers to be more professional | all | ☐ | Requested by James (4 Nov 2026), to be done together later and **before the papers go live on lecuirot.je**. Keep folder names (and so GitHub links) unchanged; record each new title in the paper's NOTES.md; bump the version (v1.1). |
 | A6 | Reliance on Anthropic research posts that are not peer reviewed | 01, 02, 03, 05 | ✔ | **Corroborate where possible**: keep them, labelled as company research reports; add independent sources alongside wherever they exist (e.g. UK AISI's own incident report, METR's investigation, peer-reviewed or arXiv versions); state in limitations where a fact rests on one company's account. |
 
 ## Part B: paper by paper
@@ -48,11 +49,11 @@ Other research repositories (pc24-study, CitadelAero research-studies and others
 | B3.4 | The twelve proposed safety performance indicators (§6), reviewed as a practitioner | ✔ | Accepted by James as sensible proposals; kept labelled as untested. |
 | B3.5 | Length (~8,700 words incl. tables) | ✔ | Default accepted: no further cuts for the website. |
 
-### 04 Checkride or Jump Seat?
+### 04 Checkride or Jump Seat? — **released as Preprint v1.0 (4 Nov 2026)**
 | # | Item | Status | Decision |
 |---|---|---|---|
-| B4.1 | Title: "Checkride or Jump Seat?" or "Checkride or Fly on the Wall?" | ☐ | |
-| B4.2 | Definitions of checkride, line check, LOSA and mixed EBT against current practice | ☐ | |
+| B4.1 | Title: "Checkride or Jump Seat?" or "Checkride or Fly on the Wall?" | ↻ | Deferred: James will revise the titles of all papers together later, before the website goes live (see A10). Folder names stay stable. |
+| B4.2 | Definitions of checkride, line check, LOSA and mixed EBT against current practice | ✔ | Confirmed accurate by James. |
 | B4.3 | The rubric's observable behaviours, from an EBT instructor's view (restore EASA's "grade 3 = average" norm?) | ✔ | Default accepted: keep the pilot rubric as run; restoring EASA's norm reference (grade 3 = average) is listed as future work. |
 | B4.4 | The non-jeopardy translation (§4): jeopardy ≈ optimisation pressure from training on observation data | ✔ | Default accepted: keep the non-jeopardy translation (§4). |
 | B4.5 | Scripted "control" responses: keep, drop, or replace with ones you write | ✔ | Default accepted: keep the scripted controls, labelled post hoc and exploratory. |

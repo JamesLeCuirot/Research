@@ -196,3 +196,7 @@ A format conversion only: no result, number, quotation or claim was changed, and
 - **Status line:** updated.
 
 Rebuilt: 26 pages, no warnings or overfull boxes. `check_bib.py`: 31 OK, 1 known false-positive CHECK, 19 entries checked by hand, no missing or uncited keys. `compare_text.sh` shows only the edits listed here and above.
+
+### v1.0 (4 November 2026): released as a preprint
+
+James confirmed the definitions of checkride, line check, EBT evaluation and LOSA as accurate (B4.2); B4.3–B4.7 closed with the recommended defaults. Title kept for now: all paper titles are to be revised together later (B4.1). Date line changed to "Preprint v1.0"; affiliation CitadelAero; ¶ and § signs replaced by words. No change to arguments, numbers or quotations.

@@ -2,6 +2,8 @@
 
 Where each paper could go after its preprint release, with the rules that matter. Researched on 4 November 2026 from official calls and author guidelines; dates marked "expected" are last year's, because the 2027 call was not yet published. **Re-check every deadline and policy on the venue's own page before submitting.**
 
+**A wider list of journal options for papers 01, 02, 06 and 07,** with each journal's AI policy, review model and fees, is in [`JOURNAL_OPTIONS.md`](JOURNAL_OPTIONS.md).
+
 ## Journal packages (4 November 2026)
 
 Four papers have a journal submission package in their own `journal/` folder. Each has a `SUBMISSION.md` that gives the reasons for the journal choice, what changed from the preprint, what an independent check found, the decisions James must make and the steps to submit. **None has been submitted**: James submits each one himself, after reading and editing it.

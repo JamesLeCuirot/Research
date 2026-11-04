@@ -12,6 +12,7 @@ pipeline recreates them from MAST's pinned revision.
 """
 import re
 import shutil
+import subprocess
 import sys
 import zipfile
 from pathlib import Path
@@ -23,8 +24,8 @@ ZIP = HERE / "build" / "supplement.zip"
 
 COPY = ["pyproject.toml", "uv.lock", ".env.example", "src", "scripts", "tests", "codebook", "prompts",
         "docs", "results", "figures", "annotations/llm/public", "annotations/human", "data/README.md"]
-DROP = ["docs/GUIDE.md", "docs/explainer.html", "docs/references.bib"]
-FORBIDDEN = re.compile(r"cuirot|citadel|jameslec|github\.com/james|@citadelaero|/home/user|papers/06-|\bjames\b", re.I)
+DROP = ["docs/GUIDE.md", "docs/explainer.html", "docs/references.bib", "docs/CODING_GUIDE.md", "docs/related_work.md"]
+FORBIDDEN = re.compile(r"cuirot|citadel|jameslec|github\.com/james|@citadelaero|/home/user|papers/06-|\bjames\b|claude\.ai/code/session|session_01|claude\.ai/artifact|\bshown to him\b|\bhe changed\b", re.I)
 TEXT = {".md", ".py", ".txt", ".json", ".jsonl", ".csv", ".toml", ".html", ".example", ".sha256", ".lock"}
 
 README = """# Supplementary material
@@ -43,6 +44,7 @@ HFACS-Based Framework, and an Audit of Public Traces".
 | `docs/` | The data audit, the information audit, the cross-walk to Ezell et al., the documentation (design) check and the coding guide |
 | `figures/` | The figures |
 | `data/README.md` | How the traces are recreated from MAST's pinned revision |
+| `version_history.txt` | Commit times (UTC) of the calibration key fingerprint, the calibration sheet, the codebooks, the annotator prompts and the AI codings, without commit identifiers, so the order of events can be checked |
 
 Traces are not included, because they contain benchmark questions whose maintainers ask that they not be
 reposted. `uv run afacs-ingest` downloads MAST (`mcemri/MAST-Data`, revision `95118ac`, CC BY 4.0) and
@@ -51,11 +53,39 @@ recreates them. Code is released under the MIT licence.
 
 
 def anonymise(text: str) -> str:
+    text = re.sub(r"https://claude\.ai/code/session_\w+", "[session link withheld]", text)
+    text = text.replace("They were shown to him in plain English on 3 November; he changed only 5.6.",
+                        "They were reviewed in plain English on 3 November; only 5.6 was changed.")
+    text = text.replace("the 30 traces James hand-codes", "the 30 calibration traces for independent human coders")
     text = re.sub(r"James Le Cuirot", "the investigator", text)
     text = re.sub(r"\bJames's\b", "the investigator's", text)
     text = re.sub(r"\bJames\b", "the investigator", text)
     text = text.replace("papers/06-afacs/", "")
     return text
+
+
+KEY_FILES = ["annotations/human/calibration_key.sha256", "annotations/human/calibration_sheet.csv",
+             "codebook/v0.md", "codebook/v1.md", "codebook/v1.1.md",
+             "prompts/annotator_v0.md", "prompts/annotator_v1.md",
+             "annotations/llm/public/sonnet_bulk_r1.jsonl", "annotations/llm/public/opus_bulk_r1.jsonl",
+             "annotations/llm/public/sonnet_bulk_r2.jsonl"]
+
+
+def version_history() -> str:
+    """Times of the commits that added or changed each file (moves excluded), across all the folders the
+    project has lived in, without identifiers."""
+    root = PAPER.parents[1]
+    out = ["Times (UTC) of the commits that added or changed each file, oldest first, across every folder the",
+           "project has lived in. Commits that only moved the project are excluded. Commit identifiers and",
+           "messages are withheld for anonymity.", ""]
+    for f in KEY_FILES:
+        log = subprocess.run(["git", "-C", str(root), "log", "--find-renames", "--diff-filter=AM", "--date=iso-strict",
+                              "--format=%ad", "--", f"*/{f}", f], capture_output=True, text=True).stdout.split()[::-1]
+        if log:
+            out.append(f + "\n" + "\n".join("    " + d for d in log))
+    out.append("")
+    out.append("The AI annotator was never run on the 30 calibration traces.")
+    return "\n".join(out) + "\n"
 
 
 def main() -> int:
@@ -83,6 +113,7 @@ def main() -> int:
             if new != text:
                 path.write_text(new, encoding="utf-8")
     (OUT / "README.md").write_text(README, encoding="utf-8")
+    (OUT / "version_history.txt").write_text(version_history(), encoding="utf-8")
 
     problems = []
     for path in OUT.rglob("*"):

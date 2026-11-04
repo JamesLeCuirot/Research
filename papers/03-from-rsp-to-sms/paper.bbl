@@ -257,7 +257,9 @@ E.~Barkett, A.~Kimpton, D.~Graham, and Y.~Kundgol, ``The normalization of
 \BIBentryALTinterwordspacing
 {Civil Aviation Authority of New Zealand}, ``Compliance checklist / electronic
   filing of differences: {Annex} 6, {Part} 1, {Amendment} 49,'' Aug.~25, 2025,
-  {R}eproduces the text of ICAO Annex 6, Part I. [Online]. Available:
+  {R}eproduces the text of ICAO Annex 6, Part I; 3.3.2--3.3.3 cross-checked
+  against the Swiss FOCA copy of Annex 6, Part I (12th ed., amended). [Online].
+  Available:
   \url{https://www.aviation.govt.nz/assets/about-us/icao/annex-06-p1.pdf}
 \BIBentrySTDinterwordspacing
 
@@ -270,10 +272,11 @@ E.~Barkett, A.~Kimpton, D.~Graham, and Y.~Kundgol, ``The normalization of
 
 \bibitem{metr2026frr}
 \BIBentryALTinterwordspacing
-{METR}, ``{Frontier Risk Report (February to March 2026)},'' May~19, 2026,
-  {I}ndependent assessment, not peer reviewed; participating companies approved
-  the non-public information disclosed. Accessed: Nov. 4, 2026. [Online].
-  Available: \url{https://metr.org/blog/2026-05-19-frontier-risk-report/}
+{METR}, ``{Frontier Risk Report (February to March 2026)},'' METR blog, May~19,
+  2026, {I}ndependent assessment, not peer reviewed; participating companies
+  approved the non-public information disclosed. Accessed: Nov. 4, 2026.
+  [Online]. Available:
+  \url{https://metr.org/blog/2026-05-19-frontier-risk-report/}
 \BIBentrySTDinterwordspacing
 
 \bibitem{anthropic2026roadmap}

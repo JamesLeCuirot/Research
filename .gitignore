@@ -1,18 +1,7 @@
-# Secrets: the Anthropic API key lives here and must never be committed.
+# Repository-wide ignores. Projects and papers keep their own .gitignore files.
 .env
-
-# Raw and processed data are re-created by `afacs-ingest`; we do not redistribute traces.
-data/*
-!data/README.md
-
-# Python / tooling
 .venv/
 __pycache__/
-*.egg-info/
 .pytest_cache/
 .ipynb_checkpoints/
 .DS_Store
-
-# Annotation working files quote benchmark text; the committed copies are in
-# annotations/llm/public/ with that text encoded (see src/afacs/protect.py).
-annotations/llm/*.jsonl

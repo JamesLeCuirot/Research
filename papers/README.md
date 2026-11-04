@@ -4,7 +4,7 @@
 
 These five papers apply aviation safety science and human factors to problems on Anthropic's AI-safety research agenda. They are **working drafts for author review**. None is peer reviewed. Each sits in its own folder with its sources, audit trail and (where relevant) code and data, so any one can be developed further on its own.
 
-This folder is separate from the AFACS project in the rest of this repository.
+Part of James Le Cuirot's [research repository](../README.md).
 
 | # | Paper | Kind | Version | Read |
 |---|---|---|---|---|
@@ -46,7 +46,7 @@ Decisions taken on the review points are recorded in [`REVIEW_CHECKLIST.md`](REV
 
 ## Before you publish any of them
 
-- **Read each folder's `README.md` → "What James should check".** These list the judgement calls made on your behalf (framing, analogies, ratings, wording about Anthropic and Citadel Aero).
+- **Read each folder's `NOTES.md` → "What James should check".** These list the judgement calls made on your behalf (framing, analogies, ratings, wording about Anthropic and Citadel Aero).
 - **ICAO documents.** ICAO's website blocked access, so Annex 19, Doc 9859, Doc 9995 and Doc 9868 were read from copies hosted by other authorities or third parties, and the papers say so. Check the quoted text against your own licensed copies.
 - **Annex 19 Amendment 2 applies from 26 November 2026.** It renames some SMS elements and renumbers some provisions. Papers 01 and 03 use the 2nd edition and flag the change.
 - **Disclosure statements.** Each paper has an AI-assistance statement and a disclaimer. Several note that many sources are Anthropic's own and that the drafting AI is Anthropic's. Paper 03 has a competing-interests line naming Citadel Aero. Keep, edit or extend these as you see fit.
@@ -67,7 +67,7 @@ papers/
 └── 05-untrusted-by-design/
 ```
 
-Each paper folder has `paper.tex` and `references.bib` (the source), `paper.pdf` (built), `README.md` (summary, checks, open questions, ideas for developing it, revision log), `sources.md` (verification log) and `AUDIT.md` (independent audit and second-round verification).
+Each paper folder has `paper.tex` and `references.bib` (the source), `paper.pdf` (built), `README.md` (abstract, how to cite, files), `NOTES.md` (author notes: review points, open questions, ideas for developing it, revision log), `sources.md` (verification log) and `AUDIT.md` (independent audit and second-round verification).
 
 ## Rebuilding the PDFs
 

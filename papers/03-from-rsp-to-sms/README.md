@@ -137,3 +137,18 @@ Format conversion only: wording, numbers, quotations, table cells and ratings ar
   - No public METR findings on Anthropic's cyber incidents were found.
 - **Closing text.** It already read "An independent AI-assisted audit checked the references and quotations against their sources".
 - **Checks after the decisions.** Clean build, 23 pages, no undefined references or overfull boxes. `check_bib.py`: 10 DOI/arXiv entries OK; 32 entries without an ID checked by hand, including the 2 new ones; no missing or unused keys; 42 references. `compare_text.sh` against dfd94b7: the reviewed conversion differences plus the A3, A4 and A6 edits above, and nothing else.
+
+**v0.4 conversion-check fixes** (see `AUDIT.md`, "v0.4 conversion check"; these are the only changes after it):
+
+- **§3.2.** The "79% of 163 attacks" figure is now cited to the Risk Report, §2.23.1.2. METR's report is cited only for the clause saying that a METR staff member devised the attacks.
+- **§2.1.** "the text in force on the date of writing" now reads "the text applicable on the date of writing". The State letter, para. 2, makes Amendment 2 effective on 4 November 2025 and applicable on 26 November 2026.
+- **§8.** "only the UK AISI case …" now reads "of these facts, only the UK AISI case …" (advisory item 10).
+- **Table 2.** A `\pagebreak` before row 4.2 replaces the break longtable placed without a header. Page 12 now opens with "Table 2: (continued)" and the column headers.
+- **`references.bib`.**
+  - `metr2026frr` gains `howpublished = {METR blog}`.
+  - The `caanz2025annex6` note records the cross-check against the Swiss FOCA copy of Annex 6.
+  - The FAA note now renders as "Docket No." (braced centrally).
+- **`sources.md`.** Line 3 now names `paper.tex`. §B (CAA NZ caveat), §C (2026b) and §E now point to §F: the AISI report has been opened and cited, and Annex 6 has been seen in the FOCA copy.
+- **README.** The abstract now matches `paper.tex` word for word, including "In the documents assessed,", and is 254 words. "Evaluation-partner requirements" is corrected to best practices that partners were asked to commit to.
+- **Checks.** Rebuilt: 23 pages, no warnings. `check_bib.py`: 10 entries OK, 32 without an ID checked by hand, no missing or unused keys, exit 0. `compare_text.sh`: only the differences listed above and in the decisions block.
+

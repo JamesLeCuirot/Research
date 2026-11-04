@@ -33,7 +33,7 @@
 \BIBentryALTinterwordspacing
 R.~Greenblatt, B.~Shlegeris, K.~Sachan, and F.~Roger, ``{AI} control: Improving
   safety despite intentional subversion,'' arXiv preprint arXiv:2312.06942,
-  2023, a shortened version appears in the Proceedings of the 41st
+  2023, {A} shortened version appears in the Proceedings of the 41st
   International Conference on Machine Learning. [Online]. Available:
   \url{https://arxiv.org/abs/2312.06942}
 \BIBentrySTDinterwordspacing
@@ -49,7 +49,7 @@ R.~Greenblatt, B.~Shlegeris, K.~Sachan, and F.~Roger, ``{AI} control: Improving
 \bibitem{eurocaewg114}
 \BIBentryALTinterwordspacing
 {EUROCAE}, ``{WG-114 Artificial Intelligence},'' Working group web page,
-  undated. Accessed: Nov. 3, 2026. [Online]. Available:
+  {U}ndated. Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://www.eurocae.net/working-group/wg-114/}
 \BIBentrySTDinterwordspacing
 
@@ -58,7 +58,7 @@ R.~Greenblatt, B.~Shlegeris, K.~Sachan, and F.~Roger, ``{AI} control: Improving
 {European Parliament and Council of the European Union}, ``{Regulation (EU)
   2024/1689 of the European Parliament and of the Council of 13 June 2024
   laying down harmonised rules on artificial intelligence (Artificial
-  Intelligence Act)},'' OJ L, 2024/1689, 12.7.2024, 2024, recitals cited from
+  Intelligence Act)},'' OJ L, 2024/1689, 12.7.2024, 2024, {R}ecitals cited from
   the Official Journal text; articles cited from the consolidated version of 27
   July 2026. [Online]. Available:
   \url{https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02024R1689-20260727}
@@ -91,7 +91,7 @@ R.~Greenblatt, B.~Shlegeris, K.~Sachan, and F.~Roger, ``{AI} control: Improving
 \bibitem{easa2026news}
 \BIBentryALTinterwordspacing
 ------, ``{EASA} releases latest issue of its {Concept Paper on Artificial
-  Intelligence} for comment,'' News release, Jun.~3, 2026, accessed: Nov. 3,
+  Intelligence} for comment,'' News release, Jun.~3, 2026, {A}ccessed: Nov. 3,
   2026. [Online]. Available:
   \url{https://www.easa.europa.eu/en/newsroom-and-events/news/easa-releases-latest-issue-its-concept-paper-artificial-intelligence}
 \BIBentrySTDinterwordspacing
@@ -99,7 +99,7 @@ R.~Greenblatt, B.~Shlegeris, K.~Sachan, and F.~Roger, ``{AI} control: Improving
 \bibitem{easa2025npaweb}
 \BIBentryALTinterwordspacing
 ------, ``{NPA 2025-07},'' Notice of proposed amendment web page, 2025,
-  accessed: Nov. 3, 2026. [Online]. Available:
+  {A}ccessed: Nov. 3, 2026. [Online]. Available:
   \url{https://www.easa.europa.eu/document-library/notices-of-proposed-amendment/npa-2025-07}
 \BIBentrySTDinterwordspacing
 
@@ -164,7 +164,7 @@ J.~Needham, G.~Edkins, G.~Pimpale, H.~Bartsch, and M.~Hobbhahn, ``Large
 \BIBentryALTinterwordspacing
 A.~Lynch, J.~Hughes, A.~Serrano, R.~Kirk, and S.~R. Bowman, ``Agentic
   misalignment in summer 2026,'' Anthropic Alignment Science Blog, Jul.~13,
-  2026, company research report, not peer reviewed. Accessed: Nov. 3, 2026.
+  2026, {C}ompany research report, not peer reviewed. Accessed: Nov. 3, 2026.
   [Online]. Available:
   \url{https://alignment.anthropic.com/2026/agentic-misalignment-summer-2026/}
 \BIBentrySTDinterwordspacing
@@ -172,7 +172,7 @@ A.~Lynch, J.~Hughes, A.~Serrano, R.~Kirk, and S.~R. Bowman, ``Agentic
 \bibitem{anthropic2026aisi}
 \BIBentryALTinterwordspacing
 {Anthropic}, ``An alignment assessment of the {UK AISI} cybertesting
-  incident,'' Anthropic research report (web page), Oct.~23, 2026, company
+  incident,'' Anthropic research report (web page), Oct.~23, 2026, {C}ompany
   research report, not peer reviewed. Accessed: Nov. 3, 2026. [Online].
   Available:
   \url{https://www.anthropic.com/research/alignment-assessment-ukaisi}
@@ -182,9 +182,9 @@ A.~Lynch, J.~Hughes, A.~Serrano, R.~Kirk, and S.~R. Bowman, ``Agentic
 \BIBentryALTinterwordspacing
 {UK AI Security Institute}, ``Incident report: Unsanctioned agent behaviour
   during cyber testing,'' AISI blog (government research organisation,
-  Department for Science, Innovation and Technology), Aug.~4, 2026, accompanied
-  by the technical incident report INC-2026-07-28-01. Accessed: Nov. 4, 2026.
-  [Online]. Available:
+  Department for Science, Innovation and Technology), Aug.~4, 2026,
+  {A}ccompanied by the technical incident report INC-2026-07-28-01. Accessed:
+  Nov. 4, 2026. [Online]. Available:
   \url{https://www.aisi.gov.uk/blog/incident-report-unsanctioned-agent-behaviour-during-cyber-testing}
 \BIBentrySTDinterwordspacing
 
@@ -233,7 +233,7 @@ M.~Terekhov, A.~Panfilov, D.~Dzenhaliou, C.~Gulcehre, M.~Andriushchenko,
 \BIBentryALTinterwordspacing
 A.~Remedios, S.~Storf, F.~Roger, and J.~Hughes, ``Red-teaming auto mode:
   Improving blocking classifiers against malign coding agents,'' Anthropic
-  Alignment Science Blog, Oct.~22, 2026, company research report, not peer
+  Alignment Science Blog, Oct.~22, 2026, {C}ompany research report, not peer
   reviewed; also available as arXiv preprint arXiv:2609.19587 by the same
   authors. Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://alignment.anthropic.com/2026/red-teaming-auto-mode/}
@@ -245,7 +245,7 @@ M.~Sharma, M.~Tong, T.~Korbak, D.~Duvenaud, A.~Askell, S.~R. Bowman, N.~Cheng,
   E.~Durmus, Z.~Hatfield-Dodds, S.~R. Johnston, S.~Kravec, T.~Maxwell,
   S.~McCandlish, K.~Ndousse, O.~Rausch, N.~Schiefer, D.~Yan, M.~Zhang, and
   E.~Perez, ``Towards understanding sycophancy in language models,'' arXiv
-  preprint arXiv:2310.13548, 2023, published as a conference paper at ICLR
+  preprint arXiv:2310.13548, 2023, {P}ublished as a conference paper at ICLR
   2024. [Online]. Available: \url{https://arxiv.org/abs/2310.13548}
 \BIBentrySTDinterwordspacing
 
@@ -301,7 +301,7 @@ P.~Traverse, I.~Lacaze, and J.~Souyris, ``{Airbus} fly-by-wire: A process
 {European Union Aviation Safety Agency}, ``{AMC 25.1309 System} design and
   analysis,'' Acceptable means of compliance, ED Decision 2021/015/R (CS-25
   Amendment 27), in \emph{Easy Access Rules for Large Aeroplanes (CS-25)},
-  2021, accessed: Nov. 3, 2026. [Online]. Available:
+  2021, {A}ccessed: Nov. 3, 2026. [Online]. Available:
   \url{https://www.easa.europa.eu/en/document-library/easy-access-rules/easy-access-rules-large-aeroplanes-cs-25}
 \BIBentrySTDinterwordspacing
 
@@ -332,9 +332,9 @@ F.~Hofer and A.~Schwaninger, ``Using threat image projection data for assessing
 \BIBentryALTinterwordspacing
 {European Parliament and Council of the European Union}, ``{Regulation (EU) No
   376/2014 of the European Parliament and of the Council of 3 April 2014 on the
-  reporting, analysis and follow-up of occurrences in civil aviation},'' 2014,
-  text read in EASA's \emph{Easy Access Rules for Occurrence Reporting}.
-  Accessed: Nov. 3, 2026. [Online]. Available:
+  reporting, analysis and follow-up of occurrences in civil aviation},'' OJ L
+  122, 24.4.2014, p.~18, 2014, {T}ext read in EASA's \emph{Easy Access Rules
+  for Occurrence Reporting}. Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://www.easa.europa.eu/en/document-library/easy-access-rules/occurrence-reporting-rule-book-easy-access-rules}
 \BIBentrySTDinterwordspacing
 
@@ -343,8 +343,8 @@ F.~Hofer and A.~Schwaninger, ``Using threat image projection data for assessing
 {European Commission}, ``{Commission Implementing Regulation (EU) 2015/1018 of
   29 June 2015 laying down a list classifying occurrences in civil aviation to
   be mandatorily reported according to Regulation (EU) No 376/2014},'' OJ L
-  163, 30.6.2015, p.~1, 2015, consolidated version of 17 August 2026. [Online].
-  Available:
+  163, 30.6.2015, p.~1, 2015, {C}onsolidated version of 17 August 2026.
+  [Online]. Available:
   \url{https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02015R1018-20260817}
 \BIBentrySTDinterwordspacing
 
@@ -353,14 +353,14 @@ F.~Hofer and A.~Schwaninger, ``Using threat image projection data for assessing
 {European Union Aviation Safety Agency}, ``{CS 25.1309 Equipment}, systems and
   installations,'' Certification specification, ED Decision 2020/001/R (CS-25
   Amendment 24), in \emph{Easy Access Rules for Large Aeroplanes (CS-25)},
-  2020, accessed: Nov. 3, 2026. [Online]. Available:
+  2020, {A}ccessed: Nov. 3, 2026. [Online]. Available:
   \url{https://www.easa.europa.eu/en/document-library/easy-access-rules/easy-access-rules-large-aeroplanes-cs-25}
 \BIBentrySTDinterwordspacing
 
 \bibitem{sae2023arp4754b}
 \BIBentryALTinterwordspacing
 {SAE International}, \emph{Guidelines for development of civil aircraft and
-  systems}, SAE Standard ARP4754B (revised), Dec. 2023, catalogue entry; the
+  systems}, SAE Standard ARP4754B (revised), Dec. 2023, {C}atalogue entry; the
   standard itself was not read for this paper. [Online]. Available:
   \url{https://doi.org/10.4271/ARP4754B}
 \BIBentrySTDinterwordspacing
@@ -369,7 +369,7 @@ F.~Hofer and A.~Schwaninger, ``Using threat image projection data for assessing
 \BIBentryALTinterwordspacing
 ------, \emph{Guidelines for conducting the safety assessment process on civil
   aircraft, systems, and equipment}, SAE Standard ARP4761A (revised), Dec.
-  2023, catalogue entry; the standard itself was not read for this paper.
+  2023, {C}atalogue entry; the standard itself was not read for this paper.
   [Online]. Available: \url{https://doi.org/10.4271/ARP4761A}
 \BIBentrySTDinterwordspacing
 
@@ -384,7 +384,7 @@ I.~Habli, R.~Hawkins, C.~Paterson, P.~Ryan, Y.~Jia, M.~Sujan, and J.~McDermid,
 \bibitem{khlaaf2023toward}
 \BIBentryALTinterwordspacing
 H.~Khlaaf, ``Toward comprehensive risk assessments and assurance of {AI}-based
-  systems,'' Trail of Bits, White paper, Mar. 2023, also available as
+  systems,'' Trail of Bits, White paper, Mar. 2023, {A}lso available as
   arXiv:2606.29390, the copy read for this paper. [Online]. Available:
   \url{https://arxiv.org/abs/2606.29390}
 \BIBentrySTDinterwordspacing
@@ -400,7 +400,7 @@ H.~Khlaaf, ``Toward comprehensive risk assessments and assurance of {AI}-based
 \bibitem{rtca2011do178c}
 \BIBentryALTinterwordspacing
 {RTCA}, \emph{{DO-178C}: Software considerations in airborne systems and
-  equipment certification}, RTCA, Inc., Dec. 2011, catalogue entry; the
+  equipment certification}, RTCA, Inc., Dec. 2011, {C}atalogue entry; the
   standard itself was not read for this paper. Accessed: Nov. 3, 2026.
   [Online]. Available:
   \url{https://my.rtca.org/productdetails?id=a1B36000001IcmqEAC}

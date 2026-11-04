@@ -50,9 +50,9 @@ Use these run-in paragraphs, in this order, in every paper. Square-bracketed par
 
 ## Citations and references
 
-- **Numeric, bracketed, in order of first citation**: `\cite{key}` → [1]; several: `\cite{a,b}` → [1], [2]. Narrative use: `Wolfe et al.~\cite{wolfe2005} showed ...`. Never write author–year citations in the text.
+- **Numeric, bracketed, in order of first citation**: `\cite{key}` → [1]; several: `\cite{a,b,c}` → [1–3] (sorted and compressed by the `cite` package); with a locator: `\cite[§3.2]{key}` → [1, §3.2]. Narrative use: `Wolfe et al.~\cite{wolfe2005} showed ...`. Never write author–year citations in the text.
 - **IEEE-style list** via `\bibliographystyle{IEEEtran}` and `\bibliography{references}`: initials, quoted article titles, italic venues, vol./no./pp.
-- BibTeX entries must carry the verified bibliographic data: full author list (as given by the source), exact title (protect capitals with braces, e.g. `{AI}`, `{ICAO}`), journal/booktitle, volume, number, pages, year, `doi`, and `url` (use `https://doi.org/<doi>` when a DOI exists). Preprints: `@misc` with `howpublished = {arXiv preprint arXiv:XXXX.XXXXX}`. Web pages and blog posts: `@misc` with `howpublished`, `url` and `note = {Accessed: Nov. 3, 2026}`. Regulations and standards: `@misc` or `@manual` with the issuing body as `{{author}}` in double braces, the edition/amendment, and the URL. Where a document was read from a copy not distributed by its publisher, say so in `note`.
+- BibTeX entries must carry the verified bibliographic data: full author list (as given by the source), exact title (protect capitals with braces, e.g. `{AI}`, `{ICAO}`), journal/booktitle, volume, number, pages, year, `doi`, and `url` (use `https://doi.org/<doi>` when a DOI exists). Preprints: `@misc` with `howpublished = {arXiv preprint arXiv:XXXX.XXXXX}`. Web pages and blog posts: `@misc` with `howpublished`, `url` and `note = {{A}ccessed: Nov.~3, 2026}` (brace the first letter of any `note`, or IEEEtran may lower-case it). Regulations and standards: `@misc` or `@manual` with the issuing body as `{{author}}` in double braces, the edition/amendment, and the URL. Where a document was read from a copy not distributed by its publisher, say so in `note`.
 - Regulations may also be referred to in text by their legal designation (e.g. "14 CFR §91.25", "Art. 16(6)"), with the citation number where the source is first used.
 - Run `uv run --no-project --with bibtexparser==1.4.3 --with requests python papers/_build/check_bib.py <folder>` before finishing; resolve every `CHECK`, `*-NOT-FOUND` and missing key.
 
@@ -62,6 +62,7 @@ Use these run-in paragraphs, in this order, in every paper. Square-bracketed par
 - **Figures**: Matplotlib, vector PDF, shared style and colours (`palette.py`): one fixed colour per model across every figure in every paper (Haiku orange, Sonnet blue, Opus green). Captions are small with a bold label ("Figure 3:"), set automatically. Use `subcaption` for (a)/(b) panels.
 - **Equations**: displayed equations numbered on the right (`equation`, `align`); define every symbol in the text immediately after.
 - **Units and numbers**: `siunitx` (`\num{100000}`, `\SI{27000}{kg}`, `\SI{10}{\hour}`), thin-space digit grouping.
+- Write `et~al.` (non-breaking) in the text.
 - **Code identifiers, file names and model IDs** in monospace: `\code{src/env/aircraft_env.py}`, `\code{claude-haiku-5-5}`.
 
 ## Author and voice

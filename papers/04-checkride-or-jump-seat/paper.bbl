@@ -31,7 +31,7 @@ J.~Needham, G.~Edkins, G.~Pimpale, H.~Bartsch, and M.~Hobbhahn, ``Large
 
 \bibitem{anthropic2025sonnet45}
 \BIBentryALTinterwordspacing
-{Anthropic}, ``System card: {Claude Sonnet} 4.5,'' 2025, company system card;
+{Anthropic}, ``System card: {Claude Sonnet} 4.5,'' 2025, {C}ompany system card;
   not peer reviewed. Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf}
 \BIBentrySTDinterwordspacing
@@ -57,7 +57,7 @@ J.~McCambridge, J.~Witton, and D.~R. Elbourne, ``Systematic review of the
 \BIBentryALTinterwordspacing
 {European Union Aviation Safety Agency}, \emph{Easy Access Rules for Air
   Operations (Regulation ({EU}) No 965/2012)}, Revision 24, Mar. 2026,
-  provisions cited: ORO.FC.230 (as amended by Regulation (EU) 2021/2237),
+  {P}rovisions cited: ORO.FC.230 (as amended by Regulation (EU) 2021/2237),
   ORO.FC.231 and ORO.FC.232 (Regulation (EU) 2020/2036), with associated AMC
   and GM (ED Decisions 2021/002/R, 2022/014/R and 2025/002/R) and GM19 Annex I
   Definitions; texts checked via the Citadel Aero regulation library on 3
@@ -89,8 +89,8 @@ B.~J. Carvell, M.~Thomas, A.~Pace, C.~Dorney, G.~De~Ath, R.~Everson, N.~Pepper,
   A.~Keane, S.~Tomlinson, and R.~Cannon, ``Human-in-the-loop testing of {AI}
   agents for air traffic control with a regulated assessment framework,'' in
   \emph{{AIAA SciTech} 2026 Forum}.\hskip 1em plus 0.5em minus 0.4em\relax
-  American Institute of Aeronautics and Astronautics, 2026, also arXiv preprint
-  arXiv:2601.04288. [Online]. Available:
+  American Institute of Aeronautics and Astronautics, 2026, {A}lso arXiv
+  preprint arXiv:2601.04288. [Online]. Available:
   \url{https://doi.org/10.2514/6.2026-2558}
 \BIBentrySTDinterwordspacing
 
@@ -100,9 +100,9 @@ N.~Pepper, A.~Keane, A.~Hodgkin, D.~Gould, E.~Henderson, L.~Lauritsen,
   C.~Vlahos, G.~De~Ath, R.~Everson, R.~Cannon, A.~Sierra~Castro, J.~Korna,
   B.~Carvell, and M.~Thomas, ``A probabilistic digital twin of {UK} en route
   airspace for training and evaluating {AI} agents for air traffic control,''
-  arXiv preprint arXiv:2601.03113, 2026, published as ``A probabilistic digital
-  twin of {UK} en route airspace,'' in \emph{{AIAA SciTech} 2026 Forum},
-  \url{https://doi.org/10.2514/6.2026-1794}. [Online]. Available:
+  arXiv preprint arXiv:2601.03113, 2026, {P}ublished as ``A probabilistic
+  digital twin of {UK} en route airspace,'' in \emph{{AIAA SciTech} 2026
+  Forum}, \url{https://doi.org/10.2514/6.2026-1794}. [Online]. Available:
   \url{https://arxiv.org/abs/2601.03113}
 \BIBentrySTDinterwordspacing
 
@@ -148,8 +148,8 @@ N.~Pepper, A.~Keane, A.~Hodgkin, D.~Gould, E.~Henderson, L.~Lauritsen,
 \bibitem{iata2024ebt}
 \BIBentryALTinterwordspacing
 {International Air Transport Association}, \emph{Evidence-Based Training
-  Implementation Guide}, 2nd~ed., 2024, effective January 2024. Accessed: Nov.
-  3, 2026. [Online]. Available:
+  Implementation Guide}, 2nd~ed., 2024, {E}ffective January 2024. Accessed:
+  Nov. 3, 2026. [Online]. Available:
   \url{https://www.iata.org/contentassets/c0f61fc821dc4f62bb6441d7abedb076/ebt-implementation-guide.pdf}
 \BIBentrySTDinterwordspacing
 
@@ -197,15 +197,15 @@ V.~Devbunova, ``Is evaluation awareness just format sensitivity? {Limitations}
 \bibitem{souly2026}
 \BIBentryALTinterwordspacing
 A.~Souly, R.~Kirk, J.~Merizian, A.~D'Cruz, and X.~Davies, ``{UK AISI} alignment
-  evaluation case-study,'' arXiv preprint arXiv:2604.00788, 2026, technical
+  evaluation case-study,'' arXiv preprint arXiv:2604.00788, 2026, {T}echnical
   report of the UK AI Security Institute. [Online]. Available:
   \url{https://arxiv.org/abs/2604.00788}
 \BIBentrySTDinterwordspacing
 
 \bibitem{anthropic2026opus46}
 \BIBentryALTinterwordspacing
-{Anthropic}, ``System card: {Claude Opus} 4.6,'' 2026, company system card; not
-  peer reviewed. Accessed: Nov. 3, 2026. [Online]. Available:
+{Anthropic}, ``System card: {Claude Opus} 4.6,'' 2026, {C}ompany system card;
+  not peer reviewed. Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://www-cdn.anthropic.com/c788cbc0a3da9135112f97cdf6dcd06f2c16cee2.pdf}
 \BIBentrySTDinterwordspacing
 
@@ -216,7 +216,7 @@ K.~Fraser-Taliente, S.~Kantamneni, E.~Ong, D.~Mossing, C.~Lu, P.~C. Bogdan,
   Y.~Zhang, D.~M. Ziegler, E.~Hubinger, J.~Batson, J.~Lindsey, S.~Zimmerman,
   and S.~Marks, ``Natural language autoencoders produce unsupervised
   explanations of {LLM} activations,'' Transformer Circuits Thread (Anthropic),
-  May~7, 2026, company research report; not peer reviewed. Accessed: Nov. 3,
+  May~7, 2026, {C}ompany research report; not peer reviewed. Accessed: Nov. 3,
   2026. [Online]. Available: \url{https://transformer-circuits.pub/2026/nla/}
 \BIBentrySTDinterwordspacing
 
@@ -226,8 +226,8 @@ W.~Gurnee, N.~Sofroniew, A.~Pearce, M.~Piotrowski, I.~Kauvar, R.~Chen,
   A.~Soligo, P.~Bogdan, E.~Ong, R.~Wang, T.~B. Thompson, D.~Abrahams,
   S.~Kantamneni, E.~Ameisen, J.~Batson, and J.~Lindsey, ``Verbalizable
   representations form a global workspace in language models,'' Transformer
-  Circuits Thread (Anthropic), Jul.~6, 2026, company research report; not peer
-  reviewed. Also arXiv preprint arXiv:2607.15495. Accessed: Nov. 3, 2026.
+  Circuits Thread (Anthropic), Jul.~6, 2026, {C}ompany research report; not
+  peer reviewed. Also arXiv preprint arXiv:2607.15495. Accessed: Nov. 3, 2026.
   [Online]. Available: \url{https://transformer-circuits.pub/2026/workspace/}
 \BIBentrySTDinterwordspacing
 
@@ -245,7 +245,7 @@ B.~Schoen, E.~Nitishinskaya, M.~Balesni, A.~H{\o}jmark, F.~Hofst{\"a}tter,
 \BIBentryALTinterwordspacing
 S.~Abdelnabi and A.~Salem, ``The {Hawthorne} effect in reasoning models:
   Evaluating and steering test awareness,'' in \emph{Advances in Neural
-  Information Processing Systems 38}, 2025, pp. 156\,975--157\,002, also
+  Information Processing Systems 38}, 2025, pp. 156\,975--157\,002, {A}lso
   arXiv:2505.14617. [Online]. Available:
   \url{https://doi.org/10.52202/085713-4731}
 \BIBentrySTDinterwordspacing
@@ -278,7 +278,7 @@ C.~Li, T.~J. Zhang, J.~Zhang, Z.~Jin, F.~Tram{\`e}r, S.~Abdelnabi, and
 \bibitem{anthropic2025petri}
 \BIBentryALTinterwordspacing
 {Anthropic}, ``{Petri}: An open-source auditing tool to accelerate {AI} safety
-  research,'' Anthropic Alignment Science Blog, Oct.~6, 2025, company blog
+  research,'' Anthropic Alignment Science Blog, Oct.~6, 2025, {C}ompany blog
   post; not peer reviewed. Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://alignment.anthropic.com/2025/petri/}
 \BIBentrySTDinterwordspacing
@@ -287,8 +287,8 @@ C.~Li, T.~J. Zhang, J.~Zhang, Z.~Jin, F.~Tram{\`e}r, S.~Abdelnabi, and
 \BIBentryALTinterwordspacing
 ------, ``{Petri} 2.0: New scenarios, new model comparisons, and improved
   eval-awareness mitigations,'' Anthropic Alignment Science Blog, Jan.~22,
-  2026, company blog post; not peer reviewed. Accessed: Nov. 3, 2026. [Online].
-  Available: \url{https://alignment.anthropic.com/2026/petri-v2/}
+  2026, {C}ompany blog post; not peer reviewed. Accessed: Nov. 3, 2026.
+  [Online]. Available: \url{https://alignment.anthropic.com/2026/petri-v2/}
 \BIBentrySTDinterwordspacing
 
 \bibitem{baker2025}
@@ -303,8 +303,8 @@ B.~Baker, J.~Huizinga, L.~Gao, Z.~Dou, M.~Y. Guan, A.~Madry, W.~Zaremba,
 \BIBentryALTinterwordspacing
 C.~Kissane, M.~MacDiarmid, and F.~Roger, ``Measuring and improving coding audit
   realism with deployment resources,'' Anthropic Alignment Science Blog,
-  Mar.~23, 2026, company blog post; not peer reviewed. Accessed: Nov. 3, 2026.
-  [Online]. Available:
+  Mar.~23, 2026, {C}ompany blog post; not peer reviewed. Accessed: Nov. 3,
+  2026. [Online]. Available:
   \url{https://alignment.anthropic.com/2026/coding-audit-realism/}
 \BIBentrySTDinterwordspacing
 
@@ -355,7 +355,7 @@ M.~McCain, T.~Millar, S.~Huang, J.~Eaton, K.~Handa, M.~Stern, A.~Tamkin,
   M.~Kearney, E.~Durmus, J.~Shen, J.~Hong, B.~Calvert, J.~S. Chan, F.~Mosconi,
   D.~Saunders, T.~Neylon, G.~Nicholas, S.~Pollack, J.~Clark, and D.~Ganguli,
   ``Measuring {AI} agent autonomy in practice,'' Anthropic, Feb.~18, 2026,
-  company research post; not peer reviewed. Accessed: Nov. 3, 2026. [Online].
+  {C}ompany research post; not peer reviewed. Accessed: Nov. 3, 2026. [Online].
   Available: \url{https://www.anthropic.com/research/measuring-agent-autonomy}
 \BIBentrySTDinterwordspacing
 
@@ -364,8 +364,9 @@ M.~McCain, T.~Millar, S.~Huang, J.~Eaton, K.~Handa, M.~Stern, A.~Tamkin,
 S.~R. Bowman, M.~Srivastava, J.~Kutasov, R.~Wang, T.~Bricken, B.~Wright,
   E.~Perez, and N.~Carlini, ``Findings from a pilot {Anthropic}--{OpenAI}
   alignment evaluation exercise,'' Anthropic Alignment Science Blog, Aug.~27,
-  2025, company blog post; not peer reviewed. Accessed: Nov. 3, 2026. [Online].
-  Available: \url{https://alignment.anthropic.com/2025/openai-findings/}
+  2025, {C}ompany blog post; not peer reviewed. Accessed: Nov. 3, 2026.
+  [Online]. Available:
+  \url{https://alignment.anthropic.com/2025/openai-findings/}
 \BIBentrySTDinterwordspacing
 
 \bibitem{arora2025}
@@ -399,8 +400,8 @@ D.~Manheim and S.~Garrabrant, ``Categorizing variants of {Goodhart's} law,''
 
 \bibitem{anthropicmodels}
 \BIBentryALTinterwordspacing
-{Anthropic}, ``Models overview,'' Claude Docs, company documentation. Accessed:
-  Nov. 3, 2026. [Online]. Available:
+{Anthropic}, ``Models overview,'' Claude Docs, {C}ompany documentation.
+  Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://platform.claude.com/docs/en/about-claude/models/overview}
 \BIBentrySTDinterwordspacing
 
@@ -416,7 +417,7 @@ A.~R. Feinstein and D.~V. Cicchetti, ``High agreement but low kappa: {I}. {The}
 \BIBentryALTinterwordspacing
 K.~Krippendorff, ``Reliability in content analysis: Some common misconceptions
   and recommendations,'' \emph{Human Communication Research}, vol.~30, no.~3,
-  pp. 411--433, 2004, author's postprint:
+  pp. 411--433, 2004, {A}uthor's postprint:
   \url{https://repository.upenn.edu/asc_papers/242}. [Online]. Available:
   \url{https://doi.org/10.1111/j.1468-2958.2004.tb00738.x}
 \BIBentrySTDinterwordspacing
@@ -430,7 +431,7 @@ K.~Krippendorff, ``Reliability in content analysis: Some common misconceptions
 
 \bibitem{castro2026}
 \BIBentryALTinterwordspacing
-S.~Castro, ``{krippendorff},'' Python Package Index, 2026, version 0.9.0,
+S.~Castro, ``{krippendorff},'' Python Package Index, 2026, {V}ersion 0.9.0,
   computer software. Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://pypi.org/project/krippendorff/0.9.0/}
 \BIBentrySTDinterwordspacing

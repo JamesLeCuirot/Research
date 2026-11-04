@@ -36,14 +36,15 @@ No number or finding changed.
 
 ## How to submit
 
-1. Go to the journal's page on Cambridge Core and follow "Submit your article". It uses ScholarOne; create an account, and link your ORCID (0009-0009-6014-1298), which the journal requires.
-2. Choose the article type **Research Article**, and the subject classification that best fits (likely human factors, safety, or air transport operations, from the journal's list; the guidance warns that a wrong classification can lead to an out-of-scope rejection).
-3. Upload `paper.pdf`, or `paper.tex` with `fig1-case-shifts.pdf` and `fig2-outcomes.pdf`, and paste in the cover letter.
-4. Declarations in the form:
+1. Go to the journal's submission system, **Editorial Manager**: https://www.editorialmanager.com/aeroj/ (checked 4 November 2026 on Cambridge's "submitting your materials" page). It needs its own account, separate from Cambridge Core. Link your ORCID (0009-0009-6014-1298), which the journal requires for the corresponding author. Queries go to aerojournal@aerosociety.com.
+2. **Keywords go in the online form, not the manuscript** (the journal's rule; the manuscript's keywords line was removed on 4 November 2026). Use: just culture; outcome bias; hindsight bias; large language models; culpability; aviation safety reporting.
+3. Choose the article type **Research Article**, and a main and a secondary subject classification that fit (likely human factors, safety, or air transport operations, from the journal's list; the guidance warns that a wrong classification can lead to an out-of-scope rejection).
+4. Upload `paper.pdf`, or `paper.tex` with `fig1-case-shifts.pdf` and `fig2-outcomes.pdf`, and paste in the cover letter.
+5. Declarations in the form:
    - **Competing interests:** "The author is the founder of CitadelAero, which develops AI tools for aviation safety and compliance teams; no company product was tested."
    - **Funding:** none.
    - **Data:** OSF (osf.io/dhf38).
-5. **Suggested reviewers,** if asked. These are candidates in the field; check their current affiliations and e-mail addresses:
+6. **Suggested reviewers,** if asked. These are candidates in the field; check their current affiliations and e-mail addresses:
    - Andrew Gilbey (outcome bias among pilots);
    - Markus Kneer (outcome effects in LLMs);
    - an author of Oğuz et al. (2026), for example Óscar Oviedo-Trespalacios.

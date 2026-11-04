@@ -211,7 +211,8 @@ R.~D. Sorkin and D.~D. Woods, ``Systems with human monitors: A signal detection
 J.~Kutasov, Y.~Sun, P.~Colognese, T.~van~der Weij, L.~Petrini, C.~B.~C. Zhang,
   J.~Hughes, X.~Deng, H.~Sleight, T.~Tracy, B.~Shlegeris, and J.~Benton,
   ``{SHADE-Arena}: Evaluating sabotage and monitoring in {LLM} agents,'' arXiv
-  preprint arXiv:2506.15740, 2025. [Online]. Available:
+  preprint arXiv:2506.15740, 2025, research report led by Anthropic, with
+  co-authors from other organisations; not peer reviewed. [Online]. Available:
   \url{https://arxiv.org/abs/2506.15740}
 \BIBentrySTDinterwordspacing
 
@@ -227,8 +228,17 @@ N.~Kale, C.~B.~C. Zhang, K.~Zhu, A.~Aich, P.~Rodriguez, {Scale Red Team}, C.~Q.
 \BIBentryALTinterwordspacing
 E.~Najt, C.~Toft, T.~Tracy, F.~Roger, and J.~Benton, ``{SLEIGHT-Bench}: Finding
   blind spots in {AI} monitors,'' Alignment Science Blog, Anthropic, May~19,
-  2026, accessed: Nov. 3, 2026. [Online]. Available:
+  2026, company research blog post, not peer reviewed. Accessed: Nov. 3, 2026.
+  [Online]. Available:
   \url{https://alignment.anthropic.com/2026/sleight-bench/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{najt2026arxiv}
+\BIBentryALTinterwordspacing
+------, ``{SLEIGHT-Bench}: A benchmark of evasion attacks against agent
+  monitors,'' arXiv preprint arXiv:2605.16626, 2026, version 2. Research by the
+  Anthropic Fellows Program and Anthropic, with Redwood Research; not peer
+  reviewed. [Online]. Available: \url{https://arxiv.org/abs/2605.16626}
 \BIBentrySTDinterwordspacing
 
 \bibitem{ye2026}
@@ -241,8 +251,8 @@ J.~Ye, H.~Zou, S.~Yu, and W.~Shi, ``Coding with ``enemy'': Can human developers
 \bibitem{favaro_pace}
 \BIBentryALTinterwordspacing
 M.~Favaro and P.~Wright, ``Measurements for understanding the pace of {AI}
-  development inside frontier labs,'' Anthropic, accessed: Nov. 3, 2026.
-  [Online]. Available:
+  development inside frontier labs,'' Anthropic, company research report, not
+  peer reviewed. Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://www.anthropic.com/institute/measuring-pace-of-ai-development}
 \BIBentrySTDinterwordspacing
 
@@ -321,8 +331,8 @@ J.~Austin, A.~Odena, M.~Nye, M.~Bosma, H.~Michalewski, D.~Dohan, E.~Jiang,
 
 \bibitem{anthropic_headless}
 \BIBentryALTinterwordspacing
-{Anthropic}, ``Run {Claude Code} programmatically,'' Claude Code Docs,
-  accessed: Nov. 3, 2026. [Online]. Available:
+{Anthropic}, ``Run {Claude Code} programmatically,'' Claude Code Docs, company
+  product documentation. Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://code.claude.com/docs/en/headless}
 \BIBentrySTDinterwordspacing
 
@@ -330,8 +340,17 @@ J.~Austin, A.~Odena, M.~Nye, M.~Bosma, H.~Michalewski, D.~Dohan, E.~Jiang,
 \BIBentryALTinterwordspacing
 A.~Remedios, S.~Storf, F.~Roger, and J.~Hughes, ``Red-teaming auto mode:
   Improving blocking classifiers against malign coding agents,'' Alignment
-  Science Blog, Anthropic, Oct.~22, 2026, accessed: Nov. 3, 2026. [Online].
-  Available: \url{https://alignment.anthropic.com/2026/red-teaming-auto-mode/}
+  Science Blog, Anthropic, Oct.~22, 2026, company research blog post, not peer
+  reviewed. Accessed: Nov. 3, 2026. [Online]. Available:
+  \url{https://alignment.anthropic.com/2026/red-teaming-auto-mode/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{remedios2026arxiv}
+\BIBentryALTinterwordspacing
+------, ``Red-teaming auto mode: Improving blocking classifiers against malign
+  coding agents,'' arXiv preprint arXiv:2609.19587, 2026, version 2. Research
+  by the Anthropic Fellows Program and Anthropic; not peer reviewed. [Online].
+  Available: \url{https://arxiv.org/abs/2609.19587}
 \BIBentrySTDinterwordspacing
 
 \end{thebibliography}

@@ -164,16 +164,28 @@ J.~Needham, G.~Edkins, G.~Pimpale, H.~Bartsch, and M.~Hobbhahn, ``Large
 \BIBentryALTinterwordspacing
 A.~Lynch, J.~Hughes, A.~Serrano, R.~Kirk, and S.~R. Bowman, ``Agentic
   misalignment in summer 2026,'' Anthropic Alignment Science Blog, Jul.~13,
-  2026, accessed: Nov. 3, 2026. [Online]. Available:
+  2026, company research report, not peer reviewed. Accessed: Nov. 3, 2026.
+  [Online]. Available:
   \url{https://alignment.anthropic.com/2026/agentic-misalignment-summer-2026/}
 \BIBentrySTDinterwordspacing
 
 \bibitem{anthropic2026aisi}
 \BIBentryALTinterwordspacing
 {Anthropic}, ``An alignment assessment of the {UK AISI} cybertesting
-  incident,'' Research web page, Oct.~23, 2026, accessed: Nov. 3, 2026.
-  [Online]. Available:
+  incident,'' Anthropic research report (web page), Oct.~23, 2026, company
+  research report, not peer reviewed. Accessed: Nov. 3, 2026. [Online].
+  Available:
   \url{https://www.anthropic.com/research/alignment-assessment-ukaisi}
+\BIBentrySTDinterwordspacing
+
+\bibitem{aisi2026incident}
+\BIBentryALTinterwordspacing
+{UK AI Security Institute}, ``Incident report: Unsanctioned agent behaviour
+  during cyber testing,'' AISI blog (government research organisation,
+  Department for Science, Innovation and Technology), Aug.~4, 2026, accompanied
+  by the technical incident report INC-2026-07-28-01. Accessed: Nov. 4, 2026.
+  [Online]. Available:
+  \url{https://www.aisi.gov.uk/blog/incident-report-unsanctioned-agent-behaviour-during-cyber-testing}
 \BIBentrySTDinterwordspacing
 
 \bibitem{clymer2024safety}
@@ -221,8 +233,10 @@ M.~Terekhov, A.~Panfilov, D.~Dzenhaliou, C.~Gulcehre, M.~Andriushchenko,
 \BIBentryALTinterwordspacing
 A.~Remedios, S.~Storf, F.~Roger, and J.~Hughes, ``Red-teaming auto mode:
   Improving blocking classifiers against malign coding agents,'' Anthropic
-  Alignment Science Blog, Oct.~22, 2026, accessed: Nov. 3, 2026. [Online].
-  Available: \url{https://alignment.anthropic.com/2026/red-teaming-auto-mode/}
+  Alignment Science Blog, Oct.~22, 2026, company research report, not peer
+  reviewed; also available as arXiv preprint arXiv:2609.19587 by the same
+  authors. Accessed: Nov. 3, 2026. [Online]. Available:
+  \url{https://alignment.anthropic.com/2026/red-teaming-auto-mode/}
 \BIBentrySTDinterwordspacing
 
 \bibitem{sharma2023sycophancy}

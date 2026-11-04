@@ -39,13 +39,13 @@ Other research repositories (pc24-study, CitadelAero research-studies and others
 | B2.2 | H2 presentation: registered GLMM kept as the result, accurate refit reported post hoc | ✔ | Default accepted: registered GLMM stays the registered result; accurate refit and exact paired test reported as post hoc. |
 | B2.3 | Length (~7,650 words of prose) | ✔ | Default accepted: no further cuts for the website; trim to a venue's limit when submitting. |
 
-### 03 From RSP to SMS
+### 03 From RSP to SMS — **released as Preprint v1.0 (4 Nov 2026)**
 | # | Item | Status | Decision |
 |---|---|---|---|
-| B3.1 | Table 2 ratings (single coder): the debatable cells (OpenAI 3.2 = D; Anthropic/OpenAI 4.1 = P; OpenAI 1.3 = P) | ☐ | |
+| B3.1 | Table 2 ratings (single coder): the debatable cells (OpenAI 3.2 = D; Anthropic/OpenAI 4.1 = P; OpenAI 1.3 = P) | ✔ | Agreed by James as rated (single-coder judgements, disclosed). |
 | B3.2 | Documents not read (Anthropic Frontier Compliance Framework; SB 53 statute; OpenAI web pages) | ✔ | Default accepted: keep the scope note naming documents that could not be read. |
 | B3.3 | Secondary routes: Annex 6 Part I 3.3.3 (via CAA NZ checklist); Reg (EC) 300/2008 (UK text only) | ✔ | Resolved: Annex 6 3.3.2–3.3.3 matched a second (Swiss FOCA) copy in v0.4; Reg (EC) 300/2008 stays cited from the UK assimilated text with that noted. |
-| B3.4 | The twelve proposed safety performance indicators (§6), reviewed as a practitioner | ☐ | |
+| B3.4 | The twelve proposed safety performance indicators (§6), reviewed as a practitioner | ✔ | Accepted by James as sensible proposals; kept labelled as untested. |
 | B3.5 | Length (~8,700 words incl. tables) | ✔ | Default accepted: no further cuts for the website. |
 
 ### 04 Checkride or Jump Seat?

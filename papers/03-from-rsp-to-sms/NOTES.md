@@ -154,3 +154,7 @@ Format conversion only: wording, numbers, quotations, table cells and ratings ar
 - **README.** The abstract now matches `paper.tex` word for word, including "In the documents assessed,", and is 254 words. "Evaluation-partner requirements" is corrected to best practices that partners were asked to commit to.
 - **Checks.** Rebuilt: 23 pages, no warnings. `check_bib.py`: 10 entries OK, 32 without an ID checked by hand, no missing or unused keys, exit 0. `compare_text.sh`: only the differences listed above and in the decisions block.
 
+
+### v1.0 (4 November 2026): released as a preprint
+
+James agreed the Table 2 ratings as coded (B3.1) and accepted the twelve SPIs as proposals (B3.4); B3.2, B3.3 and B3.5 closed with the recommended defaults. Date line changed to "Preprint v1.0"; affiliation CitadelAero; § signs replaced by words. No change to arguments, ratings, numbers or quotations.

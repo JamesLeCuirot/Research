@@ -1,6 +1,6 @@
 # From RSP to SMS: Reading Frontier AI Safety Frameworks Through ICAO's Safety Management System
 
-**James Le Cuirot** · CitadelAero · Working draft v0.4, 4 November 2026. Not peer reviewed.
+**James Le Cuirot** · CitadelAero · Preprint v1.0, 4 November 2026. Not peer reviewed.
 
 **[Read the paper (PDF)](paper.pdf)** · Part of the [research repository](../../README.md) · [All papers](../README.md)
 
@@ -15,8 +15,8 @@ Frontier AI developers publish safety frameworks, such as Anthropic’s Responsi
   author      = {Le Cuirot, James},
   title       = {From RSP to SMS: Reading Frontier AI Safety Frameworks Through ICAO's Safety Management System},
   institution = {CitadelAero},
-  type        = {Working paper},
-  number      = {v0.4},
+  type        = {Preprint},
+  number      = {v1.0},
   year        = {2026},
   month       = nov,
   note        = {Not peer reviewed},

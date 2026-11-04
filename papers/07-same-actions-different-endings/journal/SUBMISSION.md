@@ -19,20 +19,12 @@ The journal's guide page blocks automated access, so its exact limits are unveri
    - But the manuscript was drafted by Claude. Revise it in your own words, then replace the placeholder `[AUTHOR TO DESCRIBE HIS OWN REVISION OF THE MANUSCRIPT]` in the declaration (near the end of `paper.tex`) with what you actually did, and rebuild.
    - The Methods (Section 2.3) now describe every way Claude was used in the research: protocol drafts, screening, condensing, the control cases, the exclusion checks, the scripts and the analysis. They also say the model versions used for those steps were not recorded.
 2. **CitadelAero's rule against journal submissions.** The company research plan, adopted 7 October 2026, says of company studies: "No preprint or journal submissions" (ruling of 2 October; `2026-10-05-research-plan.md`, CitadelAero's study repository). Its later lines also say no journal papers "on purpose". You asked for this paper to go to a journal. Whether that overrides the company rule is your decision as founder, not mine. Please make it explicitly and record it in the company's shared repository before submitting, especially as the affiliation is CitadelAero.
-3. **Anonymity can only be partial.** *Safety Science* appears to use double-anonymised review.
-   - Your OSF registration and project are public, list you as contributor, carry the same title, and their files name you. The results are also on the CitadelAero website.
-   - OSF's "Anonymize" option for view-only links hides contributor names but not what the files say, so the package uses an anonymised supplementary ZIP instead of OSF links (`make_supplement.py`).
-   - Even so, a reviewer who searches the title will find you. Options:
-     - (a) accept this (preprints are allowed, and reviewers are asked not to search);
-     - (b) give the journal version a different title, for example "Outcome Bias in AI Models Applying a Culpability Decision Tree to Airline Occurrence Reports: A Pre-registered Within-Case Experiment";
-     - (c) ask the editor how they want a pre-registered study with a public record handled.
-
-     I'd suggest (b) plus a line in the cover letter.
+3. **Anonymity can only be partial — decided: new title.** *Safety Science* appears to use double-anonymised review, but your OSF records are public, name you and carry the preprint's title, and the results are on the CitadelAero website. OSF's "Anonymize" option for view-only links hides contributor names but not what the files say, so the package uses an anonymised supplementary ZIP instead of OSF links (`make_supplement.py`). On 4 November you agreed to a different title for the journal version: **"Outcome Bias in AI Models Applying a Culpability Decision Tree to Airline Occurrence Reports: A Pre-registered Within-Case Experiment"**. The manuscript, title page, cover letter and supplement use it; the title page and cover letter (seen by the editor, not reviewers) give the preprint's title as prior dissemination. A reviewer who searches the abstract could still find the preprint; that is allowed.
 4. **Two papers to one journal.** Paper 01 is also prepared for *Safety Science*. This one is the stronger fit; if you'd rather not have two concurrent submissions there, send this one first.
 
 ## What James needs to do
 
-1. Decide points 1–4; revise the manuscript; complete the declaration; rebuild with `latexmk -pdf paper.tex`.
+1. Decide points 1, 2 and 4 (3 is decided); revise the manuscript; complete the declaration; rebuild with `latexmk -pdf paper.tex`.
 2. Build the supplement: `python3 papers/07-same-actions-different-endings/journal/make_supplement.py` writes `journal/build/supplement.zip` (about 2.5 MB). It replaces your name and company, removes contact details, registry links and the freeze commit, leaves out the preprint, and checks for a list of identifying patterns. The analysis reproduces from the supplement. The list can't catch everything, so look through `journal/build/supplement/` before uploading.
 3. Check the journal's guide for the unverified points.
 4. Upload to Editorial Manager:

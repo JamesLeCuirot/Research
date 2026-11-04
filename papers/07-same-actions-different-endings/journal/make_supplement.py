@@ -27,8 +27,8 @@ FORBIDDEN = re.compile(
 
 README = """# Supplementary material
 
-Anonymised materials for "Same Actions, Different Endings: Outcome Severity Shifts How AI Models
-Apply Reason's Culpability Decision Tree to Airline Flight Crews". These are the materials of the
+Anonymised materials for "Outcome Bias in AI Models Applying a Culpability Decision Tree to
+Airline Occurrence Reports: A Pre-registered Within-Case Experiment". These are the materials of the
 public study record, with the author's name, company and contact details removed. "The
 investigator" stands for the author. "Claude" in the protocol and file notes refers to the Claude
 models that assisted with preparation under the investigator's direction (manuscript Section 2.3).

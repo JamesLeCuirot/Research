@@ -1,6 +1,6 @@
 # Do LLM Monitors Miss Rare Threats? A Pre-registered Test of the Low-Prevalence Effect
 
-**James Le Cuirot** · Citadel Aero · Working draft v0.4, 4 November 2026. Not peer reviewed.
+**James Le Cuirot** · CitadelAero · Preprint v1.0, 4 November 2026. Not peer reviewed.
 
 **[Read the paper (PDF)](paper.pdf)** · Part of the [research repository](../../README.md) · [All papers](../README.md)
 
@@ -14,9 +14,9 @@ AI control protocols use language-model monitors to review the work of more capa
 @techreport{lecuirot2026raremonitors,
   author      = {Le Cuirot, James},
   title       = {Do LLM Monitors Miss Rare Threats? A Pre-registered Test of the Low-Prevalence Effect},
-  institution = {Citadel Aero},
-  type        = {Working paper},
-  number      = {v0.4},
+  institution = {CitadelAero},
+  type        = {Preprint},
+  number      = {v1.0},
   year        = {2026},
   month       = nov,
   note        = {Not peer reviewed},

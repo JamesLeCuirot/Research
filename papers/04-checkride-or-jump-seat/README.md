@@ -1,6 +1,6 @@
 # Checkride or Jump Seat? What LOSA and Evidence-Based Training Teach About Evaluation Awareness in AI Systems
 
-**James Le Cuirot** · Citadel Aero · Working draft v0.4, 4 November 2026. Not peer reviewed.
+**James Le Cuirot** · CitadelAero · Working draft v0.4, 4 November 2026. Not peer reviewed.
 
 **[Read the paper (PDF)](paper.pdf)** · Part of the [research repository](../../README.md) · [All papers](../README.md)
 
@@ -14,7 +14,7 @@
 @techreport{lecuirot2026checkride,
   author      = {Le Cuirot, James},
   title       = {Checkride or Jump Seat? What LOSA and Evidence-Based Training Teach About Evaluation Awareness in AI Systems},
-  institution = {Citadel Aero},
+  institution = {CitadelAero},
   type        = {Working paper},
   number      = {v0.4},
   year        = {2026},

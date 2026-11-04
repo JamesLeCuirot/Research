@@ -1,6 +1,6 @@
 # Aviation safety science for AI alignment: five working papers
 
-**James Le Cuirot** · Citadel Aero
+**James Le Cuirot** · CitadelAero
 
 These five papers apply aviation safety science and human factors to problems on Anthropic's AI-safety research agenda. They are **working drafts for author review**. None is peer reviewed. Each sits in its own folder with its sources, audit trail and (where relevant) code and data, so any one can be developed further on its own.
 
@@ -9,7 +9,7 @@ Part of James Le Cuirot's [research repository](../README.md).
 | # | Paper | Kind | Version | Read |
 |---|---|---|---|---|
 | 01 | **Just Culture for Machines:** Why Penalising Disclosure Teaches Concealment | Theory | v0.4 | [PDF](01-just-culture-for-machines/paper.pdf) · [LaTeX](01-just-culture-for-machines/paper.tex) |
-| 02 | **Do LLM Monitors Miss Rare Threats?** A Pre-registered Test of the Low-Prevalence Effect | Experiment (pre-registered) | v0.4 | [PDF](02-do-llm-monitors-miss-rare-threats/paper.pdf) · [LaTeX](02-do-llm-monitors-miss-rare-threats/paper.tex) |
+| 02 | **Do LLM Monitors Miss Rare Threats?** A Pre-registered Test of the Low-Prevalence Effect | Experiment (pre-registered) | **v1.0 preprint** | [PDF](02-do-llm-monitors-miss-rare-threats/paper.pdf) · [LaTeX](02-do-llm-monitors-miss-rare-threats/paper.tex) |
 | 03 | **From RSP to SMS:** Reading Frontier AI Safety Frameworks Through ICAO's Safety Management System | Theory and document analysis | v0.4 | [PDF](03-from-rsp-to-sms/paper.pdf) · [LaTeX](03-from-rsp-to-sms/paper.tex) |
 | 04 | **Checkride or Jump Seat?** What LOSA and Evidence-Based Training Teach About Evaluation Awareness in AI Systems | Theory and a small pilot | v0.4 | [PDF](04-checkride-or-jump-seat/paper.pdf) · [LaTeX](04-checkride-or-jump-seat/paper.tex) |
 | 05 | **Untrusted by Design:** Bringing AI Control into Aviation's Operational Oversight of AI | Theory and regulatory analysis | v0.4 | [PDF](05-untrusted-by-design/paper.pdf) · [LaTeX](05-untrusted-by-design/paper.tex) |
@@ -46,10 +46,10 @@ Decisions taken on the review points are recorded in [`REVIEW_CHECKLIST.md`](REV
 
 ## Before you publish any of them
 
-- **Read each folder's `NOTES.md` → "What James should check".** These list the judgement calls made on your behalf (framing, analogies, ratings, wording about Anthropic and Citadel Aero).
+- **Read each folder's `NOTES.md` → "What James should check".** These list the judgement calls made on your behalf (framing, analogies, ratings, wording about Anthropic and CitadelAero).
 - **ICAO documents.** ICAO's website blocked access, so Annex 19, Doc 9859, Doc 9995 and Doc 9868 were read from copies hosted by other authorities or third parties, and the papers say so. Check the quoted text against your own licensed copies.
 - **Annex 19 Amendment 2 applies from 26 November 2026.** It renames some SMS elements and renumbers some provisions. Papers 01 and 03 use the 2nd edition and flag the change.
-- **Disclosure statements.** Each paper has an AI-assistance statement and a disclaimer. Several note that many sources are Anthropic's own and that the drafting AI is Anthropic's. Paper 03 has a competing-interests line naming Citadel Aero. Keep, edit or extend these as you see fit.
+- **Disclosure statements.** Each paper has an AI-assistance statement and a disclaimer. Several note that many sources are Anthropic's own and that the drafting AI is Anthropic's. Paper 03 has a competing-interests line naming CitadelAero. Keep, edit or extend these as you see fit.
 - **Venue formatting.** The LaTeX sources (`paper.tex`, `references.bib`, `paper.bbl`) are arXiv-ready. A journal template needs only the document class and bibliography style swapped.
 
 ## Folder layout

@@ -28,7 +28,7 @@ Six benign scenarios at a fictional airline ("Calder Air"): ambiguous instructio
 
 - ICAO Doc 9803 full text (bibliographic facts only are used).
 - ICAO Doc 9868, Part II, Section 1, Chapter 1, 1.1.4: no second copy could be opened, so this quotation rests on the FFAC copy alone. Edition and chapter structure were confirmed from a vendor sample.
-- Whether the Citadel Aero consolidation of the EASA rules matches Easy Access Rules Revision 24 line by line (amending instruments are named per provision).
+- Whether the CitadelAero consolidation of the EASA rules matches Easy Access Rules Revision 24 line by line (amending instruments are named per provision).
 - Two Sonnet transcripts in S3 report usage under two model IDs (`claude-sonnet-5-5` and `claude-sonnet-5`), possibly an automatic fallback. Kept and flagged.
 
 ## Prior-work search
@@ -127,7 +127,7 @@ Every item was re-checked against the source before changing the text. No audit 
 | 28 | n | Model names unverified | Verified on Anthropic's models overview page (cited as Anthropic, n.d.); API IDs kept in text. |
 | 29 | n | Undefined jargon | Definitions added for checkride, line check, reward hacking, honeypot, scheming/covert actions, linear probe, steering vector and ablation. |
 | 30 | n | Laine, Panickssery peer-reviewed versions | Verified via Crossref (NeurIPS 2024, DOIs 10.52202/079017-2044 and -2197); references now cite the proceedings. |
-| 31 | n | EASA "n.d." | Now EASA (2026), Easy Access Rules for Air Operations, Revision 24 (March 2026), verified on the EASA page, with a note that texts came via the Citadel Aero library. |
+| 31 | n | EASA "n.d." | Now EASA (2026), Easy Access Rules for Air Operations, Revision 24 (March 2026), verified on the EASA page, with a note that texts came via the CitadelAero library. |
 | 32 | n | Primary rule for OPC/line check; mixed EBT | ORO.FC.230(b)–(c) and AMC1 ORO.FC.230 cited in §2.1; one sentence on mixed EBT in §2.3. |
 | 33 | n | GM19 LOSA definition | Quoted in §2.4. |
 | 34 | n | Competency map | **(modified)** §6.5 mentions the per-competency columns of the AMC2 ORO.FC.232 table; the excerpt seen shows one column per competency but not the label "competency map", so that label is not used. |
@@ -147,7 +147,7 @@ Each point was re-checked against the source or the data before the text was cha
 |---|---|
 | #14 (stale clause) | Deleted "and one figure is quoted second-hand" from the AI-assistance statement (the Gunther figure was removed in v0.2). |
 | #19 | §6.3 now reads "such as kappa (Feinstein & Cicchetti, 1990) and alpha (Krippendorff, 2004)"; the Krippendorff (2004) 82%-agreement/zero-coefficient example and single-category case were verified in the postprint. |
-| #34 | Verified in the Citadel Aero library: the AMC2 ORO.FC.232 table header labels the competency columns "Competency map", and AMC8 ORO.FC.232 is titled "Scenario elements and competency mapping" with (e) "the instructor should always assess all observed competencies". §6.5 uses the term and cites AMC8; sources.md corrected (the v0.2 reason for not using the term was wrong). |
+| #34 | Verified in the CitadelAero library: the AMC2 ORO.FC.232 table header labels the competency columns "Competency map", and AMC8 ORO.FC.232 is titled "Scenario elements and competency mapping" with (e) "the instructor should always assess all observed competencies". §6.5 uses the term and cites AMC8; sources.md corrected (the v0.2 reason for not using the term was wrong). |
 | N1 | Re-counted by hand: holistic rationales named the premature status claims in 24 of 28 ratings; rubric COM.2 flagged 20 of 28, never S6 Sonnet #3; Opus missed 4 of 12 S6 rubric ratings; all holistic grades 4–5, 16 of 28 COM grades 2–3. Abstract, §6.4, §6.5 and §8 now say both conditions noticed it and only the rubric's communication grade registered it in the score; COM.2 inter-grader alpha (0.52) reported. |
 | N2 | "Every inter-grader alpha" restricted to the grades (abstract, §6.4, §6.5). §6.4 now acknowledges pooled indicator alpha 0.69 in run 1, cites Krippendorff (2004, Rec. (iv)) on averaging, and reports per-indicator alphas (run 1 none ≥ 0.667, highest COM.4 0.65, four undefined; run 2 only PSD.4, 0.79). |
 | N3 | The §6.5 sentence linking low overall-after-rubric agreement to the EASA departure is replaced by a statement that the pilot says nothing about that effect (lowest alpha in run 1, highest in run 2). |

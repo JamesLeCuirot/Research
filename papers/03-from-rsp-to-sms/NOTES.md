@@ -2,7 +2,7 @@
 
 *Working notes for the author: review points, open questions, development ideas and the revision log. The reader-facing summary is [`README.md`](README.md).*
 
-**Author:** James Le Cuirot (Citadel Aero)
+**Author:** James Le Cuirot (CitadelAero)
 **Status:** working draft v0.4 for author review (4 November 2026): the v0.3 text (revised after an independent audit and a second-round verification, `AUDIT.md`) converted to the LaTeX technical-report house style with IEEE numeric references. Not peer reviewed. Not committed by the drafting agent.
 **Length:** about 7,100 words of prose plus about 1,600 words in three tables (about 8,700 words of main text, excluding references); 23 pages as typeset. This is slightly above the STYLE.md guide of "about 6,000–8,500" once tables are counted. Abstract 254 words. 42 references (40 at v0.3, plus 2 independent sources added under decision A6).
 
@@ -49,7 +49,7 @@ Across 15 rows (the 12 Annex 19 elements, with 3.1 split into occurrence investi
 
 ## Ideas for developing it
 
-- **Citadel Aero SMS-for-AI template**: an SMS manual annex for AI systems mapped to Annex 19 (with Amendment 2), 14 CFR Part 5 and ORO.GEN.200; an SPI register based on Table 3; a management-of-change form for model, prompt, scaffold, monitor and threshold changes; and an occurrence classification for AI-related events.
+- **CitadelAero SMS-for-AI template**: an SMS manual annex for AI systems mapped to Annex 19 (with Amendment 2), 14 CFR Part 5 and ORO.GEN.200; an SPI register based on Table 3; a management-of-change form for model, prompt, scaffold, monitor and threshold changes; and an occurrence classification for AI-related events.
 - **Second coder and Delphi round** on Table 2 and the SPI set.
 - **Trend series** from successive Anthropic Risk Reports, testing whether Doc 9859-style alert levels would have fired.
 - **Companion paper on change management for AI safety controls**, built on the Section 5.2 cases.

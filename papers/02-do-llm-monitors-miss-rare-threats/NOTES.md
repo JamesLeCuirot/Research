@@ -4,7 +4,7 @@
 
 *A Pre-registered Test of the Low-Prevalence Effect* (paper 02; working title was "Rare Threats Are Missed Threats")
 
-**James Le Cuirot** · Citadel Aero · Working draft v0.4, 4 November 2026. Not peer reviewed.
+**James Le Cuirot** · CitadelAero · Working draft v0.4, 4 November 2026. Not peer reviewed.
 
 ## Abstract
 
@@ -135,3 +135,7 @@ Format conversion of v0.3 to the house style in `papers/STYLE.md`; no result, nu
 ### v0.3 (4 November 2026)
 
 Second-round verification fixes (see AUDIT.md, "Second-round verification") applied by the lead session: §1 contribution now says "not a *conservative* criterion shift"; §7.1 Sonnet H2 wording corrected (effect at least partly through scores; criterion moved conservative but not reliably); §5.7 power sentence distinguishes Experiment 3 from the paired Experiment 2; §5.8 adds the history of the threshold code comment (`7fe31dc` → `d8e6b51`); sources.md table numbers, Makins status and Remedios locator corrected; stray blank line in references removed. Length (item 24) not cut further: left for venue-specific trimming.
+
+### v1.0 (4 November 2026): released as a preprint
+
+All review items closed (James accepted the recommended defaults for B2.1–B2.3). Date line changed from "Working draft v0.4" to "Preprint v1.0"; affiliation printed as CitadelAero. No change to content.

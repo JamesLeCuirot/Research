@@ -2,7 +2,7 @@
 
 *Working notes for the author: review points, open questions, development ideas and the revision log. The reader-facing summary is [`README.md`](README.md).*
 
-**Author:** James Le Cuirot (Citadel Aero)
+**Author:** James Le Cuirot (CitadelAero)
 **Status:** working draft v0.4 for author review (4 November 2026): the audited v0.3 text converted to the LaTeX technical-report house style with IEEE numeric references. Not peer reviewed.
 **Files:** `paper.tex` and `references.bib` (source of truth; build with `papers/_build/build.sh papers/01-just-culture-for-machines`), `paper.pdf` (built; do not edit), `paper.bbl` (kept for arXiv submission), `sources.md` (verification log for every reference and the literature-search log; entries changed in v0.2 are marked **[v0.2]**), `AUDIT.md` (independent audit and second-round verification; not edited). The v0.3 Markdown source (`paper.md`, `paper.html`) remains in git history.
 **Length:** about 7,760 words of main text excluding Table 1 and the Annex 19 footnote (about 8,140 including Table 1), counted as whitespace-separated tokens from §1 to §8 without citation numbers (v0.3, with author–date citations: about 8,040 and 8,490); abstract 248 words; 52 references (51 at conversion, plus Daniels et al. 2026 added under decision A6); 22 pages.

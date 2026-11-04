@@ -1,6 +1,6 @@
 # Just Culture for Machines: Why Penalising Disclosure Teaches Concealment
 
-**James Le Cuirot** · Citadel Aero · Working draft v0.4, 4 November 2026. Not peer reviewed.
+**James Le Cuirot** · CitadelAero · Working draft v0.4, 4 November 2026. Not peer reviewed.
 
 **[Read the paper (PDF)](paper.pdf)** · Part of the [research repository](../../README.md) · [All papers](../README.md)
 
@@ -14,7 +14,7 @@ Aviation learned that when reports of error feed punishment, people stop reporti
 @techreport{lecuirot2026justculture,
   author      = {Le Cuirot, James},
   title       = {Just Culture for Machines: Why Penalising Disclosure Teaches Concealment},
-  institution = {Citadel Aero},
+  institution = {CitadelAero},
   type        = {Working paper},
   number      = {v0.4},
   year        = {2026},

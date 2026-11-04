@@ -30,7 +30,7 @@ No number or finding changed.
 
 ## Before you submit
 
-1. **Decide CitadelAero's rule.** The company research plan says company studies get "No preprint or journal submissions". Submitting overrides that for this paper. Record the decision in the company's shared repository.
+1. ~~Decide CitadelAero's rule.~~ **Decided 4 November 2026:** James, as founder, overrides the company research plan's "No preprint or journal submissions" rule for this paper. Note it in CitadelAero's own records too.
 2. **Read and edit the manuscript in your own words.** Then replace the placeholder `[AUTHOR TO DESCRIBE HIS OWN REVISION OF THE MANUSCRIPT]` in the "Declaration of the use of AI" section of `paper.tex` with what you did, and rebuild (`latexmk -pdf paper.tex` in this folder).
 3. **Read `cover_letter.txt`** and adjust it to your voice.
 
@@ -62,3 +62,4 @@ No number or finding changed.
 | Date | Event |
 |---|---|
 | 4 Nov 2026 | Package prepared |
+| 4 Nov 2026 | James overrides CitadelAero's no-submission rule for this paper; he is reading the manuscript before submission |

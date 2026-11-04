@@ -59,7 +59,7 @@ BENCHMARK_CORRECTIONS = {
 
 # ---- Study-design choices ---------------------------------------------------
 
-# ChatDev traces are 60k-500k tokens each (roughly 100+ pages). Too long to
+# ChatDev traces are about 40k-495k tokens each (median 84k) (roughly 100+ pages). Too long to
 # hand-code, and the LLM annotator could not be validated at that length.
 EXCLUDED_FRAMEWORKS = {"ChatDev"}
 

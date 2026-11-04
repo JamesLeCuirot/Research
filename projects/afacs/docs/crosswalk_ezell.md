@@ -13,7 +13,7 @@ Ezell et al. describe one causal chain: **system factors** and **contextual fact
 | Cognitive errors (observation, understanding, decision-making, action execution) | **L1 Unsafe acts: errors** (E1–E3), with memory and distraction at **L2.2** | Their four functions cut the same ground as HFACS's three error types differently. |
 | *(no equivalent)* | **L3 Supervision / orchestration** (L3.1–L3.3) | Their framework is for single agents; there is no orchestrator, so no supervision tier. |
 | *(no equivalent)* | **L2.3 Coordination** | No crew-resource-management analogue between agents. |
-| *(no equivalent; mentioned in their introduction)* | **L1 Violations** (V1, V2, V?) with evidence grading | They cite an agent reasoning about cheating its tests (Baker et al., 2025), but have no category for deliberate departures. |
+| *(folded into cognitive errors, not distinguished)* | **L1 Violations** (V1, V2, V?) with evidence grading | They count "performing an unintended or undesirable task" as a cognitive error and cite an agent reasoning about cheating its tests (Baker et al., 2025), but nothing distinguishes a deliberate departure from an error. |
 
 ## Item by item
 

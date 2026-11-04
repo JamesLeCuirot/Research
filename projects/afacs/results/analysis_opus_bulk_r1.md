@@ -1,6 +1,6 @@
 # AFACS analysis: opus_bulk_r1
 
-Coded traces: 250. Failure observed in 208 (83% (78%–87%)). Shares below are of traces with a failure observed.
+Coded traces: 250. Failure observed in 208 (83% (78%–87%) of the sample; 84% (78%–89%) weighted to the pool). Shares below are of traces with a failure observed.
 
 Shares are **weighted** so they represent the eligible pool, not the balanced sample (the sample over-represents small frameworks and models). n is the number of coded traces.
 

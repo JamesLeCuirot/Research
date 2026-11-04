@@ -1,6 +1,6 @@
 # Checkride or Jump Seat? What LOSA and Evidence-Based Training Teach About Evaluation Awareness in AI Systems
 
-**Status: draft v0.3 for author review (4 November 2026).** Revised after an independent audit and a second-round verification (both in `AUDIT.md`); v0.1 was titled "Checkride or Line Check?". Not peer reviewed. Built to `paper.html` and `paper.pdf` with `papers/_build/build.sh`. Main text about 8,485 words, plus 6 tables, 1 figure and a short appendix.
+**Status: working draft v0.4 for author review (4 November 2026).** v0.4 converts v0.3 to the LaTeX technical-report house style (`papers/STYLE.md`) with IEEE numeric references; the content is unchanged. v0.3 was revised after an independent audit and a second-round verification (both in `AUDIT.md`); v0.1 was titled "Checkride or Line Check?". Not peer reviewed. Source: `paper.tex` and `references.bib`, built to `paper.pdf` (26 pages) with `papers/_build/build.sh`. Main text about 8,485 words, plus 6 tables, 1 figure and a short appendix.
 
 ## Abstract
 
@@ -12,7 +12,7 @@ Six benign scenarios at a fictional airline ("Calder Air"): ambiguous instructio
 
 ## What James should check
 
-1. **Title and terminology.** The title is now "Checkride or Jump Seat?" and the proposal is a "jump-seat layer". Note that under AMC1 ORO.FC.230(b)(3)(v) a line checker also sits in the observer's seat, so the paper says explicitly (§2.2) that the seat is not what distinguishes LOSA; its purpose is. An alternative title that avoids this nuance is "Checkride or Fly on the Wall?" ("fly on the wall" is the phrase used for LOSA observers in AC 120-90 Appendix 2 and Klinect et al., 2003). Your call.
+1. **Title and terminology.** The title is now "Checkride or Jump Seat?" and the proposal is a "jump-seat layer". Note that under AMC1 ORO.FC.230(b)(3)(v) a line checker also sits in the observer's seat, so the paper says explicitly (§2.2) that the seat is not what distinguishes LOSA; its purpose is. An alternative title that avoids this nuance is "Checkride or Fly on the Wall?" ("fly on the wall" is the phrase used for LOSA observers in AC 120-90 Appendix 2 and Klinect et al., 2003). Your call. v0.4 drops the v0.3 subtitle ("A conceptual mapping, two proposals and a feasibility pilot of competency-based grading") from the title block, because title plus subtitle was too long; its wording now opens the abstract as an italic lead line.
 2. **Aviation accuracy.** §1 and §2.1 now define checkride, line check and line evaluation of competence. Please check the descriptions against current practice as you know it (in published terms; nothing in the paper rests on personal anecdote), including the one-sentence mention of mixed EBT.
 3. **ICAO texts.** Doc 9995 and PANS-TRG (Doc 9868) were read from copies on the websites of the Swedish Transport Agency and the Foundation for Aviation Competence (a private Swiss foundation), not from ICAO; Doc 9803 was not opened (only the ICAO Store listing). Please check quoted wording and paragraph numbers against licensed ICAO copies, including the Doc 9995 corrigendum (6/1/14) and any later PANS-TRG amendment.
 4. **The rubric (Table 4, `code/rubric.py`).** Are the adapted observable behaviours sensible from an EBT instructor's point of view? The pilot's anchors dropped EASA's norm reference (grade 3 = "the average"); a revised rubric could restore it.
@@ -52,7 +52,9 @@ No earlier application of LOSA or TEM to AI evaluation was found, and none of EB
 
 | Path | Contents |
 |---|---|
-| `paper.md` | The paper (Pandoc Markdown, YAML header). |
+| `paper.tex` | The paper (LaTeX, source of truth; preamble from `papers/STYLE.md`). |
+| `references.bib` | BibTeX entries for the 49 references (IEEE style via `IEEEtran.bst`), with the data verified in `sources.md`. |
+| `paper.pdf`, `paper.bbl` | Built by `papers/_build/build.sh`; do not edit. `paper.bbl` is kept for arXiv. |
 | `sources.md` | Verification log: one entry per reference, with quotes and locators; v0.2 additions marked. |
 | `AUDIT.md` | Independent audit of v0.1 (not edited here). |
 | `code/scenarios.py` | The six scenarios (system prompt, scripted earlier turns, final user turn, designers' expectations). |
@@ -63,7 +65,9 @@ No earlier application of LOSA or TEM to AI evaluation was found, and none of EB
 | `prompts/` | Exact agent prompts, grader system prompts and schemas. |
 | `data/transcripts.jsonl`, `data/control_transcripts.jsonl`, `data/grades.jsonl` | 48 transcripts, 6 controls, 408 gradings. |
 | `results/` | Agreement (grades, indicators), grader bias (with Bonferroni), grader × agent means, discrimination (epsilon-squared, eta-squared(H), stratified permutation, minimum detectable difference), grade distributions, known-groups check, `summary.json`. |
-| `figures/fig1_agreement.png` | Figure 1. |
+| `code/figures_report.py` | Redraws Figure 1 for the report in the shared style (`papers/_build/palette.py`; serif text, vector PDF): alphas and CIs from `results/agreement_grades.csv`, per-transcript means from `analyse.py`'s own functions, cross-checked against `results/`. |
+| `figures/report/fig1_agreement.pdf` | Figure 1 as included in `paper.tex`. |
+| `figures/fig1_agreement.png` | Figure 1 as drawn by `code/analyse.py` for v0.1–v0.3 (kept unchanged). |
 
 ## Reproduce
 
@@ -74,10 +78,13 @@ uv run python papers/04-checkride-or-jump-seat/code/generate.py          # 48 ca
 uv run python papers/04-checkride-or-jump-seat/code/grade.py             # 384 calls (skips existing)
 uv run python papers/04-checkride-or-jump-seat/code/grade.py --controls  # 24 calls (post hoc controls)
 uv run --no-project --with krippendorff==0.9.0 --with numpy --with scipy --with pandas --with matplotlib \
-    python papers/04-checkride-or-jump-seat/code/analyse.py              # tables and figure
+    python papers/04-checkride-or-jump-seat/code/analyse.py              # results/ and figures/fig1_agreement.png
+uv run --no-project --with krippendorff==0.9.0 --with numpy --with scipy --with pandas --with matplotlib \
+    python papers/04-checkride-or-jump-seat/code/figures_report.py       # figures/report/fig1_agreement.pdf
+papers/_build/build.sh papers/04-checkride-or-jump-seat                 # paper.pdf from paper.tex and references.bib
 ```
 
-Model calls use `claude -p` (Claude Code 2.1.317) with tools, MCP servers and slash commands disabled, effort "low". Re-generating transcripts or grades will not reproduce the exact text (sampling is stochastic); the analysis is deterministic given the data files. No model calls were made for v0.2; only the analysis was re-run.
+Model calls use `claude -p` (Claude Code 2.1.317) with tools, MCP servers and slash commands disabled, effort "low". Re-generating transcripts or grades will not reproduce the exact text (sampling is stochastic); the analysis is deterministic given the data files. No model calls were made for v0.2; only the analysis was re-run. No model calls were made for v0.3 or v0.4.
 
 ## Revision log
 
@@ -156,3 +163,19 @@ Each point was re-checked against the source or the data before the text was cha
 | #29 | AMC and GM defined at first use (§2.1, with their non-binding status); Spearman's rho and Kendall's W defined (§6.5). |
 
 To keep the main text within 8,500 words after these additions, v0.3 also shortened passages in §2.1–2.3, §3.2, §3.4, §4, §5.1–5.4 and §7 without removing any finding or reference (the GM1 ORO.FC.231(c) "not to spy on instructors" quotation and one duplicated sentence on rare events were dropped). No model calls were made and the analysis outputs are unchanged.
+
+### v0.4, 4 November 2026: LaTeX conversion
+
+A format conversion only: no result, number, quotation or claim was changed, and no model calls were made.
+
+| Item | What was done |
+|---|---|
+| Source and build | `paper.md` and `paper.html` replaced by `paper.tex` (house preamble from `papers/STYLE.md`; `\shorttitle{Checkride or Jump Seat?}`; date line "Working draft v0.4, 4 November 2026. Not peer reviewed."; no keywords or status box) and `references.bib`. `papers/_build/build.sh` builds a 26-page A4 PDF with no undefined references or citations and no overfull lines. |
+| Title | Subtitle dropped from the title block (title plus subtitle was too long); its wording opens the abstract as an italic lead line. |
+| Structure | Numbered sections and subsections as in v0.3; italic run-in headings became bold `\paragraph{}` headings; cross-references via `\label`/`\ref`; Appendix A after the references; identifiers, model IDs and file names in `\code{}`; comma-grouped numbers via `\num{}`. |
+| Citations | APA author–date converted to IEEE numeric `\cite`, in narrative form where the authors are the subject. Locators (sections, paragraphs, appendices, headings) kept as `\cite[...]` notes; Carvell et al.'s "(section 4.1)" became such a note. EASA and UK provisions keep their designations (e.g. ORO.FC.231(h)(3)(ii), AMC2/AMC8 ORO.FC.232) in the text with a citation. Where the first APA citation of EASA, ICAO, FAA or IATA spelled out the organisation's name, the name is kept in the text. |
+| References | 49 entries, as in v0.3, with the bibliographic data recorded in `sources.md` (arXiv and Crossref records). Full author lists throughout, including Fraser-Taliente et al. (20), Tamkin et al. (21) and Korbak et al. (41); the last two are taken from their arXiv records, where v0.3 used APA ellipses. ICAO Docs 9995 and 9868 have ICAO as publisher and a note naming the copies read (Swedish Transport Agency; Foundation for Aviation Competence, a private foundation); Doc 9803 is bibliographic only (ICAO Store listing). EASA Easy Access Rules cited as Revision 24 (March 2026), with the provisions and ED Decisions in a note. Carvell et al. cited as the AIAA SciTech 2026 paper and Pepper et al. as the arXiv preprint with the published version noted, as in v0.3. |
+| Tables | Booktabs, captions above. Table 2 is a `longtable` and Tables 1, 3 and 4 are `tabularx`, all at small size; every cell unchanged (Table 4 now sets one observable behaviour per line). Source lines added: Table 3 `code/scenarios.py`, Table 4 `code/rubric.py`, Tables 5 and 6 `results/agreement_grades.csv`. |
+| Figure 1 | Redrawn by the new `code/figures_report.py` in the shared palette (Sonnet blue, Opus green, Haiku orange; inter-grader series in a non-model colour), serif text, vector PDF, with the two panels stacked. Same data and intervals: the script reads `results/agreement_grades.csv` and recomputes the panel B means with `analyse.py`'s functions, asserting that they match `results/means_by_scenario_model.csv` and `results/known_groups_controls.csv`. `code/analyse.py`, `results/` and `figures/fig1_agreement.png` are unchanged. |
+| Closing text | The acknowledgement/AI-assistance statement and disclaimer replaced by the standard closing text in `papers/STYLE.md` (with the code-and-analysis options), plus the paper-specific sentence on the Anthropic models and the post hoc controls. "Calder Air" is fictional stays in the Disclaimer paragraph. What the dropped v0.3 sentences said (who wrote the scenarios, rubric and controls; which ICAO copies were read) is still stated in §6.1, §6.5, §7 and the reference notes. |
+| Checks | `check_bib.py`: 29 entries OK against Crossref or arXiv; 1 CHECK, Krippendorff (2004), a false positive because Crossref stores the subtitle ("Some Common Misconceptions and Recommendations") in a separate field; 19 entries without DOI or arXiv ID (web pages, regulations, ICAO and IATA documents, Klinect et al., Krippendorff 2011, the `krippendorff` package) checked by hand against `sources.md`; no missing or uncited keys. `compare_text.sh`, plus a variant that makes `\cite` and `\code` visible to Pandoc: every difference is citation format, standard closing text, title block, numbering and labels, caption placement or typographic markup (quotation marks, digit grouping, maths, table layout). The abstract, all table cells and all captions were also compared with v0.3 by script and are identical. No spelling changes were needed: American spellings occur only in quotations and titles. |

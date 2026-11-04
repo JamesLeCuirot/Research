@@ -179,9 +179,14 @@ def main() -> None:
     res["over_time"]["max_abs_epoch_mean_epochs_with_20plus_calls"] = float(ep[ep["count"] >= 20]["mean"].abs().max())
     res["over_time"]["epoch_with_max_abs_mean"] = {"monitor_epoch": str(ep["mean"].abs().idxmax()), "n_calls": int(ep.loc[ep["mean"].abs().idxmax(), "count"])}
 
-    # 4. Diagnostics log
+    # 4. Diagnostics log. The log lives in /tmp and is not kept; without it, keep the summary written
+    # by an earlier run (if any) rather than dropping it.
     if len(sys.argv) > 1:
         res["diagnostics_log"] = diag_summary(sys.argv[1])
+    elif (RESULTS / "harness_context.json").exists():
+        old = json.loads((RESULTS / "harness_context.json").read_text()).get("diagnostics_log")
+        if old:
+            res["diagnostics_log"] = old
 
     (RESULTS / "harness_context.json").write_text(json.dumps(res, indent=1))
     for mon, s in size.items():

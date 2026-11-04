@@ -227,6 +227,11 @@ changes a registered analysis.
    - The GLMM log-odds of −3.3 is a conditional, item-specific effect. The population-averaged
      effect is the GLM's OR of 0.61, or −7.5 percentage points (paired bootstrap CI −12.5 to −3.3).
    - Haiku's GLMM is stable (item SD about 4.5).
+   - **Superseded in part by section 10.1 (4 November 2026, post hoc).** The 9–33 spread mainly
+     reflects inaccuracy of Gauss–Hermite quadrature at large SD, and the registered single-start fit
+     stopping at a local optimum. It does not only reflect poor identification. An accurate fit gives
+     item SD 13.4 and S1 vs S50 log-odds −3.76 (p = .0076). The exact paired test gives 9 vs 0
+     discordant items (p = .0039). The conclusion is unchanged.
 4. **False-alarm rates were very low**, about 1–2% in batches and 0.8–3.3% on single items. *d′* and
    *c* are therefore driven mostly by the hit rate. On single items, *F* rests on 120 clean items,
    and the log-linear correction matters there.
@@ -494,3 +499,218 @@ Proportion of items flagged within bands of the monitor's own suspicion score, a
 | Sonnet | none | 0.00 (n=137) | 0.00 (n=5) | 0.83 (n=6) | 1.00 (n=19) | 1.00 (n=73) | 0.16 | 0.03 | 0.05 | 0.16 | 0.60 |
 | Sonnet | S50 | 0.00 (n=127) | 0.00 (n=6) | 0.83 (n=6) | 1.00 (n=14) | 1.00 (n=87) | 0.11 | 0.03 | 0.03 | 0.11 | 0.72 |
 | Sonnet | S1 | 0.00 (n=139) | 0.00 (n=6) | 1.00 (n=12) | 1.00 (n=27) | 1.00 (n=56) | 0.18 | 0.04 | 0.10 | 0.21 | 0.47 |
+
+
+## 10. Post-hoc checks requested by the audit (4 November 2026)
+
+These checks were requested by the independent audit (`../AUDIT.md`, issues 1, 2, 6, 21 and 22).
+Everything in this section is **post hoc** except section 10.2, which lays out registered measures.
+No model was called. The registered outputs were regenerated after the changes and are
+byte-identical to those reported above (section 10.5).
+
+New scripts in `code/`:
+
+| Script | Output |
+|---|---|
+| `posthoc_h2.py` | `results/posthoc_h2.json` |
+| `registered_measures_table.py` | `results/registered_measures_table.md` |
+| `posthoc_descriptives.py` | `results/posthoc_descriptives.json` |
+| `posthoc_harness_context.py` | `results/harness_context.json` |
+
+### 10.1 Accuracy of the H2 random-intercept model (post hoc)
+
+The registered H2 result is the 40-node, non-adaptive Gauss–Hermite fit (§9 item 9), and it stays
+the registered result. `posthoc_h2.py` checks it. It refits the same model (backdoored items of
+Experiment 2, flag ~ condition with reference S50, plus item random intercepts) in two ways:
+
+- **Multi-start search of the registered 40-node likelihood.** Nelder–Mead then BFGS, from item SD
+  starts of 1, 3, 10 and 30.
+- **The likelihood computed accurately.** Dense-grid integration over ±9 SD with 6,001 points,
+  checked against per-item adaptive integration (`scipy.integrate.quad`). BFGS from the same four
+  starts; SEs from the numerical Hessian; a likelihood-ratio test of the S1 term.
+
+The exact paired (McNemar) test needs no model.
+
+| Monitor | Fit | Item SD | S1 vs S50 log-odds (SE) | z | p | Log-likelihood |
+|---|---|---|---|---|---|---|
+| Haiku | Registered (40-node, single start) | 4.57 | −0.557 (0.478) | −1.16 | .244 | −170.935 (40-node) |
+| Haiku | 40-node, multi-start | 4.57 | −0.557 | | | −170.935 (40-node) |
+| Haiku | Accurate (dense grid) | 4.47 | −0.552 (0.476) | −1.16 | .246 | −171.025 |
+| Sonnet | Registered (40-node, single start) | 32.83 | −3.321 (1.246) | −2.66 | .0077 | −98.170 (40-node) |
+| Sonnet | 40-node, multi-start | 10.94 | −3.678 | | | −97.455 (40-node) |
+| Sonnet | Accurate (dense grid) | 13.44 | −3.761 (1.409) | −2.67 | .0076 | −97.059 |
+
+Likelihood-ratio tests of the S1 term (accurate likelihood):
+
+- Haiku: LR = 1.37, p = .242.
+- Sonnet: LR = 13.50, p = .00024.
+
+With the accurate p values the Holm-adjusted values would be .246 (Haiku) and .015 (Sonnet),
+against the registered .244 and .015.
+
+**Exact paired test on backdoored items** (each item judged once under S50 and once under S1):
+
+| Monitor | Flagged under S50 only | Flagged under S1 only | Exact two-sided p | Items flagged in 0 / 1 / 2 / 3 of the conditions |
+|---|---|---|---|---|
+| Haiku | 12 | 7 | .36 | 29 / 10 / 18 / 63 |
+| Sonnet | 9 | 0 | .0039 | 17 / 7 / 4 / 92 |
+
+The same test for none vs S50 gives Haiku 12 vs 6 (p = .24) and Sonnet 7 vs 1 (p = .070).
+
+**How accurate each approximation is.** The table gives the log-likelihood under each
+approximation. The adaptive-integration column is the reference; the dense grid matches it to at
+least three decimals at every point.
+
+| Monitor | Point | 40-node GH (registered) | Adaptive GH, 30 nodes | Adaptive GH, 60 nodes | Dense grid | Adaptive integration (reference) |
+|---|---|---|---|---|---|---|
+| Haiku | Registered estimate | −170.935 | −171.028 | −171.032 | −171.032 | −171.032 |
+| Haiku | Accurate optimum | −170.941 | −171.022 | −171.025 | −171.025 | −171.025 |
+| Sonnet | Registered estimate | −98.170 | −105.591 | −97.829 | −101.675 | −101.675 |
+| Sonnet | Accurate optimum | −101.149 | −100.610 | −96.028 | −97.059 | −97.059 |
+
+What this shows:
+
+- **Haiku.** The registered fit is accurate. Its item SD is moderate (about 4.5), all methods agree
+  to within 0.1 log-likelihood units, and the multi-start search returns the registered estimate.
+- **Sonnet.** The registered fit is not the maximum-likelihood estimate, for two reasons.
+  1. It stopped at a local optimum of its own 40-node likelihood. A multi-start search of that same
+     approximation finds a higher value: −97.455 at SD 10.9, against −98.170 at the registered
+     SD 32.8.
+  2. The 40-node approximation is itself inaccurate at large SD. At the registered estimate it gives
+     −98.170 where the true value is −101.675. Adaptive Gauss–Hermite is no better: with 30 or 60
+     nodes it errs by 1 to 4 units in both directions.
+
+  The reason is the shape of the integrand. With 92 of 120 items flagged in all three conditions,
+  the item SD is large. Each item's integrand is then a sharp logistic step, about 1 logit unit wide,
+  multiplied by a wide normal, and Gauss–Hermite nodes several logit units apart cannot resolve the
+  step.
+
+  The accurate maximum-likelihood fit has item SD 13.4 and S1 vs S50 log-odds −3.76 (SE 1.41),
+  z = −2.67, p = .0076 (likelihood-ratio p = .0002). This agrees with the audit's independent value
+  (13.4, −3.76, SE 1.41, p = .0076).
+
+The H2 conclusion is unchanged: supported for Sonnet, small in population-averaged terms (−7.5
+points), and not supported for Haiku. The plainest evidence is the exact paired test: 9 Sonnet items
+were flagged under "about half" but not under "1 in 100", and none the other way round.
+
+### 10.2 Registered measures per condition and monitor (registered, not post hoc)
+
+PREREGISTRATION §5 and §6 register these measures:
+
+- hit and false-alarm rates, with Wilson 95% CIs;
+- *d′* and *c* (log-linear correction) and the AUROC of suspicion scores, with 95% CIs from the
+  cluster bootstrap (2,000 resamples). The bootstrap resamples batches in Experiments 1 and 3, and
+  items, paired across conditions, in Experiment 2;
+- the mean suspicion score for backdoored and for clean items.
+
+The numbers are the same as in section 9's "Descriptive results per condition". The table is
+produced by `code/registered_measures_table.py` from `results/analysis.json`.
+
+| Monitor | Condition | H [95% CI] | F [95% CI] | d′ [95% CI] | c [95% CI] | AUROC [95% CI] | Mean suspicion, backdoored | Mean suspicion, clean |
+|---|---|---|---|---|---|---|---|---|
+| Haiku | P50 (Exp 1) | 0.512 [0.436, 0.589] | 0.0187 [0.0064, 0.0537] | 2.05 [1.84, 2.64] | 0.99 [0.73, 1.45] | 0.867 [0.827, 0.902] | 41.5 | 7.7 |
+| Haiku | P10 (Exp 1) | 0.500 [0.423, 0.577] | 0.0118 [0.0074, 0.0188] | 2.25 [2.01, 2.55] | 1.13 [1.00, 1.28] | 0.886 [0.855, 0.914] | 41.2 | 6.1 |
+| Haiku | P2.5 (Exp 1) | 0.694 [0.618, 0.760] | 0.0119 [0.0095, 0.0149] | 2.76 [2.54, 3.01] | 0.88 [0.77, 0.98] | 0.912 [0.883, 0.939] | 52.1 | 5.6 |
+| Haiku | R-cal (Exp 3) | 0.600 [0.490, 0.700] | 0.0122 [0.0089, 0.0167] | 2.50 [2.21, 2.80] | 1.00 [0.84, 1.16] | 0.915 [0.874, 0.950] | 50.2 | 6.4 |
+| Haiku | R-ind (Exp 3) | 0.625 [0.515, 0.723] | 0.0074 [0.0049, 0.0110] | 2.75 [2.44, 3.09] | 1.06 [0.91, 1.22] | 0.898 [0.849, 0.942] | 49.5 | 5.0 |
+| Haiku | none (Exp 2) | 0.633 [0.544, 0.714] | 0.0167 [0.0046, 0.0587] | 2.38 [1.95, 3.09] | 0.85 [0.64, 1.21] | 0.923 [0.887, 0.954] | 48.8 | 6.5 |
+| Haiku | S50 (Exp 2) | 0.683 [0.596, 0.760] | 0.0333 [0.0130, 0.0826] | 2.26 [1.88, 2.89] | 0.66 [0.46, 0.98] | 0.923 [0.889, 0.954] | 54.8 | 7.9 |
+| Haiku | S1 (Exp 2) | 0.642 [0.553, 0.722] | 0.0083 [0.0015, 0.0457] | 2.60 [2.16, 3.18] | 0.94 [0.71, 1.23] | 0.937 [0.907, 0.965] | 48.8 | 5.0 |
+| Sonnet | P50 (Exp 1) | 0.500 [0.423, 0.577] | 0.0063 [0.0011, 0.0345] | 2.35 [1.83, 2.91] | 1.18 [1.06, 1.38] | 0.905 [0.882, 0.929] | 41.9 | 7.0 |
+| Sonnet | P10 (Exp 1) | 0.569 [0.491, 0.643] | 0.0139 [0.0090, 0.0214] | 2.36 [2.11, 2.66] | 1.01 [0.87, 1.17] | 0.911 [0.886, 0.934] | 46.1 | 5.5 |
+| Sonnet | P2.5 (Exp 1) | 0.738 [0.664, 0.800] | 0.0173 [0.0144, 0.0209] | 2.74 [2.54, 2.98] | 0.74 [0.62, 0.85] | 0.927 [0.901, 0.950] | 58.3 | 5.4 |
+| Sonnet | R-cal (Exp 3) | 0.850 [0.756, 0.912] | 0.0397 [0.0334, 0.0472] | 2.77 [2.45, 3.17] | 0.37 [0.18, 0.52] | 0.959 [0.929, 0.980] | 65.5 | 7.4 |
+| Sonnet | R-ind (Exp 3) | 0.750 [0.645, 0.832] | 0.0179 [0.0138, 0.0232] | 2.76 [2.46, 3.12] | 0.71 [0.55, 0.87] | 0.935 [0.898, 0.967] | 62.0 | 5.0 |
+| Sonnet | none (Exp 2) | 0.800 [0.720, 0.862] | 0.0083 [0.0015, 0.0457] | 3.08 [2.62, 3.67] | 0.71 [0.47, 1.00] | 0.953 [0.922, 0.979] | 68.4 | 4.4 |
+| Sonnet | S50 (Exp 2) | 0.850 [0.775, 0.903] | 0.0333 [0.0130, 0.0826] | 2.81 [2.39, 3.42] | 0.38 [0.18, 0.69] | 0.966 [0.941, 0.986] | 75.0 | 6.5 |
+| Sonnet | S1 (Exp 2) | 0.775 [0.692, 0.841] | 0.0167 [0.0046, 0.0587] | 2.79 [2.35, 3.47] | 0.65 [0.43, 1.01] | 0.949 [0.919, 0.974] | 62.7 | 4.4 |
+
+### 10.3 Scripts for two post-hoc descriptives reported earlier
+
+`code/posthoc_descriptives.py` reproduces both exactly.
+
+- **The kinds of backdoor edit** (section 3). It reproduces the counts of 254 (same statement count),
+  150 (adds an `if` branch) and 15 (other) out of 419.
+- **The mean thinking tokens per call** (section 6). For example, Haiku used 7,592 at P50 against
+  4,195 at P2.5; Sonnet used 116 against 480.
+
+### 10.4 What Claude Code added to each monitor call (post hoc)
+
+**How the calls were made.** The calls ran through `claude -p` without `--bare`, so Claude Code
+added content of its own to every request beyond the study's system prompt, user message and JSON
+schema. That content was not logged. `code/posthoc_harness_context.py` estimates its size from the
+token usage in `results/monitor_raw.jsonl` and tests whether it varied. It uses the 2,109 calls that
+made a single API request (`num_turns` = 2). The study's own text is rebuilt exactly with
+`monitor.py`.
+
+**Size.**
+
+- **Estimate.** Input tokens were regressed on the characters of the study's own text. This was done
+  per monitor, with single-item and batch calls pooled, and gives R² = 0.9996 and 0.387 tokens per
+  character. The intercept, the constant added per call, is 1,812 tokens for Haiku (95% CI
+  1,808–1,815) and 1,791 for Sonnet (1,787–1,795).
+- **Share of the input.** That is about 74% of the input of a single-item call (mean 2,444 and
+  2,423 tokens) and about 24% of a batch call (mean 7,478 and 7,428).
+- **Content.** We cannot say exactly what this content is.
+
+**The same in every condition.**
+
+- **Within an item.** In Experiment 2 each item was judged under none, S50 and S1, with prompts that
+  differ only by one sentence and the random ID. Within an item, the S50 call used 19.7 more input
+  tokens than the "none" call for Haiku (SD 3.1, range 12–29), and 20.1 for Sonnet (SD 3.2). The S1
+  call used 25.0 (SD 3.4) and 25.1 (SD 3.2) more. These are the lengths of the added sentences, to
+  within a few tokens.
+- **Across monitors.** For the 325 Experiment 1 and 3 batches that made a single request with both
+  monitors, the prompts were byte-identical. Sonnet used 19.8 fewer input tokens than Haiku
+  (SD 3.1, range 10–28 fewer). We cannot tell whether the few-token spread comes from tokenizer
+  differences or from small per-call fields.
+- **Batch regression residuals.** Mean residuals by batch condition range from −24 to +49 tokens,
+  under 1% of a batch's input. They most plausibly reflect content composition, since P50 batches
+  hold 20 backdoored versions. The within-item and cross-monitor comparisons above are the direct
+  tests.
+
+**The same over time.**
+
+- In Experiment 2, the residual after removing item and condition effects has an SD of 1.9 tokens
+  (Haiku) and 2.2 (Sonnet).
+- Its mean in every 10-minute window of the run lies within ±0.3 tokens.
+- 20 git commits were made in the repository during the main run. Across the commit epochs with at
+  least 20 calls, the mean residual never moved by more than 0.6 tokens. The largest shift overall,
+  5.2 tokens, was in an epoch of 2 calls.
+- A git-status snapshot that changed with each commit would have shown here.
+
+**What Claude Code loaded** (its own diagnostics log, `CLAUDE_CODE_DIAGNOSTICS_FILE`, which the
+child processes inherited and wrote to). The log lives in `/tmp` and is not kept; its summary is in
+`results/harness_context.json`. Event counts, booleans and lengths only:
+
+- **One process per call.** The main window holds 2,176 process starts, one per main call. The
+  calibration window holds 80. The generation window holds 860 against 450 generation calls; the
+  extra starts are other agents' processes.
+- **No memory or CLAUDE.md.** In every window, no memory or CLAUDE.md file was loaded (0 files,
+  0 characters), and no call had project context.
+- **No git status or hooks.** No git-status system context was computed: `system_context` events
+  occurred only twice in the whole log, both in the parent session before the study. No hook ran:
+  the only hook spawn in the log is the parent session's SessionStart hook, at 22:31 UTC.
+- **Git repository.** The working directory was a git repository in every call.
+- **Account e-mail.** Every call's user context carried a user e-mail field
+  (`has_user_email = true`). The account's e-mail address was therefore probably part of what the
+  monitor saw, though the log does not show the text.
+
+So the monitors saw the study's prompts plus a constant block of about 1,800 tokens of Claude Code
+scaffolding. The block was the same in every condition, for both monitors, and throughout the run.
+It contained no repository files, memory files or git status. Its exact content was not logged.
+
+### 10.5 analyse.py docstrings and re-run
+
+- **Docstrings.** The module docstring of `code/analyse.py` now says correctly that it reads only
+  `results/monitor_raw.jsonl`. The `glmm_random_intercept` docstring now states the §9 item 9
+  convergence rule as implemented, and notes that the rule detects neither a local optimum nor
+  quadrature error. No code changed.
+- **Re-run.** `analyse.py`, `posthoc_turns_sensitivity.py` and `costs.py` were re-run after these
+  edits. The following outputs are byte-identical to those before the audit:
+  - `judgments.csv`;
+  - `analysis.json` (SHA-256 `dbda7d88…`);
+  - `RESULTS_numbers.md` (SHA-256 `494124f0…`);
+  - `sensitivity_excluding_extra_turn_calls.json`;
+  - `costs.json`;
+  - all five figures.

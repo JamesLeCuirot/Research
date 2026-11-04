@@ -37,9 +37,18 @@ Run every command from this `code/` folder.
 | 7 Analysis | `$RUN analyse.py` | `results/judgments.csv`, `results/analysis.json`, `results/RESULTS_numbers.md`, `figures/*.png` |
 | Costs | `$RUN costs.py` | `results/costs.json` |
 | Post hoc | `$RUN posthoc_turns_sensitivity.py` | `results/sensitivity_excluding_extra_turn_calls.json` |
+| Post hoc (audit) | `$RUN posthoc_h2.py [--monitor Haiku\|Sonnet]` | `results/posthoc_h2.json`: accurate refit of the H2 GLMM, accuracy of each likelihood approximation, exact paired tests (about 2 minutes) |
+| Post hoc (audit) | `$RUN posthoc_descriptives.py` | `results/posthoc_descriptives.json`: edit-type classification and thinking tokens per call |
+| Post hoc (audit) | `$RUN posthoc_harness_context.py [/tmp/claude-code-<id>.diag.log]` | `results/harness_context.json`: size and constancy of Claude Code's added context; summary of Claude Code's diagnostics log (kept from an earlier run if the log is not given) |
+| Registered table | `$RUN registered_measures_table.py > ../results/registered_measures_table.md` | Per-condition registered measures, laid out from `results/analysis.json` |
 
 `results/RESULTS.md` (the written report) was assembled by hand: its sections 1–8 were written from
 `results/analysis.json`, and its section 9 is `results/RESULTS_numbers.md` with headings moved down a level.
+Section 10 holds the post-hoc checks the audit requested on 4 November 2026.
+
+Harness note: the model calls ran through `claude -p` without `--bare`. Claude Code added about 1,800
+tokens of its own context to each call. That context was the same in every condition and was not
+logged; see `posthoc_harness_context.py` and section 10.4 of RESULTS.md.
 
 ### What happened in the run of 3–4 November 2026
 

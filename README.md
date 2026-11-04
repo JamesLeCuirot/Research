@@ -34,6 +34,7 @@ Each paper has its own folder in [`papers/`](papers/). None is peer reviewed yet
 
 ## What I'm working on now
 
+- **Permanent DOIs.** Each preprint is being deposited on Zenodo ([`papers/ZENODO.md`](papers/ZENODO.md)); paper 07 already has one on OSF.
 - **Journal submissions, one paper at a time.** Each paper's `submissions/` folder holds the version prepared for each journal and its status. The plan and the journal options are in [`papers/SUBMISSIONS.md`](papers/SUBMISSIONS.md) and [`papers/JOURNAL_OPTIONS.md`](papers/JOURNAL_OPTIONS.md).
 - **Next studies:** validating AFACS with independent human coders (the blinded calibration set is frozen); testing whether withholding the outcome removes the outcome bias in paper 07; and repeating the monitor experiment in paper 02 with models from other developers.
 

@@ -1,14 +1,17 @@
 # From RSP to SMS: Reading Frontier AI Safety Frameworks Through ICAO's Safety Management System
 
 **Author:** James Le Cuirot (Citadel Aero)
-**Status:** draft v0.2 for author review (3 November 2026), revised after an independent audit (`AUDIT.md`). Not peer reviewed. Not committed by the drafting agent.
-**Length:** about 7,100 words of prose plus about 1,600 words in three tables (about 8,700 words of main text, excluding references). This is slightly above the STYLE.md guide of "about 6,000–8,500" once tables are counted. Abstract 250 words. 40 references.
+**Status:** working draft v0.4 for author review (4 November 2026): the v0.3 text (revised after an independent audit and a second-round verification, `AUDIT.md`) converted to the LaTeX technical-report house style with IEEE numeric references. Not peer reviewed. Not committed by the drafting agent.
+**Length:** about 7,100 words of prose plus about 1,600 words in three tables (about 8,700 words of main text, excluding references); 22 pages as typeset. This is slightly above the STYLE.md guide of "about 6,000–8,500" once tables are counted. Abstract 250 words. 40 references.
 
 ## Files
 
 | File | Contents |
 |---|---|
-| `paper.md` | The paper (Pandoc Markdown, YAML header per `../STYLE.md`) |
+| `paper.tex` | The paper (source of truth): LaTeX, house style `../_build/techreport.sty` per `../STYLE.md` |
+| `references.bib` | BibTeX entries for all 40 references, rendered in IEEE style (`IEEEtran.bst`) |
+| `paper.pdf` | Built by `../_build/build.sh papers/03-from-rsp-to-sms`; do not edit by hand |
+| `paper.bbl` | Generated bibliography, kept for arXiv submission |
 | `sources.md` | Verification log: how each reference was checked, with quotes and locators, the prior-work search log and the v0.2 searches for companion documents |
 | `AUDIT.md` | Independent audit of v0.1 (not edited by the author's agent) |
 | `README.md` | This summary and the revision log |

@@ -1,0 +1,7 @@
+Highlights
+
+- Three AI models judged identical crew actions more culpable after a bad ending
+- Within-case design: 48 real ASRS occurrences, each with a safe and a bad ending
+- Hindsight entered mainly through the substitution test of Reason's decision tree
+- Clear blameless and reckless control cases were unaffected by the ending
+- Same text, same model: verdicts differed across five repeats in 18-28% of cells

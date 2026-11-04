@@ -1,26 +1,24 @@
-# Same Actions, Different Endings
+# Outcome Bias in AI Models Applying a Culpability Decision Tree to Airline Occurrence Reports
 
-**Outcome Severity Shifts How AI Models Apply Reason's Culpability Decision Tree to Airline Flight Crews**
+**A Pre-registered Within-Case Experiment**
 
 James Le Cuirot · CitadelAero · ORCID [0009-0009-6014-1298](https://orcid.org/0009-0009-6014-1298)
 
-**Paper (Preprint v1, 2 October 2026): [`paper/same-actions-different-endings-preprint-v1.pdf`](paper/same-actions-different-endings-preprint-v1.pdf)** · Markdown source: [`paper/preprint-v1.md`](paper/preprint-v1.md)
+**Paper (Preprint v1.1, 4 November 2026): [`paper.pdf`](paper.pdf)** · LaTeX source: [`paper.tex`](paper.tex) · figures in [`figures/`](figures/)
 
-*Status: Preprint v1, 2 October 2026. Not peer reviewed. Part of James Le Cuirot's [research repository](../../README.md).*
+*Part of James Le Cuirot's [research repository](../../README.md).*
 
-**New title (4 November 2026):** the journal version, and the author's website, use the title *Outcome Bias in AI Models Applying a Culpability Decision Tree to Airline Occurrence Reports: A Pre-registered Within-Case Experiment*. The preprint and OSF record keep the original title. The journal submission package is in [`submissions/`](submissions/).
+**Version 1 (2 October 2026)** was posted on OSF under the title *Same Actions, Different Endings: Outcome Severity Shifts How AI Models Apply Reason's Culpability Decision Tree to Airline Flight Crews*. It is kept here as deposited: [`paper/same-actions-different-endings-preprint-v1.pdf`](paper/same-actions-different-endings-preprint-v1.pdf) (Markdown source [`paper/preprint-v1.md`](paper/preprint-v1.md)). Version 1.1 has the new title and a shorter abstract, describes the use of AI in the method, adds one limitation (the ending may be read as evidence) and words some implications more cautiously. The data, analysis and results are unchanged. Its text is the journal version's ([`submissions/aeronautical-journal/`](submissions/aeronautical-journal/)), in the same LaTeX layout as the author's other papers.
 
 - **Pre-registration:** OSF, registered 1 October 2026 before any main-study data were collected: https://osf.io/s8q24
 - **OSF project with the materials, data and code:** https://osf.io/dhf38 (DOI [10.17605/OSF.IO/DHF38](https://doi.org/10.17605/OSF.IO/DHF38))
 - **Licence:** CC BY 4.0 for the text, data and code written for this study (this folder's terms, which take precedence over the repository-wide licence). The ASRS reports in `data/raw/` and `cases/sources/` are NASA's public records.
 
-This folder is a copy of the study as published on OSF. It was carried out in CitadelAero's study repository and moved here on 4 November 2026 so that all of the author's papers sit in one place. Nothing in the study was changed; only this README was rewritten.
+This folder is a copy of the study as published on OSF. It was carried out in CitadelAero's study repository and moved here on 4 November 2026 so that all of the author's papers sit in one place. Nothing in the study was changed. Since then this README was rewritten and version 1.1 of the paper (`paper.tex`, `paper.pdf`, `figures/`) was added.
 
 ## Abstract
 
-Just culture asks that people be judged on what they knew and did at the time, not on how events turned out. This pre-registered, within-case experiment tested whether general-purpose AI models judge identical crew actions as more culpable when an occurrence ends badly. Forty-eight Part 121 flight-crew reports from NASA's Aviation Safety Reporting System (2025) were drawn by a fixed random rule and condensed to a fixed template. Each case exists in two versions that differ only in the outcome: the safe ending as reported, or a fixed, plausible bad ending with minor injuries. Claude Sonnet 5.5, GPT-6.1 Sol and DeepSeek V4 Pro applied Reason's culpability decision tree to each version independently, under two prompt wordings, five times each (2,880 calls, plus 360 on six control cases). The outcome was derived in code from each model's yes/no answers.
-
-All three models reached more culpable outcomes after a bad ending: mean shifts of +0.35, +0.25 and +0.18 steps on Reason's nine-step scale (Holm-adjusted p = .0009, .007, .023). Cases were judged more harshly in 14–18 of 48 cases and more leniently in 2–3. The share of replies pointing to crew culpability rose from 16% to 28% (Claude), 13% to 18% (DeepSeek) and 29% to 33% (GPT). The shift entered mostly through the substitution test. Models gave the same outcome on all five repeats in only 72–82% of cells. Clear control cases were unaffected. A structured just-culture prompt does not protect against hindsight; organisations using AI in occurrence analysis should test for it.
+Just culture judges people on what they knew and did, not on how events turned out. AI models are starting to code safety reports. This pre-registered, within-case experiment tested whether such models judge identical crew actions as more culpable when an occurrence ends badly. Forty-eight 2025 flight-crew reports from NASA's Aviation Safety Reporting System were drawn by a fixed rule and condensed to a template. Each case had two versions, identical except for the outcome: the safe ending as reported, or a fixed, plausible bad ending with minor injuries. Claude Sonnet 5.5, GPT-6.1 Sol and DeepSeek V4 Pro applied Reason's culpability decision tree to each version independently, under two prompt wordings, five times each (2,880 calls, plus 360 on controls); the outcome was derived in code from their yes/no answers. All three models reached more culpable outcomes after a bad ending: mean shifts of +0.35, +0.25 and +0.18 steps on Reason's nine-step scale (Holm-adjusted p = .0009, .007, .023), with 14–18 of 48 cases judged more harshly and 2–3 more leniently. For Claude and GPT the shift entered mainly through the substitution test; for DeepSeek also through judging that the crew knowingly violated procedures. Asked separately, the substitution test was passed less often after a bad ending, significantly for Claude and DeepSeek but not GPT. Control cases were unaffected. Models gave the same outcome on all five repeats in only 72–82% of cells. A structured just-culture instrument did not prevent outcome bias.
 
 ## What is here
 
@@ -36,7 +34,8 @@ All three models reached more culpable outcomes after a bad ending: mean shifts 
 | `results/raw/` | Every model reply: `pilot.jsonl`, and `main.jsonl` with 3,240 valid replies plus every failed or refused attempt, each with model ID, provider, token usage and cost |
 | `results/analysis/` | The registered analysis (`summary.md`, `h1.csv`), the descriptive tables (`paper-tables.md`) and the figures |
 | `results/sim/` | The simulated data the analysis was tested on before any real reply existed |
-| `paper/` | The preprint (Markdown source and PDF) and its build script |
+| `paper.tex`, `paper.pdf`, `figures/` | The paper, version 1.1, in the house LaTeX layout (`papers/_build/build.sh papers/07-same-actions-different-endings`) |
+| `paper/` | Version 1 of the preprint as deposited on OSF (Markdown source and PDF) and its build script |
 
 The materials were frozen at git tag `materials-frozen-2026-10-01` (commit `7260f7b`) in the original study repository before any model was run. That tag is recorded on OSF; it is not carried over into this repository.
 
@@ -62,12 +61,11 @@ To run the models again, put an OpenRouter key in a file named `.env` in this fo
 ## How to cite
 
 ```bibtex
-@misc{lecuirot2026sameactions,
+@misc{lecuirot2026outcomebias,
   author       = {Le Cuirot, James},
-  title        = {Same Actions, Different Endings: Outcome Severity Shifts How {AI} Models Apply {Reason's} Culpability Decision Tree to Airline Flight Crews},
+  title        = {Outcome Bias in {AI} Models Applying a Culpability Decision Tree to Airline Occurrence Reports: A Pre-registered Within-Case Experiment},
   year         = {2026},
-  howpublished = {Preprint v1, 2 October 2026. Not peer reviewed},
-  doi          = {10.17605/OSF.IO/DHF38},
+  howpublished = {Preprint v1.1, 4 November 2026},
   url          = {https://www.lecuirot.je/research/same-actions/}
 }
 ```

@@ -78,4 +78,14 @@
 % Code identifiers and file names in monospace.
 \newcommand{\code}[1]{\texttt{#1}}
 
+% References: each author's name in full every time. IEEEtran.bst would otherwise print a long dash
+% in place of the names when the same authors are cited twice in a row. This uses IEEEtran's own
+% control entry (house.bib in this folder), cited before anything else.
+\def\bstctlcite{\@ifnextchar[{\@bstctlcite}{\@bstctlcite[@auxout]}}
+\def\@bstctlcite[#1]#2{\@bsphack\@for\@citeb:=#2\do{\edef\@citeb{\expandafter\@iden\@citeb}%
+  \if@filesw\immediate\write\csname #1\endcsname{\string\citation{\@citeb}}\fi}\@esphack}
+\let\tr@bibliography\bibliography
+\renewcommand{\bibliography}[1]{\tr@bibliography{house,#1}}
+\AtBeginDocument{\bstctlcite{IEEEexample:BSTcontrol}}
+
 \endinput

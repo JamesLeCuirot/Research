@@ -203,7 +203,7 @@ To re-run the annotation itself, use `uv run python scripts/pilot.py`. It calls 
   author       = {Le Cuirot, James},
   title        = {Extending {AI}-Agent Incident Analysis to Multi-Agent Systems: {AFACS}, an {HFACS}-Based Framework, and an Audit of Public Traces},
   year         = {2026},
-  howpublished = {Preprint v1.1, 4 November 2026. Not peer reviewed},
+  howpublished = {Preprint v1.1, 4 November 2026},
   url          = {https://www.lecuirot.je/research/afacs/}
 }
 ```

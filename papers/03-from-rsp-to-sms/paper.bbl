@@ -52,14 +52,15 @@ L.~Stelling, M.~Murray, B.~Galizzi, M.~Schaffelder, S.~Campos, and
 
 \bibitem{anthropic2026riskreport}
 \BIBentryALTinterwordspacing
-------, ``{Risk Report: August 2026},'' Redacted public version; coverage date
-  Jul. 15, 2026, announced Aug.~14, 2026, {C}ompany report, not peer reviewed.
-  [Online]. Available: \url{https://anthropic.com/aug-2026-risk-report}
+{Anthropic}, ``{Risk Report: August 2026},'' Redacted public version; coverage
+  date Jul. 15, 2026, announced Aug.~14, 2026, {C}ompany report, not peer
+  reviewed. [Online]. Available:
+  \url{https://anthropic.com/aug-2026-risk-report}
 \BIBentrySTDinterwordspacing
 
 \bibitem{anthropic2026cyberassessment}
 \BIBentryALTinterwordspacing
-------, ``An alignment assessment of recent cybersecurity incidents,''
+{Anthropic}, ``An alignment assessment of recent cybersecurity incidents,''
   Anthropic research, Sep.~9, 2026, {C}ompany research report, not peer
   reviewed. Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents}
@@ -67,15 +68,15 @@ L.~Stelling, M.~Murray, B.~Galizzi, M.~Schaffelder, S.~Campos, and
 
 \bibitem{anthropic2026aisi}
 \BIBentryALTinterwordspacing
-------, ``An alignment assessment of the {UK AISI} cybertesting incident,''
-  Anthropic research, Oct.~23, 2026, {C}ompany research report, not peer
-  reviewed. Accessed: Nov. 3, 2026. [Online]. Available:
+{Anthropic}, ``An alignment assessment of the {UK AISI} cybertesting
+  incident,'' Anthropic research, Oct.~23, 2026, {C}ompany research report, not
+  peer reviewed. Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://www.anthropic.com/research/alignment-assessment-ukaisi}
 \BIBentrySTDinterwordspacing
 
 \bibitem{anthropic2026threeincidents}
 \BIBentryALTinterwordspacing
-------, ``Investigating three real-world incidents in our cybersecurity
+{Anthropic}, ``Investigating three real-world incidents in our cybersecurity
   evaluations,'' Anthropic news, Jul.~30, 2026, {C}ompany research report, not
   peer reviewed. Updated Aug. 3, 2026. Accessed: Nov. 3, 2026. [Online].
   Available:
@@ -84,7 +85,7 @@ L.~Stelling, M.~Murray, B.~Galizzi, M.~Schaffelder, S.~Campos, and
 
 \bibitem{anthropic2026unintended}
 \BIBentryALTinterwordspacing
-------, ``Investigating unintended model actions in our evaluations and
+{Anthropic}, ``Investigating unintended model actions in our evaluations and
   internal use,'' Anthropic research, Oct.~9, 2026, {C}ompany research report,
   not peer reviewed. Corrected Oct. 12, 2026. Accessed: Nov. 3, 2026. [Online].
   Available:
@@ -93,7 +94,7 @@ L.~Stelling, M.~Murray, B.~Galizzi, M.~Schaffelder, S.~Campos, and
 
 \bibitem{anthropic2026improving}
 \BIBentryALTinterwordspacing
-------, ``Improving our alignment and security efforts,'' Anthropic news,
+{Anthropic}, ``Improving our alignment and security efforts,'' Anthropic news,
   Aug.~31, 2026, {C}ompany research report, not peer reviewed. Accessed: Nov.
   3, 2026. [Online]. Available:
   \url{https://www.anthropic.com/news/improving-alignment-security-efforts}
@@ -126,7 +127,7 @@ M.~Favaro and P.~Wright, ``Measurements for understanding the pace of {AI}
 
 \bibitem{icao2018doc9859}
 \BIBentryALTinterwordspacing
-------, \emph{Safety Management Manual ({Doc} 9859)}, 4th~ed., International
+{ICAO}, \emph{Safety Management Manual ({Doc} 9859)}, 4th~ed., International
   Civil Aviation Organization, 2018, {T}he copy read was not distributed by
   {ICAO}; quotations cross-checked against the copy hosted by the Civil
   Aviation Authority of Nepal; the {URL} is the {ICAO} Store page. [Online].
@@ -348,8 +349,8 @@ A.~Tamkin, M.~McCain, K.~Handa, E.~Durmus, L.~Lovitt, A.~Rathi, S.~Huang,
 
 \bibitem{ec2025code}
 \BIBentryALTinterwordspacing
-------, ``{Code of Practice for General-Purpose AI Models: Safety and Security
-  Chapter},'' Jul.~10, 2025. [Online]. Available:
+{European Commission}, ``{Code of Practice for General-Purpose AI Models:
+  Safety and Security Chapter},'' Jul.~10, 2025. [Online]. Available:
   \url{https://ec.europa.eu/newsroom/dae/redirection/document/118119}
 \BIBentrySTDinterwordspacing
 
@@ -375,11 +376,12 @@ A.~Tamkin, M.~McCain, K.~Handa, E.~Durmus, L.~Lovitt, A.~Rathi, S.~Huang,
 
 \bibitem{reg2010_996}
 \BIBentryALTinterwordspacing
-------, ``{Regulation (EU) No 996/2010 of the European Parliament and of the
-  Council of 20 October 2010} on the investigation and prevention of accidents
-  and incidents in civil aviation,'' Article 16(6), 2010, {EU} law, binding.
-  EUR-Lex consolidated version of May 19, 2024; UK assimilated text identical
-  in Art. 16(6). [Online]. Available:
+{European Parliament and Council of the European Union}, ``{Regulation (EU) No
+  996/2010 of the European Parliament and of the Council of 20 October 2010} on
+  the investigation and prevention of accidents and incidents in civil
+  aviation,'' Article 16(6), 2010, {EU} law, binding. EUR-Lex consolidated
+  version of May 19, 2024; UK assimilated text identical in Art. 16(6).
+  [Online]. Available:
   \url{https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02010R0996-20240519}
 \BIBentrySTDinterwordspacing
 

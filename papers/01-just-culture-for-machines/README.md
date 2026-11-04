@@ -15,7 +15,7 @@ Aviation learned that when reports of error feed punishment, people stop reporti
   author       = {Le Cuirot, James},
   title        = {Just Culture for Machines: Why Penalising Disclosure Teaches Concealment},
   year         = {2026},
-  howpublished = {Preprint v1.0, 4 November 2026. Not peer reviewed},
+  howpublished = {Preprint v1.0, 4 November 2026},
   url          = {https://www.lecuirot.je/research/just-culture/}
 }
 ```

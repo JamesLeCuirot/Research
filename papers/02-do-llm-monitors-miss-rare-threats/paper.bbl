@@ -236,10 +236,11 @@ E.~Najt, C.~Toft, T.~Tracy, F.~Roger, and J.~Benton, ``{SLEIGHT-Bench}: Finding
 
 \bibitem{najt2026arxiv}
 \BIBentryALTinterwordspacing
-------, ``{SLEIGHT-Bench}: A benchmark of evasion attacks against agent
-  monitors,'' arXiv preprint arXiv:2605.16626, 2026, {V}ersion 2. Research by
-  the Anthropic Fellows Program and Anthropic, with the University of Waterloo
-  and Redwood Research; not peer reviewed. [Online]. Available:
+E.~Najt, C.~Toft, T.~Tracy, F.~Roger, and J.~Benton, ``{SLEIGHT-Bench}: A
+  benchmark of evasion attacks against agent monitors,'' arXiv preprint
+  arXiv:2605.16626, 2026, {V}ersion 2. Research by the Anthropic Fellows
+  Program and Anthropic, with the University of Waterloo and Redwood Research;
+  not peer reviewed. [Online]. Available:
   \url{https://arxiv.org/abs/2605.16626}
 \BIBentrySTDinterwordspacing
 
@@ -350,10 +351,11 @@ A.~Remedios, S.~Storf, F.~Roger, and J.~Hughes, ``Red-teaming auto mode:
 
 \bibitem{remedios2026arxiv}
 \BIBentryALTinterwordspacing
-------, ``Red-teaming auto mode: Improving blocking classifiers against malign
-  coding agents,'' arXiv preprint arXiv:2609.19587, 2026, {V}ersion 2. Research
-  by the Anthropic Fellows Program and Anthropic; not peer reviewed. [Online].
-  Available: \url{https://arxiv.org/abs/2609.19587}
+A.~Remedios, S.~Storf, F.~Roger, and J.~Hughes, ``Red-teaming auto mode:
+  Improving blocking classifiers against malign coding agents,'' arXiv preprint
+  arXiv:2609.19587, 2026, {V}ersion 2. Research by the Anthropic Fellows
+  Program and Anthropic; not peer reviewed. [Online]. Available:
+  \url{https://arxiv.org/abs/2609.19587}
 \BIBentrySTDinterwordspacing
 
 \end{thebibliography}

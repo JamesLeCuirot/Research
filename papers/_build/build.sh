@@ -16,7 +16,7 @@ if [ ${#dirs[@]} -eq 0 ]; then dirs=("$ROOT"/0*/); fi
 for d in "${dirs[@]}"; do
   d="$(cd "$d" && pwd)"
   [ -f "$d/paper.tex" ] || { echo "skip $d (no paper.tex)"; continue; }
-  ( cd "$d" && TEXINPUTS="$HERE//:" BSTINPUTS="$HERE//:" latexmk -pdf -interaction=nonstopmode -halt-on-error -quiet paper.tex >/dev/null \
+  ( cd "$d" && TEXINPUTS="$HERE//:" BSTINPUTS="$HERE//:" BIBINPUTS="$HERE//:" latexmk -pdf -interaction=nonstopmode -halt-on-error -quiet paper.tex >/dev/null \
       || { echo "LaTeX failed in $d; see $d/paper.log" >&2; exit 1; } )
   # Report undefined references/citations and overfull boxes worth a look.
   grep -E "undefined|Citation .* undefined|Reference .* undefined" "$d/paper.log" | sort -u | head -20 || true

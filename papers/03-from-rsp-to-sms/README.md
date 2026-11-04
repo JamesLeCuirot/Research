@@ -17,7 +17,7 @@ Frontier AI developers publish safety frameworks, such as Anthropic’s Responsi
   author       = {Le Cuirot, James},
   title        = {Applying Aviation Safety Management to Frontier {AI}: A Gap Analysis of Developer Safety Frameworks},
   year         = {2026},
-  howpublished = {Preprint v1.1, 4 November 2026. Not peer reviewed},
+  howpublished = {Preprint v1.1, 4 November 2026},
   url          = {https://www.lecuirot.je/research/safety-management/}
 }
 ```

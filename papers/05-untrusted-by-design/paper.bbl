@@ -66,11 +66,12 @@ R.~Greenblatt, B.~Shlegeris, K.~Sachan, and F.~Roger, ``{AI} control: Improving
 
 \bibitem{eu2026omnibus}
 \BIBentryALTinterwordspacing
-------, ``{Regulation (EU) 2026/1744 of the European Parliament and of the
-  Council of 8 July 2026 amending Regulations (EU) 2024/1689, (EU) 2018/1139
-  and (EU) 2023/1230 as regards the simplification of the implementation of
-  harmonised rules on artificial intelligence (Digital Omnibus on AI)},'' OJ L,
-  2026/1744, 24.7.2026, 2026. [Online]. Available:
+{European Parliament and Council of the European Union}, ``{Regulation (EU)
+  2026/1744 of the European Parliament and of the Council of 8 July 2026
+  amending Regulations (EU) 2024/1689, (EU) 2018/1139 and (EU) 2023/1230 as
+  regards the simplification of the implementation of harmonised rules on
+  artificial intelligence (Digital Omnibus on AI)},'' OJ L, 2026/1744,
+  24.7.2026, 2026. [Online]. Available:
   \url{http://data.europa.eu/eli/reg/2026/1744/oj}
 \BIBentrySTDinterwordspacing
 
@@ -83,41 +84,43 @@ R.~Greenblatt, B.~Shlegeris, K.~Sachan, and F.~Roger, ``{AI} control: Improving
 
 \bibitem{easa2024concept}
 \BIBentryALTinterwordspacing
-------, \emph{{EASA} concept paper: Guidance for Level 1 \& 2 machine learning
-  applications}, Issue 02, Mar. 2024. [Online]. Available:
-  \url{https://www.easa.europa.eu/en/downloads/139504/en}
+{European Union Aviation Safety Agency}, \emph{{EASA} concept paper: Guidance
+  for Level 1 \& 2 machine learning applications}, Issue 02, Mar. 2024.
+  [Online]. Available: \url{https://www.easa.europa.eu/en/downloads/139504/en}
 \BIBentrySTDinterwordspacing
 
 \bibitem{easa2026news}
 \BIBentryALTinterwordspacing
-------, ``{EASA} releases latest issue of its {Concept Paper on Artificial
-  Intelligence} for comment,'' News release, Jun.~3, 2026, {A}ccessed: Nov. 3,
-  2026. [Online]. Available:
+{European Union Aviation Safety Agency}, ``{EASA} releases latest issue of its
+  {Concept Paper on Artificial Intelligence} for comment,'' News release,
+  Jun.~3, 2026, {A}ccessed: Nov. 3, 2026. [Online]. Available:
   \url{https://www.easa.europa.eu/en/newsroom-and-events/news/easa-releases-latest-issue-its-concept-paper-artificial-intelligence}
 \BIBentrySTDinterwordspacing
 
 \bibitem{easa2025npaweb}
 \BIBentryALTinterwordspacing
-------, ``{NPA 2025-07},'' Notice of proposed amendment web page, 2025,
-  {A}ccessed: Nov. 3, 2026. [Online]. Available:
+{European Union Aviation Safety Agency}, ``{NPA 2025-07},'' Notice of proposed
+  amendment web page, 2025, {A}ccessed: Nov. 3, 2026. [Online]. Available:
   \url{https://www.easa.europa.eu/document-library/notices-of-proposed-amendment/npa-2025-07}
 \BIBentrySTDinterwordspacing
 
 \bibitem{easa2025npaA}
 \BIBentryALTinterwordspacing
-------, \emph{Notice of Proposed Amendment 2025-07 ({A}): Detailed
-  specifications and associated acceptable means of compliance and guidance
-  material. Artificial intelligence trustworthiness. {RMT.0742} -- Subtasks 1
-  and 2}, Explanatory note; draft for consultation, 2025. [Online]. Available:
+{European Union Aviation Safety Agency}, \emph{Notice of Proposed Amendment
+  2025-07 ({A}): Detailed specifications and associated acceptable means of
+  compliance and guidance material. Artificial intelligence trustworthiness.
+  {RMT.0742} -- Subtasks 1 and 2}, Explanatory note; draft for consultation,
+  2025. [Online]. Available:
   \url{https://www.easa.europa.eu/en/downloads/142702/en}
 \BIBentrySTDinterwordspacing
 
 \bibitem{easa2025npaB}
 \BIBentryALTinterwordspacing
-------, \emph{{NPA} 2025-07 ({B}): Proposed detailed specifications and
-  associated acceptable means of compliance and guidance material for {AI}
-  trustworthiness ({DS.AI})}, Draft for consultation, 2025. [Online].
-  Available: \url{https://www.easa.europa.eu/en/downloads/142701/en}
+{European Union Aviation Safety Agency}, \emph{{NPA} 2025-07 ({B}): Proposed
+  detailed specifications and associated acceptable means of compliance and
+  guidance material for {AI} trustworthiness ({DS.AI})}, Draft for
+  consultation, 2025. [Online]. Available:
+  \url{https://www.easa.europa.eu/en/downloads/142701/en}
 \BIBentrySTDinterwordspacing
 
 \bibitem{faa2024roadmap}
@@ -367,10 +370,10 @@ F.~Hofer and A.~Schwaninger, ``Using threat image projection data for assessing
 
 \bibitem{sae2023arp4761a}
 \BIBentryALTinterwordspacing
-------, \emph{Guidelines for conducting the safety assessment process on civil
-  aircraft, systems, and equipment}, SAE Standard ARP4761A (revised), Dec.
-  2023, {C}atalogue entry; the standard itself was not read for this paper.
-  [Online]. Available: \url{https://doi.org/10.4271/ARP4761A}
+{SAE International}, \emph{Guidelines for conducting the safety assessment
+  process on civil aircraft, systems, and equipment}, SAE Standard ARP4761A
+  (revised), Dec. 2023, {C}atalogue entry; the standard itself was not read for
+  this paper. [Online]. Available: \url{https://doi.org/10.4271/ARP4761A}
 \BIBentrySTDinterwordspacing
 
 \bibitem{habli2025big}

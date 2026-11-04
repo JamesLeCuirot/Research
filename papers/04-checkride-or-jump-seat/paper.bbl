@@ -131,11 +131,11 @@ N.~Pepper, A.~Keane, A.~Hodgkin, D.~Gould, E.~Henderson, L.~Lauritsen,
 \BIBentrySTDinterwordspacing
 
 \bibitem{icao2020panstrg}
-------, \emph{Procedures for Air Navigation Services -- Training},
-  3rd~ed.\hskip 1em plus 0.5em minus 0.4em\relax ICAO, 2020, {Doc} 9868,
-  incorporating amendments approved before 8 June 2020. Read from a copy on the
-  website of the Foundation for Aviation Competence (FFAC), a Swiss non-profit
-  foundation, not an ICAO distribution.
+{International Civil Aviation Organization}, \emph{Procedures for Air
+  Navigation Services -- Training}, 3rd~ed.\hskip 1em plus 0.5em minus
+  0.4em\relax ICAO, 2020, {Doc} 9868, incorporating amendments approved before
+  8 June 2020. Read from a copy on the website of the Foundation for Aviation
+  Competence (FFAC), a Swiss non-profit foundation, not an ICAO distribution.
 
 \bibitem{ukreg965}
 \BIBentryALTinterwordspacing
@@ -285,7 +285,7 @@ C.~Li, T.~J. Zhang, J.~Zhang, Z.~Jin, F.~Tram{\`e}r, S.~Abdelnabi, and
 
 \bibitem{anthropic2026petri2}
 \BIBentryALTinterwordspacing
-------, ``{Petri} 2.0: New scenarios, new model comparisons, and improved
+{Anthropic}, ``{Petri} 2.0: New scenarios, new model comparisons, and improved
   eval-awareness mitigations,'' Anthropic Alignment Science Blog, Jan.~22,
   2026, {C}ompany blog post; not peer reviewed. Accessed: Nov. 3, 2026.
   [Online]. Available: \url{https://alignment.anthropic.com/2026/petri-v2/}
@@ -424,9 +424,9 @@ K.~Krippendorff, ``Reliability in content analysis: Some common misconceptions
 
 \bibitem{krippendorff2011}
 \BIBentryALTinterwordspacing
-------, ``Computing {Krippendorff's} alpha-reliability,'' Annenberg School for
-  Communication, University of Pennsylvania, 2011. [Online]. Available:
-  \url{https://repository.upenn.edu/asc_papers/43}
+K.~Krippendorff, ``Computing {Krippendorff's} alpha-reliability,'' Annenberg
+  School for Communication, University of Pennsylvania, 2011. [Online].
+  Available: \url{https://repository.upenn.edu/asc_papers/43}
 \BIBentrySTDinterwordspacing
 
 \bibitem{castro2026}

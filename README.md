@@ -14,7 +14,7 @@ If you have ten minutes, read these three.
 
 **[Just Culture for Machines](papers/01-just-culture-for-machines/paper.pdf)** (theory). Aviation learned that if reports of error feed punishment, reporting stops. When an AI model's own disclosures (its chain of thought, self-reports or confessions) set the penalty for what they disclose, training can teach concealment instead of good behaviour. The paper states the conditions under which that holds, links them to experiments that observed it, and turns aviation's protected-reporting institutions into six design principles and five testable predictions.
 
-**[Outcome Bias in AI Models Applying a Culpability Decision Tree to Airline Occurrence Reports](papers/07-same-actions-different-endings/paper/same-actions-different-endings-preprint-v1.pdf)** (pre-registered experiment; preprint title *Same Actions, Different Endings*). Three general-purpose AI models applied Reason's culpability decision tree to 48 real NASA ASRS occurrences, each in two versions identical except for the ending. All three judged the crew more culpable after a bad ending (mean shifts of +0.18 to +0.35 steps on a nine-step scale; Holm-adjusted p ≤ .023), while clear control cases were unaffected. A structured just-culture instrument did not prevent outcome bias.
+**[Outcome Bias in AI Models Applying a Culpability Decision Tree to Airline Occurrence Reports](papers/07-same-actions-different-endings/paper.pdf)** (pre-registered experiment; first version titled *Same Actions, Different Endings*). Three general-purpose AI models applied Reason's culpability decision tree to 48 real NASA ASRS occurrences, each in two versions identical except for the ending. All three judged the crew more culpable after a bad ending (mean shifts of +0.18 to +0.35 steps on a nine-step scale; Holm-adjusted p ≤ .023), while clear control cases were unaffected. A structured just-culture instrument did not prevent outcome bias.
 
 ## All papers
 
@@ -28,7 +28,7 @@ Each paper has its own folder in [`papers/`](papers/). None is peer reviewed yet
 | 04 | **Observing AI Systems in Normal Operations:** What Aviation's Line Operations Safety Audit and Evidence-Based Training Offer AI Evaluation | Proposes a "jump-seat" layer and competency-based assessment for AI evaluation; in a small pilot, AI graders agreed only moderately on evidence-based-training grades | [PDF](papers/04-checkride-or-jump-seat/paper.pdf) |
 | 05 | **AI Control for Aviation:** A Gap Analysis of EASA's Operational Oversight Objectives for Advanced AI | EASA's draft guidance does not treat the AI itself as a possible adversary of its own monitor; six threats, means of compliance and ten recommendations | [PDF](papers/05-untrusted-by-design/paper.pdf) |
 | 06 | **AFACS:** Extending AI-Agent Incident Analysis to Multi-Agent Systems, an HFACS-Based Framework, and an Audit of Public Traces | An HFACS-based framework for failures of multi-agent AI systems; an audit of a public dataset (duplicate traces, an LLM judge agreeing with itself at κ 0.43); an AI coding pilot (human validation next) | [PDF](papers/06-afacs/paper.pdf) |
-| 07 | **Outcome Bias in AI Models Applying a Culpability Decision Tree to Airline Occurrence Reports** (preprint: *Same Actions, Different Endings*) | AI models judged identical crew actions more culpable when the occurrence ended badly | [PDF](papers/07-same-actions-different-endings/paper/same-actions-different-endings-preprint-v1.pdf) |
+| 07 | **Outcome Bias in AI Models Applying a Culpability Decision Tree to Airline Occurrence Reports** (first version: *Same Actions, Different Endings*) | AI models judged identical crew actions more culpable when the occurrence ended badly | [PDF](papers/07-same-actions-different-endings/paper.pdf) |
 
 **Research agenda:** [`agenda/`](agenda/) holds 17 proposals for applying aviation safety science to AI safety; papers 01–05 grew out of five of them.
 
@@ -66,7 +66,7 @@ Every paper folder is laid out the same way:
 | File or folder | What it is |
 |---|---|
 | `README.md` | Abstract, status, how to cite |
-| `paper.pdf`, `paper.tex`, `references.bib` | The preprint and its source (07's preprint is in Markdown, under `paper/`, as deposited on OSF) |
+| `paper.pdf`, `paper.tex`, `references.bib` | The preprint and its source (07 has its reference list in `paper.tex`, with no `references.bib`, and also keeps its first version, in Markdown under `paper/`, as deposited on OSF) |
 | `submissions/<journal>/` | The version prepared for one journal, with its cover letter and a `SUBMISSION.md` (why that journal, what changed, status) |
 | `sources.md` | The check of every reference against its source |
 | `AUDIT.md` | The independent audit and how each finding was resolved |

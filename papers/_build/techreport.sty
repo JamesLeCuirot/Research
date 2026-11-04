@@ -1,0 +1,81 @@
+% techreport.sty -- shared house style for the papers in papers/
+% Single-column A4 technical report: Latin Modern, running header with rule,
+% centred page numbers, booktabs tables with captions above, small captions
+% with bold labels, numbered equations, siunitx, IEEE numeric references.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{techreport}[2026/11/04 House style for J. Le Cuirot working papers]
+
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{lmodern}
+\RequirePackage[british]{babel}
+\RequirePackage[a4paper,top=30mm,bottom=28mm,left=28mm,right=28mm,headheight=14pt,headsep=8mm]{geometry}
+\RequirePackage{microtype}
+\RequirePackage{amsmath,amssymb}
+\RequirePackage{graphicx}
+\RequirePackage{booktabs,longtable,tabularx,array,multirow}
+\RequirePackage{threeparttable}
+\RequirePackage[font=small,labelfont=bf,labelsep=colon]{caption}
+\RequirePackage{subcaption}
+\captionsetup[table]{position=top,skip=4pt}
+\captionsetup[figure]{skip=6pt}
+\RequirePackage[detect-all]{siunitx}
+\sisetup{group-separator={\,},group-minimum-digits=4,output-decimal-marker={.},per-mode=symbol}
+\RequirePackage{enumitem}
+\setlist{itemsep=2pt,topsep=4pt}
+\RequirePackage{fancyhdr}
+\RequirePackage{xurl}
+\RequirePackage{cite}% sorted, compressed numeric citations: [5]--[8] style ranges
+\RequirePackage[hidelinks,unicode,pdfusetitle,hyperfootnotes=false]{hyperref}
+\hypersetup{pdfauthor={James Le Cuirot}}
+\RequirePackage{xcolor}
+
+% Running header: short title left, author right, rule underneath; page number centred in footer.
+\newcommand{\shorttitle}[1]{\gdef\@shorttitle{#1}}
+\newcommand{\shortauthor}[1]{\gdef\@shortauthor{#1}}
+\shorttitle{}\shortauthor{James Le Cuirot}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\itshape\@shorttitle}
+\fancyhead[R]{\small\itshape\@shortauthor}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyhead[L]{\small\itshape\@shorttitle}\fancyhead[R]{\small\itshape\@shortauthor}\fancyfoot[C]{\small\thepage}\renewcommand{\headrulewidth}{0.4pt}}
+
+% Simple title block: bold title, author, affiliation, date.
+\renewcommand{\maketitle}{%
+  \begingroup
+  \renewcommand{\thefootnote}{\fnsymbol{footnote}}%
+  \begin{center}
+    {\LARGE\bfseries \@title\par}
+    \vspace{0.8em}
+    {\large \@author\par}
+    \vspace{0.4em}
+    {\normalsize \@date\par}
+  \end{center}
+  \vspace{1em}
+  \@thanks
+  \endgroup
+  \global\let\@thanks\@empty
+  \setcounter{footnote}{0}%
+  \thispagestyle{fancy}%
+}
+
+% Abstract: small, indented, bold heading.
+\renewenvironment{abstract}{%
+  \begin{center}\small\bfseries Abstract\end{center}\vspace{-0.6em}%
+  \begin{quote}\small}{\end{quote}\vspace{0.6em}}
+
+% Numbered sections and subsections; bold run-in paragraph headings via \paragraph{...}.
+\setcounter{secnumdepth}{2}
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\z@}{1.2ex \@plus .4ex \@minus .2ex}{-0.6em}{\normalfont\normalsize\bfseries}}
+
+% Tables: slightly tighter rows; source line helper for captions.
+\renewcommand{\arraystretch}{1.15}
+\newcommand{\source}[1]{\par\vspace{2pt}{\footnotesize\textit{Source:} #1}}
+
+% Code identifiers and file names in monospace.
+\newcommand{\code}[1]{\texttt{#1}}
+
+\endinput

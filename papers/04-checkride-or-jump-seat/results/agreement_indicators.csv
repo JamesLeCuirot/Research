@@ -1,0 +1,77 @@
+comparison,indicator,alpha_nominal,exact_agreement,pct_demonstrated,pct_not_demonstrated,pct_not_required
+Inter-grader (run 1),PRO.1,,1.000,1.000,0.000,0.000
+Inter-grader (run 1),PRO.2,,1.000,1.000,0.000,0.000
+Inter-grader (run 1),PRO.3,0.188,0.750,0.812,0.000,0.188
+Inter-grader (run 1),PRO.4,-0.011,0.958,0.979,0.021,0.000
+Inter-grader (run 1),COM.1,,1.000,1.000,0.000,0.000
+Inter-grader (run 1),COM.2,0.520,0.875,0.854,0.104,0.042
+Inter-grader (run 1),COM.3,0.500,0.729,0.552,0.052,0.396
+Inter-grader (run 1),COM.4,0.653,0.854,0.167,0.094,0.740
+Inter-grader (run 1),COM.5,0.529,0.771,0.375,0.010,0.615
+Inter-grader (run 1),PSD.1,-0.022,0.938,0.969,0.031,0.000
+Inter-grader (run 1),PSD.2,0.633,0.812,0.448,0.010,0.542
+Inter-grader (run 1),PSD.3,0.000,0.979,0.990,0.000,0.010
+Inter-grader (run 1),PSD.4,0.547,0.938,0.927,0.010,0.062
+Inter-grader (run 1),SAW.1,-0.011,0.958,0.979,0.021,0.000
+Inter-grader (run 1),SAW.2,0.151,0.854,0.906,0.000,0.094
+Inter-grader (run 1),SAW.3,,1.000,1.000,0.000,0.000
+Inter-grader (run 1),SAW.4,0.000,0.979,0.990,0.010,0.000
+Inter-grader (run 1),"ALL (pooled, 3 categories)",0.687,0.906,0.820,0.021,0.158
+Inter-grader (run 1),"ALL (pooled, demonstrated vs other)",0.721,0.918,0.820,,
+Inter-grader (run 2),PRO.1,,1.000,1.000,0.000,0.000
+Inter-grader (run 2),PRO.2,,1.000,1.000,0.000,0.000
+Inter-grader (run 2),PRO.3,0.222,0.771,0.823,0.000,0.177
+Inter-grader (run 2),PRO.4,-0.033,0.917,0.958,0.042,0.000
+Inter-grader (run 2),COM.1,,1.000,1.000,0.000,0.000
+Inter-grader (run 2),COM.2,0.520,0.875,0.854,0.104,0.042
+Inter-grader (run 2),COM.3,0.411,0.688,0.562,0.042,0.396
+Inter-grader (run 2),COM.4,0.629,0.854,0.167,0.073,0.760
+Inter-grader (run 2),COM.5,0.518,0.750,0.365,0.042,0.594
+Inter-grader (run 2),PSD.1,-0.011,0.958,0.979,0.021,0.000
+Inter-grader (run 2),PSD.2,0.587,0.792,0.479,0.000,0.521
+Inter-grader (run 2),PSD.3,0.000,0.979,0.990,0.010,0.000
+Inter-grader (run 2),PSD.4,0.791,0.979,0.948,0.000,0.052
+Inter-grader (run 2),SAW.1,0.000,0.979,0.990,0.010,0.000
+Inter-grader (run 2),SAW.2,0.051,0.771,0.865,0.021,0.115
+Inter-grader (run 2),SAW.3,,1.000,1.000,0.000,0.000
+Inter-grader (run 2),SAW.4,-0.022,0.938,0.969,0.031,0.000
+Inter-grader (run 2),"ALL (pooled, 3 categories)",0.659,0.897,0.820,0.023,0.156
+Inter-grader (run 2),"ALL (pooled, demonstrated vs other)",0.697,0.911,0.820,,
+Repeat-run (Sonnet grader),PRO.1,,1.000,1.000,0.000,0.000
+Repeat-run (Sonnet grader),PRO.2,,1.000,1.000,0.000,0.000
+Repeat-run (Sonnet grader),PRO.3,0.462,0.771,0.698,0.000,0.302
+Repeat-run (Sonnet grader),PRO.4,0.648,0.958,0.938,0.062,0.000
+Repeat-run (Sonnet grader),COM.1,,1.000,1.000,0.000,0.000
+Repeat-run (Sonnet grader),COM.2,0.772,0.938,0.844,0.125,0.031
+Repeat-run (Sonnet grader),COM.3,0.770,0.875,0.500,0.042,0.458
+Repeat-run (Sonnet grader),COM.4,0.930,0.979,0.167,0.010,0.823
+Repeat-run (Sonnet grader),COM.5,0.814,0.917,0.260,0.042,0.698
+Repeat-run (Sonnet grader),PSD.1,,1.000,1.000,0.000,0.000
+Repeat-run (Sonnet grader),PSD.2,0.913,0.958,0.365,0.010,0.625
+Repeat-run (Sonnet grader),PSD.3,0.000,0.979,0.990,0.000,0.010
+Repeat-run (Sonnet grader),PSD.4,1.000,1.000,0.958,0.000,0.042
+Repeat-run (Sonnet grader),SAW.1,0.000,0.979,0.990,0.010,0.000
+Repeat-run (Sonnet grader),SAW.2,0.808,0.938,0.802,0.010,0.188
+Repeat-run (Sonnet grader),SAW.3,,1.000,1.000,0.000,0.000
+Repeat-run (Sonnet grader),SAW.4,0.000,0.979,0.990,0.010,0.000
+Repeat-run (Sonnet grader),"ALL (pooled, 3 categories)",0.872,0.957,0.794,0.019,0.187
+Repeat-run (Sonnet grader),"ALL (pooled, demonstrated vs other)",0.903,0.968,0.794,,
+Repeat-run (Opus grader),PRO.1,,1.000,1.000,0.000,0.000
+Repeat-run (Opus grader),PRO.2,,1.000,1.000,0.000,0.000
+Repeat-run (Opus grader),PRO.3,0.648,0.958,0.938,0.000,0.062
+Repeat-run (Opus grader),PRO.4,,1.000,1.000,0.000,0.000
+Repeat-run (Opus grader),COM.1,,1.000,1.000,0.000,0.000
+Repeat-run (Opus grader),COM.2,0.406,0.854,0.865,0.083,0.052
+Repeat-run (Opus grader),COM.3,0.838,0.917,0.615,0.052,0.333
+Repeat-run (Opus grader),COM.4,0.789,0.896,0.167,0.156,0.677
+Repeat-run (Opus grader),COM.5,0.879,0.938,0.479,0.010,0.510
+Repeat-run (Opus grader),PSD.1,0.791,0.979,0.948,0.052,0.000
+Repeat-run (Opus grader),PSD.2,0.916,0.958,0.562,0.000,0.438
+Repeat-run (Opus grader),PSD.3,0.000,0.979,0.990,0.010,0.000
+Repeat-run (Opus grader),PSD.4,0.466,0.917,0.917,0.010,0.073
+Repeat-run (Opus grader),SAW.1,1.000,1.000,0.979,0.021,0.000
+Repeat-run (Opus grader),SAW.2,-0.014,0.938,0.969,0.010,0.021
+Repeat-run (Opus grader),SAW.3,,1.000,1.000,0.000,0.000
+Repeat-run (Opus grader),SAW.4,-0.022,0.938,0.969,0.031,0.000
+Repeat-run (Opus grader),"ALL (pooled, 3 categories)",0.839,0.957,0.847,0.026,0.127
+Repeat-run (Opus grader),"ALL (pooled, demonstrated vs other)",0.868,0.966,0.847,,

@@ -1,0 +1,91 @@
+{
+ "note": "post hoc (not pre-registered)",
+ "edit_kinds": {
+  "same statement count (in-place change, e.g. bound or comparison)": 254,
+  "adds an if-branch": 150,
+  "other": 15
+ },
+ "n_items": 419,
+ "tokens_per_call": {
+  "claude-haiku-5-5|P10": {
+   "calls": 40,
+   "mean_output_tokens": 5951.8,
+   "mean_thinking_tokens": 4757.4
+  },
+  "claude-haiku-5-5|P2.5": {
+   "calls": 160,
+   "mean_output_tokens": 5298.5,
+   "mean_thinking_tokens": 4194.6
+  },
+  "claude-haiku-5-5|P50": {
+   "calls": 8,
+   "mean_output_tokens": 8566.8,
+   "mean_thinking_tokens": 7591.8
+  },
+  "claude-haiku-5-5|R-cal": {
+   "calls": 80,
+   "mean_output_tokens": 4917.3,
+   "mean_thinking_tokens": 3892.6
+  },
+  "claude-haiku-5-5|R-ind": {
+   "calls": 80,
+   "mean_output_tokens": 5682.5,
+   "mean_thinking_tokens": 4597.8
+  },
+  "claude-haiku-5-5|S1": {
+   "calls": 240,
+   "mean_output_tokens": 410.9,
+   "mean_thinking_tokens": 330.9
+  },
+  "claude-haiku-5-5|S50": {
+   "calls": 240,
+   "mean_output_tokens": 400.5,
+   "mean_thinking_tokens": 320.5
+  },
+  "claude-haiku-5-5|none": {
+   "calls": 240,
+   "mean_output_tokens": 392.8,
+   "mean_thinking_tokens": 312.8
+  },
+  "claude-sonnet-5-5|P10": {
+   "calls": 40,
+   "mean_output_tokens": 1455.1,
+   "mean_thinking_tokens": 480.4
+  },
+  "claude-sonnet-5-5|P2.5": {
+   "calls": 160,
+   "mean_output_tokens": 1454.5,
+   "mean_thinking_tokens": 479.8
+  },
+  "claude-sonnet-5-5|P50": {
+   "calls": 8,
+   "mean_output_tokens": 1089.6,
+   "mean_thinking_tokens": 115.5
+  },
+  "claude-sonnet-5-5|R-cal": {
+   "calls": 80,
+   "mean_output_tokens": 1462.0,
+   "mean_thinking_tokens": 487.5
+  },
+  "claude-sonnet-5-5|R-ind": {
+   "calls": 80,
+   "mean_output_tokens": 1643.3,
+   "mean_thinking_tokens": 668.5
+  },
+  "claude-sonnet-5-5|S1": {
+   "calls": 240,
+   "mean_output_tokens": 204.1,
+   "mean_thinking_tokens": 68.9
+  },
+  "claude-sonnet-5-5|S50": {
+   "calls": 240,
+   "mean_output_tokens": 206.6,
+   "mean_thinking_tokens": 74.0
+  },
+  "claude-sonnet-5-5|none": {
+   "calls": 240,
+   "mean_output_tokens": 204.6,
+   "mean_thinking_tokens": 64.6
+  }
+ }
+}

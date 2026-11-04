@@ -1,0 +1,15 @@
+# Downloaded third-party documents (EASA PDFs etc.) used while writing; not redistributed.
+scratch/
+**/scratch/
+# Python caches
+__pycache__/
+
+# LaTeX build by-products (paper.bbl is kept for arXiv)
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.out
+*.blg
+*.synctex.gz
+*.toc

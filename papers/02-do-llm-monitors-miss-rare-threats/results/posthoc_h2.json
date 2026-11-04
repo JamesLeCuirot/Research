@@ -1,0 +1,267 @@
+{
+ "version": 2,
+ "note": "Post hoc (not pre-registered). The registered H2 result is the 40-node fit in analysis.json.",
+ "accurate_method": "dense-grid integration, +/-9 SD, 6,001 points, validated against per-item adaptive integration",
+ "monitors": {
+  "Sonnet": {
+   "items_flagged_in_0_1_2_3_conditions": [
+    17,
+    7,
+    4,
+    92
+   ],
+   "exact_S50_vs_S1": {
+    "flagged_S50_not_S1": 9,
+    "flagged_S1_not_S50": 0,
+    "p_exact_two_sided": 0.00390625,
+    "n_items": 120
+   },
+   "exact_S50_vs_none": {
+    "flagged_S50_not_none": 7,
+    "flagged_none_not_S50": 1,
+    "p_exact_two_sided": 0.0703125,
+    "n_items": 120
+   },
+   "registered_40node": {
+    "sigma": 32.83229352427043,
+    "S1_logodds": -3.3212926846252637,
+    "S1_se": 1.2464630664324836,
+    "S1_p": 0.0077085976782261595,
+    "loglik_under_40node": -98.17033977014228
+   },
+   "complete": true,
+   "multistart_40node": {
+    "loglik": -97.4554669215461,
+    "sigma": 10.941662352185311,
+    "S1_logodds": -3.6775664041849447
+   },
+   "accurate_dense_grid": {
+    "loglik": -97.05933233200327,
+    "sigma": 13.43520442450004,
+    "beta": [
+     14.128944028800777,
+     -2.5589525190957483,
+     -3.7613583580371346
+    ],
+    "S1_logodds": -3.7613583580371346,
+    "S1_se": 1.409064573647417,
+    "S1_z": -2.669400983022883,
+    "S1_p": 0.007598667404379023,
+    "none_logodds": -2.5589525190957483,
+    "none_se": 1.1814858515706257,
+    "hessian_min_eig": 0.038970215252800755,
+    "LR_test_S1": {
+     "LR": 13.502598258913906,
+     "df": 1,
+     "p": 0.00023823336210979863,
+     "loglik_reduced": -103.81063146146022,
+     "sigma_reduced": 8.974420537855375
+    }
+   },
+   "profile": [
+    {
+     "sigma": 1,
+     "loglik_40node": -146.91689021364783,
+     "S1_40node": -0.6044981756198777,
+     "loglik_accurate": -146.9168902136551,
+     "S1_accurate": -0.6044983644010579
+    },
+    {
+     "sigma": 2,
+     "loglik_40node": -122.45290989845223,
+     "S1_40node": -0.8962338399480365,
+     "loglik_accurate": -122.45290916651582,
+     "S1_accurate": -0.8962319601283061
+    },
+    {
+     "sigma": 5,
+     "loglik_40node": -102.18127967918585,
+     "S1_40node": -1.8382134950725713,
+     "loglik_accurate": -102.18698114804467,
+     "S1_accurate": -1.8574729943797317
+    },
+    {
+     "sigma": 10,
+     "loglik_40node": -97.52521264224818,
+     "S1_40node": -3.3167089555167997,
+     "loglik_accurate": -97.42206538351115,
+     "S1_accurate": -3.1037448976662034
+    },
+    {
+     "sigma": 13.4,
+     "loglik_40node": -97.80599492934167,
+     "S1_40node": -4.7432473794869345,
+     "loglik_accurate": -97.05935862036539,
+     "S1_accurate": -3.755229626881551
+    },
+    {
+     "sigma": 20,
+     "loglik_40node": -98.17479961273573,
+     "S1_40node": -3.317932496277954,
+     "loglik_accurate": -97.60410460433941,
+     "S1_accurate": -4.740038290789158
+    },
+    {
+     "sigma": 32.83,
+     "loglik_40node": -98.17033977892999,
+     "S1_40node": -3.321286852699941,
+     "loglik_accurate": -99.52076751484404,
+     "S1_accurate": -6.036999504946736
+    },
+    {
+     "sigma": 60,
+     "loglik_40node": -111.7633349171027,
+     "S1_40node": -2.805353679265596,
+     "loglik_accurate": -103.21618631609965,
+     "S1_accurate": -7.551453277310196
+    }
+   ],
+   "accuracy": {
+    "at registered estimate": {
+     "GH40 (registered)": -98.17033977014228,
+     "AGQ30": -105.59111439122815,
+     "AGQ60": -97.82942689077693,
+     "dense grid": -101.67527934688036,
+     "adaptive integration (reference)": -101.67527934688484
+    },
+    "at accurate optimum": {
+     "GH40 (registered)": -101.1491905640145,
+     "AGQ30": -100.61014212375574,
+     "AGQ60": -96.02758284095418,
+     "dense grid": -97.05933233200327,
+     "adaptive integration (reference)": -97.05933233200783
+    }
+   }
+  },
+  "Haiku": {
+   "items_flagged_in_0_1_2_3_conditions": [
+    29,
+    10,
+    18,
+    63
+   ],
+   "exact_S50_vs_S1": {
+    "flagged_S50_not_S1": 12,
+    "flagged_S1_not_S50": 7,
+    "p_exact_two_sided": 0.359283447265625,
+    "n_items": 120
+   },
+   "exact_S50_vs_none": {
+    "flagged_S50_not_none": 12,
+    "flagged_none_not_S50": 6,
+    "p_exact_two_sided": 0.237884521484375,
+    "n_items": 120
+   },
+   "registered_40node": {
+    "sigma": 4.5676067787124826,
+    "S1_logodds": -0.5568631253399027,
+    "S1_se": 0.4784286824405289,
+    "S1_p": 0.2444476123517656,
+    "loglik_under_40node": -170.935278028343
+   },
+   "complete": true,
+   "multistart_40node": {
+    "loglik": -170.93527802834242,
+    "sigma": 4.5676068693,
+    "S1_logodds": -0.5568633445459455
+   },
+   "accurate_dense_grid": {
+    "loglik": -171.0254806223861,
+    "sigma": 4.470251047640514,
+    "beta": [
+     2.2570076356001643,
+     -0.6585853494826768,
+     -0.5517099715480404
+    ],
+    "S1_logodds": -0.5517099715480404,
+    "S1_se": 0.47583666279216397,
+    "S1_z": -1.1594524228348844,
+    "S1_p": 0.24627181899916972,
+    "none_logodds": -0.6585853494826768,
+    "none_se": 0.4771283961492124,
+    "hessian_min_eig": 1.70594599063687,
+    "LR_test_S1": {
+     "LR": 1.3704423519989177,
+     "df": 1,
+     "p": 0.24173589606066032,
+     "loglik_reduced": -171.71070179838557,
+     "sigma_reduced": 4.4092208433392965
+    }
+   },
+   "profile": [
+    {
+     "sigma": 1,
+     "loglik_40node": -202.67664128093008,
+     "S1_40node": -0.23390487193017387,
+     "loglik_accurate": -202.6766412809143,
+     "S1_accurate": -0.2339041087166144
+    },
+    {
+     "sigma": 2,
+     "loglik_40node": -181.04018843572229,
+     "S1_40node": -0.3354930369348369,
+     "loglik_accurate": -181.04021169763976,
+     "S1_accurate": -0.33549547026137233
+    },
+    {
+     "sigma": 5,
+     "loglik_40node": -171.0299396628647,
+     "S1_40node": -0.5843669543578398,
+     "loglik_accurate": -171.19379208519067,
+     "S1_accurate": -0.5862851524393919
+    },
+    {
+     "sigma": 10,
+     "loglik_40node": -174.2967962521663,
+     "S1_40node": -0.6505619704409287,
+     "loglik_accurate": -178.25666244518698,
+     "S1_accurate": -0.7881214461302828
+    },
+    {
+     "sigma": 13.4,
+     "loglik_40node": -174.8337022263206,
+     "S1_40node": -0.6430944231188206,
+     "loglik_accurate": -183.42986533867463,
+     "S1_accurate": -0.8582516728131871
+    },
+    {
+     "sigma": 20,
+     "loglik_40node": -174.95989452208573,
+     "S1_40node": -0.6411031037877443,
+     "loglik_accurate": -191.78000330361624,
+     "S1_accurate": -0.9356638949232212
+    },
+    {
+     "sigma": 32.83,
+     "loglik_40node": -174.96498654856256,
+     "S1_40node": -0.6410207920778718,
+     "loglik_accurate": -203.44221359880282,
+     "S1_accurate": -1.0042998039463789
+    },
+    {
+     "sigma": 60,
+     "loglik_40node": -174.9649955841094,
+     "S1_40node": -0.6410214591099936,
+     "loglik_accurate": -218.79656103983461,
+     "S1_accurate": -1.0568454680868662
+    }
+   ],
+   "accuracy": {
+    "at registered estimate": {
+     "GH40 (registered)": -170.935278028343,
+     "AGQ30": -171.0280402977283,
+     "AGQ60": -171.03227435536206,
+     "dense grid": -171.03232067285393,
+     "adaptive integration (reference)": -171.03232067285828
+    },
+    "at accurate optimum": {
+     "GH40 (registered)": -170.94130240011435,
+     "AGQ30": -171.02206404969354,
+     "AGQ60": -171.0254436158396,
+     "dense grid": -171.0254806223861,
+     "adaptive integration (reference)": -171.02548062239083
+    }
+   }
+  }
+ }
+}

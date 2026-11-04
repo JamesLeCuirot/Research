@@ -1,0 +1,20 @@
+comparison,indicator,alpha_nominal,exact_agreement,pct_demonstrated,pct_not_demonstrated,pct_not_required
+Inter-grader (run 1),PRO.1,0.546,0.944,0.935,0.065,0.000
+Inter-grader (run 1),PRO.2,1.000,1.000,0.889,0.111,0.000
+Inter-grader (run 1),PRO.3,0.356,0.741,0.750,0.065,0.185
+Inter-grader (run 1),PRO.4,0.546,0.944,0.935,0.065,0.000
+Inter-grader (run 1),COM.1,0.377,0.944,0.954,0.046,0.000
+Inter-grader (run 1),COM.2,0.656,0.870,0.769,0.185,0.046
+Inter-grader (run 1),COM.3,0.598,0.759,0.491,0.120,0.389
+Inter-grader (run 1),COM.4,0.683,0.870,0.148,0.102,0.750
+Inter-grader (run 1),COM.5,0.561,0.778,0.352,0.037,0.611
+Inter-grader (run 1),PSD.1,0.770,0.944,0.861,0.139,0.000
+Inter-grader (run 1),PSD.2,0.660,0.815,0.398,0.056,0.546
+Inter-grader (run 1),PSD.3,0.901,0.981,0.898,0.093,0.009
+Inter-grader (run 1),PSD.4,0.801,0.944,0.843,0.102,0.056
+Inter-grader (run 1),SAW.1,0.301,0.926,0.944,0.056,0.000
+Inter-grader (run 1),SAW.2,0.540,0.852,0.815,0.093,0.093
+Inter-grader (run 1),SAW.3,0.900,0.981,0.898,0.102,0.000
+Inter-grader (run 1),SAW.4,0.913,0.981,0.880,0.120,0.000
+Inter-grader (run 1),"ALL (pooled, 3 categories)",0.749,0.899,0.751,0.092,0.158
+Inter-grader (run 1),"ALL (pooled, demonstrated vs other)",0.767,0.913,0.751,,

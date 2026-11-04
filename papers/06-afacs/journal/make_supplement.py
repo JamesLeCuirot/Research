@@ -1,0 +1,109 @@
+"""Build the anonymised supplementary ZIP for the AFACS TMLR submission.
+
+Copies the code, codebook, prompts, encoded AI codings, results, figures and
+documentation into build/supplement/, replaces the author's name with "the
+investigator", drops files written only for the author (the plain-English guide
+and explainer) and the full reference library, checks that no identifying string
+is left, and writes build/supplement.zip. Traces are not included: they contain
+benchmark questions whose maintainers ask that they not be reposted, and the
+pipeline recreates them from MAST's pinned revision.
+
+    python3 papers/06-afacs/journal/make_supplement.py
+"""
+import re
+import shutil
+import sys
+import zipfile
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+PAPER = HERE.parent
+OUT = HERE / "build" / "supplement"
+ZIP = HERE / "build" / "supplement.zip"
+
+COPY = ["pyproject.toml", "uv.lock", ".env.example", "src", "scripts", "tests", "codebook", "prompts",
+        "docs", "results", "figures", "annotations/llm/public", "annotations/human", "data/README.md"]
+DROP = ["docs/GUIDE.md", "docs/explainer.html", "docs/references.bib"]
+FORBIDDEN = re.compile(r"cuirot|citadel|jameslec|github\.com/james|@citadelaero|/home/user|papers/06-|\bjames\b", re.I)
+TEXT = {".md", ".py", ".txt", ".json", ".jsonl", ".csv", ".toml", ".html", ".example", ".sha256", ".lock"}
+
+README = """# Supplementary material
+
+Anonymised materials for "Extending AI-Agent Incident Analysis to Multi-Agent Systems: AFACS, an
+HFACS-Based Framework, and an Audit of Public Traces".
+
+| Path | Contents |
+|---|---|
+| `codebook/` | The AFACS codebook: v0, v1 (used in the pilot) and v1.1 (v1 without the stated Ezell pairing) |
+| `prompts/` | The annotator prompts (v1 used in the pilot) |
+| `src/afacs/`, `scripts/`, `tests/` | The pipeline: ingest and audit of MAST, rendering and blinding, sampling, annotation, quote checking, agreement and analysis. Python 3.11+, managed with uv (`pyproject.toml`, `uv.lock`) |
+| `annotations/llm/public/` | Every AI coding from the three bulk runs and two checks, with benchmark text in quotes encoded (`src/afacs/protect.py` decodes them) |
+| `annotations/human/` | The blank calibration coding sheet and the SHA-256 fingerprint of the hidden calibration key |
+| `results/` | Analysis and agreement outputs and the pilot summary |
+| `docs/` | The data audit, the information audit, the cross-walk to Ezell et al., the documentation (design) check and the coding guide |
+| `figures/` | The figures |
+| `data/README.md` | How the traces are recreated from MAST's pinned revision |
+
+Traces are not included, because they contain benchmark questions whose maintainers ask that they not be
+reposted. `uv run afacs-ingest` downloads MAST (`mcemri/MAST-Data`, revision `95118ac`, CC BY 4.0) and
+recreates them. Code is released under the MIT licence.
+"""
+
+
+def anonymise(text: str) -> str:
+    text = re.sub(r"James Le Cuirot", "the investigator", text)
+    text = re.sub(r"\bJames's\b", "the investigator's", text)
+    text = re.sub(r"\bJames\b", "the investigator", text)
+    text = text.replace("papers/06-afacs/", "")
+    return text
+
+
+def main() -> int:
+    if OUT.exists():
+        shutil.rmtree(OUT)
+    OUT.mkdir(parents=True)
+    for name in COPY:
+        src = PAPER / name
+        dst = OUT / name
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        if src.is_dir():
+            shutil.copytree(src, dst, ignore=shutil.ignore_patterns("__pycache__", "*.pyc", ".DS_Store", "*.egg-info"))
+        elif src.exists():
+            shutil.copy2(src, dst)
+    for name in DROP:
+        p = OUT / name
+        if p.exists():
+            p.unlink()
+    toml = OUT / "pyproject.toml"
+    toml.write_text(re.sub(r'authors = \[.*?\]', 'authors = [{ name = "Anonymous" }]', toml.read_text()), encoding="utf-8")
+    for path in OUT.rglob("*"):
+        if path.is_file() and (path.suffix in TEXT or path.name.startswith(".env")):
+            text = path.read_text(encoding="utf-8")
+            new = anonymise(text)
+            if new != text:
+                path.write_text(new, encoding="utf-8")
+    (OUT / "README.md").write_text(README, encoding="utf-8")
+
+    problems = []
+    for path in OUT.rglob("*"):
+        if path.is_file():
+            data = path.read_bytes().decode("utf-8", errors="ignore")
+            for m in FORBIDDEN.finditer(data):
+                problems.append(f"{path.relative_to(OUT)}: {data[max(0, m.start()-40):m.end()+40]!r}")
+    if problems:
+        print("Identifying strings remain:\n" + "\n".join(problems[:30]), file=sys.stderr)
+        return 1
+
+    if ZIP.exists():
+        ZIP.unlink()
+    with zipfile.ZipFile(ZIP, "w", zipfile.ZIP_DEFLATED) as z:
+        for path in sorted(OUT.rglob("*")):
+            if path.is_file():
+                z.write(path, Path("supplement") / path.relative_to(OUT))
+    size = ZIP.stat().st_size / 1e6
+    print(f"wrote {ZIP} ({size:.1f} MB); no identifying strings found")
+    return 0 if size < 100 else 2
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -1,0 +1,240 @@
+\begin{thebibliography}{28}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Ahmadi et~al.(2025)Ahmadi, Sharif, and Banad]{ahmadi2025hfacsgrpo}
+Arash Ahmadi, Sarah Sharif, and Yaser Banad.
+\newblock Improving aviation safety analysis: Automated {HFACS} classification
+  using reinforcement learning with group relative policy optimization.
+\newblock arXiv preprint arXiv:2508.21201, 2025.
+\newblock URL \url{https://arxiv.org/abs/2508.21201}.
+
+\bibitem[Baker et~al.(2025)Baker, Huizinga, Gao, Dou, Guan, Madry, Zaremba,
+  Pachocki, and Farhi]{baker2025monitoring}
+Bowen Baker, Joost Huizinga, Leo Gao, Zehao Dou, Melody~Y. Guan, Aleksander
+  Madry, Wojciech Zaremba, Jakub Pachocki, and David Farhi.
+\newblock Monitoring reasoning models for misbehavior and the risks of
+  promoting obfuscation.
+\newblock arXiv preprint arXiv:2503.11926, 2025.
+\newblock URL \url{https://arxiv.org/abs/2503.11926}.
+
+\bibitem[Cemri et~al.(2025)Cemri, Pan, Yang, Agrawal, Chopra, Tiwari, Keutzer,
+  Parameswaran, Klein, Ramchandran, Zaharia, Gonzalez, and
+  Stoica]{cemri2025mast}
+Mert Cemri, Melissa~Z. Pan, Shuyi Yang, Lakshya~A. Agrawal, Bhavya Chopra,
+  Rishabh Tiwari, Kurt Keutzer, Aditya Parameswaran, Dan Klein, Kannan
+  Ramchandran, Matei Zaharia, Joseph~E. Gonzalez, and Ion Stoica.
+\newblock Why do multi-agent {LLM} systems fail?
+\newblock In \emph{Advances in Neural Information Processing Systems (NeurIPS
+  2025)}, 2025.
+\newblock URL \url{https://arxiv.org/abs/2503.13657}.
+\newblock {D}atasets and Benchmarks Track; spotlight.
+
+\bibitem[Cohen(1960)]{cohen1960kappa}
+Jacob Cohen.
+\newblock A coefficient of agreement for nominal scales.
+\newblock \emph{Educational and Psychological Measurement}, 20\penalty0
+  (1):\penalty0 37--46, 1960.
+\newblock \doi{10.1177/001316446002000104}.
+
+\bibitem[Cohen et~al.(2015)Cohen, Wiegmann, and Shappell]{cohen2015reliability}
+Tara~N. Cohen, Douglas~A. Wiegmann, and Scott~A. Shappell.
+\newblock Evaluating the reliability of the human factors analysis and
+  classification system.
+\newblock \emph{Aerospace Medicine and Human Performance}, 86\penalty0
+  (8):\penalty0 728--735, 2015.
+\newblock \doi{10.3357/AMHP.4218.2015}.
+
+\bibitem[Deshpande et~al.(2025)Deshpande, Gangal, Mehta, Krishnan, Kannappan,
+  and Qian]{deshpande2025trail}
+Darshan Deshpande, Varun Gangal, Hersh Mehta, Jitin Krishnan, Anand Kannappan,
+  and Rebecca Qian.
+\newblock {TRAIL}: Trace reasoning and agentic issue localization.
+\newblock arXiv preprint arXiv:2505.08638, 2025.
+\newblock URL \url{https://arxiv.org/abs/2505.08638}.
+
+\bibitem[Ezell et~al.(2025)Ezell, Roberts-Gaal, and Chan]{ezell2025incident}
+Carson Ezell, Xavier Roberts-Gaal, and Alan Chan.
+\newblock Incident analysis for {AI} agents.
+\newblock In \emph{Proceedings of the 2025 AAAI/ACM Conference on AI, Ethics,
+  and Society (AIES)}, volume~8, pp.\  865--878, 2025.
+\newblock \doi{10.1609/aies.v8i1.36596}.
+\newblock URL \url{https://arxiv.org/abs/2508.14231}.
+
+\bibitem[Feinstein \& Cicchetti(1990)Feinstein and
+  Cicchetti]{feinstein1990paradox}
+Alvan~R. Feinstein and Domenic~V. Cicchetti.
+\newblock High agreement but low kappa: {I. The} problems of two paradoxes.
+\newblock \emph{Journal of Clinical Epidemiology}, 43\penalty0 (6):\penalty0
+  543--549, 1990.
+\newblock \doi{10.1016/0895-4356(90)90158-L}.
+
+\bibitem[H{\"a}gele et~al.(2026)H{\"a}gele, Gema, Sleight, Perez, and
+  Sohl-Dickstein]{hagele2026hotmess}
+Alexander H{\"a}gele, Aryo~Pradipta Gema, Henry Sleight, Ethan Perez, and
+  Jascha Sohl-Dickstein.
+\newblock The hot mess of {AI}: How does misalignment scale with model
+  intelligence and task complexity?
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2026.
+\newblock URL \url{https://arxiv.org/abs/2601.23045}.
+
+\bibitem[Krakovna et~al.(2020)Krakovna, Uesato, Mikulik, Rahtz, Everitt, Kumar,
+  Kenton, Leike, and Legg]{krakovna2020specgaming}
+Victoria Krakovna, Jonathan Uesato, Vladimir Mikulik, Matthew Rahtz, Tom
+  Everitt, Ramana Kumar, Zac Kenton, Jan Leike, and Shane Legg.
+\newblock Specification gaming: the flip side of {AI} ingenuity.
+\newblock DeepMind blog, April 2020.
+\newblock URL
+  \url{https://deepmind.google/blog/specification-gaming-the-flip-side-of-ai-ingenuity/}.
+\newblock {A}ccessed: Nov.~3, 2026.
+
+\bibitem[Landis \& Koch(1977)Landis and Koch]{landis1977measurement}
+J.~Richard Landis and Gary~G. Koch.
+\newblock The measurement of observer agreement for categorical data.
+\newblock \emph{Biometrics}, 33\penalty0 (1):\penalty0 159--174, 1977.
+\newblock \doi{10.2307/2529310}.
+
+\bibitem[Leveson(2012)]{leveson2012engineering}
+Nancy~G. Leveson.
+\newblock \emph{Engineering a Safer World: Systems Thinking Applied to Safety}.
+\newblock MIT Press, Cambridge, MA, 2012.
+\newblock \doi{10.7551/mitpress/8179.001.0001}.
+
+\bibitem[Lynch et~al.(2025)Lynch, Wright, Larson, Ritchie, Mindermann,
+  Hubinger, Perez, and Troy]{lynch2025agentic}
+Aengus Lynch, Benjamin Wright, Caleb Larson, Stuart~J. Ritchie, Soren
+  Mindermann, Evan Hubinger, Ethan Perez, and Kevin Troy.
+\newblock Agentic misalignment: How {LLMs} could be insider threats.
+\newblock arXiv preprint arXiv:2510.05179, 2025.
+\newblock URL \url{https://arxiv.org/abs/2510.05179}.
+
+\bibitem[Meinke et~al.(2024)Meinke, Schoen, Scheurer, Balesni, Shah, and
+  Hobbhahn]{meinke2024scheming}
+Alexander Meinke, Bronson Schoen, J{\'e}r{\'e}my Scheurer, Mikita Balesni,
+  Rusheb Shah, and Marius Hobbhahn.
+\newblock Frontier models are capable of in-context scheming.
+\newblock arXiv preprint arXiv:2412.04984, 2024.
+\newblock URL \url{https://arxiv.org/abs/2412.04984}.
+
+\bibitem[Mylius(2025)]{mylius2025stpa}
+Simon Mylius.
+\newblock Systematic hazard analysis for frontier {AI} using {STPA}.
+\newblock arXiv preprint arXiv:2506.01782, 2025.
+\newblock URL \url{https://arxiv.org/abs/2506.01782}.
+
+\bibitem[Olsen \& Shorrock(2010)Olsen and Shorrock]{olsen2010hfacsadf}
+Nikki~S. Olsen and Steven~T. Shorrock.
+\newblock Evaluation of the {HFACS-ADF} safety classification system:
+  Inter-coder consensus and intra-coder consistency.
+\newblock \emph{Accident Analysis \& Prevention}, 42\penalty0 (2):\penalty0
+  437--444, 2010.
+\newblock \doi{10.1016/j.aap.2009.09.005}.
+
+\bibitem[Raj et~al.(2026)Raj, Gupta, Mahmoud, Dumitru, Yi, Sabharwal, and
+  He]{raj2026modelharness}
+Harsh Raj, Vipul Gupta, Anas Mahmoud, Razvan-Gabriel Dumitru, Darvin Yi, Aakash
+  Sabharwal, and Yunzhong He.
+\newblock Model or harness? an interaction-centric taxonomy for localizing
+  agent failures.
+\newblock arXiv preprint arXiv:2607.28802, 2026.
+\newblock URL \url{https://arxiv.org/abs/2607.28802}.
+
+\bibitem[Reason(1990)]{reason1990human}
+James Reason.
+\newblock \emph{Human Error}.
+\newblock Cambridge University Press, Cambridge, UK, 1990.
+\newblock \doi{10.1017/CBO9781139062367}.
+
+\bibitem[Reason(1997)]{reason1997managing}
+James Reason.
+\newblock \emph{Managing the Risks of Organizational Accidents}.
+\newblock Ashgate, Aldershot, UK, 1997.
+\newblock {R}eissued by Routledge, 2016 (doi: 10.4324/9781315543543).
+
+\bibitem[Reason et~al.(1990)Reason, Manstead, Stradling, Baxter, and
+  Campbell]{reason1990errors}
+James Reason, Antony Manstead, Stephen Stradling, James Baxter, and Karen
+  Campbell.
+\newblock Errors and violations on the roads: a real distinction?
+\newblock \emph{Ergonomics}, 33\penalty0 (10-11):\penalty0 1315--1332, 1990.
+\newblock \doi{10.1080/00140139008925335}.
+
+\bibitem[Shamsujjoha et~al.(2025)Shamsujjoha, Lu, Zhao, and
+  Zhu]{shamsujjoha2024swisscheese}
+Md~Shamsujjoha, Qinghua Lu, Dehai Zhao, and Liming Zhu.
+\newblock Swiss cheese model for {AI} safety: A taxonomy and reference
+  architecture for multi-layered guardrails of foundation model based agents.
+\newblock In \emph{2025 IEEE 22nd International Conference on Software
+  Architecture (ICSA)}, pp.\  37--48, 2025.
+\newblock \doi{10.1109/ICSA65012.2025.00014}.
+\newblock {A}rXiv:2408.02205.
+
+\bibitem[Shappell \& Wiegmann(2000)Shappell and Wiegmann]{shappell2000hfacs}
+Scott~A. Shappell and Douglas~A. Wiegmann.
+\newblock The human factors analysis and classification system--{HFACS}.
+\newblock Technical Report DOT/FAA/AM-00/7, U.S. Department of Transportation,
+  Federal Aviation Administration, Office of Aviation Medicine, Washington, DC,
+  February 2000.
+\newblock URL
+  \url{https://www.faa.gov/sites/faa.gov/files/data_research/research/med_humanfacs/oamtechreports/00_07.pdf}.
+
+\bibitem[Smyth et~al.(2026)Smyth, Mantilla-Ramos, Notsawo, Helbling, Tosato,
+  Merzouk, Dziri, Gidel, and Tosato]{smyth2026overclaim}
+Nolan Smyth, Yorguin-Jose Mantilla-Ramos, Pascal Jr~Tikeng Notsawo, Saskia
+  Helbling, Alberto Tosato, Mohamed~Amine Merzouk, Nouha Dziri, Gauthier Gidel,
+  and Tommaso Tosato.
+\newblock Quantifying overclaiming propensity in frontier {LLM} agents.
+\newblock arXiv preprint arXiv:2609.20812, 2026.
+\newblock URL \url{https://arxiv.org/abs/2609.20812}.
+
+\bibitem[Wiegmann \& Shappell(2001)Wiegmann and
+  Shappell]{wiegmann2001commercial}
+Douglas~A. Wiegmann and Scott~A. Shappell.
+\newblock A human error analysis of commercial aviation accidents using the
+  human factors analysis and classification system ({HFACS}).
+\newblock Technical Report DOT/FAA/AM-01/3, U.S. Department of Transportation,
+  Federal Aviation Administration, Office of Aviation Medicine, Washington, DC,
+  February 2001.
+\newblock URL \url{https://rosap.ntl.bts.gov/view/dot/15409/dot_15409_DS1.pdf}.
+
+\bibitem[Wiegmann \& Shappell(2003)Wiegmann and Shappell]{wiegmann2003human}
+Douglas~A. Wiegmann and Scott~A. Shappell.
+\newblock \emph{A Human Error Approach to Aviation Accident Analysis: The Human
+  Factors Analysis and Classification System}.
+\newblock Ashgate, Aldershot, UK, 2003.
+\newblock URL \url{https://www.routledge.com/products/9780754618737}.
+\newblock Reissued by Routledge, 2017, doi:10.4324/9781315263878.
+
+\bibitem[Zhang et~al.(2025)Zhang, Yin, Zhang, Liu, Han, Zhang, Li, Wang, Wang,
+  Chen, and Wu]{zhang2025whowhen}
+Shaokun Zhang, Ming Yin, Jieyu Zhang, Jiale Liu, Zhiguang Han, Jingyang Zhang,
+  Beibin Li, Chi Wang, Huazheng Wang, Yiran Chen, and Qingyun Wu.
+\newblock Which agent causes task failures and when? on automated failure
+  attribution of {LLM} multi-agent systems.
+\newblock In \emph{Proceedings of the 42nd International Conference on Machine
+  Learning}, volume 267 of \emph{Proceedings of Machine Learning Research},
+  pp.\  76583--76599, 2025.
+\newblock URL \url{https://proceedings.mlr.press/v267/zhang25cq.html}.
+
+\bibitem[Zhong et~al.(2025)Zhong, Raghunathan, and
+  Carlini]{zhong2025impossiblebench}
+Ziqian Zhong, Aditi Raghunathan, and Nicholas Carlini.
+\newblock {ImpossibleBench}: Measuring {LLMs}' propensity of exploiting test
+  cases.
+\newblock arXiv preprint arXiv:2510.20270, 2025.
+\newblock URL \url{https://arxiv.org/abs/2510.20270}.
+
+\bibitem[Zhu et~al.(2025)Zhu, Liu, Li, Tian, Yang, Zhang, Han, Xie, Cui, Zhang,
+  Ma, Yu, Ramesh, Wu, Liu, Lu, Zou, and You]{zhu2025agenterrorbench}
+Kunlun Zhu, Zijia Liu, Bingxuan Li, Muxin Tian, Yingxuan Yang, Jiaxun Zhang,
+  Pengrui Han, Qipeng Xie, Fuyang Cui, Weijia Zhang, Xiaoteng Ma, Xiaodong Yu,
+  Gowtham Ramesh, Jialian Wu, Zicheng Liu, Pan Lu, James Zou, and Jiaxuan You.
+\newblock Where {LLM} agents fail and how they can learn from failures.
+\newblock arXiv preprint arXiv:2509.25370, 2025.
+\newblock URL \url{https://arxiv.org/abs/2509.25370}.
+
+\end{thebibliography}

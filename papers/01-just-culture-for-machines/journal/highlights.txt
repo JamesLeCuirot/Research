@@ -1,0 +1,7 @@
+Highlights
+
+- Penalising AI models' self-disclosures can teach concealment, as with human reports
+- Aviation's protected reporting maps onto how AI models are trained on disclosures
+- Under stated conditions, disclosure-only penalties cannot make good behaviour win
+- Correct AI behaviour on independent evidence, never on the model's own disclosures
+- Six design principles and five falsifiable predictions for AI developers

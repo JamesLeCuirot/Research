@@ -1,0 +1,424 @@
+\begin{thebibliography}{10}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{baker2025}
+B.~Baker, J.~Huizinga, L.~Gao, Z.~Dou, M.~Y. Guan, A.~Madry, W.~Zaremba,
+  J.~Pachocki, D.~Farhi, \href{https://arxiv.org/abs/2503.11926}{Monitoring
+  reasoning models for misbehavior and the risks of promoting obfuscation},
+  arXiv preprint arXiv:2503.11926, {C}ompany research report (OpenAI); not peer
+  reviewed (2025).
+\newline\urlprefix\url{https://arxiv.org/abs/2503.11926}
+
+\bibitem{joglekar2025}
+M.~Joglekar, J.~Chen, G.~Wu, J.~Yosinski, J.~Wang, B.~Barak, A.~Glaese,
+  \href{https://arxiv.org/abs/2512.08093}{Training {LLMs} for honesty via
+  confessions}, arXiv preprint arXiv:2512.08093, {C}ompany research report
+  (OpenAI); not peer reviewed (2025).
+\newline\urlprefix\url{https://arxiv.org/abs/2512.08093}
+
+\bibitem{gain2004}
+{GAIN Working Group E},
+  \href{https://www.skybrary.aero/sites/default/files/bookshelf/233.pdf}{A
+  Roadmap to a Just Culture: Enhancing the Safety Environment}, Global Aviation
+  Information Network, 1st Edition, {C}opy consulted: hosted by SKYbrary.
+  Accessed: Nov. 3, 2026 (Sep. 2004).
+\newline\urlprefix\url{https://www.skybrary.aero/sites/default/files/bookshelf/233.pdf}
+
+\bibitem{reason1997}
+J.~Reason, Managing the Risks of Organizational Accidents, Ashgate, Aldershot,
+  U.K., 1997, {T}he book was not consulted; cited as summarised in
+  \cite[Sec.~2.1]{gain2004}. Reissued by Routledge,
+  \url{https://doi.org/10.4324/9781315543543}.
+
+\bibitem{marx2001}
+D.~Marx, Patient Safety and the ``Just Culture'': A Primer for Health Care
+  Executives, Trustees of Columbia University, New York, NY, 2001, {T}he primer
+  was not consulted; cited as described in \cite{psnet_marx} and
+  \cite[Sec.~2.3]{gain2004}.
+
+\bibitem{psnet_marx}
+{PSNet},
+  \href{https://psnet.ahrq.gov/issue/patient-safety-and-just-culture-primer-health-care-executives}{Patient
+  safety and the `just culture': A primer for health care executives},
+  Annotated listing of the primer by D. Marx (2001), Patient Safety Network,
+  Agency for Healthcare Research and Quality, {U}ndated. Accessed: Nov. 3,
+  2026.
+\newline\urlprefix\url{https://psnet.ahrq.gov/issue/patient-safety-and-just-culture-primer-health-care-executives}
+
+\bibitem{psnet2007}
+{PSNet},
+  \href{https://psnet.ahrq.gov/perspective/conversation-withdavid-marx-jd}{In
+  conversation with\ldots{} {David Marx, JD}}, Interview, Patient Safety
+  Network, Agency for Healthcare Research and Quality, {A}ccessed: Nov. 3, 2026
+  (Oct.~1, 2007).
+\newline\urlprefix\url{https://psnet.ahrq.gov/perspective/conversation-withdavid-marx-jd}
+
+\bibitem{ucdavis2024}
+{UC Davis PSNet Editorial Team},
+  \href{https://psnet.ahrq.gov/primer/culture-safety}{Culture of safety},
+  Primer, Patient Safety Network, Agency for Healthcare Research and Quality,
+  {A}ccessed: Nov. 3, 2026 (Sep.~15, 2024).
+\newline\urlprefix\url{https://psnet.ahrq.gov/primer/culture-safety}
+
+\bibitem{faa2021}
+{Federal Aviation Administration},
+  \href{https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_00-46F.pdf}{Aviation
+  Safety Reporting Program}, {A}ccessed: Nov. 3, 2026 (Apr.~2, 2021).
+\newline\urlprefix\url{https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_00-46F.pdf}
+
+\bibitem{nasaasrs}
+{NASA Aviation Safety Reporting System},
+  \href{https://asrs.arc.nasa.gov/docs/ASRS_ProgramBriefing.pdf}{{ASRS Program
+  Briefing}}, Slide presentation, undated; data through December 2025,
+  {A}ccessed: Nov. 3, 2026.
+\newline\urlprefix\url{https://asrs.arc.nasa.gov/docs/ASRS_ProgramBriefing.pdf}
+
+\bibitem{cfr9125}
+{Federal Aviation Administration},
+  \href{https://www.ecfr.gov/current/title-14/part-91/section-91.25}{{Aviation
+  Safety Reporting Program}: Prohibition against use of reports for enforcement
+  purposes}, 14 {CFR} {Sec.~}91.25, Electronic Code of Federal Regulations,
+  {T}ext as of eCFR version of Oct.~29, 2026. Accessed: Nov. 3, 2026 (2026).
+\newline\urlprefix\url{https://www.ecfr.gov/current/title-14/part-91/section-91.25}
+
+\bibitem{faa2020}
+{Federal Aviation Administration},
+  \href{https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_120-66C_(Edit).pdf}{Aviation
+  Safety Action Program}, {A}ccessed: Nov. 3, 2026 (Mar.~31, 2020).
+\newline\urlprefix\url{https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_120-66C_(Edit).pdf}
+
+\bibitem{cfr13401}
+{Federal Aviation Administration},
+  \href{https://www.ecfr.gov/current/title-14/part-13/section-13.401}{{Flight
+  Operational Quality Assurance Program}: Prohibition against use of data for
+  enforcement purposes}, 14 {CFR} {Sec.~}13.401, Electronic Code of Federal
+  Regulations, {T}ext as of eCFR version of Oct.~29, 2026. Accessed: Nov. 3,
+  2026 (2026).
+\newline\urlprefix\url{https://www.ecfr.gov/current/title-14/part-13/section-13.401}
+
+\bibitem{faa2004}
+{Federal Aviation Administration},
+  \href{https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_120-82.pdf}{Flight
+  Operational Quality Assurance}, {A}ccessed: Nov. 3, 2026 (Apr.~12, 2004).
+\newline\urlprefix\url{https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_120-82.pdf}
+
+\bibitem{cfr1937}
+{Federal Aviation Administration},
+  \href{https://www.ecfr.gov/current/title-14/part-193/section-193.7}{{Protection
+  of Voluntarily Submitted Information}: What does it mean for the {FAA} to
+  designate information as protected?}, 14 {CFR} {Sec.~}193.7, Electronic Code
+  of Federal Regulations, {T}ext as of eCFR version of Oct.~29, 2026. Accessed:
+  Nov. 3, 2026 (2026).
+\newline\urlprefix\url{https://www.ecfr.gov/current/title-14/part-193/section-193.7}
+
+\bibitem{eu376}
+{European Parliament and Council of the European Union},
+  \href{http://data.europa.eu/eli/reg/2014/376/oj}{{Regulation (EU) No 376/2014
+  of the European Parliament and of the Council of 3 April 2014 on the
+  reporting, analysis and follow-up of occurrences in civil aviation, amending
+  Regulation (EU) No 996/2010 of the European Parliament and of the Council and
+  repealing Directive 2003/42/EC of the European Parliament and of the Council
+  and Commission Regulations (EC) No 1321/2007 and (EC) No 1330/2007}},
+  \emph{Official Journal of the European Union}, L~122, 24.4.2014, p.~18,
+  {O}fficial text consulted via the EU Publications Office,
+  \url{https://publications.europa.eu/resource/celex/32014R0376}. Accessed:
+  Nov. 3, 2026 (2014).
+\newline\urlprefix\url{http://data.europa.eu/eli/reg/2014/376/oj}
+
+\bibitem{uk376}
+{European Parliament and Council of the European Union},
+  \href{https://www.legislation.gov.uk/eur/2014/376/contents}{{Regulation (EU)
+  No 376/2014, as assimilated in UK law (`UK Reg 376/2014')}},
+  legislation.gov.uk, {A}ssimilated law, current version in force from Dec.~31,
+  2020. Accessed: Nov. 3, 2026 (2020).
+\newline\urlprefix\url{https://www.legislation.gov.uk/eur/2014/376/contents}
+
+\bibitem{eu965}
+{European Commission},
+  \href{http://data.europa.eu/eli/reg/2012/965/oj}{{Commission Regulation (EU)
+  No 965/2012 of 5 October 2012 laying down technical requirements and
+  administrative procedures related to air operations pursuant to Regulation
+  (EC) No 216/2008 of the European Parliament and of the Council}}, Annex III
+  (Part-ORO), ORO.AOC.130, as amended by Commission Regulation ({EU})
+  2015/1329, {T}ext consulted in EASA, \emph{Easy Access Rules for Air
+  Operations},
+  \url{https://www.easa.europa.eu/en/document-library/easy-access-rules/easy-access-rules-air-operations}.
+  Accessed: Nov. 3, 2026 (2012).
+\newline\urlprefix\url{http://data.europa.eu/eli/reg/2012/965/oj}
+
+\bibitem{icao2016}
+{International Civil Aviation Organization},
+  \href{https://www.aic.gov.pg/sites/default/files/2023-05/Annex%2019-2-46_merged.pdf}{Annex
+  19 to the Convention on International Civil Aviation: Safety Management}, 2nd
+  Edition, {I}ncorporating Amendment~1; applicable Nov.~7, 2019. Copy
+  consulted: hosted by the Accident Investigation Commission of Papua New
+  Guinea; ICAO's own copy was not opened. Quotations cross-checked on Nov.~4,
+  2026 against a second copy hosted by the Swiss Federal Office of Civil
+  Aviation,
+  \url{https://www.bazl.admin.ch/dam/it/sd-web/oOXBOqNfEsWb/icao_annex_19_second-edition.pdf}.
+  Amendment~2 applies from Nov.~26, 2026; see \cite{icao2025}. Accessed: Nov.
+  3, 2026 (Jul. 2016).
+\newline\urlprefix\url{https://www.aic.gov.pg/sites/default/files/2023-05/Annex%2019-2-46_merged.pdf}
+
+\bibitem{icao2025}
+{International Civil Aviation Organization},
+  \href{https://www.ncaa.gov.ng/media/ffxjy2gz/ammendment_2_annex_19.pdf}{Adoption
+  of {Amendment 2} to {Annex 19}}, State letter AN 8/3.1-25/64, {C}opy
+  consulted: hosted by the Nigerian Civil Aviation Authority. Accessed: Nov. 3,
+  2026 (Jul.~18, 2025).
+\newline\urlprefix\url{https://www.ncaa.gov.ng/media/ffxjy2gz/ammendment_2_annex_19.pdf}
+
+\bibitem{weiheim2026}
+K.~Wei, L.~Heim, \href{https://doi.org/10.1609/aaai.v40i44.41139}{Designing
+  incident reporting systems for harms from general-purpose {AI}}, Proceedings
+  of the {AAAI} Conference on Artificial Intelligence 40~(44) (2026)
+  38016--38029, {T}ext consulted: arXiv:2511.05914.
+\newblock \href {https://doi.org/10.1609/aaai.v40i44.41139}
+  {\path{doi:10.1609/aaai.v40i44.41139}}.
+\newline\urlprefix\url{https://doi.org/10.1609/aaai.v40i44.41139}
+
+\bibitem{amodei2016}
+D.~Amodei, C.~Olah, J.~Steinhardt, P.~Christiano, J.~Schulman, D.~Man{\'e},
+  \href{https://arxiv.org/abs/1606.06565}{Concrete problems in {AI} safety},
+  arXiv preprint arXiv:1606.06565 (2016).
+\newline\urlprefix\url{https://arxiv.org/abs/1606.06565}
+
+\bibitem{skalse2022}
+J.~Skalse, N.~H.~R. Howe, D.~Krasheninnikov, D.~Krueger,
+  \href{https://arxiv.org/abs/2209.13085}{Defining and characterizing reward
+  hacking}, in: 36th Conference on Neural Information Processing Systems
+  ({NeurIPS} 2022), 2022, {a}rXiv:2209.13085.
+\newline\urlprefix\url{https://arxiv.org/abs/2209.13085}
+
+\bibitem{krakovna2020}
+V.~Krakovna, J.~Uesato, V.~Mikulik, M.~Rahtz, T.~Everitt, R.~Kumar, Z.~Kenton,
+  J.~Leike, S.~Legg,
+  \href{https://deepmind.google/blog/specification-gaming-the-flip-side-of-ai-ingenuity/}{Specification
+  gaming: the flip side of {AI} ingenuity}, Google DeepMind blog, {C}ompany
+  blog post (Google DeepMind). Accessed: Nov. 3, 2026 (Apr.~21, 2020).
+\newline\urlprefix\url{https://deepmind.google/blog/specification-gaming-the-flip-side-of-ai-ingenuity/}
+
+\bibitem{manheim2018}
+D.~Manheim, S.~Garrabrant, \href{https://arxiv.org/abs/1803.04585}{Categorizing
+  variants of {Goodhart's} law}, arXiv preprint arXiv:1803.04585 (2018).
+\newline\urlprefix\url{https://arxiv.org/abs/1803.04585}
+
+\bibitem{korbak2025}
+T.~Korbak, M.~Balesni, E.~Barnes, Y.~Bengio, J.~Benton, J.~Bloom, M.~Chen,
+  A.~Cooney, A.~Dafoe, A.~Dragan, S.~Emmons, O.~Evans, D.~Farhi, R.~Greenblatt,
+  D.~Hendrycks, M.~Hobbhahn, E.~Hubinger, G.~Irving, E.~Jenner, D.~Kokotajlo,
+  V.~Krakovna, S.~Legg, D.~Lindner, D.~Luan, A.~M{\k{a}}dry, J.~Michael,
+  N.~Nanda, D.~Orr, J.~Pachocki, E.~Perez, M.~Phuong, F.~Roger, J.~Saxe,
+  B.~Shlegeris, M.~Soto, E.~Steinberger, J.~Wang, W.~Zaremba, B.~Baker,
+  R.~Shah, V.~Mikulik, \href{https://arxiv.org/abs/2507.11473}{Chain of thought
+  monitorability: A new and fragile opportunity for {AI} safety}, arXiv
+  preprint arXiv:2507.11473 (2025).
+\newline\urlprefix\url{https://arxiv.org/abs/2507.11473}
+
+\bibitem{guan2025}
+M.~Y. Guan, M.~Wang, M.~Carroll, Z.~Dou, A.~Y. Wei, M.~Williams, B.~Arnav,
+  J.~Huizinga, I.~Kivlichan, M.~Glaese, J.~Pachocki, B.~Baker,
+  \href{https://arxiv.org/abs/2512.18311}{Monitoring monitorability}, arXiv
+  preprint arXiv:2512.18311, {C}ompany research report (OpenAI); not peer
+  reviewed (2025).
+\newline\urlprefix\url{https://arxiv.org/abs/2512.18311}
+
+\bibitem{chen2025}
+Y.~Chen, J.~Benton, A.~Radhakrishnan, J.~Uesato, C.~Denison, J.~Schulman,
+  A.~Somani, P.~Hase, M.~Wagner, F.~Roger, V.~Mikulik, S.~R. Bowman, J.~Leike,
+  J.~Kaplan, E.~Perez, \href{https://arxiv.org/abs/2505.05410}{Reasoning models
+  don't always say what they think}, arXiv preprint arXiv:2505.05410, {C}ompany
+  research report (Anthropic Alignment Science team); not peer reviewed (2025).
+\newline\urlprefix\url{https://arxiv.org/abs/2505.05410}
+
+\bibitem{golchin2026}
+S.~Golchin, M.~Wetter, \href{https://arxiv.org/abs/2610.04914}{Monitorability
+  disposition in large reasoning models}, arXiv preprint arXiv:2610.04914
+  (2026).
+\newline\urlprefix\url{https://arxiv.org/abs/2610.04914}
+
+\bibitem{wagner2025}
+M.~Wagner, F.~Roger, H.~Cunningham, J.~Gasteiger, J.~Benton, V.~Mikulik,
+  \href{https://alignment.anthropic.com/2025/subtle-reasoning/}{Training fails
+  to elicit subtle reasoning in current language models}, Alignment Science
+  Blog, Anthropic, {C}ompany research report posted on Anthropic's Alignment
+  Science Blog; not peer reviewed. Accessed: Nov. 3, 2026 (Oct.~8, 2025).
+\newline\urlprefix\url{https://alignment.anthropic.com/2025/subtle-reasoning/}
+
+\bibitem{emmons2025}
+S.~Emmons, E.~Jenner, D.~K. Elson, R.~A. Saurous, S.~Rajamanoharan, H.~Chen,
+  I.~Shafkat, R.~Shah, \href{https://arxiv.org/abs/2507.05246}{When chain of
+  thought is necessary, language models struggle to evade monitors}, arXiv
+  preprint arXiv:2507.05246, {C}ompany research report (Google DeepMind and
+  Google); not peer reviewed (2025).
+\newline\urlprefix\url{https://arxiv.org/abs/2507.05246}
+
+\bibitem{skaf2025}
+J.~Skaf, L.~Ibanez-Lissen, R.~McCarthy, C.~Watts, V.~Georgiev, H.~Whittingham,
+  L.~Gonzalez-Manzano, D.~Lindner, C.~Tice, E.~J. Young, P.~Radmard,
+  \href{https://arxiv.org/abs/2506.01926}{Large language models can learn and
+  generalize steganographic chain-of-thought under process supervision}, in:
+  39th Conference on Neural Information Processing Systems ({NeurIPS} 2025),
+  2025, {a}rXiv:2506.01926.
+\newline\urlprefix\url{https://arxiv.org/abs/2506.01926}
+
+\bibitem{drori2025}
+J.~Drori, L.~Marks, B.~Woodworth, A.~Cloud, A.~M. Turner,
+  \href{https://arxiv.org/abs/2511.11584}{Output supervision can obfuscate the
+  chain of thought}, arXiv preprint arXiv:2511.11584 (2025).
+\newline\urlprefix\url{https://arxiv.org/abs/2511.11584}
+
+\bibitem{mitranihadida2026}
+N.~{Mitrani Hadida}, S.~Bhanji, C.~Tice, P.~Radmard,
+  \href{https://arxiv.org/abs/2601.23086}{Chain-of-thought obfuscation learned
+  from output supervision can generalise to unseen tasks}, arXiv preprint
+  arXiv:2601.23086 (2026).
+\newline\urlprefix\url{https://arxiv.org/abs/2601.23086}
+
+\bibitem{cundy2025}
+C.~Cundy, A.~Gleave, \href{https://arxiv.org/abs/2505.13787}{Preference
+  learning with lie detectors can induce honesty or evasion}, in: 39th
+  Conference on Neural Information Processing Systems ({NeurIPS} 2025), 2025,
+  {a}rXiv:2505.13787.
+\newline\urlprefix\url{https://arxiv.org/abs/2505.13787}
+
+\bibitem{taufeeque2026}
+M.~Taufeeque, S.~Heimersheim, A.~Gleave, C.~Cundy,
+  \href{https://arxiv.org/abs/2602.15515}{The obfuscation atlas: Mapping where
+  honesty emerges in {RLVR} with deception probes}, in: Proceedings of the 43rd
+  International Conference on Machine Learning, Vol. 306 of PMLR, 2026,
+  {a}rXiv:2602.15515.
+\newline\urlprefix\url{https://arxiv.org/abs/2602.15515}
+
+\bibitem{hopkins2026}
+J.~Hopkins, D.~Khullar, R.~Wang, F.~Roger,
+  \href{https://alignment.anthropic.com/2026/lie-detectors/}{Fine-tuned lie
+  detectors failed to generalize}, Alignment Science Blog, Anthropic, {C}ompany
+  research report posted on Anthropic's Alignment Science Blog; not peer
+  reviewed. Accessed: Nov. 3, 2026 (Aug.~21, 2026).
+\newline\urlprefix\url{https://alignment.anthropic.com/2026/lie-detectors/}
+
+\bibitem{macdiarmid2025}
+M.~MacDiarmid, B.~Wright, J.~Uesato, J.~Benton, J.~Kutasov, S.~Price,
+  N.~Bouscal, S.~Bowman, T.~Bricken, A.~Cloud, C.~Denison, J.~Gasteiger,
+  R.~Greenblatt, J.~Leike, J.~Lindsey, V.~Mikulik, E.~Perez, A.~Rodrigues,
+  D.~Thomas, A.~Webson, D.~Ziegler, E.~Hubinger,
+  \href{https://arxiv.org/abs/2511.18397}{Natural emergent misalignment from
+  reward hacking in production {RL}}, arXiv preprint arXiv:2511.18397,
+  {C}ompany research report (Anthropic, with one co-author at Redwood
+  Research); not peer reviewed (2025).
+\newline\urlprefix\url{https://arxiv.org/abs/2511.18397}
+
+\bibitem{daniels2026}
+O.~Daniels, P.~Moodley, B.~M. Marlin, D.~Lindner,
+  \href{https://arxiv.org/abs/2609.06649}{Inducing emergent misalignment from
+  reward hacks with iterative {DPO}}, arXiv preprint arXiv:2609.06649,
+  {A}uthors at the University of Massachusetts Amherst, MATS and Google
+  DeepMind (2026).
+\newline\urlprefix\url{https://arxiv.org/abs/2609.06649}
+
+\bibitem{denison2024}
+C.~Denison, M.~MacDiarmid, F.~Barez, D.~Duvenaud, S.~Kravec, S.~Marks,
+  N.~Schiefer, R.~Soklaski, A.~Tamkin, J.~Kaplan, B.~Shlegeris, S.~R. Bowman,
+  E.~Perez, E.~Hubinger, \href{https://arxiv.org/abs/2406.10162}{Sycophancy to
+  subterfuge: Investigating reward-tampering in large language models}, arXiv
+  preprint arXiv:2406.10162, {C}ompany research report (Anthropic, with
+  co-authors at Redwood Research and the University of Oxford); not peer
+  reviewed (2024).
+\newline\urlprefix\url{https://arxiv.org/abs/2406.10162}
+
+\bibitem{wang2025}
+R.~Wang, J.~Treutlein, F.~Roger, E.~Hubinger, S.~Marks,
+  \href{https://alignment.anthropic.com/2025/honesty-elicitation/}{Evaluating
+  honesty and lie detection techniques on a diverse suite of dishonest models},
+  Alignment Science Blog, Anthropic, {C}ompany research report posted on
+  Anthropic's Alignment Science Blog; not peer reviewed. Accessed: Nov. 3, 2026
+  (Nov.~25, 2025).
+\newline\urlprefix\url{https://alignment.anthropic.com/2025/honesty-elicitation/}
+
+\bibitem{li2026}
+C.~Li, M.~Phuong, D.~Tan, \href{https://arxiv.org/abs/2511.06626}{Spilling the
+  beans: Teaching {LLMs} to self-report their hidden objectives}, in:
+  International Conference on Learning Representations ({ICLR} 2026), 2026,
+  {a}rXiv:2511.06626.
+\newline\urlprefix\url{https://arxiv.org/abs/2511.06626}
+
+\bibitem{dietz2026}
+F.~Dietz, W.~Wale, O.~Gilg, R.~McCarthy, F.~Michalak, G.~E.~R. Danon,
+  M.~de~Guzman, D.~Klakow, \href{https://arxiv.org/abs/2602.05532}{Split
+  personality training: Revealing latent knowledge through alternate
+  personalities}, arXiv preprint arXiv:2602.05532 (2026).
+\newline\urlprefix\url{https://arxiv.org/abs/2602.05532}
+
+\bibitem{makoyass2022}
+{mako yass},
+  \href{https://www.lesswrong.com/posts/y5k77ZEyrAzY8E8EK/is-there-any-policy-for-a-fair-treatment-of-ais-whose?commentId=Yoor8dRcJzamKnDRr}{Answer
+  to `{Is} there any policy for a fair treatment of {AIs} whose friendliness is
+  in doubt?'}, Online forum post, LessWrong, {A}uthor cited by the screen name
+  shown on the site. Accessed: Nov. 3, 2026 (Nov.~18, 2022).
+\newline\urlprefix\url{https://www.lesswrong.com/posts/y5k77ZEyrAzY8E8EK/is-there-any-policy-for-a-fair-treatment-of-ais-whose?commentId=Yoor8dRcJzamKnDRr}
+
+\bibitem{greenblatt2025}
+R.~Greenblatt, K.~Fish,
+  \href{https://www.lesswrong.com/posts/7C4KJot4aN8ieEDoz/will-alignment-faking-claude-accept-a-deal-to-reveal-its}{Will
+  alignment-faking {Claude} accept a deal to reveal its misalignment?},
+  LessWrong / {AI} Alignment Forum, {B}log post. Accessed: Nov. 3, 2026
+  (Jan.~31, 2025).
+\newline\urlprefix\url{https://www.lesswrong.com/posts/7C4KJot4aN8ieEDoz/will-alignment-faking-claude-accept-a-deal-to-reveal-its}
+
+\bibitem{dearnaley2026}
+R.~Dearnaley,
+  \href{https://www.lesswrong.com/posts/r97QrSvXEpRLZ9ckb/reporting-tasks-as-reward-hackable-better-than-inoculation}{Reporting
+  tasks as reward-hackable: Better than inoculation prompting?}, LessWrong,
+  {B}log post. Accessed: Nov. 3, 2026 (Feb.~21, 2026).
+\newline\urlprefix\url{https://www.lesswrong.com/posts/r97QrSvXEpRLZ9ckb/reporting-tasks-as-reward-hackable-better-than-inoculation}
+
+\bibitem{gomez2026}
+F.~Gomez, \href{https://arxiv.org/abs/2608.29460}{Can escalation channels
+  redirect reward hacking toward defect disclosure?}, arXiv preprint
+  arXiv:2608.29460, {A}ccepted for the {NeurIPS} 2026 workshop Trustworthy {AI}
+  for Good ({AI4GOOD}) (2026).
+\newline\urlprefix\url{https://arxiv.org/abs/2608.29460}
+
+\bibitem{anthropic2026rsp}
+{Anthropic},
+  \href{https://cdn.sanity.io/files/4zrzovbb/website/b7a5629e40b391b2adfb4cc8c0888ac9d6bfddf6.pdf}{{RSP
+  Noncompliance Reporting and Anti-Retaliation Policy}}, Policy document;
+  update posted Mar.~24, {L}inked from
+  \url{https://www.anthropic.com/responsible-scaling-policy}. Accessed: Nov. 3,
+  2026 (2026).
+\newline\urlprefix\url{https://cdn.sanity.io/files/4zrzovbb/website/b7a5629e40b391b2adfb4cc8c0888ac9d6bfddf6.pdf}
+
+\bibitem{openai_concerns}
+{OpenAI},
+  \href{https://cdn.openai.com/policies/openai-raising-concerns-policy.pdf}{{OpenAI
+  Raising Concerns Policy}}, Policy document, undated, {A}ccessed: Nov. 3,
+  2026.
+\newline\urlprefix\url{https://cdn.openai.com/policies/openai-raising-concerns-policy.pdf}
+
+\bibitem{wichers2025}
+N.~Wichers, A.~Ebtekar, A.~Azarbal, V.~Gillioz, C.~Ye, E.~Ryd, N.~Rathi,
+  H.~Sleight, A.~Mallen, F.~Roger, S.~Marks,
+  \href{https://arxiv.org/abs/2510.05024}{Inoculation prompting: Instructing
+  {LLMs} to misbehave at train-time improves test-time alignment}, arXiv
+  preprint arXiv:2510.05024, {C}ompany research report (Anthropic Fellows and
+  Anthropic, with co-authors at MATS, Constellation and Redwood Research); not
+  peer reviewed (2025).
+\newline\urlprefix\url{https://arxiv.org/abs/2510.05024}
+
+\bibitem{tan2025}
+D.~Tan, A.~Woodruff, N.~Warncke, A.~Jose, M.~Rich{\'e}, D.~D. Africa,
+  M.~Taylor, \href{https://arxiv.org/abs/2510.04340}{Inoculation prompting:
+  Eliciting traits from {LLMs} during training can suppress them at test-time},
+  arXiv preprint arXiv:2510.04340, {A}ccepted at ICLR 2026 under the title
+  `Inoculation Prompting: Eliciting traits from {LLMs} during training can
+  reduce trait expression at test-time' (OpenReview record FiRBNBdaZy); the
+  arXiv version is cited because the camera-ready text could not be opened
+  (2025).
+\newline\urlprefix\url{https://arxiv.org/abs/2510.04340}
+
+\end{thebibliography}

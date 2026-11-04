@@ -2,7 +2,7 @@
 
 **James Le Cuirot** · Senior First Officer and Flight Safety Officer · MSc Human Factors in Aviation
 
-> **Status (November 2026): work in progress.** The pipeline, the MAST data audit, codebook v1 (draft) and the cross-walk to Ezell et al. (2025) are complete; the AI pilot results are pending. The paper draft is in [`paper/afacs.pdf`](paper/afacs.pdf). Sections marked *[pending]* are placeholders. A plain-English guide to the whole project is in [`docs/GUIDE.md`](docs/GUIDE.md).
+> **Status (November 2026): work in progress.** The pipeline, the MAST data audit, codebook v1 (draft) and the cross-walk to Ezell et al. (2025) are complete; the AI pilot (750 codings) and the documentation check of its design claims are complete, and the case studies are pending. The paper draft is in [`paper/afacs.pdf`](paper/afacs.pdf). Sections marked *[pending]* are placeholders. A plain-English guide to the whole project is in [`docs/GUIDE.md`](docs/GUIDE.md).
 
 *AFACS is a working name (Agent Failure Analysis and Classification System).*
 

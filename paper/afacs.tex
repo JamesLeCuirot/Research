@@ -89,9 +89,11 @@ itself. Supervision factors appear in about two-thirds of failures and
 coordination factors in two-fifths. Violations appear in 9--13\%, are mostly
 inferred from the act rather than stated, and are concentrated in two
 frameworks; MAST's ``Disobey Task Specification'' mixes them with errors. The
-annotator's quotes were genuine (over 99.5\% found verbatim), but its design-level
-codes are inferences from traces, and checking them against the frameworks'
-documentation shows the limit of trace-only analysis.
+annotator's quotes were genuine (over 99.5\% found verbatim). Its design-level
+codes are inferences from traces: checked against the frameworks' documentation
+and code, its design claims usually identified a real weakness but overstated it
+as an absence (8 of 24 confirmed in full, 13 in part, 2 contradicted), and the
+check also exposed discrepancies in MAST's own descriptions of the systems.
 \end{abstract}
 
 \section{Introduction}
@@ -837,9 +839,66 @@ two runs agreed on whether there was a failure in 67\% of cases, against 96\% fo
 \subsection{Design claims against documentation}
 \label{sec:designcheck}
 
-\pending{for each framework, the annotator's most frequent design claims and
-whether the framework's paper, documentation, code and MAST's set-up confirm,
-contradict or cannot settle them}.
+Because every L4 code is an inference from the trace, the annotator's most
+frequent design claims for each framework (from the primary run) were checked
+against the framework's paper, documentation and source code at the version MAST
+appears to have run, against MAST's own description, and against framework
+messages in the logs. MAST publishes no configuration or versions, so the
+configuration was reconstructed from the logs (\code{docs/design\_check.md} gives
+every claim, verdict and source). Table~\ref{tab:designcheck} summarises the
+result.
+
+\begin{table}[tbp]
+\centering
+\caption{The annotator's most frequent design claims checked against each
+framework's documentation and code.}
+\label{tab:designcheck}
+\small
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Framework & Claims & Confirmed & Partly true & Contradicted & Not settled\\
+\midrule
+MetaGPT & 5 & 2 & 3 & 0 & 0\\
+AG2 & 4 & 1 & 2 & 1 & 0\\
+Magentic-One & 6 & 2 & 3 & 1 & 0\\
+OpenManus & 4 & 2 & 2 & 0 & 0\\
+HyperAgent & 3 & 0 & 3 & 0 & 0\\
+AppWorld & 2 & 1 & 0 & 0 & 1\\
+\midrule
+All & 24 & 8 & 13 & 2 & 1\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Only two of the 24 claims were wrong outright, but only eight held in full. The
+typical error was to overstate a weakness as an absence. The annotator wrote ``no
+verifier'', ``no termination logic'' or ``no loop detection'' where the system has
+the mechanism in a weak form: MetaGPT's reviewer comments only on the tests, and
+its runs are capped by rounds and budget; MathChat detects repeated results;
+Magentic-One's orchestrator asks itself on every turn whether it is in a loop and
+re-plans when stalled; OpenManus has a duplicate-response detector that only adds
+a prompt; HyperAgent's editor rejects edits that fail a syntax check, and running
+tests is optional rather than absent. A weak mechanism that fails leaves the same
+trace as a missing one, so a trace cannot distinguish them. Two claims placed a
+failure at the wrong layer: Magentic-One's failed audio transcription is a
+run-time fault (L2.1) in a design that includes transcription, and OpenManus's
+missing Python packages come from how the environment was set up. The annotator
+also missed limits that no trace reveals, such as Magentic-One's 20-turn budget,
+used almost in full by 56 of its 195 traces. Design factors coded from traces
+alone should therefore be read as ``no effective safeguard visible in the trace'';
+a later version of the codebook could grade the evidence for L4 codes, as it does
+for violations, as documented or inferred.
+
+The check also found discrepancies in MAST's own documentation. The paper
+describes MetaGPT as a system with an explicit verifier, but the logs show
+MetaGPT's three-role example, in which a reviewer comments only on tests and no
+agent revises the code (425 of the 430 traces follow its exact sequence). MAST's
+HyperAgent traces come from a public SWE-bench submission dated September 2024 and
+are labelled Claude-3.7-Sonnet, a model released later; the submission's own
+metadata names GPT-4o. The multi-agent AppWorld set-up and the AG2 MMLU team are
+MAST's own constructions, with prompts unpublished, and the Magentic-One version
+could be inferred only from line numbers in a traceback. These add to the
+reconstruction difficulties found in RQ2.
 
 \begin{table}[tbp]
 \centering
@@ -975,10 +1034,11 @@ recorder; the same division of evidence applies here.
   \item \textbf{AI coding AI traces.} The annotator is a language model coding
   the behaviour of other language models, and may share their blind spots.
   \item \textbf{Design factors inferred from traces.} The annotator saw only the
-  trace, so its L4 codes are inferences about each system's design. The
-  documentation check (Section~\ref{sec:designcheck}) tests the most frequent
-  ones; establishing them properly needs reviews that combine the trace with the
-  system's documentation, which future case-study work should provide.
+  trace, so its L4 codes are inferences about each system's design. Checked
+  against documentation (Section~\ref{sec:designcheck}), its most frequent design
+  claims were usually right about the weakness but overstated it as an absence;
+  establishing design factors properly needs reviews that combine the trace with
+  the system's documentation, which future case-study work should provide.
   \item \textbf{No failure without an unsafe act.} Although the codebook allows
   it, the annotator never coded a failure without an unsafe act. Whether such
   failures are rare or the annotator (or its prompt's framing) avoids the option

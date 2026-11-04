@@ -1,0 +1,20 @@
+ACN 2224770 | category C | set main
+
+Date: 202503
+Local time: 0601-1200
+Flight conditions: VMC
+Aircraft 1: A320
+Crew size: 2
+Flight phase: Final Approach
+Airspace: Class D ZZZ
+Reporter 1 function: First Officer; Pilot Not Flying
+Reporter 1 qualification: Flight Crew Instrument; Flight Crew Air Transport Pilot (ATP); Flight Crew Multiengine
+Reporter 1 experience: Flight Crew Last 90 Days 161.57; Flight Crew Type 161.57
+Anomaly: Deviation - Altitude Excursion From Assigned Altitude; Inflight Event / Encounter CFTT / CFIT
+Result: Air Traffic Control Issued Advisory / Alert; Flight Crew Returned To Clearance; Flight Crew Became Reoriented
+Contributing factors: Human Factors
+Primary problem: Human Factors
+
+Narrative 1: Neither the Captain or myself have ever been into ZZZ. We were unfamiliar with the approach and airport. We referenced the company pages as well as the guide to familiarize ourselves. While on the ZZZZZ1 RNAV we were cleared to ZZZZZ 12000ft; speed assigned 230kts.We briefed and executed speed breaks 1/2 crossing ZZZZZ.  We were cleaned the RNAV RNP Z rwy XX. We armed the approach and set 6500ft initially. FMA's where SPEED; FINAL APP. Brick and blue stick. Aircraft momentarily leveled at 10;600 between ZZZZZ and ZZZZZ1. Once passing ZZZZZ1 we still have 1/2 speed brakes; the aircraft began the decent for approach and accelerated to 260kts indicated. Unable to slow to gear speed; Auto pilot was disengaged by pilot flying and speed brakes full was engaged. Decent rate was decreased and speed was bled off. Reaching 230kts indicated we extended the gear. Aircraft slowed in this configuration to flaps 1; 2 speed and we configured on schedule. We crossed ZZZZZ2 6500ft; autopilot off; gear extended; flaps 2 and speed 190kts. We descended below 6500ft and received a sink Rate" alert in the flight deck. We descended to 6200ft. We received a call from ZZZ tower to check altitude. We arrested decent manually and climbed back to 6500ft. Autopilot was re- engaged. Manage speed selected and flaps 3 then full was selected on schedule. We were stabilized on approach profile at 1200ft AGL between ZZZZZ3 and ZZZZZ4 at 5700ft indicated. The remainder of the approach was uneventful and we landed successfully."
+
+Synopsis: Air carrier First Officer reported receiving an altitude alert from ATC during approach. Flight crew returned to safe altitude and continued to landing.

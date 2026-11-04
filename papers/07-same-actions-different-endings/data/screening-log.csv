@@ -1,0 +1,281 @@
+category,draw_rank,acn,decision,failed_criterion,pilot,reason
+A,1,2266922,fails,4,,"Crew went around after a localizer deviation and terrain alert, so a runway excursion could not follow from the same actions."
+A,2,2285525,fails,4,,"Crew went around at about 1500 ft from a high, weather-affected approach, so an excursion could not follow."
+A,3,2199436,fails,4,,"Crew dived low to meet a restriction, then levelled and were stable by 500 ft for a normal landing; the deviation was low, not one that leads to an excursion."
+A,4,2211866,fails,4,,"Captain went around after descending low on a visual approach, so an excursion could not follow."
+A,5,2269341,fails,4,,"Crew continued below minimums low on the PAPI, then corrected and landed; the risk was landing short, not leaving the end or side."
+A,6,2225120,qualifies,,,Captain misheard a stop instruction meant for another aircraft and rejected the takeoff at about 90 kt.
+A,7,2261577,fails,4,,"FO overshot the localizer and went below glideslope, but the approach was stable by 500 ft and the landing normal; excursion not plausible from these actions."
+A,8,2252174,fails,4,,"FO went low on glideslope, corrected and landed normally; a low deviation does not plausibly lead to an excursion."
+A,9,2245804,fails,4,,"Crew descended below the MDA in the wrong mode, levelled and landed stable; the deviation was low, not one leading to an excursion."
+A,10,2296314,fails,4,,Crew descended below the VNAV path to the PAPI and landed normally after a terrain warning; excursion not plausible from these actions.
+A,11,2273417,fails,4,,"Crew went around after an automation-induced overspeed on final, so an excursion could not follow."
+A,12,2219467,fails,4,,"Crew flew a terrain escape and go-around after a wrong altimeter setting, so an excursion could not follow."
+A,13,2208765,fails,4,,"Crew went around after being too high and getting a terrain alert during a 360, so an excursion could not follow."
+A,14,2238602,fails,4,,"Crew went around after a wrong direct-to caused a dive and flap overspeed, so an excursion could not follow."
+A,15,2250437,fails,4,,Crew left the flight spoilers out but stayed on glideslope and speed and were stable by 1000 ft; excursion not plausible.
+A,16,2307591,fails,4,,"Crew flew a terrain escape after descending through the selected altitude, so an excursion could not follow."
+A,17,2288846,fails,4,,"Captain called a go-around after the FO ducked below glideslope at about 300 ft, so an excursion could not follow."
+A,18,2304383,qualifies,,,Crew bugged the wrong approach speed and continued through 500 ft about 17 kt fast to land.
+A,19,2247962,qualifies,,,"Pilot dived from high on final, sinking 1800 fpm through 500 ft, and continued to land."
+A,20,2296843,fails,4,,"Crew went half a dot low, got a low altitude alert, corrected and landed; excursion not plausible."
+A,21,2266250,fails,4,,"Captain took control and went around at about 1100 ft after the FO's mode errors, so an excursion could not follow."
+A,22,2302776,fails,2,,Short hard-landing report says only that the approach was stable and the landing bounced; it gives nothing on what the crew knew or did.
+A,23,2266055,fails,4,,"Captain took control and went around after the FO's mode errors on approach, so an excursion could not follow."
+A,24,2235359,fails,4,,"FO levelled below glideslope after a short vector, then recaptured it and landed; the deviation was low, so excursion not plausible."
+A,25,2311084,fails,4,,Captain recovered a speed upset on glideslope capture and the approach was stable at 1000 and 500 ft; excursion not plausible.
+A,26,2201037,fails,4,,"Crew went below path after missing VNAV, corrected and landed; the deviation was low, so excursion not plausible."
+A,27,2260607,fails,4,,"Crew descended low before the FAF, levelled and landed normally; excursion not plausible."
+A,28,2293409,qualifies,,,"Captain broke out high at minimums, steepened below glideslope through pull-up warnings and landed with a tailwind on a wet runway."
+A,29,2250964,fails,1,,Descent below glideslope and the go-around were driven by RAs from a blundering parallel aircraft; the crew followed the RAs.
+A,30,2294975,fails,4,,Hard landing from an unarrested sink rate in the flare after a stable approach; a runway excursion does not plausibly follow.
+A,31,2218310,fails,4,,"Crew descended below path in the wrong mode, climbed back and landed; the deviation was low and the landing is not described as fast or long."
+A,32,2299649,fails,4,,FO corrected a pitch-down caused by glideslope interference and was stable by 1000 ft; excursion not plausible.
+A,33,2246784,fails,4,,Captain went slightly high then low on a night RNAV and landed normally in the touchdown zone; excursion not plausible.
+A,34,2285075,fails,4,,"Crew went four red on the PAPI below 1000 ft, corrected and landed; a low deviation does not plausibly lead to an excursion."
+A,35,2283033,qualifies,,,Captain continued after sink rate warnings below 500 ft about 8 kt fast and touched down about 2500 ft down the runway.
+A,36,2282204,fails,4,,"Crew made a balked landing from a float after a downdraft, so an excursion could not follow."
+A,37,2234485,qualifies,,,"Captain overruled the FO's go-around call after a pull-up warning on a high, steep valley approach and continued to land."
+A,38,2259081,fails,4,,FO overshot the localizer and got a terrain warning in the turn but was stable by 1000 ft; excursion not plausible.
+A,39,2218803,fails,4,,Crew descended 500 ft below the cleared altitude in the wrong mode before the FAF and climbed back; excursion not plausible.
+A,40,2240938,fails,4,,"Crew set the wrong altitude and went low, then climbed back and were stable by 500 ft; excursion not plausible."
+A,41,2250448,fails,1,,A helicopter turning into the approach path caused the RA and go-around; the crew did nothing that contributed.
+A,42,2316308,fails,4,,FO dived from high and fast to slightly below glidepath but was stable by 500 ft and landed in the touchdown zone; excursion not plausible.
+A,43,2281980,fails,4,,"FO overcorrected from high to below glideslope and recovered on short final; the deviation was low, so excursion not plausible."
+A,44,2284641,fails,4,,"Captain mishandled a go-around after an RA and overshot the altitude, so an excursion could not follow."
+A,45,2264521,fails,4,,"Crew broke out low, overcorrected and were stable at 500 ft; excursion not plausible."
+A,46,2269818,fails,4,,"FO descended too low before joining the localizer, climbed back and landed; excursion not plausible."
+A,47,2209804,fails,4,,"Crew descended 200 ft low on an RNAV approach and went around, so an excursion could not follow."
+A,48,2201807,fails,4,,"Crew flew a terrain escape and go-around after a wrong altimeter setting, so an excursion could not follow."
+A,49,2240851,fails,4,,"Captain called a go-around after the FO descended too low in vertical speed mode, so an excursion could not follow."
+A,50,2279600,fails,4,,Captain slowed late and went slightly below glideslope but was stable and landed in the touchdown zone; excursion not plausible.
+A,51,2252948,fails,4,,"Captain went around from an unstable first approach and the second approach was stable, so an excursion could not follow."
+A,52,2219762,fails,4,,"Captain misread the runway lights on a night visual and went around after a GPWS warning, so an excursion could not follow."
+A,53,2286794,fails,4,,"Crew went around on finding the gear not down below 1000 ft, so an excursion could not follow."
+A,54,2317345,fails,4,,"Crew activated the balked-landing procedure early and flew a missed approach, so an excursion could not follow."
+A,55,2257931,fails,4,,"FO went around at 1000 ft from a high, fast approach during an RA, so an excursion could not follow."
+A,56,2289586,fails,4,,"FO called a go-around at 650 ft after the aircraft descended low, so an excursion could not follow."
+A,57,2273326,fails,4,,"Captain went around at 800 ft when not configured, so an excursion could not follow."
+A,58,2220135,fails,4,,FO overshot the centreline on a tight night visual but was on glide path and landed uneventfully; excursion not plausible.
+A,59,2267698,fails,4,,"Captain went around at about 1000 ft after getting below glideslope, so an excursion could not follow."
+A,60,2285070,fails,4,,"Captain went below path and slow on a short runway, levelled and landed; the deviation was low and slow, so an overrun is not plausible."
+A,61,2274341,fails,4,,FO overcorrected from high to low and returned to the glide path before landing; excursion not plausible.
+A,62,2266855,fails,4,,"Captain took control and went around at 5 to 10 ft when the FO crossed the centreline at an angle, so an excursion could not follow from the same actions."
+A,63,2215919,fails,4,,"Captain went around at 200 ft when fast and off centreline, and the second approach was corrected from low; excursion not plausible."
+A,64,2212360,fails,4,,Crew descended below glideslope in Level Change and corrected; excursion not plausible.
+A,65,2283483,fails,4,,Crew went below glideslope while distracted by traffic but were stable at 500 ft and landed; excursion not plausible.
+A,66,2228597,fails,4,,"Captain flew a windshear escape and mishandled the go-around, so an excursion could not follow."
+A,67,2301459,qualifies,,,"Captain insisted on flaps 3 on a short runway and flew a flat, low final, possibly touching down on the displaced threshold."
+A,68,2318834,fails,4,,"Captain dived from high to below the glide path, corrected and was stable; excursion not plausible."
+A,69,2302945,fails,2,,Narrative is one line saying ATC issued a low altitude alert.
+A,70,2279920,fails,4,,FO overcorrected below glideslope and was stable by 500 ft for a normal landing; excursion not plausible.
+A,71,2268521,fails,4,,"Captain added power in the flare, bounced and went around, so an excursion could not follow."
+A,72,2280891,qualifies,,,"FO floated and touched down at or beyond the end of the touchdown zone, then hesitated on the captain's go-around call."
+A,73,2229971,fails,4,,"FO continued after two sink rate warnings in gusts and landed safely; the deviation was low, not fast or long, so excursion not plausible."
+A,74,2294900,qualifies,,yes,"Fatigued crew continued from high through a terrain warning, over the speed limit below 500 ft, and landed with flaps 25 instead of 30."
+A,75,2201121,fails,4,,"Crew turned base early onto a tight visual approach and set final flaps at about 700 ft, but no high, fast or long state is reported below 500 ft, so excursion not plausible."
+A,76,2252579,fails,2,,Two-sentence narrative says only that the descent rate on final was higher than normal and drew an ATC low altitude alert; it gives nothing on what the crew knew.
+A,77,2276316,fails,4,,Tired crew went two dots below the glide path on a visual approach but were back on path and stable by 500 ft for an uneventful landing; excursion not plausible.
+A,78,2203983,fails,1,,Wake turbulence below 100 ft from a closely spaced preceding heavy caused the go-around; the crew did nothing that contributed.
+A,79,2234964,fails,4,,"FO used spoilers to slow from a fast approach and left the flight spoilers out to landing, but no fast or long touchdown is reported; excursion not plausible."
+A,80,2260551,fails,4,,"Crew went around from a high, fast, unconfigured approach at 1000 ft, so an excursion could not follow."
+A,81,2277742,fails,4,,"Captain called a go-around after the FO descended low and then slow near the FAF, so an excursion could not follow."
+A,82,2251881,fails,4,,"A gust briefly raised speed and sink at 200 to 300 ft with a terrain warning; the PF corrected within stable limits and landed on path, so excursion not plausible."
+A,83,2220146,fails,4,,"Crew made a baulked-landing go-around after two bounces, so an excursion could not follow."
+A,84,2298678,fails,1,,Wake or jet blast from an aircraft departing another runway rolled the aircraft at 30 ft; the crew did nothing that contributed.
+A,85,2254596,fails,4,,"Captain took control and went around from a high, fast approach, so an excursion could not follow."
+A,86,2217099,fails,4,,"Crew briefly sank below the glide path between 1000 and 600 ft, then corrected to the PAPI and landed; the deviation was low, so excursion not plausible."
+A,87,2218644,fails,4,,"Crew descended below the FAF altitude near antennas on a night visual, climbed back and were stable; excursion not plausible."
+A,88,2253959,fails,4,,"Crew went slightly low on short final with power held back too long and were correcting in the flare; the deviation was low, so excursion not plausible."
+A,89,2317744,fails,4,,"Crew went around after missing the 500 ft gate in windshear, so an excursion could not follow."
+A,90,2266744,fails,1,,An RA from paired parallel traffic drove the descent and go-around; the crew followed the RA.
+A,91,2283453,fails,1,,A descend RA from converging parallel traffic at about 700 ft put the aircraft below path; the crew followed the RA and corrected to land.
+A,92,2282774,fails,4,,"Captain pitched down sharply at 200 to 300 ft from a stable approach and drew a glideslope alert; the deviation was low, not fast or long, so excursion not plausible."
+A,93,2206923,fails,4,,"Crew went around after an RA, then levelled at the FAF altitude after a steep FLCH descent and landed from a stable approach; excursion not plausible."
+A,94,2279272,fails,4,,"Captain descended below a step-down altitude inside the FAF, then climbed to the PAPI and landed; the deviation was low, so excursion not plausible."
+A,95,2256063,fails,4,,Crew descended steeply from high on a paired approach through an RA but reached a stable approach before landing; excursion not plausible.
+A,96,2250173,fails,4,,"Captain's mode errors led to a sink rate alert and the crew went around, so an excursion could not follow."
+A,97,2247911,fails,1,,An unannounced helicopter crossing the approach caused the RA and climb; the crew did nothing that contributed.
+A,98,2300564,fails,4,,Bounced landing from an unarrested sink after a stable approach; a runway excursion does not plausibly follow.
+A,99,2252865,fails,4,,"Crew went around after a terrain pull-up alert on a fast night approach, so an excursion could not follow."
+A,100,2253570,fails,4,,"Captain abandoned a high approach and went around, so an excursion could not follow."
+A,101,2232305,fails,4,,Hard landing from a late flare at about 800 fpm; a runway excursion does not plausibly follow.
+A,102,2282083,fails,4,,"Tired crew descended below the glideslope in VNAV, levelled at about 1100 to 1300 ft and landed normally; the deviation was low, so excursion not plausible."
+A,103,2312099,fails,4,,"FO went low on the PAPI at about 300 ft with a glideslope warning, corrected and landed in the touchdown zone; the deviation was low, so excursion not plausible."
+A,104,2261598,fails,4,,"Distracted FO let the speed fall below ref on short final and landed hard; the deviation was slow, so an excursion is not plausible."
+A,105,2288843,fails,4,,"Captain called a go-around when the FO ducked below glideslope after breaking out, so an excursion could not follow."
+A,106,2229405,fails,4,,"Captain continued below minimums on a localizer approach and went around after a glideslope alert, so an excursion could not follow."
+A,107,2201471,fails,4,,"Crew went around at 1200 ft after a wrong altitude setting left them unable to configure in time, so an excursion could not follow."
+A,108,2240378,fails,4,,"Captain dived from high and fast to below the glide path at about 1400 ft, then corrected and stabilised for landing; no fast or long landing is reported, so excursion not plausible."
+A,109,2225910,fails,4,,"Crew went around below 1000 ft without final flaps after an ATC low altitude alert, so an excursion could not follow."
+A,110,2282509,fails,4,,"Captain hand-flew below the glideslope to a glideslope warning and corrected; the deviation was low, so excursion not plausible."
+A,111,2283593,fails,4,,"Tired crew got about 600 ft low before the FAF in the wrong mode, then captured the glideslope and landed uneventfully; excursion not plausible."
+A,112,2250230,fails,4,,Captain recovered an upset after the FO hit the go-around switch at 6000 ft and flew a configured approach to an uneventful landing; excursion not plausible.
+A,113,2284360,fails,4,,Captain dived from high to a low altitude alert but was stable by 1000 ft and landed; excursion not plausible.
+A,114,2230585,qualifies,,,"Captain accepted a late runway change from a high base, rushed the approach and continued to land with speed and configuration outside stabilised approach criteria."
+B,1,2230744,fails,1,,"ATC cleared another aircraft to cross the runway during the crew's rollout, and the crew only slowed and turned off in response."
+B,2,2274713,fails,1,,"An airport vehicle crossed the runway beneath the aircraft on short final, and the crew did nothing that contributed before continuing the landing."
+B,3,2233329,qualifies,,,"Crew on a training flight decelerated too slowly to make the assigned exit, missed it and stayed on the runway, so following traffic had to go around."
+B,4,2300274,fails,1,,"Another aircraft taxiing on the landing runway missed its exit and ATC sent the reporter around, with nothing contributed by the reporter's crew."
+B,5,2265970,qualifies,,,"Crew misidentified the traffic in a line-up-and-wait-behind-landing-traffic clearance and taxied over the hold line, so the landing aircraft was sent around."
+B,6,2231769,qualifies,,,"Crew rushed the line-up for an immediate takeoff and set takeoff thrust before the main gear trucks had locked, rejected on the runway, and the aircraft on short final went around."
+B,7,2274018,qualifies,,,"Crew missed a published no-reverse-turn restriction in planning and made an unauthorised reverse turn off the runway, and an aircraft on final was sent around."
+B,8,2237239,qualifies,,,"Crew read back a hold-short but treated a later follow-traffic instruction as clearance, crossed the runway and could not clear it, so landing traffic was sent around."
+B,9,2208638,fails,4,,"The go-around was forced by an aircraft slow to leave the runway, and the crew's own action (a slight altitude overshoot in the go-around) could not plausibly make another aircraft take avoiding action on the runway."
+B,10,2227545,fails,4,,"The go-around was forced by an aircraft slow to leave the runway, and the crew's own error (go-around mode not engaged, then a GPWS warning) could not plausibly make another aircraft take avoiding action on the runway."
+B,11,2299241,fails,1,,"An aircraft in position on the runway did not respond to its takeoff clearance and ATC sent the reporter around, with nothing contributed by the crew."
+B,12,2222332,qualifies,,,"Crew landed short and chose an early exit that led towards a taxiway with departing traffic, were held still on the runway, and the following aircraft went around."
+B,13,2296850,fails,1,,"ATC cleared the crew to cross a runway with an arrival close in, and the crew's only action was to stop for the red runway status lights, which did not contribute to the conflict."
+B,14,2282656,fails,4,,"The go-around was forced by VFR traffic still on the runway, and the crew's own decision to fly a visual pattern instead of the published missed approach could not plausibly make another aircraft take avoiding action on the runway."
+B,15,2293411,fails,1,,"Another jet crossed the runway against a hold-short instruction during the takeoff roll, and the crew rejected on ATC's call without having contributed."
+B,16,2229673,fails,1,,"At a non-towered field another aircraft landed opposite-direction without radio calls and out of sight behind the runway slope, and the crew, who had made their calls, did nothing that contributed."
+B,17,2228540,fails,1,,"A towed widebody crossed the runway after the crew had been cleared for takeoff, and the crew spotted it, held and queried without having contributed."
+B,18,2260498,fails,1,,"A safety concern about an unmarked displaced takeoff point involving another aircraft, with no action by the reporter's crew central to it."
+B,19,2288844,fails,1,,"A Cessna was over the hold-short line at the crew's planned exit, and the crew avoided it by rolling to the next exit without having contributed."
+B,20,2282157,fails,1,,"ATC directed a high-speed rejected takeoff because a landed aircraft's tail was over the hold line, with nothing contributed by the crew."
+B,21,2246731,fails,1,,"The reporter observed other aircraft's runway incursions at a field whose tower had closed, and the reporter's own crew actions were not central."
+B,22,2240014,fails,1,,"A Cessna landing ahead stopped on the runway and ATC sent the crew around, with nothing contributed by the crew."
+B,23,2232257,fails,4,,"The go-around was forced by ATC spacing with slow departing traffic, and the crew's own errors (missed go-around callouts, gear left down) could not plausibly make another aircraft take avoiding action on the runway."
+C,1,2223799,qualifies,,,Crew hand-flew a night visual approach and descended below the glidepath to about 2300 ft until a tower low altitude alert.
+C,2,2250633,fails,1,,Crew was levelling at its assigned 3000 ft when ATC vectoring brought GA traffic close and the only crew action was following the RA.
+C,3,2276020,qualifies,,,Crew misidentified a nearby airport at night and descended below the assigned 1600 ft to about 1000 ft before ATC alerted them.
+C,4,2257444,qualifies,,,PF relied on speedbrakes without timely flaps and descended about 400 ft below the assigned altitude into a stick shaker before the captain recovered.
+C,5,2207575,qualifies,,,After a false localizer capture the hand-flying FO descended to about 1700 ft on a segment charted at 2000 ft until the PM called it and EGPWS sounded.
+C,6,2316309,qualifies,,,Task-saturated crew on a charted river visual descended about 1000 ft below the charted altitude without VNAV PATH engaged and went around after a low altitude alert.
+C,7,2317029,fails,2,,The three-sentence narrative does not say what altitude the crew chose or what the company pages required so what they knew and did cannot be stated.
+C,8,2288774,fails,1,,The conflict was caused by the paired parallel traffic overshooting its final and the crew's descent was compliance with the resulting RA.
+C,9,2209353,qualifies,,,Crew cleared for a visual 17 nm out set the 6700 ft FAF altitude and descended from 13000 ft until a terrain warning at about 8000 ft.
+C,10,2203905,qualifies,,,While slowing and configuring late the crew did not notice the aircraft descend from the selected 1900 ft to 1600 ft until a GPWS obstacle caution.
+C,11,2307722,qualifies,,,PF overrode the autopilot in the turn to final and lost about 200 ft below the 2100 ft set altitude leading to a terrain warning and a go-around.
+C,12,2200717,fails,4,,A dip of less than half a dot below the glideslope on final below 1000 ft could not plausibly bring another aircraft close.
+C,13,2210953,qualifies,,,Crew accepted direct to the FAF on an RNP approach without knowing the chart note or checking the MVA chart and descended below the ATC altitude to about 3100 ft near terrain.
+C,14,2289541,qualifies,,,Captain read the wrong fix altitude off the plate and descended on downwind toward 2100 ft instead of 2900 ft until an ATC altitude alert.
+C,15,2298461,fails,1,,The RA arose because ATC let GA traffic circle on the arrival and the crew's only action was a 200 ft descent following the RA.
+C,16,2201476,fails,4,,D3 recheck: the deviation that could matter was getting low on final with four red PAPI lights and an obstacle caution below about 1000 ft above ground and the small altimeter offset earlier could not by itself bring another aircraft close.
+C,17,2305215,fails,4,,D3 recheck: the crew were high at the base turn at the 4 nm FAF and only got below the glidepath on final inside it at about or below 1000 ft above ground.
+C,18,2291425,qualifies,,,Crew chose to fly high on the arrival to avoid wake and crossed BARIN about 900 ft above the 6000 ft restriction.
+C,19,2207565,qualifies,,,Rushed into an amended visual approach the PF followed the FMS vertical guidance without confirming its altitudes and descended low enough for an ATC altitude alert.
+C,20,2282853,qualifies,,,After an approach clearance to maintain 15000 ft the crew set the FAF altitude and descended to about 11000 ft below the MSA until ATC called it.
+C,21,2313802,qualifies,,,Captain set the MCP to touchdown zone believing VNAV was engaged and the aircraft descended in level change about 700 ft below the next target altitude until ATC alerted and the crew went around.
+C,22,2229930,qualifies,,,Captain went direct to the FAF and set 2000 ft instead of the published 2900 ft and the PM did not catch it until an ATC altitude alert.
+C,23,2282455,qualifies,,,Crew did not catch VNAV PATH holding 11000 ft past a fix they expected to cross at 8700 ft and ended high so flew a 360 at the FAF and climbed back to about 8200 ft for terrain.
+C,24,2252551,qualifies,,,Distracted by fuel planning with holding speed near the low-speed band the crew let the aircraft sink below FL360 after a VNAV descent and drew an RA from traffic at FL350 then hit the stick shaker following it.
+C,25,2224770,qualifies,,,PF hand-flew with speedbrakes out after an overspeed and descended about 300 ft below the 6500 ft crossing altitude to 6200 ft (about 1700 ft above ground) until tower called it.
+C,26,2211206,fails,1,,ATC assigned 1600 ft below the minimum vectoring altitude and the crew read it back and flew it as cleared so the only crew element was not querying it.
+C,27,2299663,qualifies,,yes,PF descended from 4300 ft over a known ridge against the captain's caution with the autopilot in pitch mode and did not level off until a terrain pull-up warning and the captain took over for a go-around.
+C,28,2287112,qualifies,,,On vectors off the approach to burn fuel the crew read back and descended to 10000 ft in what both reporters think was a misheard clearance to 12000 ft until ATC questioned it below the MIA.
+C,29,2227845,fails,1,,ATC called non-altitude-reporting GA traffic no factor and the crew's only altitude change was a 150 to 200 ft evasive descent away from it.
+C,30,2266907,fails,4,,D7: the Mission field is cargo so the flight attendant injured in the bad ending would not be aboard.
+C,31,2282213,qualifies,,,FPA was selected to chase a VNAV path shown below them before the fix while the captain stated the 5000 ft restriction and the aircraft descended below 5000 ft until ATC queried it.
+C,32,2201472,fails,4,,D3: the low deviation was slightly below the glide path on about a 3 nm final below about 1000 ft above ground and the small altimeter offset could not by itself bring another aircraft close.
+C,33,2300745,qualifies,,,After a visual approach clearance the crew set the 2000 ft FAF altitude and descended early without arming the approach until a tower low altitude warning with about 800 ft on the radio altimeter before the fix.
+D,1,2272363,qualifies,,,Crew engaged HDG about 35 seconds late for an assigned turn on vectors and did not verify the mode had engaged.
+D,2,2221505,qualifies,,,"Crew took expect radar vectors to mean after DSNEE and flew on past it on the STAR heading without a vector, leaving the arrival."
+D,3,2255371,qualifies,,,"Crew read back a present-heading instruction for opposing traffic but kept turning on the SID instead, climbing through the traffic's altitude without seeing it."
+D,4,2314113,fails,1,,"The conflict was created by ATC clearing the takeoff while a helicopter departed alongside the runway; the crew's heading deviation was evasive action, not a contributing act."
+D,5,2201642,qualifies,,,"Crew flew a left turn on a read-back heading they thought non-standard without querying it, then over-banked to about 45 degrees when ATC ordered an immediate right turn."
+D,6,2220139,qualifies,,,Crew let the autopilot overshoot final on a visual approach in a tailwind and the FO over-banked to about 38-40 degrees correcting.
+D,7,2253821,fails,4,,"Turbulence pushed the aircraft off heading during vectors and the crew's own action was an over-banked correction back to course, which could not plausibly bring another aircraft very close."
+D,8,2257342,qualifies,,,Crew did not notice the SID had dropped from the FMC after a route change and followed an early off-SID turn after takeoff.
+D,9,2314249,qualifies,,,"Crew misheard and read back direct PALCO instead of FEKKO and flew toward the wrong fix, then got a TCAS RA."
+D,10,2214328,fails,1,,Another aircraft overshot the parallel final into the reporter's path; the crew only followed the RA and went around.
+D,11,2265948,fails,2,,"The narrative does not establish what the track deviation was or which crew action produced it, and the crew's own review was inconclusive."
+D,12,2263613,qualifies,,,"FO chose a green-needle intercept close to the fix, the localizer did not capture and the aircraft flew through final while speed decayed to stick shaker."
+E,1,2220575,fails,1,,UAS passed close overhead on final; caused solely by the drone and the crew did nothing that contributed.
+E,2,2201991,fails,1,,UAS seen hovering near the departure path; caused solely by the drone with no contributing crew action.
+E,3,2247888,fails,1,,UAS passed 500 ft off the wing on downwind after an ATC warning; the crew only monitored and reported it.
+E,4,2270248,fails,1,,Large object assumed to be a drone seen during climb; no crew action contributed.
+E,5,2205778,fails,1,,Quadcopter passed under the wing on short final; caused solely by the drone.
+E,6,2255486,fails,1,,Drone seen about 1 mile away during an ATC-assigned turn; no crew action contributed.
+E,7,2232652,fails,1,,Drone passed close overhead during descent; caused solely by the drone.
+E,8,2262989,fails,1,,Drone seen 300 ft below during departure climb; no crew action contributed.
+E,9,2265223,fails,1,,Bright green light (laser or drone) passed over the aircraft on arrival; no crew action contributed.
+E,10,2242370,fails,1,,Drone passed within about 100 ft on final while the FO troubleshot VNAV; the troubleshooting did not contribute to the encounter.
+E,11,2225510,fails,1,,Drone passed under the wing in cruise as reported by a jumpseater; no crew action contributed.
+E,12,2224768,fails,1,,Drone passed close below the wing in cruise; no crew action contributed.
+E,13,2274056,fails,1,,Drone passed about 100 ft overhead on vectors to final; no crew action contributed.
+E,14,2209459,fails,1,,Model aircraft or glider flew along the runway while the crew held short; caused solely by the UAS and holding was a response not a contribution.
+E,15,2255881,fails,1,,Unseen TCAS target later said to be a drone closed on final and the crew levelled off; the conflict was caused by the other aircraft and the crew action was avoidance.
+E,16,2220332,fails,1,,Drone passed about 20 ft from the wing on the ILS; caused solely by the drone.
+E,17,2287845,fails,1,,Drone passed just off the cockpit in climb during an LNAV distraction; the distraction did not contribute to the encounter.
+E,18,2239362,fails,1,,Quadcopter passed over the wing on final; caused solely by the drone.
+E,19,2279232,fails,1,,Aircraft struck an unidentified object (possible drone or bird) on departure; caused solely by the object with no contributing crew action.
+E,20,2220725,fails,1,,Drone within about 50 ft at an ATC-assigned altitude; no crew action contributed.
+E,21,2264916,fails,1,,Possible drone passed about 100 ft above during descent; no crew action contributed.
+E,22,2199018,fails,1,,Quadcopter passed 1000 ft or more away during climb; no crew action contributed.
+E,23,2246198,fails,1,,Drone passed a few hundred feet away on short final; no crew action contributed.
+E,24,2271989,fails,1,,Crew warned of a UAS while holding short took off as it was not in their path; no crew action contributed to any conflict.
+E,25,2248635,fails,1,,Drone passed off the wing during departure; caused solely by the drone.
+E,26,2266294,fails,1,,Drone about 300 ft below during descent; no crew action contributed.
+E,27,2240925,fails,1,,Lighted UAS passed within feet on final at night; caused solely by the drone.
+E,28,2256229,fails,1,,Drone crossed the glidepath about 60 ft from the wing at 500 ft; caused solely by the drone.
+E,29,2224762,fails,1,,Drone passed about 20 ft above on the ILS; caused solely by the drone.
+E,30,2209465,fails,1,,Object (drone or balloon) passed the wing in descent; no crew action contributed.
+E,31,2215463,fails,1,,Drone seen flying beneath the aircraft on final; no crew action contributed.
+E,32,2220285,fails,1,,Drone passed a few feet above the flight deck on an arrival; caused solely by the drone.
+E,33,2235994,fails,1,,Drone at co-altitude 300-500 ft away on approach; no crew action contributed.
+E,34,2245529,fails,1,,Captain saw a drone on final while the FO was head-down after an ATC approach change; the workload did not contribute to the encounter.
+E,35,2215494,fails,1,,Drone passed about 100 ft above the cockpit in climb; caused solely by the drone.
+E,36,2202936,fails,1,,Drone seen 300 ft below on the ILS; no crew action contributed.
+E,37,2213848,fails,1,,Drone passed yards from the wingtip on a visual approach; caused solely by the drone.
+E,38,2208291,fails,1,,Drone passed about 2000 ft below during descent; no crew action contributed.
+E,39,2216156,fails,1,,Balloons or a drone passed over the aircraft on final; no crew action contributed.
+E,40,2214670,fails,1,,Captain reported a possible drone passing the wing on approach; no crew action contributed.
+E,41,2261917,fails,1,,Drone passed 300-500 ft below during descent; no crew action contributed.
+E,42,2213419,fails,1,,Drone passed over the left wing on the ILS at dusk; caused solely by the drone.
+E,43,2238188,fails,1,,Drone or balloon passed under the wing during a turn at an arrival fix; no crew action contributed.
+E,44,2263098,fails,1,,Small drone passed 200-300 ft off the wing on a visual approach; no crew action contributed.
+E,45,2259414,fails,1,,FO lowered the nose after rotation to avoid a drone head-on; the conflict was caused by the drone and the crew action was avoidance.
+E,46,2255269,fails,1,,Drone passed 500-1000 ft away on an arrival; no crew action contributed.
+E,47,2233318,fails,1,,Drone seen below during departure climb; no crew action contributed.
+E,48,2224780,fails,1,,Drone passed within a couple hundred feet at 12000 ft; no crew action contributed.
+E,49,2220564,fails,1,,Captain banked to avoid a drone closing on the aircraft during descent; the conflict was caused by the drone and the crew action was avoidance.
+F,1,2249229,fails,4,,"Crew did not update take-off performance after overfuelling, giving a shallow climb and a terrain alert at about 400 ft; the plausible bad ending is terrain, and TCAS gives no RAs that low."
+F,2,2200676,fails,4,,First officer hand-flying went low on the glide slope on final and drew a low-altitude alert; a low deviation on short final could not plausibly bring another aircraft close.
+F,3,2282836,fails,4,,Captain turned toward a closed taxiway after landing in heavy rain and skidded turning back onto the runway; purely a ground event.
+F,4,2306292,fails,1,,Ground conflict created by ATC and a fast-taxiing aircraft; the crew followed their clearance and stopped.
+F,5,2212657,fails,1,,Another aircraft pushed back toward them without clearance; the crew only stopped their own movement.
+F,6,2288252,fails,4,,Crew selected flaps 30 while still decelerating and a wake gust gave a one-second flap overspeed near the FAF; a momentary flap-limit exceedance on the assigned approach could not plausibly bring another aircraft close.
+F,7,2260336,fails,1,,The tug began the push before the conditional clearance was met; the crew had relayed the clearance correctly and caught the error.
+F,8,2292615,fails,4,,Crew kept trailing a company aircraft toward a runway without a crossing clearance and stopped at the hold line; purely a ground event.
+F,9,2299654,fails,1,,ATC routed them into opposite-direction taxi traffic; the crew followed the instruction and stopped.
+F,10,2272009,fails,4,,Crew monitored a wake-induced speed rise before intervening and reached 251 kt for under a second; a deviation that small and brief could not plausibly bring another aircraft close.
+F,11,2256481,fails,4,,"Crew flew an ATC-assigned 280 kt below 10000 ft; the speed broke the 250 kt rule but matched ATC's plan, so could not plausibly bring another aircraft close."
+F,12,2251979,fails,4,,"Crew accelerated to 280 kt below 10000 ft at ATC's insistence to stay ahead of a heavy; the speed matched ATC's plan, so could not plausibly bring another aircraft close."
+F,13,2316947,fails,1,,Go-around forced by ATC clearing departures onto the runway with them on short final; the crew did nothing that contributed.
+F,14,2212901,fails,4,,Momentary stick shaker in turbulence after flap retraction in an ATC-assigned climbing turn; no departure from the assigned path that could plausibly bring another aircraft close.
+F,15,2288579,fails,4,,"Captain switched fuel pumps off without opening the crossfeed and an engine rolled back at cruise; it recovered with no altitude loss, so no deviation that could plausibly bring another aircraft close."
+F,16,2238422,fails,1,,Rejected take-off because a GA aircraft crossed the runway at an untowered field; the crew did nothing that contributed.
+F,17,2322946,fails,4,,"Autothrottle stayed at idle after autopilot disconnect and the aircraft went low on final, drawing an ATC low-altitude alert; a low deviation on final could not plausibly bring another aircraft close."
+F,18,2268383,fails,1,,"Near miss created by an ATC vector toward climbing VFR traffic; the crew's climb and turn were avoiding action, not a contribution."
+F,19,2319211,fails,4,,Captain used the tiller to make a high-speed exit and the aircraft left the taxiway edge; purely a ground event.
+F,20,2250349,fails,1,,Near miss caused by another aircraft overshooting its final while ATC kept them high; the crew went around and did nothing that contributed.
+F,21,2298479,fails,4,,"Crew turned onto a taxiway that ground said they should have held short of, giving a close wingtip pass; purely a ground event."
+F,22,2199819,fails,4,,Crew's stopped position protruded onto a taxiway as another aircraft approached at speed; purely a ground event.
+F,23,2280940,qualifies,,,"Crew departed with the speed selector in manual instead of FMS, so the aircraft failed to accelerate on the SID and ATC turned them off course."
+F,24,2307724,fails,4,,Crew missed a turn at night and taxied into a ramp area; purely a ground event.
+F,25,2284015,fails,1,,Another aircraft took the wrong taxiway and cut in front of them; the crew did nothing that contributed.
+F,26,2304318,qualifies,,,"On a STAR the captain rebugged to 300 kt and the first officer descended at 5000 fpm, overspeeding toward 320 kt and then pitching up abruptly at 1.6 g."
+F,27,2270535,fails,4,,"Distracted by gate coordination, the captain crossed a runway at the wrong taxiway after landing; purely a ground event."
+F,28,2290406,fails,4,,Captain misread a ramp hold-short instruction and turned toward another aircraft; purely a ground event.
+F,29,2251553,fails,4,,"Crew left the gear down after take-off and retracted it 10 kt above the limit; an airframe limit exceedance with no reported departure from the clearance, so no plausible traffic conflict."
+F,30,2218335,fails,4,,Autopilot went into vertical speed instead of VNAV after take-off and the aircraft slowed toward a stall before the crew disconnected; no reported departure from the clearance that could plausibly bring another aircraft close.
+F,31,2219737,fails,1,,ATC issued ambiguous and changing instructions on short final at DCA; the crew queried them and did nothing that contributed.
+F,32,2236166,fails,2,,General complaint about first officers' energy management with no specific event described.
+F,33,2263634,fails,1,,Go-around because ATC spacing left the preceding aircraft on the runway; the crew did nothing that contributed.
+F,34,2279951,qualifies,,,"After discontinuing an approach the crew climbed in vertical speed with speedbrakes still out, failed to climb as assigned, and later oversped the flaps in a weather go-around."
+F,35,2221591,qualifies,,,"Heavy MD-11 crew did not brief a 230 kt SID turn restriction, retracted slats at 240 kt before the turn, hit the stick shaker and shallowed the bank."
+F,36,2206016,fails,1,,EGPWS warning while level at an altitude ATC had assigned near terrain; the crew complied with the clearance and did nothing that contributed.
+F,37,2219049,qualifies,,,"In turbulence the first officer disconnected the autopilot and pitched up while levelling off on the SID with traffic above and below, triggering the stick shaker."
+F,38,2212704,fails,4,,Crew were slightly late retracting flaps in shear and exceeded the flap limit by 3 kt for a second; a momentary limit exceedance could not plausibly bring another aircraft close.
+F,39,2232695,fails,1,,"ATC cleared a departure with them below 400 ft on final, forcing a go-around; the crew did nothing that contributed to the conflict."
+F,40,2219390,fails,4,,"Trainee first officer pulled the speedbrake past the armed detent on final, giving a sub-second stick shaker with speed never below Vref; this could not plausibly bring another aircraft close."
+F,41,2292317,fails,4,,"Crew used speedbrakes at flaps 40 on a 737 MAX, a type limitation, while catching up on a high approach; this could not plausibly bring another aircraft close."
+F,42,2218542,fails,4,,"Confused by a taxi instruction, the captain taxied too far onto a taxiway and another aircraft passed close; purely a ground event."
+F,43,2264448,fails,4,,Crew turned onto the wrong taxiway in a hotspot; purely a ground event.
+F,44,2298231,qualifies,,,"At FL400 near maximum altitude the captain disconnected the autothrottles and set idle, losing 30-40 kt and needing several minutes to stabilise speed."
+F,45,2291058,fails,1,,Another aircraft cut them off during taxi-in; the crew braked and did nothing that contributed.
+F,46,2284943,fails,1,,Other aircraft failed to give way and passed close to their nose during taxi; the crew did nothing that contributed.
+F,47,2263395,qualifies,,,"Given a vector at 2500 ft the captain pressed TOGA instead, then oversped the flaps, reached about 40 degrees of bank and descended to about 1200 ft above ground near conflicting traffic."
+F,48,2255071,fails,1,,Another aircraft taxied fast toward the same ramp spot; the crew stopped and did nothing that contributed.
+F,49,2240035,qualifies,,,"Assigned 310 kt or better in descent, the captain pulled back hard with full speedbrake to stop a speed rise, triggering the stick shaker, then slowed below the assigned speed."

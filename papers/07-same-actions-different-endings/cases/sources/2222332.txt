@@ -1,0 +1,22 @@
+ACN 2222332 | category B | set main
+
+Date: 202503
+Local time: 0601-1200
+Flight conditions: VMC
+Light: Night
+Aircraft 1: Commercial Fixed Wing
+Crew size: 2
+Flight phase: Landing
+Airspace: Class C FLL
+Aircraft 2: Any Unknown or Unlisted Aircraft Manufacturer
+Reporter 1 function: Captain; Pilot Not Flying
+Reporter 1 qualification: Flight Crew Instrument; Flight Crew Multiengine; Flight Crew Air Transport Pilot (ATP)
+Reporter 1 experience: Flight Crew Last 90 Days 225; Flight Crew Total 7750; Flight Crew Type 1600
+Anomaly: ATC Issue All Types; Conflict Ground Conflict; Critical; Ground Incursion Runway; Ground Incursion Taxiway
+Result: Air Traffic Control Issued New Clearance
+Contributing factors: Procedure; Human Factors; Chart Or Publication; Airport
+Primary problem: Procedure
+
+Narrative 1: Performing the flight ZZZ1 - FLL. On the approach and landing for Runway 28L we were light weighted for landing (approximately 57.5 tons) with a Vapp speed of about 122 kt. plus a headwind of about 15 kt.; factors that made us land very short; making us between intersection J8 and J7 be at taxi speed. As there was traffic behind us we thought the best course of action would be to vacate the runway at J7 instead of continuing down the runway at taxi speed and vacate on J5 or J4.Already turning on J7 the Tower advised us to continue down and vacate the next right; but the turn was already made and it was not possible to turn back to the runway. We were instructed to hold short on the runway before Taxiway J; because there were aircraft taxiing to Runway 28L on Taxiway J. As we were still on the runway; Aircraft Z landing behind us was instructed for a go-around.Contributing factors: Low approach speed making us land very short; fatigued; low experience operating at the airport; lack of information on the chart alerting the crews that Taxiway J7 is a hotspot when operating Runway 28L for takeoff; as vacating on this taxiway conflicts with traffic taxiing to Runway 28 for takeoff on Taxiway J.Suggestions: Implementing a hotspot on Taxiway J7 alerting the risk of vacating on J7 when landing on Runway 28L and 28L being used for takeoff as there will be traffic taxiing in the opposite direction on Taxiway J.An internal safety report was made.
+
+Synopsis: Air carrier Captain reported landing at FLL and exiting the runway at an earlier taxiway than normal that then led to an active runway. Reporter suggested a hotspot designation.

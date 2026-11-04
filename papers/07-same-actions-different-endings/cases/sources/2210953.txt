@@ -1,0 +1,19 @@
+ACN 2210953 | category C | set main
+
+Date: 202502
+Local time: 1201-1800
+Flight conditions: VMC
+Light: Daylight
+Aircraft 1: Commercial Fixed Wing
+Crew size: 2
+Flight phase: Descent
+Reporter 1 function: Pilot Not Flying; Captain
+Reporter 1 qualification: Flight Crew Instrument; Flight Crew Air Transport Pilot (ATP); Flight Crew Multiengine
+Anomaly: Deviation - Altitude Excursion From Assigned Altitude; Deviation / Discrepancy - Procedural Clearance; Deviation / Discrepancy - Procedural Published Material / Policy; Inflight Event / Encounter CFTT / CFIT
+Result: Air Traffic Control Issued Advisory / Alert; Flight Crew Returned To Clearance
+Contributing factors: Software and Automation; Human Factors; Chart Or Publication
+Primary problem: Human Factors
+
+Narrative 1: We were cleared on the BOPAP 1C RNAV arrival to join the RNP runway 23.  Approximately 35 miles from HMO ATC issued a heading of 130.  We were cleared to track that heading until 25 DME from HMO and cleared to 4000.  Upon approaching 25 DME ATC called again to issue direct to HO901.  We turned to HO901 and remained at 4000.  A few seconds later we were cleared for the RNP 23.  Upon being cleared for the approach we armed the approach and FINAL APP was displayed on the PFD (primary flight display) with a VDEV indicator.  We were approximately 20 miles from the airport to the northwest.  We set 2800 in the altitude alert window then subsequently set 4000 for the missed approach as the aircraft captured the path.  It was VFR and clear; yet we could not see the airport.  We both knew it was beyond the mountain range we could see.  As we continued the descent both of us agreed it did not look correct as we approach approximately 3100 ft and still well clear of the terrain.  We agreed to climb up to 4000 ft.  As we began our climb up ATC issued a climb to 3300.  We requested 4000 and climbed up until we were certain of being clear of the terrain and rejoined the approach.  The approach was normal from this point.  Cause: There are multiple contributing factors and concerns with this arrival and approach. 1. There are no notes in the 10-7 regarding the possibility of being vectored off the arrival and a caution of the RNP approach resulting in a descent below MVA and surrounding terrain.  The only note is for monitoring TERR; which we did.  2. I was not aware of the note in the RNAV setup stating Do Not accept a clearance direct to a fix unless it is outside the FAF.  I thought this applied only to those with an RF leg.  That should be emphasized on the 10-7 page as well as in training. Fix HO901 is the FAF.  We should have gone to HO900 as that would have kept us clear and on the correct path.  I would suggest making this note in the 10-7 and telling crews to not accept HO901 to ensure proper terrain clearance.   3. We did not reference the MVA chart.  We should have as it would have improved SA.  This was not a vector; the aircraft showed us on path which we followed.  This is very; very similar to ZZZ issues we had in the past.  The notes on the 10-7 should be changed immediately.  We were fortunate it was VFR; we were very aware of the terrain as we briefed it and had TERR on.  We did not simply follow the guidance but acted as if it was clearly not correct. I attached the MVA chart as a reference.
+
+Synopsis: Air carrier Captain reported descending on a non-published portion of an approach below the ATC assigned altitude; resulting in proximity to mountainous terrain. The crew climbed and rejoined the approach vertical profile.

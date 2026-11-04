@@ -1,0 +1,19 @@
+ACN 2207565 | category C | set main
+
+Date: 202501
+Local time: 1201-1800
+Flight conditions: VMC
+Aircraft 1: Commercial Fixed Wing
+Crew size: 2
+Flight phase: Descent
+Airspace: Class B EWR
+Reporter 1 function: First Officer; Pilot Flying
+Reporter 1 qualification: Flight Crew Air Transport Pilot (ATP); Flight Crew Instrument; Flight Crew Multiengine
+Anomaly: ATC Issue All Types; Deviation - Altitude Overshoot; Deviation / Discrepancy - Procedural Published Material / Policy; Inflight Event / Encounter CFTT / CFIT
+Result: Air Traffic Control Issued Advisory / Alert; Air Traffic Control Issued New Clearance; Air Traffic Control Provided Assistance; Flight Crew Became Reoriented; Flight Crew Requested ATC Assistance / Clarification
+Contributing factors: Chart Or Publication; Human Factors
+Primary problem: Human Factors
+
+Narrative 1: Going into EWR; we were assigned the Stadium Visual for 29. We had planned for 22L based of the recent ATIS. I was pilot flying. Between Hilok and Slimr I was following the FMS snowflake while getting configured.  It was about this time ATC informed us that they received an altitude alert.  At this point the Captain took control of aircraft and landed.  I learned from this to really independently confirm the FMS altitudes and not be rushed into an amended approach.
+
+Synopsis: Air carrier First Officer reported they descended below terrain minimums on a visual approach and received a low altitude alert from ATC.

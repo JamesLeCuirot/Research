@@ -1,0 +1,20 @@
+ACN 2289541 | category C | set main
+
+Date: 202509
+Aircraft 1: A319
+Crew size: 2
+Flight phase: Initial Approach
+Airspace: Class D ZZZ
+Reporter 1 function: Captain
+Reporter 1 qualification: Flight Crew Air Transport Pilot (ATP)
+Reporter 2 function: First Officer
+Anomaly: Deviation - Altitude Overshoot; Deviation / Discrepancy - Procedural Published Material / Policy; Inflight Event / Encounter CFTT / CFIT
+Result: Air Traffic Control Issued Advisory / Alert; Flight Crew Returned To Clearance
+Contributing factors: Human Factors
+Primary problem: Human Factors
+
+Narrative 1: While on left downwind for Runway XX at ZZZ; we were cleared for a visual approach. Weather was clear with great visibility. We had the RNAV XX approach loaded into the FMS to back up the visual. My plan was to turn base and intercept the final approach course at or outside of the final approach fix; 'ZZZZZ'; which has an altitude of 2900. When I looked at the approach plate to verify the altitude; I mistakenly looked at 'ZZZZZ1'; which has an altitude of 2160. I then set the altitude to 2100 and initiated a descent. At the same time I began to slow the airplane down to start the configuration process; so the descent was relatively slow. At approximately 2300 MSL; I began to realize that visually we appeared to be getting a little too low. I looked back at the approach plate to verify the altitude I had selected; and realized my mistake. At that same time; we received an altitude alert from ATC; and a L/G Gear Not Down warning from the airplane. I initiated a climb to 3000; then started the base turn; and joined the XX approach course outside of 'ZZZZZ'. The approach was stable the whole way; and we landed at ZZZ uneventfully. I will definitely be looking more carefully at altitudes on approach plates to make sure I have chosen the correct one.
+
+Narrative 2: I was PM (pilot monitoring) Captain was PF (pilot flying). We were cleared for the visual approach XX. We had it backed up by the RNAV (GPS) Runway XX. PF requested a line off of ZZZZZ1 to sequence the flight plan. 2;100 was selected for the altitude.We were on a left downwind for Runway XX. Reaching 2;100 we got a CRC (Continuous Repetitive Chime); MASTER WARNING lights flash; and L/G GEAR NOT DOWN ECAM. As soon as that happened the PF immediately started a climb to 2;900 ft. As that was happening; ATC Tower gave us a low altitude alert. I acknowledge it. We continued the approach normally; with no further abnormality.
+
+Synopsis: A319 flight crew reported while flying a visual approach descending early resulting in flight towards terrain. ATC issued a low altitude alert and the flight crew climbed to a safe altitude and continued the approach to the airport.

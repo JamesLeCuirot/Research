@@ -1,0 +1,19 @@
+ACN 2230585 | category A | set main
+
+Date: 202503
+Flight conditions: VMC
+Aircraft 1: B757 Undifferentiated or Other Model
+Crew size: 2
+Mission: Passenger
+Flight phase: Final Approach
+Aircraft 2: UAV: Unpiloted Aerial Vehicle
+Reporter 1 function: Captain; Pilot Flying
+Reporter 1 qualification: Flight Crew Instrument; Flight Crew Air Transport Pilot (ATP); Flight Crew Multiengine
+Anomaly: Airspace Violation All Types; Deviation / Discrepancy - Procedural Unauthorized Flight Operations (UAS); Deviation / Discrepancy - Procedural Published Material / Policy; Deviation / Discrepancy - Procedural FAR; Inflight Event / Encounter Unstabilized Approach
+Result: Air Traffic Control Issued New Clearance
+Contributing factors: Human Factors
+Primary problem: Human Factors
+
+Narrative 1: We were arriving from the east planning on a visual to Runway XXL backed up by the ILS. In my mind I was anchored to the XXL approach and not considering any other options. I was surprised by the approach controller when he asked us our approach preference; XYR LOC or XYR RNAV. We asked about XXL (as advertised on ATIS) and were told a drone was at 200 ft over the approach end of XXL and XYR was now the runway in use. I wanted the vertical guidance of the RNAV approach but didn't feel we could get setup in time. Our speed and altitude profile were configured for an extended right downwind arrival for XXL. I suddenly found myself on a high right base for XYR. I accepted the XYR localizer approach and that was my first mistake. I started to setup and brief the approach while doing my best to lose altitude and airspeed in anticipation for an inbound turn. I felt rushed but for some reason didn't ask for delay vectors. During my haste to; 'make it work' I failed to note the distance from the FAF to the runway threshold. This oversight negated my stabilized approach plan and caused me to be; 'behind the aircraft' for the remainder of the approach. My speed and configuration did not meet my planned approach criteria or stabilized approach criteria. It wasn't until after we completed an uneventful landing that I realized how far behind I was. We thoroughly debriefed the approach at the gate and resolved to take delay vectors or go around the next time this type of situation presents itself.
+
+Synopsis: Air carrier pilot reported being given a last minute change to runway assignment during final approach due to a UAS flying at the approach end of the runway. The approach to the new runway became unstabilized; but the pilot continued to landing.

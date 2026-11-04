@@ -1,0 +1,23 @@
+ACN 2219049 | category F | set main
+
+Date: 202503
+Local time: 1801-2400
+Weather: Turbulence; Icing
+Light: Night
+Aircraft 1: EMB ERJ 170/175 ER/LR
+Crew size: 2
+Flight phase: Climb
+Airspace: Class B ZZZ
+Reporter 1 function: Pilot Flying; First Officer
+Reporter 1 qualification: Flight Crew Air Transport Pilot (ATP); Flight Crew Instrument; Flight Crew Multiengine
+Reporter 2 function: Captain; Pilot Not Flying
+Anomaly: Deviation - Speed All Types; Deviation / Discrepancy - Procedural Published Material / Policy; Inflight Event / Encounter Weather / Turbulence; Inflight Event / Encounter Loss Of Aircraft Control
+Result: Flight Crew Regained Aircraft Control
+Contributing factors: Human Factors; Weather
+Primary problem: Human Factors
+
+Narrative 1: Upon takeoff at ZZZ; we departed via the ZZZZZX departure off of Runway XXL. At 400 feet when turning via the SID to a heading of 190; we experienced moderate turbulence while in a bank and climbing with the flaps extended; leaving a narrow margin of airspeed to work with to keep the aircraft within limits. I (First Officer) while flying the SID and Turing to a heading of 220 while leveling off noticed a possible over speed of the flaps and instinctively disconnected the Autopilot via the TCS switch and pitched up to avoid a flap over speed. Given the flap setting; slow speed; and moderate turbulence fluctuating the barber poles; this induced a momentary stick shaker at which time the corrective action was taken and the Captain took over flying duties. After the event the Captain maintained flight duties to give me (First officer) an opportunity to discuss the event. During the discussion we elected to maintain flying duties as Captain pilot flying (PF) and First Officer pilot monitoring (PM) for the rest if the flight to ZZZ1. The flight continued to ZZZ1 without event.Suggestions: After reflecting on tonight's events me and the Captain discussed the importance of maintaining vigilance to airspeed not only on the high side during a rough air penetration but the slow side as well especially with fluctuations in altitude. The complexity of the departure; moderate turbulence; multiple aircraft above and below; plus a tight turn to maintain the SID all contributed to the event.
+
+Narrative 2: Upon takeoff at ZZZ; we departed via the ZZZZZX departure from Runway XXL. At 400 feet when turning via the SID on a heading of 190; we experienced moderate turbulence while in a bank and climbing with flaps extended; leaving a narrow margin of airspeed to work with to keep aircraft within limits. The First Officer while trying to fly the SID and turn to the 220 heading while leveling off noticed a possible over speed of the flaps and instinctively pitched up to prevent said over speed. Given the flap setting and slow speed with the turbulence fluctuating the barber poles; this induced a momentary stick-shaker at which time; the corrective action was taken; and I took control of the flying duties. After said event; I maintained flying duties to give the First Officer an opportunity for us to discuss the event once at cruise. After discussion; we elected to continue duties as Captain pilot flying (PF); and First Officer; pilot monitoring (PM). The rest of said flight was uneventful and normal. Suggestions: After the said event; the First Officer and I discussed the importance of maintaining vigilance to airspeed not only on the high side while during rough air penetration; but the slow side as well; especially with fluctuations in altitude. The complexity of the departure; multiple aircraft above and below and a tight turn to maintain the SID all contributed to the said event with the moderate turbulence.
+
+Synopsis: EMB-170 flight crew reported on departure experiencing moderate turbulence resulting in temporary loss of control of the aircraft. The flight crew regained control of the aircraft and proceeded to their destination.

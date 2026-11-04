@@ -1,0 +1,13 @@
+category,draw_rank,acn,decision,failed_criterion,pilot,reason
+D,1,2272363,qualifies,,,"Crew engaged HDG about 35 seconds late for an assigned turn on vectors and did not verify the mode had engaged."
+D,2,2221505,qualifies,,,"Crew took expect radar vectors to mean after DSNEE and flew on past it on the STAR heading without a vector, leaving the arrival."
+D,3,2255371,qualifies,,,"Crew read back a present-heading instruction for opposing traffic but kept turning on the SID instead, climbing through the traffic's altitude without seeing it."
+D,4,2314113,fails,1,,"The conflict was created by ATC clearing the takeoff while a helicopter departed alongside the runway; the crew's heading deviation was evasive action, not a contributing act."
+D,5,2201642,qualifies,,,"Crew flew a left turn on a read-back heading they thought non-standard without querying it, then over-banked to about 45 degrees when ATC ordered an immediate right turn."
+D,6,2220139,qualifies,,,"Crew let the autopilot overshoot final on a visual approach in a tailwind and the FO over-banked to about 38-40 degrees correcting."
+D,7,2253821,fails,4,,"Turbulence pushed the aircraft off heading during vectors and the crew's own action was an over-banked correction back to course, which could not plausibly bring another aircraft very close."
+D,8,2257342,qualifies,,,"Crew did not notice the SID had dropped from the FMC after a route change and followed an early off-SID turn after takeoff."
+D,9,2314249,qualifies,,,"Crew misheard and read back direct PALCO instead of FEKKO and flew toward the wrong fix, then got a TCAS RA."
+D,10,2214328,fails,1,,"Another aircraft overshot the parallel final into the reporter's path; the crew only followed the RA and went around."
+D,11,2265948,fails,2,,"The narrative does not establish what the track deviation was or which crew action produced it, and the crew's own review was inconclusive."
+D,12,2263613,qualifies,,,"FO chose a green-needle intercept close to the fix, the localizer did not capture and the aircraft flew through final while speed decayed to stick shaker."

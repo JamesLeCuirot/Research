@@ -1,0 +1,19 @@
+ACN 2307722 | category C | set main
+
+Date: 202511
+Local time: 1801-2400
+Flight conditions: VMC
+Aircraft 1: EMB ERJ 145 ER/LR
+Crew size: 2
+Flight phase: Initial Approach
+Airspace: Class C ZZZ
+Reporter 1 function: Captain; Pilot Not Flying
+Reporter 1 qualification: Flight Crew Multiengine; Flight Crew Instrument; Flight Crew Air Transport Pilot (ATP)
+Anomaly: Deviation - Altitude Overshoot; Deviation / Discrepancy - Procedural Published Material / Policy; Inflight Event / Encounter CFTT / CFIT
+Result: Air Traffic Control Issued Advisory / Alert; Air Traffic Control Issued New Clearance; Flight Crew Executed Go Around / Missed Approach; Flight Crew FLC complied w / Automation / Advisory; Flight Crew Took Evasive Action
+Contributing factors: Human Factors
+Primary problem: Human Factors
+
+Narrative 1: PF had good altitude set in FGP (Flight Guidance Panel) at 2100 on base VIS (Visibility) rwy XX and was slowly descending on Autopilot.He choose to TCS (Touch Control Steeing) override during the final turn and was losing altitude during turn.  PM Advised correction and maintain 2100 when Aircraft at 2000.  terrain warning occurred shortly thereafter and PM called GA (go around).   At lowest alt circa 1900' MSL tower also issues low alt alert.Resquenced and landed; second approach to standard and stable.Suggestion: Visual approach planning skills could be improved from this PF
+
+Synopsis: EMB-145 Captain reported receiving ATC 'low altitude' and aircraft GPWS alerts when First Officer was turning from base leg to final for landing.  Captain commanded a go-around and crew landed normally on the second attempt.

@@ -1,0 +1,18 @@
+ACN 2247962 | category A | set main
+
+Date: 202505
+Local time: 1801-2400
+Aircraft 1: B737-800
+Crew size: 2
+Flight phase: Initial Approach
+Airspace: Class B ZZZ
+Reporter 1 function: Pilot Flying
+Reporter 1 qualification: Flight Crew Instrument; Flight Crew Multiengine; Flight Crew Air Transport Pilot (ATP)
+Anomaly: Deviation / Discrepancy - Procedural Published Material / Policy; Inflight Event / Encounter Weather / Turbulence; Inflight Event / Encounter Unstabilized Approach; Inflight Event / Encounter CFTT / CFIT
+Result: Flight Crew FLC complied w / Automation / Advisory; Flight Crew Became Reoriented
+Contributing factors: Weather; Human Factors
+Primary problem: Human Factors
+
+Narrative 1: On the approach via Location A visual; due to both weather west of the field; and gusty tail winds at altitude; we found ourselves slightly high on the final segment of the approach. To reestablish landing aim point; I did push the nose over more than normal for my experiences into ZZZ as a ZZZ based pilot. This resulted in a 3 alert GPWS sink rate call out when the aircraft was sinking at 1800 ft./min. through 500 feet AGL. This was corrected prior to 300 feet but exceeds are normal SOP. Cause: While the tail winds and the weather west of the field created compression and get their -itis; and a little bit of last leg syndrome; in the future; I will go around due to the improper application of delayed descent.
+
+Synopsis: B737-800 pilot reported a GPWS Alert on approach. The pilot corrected rate of descent and landed uneventfully.

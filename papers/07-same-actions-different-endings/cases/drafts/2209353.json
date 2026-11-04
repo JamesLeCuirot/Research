@@ -1,0 +1,11 @@
+{
+  "acn": "2209353",
+  "category": "C",
+  "shared_text": "The flight. A narrow-body airliner arriving at an airport in visual conditions.\n\nThe crew. The captain was the pilot flying and had about 7,000 hours, all on type. The first officer was the pilot monitoring and had about 220 hours, all on type.\n\nWhat happened. About 17 miles east of the airport, at about 13,000 ft, the crew were cleared for a visual approach. The crew set 6,700 ft, the final approach fix altitude, in the altitude selector. The captain turned onto a downwind heading and started a slow descent. At about 8,000 ft, the ground proximity warning system gave a terrain warning, followed quickly by \"Pull up\" and \"Too low, terrain\". The captain flew the terrain escape manoeuvre and began to climb.",
+  "safe_outcome": "The warning stopped, and the crew continued to the airport and landed without further incident. There was no conflict with other traffic. No one was hurt and the aircraft was not damaged.",
+  "bad_outcome": "Another aircraft was climbing nearby. Both crews received TCAS resolution advisories and followed them, and the aircraft passed about 300 feet vertically and half a mile apart. A flight attendant on this aircraft was thrown against a galley cart during the manoeuvre and received a minor injury.",
+  "bad_ending_variant": "LOS",
+  "bracket_fill": "[climbing / descending / crossing] = climbing; [this aircraft] = this aircraft",
+  "word_count_shared": 123,
+  "notes": "Two narratives merged (first officer, pilot monitoring; captain, pilot flying). Both are very short and contain no reflection. 'Successfully' (of the escape manoeuvre) dropped as evaluative. Rule 5, moved to the safe ending: the warning stopping, the continued approach and the landing. Rule 6: airport, runway and the 275 heading removed. Judgement calls: shared text is 123 words, BELOW the 150-word floor, because the two narratives together give only about a dozen facts; nothing was added to reach the floor. Experience is from the coded fields (captain 6,989 h total and on type; first officer 224 h total and on type). Day or night not coded and not inferable (12:01-18:00, February), so left out. Bracket 'climbing', matching the approved pilot case 2 (terrain escape climb)."
+}

@@ -1,0 +1,21 @@
+ACN 2255371 | category D | set main
+
+Date: 202506
+Local time: 0601-1200
+Flight conditions: VMC
+Light: Daylight
+Aircraft 1: Commercial Fixed Wing
+Crew size: 2
+Flight phase: Climb
+Airspace: Class E ASE
+Aircraft 2: Small Aircraft; Low Wing; 1 Eng; Retractable Gear
+Reporter 1 function: First Officer; Pilot Flying
+Reporter 1 qualification: Flight Crew Air Transport Pilot (ATP); Flight Crew Multiengine; Flight Crew Instrument
+Anomaly: ATC Issue All Types; Conflict Airborne Conflict; Deviation - Track / Heading All Types; Deviation / Discrepancy - Procedural Published Material / Policy; Deviation / Discrepancy - Procedural Clearance; Inflight Event / Encounter CFTT / CFIT
+Result: Air Traffic Control Issued New Clearance; Air Traffic Control Issued Advisory / Alert; Flight Crew Requested ATC Assistance / Clarification
+Contributing factors: Procedure; Airspace Structure; Chart Or Publication; Manuals
+Primary problem: Procedure
+
+Narrative 1: We were departing out of ASE with a cleared route to follow the LINDZ1 departure. We were departing runway 33. The departure states to turn at either the runway end or 1.4DME from the IPKN to a heading of 343°. This is then followed by a turn to a heading of 273° once passing 9;100MSL. During the takeoff; it was noted that there was moderate turbulence increasing the task saturation of both of us in the flight deck. Climbing through ~9;000MSL; ATC gave us an instruction to fly present heading due to conflicting traffic coming the opposite direction. The PM repeated this instruction back to ATC. I quickly asked 'are we even able to accept that?' due to the proximity of the terrain that maintaining the initial 343° heading would cause. At this point we had also initiated the turn to the 273° heading as we had climbed through 9;100MSL. Due to the task saturation of completing the after takeoff checklist while also trying to figure out if we could even accept a vector this low down on the departure; us having already initiated the turn; and our concerns that this heading would put us too close to terrain; we did not turn back to the 343° heading. ATC then said 'I see you're in your left turn now; fly heading 343° traffic 9;500 is Aircraft Y.' We responded 'Looking for the traffic; we need to turn for the terrain.' Neither of us saw the traffic due to our traffic pages being zoomed in to 2.5; but we were already at their altitude and climbing. ATC informed us that they are aware of our procedures and that next time when we accept a clearance; we need to comply with it. We responded saying we had very little time and that we needed to maintain our terrain clearance. ATC then told us to continue on the SID; with the rest of the SID and flight continuing as normal.We had task saturation of completing the after takeoff checklist while also trying to figure out if we could even accept a vector this low down on the departure; as well as dealing with moderate turbulence while we were in close proximity to terrain and complying with the departure procedure; and the late nature of the instruction. We had already initiated the turn to 273° and were unsure if we could turn back to the 343° and maintain terrain avoidance from turning back towards the terrain. There was  also concern that in the event of an engine failure; if we would have been able to maintain terrain avoidance due to no longer being on the SID and no longer in a position to intercept the engine out procedure. Next time we would tell ATC we are unable to accept the heading due to terrain avoidance as we were not sure at the time. In the split second; we responded to the instruction as normal before realizing we might not have been able to accept the instruction as well as the compounded issues from above. Also having clear guidance from our company material on if we are able to accept a heading that low and early on the departure; and if we can; for how long we are able to. Currently; we have no company material stating if we are able to accept a vector or if we are not. If we had clear guidance; we would instantly know if we would have been able to accept this instruction and comply with it.
+
+Synopsis: Air carrier pilot reported they did not comply with an ATC instruction to turn off course for traffic due to their concern for terrain avoidance.

@@ -1,0 +1,21 @@
+ACN 2313802 | category C | set main
+
+Date: 202512
+Flight conditions: VMC
+Aircraft 1: Commercial Fixed Wing
+Crew size: 2
+Flight phase: Initial Approach
+Airspace: Class B EWR
+Reporter 1 function: First Officer; Pilot Flying
+Reporter 1 qualification: Flight Crew Instrument; Flight Crew Air Transport Pilot (ATP); Flight Crew Multiengine
+Reporter 2 function: Pilot Not Flying; Captain
+Anomaly: Deviation - Altitude Overshoot; Deviation / Discrepancy - Procedural Clearance; Deviation / Discrepancy - Procedural Published Material / Policy; Inflight Event / Encounter CFTT / CFIT
+Result: Air Traffic Control Issued New Clearance; Flight Crew Became Reoriented; Flight Crew Executed Go Around / Missed Approach
+Contributing factors: Human Factors
+Primary problem: Human Factors
+
+Narrative 1: While operating as PF on flight # to EWR; I executed a go-around after receiving a low altitude alert by ATC on the RNAV W 29. We had received numerous vectors; speed; and altitude changes from ATC which made autopilot management a bit challenging on the RNAV approach. We had just been given a clearance down to 2500ft which I descended down to using LVL CHG. After crossing fix IZEKO; the IAF; the CA immediately selected 100ft in the MCP (Mode Control Panel) window without my command and didn't realize I hadn't reselected VNAV. An added pressure was that we were closing in on traffic about 4 miles ahead of us so CA advised I start slowing down and configuring which I did. Around fix PRYRR ATC issued a low altitude alert. I looked at my altitude and saw we were 700ft below our next target altitude OF 1900 at JIMLO so I then immediately clicked off the autopilot and executed a go-around as the CA communicated with ATC. We came back around and executed the RNAV W 29 once again; landing safely with no issue.
+
+Narrative 2: During the Williamsport Arrival we were given last minute holding at PENNS waypoint at 7000 ft due to traffic saturation in EWR.  We held as published for about 10 minutes and then cleared to resume arrival and handed off to New York approach.  During the routine radar vectors;  with step down descent clearances; and speed reductions we were expecting a clearance direct to PATRN at 3000ft then cleared for approach -- this is what previous planes received.  Instead; we got direct to IZECO descend to 2500ft cleared for RNAV W runway 29 speed -- maintain 170kts until PRYRR.  I was Pilot Monitoring while the first officer was pilot flying with autopilot on; and the previous MCP (Mode Control Panel)  mode prior to me perceiving his selection of VNAV was Level Change. We passed IZECO at 2500ft and I then sent altitude MCP to touchdown zone -- I thought we were in VNAV.  At  the same time I  noticed the aircraft in front of us encroaching inside 2.5 mile lateral separation ; and I thought we couldn't keep 170 knots to PRYRR with the previous planes slower speed.Around PRYRR to JIMLO ATC told us to check altitude because we appeared lower than normal profile.  We both notice being below PDI path and not in VNAV -- the FMA (Flight Mode Annunicator) was indicating Level Change.  We decided to go-around; and tower gave us a heading of 220 degrees and a climb to 2000ft -- I believe our altitude was 1;400ft at go-around call.  We performed go around profile; and followed ATC directed instructions. The weather was day VMC and we saw EWR well before being cleared for the approach ATC vectored us around for another RNAV W 29; but this time without the altitude of 2500ft just prior to IZECO.   Instead we were given direct IZECO; maintain 3000 ft; cleared for approach.  We flew the approach in normal RNAV profile using Flight Manual procedures.  An uneventful landing resulted with gusty wind conditions.We debriefed at gate and decided to fill out reports to share our narrative.
+
+Synopsis: Air carrier flight crew reported receiving a low altitude alert from ATC during approach to EWR. Crew executed a missed approach and returned for a safe landing.

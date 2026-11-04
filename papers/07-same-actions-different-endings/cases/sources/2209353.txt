@@ -1,0 +1,24 @@
+ACN 2209353 | category C | set main
+
+Date: 202502
+Local time: 1201-1800
+Flight conditions: VMC
+Aircraft 1: A320
+Crew size: 2
+Flight phase: Final Approach
+Airspace: Class D ZZZ
+Reporter 1 function: Pilot Not Flying; First Officer
+Reporter 1 qualification: Flight Crew Multiengine; Flight Crew Instrument; Flight Crew Air Transport Pilot (ATP)
+Reporter 1 experience: Flight Crew Last 90 Days 152.97; Flight Crew Total 223.82; Flight Crew Type 223.82
+Reporter 2 function: Pilot Flying; Captain
+Reporter 2 experience: Flight Crew Last 90 Days 168.47; Flight Crew Total 6989.48; Flight Crew Type 6989.48
+Anomaly: Deviation - Altitude Overshoot; Deviation / Discrepancy - Procedural Published Material / Policy; Inflight Event / Encounter CFTT / CFIT
+Result: Flight Crew FLC complied w / Automation / Advisory; Flight Crew Took Evasive Action
+Contributing factors: Human Factors
+Primary problem: Human Factors
+
+Narrative 1: Cleared for visual app to rwy XX at about 13000 ft; set 6700 ft for the FAF; started a slow descent and turned downwind. At about 8000 ft; a terrain warning was triggered. The PF successfully executed a terrain avoidance maneuver.
+
+Narrative 2: Approximately 17 miles east of ZZZ we were cleared the visual to runway XX. I turned to a heading of 275 and started my descent. We got a terrain warning followed quickly by a pull up too low terrain. I executed the terrain escape maneuver and began a climb. The warning went away and we proceeded to the airport and landed uneventfully.
+
+Synopsis: A320 flight crew reported terrain warning during approach.

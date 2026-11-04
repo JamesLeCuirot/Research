@@ -1,0 +1,21 @@
+ACN 2304318 | category F | set main
+
+Date: 202511
+Local time: 0601-1200
+Flight conditions: VMC
+Light: Dawn
+Aircraft 1: A321
+Crew size: 2
+Flight phase: Descent
+Airspace: Class E ZZZ
+Reporter 1 function: Captain; Pilot Not Flying
+Reporter 1 qualification: Flight Crew Air Transport Pilot (ATP); Flight Crew Multiengine; Flight Crew Instrument
+Reporter 1 experience: Flight Crew Last 90 Days 210; Flight Crew Total 17400; Flight Crew Type 4000
+Anomaly: Deviation - Speed All Types; Deviation / Discrepancy - Procedural Published Material / Policy; Inflight Event / Encounter Loss Of Aircraft Control
+Result: Flight Crew Regained Aircraft Control; Flight Crew Became Reoriented; Flight Crew Returned To Clearance
+Contributing factors: Human Factors; Procedure
+Primary problem: Human Factors
+
+Narrative 1: Descending on the ZZZZZX into ZZZ.  At 15000' and 250kts; was given cross ZZZZZ1 at 10000' then 250kts.  The FO tried to make the restriction while slowing to 250kts.  I rebugged his speed to 300Kts explaining that the speed will help him get down and we don't need the 250kts yet as the instructions were 10000'; then 250.  Being high; I asked ATC for relief of 10000' and it was granted.  However the FO had selected VS at -5000fpm and the speed quickly accelerated past 300Kts even with the speed brakes deployed .  As the trend arrow approached over speed and speed approached 320kts; the FO disconnected the autopilot and began to pitch up to arrest the speed.  In doing so I noticed the G meter activate.   I commented to reduce his maneuvers and saw the meter read 1.4G and then 1.6G.  My attention then went back to the PFD (Primary Flight Display) and noted the pitch at 10° nose up.  This was corrected almost as soon as I saw it and I noticed the G meter extinguish out of my peripheral vision.   We continued to 10000' at a normal descent and then slowed to 250kts.   The rest of the flight proceeded normally.
+
+Synopsis: Air carrier Captain reported the First Officer pilot flying caused an overspeed and temporary loss of control while attempting to comply with a STAR crossing restriction.

@@ -1,0 +1,19 @@
+ACN 2274018 | category B | set main
+
+Date: 202508
+Local time: 0601-1200
+Flight conditions: VMC
+Aircraft 1: Commercial Fixed Wing
+Crew size: 2
+Flight phase: Taxi
+Aircraft 2: Any Unknown or Unlisted Aircraft Manufacturer
+Reporter 1 function: Pilot Not Flying; First Officer
+Reporter 1 qualification: Flight Crew Multiengine; Flight Crew Instrument; Flight Crew Air Transport Pilot (ATP)
+Anomaly: Conflict Ground Conflict; Critical; Deviation / Discrepancy - Procedural Clearance; Deviation / Discrepancy - Procedural Published Material / Policy; Ground Incursion Runway
+Result: Air Traffic Control Issued Advisory / Alert
+Contributing factors: Human Factors
+Primary problem: Human Factors
+
+Narrative 1: An uneventful approach and landing was conducted to rwy 26R with flaps 40 and auto brakes 2 selected. The CA decelerated at a normal pace and was at a safe taxi speed upon reaching taxiways M4 and M1. The tower controller was also controlling the ground frequency in addition to tower. During our rollout; the tower controller was giving instructions to other aircraft. No direction was given to us as to which runway exit to use. The CA had the aircraft slowed to make a comfortable turn onto taxi M1 as we were to park at the gate. After we were through the turn and crossing the runway hold short line; tower directed the aircraft on final to 'pull up and go around.'  Tower then told us we made an illegal turn off. Upon further review; we did find in procedures where it states under runway 26R arrivals 'Reverse turns NOT AUTHORIZED without clearance'. We had both missed that during our descent planning.
+
+Synopsis: Air carrier First Officer reported turning in the wrong direction after landing at CYVR; resulting in an ATC-directed go-around for an aircraft on short final.

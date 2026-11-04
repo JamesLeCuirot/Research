@@ -1,0 +1,18 @@
+ACN 2300745 | category C | set main
+
+Date: 202510
+Flight conditions: VMC
+Aircraft 1: A320
+Crew size: 2
+Mission: Passenger
+Flight phase: Final Approach
+Reporter 1 function: Pilot Flying; Captain
+Reporter 1 qualification: Flight Crew Instrument; Flight Crew Multiengine; Flight Crew Air Transport Pilot (ATP)
+Anomaly: Deviation - Altitude Excursion From Assigned Altitude; Deviation / Discrepancy - Procedural Clearance; Deviation / Discrepancy - Procedural Published Material / Policy; Inflight Event / Encounter CFTT / CFIT
+Result: Flight Crew Took Evasive Action; Flight Crew Returned To Clearance; Flight Crew FLC complied w / Automation / Advisory; Flight Crew Became Reoriented
+Contributing factors: Human Factors
+Primary problem: Human Factors
+
+Narrative 1: Being vectored for visual approach. ILS out of service. Used RNAV RNP as a reference (did not fly the approach- just used vertical guidance for reference on the descent to runway). Unfortunately we did not go direct to an approach transition and arm the approach prior to descent. After being cleared for a visual approach we reverted to flawed habit patterns and set the FAF altitude of 2000' in MCP and initiated descent. Big threat was the FAF crossing altitude was 1000' not the normal 1500'. We failed to brief and then mitigate that and subsequently got a 'low altitude warning' from Tower controller. Lowest we saw on the RA approximately 2mi from ZZZZZ was 800'
+
+Synopsis: A320 flight crew reported low altitude alert from ATC while on approach.

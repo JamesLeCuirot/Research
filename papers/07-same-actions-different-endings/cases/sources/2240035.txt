@@ -1,0 +1,18 @@
+ACN 2240035 | category F | set main
+
+Date: 202504
+Local time: 0601-1200
+Weather: Turbulence
+Aircraft 1: EMB ERJ 170/175 ER/LR
+Crew size: 2
+Flight phase: Descent
+Reporter 1 function: Pilot Flying; Captain
+Reporter 1 qualification: Flight Crew Multiengine; Flight Crew Instrument; Flight Crew Air Transport Pilot (ATP)
+Anomaly: Deviation - Speed All Types; Inflight Event / Encounter Weather / Turbulence; Inflight Event / Encounter Loss Of Aircraft Control
+Result: Flight Crew Regained Aircraft Control; Flight Crew Overrode Automation
+Contributing factors: Weather; Human Factors
+Primary problem: Human Factors
+
+Narrative 1: While on descent on the ZZZZZ [arrival]; ATC instructed us to maintain 310 kts or better. The ride was mostly smooth but then we started to get into a little it of light chop. I was PF and keeping a close eye on the airspeed while in the descent. I was overriding the throttles to keep them at idle and as the chop began to increase; the airspeed began to fluctuate and slowly increase; turning amber. Upon seeing the airspeed slowly continue increasing; I deployed full speed brakes to assist in slowing down; to no avail with the light chop we were in. With throttles at idle; full speed brakes deployed; I engaged TCS (Touch Control Steering) and firmly pulled the control wheel back; resulting in the airspeed quickly deteriorating and the stick shaker briefly activating for approximately 2 seconds. This was due to the perhaps aggressive nature I used to prevent the airspeed from reaching the barber pole. But I was trying to avoid an overspeed event and instead activated the stick shaker. I quickly stowed the speed brakes; relieved pressure on the control wheel and airspeed returned to our 310 kts. I further reduced airspeed to less than the 300 kts and instructed my FO to advise ATC we could it do 310 kts in the descent. We continued and landed normally.
+
+Synopsis: EMB-170 Captain reported the stick shaker activated briefly during descent due to the Captain pulling the control wheel back and resultant airspeed loss.

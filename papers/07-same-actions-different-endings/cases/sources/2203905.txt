@@ -1,0 +1,18 @@
+ACN 2203905 | category C | set main
+
+Date: 202501
+Local time: 1201-1800
+Aircraft 1: Regional Jet 700 ER/LR (CRJ700)
+Crew size: 2
+Flight phase: Initial Approach
+Airspace: Class C ZZZ
+Reporter 1 function: First Officer; Pilot Flying
+Reporter 1 qualification: Flight Crew Air Transport Pilot (ATP); Flight Crew Instrument; Flight Crew Multiengine
+Anomaly: Aircraft Equipment Problem Less Severe; Deviation - Altitude Overshoot; Deviation / Discrepancy - Procedural Clearance; Deviation / Discrepancy - Procedural Published Material / Policy; Inflight Event / Encounter CFTT / CFIT
+Result: Flight Crew FLC complied w / Automation / Advisory; Flight Crew Overcame Equipment Problem; Flight Crew Returned To Clearance
+Contributing factors: Aircraft; Human Factors; Procedure
+Primary problem: Human Factors
+
+Narrative 1: Person A was pilot flying (PF) and Person B was pilot monitoring (PM).On the arrival into ZZZ we were being vectored for the visual to Runway XX. We were given a left turn from the downwind to a pseudo left base leg and given clearance for the visual approach XX. Upon receiving this clearance I selected 1900 feet in the altitude selector as we were outside of ZZZZZ for the next point on the approach. We were simultaneously slowing and configuring the aircraft at the time and did not notice the aircraft had descended to 1600. We received a caution obstacle" alert off of the GPWS from the Tower in line with the LOC of Runway XX. Visual contact was kept at all times and we continued the left turn to the approach course and landed safely.The primary reason behind this issue was the compression of time due to the late configuration.From my perspective; this issue began on the downwind leg. In retrospect; I would have preferred to start slowing down and configuring much earlier to prevent us from becoming overwhelmed with tasks."
+
+Synopsis: CRJ-700 First Officer reported altitude overshoot resulted in GPWS alert and a CFTT event.

@@ -1,0 +1,23 @@
+ACN 2231769 | category B | set main
+
+Date: 202504
+Local time: 0001-0600
+Flight conditions: VMC
+Weather: Wind
+Aircraft 1: B777-200
+Crew size: 2
+Flight phase: Takeoff / Launch
+Aircraft 2: Any Unknown or Unlisted Aircraft Manufacturer
+Reporter 1 function: Pilot Flying; First Officer
+Reporter 1 qualification: Flight Crew Multiengine; Flight Crew Air Transport Pilot (ATP); Flight Crew Instrument
+Reporter 2 function: Pilot Not Flying; Captain
+Anomaly: Aircraft Equipment Problem Critical; Conflict Ground Conflict; Critical; Deviation / Discrepancy - Procedural Published Material / Policy; Ground Incursion Runway
+Result: Flight Crew Rejected Takeoff
+Contributing factors: Aircraft; Human Factors
+Primary problem: Human Factors
+
+Narrative 1: Departure runway was XXL. Taxied to 1 holding point. Landing traffic crossed runway threshold and Tower told us to line up and wait Runway XXL. We had previously completed the before takeoff checklist and runway verification process and began taking position. Tower asked the landing aircraft to vacate XXL at 2; the landing aircraft stated they missed 2 and Tower instructed them to expedite to 3 for landing traffic as well as us taxiing into position and hold.Tower then instructed us for an immediate takeoff and then restated cleared for takeoff XXL. We were still taxiing into position and in and a slight right turn to the centerline.The Captain stated that I had the aircraft and began advancing takeoff power. When he selected TOGA we received a takeoff configuration warning alarm and EICAS for MAIN GEAR CONFIG; as the main gear trucks had not locked into position from the turn onto the centerline. The Captain stated reject and that he had the aircraft. I told the Tower that we had rejected on the runway. The Tower instructed the aircraft now on short final to go around.We taxied down XXL and cleared the runway on 4. We told the Tower no assistance was required. We completed all checklists via the Electronic Checklist (ECL) at Taxiway 4. Once complete we contacted Dispatch and ZZZZ Operations to brief them on the event. After discussing with Dispatch; the Dispatcher notified the supervisor.We informed Tower we were ready for takeoff; taxied to Runway XXL; completed all required checklists; checked min fuel for departure and completed a normal takeoff.Cause: Distractions and rushing pushed us to not assure the main trucks had locked for takeoff.Suggestions: Our discussion lead us to remind ourselves that once assigned a runway; in effect we have priority of it. We all felt the need/desire to do our best to help Tower and the landing aircraft on final to vacate asap. Additionally when aligning the 777 it's critical to get the plane rolling straight to assure the main trucks are locked for takeoff prior to selecting TOGA.
+
+Narrative 2: Cleared to taxi to holding point Runway XXL via 5 and 1. All checklists completed and all engines running for short taxi. Cleared by Tower to line up and wait Runway XXL. Took note of several aircraft on final. The approach to the Runway XXL from 1 taxiway holding point is a curved taxiway approach. While lining up; it became evident that the aircraft rolling out after landing missed expected turnoff and Tower instructed them to take the next exit. At this time Tower cleared us for an immediate takeoff as we were finishing our line up. I centered the nose on centerline while continuing to roll forward as I always do. I asked the crew if everyone was ready gave the aircraft to the First Officer (FO) and began the takeoff. Power 55%. When stable selected TOGO. Rejected TO less than 20 kts. (estimate 10 kts.) with aural warning and CONFIG GEAR STEARING. FO advised Tower of reject; cleared at 4 and stopped. Completed all checklists; referred to brake cooling chart; called Dispatcher who called supervisor; advised Ramp. Continued taxi to uneventful takeoff. I was surprised at the warning as I was confident I had completed the lineup. I want to express my praise to the FO and relief FO who were excellent team players with great input.Cause: 'Immediate takeoff' instruction by Tower was a factor however I believed I had completed a proper lineup.Suggestions: Possibly; one more second of line up.
+
+Synopsis: B777-200 flight crew reported a rejected takeoff due to receiving a main gear configuration warning on takeoff roll.

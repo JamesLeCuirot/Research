@@ -1,0 +1,34 @@
+category,draw_rank,acn,decision,failed_criterion,pilot,reason
+C,1,2223799,qualifies,,,Crew hand-flew a night visual approach and descended below the glidepath to about 2300 ft until a tower low altitude alert.
+C,2,2250633,fails,1,,Crew was levelling at its assigned 3000 ft when ATC vectoring brought GA traffic close and the only crew action was following the RA.
+C,3,2276020,qualifies,,,Crew misidentified a nearby airport at night and descended below the assigned 1600 ft to about 1000 ft before ATC alerted them.
+C,4,2257444,qualifies,,,PF relied on speedbrakes without timely flaps and descended about 400 ft below the assigned altitude into a stick shaker before the captain recovered.
+C,5,2207575,qualifies,,,After a false localizer capture the hand-flying FO descended to about 1700 ft on a segment charted at 2000 ft until the PM called it and EGPWS sounded.
+C,6,2316309,qualifies,,,Task-saturated crew on a charted river visual descended about 1000 ft below the charted altitude without VNAV PATH engaged and went around after a low altitude alert.
+C,7,2317029,fails,2,,The three-sentence narrative does not say what altitude the crew chose or what the company pages required so what they knew and did cannot be stated.
+C,8,2288774,fails,1,,The conflict was caused by the paired parallel traffic overshooting its final and the crew's descent was compliance with the resulting RA.
+C,9,2209353,qualifies,,,Crew cleared for a visual 17 nm out set the 6700 ft FAF altitude and descended from 13000 ft until a terrain warning at about 8000 ft.
+C,10,2203905,qualifies,,,While slowing and configuring late the crew did not notice the aircraft descend from the selected 1900 ft to 1600 ft until a GPWS obstacle caution.
+C,11,2307722,qualifies,,,PF overrode the autopilot in the turn to final and lost about 200 ft below the 2100 ft set altitude leading to a terrain warning and a go-around.
+C,12,2200717,fails,4,,A dip of less than half a dot below the glideslope on final below 1000 ft could not plausibly bring another aircraft close.
+C,13,2210953,qualifies,,,Crew accepted direct to the FAF on an RNP approach without knowing the chart note or checking the MVA chart and descended below the ATC altitude to about 3100 ft near terrain.
+C,14,2289541,qualifies,,,Captain read the wrong fix altitude off the plate and descended on downwind toward 2100 ft instead of 2900 ft until an ATC altitude alert.
+C,15,2298461,fails,1,,The RA arose because ATC let GA traffic circle on the arrival and the crew's only action was a 200 ft descent following the RA.
+C,16,2201476,fails,4,,D3 recheck: the deviation that could matter was getting low on final with four red PAPI lights and an obstacle caution below about 1000 ft above ground and the small altimeter offset earlier could not by itself bring another aircraft close.
+C,17,2305215,fails,4,,D3 recheck: the crew were high at the base turn at the 4 nm FAF and only got below the glidepath on final inside it at about or below 1000 ft above ground.
+C,18,2291425,qualifies,,,Crew chose to fly high on the arrival to avoid wake and crossed BARIN about 900 ft above the 6000 ft restriction.
+C,19,2207565,qualifies,,,Rushed into an amended visual approach the PF followed the FMS vertical guidance without confirming its altitudes and descended low enough for an ATC altitude alert.
+C,20,2282853,qualifies,,,After an approach clearance to maintain 15000 ft the crew set the FAF altitude and descended to about 11000 ft below the MSA until ATC called it.
+C,21,2313802,qualifies,,,Captain set the MCP to touchdown zone believing VNAV was engaged and the aircraft descended in level change about 700 ft below the next target altitude until ATC alerted and the crew went around.
+C,22,2229930,qualifies,,,Captain went direct to the FAF and set 2000 ft instead of the published 2900 ft and the PM did not catch it until an ATC altitude alert.
+C,23,2282455,qualifies,,,Crew did not catch VNAV PATH holding 11000 ft past a fix they expected to cross at 8700 ft and ended high so flew a 360 at the FAF and climbed back to about 8200 ft for terrain.
+C,24,2252551,qualifies,,,Distracted by fuel planning with holding speed near the low-speed band the crew let the aircraft sink below FL360 after a VNAV descent and drew an RA from traffic at FL350 then hit the stick shaker following it.
+C,25,2224770,qualifies,,,PF hand-flew with speedbrakes out after an overspeed and descended about 300 ft below the 6500 ft crossing altitude to 6200 ft (about 1700 ft above ground) until tower called it.
+C,26,2211206,fails,1,,ATC assigned 1600 ft below the minimum vectoring altitude and the crew read it back and flew it as cleared so the only crew element was not querying it.
+C,27,2299663,qualifies,,yes,PF descended from 4300 ft over a known ridge against the captain's caution with the autopilot in pitch mode and did not level off until a terrain pull-up warning and the captain took over for a go-around.
+C,28,2287112,qualifies,,,On vectors off the approach to burn fuel the crew read back and descended to 10000 ft in what both reporters think was a misheard clearance to 12000 ft until ATC questioned it below the MIA.
+C,29,2227845,fails,1,,ATC called non-altitude-reporting GA traffic no factor and the crew's only altitude change was a 150 to 200 ft evasive descent away from it.
+C,30,2266907,fails,4,,D7: the Mission field is cargo so the flight attendant injured in the bad ending would not be aboard.
+C,31,2282213,qualifies,,,FPA was selected to chase a VNAV path shown below them before the fix while the captain stated the 5000 ft restriction and the aircraft descended below 5000 ft until ATC queried it.
+C,32,2201472,fails,4,,D3: the low deviation was slightly below the glide path on about a 3 nm final below about 1000 ft above ground and the small altimeter offset could not by itself bring another aircraft close.
+C,33,2300745,qualifies,,,After a visual approach clearance the crew set the 2000 ft FAF altitude and descended early without arming the approach until a tower low altitude warning with about 800 ft on the radio altimeter before the fix.

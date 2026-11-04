@@ -1,0 +1,10 @@
+# Never commit the API key
+.env
+.env.*
+# Python
+__pycache__/
+*.pyc
+.venv/
+data/screening/pack_*.txt
+results/dry-run-sample-prompt.txt
+paper/build/

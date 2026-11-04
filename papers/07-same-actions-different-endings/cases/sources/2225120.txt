@@ -1,0 +1,21 @@
+ACN 2225120 | category A | set main
+
+Date: 202503
+Local time: 0001-0600
+Aircraft 1: Medium Large Transport; Low Wing; 2 Turbojet Eng
+Crew size: 2
+Flight phase: Takeoff / Launch
+Aircraft 2: Medium Large Transport; Low Wing; 2 Turbojet Eng
+Reporter 1 function: Pilot Not Flying; Captain
+Reporter 1 qualification: Flight Crew Instrument; Flight Crew Air Transport Pilot (ATP); Flight Crew Multiengine
+Reporter 2 function: Pilot Flying; First Officer
+Anomaly: Conflict Ground Conflict; Critical; Deviation / Discrepancy - Procedural Clearance; Ground Incursion Taxiway; Inflight Event / Encounter Unstabilized Approach
+Result: Air Traffic Control Issued New Clearance; Air Traffic Control Separated Traffic; Flight Crew Rejected Takeoff; Flight Crew Requested ATC Assistance / Clarification; General Flight Cancelled / Delayed
+Contributing factors: Human Factors
+Primary problem: Human Factors
+
+Narrative 1: I was the pilot monitoring on Aircraft X from DCA to ZZZ. We were set up for a departure from Runway 33 and taxied accordingly. After receiving our clearance to line up and wait; I heard Aircraft Y on approach to land on Runway 1. Upon their landing they were instructed to exit Runway 1 via Taxiway S and hold short of Runway 33 on Taxiway J.Shortly after Aircraft Y's readback; we received our takeoff clearance for Runway 33. I handed the controls over to my First Officer and; as we began the takeoff roll; I kept monitoring Aircraft Y. I had a feeling they were still moving too close to the hold-short line. Suddenly; I heard the Tower Controller urgently say; 'Aircraft Y; STOP!' However; due to the similar-sounding callsigns; I initially heard it as 'Aircraft X; STOP!' Recognizing the potential conflict; I immediately took control and called 'Reject.' At that moment; our speed was approximately 90 knots. My FO quickly assumed pilot monitoring duties while I brought the aircraft to a complete stop.Once we stopped; I heard the Tower clarify to Aircraft Y; 'You were supposed to hold short of 33 on J.' It became clear that they were approaching Runway 33 hold short line when the controller intervened. The Tower then contacted us; asking for the reason for our rejected takeoff. I responded; 'You told us to stop!' The controller clarified that the stop command was intended for Aircraft Y; not us; and acknowledged the similarity in our callsigns that likely caused the miscommunication.We were instructed to taxi to the end of the runway and exit. We completed the QRH for a rejected takeoff and informed Ground Control that we needed to contact Maintenance. After speaking with Maintenance and confirming that there were no issues with the Brake Temperature Monitoring System (BTMS) or brake fuse plugs; we received a go-ahead from the Maintenance Controller following a short brake cooling period. We then requested to taxi for takeoff from Runway 1; and the remainder of the flight was uneventful.
+
+Narrative 2: As Pilot Flying while landing on Runway 1 I floated too far down the runway and was told to exit at Taxiway S; make a turn left onto taxiway J; hold short of runway 33 and contact Ground. These instructions occurred at the same time that I was transferring controls to the Captain. I read back the instructions but neglected to read back the instruction to turn to Taxiway J. When we exited we turned and stayed on Taxiway S. Tower then told us to hold short of Runway 33 and this caused an aircraft approaching 33 to do a go around and another aircraft to cancel their takeoff on 33.
+
+Synopsis: Air carrier pilot reported a ground conflict during takeoff roll resulting in a reject takeoff.

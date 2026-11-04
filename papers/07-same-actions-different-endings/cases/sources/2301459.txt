@@ -1,0 +1,17 @@
+ACN 2301459 | category A | set main
+
+Date: 202511
+Local time: 0001-0600
+Aircraft 1: Commercial Fixed Wing
+Crew size: 2
+Flight phase: Landing
+Reporter 1 function: First Officer; Pilot Not Flying
+Reporter 1 qualification: Flight Crew Air Transport Pilot (ATP); Flight Crew Instrument; Flight Crew Multiengine
+Anomaly: Deviation / Discrepancy - Procedural Published Material / Policy; Inflight Event / Encounter Unstabilized Approach
+Result: General None Reported / Taken
+Contributing factors: Human Factors
+Primary problem: Human Factors
+
+Narrative 1: During arrival briefing capt insisted on using flaps 3.   I asked about landing distance seemed adequate.  Rnav y 29 was planned and flown .  Last 100 feet path got flat and low.  I mentioned that he cannot land on the displaced threshold.   At around 30-50 ft.  Capt pitch for runway threshold and may have landed on displaced theshold.   I think he landed on available runway; but not positive….Cause: Capt insisted on flaps 3 on a short runway.  I did the landing distance and it was approximately 300 ft more than flaps full.   My rationale was that sbp runway was 300-400 ft longer than sna so it should work out.   Capt for some unknown reason insisted on flaps 3.  He mentioned that as an Fo; other capts would say no.
+
+Synopsis: Air carrier pilot reported a possible touch down in the displaced threshold area on landing at SBP.

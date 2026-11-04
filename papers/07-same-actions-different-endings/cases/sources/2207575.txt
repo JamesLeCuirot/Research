@@ -1,0 +1,17 @@
+ACN 2207575 | category C | set main
+
+Date: 202501
+Local time: 0001-0600
+Aircraft 1: Commercial Fixed Wing
+Crew size: 2
+Flight phase: Final Approach
+Airspace: Class B IAD
+Reporter 1 function: First Officer; Pilot Flying
+Reporter 1 qualification: Flight Crew Multiengine; Flight Crew Instrument; Flight Crew Air Transport Pilot (ATP)
+Anomaly: Deviation - Altitude Overshoot; Deviation - Track / Heading All Types; Deviation / Discrepancy - Procedural Published Material / Policy; Inflight Event / Encounter CFTT / CFIT
+Contributing factors: Human Factors; Software and Automation
+Primary problem: Human Factors
+
+Narrative 1: I was pilot flying on flight ABCD to IAD for approach into 1C. Approach had us at 3000ft and gave us an intercept heading of 080 for 1C; before shortly after clearing us for the visual 1C. We were backing up the approach with the ILS 1C and upon localizer capture with the Autopilot; the airplane looked to not be turning toward the approach path. At that point; the CA and pilot monitoring told me I'd have to hand fly it as it looked to be a false capture. Slightly fixated on ensuring we don't overshoot final; and being on the segment of the approach that displays 2000ft; I went to about 1700 ft before the pilot monitoring indicated the altitude deviation and I promptly began correcting. Immediately we received one aural Enhanced Ground Proximity Warning System (EGPWS) 'Pull Up' as I was correcting. After the correction; I guided the aircraft to a stable approach and landing on 1C.
+
+Synopsis: Air carrier First Officer reported the aircraft failed to intercept the localizer while descending and they received a ground proximity warning.

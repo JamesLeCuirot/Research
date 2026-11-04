@@ -1,0 +1,20 @@
+ACN 2314249 | category D | set main
+
+Date: 202512
+Local time: 1201-1800
+Aircraft 1: Commercial Fixed Wing
+Crew size: 2
+Flight phase: Climb
+Reporter 1 function: Pilot Flying
+Reporter 1 qualification: Flight Crew Multiengine; Flight Crew Instrument; Flight Crew Air Transport Pilot (ATP)
+Reporter 2 function: Pilot Not Flying
+Anomaly: Conflict Airborne Conflict; Deviation - Track / Heading All Types; Deviation / Discrepancy - Procedural Clearance; Deviation / Discrepancy - Procedural Published Material / Policy
+Result: Air Traffic Control Issued Advisory / Alert; Flight Crew Took Evasive Action; Flight Crew Returned To Clearance; Flight Crew Requested ATC Assistance / Clarification
+Contributing factors: Human Factors
+Primary problem: Human Factors
+
+Narrative 1: On Day 0 we were given an IFR clearance from STT to ZZZ as filed which included the standard instrument departure PALCO7.PALCO. Before taking the Runway 10 Tower assigned the new departure clearance runway heading with an initial climb of 2000ft which we complied with. After takeoff we were instructed to turn to a new heading of 360; climb to maintain 10;000; and then handed off to the departure frequency. After the frequency change we were given the instruction to proceed direct to FEKKO; but we heard and read back direct to PALCO; which was on our flight plan and on the departure procedure that we were initially cleared for. While climbing to 10;000ft and direct to PALCO our aircraft received RA guidance and audible monitor climb was announced. At that time I disconnected Autopilot and followed the RA guidance presented on my flight display. Around the same time of the RA guidance the departure controller queried our flight asking if we were proceeding direct to FEKKO to which we replied we were direct to PALCO. The controller informed our flight that the instruction was direct to FEKKO; not PALCO; and gave us the frequency change to Miami Center. At that time we proceeded direct to FEKKO and made the frequency change to Miami Center. After the frequency change we informed the new controller of the RA we encountered. The RA guidance was complied with and at no time did we see the other aircraft. Cause: I believe the causal factor that led to the RA was the naming convention of the two waypoints. The two waypoints have too similar of a pronunciation especially since they are both within one ATC boundary. Even though we heard the instruction given and read back to ATC what we heard; the error was not trapped.
+
+Narrative 2: On departure after climbing to 7.000 on the heading 360 ATC cleared us to climb to 10.000ft and fly direct to position PALCO which was replied. Shortly after ATC inquired if we were flying direct to FEKKO and we replied that we where flying direct to PALCO to which ATC told us fly direct to FEKKO not PALCO. Approaching 10.000 ft ATC told us to call San Juan center. At this point we had a TCAS RA monitor vertical speed". We kept turning towards FEKKO and complied with the TCAS RA reaching 10.300ft approximately. We contacted San Juan center and advised them of the TCAS RA and that we were clear of conflict resuming 10.000ft.Cause: The position names should be phonetically more diverse to mitigate the possibility of mistaking FEKKO for PALCO. Also the use of CPDLC communication would vastly improve safety."
+
+Synopsis: Air carrier flight crew reported they were cleared to FEKKO but navigated toward PALCO; a similar sounding fix which was also on the flight plan.

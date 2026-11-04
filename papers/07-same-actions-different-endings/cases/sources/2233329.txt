@@ -1,0 +1,20 @@
+ACN 2233329 | category B | set main
+
+Date: 202504
+Local time: 0001-0600
+Aircraft 1: A300
+Crew size: 2
+Flight phase: Landing
+Aircraft 2: Any Unknown or Unlisted Aircraft Manufacturer
+Reporter 1 function: Pilot Not Flying; Captain
+Reporter 1 qualification: Flight Crew Air Transport Pilot (ATP); Flight Crew Instrument; Flight Crew Multiengine
+Reporter 2 function: First Officer; Pilot Flying
+Anomaly: ATC Issue All Types; Conflict Ground Conflict; Critical; Deviation / Discrepancy - Procedural Clearance; Ground Incursion Runway
+Contributing factors: Airport; Procedure
+Primary problem: Procedure
+
+Narrative 1: During rollout; Tower asked us to get off at [Taxiway] 1. We were too fast to get off at that taxiway and we missed it and coordinated with Tower to get off at 2. The airplane behind us had to go around and ZZZ Tower asked us to call them to explain why we couldn't get off at 1. I told him we were to fast and didn't have time to safely make it. Cause: Late instructions from ZZZ TOWER.
+
+Narrative 2: Upon landing during IOE I was pilot flying; we had briefed that in this reduced flap landing; I would let the auto brakes slow the aircraft to below 30 kts. before transfer of controls to the Captain. As we were rolling out and monitoring the deceleration; Tower asked us to turn onto [Taxiway] 1. We were just prior to that taxiway and the deceleration was not complete to allow for control transfer to execute the turn off. I looked up and realized that we were passing 1. We radioed Tower that we were unable to make the 1 turn. He said to hurry down to the next exit as there was traffic on short final. We tried to be expeditious but the traffic behind us had to go around.Cause: Perhaps we could have been more expeditious in our exit; but in a training environment where configurations are dictated by trading needs; with the given spacing; I am not sure that this was avoidable. (At least by our part).Suggestions: Spacing by ATC is surely optimized for maximum arrival rate but that may not always be the solution that works for all situations. When training is involved; our performance may not be what is expected by ATC. Perhaps there is a way to alert them ahead of time to make their expectations equal our capabilities.
+
+Synopsis: A300 flight crew reported ATC late instructions to clear runway resulted ground conflict and an aircraft having to go-around.

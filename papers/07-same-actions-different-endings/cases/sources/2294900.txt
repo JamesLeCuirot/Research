@@ -1,0 +1,22 @@
+ACN 2294900 | category A | set pilot
+
+Date: 202510
+Local time: 0001-0600
+Flight conditions: VMC
+Aircraft 1: Commercial Fixed Wing
+Crew size: 2
+Flight phase: Landing
+Airspace: Class B IAH
+Reporter 1 function: First Officer; Pilot Flying
+Reporter 1 qualification: Flight Crew Air Transport Pilot (ATP); Flight Crew Instrument; Flight Crew Multiengine
+Reporter 2 function: Pilot Not Flying; Captain
+Anomaly: Deviation - Speed All Types; Deviation / Discrepancy - Procedural Published Material / Policy; Inflight Event / Encounter CFTT / CFIT; Inflight Event / Encounter Unstabilized Approach
+Result: Flight Crew Became Reoriented; Flight Crew FLC complied w / Automation / Advisory; Flight Crew Took Evasive Action
+Contributing factors: Human Factors
+Primary problem: Human Factors
+
+Narrative 1: At end of redeye into IAH we were cleared a visual approach for RWY 27. When selecting to go direct to the FAF in LNAV; VNAV was not selected for a couple of seconds which caused us to be high. In an attempt to stabilize the approach we did a S turn which helped with the approach. Combined with our fatigue we were so focused on making the gates and were high during the approach but were constantly verbally discussing the stabilization gates. At the 500 ft mark we thought that the speed was within 15 kts and it was decreasing at that time. When we parked we received a report that we were 5 kts too fast at the 500 ft mark. During the approach at a low altitude we heard 'Too Low Terrain' but both of us saw the runway; visually confirmed that the runway was in sight and in a safe approach situation; and believed that it was just in reference to the higher descent rate and decided to continue the approach. We then realized with the printout that we landed the airplane in flaps 25 instead of the intended 30. While we both thought that we had flaps 30 selected we hyper-fixated on trying to slow the aircraft down and  didn't catch our mistake. The rest of the landing was completed safely and touched down within the touchdown zone with no other issues.
+
+Narrative 2: We were operating redeye flight LAX-IAH. On downwind we got cleared for the visual approach to runway 27. Once cleared for the visual approach; we proceeded direct to the FAF. VNAV wasn't engaged once we went direct; but was quickly identified as well as being high on the path.We configured the aircraft for landing and decided to perform an S turn to correct for altitude. Once the S turn was completed; we began to overly fixate on our vertical profile and airspeed in relation to the stabilized approach criteria. At 500 feet we were on path and speed.Approaching the runway in visual conditions at a low altitude we got a terrain warning. Given our position over the runway and stable state of the aircraft; we elected to land uneventfully; in the touchdown zone.Once we parked at the gate; we got a print out that said we were 5 knots too fast below 500 feet and landed flaps 25. Discussing the approach in our debrief it was evident fatigue; task saturation and a heightened focused on vertical path and speed led to our mistake of not selecting flaps 30. Our intent was to be safe; stable and fully configured for a flaps 30 landing.
+
+Synopsis: Air carrier flight crew reported receiving a GPWS terrain warning on an unstabilized visual approach to IAH.

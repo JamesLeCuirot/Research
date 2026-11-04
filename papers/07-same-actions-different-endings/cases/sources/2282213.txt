@@ -1,0 +1,19 @@
+ACN 2282213 | category C | set main
+
+Date: 202509
+Local time: 1201-1800
+Aircraft 1: EMB ERJ 170/175 ER/LR
+Crew size: 2
+Mission: Passenger
+Flight phase: Initial Approach
+Airspace: Class B ZZZ
+Reporter 1 function: Instructor; Pilot Not Flying; Captain
+Reporter 1 qualification: Flight Crew Multiengine; Flight Crew Air Transport Pilot (ATP); Flight Crew Instrument
+Anomaly: Deviation - Altitude Crossing Restriction Not Met; Deviation - Altitude Overshoot; Deviation / Discrepancy - Procedural Published Material / Policy; Inflight Event / Encounter CFTT / CFIT
+Result: Air Traffic Control Issued New Clearance; Air Traffic Control Issued Advisory / Alert; Flight Crew Became Reoriented; Flight Crew Returned To Clearance
+Contributing factors: Human Factors; Procedure
+Primary problem: Human Factors
+
+Narrative 1: While flying inbound on the ILS XXC into ZZZ; ATC instructed us to maintain 5000ft to ZZZZZ and cleared for the approach. The VNAV Path was set at 2.0 degrees; so it showed the VNAV Path below our altitude of 5000 feet. prior to ZZZZZ; FPA (Flight Path Angle) was selected to 'chase' the path and I stated we are supposed to maintain altitude until the ZZZZZ fix. Once the aircraft started to descend below the assigned 5000ft we were queried about our altitude by ATC. ATC instructed us to climb back to 5000ft and maintain 5000ft until ZZZZZ; and cleared for the ILS XXC approach. We climbed to 5000ft; maintained 5000ft until ZZZZZ; then executed the approach with no further issues. ZZZ ILS XXC Low Altitude Alert.
+
+Synopsis: ERJ-170 Captain reported they descended below a crossing restriction on approach and received a low altitude alert from ATC.

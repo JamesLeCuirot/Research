@@ -1,0 +1,19 @@
+ACN 2220139 | category D | set main
+
+Date: 202503
+Flight conditions: VMC
+Aircraft 1: B737 Undifferentiated or Other Model
+Crew size: 2
+Flight phase: Final Approach
+Airspace: Class C ZZZ
+Reporter 1 function: Captain
+Reporter 1 qualification: Flight Crew Instrument; Flight Crew Multiengine; Flight Crew Air Transport Pilot (ATP)
+Reporter 1 experience: Flight Crew Last 90 Days 106.12; Flight Crew Type 106.12
+Anomaly: Deviation - Track / Heading All Types; Deviation / Discrepancy - Procedural Clearance; Deviation / Discrepancy - Procedural Published Material / Policy; Inflight Event / Encounter Loss Of Aircraft Control; Inflight Event / Encounter Weather / Turbulence
+Result: Flight Crew Became Reoriented; Flight Crew Regained Aircraft Control
+Contributing factors: Human Factors
+Primary problem: Human Factors
+
+Narrative 1: On approach to ZZZ we were cleared the visual approach. With the autopilot on; leave overshot final due to tailwinds.  I advised the Fo; who disconnected the auto pilot to correct but he banked past 30 degrees by accident in getting back to corse. I advised him of his bank as the bank angle call came over the speaker. And he corrected back immediately.   A normal landing occurred.  Estimated 38-40 degrees of bank.
+
+Synopsis: B737 pilot reported overbanking during approach resulted in a bank angle warning.

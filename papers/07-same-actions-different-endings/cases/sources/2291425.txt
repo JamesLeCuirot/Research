@@ -1,0 +1,22 @@
+ACN 2291425 | category C | set main
+
+Date: 202510
+Local time: 1201-1800
+Aircraft 1: Commercial Fixed Wing
+Crew size: 2
+Flight phase: Descent
+Airspace: Class B IAD
+Aircraft 2: Any Unknown or Unlisted Aircraft Manufacturer
+Reporter 1 function: Captain; Pilot Flying
+Reporter 1 qualification: Flight Crew Multiengine; Flight Crew Instrument; Flight Crew Air Transport Pilot (ATP)
+Reporter 2 function: Pilot Not Flying; First Officer
+Anomaly: Deviation - Altitude Crossing Restriction Not Met; Deviation - Altitude Undershoot; Deviation / Discrepancy - Procedural Published Material / Policy; Deviation / Discrepancy - Procedural Clearance; Inflight Event / Encounter Wake Vortex Encounter
+Result: Flight Crew Returned To Clearance
+Contributing factors: Human Factors; Environment - Non Weather Related; Procedure
+Primary problem: Human Factors
+
+Narrative 1: On the CALVR6 arrival into IAD We encountered wake turbulence several times outside of KASDY and agreed to fly a bit higher to avoid the wake. We only had one operable FMS on the FO side and I the captain was PF. The descent to KASDY was only a 1.7 degree descent but then we missed crossing BARIN at 6000 as we got behind and had to lose 1000 feet in 5 miles. The ATC person asked why all the planes were missing the altitude.Suggestions: We will both be more attentive given the difference in glide path; and the distractions of wake turbulence and only 1 FMS.
+
+Narrative 2: On the CALVR 6 arrival; at KASDY we experienced wake turbulence from aircraft ahead of us and stayed above it during descent. Resulted in being at around 6900 at BARIN which required crossing at 6000 ft. Corrected and communicated with ATC.Suggestions: More attentive to altitudes with 1 working FMS and wake turbulence.
+
+Synopsis: Air carrier flight crew reported they failed to make a crossing altitude restriction on arrival into IAD when they flew a high profile to avoid wake turbulence.

@@ -1,0 +1,18 @@
+ACN 2223799 | category C | set main
+
+Date: 202503
+Local time: 1201-1800
+Aircraft 1: A319
+Crew size: 2
+Flight phase: Initial Approach
+Airspace: Class D ZZZ
+Reporter 1 function: Pilot Not Flying; First Officer
+Reporter 1 qualification: Flight Crew Instrument; Flight Crew Air Transport Pilot (ATP); Flight Crew Multiengine
+Anomaly: ATC Issue All Types; Deviation - Altitude Overshoot; Deviation / Discrepancy - Procedural Published Material / Policy; Inflight Event / Encounter CFTT / CFIT
+Result: Air Traffic Control Issued Advisory / Alert; Air Traffic Control Provided Assistance; Flight Crew Became Reoriented
+Contributing factors: Chart Or Publication; Airspace Structure; Human Factors; Procedure
+Primary problem: Procedure
+
+Narrative 1: CA was PF and I was PM. ZZZ Approach vectored us northwest of the airport on a 080 heading. Roughly abeam the FAF; we reported the airport in sight and got cleared for the Visual Approach to RWYXXR. We had planned to fly a Visual Approach backed up with the ILS. The approach clearance came at a strange angle to final; which was exacerbated by the southerly wind. The PF disconnected the autopilot and hand flew the approach starting with a base to final turn; while we slowed and configured the aircraft. At approximately 2;300 feet; the tower controller issued a Low Altitude Alert on the tower frequency. We stopped the descent and visually verified outside and inside that we were at a safe altitude. When reestablished on the glideslope; the PF continued the approach. We were stable by 1;000 feet AGL and landed. Throughout this sequence; we maintained visual contact with the airport and all surrounding terrain and obstacles.Night visual approaches present a hazard as far as terrain and obstacles are concerned. Going forward; to prevent a scenario like this; the best options would be request vectors for the published ILS approach; or request better vectors to intercept final while under radar control before accepting an approach clearance. ATC gave us a vector that was somewhere between a downwind and base pointed away from the airport. A better vector for a base or final intercept would've avoided this situation.
+
+Synopsis: A319 pilot reported while they were conducting a Visual Approach they received a Low Altitude Alert from Tower.

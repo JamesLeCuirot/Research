@@ -1,0 +1,24 @@
+ACN 2280940 | category F | set main
+
+Date: 202508
+Local time: 1201-1800
+Flight conditions: VMC
+Aircraft 1: EMB ERJ 170/175 ER/LR
+Crew size: 2
+Flight phase: Climb; Initial Climb; Takeoff / Launch
+Airspace: Class B PHX
+Aircraft 2: Commercial Fixed Wing
+Reporter 1 function: Captain; Pilot Flying
+Reporter 1 qualification: Flight Crew Multiengine; Flight Crew Air Transport Pilot (ATP); Flight Crew Instrument
+Reporter 1 experience: Flight Crew Total 5810
+Reporter 2 function: First Officer; Pilot Not Flying
+Anomaly: Deviation - Speed All Types; Deviation / Discrepancy - Procedural Published Material / Policy; Deviation / Discrepancy - Procedural Clearance; Inflight Event / Encounter Wake Vortex Encounter
+Result: Air Traffic Control Issued New Clearance; Flight Crew Returned To Clearance
+Contributing factors: Human Factors; Procedure; Environment - Non Weather Related
+Primary problem: Human Factors
+
+Narrative 1: We took off from Runway 25R on the FYRBD1 Departure. We had some wake turbulence during climb-out. At 1;000 feet AGL I called for VNAV and noticed the aircraft wasn't accelerating like expected. ATC called for max forward speed then turned us off course. We discussed possible problems then my FO noticed the speed selector was in manual mode when it should have been in FMS mode. We normally rely on automation to maintain speed on departure. Once we selected FMS speed the aircraft accelerated to 210 KIAS. We expected automation to position the Flight Director (FD) to maintain the correct speed but neglected to select FMS speeds. We accidentally took off with the switch in the wrong position. I will be more careful next time.
+
+Narrative 2: I was pilot monitoring for this flight. I completed all my flows normally and entirely. Checklist done as usual and without time pressure. We departed Runway 25R on Firebird1 Departure (not listed in procedures). 80; V1; R; V2 callouts made as usual with normal speeds. We experienced wake turbulence; NAV and VNAV callout was made; frequency change to Departure in brief amount of time. Soon after change to Departure we noticed we were not speeding up. We discussed this out loud then I realized speeds were set to manual not FMS. We switched to FMS and began to speed up as normal. Due to the slow speed; Phoenix gave us a heading off the departure then we resumed departure shortly after.Upon landing; most pilots immediately switch speeds from manual to FMS. Also; when I brief as pilot flying; I brief departing in FMS speeds;" physically touching to make sure switch in proper position; rarely finding it out of position. I was pilot monitoring for this flight and did not catch the switch being in the wrong position. In the air; distraction with radio calls and wake turbulence impacted my own response time to noticing the speed and improper switch placement.I will make sure that I add checking the FMS speed switch regardless of if I am flying or not. Complacency and lack of experience never having experienced this issue before impacted my ability to notice the issue but are easy to address for the future. I will be certain this mistake does not occur again."
+
+Synopsis: EMB-175 flight crew reported distraction with radio calls and wake turbulence from a preceding aircraft led to the aircraft's slow acceleration during the climb; which were caused by the aircraft speeds being set to manual instead of FMS.

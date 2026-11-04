@@ -1,0 +1,23 @@
+ACN 2263613 | category D | set main
+
+Date: 202507
+Local time: 1201-1800
+Flight conditions: VMC
+Light: Daylight
+Aircraft 1: Regional Jet 200 ER/LR (CRJ200)
+Crew size: 2
+Flight phase: Initial Approach
+Airspace: Class B ZZZ
+Reporter 1 function: First Officer; Pilot Flying
+Reporter 1 qualification: Flight Crew Air Transport Pilot (ATP); Flight Crew Multiengine; Flight Crew Instrument
+Reporter 2 function: Pilot Not Flying; Captain
+Anomaly: Aircraft Equipment Problem Less Severe; Deviation - Speed All Types; Deviation - Track / Heading All Types; Deviation / Discrepancy - Procedural Clearance; Deviation / Discrepancy - Procedural Published Material / Policy; Inflight Event / Encounter Loss Of Aircraft Control; Inflight Event / Encounter Weather / Turbulence
+Result: Flight Crew Regained Aircraft Control; Flight Crew Overcame Equipment Problem; Flight Crew Returned To Clearance
+Contributing factors: Aircraft; Human Factors; Weather
+Primary problem: Human Factors
+
+Narrative 1: Flight prior to event was uneventful. We were set up for the visual backed up by the ILS for Runway XX into ZZZ. After several very odd vectors we were vectored in very closely to the final approach fix. Due to this I (FO) decided to intercept in green needles in order to save me some task saturation while making that turn to final nearly over the fix. As we neared the intercept I realized that I no longer saw the green needles meaning that we wouldn't intercept. I quickly switched over to white needles as we passed through the final approach course and hit nav mode. I then immediately knew I had to also manually start the descent since this was turning into a white needles approach. I adjusted the altitude up and hit VS to manually start the descent. When I hit VS I also realized that we never intercepted the course and the airplane had switched to roll mode. It was at this time that I reached for the disconnect to manually fly it in and we momentarily had a stick shaker as my airspeed had been slowly bleeding off during this event as well as environmental factors of gusty winds. The captain stated 'SPEED' and I obtained manual control immediately correcting the speed and corrected onto course and PAPI's for an uneventful landing.Cause: The main cause of the event was a breakdown in visual scanning as I was focused on trying to correct our course issue after losing green needles. The contributing factors were the gusty winds as well as an over reliance on automation instead of manually taking control of the airplane when I realized something was going wrong. Suggestions: A proper scan of all of the instruments as well as making it a habit to always intercept in white needles would have prevented this event.
+
+Narrative 2: On approach to Runway XX; we were cleared for the ILS XX and to maintain 170 knots until ZZZZZ. The FO (PF) elected to switch to green needles to intercept at ZZZZZ; but the localizer did not capture and he armed NAV mode. When the localizer still did not capture; he switched back to white needles for guidance. At this point; we flew past the final approach course and clicked off the autopilot to correct. I bugged our final approach speed of 143 knots; and a few seconds later we then received a stall shaker. I (PM) called SPEED and the FO corrected immediately. We were stable before the 1000 foot call and landed without further event.Cause: We were momentarily overwhelmed by our automation usage and did not pay attention to speed as we should have; neglecting it in our scan. I was also switching to Tower and calling out the before landing check; when I should have been adding speed to my scan and calling any deviations earlier. It was a typical windy afternoon in ZZZ; so that also could have contributed to our slow speed as well.Suggestions: We could have clicked off the autopilot sooner to be better prepared for any loss in speed. Since we were focused on multiple things at once (before landing check; radios; automation usage; and speed); we neglected the most important part -- fly the airplane and add speed to our scan.
+
+Synopsis: CRJ-200 flight crew reported flying through the approach course and temporary loss of aircraft control.

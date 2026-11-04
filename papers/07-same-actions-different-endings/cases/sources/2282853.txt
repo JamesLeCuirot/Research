@@ -1,0 +1,21 @@
+ACN 2282853 | category C | set main
+
+Date: 202509
+Flight conditions: VMC
+Aircraft 1: A319
+Crew size: 2
+Flight phase: Descent
+Airspace: Class E ZZZ
+Reporter 1 function: Pilot Flying; Captain
+Reporter 1 qualification: Flight Crew Air Transport Pilot (ATP); Flight Crew Multiengine; Flight Crew Instrument
+Reporter 2 function: Pilot Not Flying; First Officer
+Anomaly: Deviation - Altitude Overshoot; Deviation - Altitude Crossing Restriction Not Met; Deviation / Discrepancy - Procedural FAR; Deviation / Discrepancy - Procedural Clearance; Deviation / Discrepancy - Procedural Published Material / Policy; Inflight Event / Encounter Weather / Turbulence; Inflight Event / Encounter CFTT / CFIT
+Result: Air Traffic Control Issued New Clearance; Air Traffic Control Issued Advisory / Alert; Flight Crew FLC complied w / Automation / Advisory; Flight Crew Executed Go Around / Missed Approach
+Contributing factors: Human Factors; Procedure
+Primary problem: Human Factors
+
+Narrative 1: On approach into ZZZ; I was pilot flying on the flight into ZZZ. Initially the metar was calling for the northerly runway but then upon listening to atis and center telling us there was significant weather on the RNAV XX final; we switched to the southerly runway. We had to change the runway and rebrief; the mountain guide was referenced while deviating from weather. Center cleared us for the approach and descend and maintain 15000. I queried the instruction from the first officer; he confirmed cleared the approach so we set the bottom altitude and armed the approach to follow the vertical guidance on the approach which had 11000 the 9400 then 8100. Since the FMS was showing us very high; I pulled speed breaks and initiated a rapid descent down. Center called us at 11000 ft to say we needed to climb back to 15000 as the MSA in the area was 14000 and called a low altitude alert. We initiated a climb to 15000 until we were given another altitude and requested vectors because we would have been very high. ATC gave the vectors. The approach and landing was continued successfully.
+
+Narrative 2: It was leg 2 of 4 for the day. ZZZ1-ZZZ. We were descending into ZZZ and were planning on the RNAV XX approach. We loaded and briefed the descent and approach in some detail. There was weather near the field and center told us there was heavy/extreme precipitation on the final approach course. After a brief discussion; the captain and I decided to change to the ILS XY. The winds were mainly crosswinds. So we loaded the approach and briefed. Shortly after; ATC gave us a descent to 15;000 at ZZZZZ. Then he cleared us for the approach. Conditions at the time were VFR day. We were well above our descent path so the captain asked me to set 8100'; the FAF altitude on the approach. I did and they pulled open descent and extended the speed brakes. We began descending rapidly although the captain verified on the MCDU (Multipurpose Display Control Unit) that we would meet the constraints at each fix on the approach. We descended through 15;000 and ATC informed us we were below the MSA; which was 14;400 and reminded us that we should be at 15;000 at ZZZZZ. We then proceeded to climb back to 15;000. The lowest we got before we began climbing was about 11;500. We got to 15;000 just past ZZZZZ but by then we were too high for a stable approach; so we took vectors from center told us descend; and landed without further incident.
+
+Synopsis: A319 flight crew reported a low altitude alert and CFTT event after descending below the MSA for an ILS approach.  Crew climbed back and requested vectors for a second approach and landing.

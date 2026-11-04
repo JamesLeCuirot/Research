@@ -1,0 +1,18 @@
+ACN 2280891 | category A | set main
+
+Date: 202508
+Local time: 1801-2400
+Aircraft 1: EMB ERJ 170/175 ER/LR
+Crew size: 2
+Flight phase: Final Approach; Landing
+Airspace: Class D ZZZ
+Reporter 1 function: Pilot Flying; First Officer
+Reporter 1 qualification: Flight Crew Multiengine; Flight Crew Instrument; Flight Crew Air Transport Pilot (ATP)
+Anomaly: Deviation / Discrepancy - Procedural Published Material / Policy; Inflight Event / Encounter Unstabilized Approach; Inflight Event / Encounter Loss Of Aircraft Control
+Result: Flight Crew Regained Aircraft Control
+Contributing factors: Procedure; Human Factors
+Primary problem: Human Factors
+
+Narrative 1: I was pilot flying landing in ZZZ. The approach was stable on visual glide path into runway XX. I rotated for landing and the aircraft floated more than I had expected. Causes where potentially me starting the rotation high and the aircraft being lighter due to less passengers. I was fixating on landing and correcting what I saw developing by holding pitch or even lowering it. I touched down on the main wheels at or just beyond the last touchdown zone stripe. I began to pull the triggers and pull back to engage thrust reversers for the landing when the Captain called the go around. I hesitated to initiate it and then looked over to see if my reversers had engaged and the Captain took control of the aircraft to complete the landing.
+
+Synopsis: ERJ 170 First Officer reported an unstable approach and long landing resulted in the Captain taking controls.

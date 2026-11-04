@@ -6,35 +6,54 @@ Commercial pilot (Senior First Officer), aviation flight safety officer, and avi
 
 This repository holds my research, complete and in progress. Most of it applies aviation safety science and human factors (accident investigation, safety management systems, just culture, crew resource management, monitoring and training) to the safety of AI systems, and to the use of AI in aviation.
 
-## Research index
+## Papers
 
-| Work | Type | Status | Where |
-|---|---|---|---|
-| **Extending AI-Agent Incident Analysis to Multi-Agent Systems: AFACS**, an HFACS-based framework and an audit of public multi-agent traces | Framework and empirical study | **Preprint v1.0** (4 Nov 2026), not peer reviewed; AI coding pilot complete (750 codings); human-coder validation planned as a second study | [`projects/afacs/`](projects/afacs/) |
-| **Just Culture for Machines:** Why Penalising Disclosure Teaches Concealment | Theory | **Preprint v1.0** (4 Nov 2026), not peer reviewed | [`papers/01-just-culture-for-machines/`](papers/01-just-culture-for-machines/) |
-| **Do LLM Monitors Miss Rare Threats?** A Pre-registered Test of the Low-Prevalence Effect | Pre-registered experiment | **Preprint v1.0** (4 Nov 2026), not peer reviewed | [`papers/02-do-llm-monitors-miss-rare-threats/`](papers/02-do-llm-monitors-miss-rare-threats/) |
-| **From RSP to SMS:** Reading Frontier AI Safety Frameworks Through ICAO's Safety Management System | Theory and document analysis | **Preprint v1.0** (4 Nov 2026), not peer reviewed | [`papers/03-from-rsp-to-sms/`](papers/03-from-rsp-to-sms/) |
-| **Checkride or Jump Seat?** What LOSA and Evidence-Based Training Teach About Evaluation Awareness in AI Systems | Theory and pilot study | **Preprint v1.0** (4 Nov 2026), not peer reviewed | [`papers/04-checkride-or-jump-seat/`](papers/04-checkride-or-jump-seat/) |
-| **Untrusted by Design:** Bringing AI Control into Aviation's Operational Oversight of AI | Theory and regulatory analysis | **Preprint v1.0** (4 Nov 2026), not peer reviewed | [`papers/05-untrusted-by-design/`](papers/05-untrusted-by-design/) |
-| **Research agenda:** aviation safety science for AI alignment | Proposals | 17 proposals; 5 written up as the papers above | [`agenda/`](agenda/) |
+Every paper has its own folder in [`papers/`](papers/). Click **PDF** to read it.
 
-Each paper folder has a PDF, its LaTeX source, a citation block, a verification log for every reference (`sources.md`) and the record of its independent audit (`AUDIT.md`). Empirical work includes its code, data, raw outputs and, where applicable, its pre-registration.
+| # | Paper | Type | Status | Read |
+|---|---|---|---|---|
+| 01 | **Just Culture for Machines:** Why Penalising Disclosure Teaches Concealment | Theory | Preprint v1.0 (4 Nov 2026). Journal version in preparation | [PDF](papers/01-just-culture-for-machines/paper.pdf) · [folder](papers/01-just-culture-for-machines/) |
+| 02 | **Do LLM Monitors Miss Rare Threats?** A Pre-registered Test of the Low-Prevalence Effect | Pre-registered experiment | Preprint v1.0 (4 Nov 2026). Journal version in preparation | [PDF](papers/02-do-llm-monitors-miss-rare-threats/paper.pdf) · [folder](papers/02-do-llm-monitors-miss-rare-threats/) |
+| 03 | **From RSP to SMS:** Reading Frontier AI Safety Frameworks Through ICAO's Safety Management System | Theory and document analysis | Preprint v1.0 (4 Nov 2026) | [PDF](papers/03-from-rsp-to-sms/paper.pdf) · [folder](papers/03-from-rsp-to-sms/) |
+| 04 | **Checkride or Jump Seat?** What LOSA and Evidence-Based Training Teach About Evaluation Awareness in AI Systems | Theory and pilot study | Preprint v1.0 (4 Nov 2026) | [PDF](papers/04-checkride-or-jump-seat/paper.pdf) · [folder](papers/04-checkride-or-jump-seat/) |
+| 05 | **Untrusted by Design:** Bringing AI Control into Aviation's Operational Oversight of AI | Theory and regulatory analysis | Preprint v1.0 (4 Nov 2026) | [PDF](papers/05-untrusted-by-design/paper.pdf) · [folder](papers/05-untrusted-by-design/) |
+| 06 | **Extending AI-Agent Incident Analysis to Multi-Agent Systems: AFACS**, an HFACS-Based Framework, and an Audit of Public Traces | Framework and empirical study | Preprint v1.0 (4 Nov 2026). AI coding pilot complete (750 codings); human-coder validation planned. Journal version in preparation | [PDF](papers/06-afacs/paper.pdf) · [folder](papers/06-afacs/) |
+| 07 | **Same Actions, Different Endings:** Outcome Severity Shifts How AI Models Apply Reason's Culpability Decision Tree to Airline Flight Crews | Pre-registered experiment | Preprint v1 (2 Oct 2026), on [OSF](https://doi.org/10.17605/OSF.IO/DHF38). Journal version in preparation | [PDF](papers/07-same-actions-different-endings/paper/same-actions-different-endings-preprint-v1.pdf) · [folder](papers/07-same-actions-different-endings/) |
 
-## How this repository is organised
+None is peer reviewed yet. Where each paper could be submitted: [`papers/SUBMISSIONS.md`](papers/SUBMISSIONS.md).
+
+**Research agenda:** [`agenda/`](agenda/) holds 17 proposals for applying aviation safety science to AI alignment; papers 01–05 grew out of five of them.
+
+## How the repository is organised
 
 ```
 Research/
 ├── README.md        this index
 ├── CITATION.cff     how to cite the repository
 ├── LICENSE          MIT licence for code
-├── papers/          working papers: one folder per paper, plus the shared LaTeX style (_build/),
-│                    house style (STYLE.md) and author review checklist (REVIEW_CHECKLIST.md)
-├── projects/        longer-running research projects with their own pipelines
-│   └── afacs/       AFACS: layered failure analysis of LLM multi-agent traces (Preprint v1.0)
+├── papers/          one folder per paper (see below), plus what they share:
+│   ├── _build/          LaTeX style (techreport.sty), build script, reference checker
+│   ├── STYLE.md         house style
+│   ├── REVIEW_CHECKLIST.md  author decisions on review points
+│   └── SUBMISSIONS.md   where each paper could be submitted
 └── agenda/          research proposals not yet written up
 ```
 
-New work goes in `papers/` (a self-contained paper) or `projects/` (a project with a pipeline, data and several outputs), and gets a row in the index above.
+Every paper folder is laid out the same way:
+
+| File or folder | What it is |
+|---|---|
+| `README.md` | Start here: abstract, status, how to cite |
+| `paper.pdf`, `paper.tex`, `references.bib` | The preprint and its source (07 is in Markdown, under `paper/`, as deposited on OSF) |
+| `journal/` | The journal submission version and its cover letter, once one is being prepared |
+| `sources.md` | The check of every reference against its source |
+| `AUDIT.md` | The independent audit and how each finding was resolved |
+| `NOTES.md` | Author notes: open points, version log |
+| `code/`, `data/`, `results/`, ... | For empirical papers: the code, data and every raw output |
+
+Gaps, being filled before journal submission: 06 has no `sources.md` yet (its reference checks are in `AUDIT.md`); 07 has neither `sources.md` nor `AUDIT.md`, because it was produced under CitadelAero's study process (pre-registered, with every case checked by the author against its source report).
+
+New work gets the next number in `papers/` and a row in the table above.
 
 ## How the work is produced and checked
 
@@ -50,6 +69,9 @@ Each paper's `README.md` gives a BibTeX entry. To cite the repository as a whole
 
 ## Licence
 
-Paper text © 2026 James Le Cuirot. All rights reserved. Code is under the MIT licence ([`LICENSE`](LICENSE)). Item data derived from MBPP (paper 02) are released under CC BY 4.0 with attribution to Austin et al. (2021).
+Paper text © 2026 James Le Cuirot. All rights reserved. Code is under the MIT licence ([`LICENSE`](LICENSE)). Two exceptions:
+
+- **Paper 07** (Same Actions, Different Endings) was published under CC BY 4.0 for its text, data and code, and keeps that licence.
+- **Item data derived from MBPP** (paper 02) are released under CC BY 4.0 with attribution to Austin et al. (2021).
 
 The views expressed are the author's own and do not represent those of any employer or regulator.

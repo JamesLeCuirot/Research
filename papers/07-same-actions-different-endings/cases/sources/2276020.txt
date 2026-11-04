@@ -1,0 +1,22 @@
+ACN 2276020 | category C | set main
+
+Date: 202508
+Local time: 1801-2400
+Light: Night
+Aircraft 1: EMB ERJ 145 ER/LR
+Crew size: 2
+Flight phase: Descent; Initial Approach
+Airspace: Class D ZZZ; Class E ZZZ
+Reporter 1 function: Pilot Not Flying; Captain
+Reporter 1 qualification: Flight Crew Air Transport Pilot (ATP); Flight Crew Instrument; Flight Crew Multiengine
+Reporter 2 function: Pilot Flying; First Officer
+Anomaly: Deviation - Altitude Excursion From Assigned Altitude; Deviation / Discrepancy - Procedural Published Material / Policy; Deviation / Discrepancy - Procedural Clearance; Flight Deck / Cabin / Aircraft Event Other / Unknown; Inflight Event / Encounter CFTT / CFIT
+Result: Air Traffic Control Issued Advisory / Alert; Flight Crew Became Reoriented
+Contributing factors: Environment - Non Weather Related; Human Factors
+Primary problem: Human Factors
+
+Narrative 1: Flying to ZZZ; we were cleared direct to final approach fix for Runway XX (ZZZZZ); descend to 3;000' and report the field in sight. After a few minutes; we identified what we believed was the airport and reported the field in sight. We were instructed to descend to 1;600 feet and cleared for the visual approach Runway XX.The pilot flying had FMS guidance (pink needles); and I as PM was monitoring the ILS (green needles). We began configuring to land and the autopilot was disconnected to start turning to a base leg and descend for landing. At this time; approach asked if we have ZZZ in sight; 12 o'clock; 10 miles. I referenced my MFD (Multi-function Display); looked at our intended turn point; then at 12 o'clock and identified the actual ZZZ airport. I advised 'now we do'. ATC instructed us to return to 1;600 feet and remain cleared for the visual Runway XX. At this point; we had descended through 1100 feet; we corrected back to 1;600 feet; continued eastbound; and completed a normal landing on Runway XX at ZZZ.The field initially reported as 'in sight' was subsequently determined to be ZZZ1.Suggestions: Being cleared for the visual approach so far from the airport (15-20 miles) may have contributed to our initial misidentification of ZZZ1 as ZZZ. I was beginning to recognize the field appeared too close to be ZZZ when approach confirmed the airport location. Because we believed we were closer to the runway than we actually were; we disconnected the autopilot; began configuring; and initiated descent earlier than intended. Descending prior to the final approach fix was not consistent with SOPs and was corrected once identified.In the future; I will place greater emphasis on confirming positive field identification prior to reporting 'field in sight'. I will also ensure that; particularly at night; we prioritize published approaches or accept vectors to final to reduce the likelihood of misidentification.
+
+Narrative 2: While descending into ZZZ at night; Approach instructed us to descend to 1600 feet. We were still 20 miles away from the field once we leveled off. At this point they asked us if we had the field in sight to clear us for the visual for Runway XX at ZZZ. The only airport we could see was ZZZ1 which we mistook for ZZZ due to it being night time and the airport having the exact same configuration runways as ZZZ.I descended to approximately 1000 feet and lined up for a base to final for Runway XX at ZZZ1. At this point Approach gave a 'Low Altitude Alert' and we realized what was going on and our location relative to the airport. I immediately climbed back up towards 1600 feet and hand flew the aircraft to ZZZ for a successful and safe landing.Suggestions: 1600 feet is pattern altitude. 20 miles away is not considered within the traffic pattern of an airport.I understand that ZZZ1 has been mistaken for ZZZ in the past; and with that in mind my only suggestion is to advise ATC to be careful about descending aircraft to such a low altitude (especially at night) and then pestering them for the visual approach when the actual field is out of eyesight range.The airports look EXACTLY the same. Especially at night. And at 1600 feet we didn't see ZZZ until we were less than 10 miles away. At 20 miles; not a chance.
+
+Synopsis: Air carrier pilots reported receiving an ATC altitude alert during descent to wrong airport at night.

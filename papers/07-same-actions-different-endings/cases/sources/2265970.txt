@@ -1,0 +1,23 @@
+ACN 2265970 | category B | set main
+
+Date: 202507
+Local time: 1801-2400
+Flight conditions: VMC
+Weather: Wind
+Aircraft 1: B777-200
+Crew size: 3
+Flight phase: Taxi
+Aircraft 2: Any Unknown or Unlisted Aircraft Manufacturer
+Reporter 1 function: First Officer; Pilot Not Flying
+Reporter 1 qualification: Flight Crew Instrument; Flight Crew Air Transport Pilot (ATP); Flight Crew Multiengine
+Reporter 2 function: Pilot Flying; Captain
+Anomaly: ATC Issue All Types; Conflict Ground Conflict; Critical; Deviation / Discrepancy - Procedural Clearance; Deviation / Discrepancy - Procedural Published Material / Policy; Ground Incursion Runway
+Result: Air Traffic Control Provided Assistance; Flight Crew Requested ATC Assistance / Clarification; Flight Crew Became Reoriented
+Contributing factors: Human Factors
+Primary problem: Human Factors
+
+Narrative 1: While taxing on 1; tower told us to line up on XXC and wait after landing traffic. I saw a plane was landing at that time. Prior to turning on [taxiway] 2 to take runway XXC I saw a plane in the distance but since there are three parallel runways I thought the closest plane was lined up with XXL. It was lined up with XXC and that was the plane we were supposed to line up behind. On 2 and the nose over the hold short we stopped to query the controller because it was evident that the plane was headed for XXC but it was too late. ATC sent the plane around. We were subsequently cleared for takeoff.Cause: Failure to understand tower's intentions.Suggestions: A hold short clearance would have alerted us that we need to stop. Tower didn't issue a hold short clearance so we assumed we could keep moving. A hold short clearance may have given us time to recognize the traffic on final was lined up for XXC before it was too late.
+
+Narrative 2: ZZZZ [airport] - While taxiing East on TAXIWAY 1 approaching 2;  TWR cleared us on to RWY XXC to line up and wait behind landing traffic". At that moment; an airplane was just landing on RWY XXC. The FO; Relief Pilot and I understood this to be the landing traffic TWR was referring to.I visually cleared RWY XXC final as I began the right turn off of TAXIWAY 1 onto TAXIWAY 2 to enter RWY XXC.  There appeared to be traffic on final for the parallel RWY XXL. As we turned onto TAXIWAY 2; the approaching traffic now appeared to be lined up with our runway; RWY XXC. I stopped the jet short of RWY XXC; but just over the HOLD LINE and asked the FO to query TWR about the traffic.Before the FO had the opportunity to query TWR; TWR sent this traffic around; ensured we were stopped and clarified our instructions. We were subsequently cleared on to RWY XXC and departed.Cause: Comm; parallax - the fact that we were told to "line up and wait behind landing traffic" when there was both an aircraft just landing on our departure runway and an aircraft on a 4-5 final for what initially appeared to be the parallel runway. This led to our confusion as to which aircraft we were following.Suggestions: I am not sure. The entire crew was in agreement with the situation and our clearance until I stopped the jet and asked the FO to query tomorrow after the traffic on final appeared to be lined up for our runway as it got closer. Possibly; not utilizing 'line up after landing traffic' in such a saturated environment with close parallel runways?"
+
+Synopsis: Air carrier flight crew reported a runway incursion and critical ground conflict resulted from misunderstanding the controller's instructions.

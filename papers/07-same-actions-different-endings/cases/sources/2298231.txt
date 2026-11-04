@@ -1,0 +1,20 @@
+ACN 2298231 | category F | set main
+
+Date: 202510
+Local time: 0601-1200
+Flight conditions: VMC
+Light: Daylight
+Aircraft 1: B737-800
+Crew size: 2
+Flight phase: Cruise
+Reporter 1 function: First Officer; Pilot Flying
+Reporter 1 qualification: Flight Crew Air Transport Pilot (ATP); Flight Crew Multiengine; Flight Crew Instrument; Flight Crew Flight Instructor
+Reporter 1 experience: Flight Crew Last 90 Days 185; Flight Crew Total 1936; Flight Crew Type 360
+Anomaly: Deviation - Speed All Types; Deviation / Discrepancy - Procedural Published Material / Policy; Inflight Event / Encounter Weather / Turbulence; Inflight Event / Encounter Loss Of Aircraft Control
+Result: Flight Crew Regained Aircraft Control
+Contributing factors: Human Factors
+Primary problem: Human Factors
+
+Narrative 1: On Day 0 at approximately XA:00; I was the First Officer and pilot flying from ZZZ1 to ZZZ. Captain and I were at FL400 when the airspeed trend bar crept up towards the high speed buffet bar. I adjusted the power appropriately with the autothrottles engaged; as is standard practice when correcting for minor airspeed changes. The airspeed crept up again and at that time; without warning; Captain disconnected the auto-throttles and brought power to idle. He said something along the lines of; 'that is not going to work - this is what I would do.' We lost 30-40kts of airspeed at which time I said; 'It takes a while for the engines to spool at this altitude.' He then went full power to arrest the deceleration. While this stopped the airspeed from dropping further; it took several minutes before we regained airspeed stability due to his actions. This was quite concerning; unsafe and completely unnecessary. We were also operating closer to our max altitude rather than our optimum; so we were already working with tighter margins of available thrust. While we landed without incident; I was on edge for the rest of the flight about the actions of the Captain and concerned about what he might do next. During the next leg of the flight; from ZZZ to ZZZ1; I was doing the performance; weight; and balance calculations. I ran numbers for the intersection departure XXR at [Taxiway] 1; which is what was being advertised on the ATIS. When we went to load the FMC; Captain said to run the performance numbers for full length because he didn't want to load the FMC manually (which is what you have to do when you are inputing an intersection departure.) I pushed back and said that they (ATC) were only doing the intersection departure from XXR at 1; he insisted that the difference in speeds and power were minor. We ended up taking off with data for full length rather than the intersection and thankfully everything was okay; but looking back I should have pushed for us to run the data for the proper runway intersection. I felt that; as the First Officer; my voice wasn't heard; and I was reluctant to push the Captain further since he already ignored what I had to say and I didn't want to upset him in fear of how he might react.I have been warned by other Captains and First Officers about this Captain prior to this this flight; and this was my first experience flying with him and was shocked at how he conducted the flight as a Captain on what should have been a benign and uneventful flight. My biggest concern is what would happen in an emergency situation if he was left up to his own devices; or had he been flying with a First Officer that couldn't correct his mistakes in a timely manner.
+
+Synopsis: Air carrier First Officer reported while at cruise flight experiencing a high speed situation where the Captain reduced the power to idle resulting in a loss of airspeed and several minutes to regain airspeed stability.

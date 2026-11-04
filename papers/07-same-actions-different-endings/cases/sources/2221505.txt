@@ -1,0 +1,24 @@
+ACN 2221505 | category D | set main
+
+Date: 202503
+Local time: 0601-1200
+Flight conditions: IMC
+Aircraft 1: Commercial Fixed Wing
+Crew size: 2
+Flight phase: Final Approach; Initial Approach
+Airspace: Class C SNA
+Reporter 1 function: Pilot Not Flying; First Officer
+Reporter 1 qualification: Flight Crew Multiengine; Flight Crew Instrument; Flight Crew Air Transport Pilot (ATP)
+Reporter 1 experience: Flight Crew Last 90 Days 159.77; Flight Crew Type 203.42
+Reporter 2 function: Pilot Flying; Captain
+Reporter 2 experience: Flight Crew Last 90 Days 65.58; Flight Crew Type 83.48
+Anomaly: ATC Issue All Types; Deviation - Track / Heading All Types; Deviation / Discrepancy - Procedural Clearance; Deviation / Discrepancy - Procedural Published Material / Policy; Inflight Event / Encounter CFTT / CFIT; Inflight Event / Encounter Weather / Turbulence
+Result: Air Traffic Control Issued Advisory / Alert; Flight Crew FLC complied w / Automation / Advisory
+Contributing factors: Chart Or Publication; Procedure
+Primary problem: Procedure
+
+Narrative 1: Today we flew the DSNEE 6 RNAV arrival for the ILS 20R into SNA.  When verifying the points prior to descent; we noticed that the FMS would not load JWARD.  We decided to query the initial Approach Controller.  When we were handed off to Approach; I asked if we could expect to fly to JWARD; or if we would get vectors after DSNEE.  The controller gave us the option of flying the RNAV approach from JWARD.  We told him we would fly the ILS; which is what ATIS was advertising.  He told us to expect radar vectors.  I took that to mean expect radar vectors after DSNEE.  We were later switched to our final Approach Controller.  After DSNEE; we did not receive a vector and flew a 235 heading per the STAR.  Before we had a chance to ask for a vector; a controller came on and informed us of a terrain alert and directed us to turn to a heading of 270 and to stop our descent.  We leveled off and turned to the assigned heading. The subsequent vectors and approach were uneventful.
+
+Narrative 2: Upon receiving the first ATIS from SNA while in cruise flight; I noticed they were using the ILS approach to 20R in lieu of the usual RNP approach; due to visibility constraints. I immediately changed the approach in the FMC to the ILS; but noticed that the last fix on the DSNEE arrival; JWARD would not load with the selection of the ILS.  This was the case regardless of whether I loaded the approach with or without transitions.  After multiple attempts; I conferred with the FO; we decided the best course of action was to leave the arrival as is with the ILS via SAGER transition. The plan being that we would ask the initial Approach Controller for clarification; if we were to expect final vectors from the fix DSNEE as oppose to the fix JWARD.  As we checked in with the initial Approach Controller; we inquired about the issue; and he said that JWARD was the transition to the RNP; and that we would have to make that request with him. We said we wanted to do the ILS and asked if we would get radar vectors via DSNEE; he said yes.  As we approached the DSNEE fix we were given a hand off; the new controller gave us a descend; but not a vector. We were experiencing moderate turbulence during this time due to fast moving weather.  We continued past the DSNEE fix on a heading of 235 towards JWARD as per the arrival procedure; although not in the FMC; with the intend of staying protected and having time to ask for a vector. Before we had a chance to ask; a different controller on the same frequency said 'Aircraft X terrain alert; turn right heading 270; it looks like you're off the arrival'. I immediately disengaged the auto pilot; and made the turn. I had my ND (Navigation Display) with terrain on; and did not see any terrain closure prior to the turn.  This leads me to believe that our momentary deviation from the arrival; in conjunction with our erratic descend rate due to turbulence; might have triggered the alert for the controller. We did not receive an alert on the aircraft from the EGPWS (Enhanced Ground Proximity Warning System).  We continued the descend; and intercepted the ILS; and landed without further incident.  I believe there was a clear misunderstanding with the initial Approach Controller on what we were asking in reference to the fix vs the arrival itself.  More importantly; my concern is the fact that the fix JWARD; did not load in conjunction with the ILS to Runway 20R; no matter what transition or lack thereof we selected in the FMC.
+
+Synopsis: Air carrier flight crew reported request to ATC was misunderstood resulted in a low altitude alert and a CFTT event during approach.

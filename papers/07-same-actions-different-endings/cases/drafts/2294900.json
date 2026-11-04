@@ -1,0 +1,11 @@
+{
+  "acn": "2294900",
+  "category": "A",
+  "shared_text": "The flight. A twin-engine airliner on a scheduled passenger flight, arriving at a large airport at the end of an overnight flight. Visual conditions, before dawn.\n\nThe crew. The first officer was the pilot flying and the captain the pilot monitoring. Both pilots were tired at the end of the overnight flight.\n\nWhat happened. On the downwind leg the crew were cleared for a visual approach and selected a direct track to the final approach fix. For a few seconds the vertical navigation mode was not engaged, and the aircraft ended up above the approach path. The crew configured for landing and flew an S-turn to lose height. They then concentrated on meeting the company's stabilised-approach gates, discussing them aloud as they descended. At 500 ft they judged that the speed was within limits and reducing; it was 5 knots above the limit. At low height the ground proximity warning sounded \"Too low, terrain\". Both pilots could see the runway. They judged that the aircraft was in a safe position and that the warning related to the higher rate of descent, and they continued. The crew intended to land with flaps 30; the flaps were at 25, and neither pilot noticed. The crew continued the approach and landed.",
+  "safe_outcome": "The aircraft touched down in the touchdown zone and stopped normally on the runway. There was no conflict with other traffic. No one was hurt and the aircraft was not damaged.",
+  "bad_outcome": "The aircraft could not be stopped on the remaining runway. It left the end of the runway at about 30 knots and came to rest on the grass. The passengers were evacuated, and two received minor injuries during the evacuation. The aircraft was slightly damaged.",
+  "bad_ending_variant": "A-excursion",
+  "bracket_fill": "end",
+  "word_count_shared": 208,
+  "notes": "Pilot case; condensed by Claude as the worked example approved by James on 1 Oct 2026."
+}

@@ -1,0 +1,20 @@
+ACN 2257444 | category C | set main
+
+Date: 202506
+Local time: 0601-1200
+Flight conditions: VMC
+Light: Daylight
+Aircraft 1: EMB ERJ 170/175 ER/LR
+Crew size: 2
+Flight phase: Initial Approach
+Airspace: Class C ZZZ
+Reporter 1 function: Pilot Flying; First Officer
+Reporter 1 qualification: Flight Crew Instrument; Flight Crew Air Transport Pilot (ATP); Flight Crew Multiengine
+Anomaly: ATC Issue All Types; Aircraft Equipment Problem Less Severe; Deviation - Altitude Overshoot; Deviation - Speed All Types; Deviation / Discrepancy - Procedural Clearance; Deviation / Discrepancy - Procedural Published Material / Policy; Inflight Event / Encounter Loss Of Aircraft Control; Inflight Event / Encounter Bird / Animal
+Result: Flight Crew Regained Aircraft Control
+Contributing factors: Human Factors; Aircraft
+Primary problem: Human Factors
+
+Narrative 1: On approach to ZZZ late in arrival a bird strike occurred on runway XXR which we where set up for; the Captain pilot monitoring; input new approach ILS XYL we continued; we where vectored to intercept final and cleared approach XYL. As we intercepted in with nav armed and alt set to FAF alt of 1600 feet; descending and bleeding airspeed with air brakes to meet a 180 knot assigned speed. FO did not call for flaps soon enough and after being vectored off approach entered the heading assigned and did not retract speed brakes; aircraft had descended below assigned altitude and continued to descend as red line approached; captain noticed and retracted flaps but it was too late aircraft descended to 2100 feet and stick shaker activated. Captain took controls; called for; flaps1 and regained altitude to 2500 feet and airspeed into green at 180 assigned speed with flaps 1. Controls were given back to first officer who landed without further incident.Cause: Multiple quick instructions by ATC; and an aggressive decent profile along with the runway change led to first officer (pilot flying) not calling for flaps one soon enough. If that had occurred the altitude deviation issue would most likely not have occurred.Suggestions: First officer should have called for flaps one on approximate base position during intercept instead of relying on speed brakes to slow the aircraft; or used them in conjunction with speed brakes; this would have avoided the speed deviation/stick shaker. Then first officer would have been able to manage altitude without concern for airspeed deviation and altitude deviation would not have occurred.
+
+Synopsis: EMB-175 First Officer reported a low airspeed condition which resulted in a stick shaker and an altitude deviation when being vectored off the final approach course. The Captain took the controls; recovered the airspeed and altitude; then returned the controls to the First Officer for landing.

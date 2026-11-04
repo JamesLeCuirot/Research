@@ -1,0 +1,21 @@
+ACN 2237239 | category B | set main
+
+Date: 202504
+Local time: 1201-1800
+Aircraft 1: A220-300
+Crew size: 2
+Flight phase: Taxi
+Aircraft 2: Any Unknown or Unlisted Aircraft Manufacturer
+Reporter 1 function: Pilot Flying
+Reporter 1 qualification: Flight Crew Instrument; Flight Crew Air Transport Pilot (ATP); Flight Crew Multiengine
+Reporter 2 function: Pilot Not Flying
+Anomaly: ATC Issue All Types; Conflict Ground Conflict; Critical; Deviation / Discrepancy - Procedural Published Material / Policy; Ground Incursion Runway; Ground Incursion Taxiway
+Result: Air Traffic Control Separated Traffic; Flight Crew Requested ATC Assistance / Clarification
+Contributing factors: Human Factors
+Primary problem: Human Factors
+
+Narrative 1: Upon taxi we were given [taxiway] 1; 2; 3 hold short of [runway] XXL. The first officer read back the instructions including the hold short. As we approached XXL; ATC told us to follow Aircraft Y or Aircraft Z (can't remember) from the right; monitor tower. We cleared the runway before making the turn on 3; turned the lights on to cross. We checked for traffic which we did not see; anyone on final; and began to cross. Upon reaching the middle of the runway I checked right again and noticed a landing light for XXL. At that point I noticed that there was not enough room to clear the runway due to the lineup of aircraft waiting to takeoff from runway XY. We asked ATC if the aircraft in front of us can move up so we can clear; which they did; however at that point ATC told the aircraft on XXL to go around.
+
+Narrative 2: At ZZZ; we were cleared to taxi via 1; 2; 3 and to hold short of [Runway] XXL. I copied the instructions on a piece of paper and then read back the instructions; including the hold short detail. After the taxi instructions were read back; we proceeded to taxi along that route; and while under way; we completed the taxi/flight control checks along with the Taxi Checklist. I was performing my duties of monitoring Ground Control while running our checklists. I completed the checklist prior to entering the area of the designated hot spot between Runway XXL and Taxiway 3. We were both heads-up. Around the time of completing the checklist and going heads-up; Ground Control instructed us to follow Aircraft Y ahead and from the right and to monitor Tower. I read those instructions back. Approaching XXL on Taxiway 3; we each cleared the runway; including the final approach path in accordance with our policies and procedures. When I looked to clear the final; I did not see any aircraft. When we reached the middle of the runway we both realized that we couldn't clear it because of the traffic ahead associated with Runway XY. It was at that point that I had a feeling we were not in the correct position and that perhaps we were not in fact cleared to cross XXL. As I queried the Tower to see if they could move the plane up ahead of us; the Captain noticed a small landing light coming from Aircraft Z approaching XXL. Aircraft Z was then instructed to go around. Traffic moved ahead and we proceeded off the runway.
+
+Synopsis: A220 flight crew reported while taxing for departure entering a runway and could not exit the runway due to aircraft on the other side of the runway resulting in ATC sending an aircraft around to avoid a collision with their aircraft.

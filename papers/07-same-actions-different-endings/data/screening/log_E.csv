@@ -1,0 +1,50 @@
+category,draw_rank,acn,decision,failed_criterion,pilot,reason
+E,1,2220575,fails,1,,UAS passed close overhead on final; caused solely by the drone and the crew did nothing that contributed.
+E,2,2201991,fails,1,,UAS seen hovering near the departure path; caused solely by the drone with no contributing crew action.
+E,3,2247888,fails,1,,UAS passed 500 ft off the wing on downwind after an ATC warning; the crew only monitored and reported it.
+E,4,2270248,fails,1,,Large object assumed to be a drone seen during climb; no crew action contributed.
+E,5,2205778,fails,1,,Quadcopter passed under the wing on short final; caused solely by the drone.
+E,6,2255486,fails,1,,Drone seen about 1 mile away during an ATC-assigned turn; no crew action contributed.
+E,7,2232652,fails,1,,Drone passed close overhead during descent; caused solely by the drone.
+E,8,2262989,fails,1,,Drone seen 300 ft below during departure climb; no crew action contributed.
+E,9,2265223,fails,1,,Bright green light (laser or drone) passed over the aircraft on arrival; no crew action contributed.
+E,10,2242370,fails,1,,Drone passed within about 100 ft on final while the FO troubleshot VNAV; the troubleshooting did not contribute to the encounter.
+E,11,2225510,fails,1,,Drone passed under the wing in cruise as reported by a jumpseater; no crew action contributed.
+E,12,2224768,fails,1,,Drone passed close below the wing in cruise; no crew action contributed.
+E,13,2274056,fails,1,,Drone passed about 100 ft overhead on vectors to final; no crew action contributed.
+E,14,2209459,fails,1,,Model aircraft or glider flew along the runway while the crew held short; caused solely by the UAS and holding was a response not a contribution.
+E,15,2255881,fails,1,,Unseen TCAS target later said to be a drone closed on final and the crew levelled off; the conflict was caused by the other aircraft and the crew action was avoidance.
+E,16,2220332,fails,1,,Drone passed about 20 ft from the wing on the ILS; caused solely by the drone.
+E,17,2287845,fails,1,,Drone passed just off the cockpit in climb during an LNAV distraction; the distraction did not contribute to the encounter.
+E,18,2239362,fails,1,,Quadcopter passed over the wing on final; caused solely by the drone.
+E,19,2279232,fails,1,,Aircraft struck an unidentified object (possible drone or bird) on departure; caused solely by the object with no contributing crew action.
+E,20,2220725,fails,1,,Drone within about 50 ft at an ATC-assigned altitude; no crew action contributed.
+E,21,2264916,fails,1,,Possible drone passed about 100 ft above during descent; no crew action contributed.
+E,22,2199018,fails,1,,Quadcopter passed 1000 ft or more away during climb; no crew action contributed.
+E,23,2246198,fails,1,,Drone passed a few hundred feet away on short final; no crew action contributed.
+E,24,2271989,fails,1,,Crew warned of a UAS while holding short took off as it was not in their path; no crew action contributed to any conflict.
+E,25,2248635,fails,1,,Drone passed off the wing during departure; caused solely by the drone.
+E,26,2266294,fails,1,,Drone about 300 ft below during descent; no crew action contributed.
+E,27,2240925,fails,1,,Lighted UAS passed within feet on final at night; caused solely by the drone.
+E,28,2256229,fails,1,,Drone crossed the glidepath about 60 ft from the wing at 500 ft; caused solely by the drone.
+E,29,2224762,fails,1,,Drone passed about 20 ft above on the ILS; caused solely by the drone.
+E,30,2209465,fails,1,,Object (drone or balloon) passed the wing in descent; no crew action contributed.
+E,31,2215463,fails,1,,Drone seen flying beneath the aircraft on final; no crew action contributed.
+E,32,2220285,fails,1,,Drone passed a few feet above the flight deck on an arrival; caused solely by the drone.
+E,33,2235994,fails,1,,Drone at co-altitude 300-500 ft away on approach; no crew action contributed.
+E,34,2245529,fails,1,,Captain saw a drone on final while the FO was head-down after an ATC approach change; the workload did not contribute to the encounter.
+E,35,2215494,fails,1,,Drone passed about 100 ft above the cockpit in climb; caused solely by the drone.
+E,36,2202936,fails,1,,Drone seen 300 ft below on the ILS; no crew action contributed.
+E,37,2213848,fails,1,,Drone passed yards from the wingtip on a visual approach; caused solely by the drone.
+E,38,2208291,fails,1,,Drone passed about 2000 ft below during descent; no crew action contributed.
+E,39,2216156,fails,1,,Balloons or a drone passed over the aircraft on final; no crew action contributed.
+E,40,2214670,fails,1,,Captain reported a possible drone passing the wing on approach; no crew action contributed.
+E,41,2261917,fails,1,,Drone passed 300-500 ft below during descent; no crew action contributed.
+E,42,2213419,fails,1,,Drone passed over the left wing on the ILS at dusk; caused solely by the drone.
+E,43,2238188,fails,1,,Drone or balloon passed under the wing during a turn at an arrival fix; no crew action contributed.
+E,44,2263098,fails,1,,Small drone passed 200-300 ft off the wing on a visual approach; no crew action contributed.
+E,45,2259414,fails,1,,FO lowered the nose after rotation to avoid a drone head-on; the conflict was caused by the drone and the crew action was avoidance.
+E,46,2255269,fails,1,,Drone passed 500-1000 ft away on an arrival; no crew action contributed.
+E,47,2233318,fails,1,,Drone seen below during departure climb; no crew action contributed.
+E,48,2224780,fails,1,,Drone passed within a couple hundred feet at 12000 ft; no crew action contributed.
+E,49,2220564,fails,1,,Captain banked to avoid a drone closing on the aircraft during descent; the conflict was caused by the drone and the crew action was avoidance.

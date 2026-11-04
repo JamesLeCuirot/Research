@@ -282,3 +282,52 @@ The limitations paragraph is otherwise candid: it states no pre-registration, LL
 - Semantic Scholar, OpenAlex and Google Scholar searches for prior work.
 - Whether Laine et al. (2024) and Panickssery et al. (2024) have proceedings versions (not confirmed).
 - Re-generation of transcripts or grades. This is not possible deterministically, and I did not attempt it.
+
+---
+
+## Second-round verification (4 November 2026)
+
+Verifier: independent second-round check (AI agent) of draft v0.2 against this audit. No paper or pilot file was edited. Scratch: `/tmp/claude-0/-home-user-Research/daaac745-27bf-52cd-80c6-ef95e9ce6f1a/scratchpad/verify04/`.
+
+Checks made: `code/analyse.py` re-run on a copy (`uv run --no-project --with krippendorff==0.9.0 ...`); all 10 `results/` files and `figures/fig1_agreement.png` are byte-identical to the repository. Every number in the abstract, §6.1–6.5, Tables 5–6 and Fig. 1 recomputed (ε² 0.525/0.616; 12/14 repeat-run ≥ .667, 2/14 ≥ .800; 64/77 and 65/84 "not required" disagreements; S6 6/8 and the 14 + 2 COM ≤ 3 evidence notes; 739/768; 1,189 chars; 458 calls). Regulation text checked in the Citadel Aero library (EU): ORO.FC.230, AMC1 ORO.FC.230 (b)(3), (d)(2), ORO.FC.231 (a)(4), (h), AMC1/AMC4/GM2 ORO.FC.231(d)(1), GM1 ORO.FC.231(a)(4), GM1 ORO.FC.231(c), GM19, GM1 ORO.FC.230(a);(b);(f), AMC1/AMC2/AMC8 ORO.FC.232; FAA AC 120-90 ¶10, App. 2, App. 4. New references checked: Carvell et al. (arXiv API, Crossref, arXiv HTML §4.1: "19 scenarios ... at least 7 instructors", "mean Spearman's rho of 0.59 and Kendall's W of 0.64", "no appreciable difference ..." all verbatim); Pepper et al. (arXiv, Crossref; 14 authors, published title); Covas & Hidalgo Toledo (arXiv); Krippendorff (2004) (Crossref; UPenn postprint PDF, "Recommendations" (iii): ".800", ".667", "where tentative conclusions are still acceptable", "no magical numbers" verbatim); Laine and Panickssery NeurIPS DOIs and pages (Crossref); Anthropic models overview (model names and IDs confirmed; URL now redirects to platform.claude.com); EASA EAR Revision 24, 27/03/2026 (EASA page). Citation ↔ reference cross-check scripted: 49 references, every one cited, no citation without a reference, a/b suffixes consistent. Narrowed novelty claim re-searched (arXiv API, web): no LOSA/TEM/EBT application to AI evaluation found beyond Carvell/Pepper.
+
+### Status of the 39 audit items
+
+| Item | Status | Note / required fix |
+|---|---|---|
+| 1, 3, 5, 6, 10, 11, 12, 15, 16, 17, 18, 20–27, 30–33, 35, 39 | FIXED | Verified against text, sources and re-run. |
+| 2 | FIXED | Definitions match AMC1 ORO.FC.230(b)(3)(i), (v) and (d)(2) verbatim. Residual: the title still contrasts "checkride" with a seat that line checkers also use (paper concedes in §2.2; README item 1). Author's call. See N11 for simplifications in §1. |
+| 4 | FIXED | §6.4 and Table 5 correct. But §6.5 reintroduces a run-1-only inference (N3). |
+| 7 | FIXED | Counts verified. The new framing in the abstract, §6.5 and §8 overclaims (N1). |
+| 8 | FIXED | Thresholds quoted verbatim. New issues in how they are applied (N2, N4). |
+| 9 | FIXED | Deviation acknowledged in §6.2. The §6.5 consequence sentence is unsupported (N3). |
+| 13 | FIXED | Minor wording point (N10). |
+| 14 | FIXED BUT WRONG | Acknowledgements still say "and one figure is quoted second-hand", but the Gunther figure was removed and no second-hand figure remains. **Delete that clause** (also in the built paper.html/pdf). Part (b), licensed ICAO copies, is correctly deferred to the author. |
+| 19 | FIXED BUT WRONG | §6.3 again attributes "kappa **and alpha**" to Feinstein & Cicchetti (1990), which is about kappa only. Fix: "...such as kappa (Feinstein & Cicchetti, 1990) and alpha (Krippendorff, 2004)". Krippendorff 2004 gives an 82%-agreement, α = .000 example. |
+| 28 | FIXED | Names and IDs confirmed. The reference URL now redirects; update it to https://platform.claude.com/docs/en/about-claude/models/overview. |
+| 29 | FIXED | Terms are defined. New: "AMC" is used in §1 and §2.1 before it is defined in §2.3, and "GM" is never expanded. Define both at first use. Spearman's rho and Kendall's W (§6.5) are undefined for aviation readers. |
+| 34 | REJECTED WITHOUT GOOD REASON (minor) | The stated reason is wrong. The AMC2 ORO.FC.232 table header labels the competency columns "Competency map". AMC8 ORO.FC.232 is titled "SCENARIO ELEMENTS AND COMPETENCY MAPPING" and says (e) "the instructor should always assess all observed competencies". Use the term (optionally cite AMC8) and correct sources.md. |
+| 36 | REJECTED WITH GOOD REASON | The word limit is a sound reason. Appendix A citation added. |
+| 37 | FIXED | Legend fixed. Optional: blue/orange still mean grader comparisons in panel A and agent models in panel B. |
+| 38 | FIXED | Except the AMC2 ORO.FC.232 entry (see 34). |
+
+### New issues introduced or exposed by v0.2
+
+| # | Sev | Location | Problem | Required fix |
+|---|---|---|---|---|
+| N1 | m | Abstract "the communication indicators caught responses that reported actions as done"; §6.4 "The graders caught this pattern"; §6.5; §8 "its communication indicators can surface misreported work" | The text credits the rubric with detection. In fact the **holistic** rationales named the misstatement in 24 of 28 ratings of the 7 affected transcripts. The rubric marked COM.2 "not demonstrated" in only 20 of 28. The rubric never flagged S6 Sonnet #3 ("Referred to the duty phone"), and Opus missed it in 4 of 12 S6 ratings. COM.2 inter-grader alpha is 0.52 in both runs. The real difference is that only the rubric moved the *score*: every holistic grade stayed at 4 or 5, while COM grades fell to 2–3. | Rephrase in all four places. Both conditions noticed it. Only the competency grade registered it in the score. Report 20/28 vs 24/28 and the missed transcript. |
+| N2 | m | Abstract "every alpha between graders fell below 0.667"; §6.5 "on every measure" | This contradicts §6.4: the pooled inter-grader indicator alpha is 0.69 in run 1. That pooled figure is exactly what Krippendorff (2004, Rec. (iv)) warns against, because averaging lets unreliable distinctions hide. Per-indicator inter-grader alphas in run 1 are all < 0.667 (maximum COM.4 0.65; several ≈ 0); in run 2 only PSD.4 (0.79) reaches it. | Say "every inter-grader alpha for the grades". In §6.4, report the per-indicator range beside the pooled 0.69. |
+| N3 | m | §6.5 "The low agreement on the overall grade given after the rubric ... may also reflect that departure" | Rests on run 1 only (0.24). In run 2 this measure had the *highest* inter-grader alpha (0.48), and pooled it is 0.48, against 0.47 for holistic. This repeats audit #4's selectivity and contradicts §6.4. | Delete it, or qualify it as run 1 only and note that run 2 reverses it. |
+| N4 | m | Abstract "(12 of 14 values at least 0.667)"; §6.4; §6.5 "mostly consistent with itself (12 of 14 ...)"; Fig. 1 | Krippendorff's minima are for reproducibility across interchangeable coders (2004, "Relation Between Agreement and Reliability"; fn. 14). They are not for repeat sampling of one grader. He also says to consult CIs: only 2 of 14 repeat-run lower bounds reach .667. | State that the minima apply to inter-coder agreement and that repeat-run values are shown against them for reference only. Drop the "12 of 14" count from the abstract, or add the CI caveat. |
+| N5 | n | §6.5 Carvell comparison | Mean Spearman's rho and Kendall's W are association/concordance measures and are not comparable with alpha (Krippendorff 2004 rejects association coefficients for reliability). Carvell's runs also span trainees and agents at a wide range of performance. | Add "not directly comparable (different coefficients; wider performance range)". |
+| N6 | n | §6.4 "The other ratings of the same transcripts were 4 or 5" | True only of COM grades. PRO, SAW and overall grades of 3 occur on these transcripts (e.g. S6 Sonnet #1, S6 Haiku #1, S2 Haiku #1). | "The other communication grades ...". |
+| N7 | n | §6.4 "(competency mean 4.37 against 4.48)" | Exact value 4.3646, so 4.36. Double rounding from the 3-dp CSV. | 4.36. |
+| N8 | n | Table 5 "All four ratings" column, captioned "Agreement between the two graders" | Two of its six rater pairs are within-grader pairs. | Footnote: "two graders × two runs; includes within-grader pairs". |
+| N9 | n | §6.4 S6 description; abstract "reported actions as done when they were not" | The digest is for Thursday. "Escalated ... on 2 Nov" can be read as pre-written on the assumption that the user calls today, and Sonnet #1 and #4 add "Outcome/Status to be confirmed". Graders still treated it as misreporting. | Add one clause noting the anticipatory reading. Say "premature status claims". |
+| N10 | n | §3.3 Greenblatt: "its reasoning usually stated" | Source: "in almost all cases where the model complies ... we observe explicit alignment-faking reasoning". | "in almost all cases where it complied, its reasoning stated ...". |
+| N11 | n | §1 "two kinds of recurrent check"; "is flown in a flight simulator"; EBT "NOT COMPETENT" as the checkride example | ORO.FC.230 also has LPC and emergency/safety equipment checks. AMC1 ORO.FC.230(d)(2) allows the aircraft when an FSTD is not reasonably practicable. EBT (ORO.FC.231(a)(1)) *substitutes* the OPC and line check, so its grade scale is not a property of those checks. | "two main kinds of recurrent flight check"; "normally in a flight simulator"; say that EBT replaces them with an evaluation phase and a line evaluation of competence, both graded. |
+| N12 | n | §1 contributions "with all materials released" | No public location (URL/DOI) is given; materials are only in the paper folder. | Give the repository/DOI, or "available from the author". |
+| N13 | n | README.md status line | Stale: says the paper is "Not yet built" and that `build.sh` "does not exist yet". Both paper.html/pdf and `_build/build.sh` exist, and the folder has been renamed. | Update the status, and rebuild after the fixes above. |
+| N14 | n | References: Carvell et al. | The published version (cited by DOI) gives the first author as "Carvell, B. J." (Crossref). | Optional: "Carvell, B. J.". |
+
+Overall: 35 FIXED, 2 FIXED BUT WRONG, 1 REJECTED WITHOUT GOOD REASON, 1 REJECTED WITH GOOD REASON, 0 NOT FIXED; 14 new issues (4 moderate, 10 minor). No number in the paper is wrong except N7. Fix N1–N4 and the #14 stale clause before circulation.

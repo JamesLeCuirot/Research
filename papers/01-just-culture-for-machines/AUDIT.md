@@ -282,3 +282,59 @@ All 44 references are cited in the text, and every in-text citation has a refere
 - **Search coverage:** Semantic Scholar (HTTP 429), OpenAlex (malformed response) and Elicit were not searched. The survey arXiv:2604.13602 was not read for its "decoupled confessions" passage.
 - **Not re-derived:** figure-level data in Baker Fig. 4 and Joglekar Fig. 7 (only the text and captions were checked); internal statistics of Gomez (2026) beyond the abstract.
 - **Current editions:** whether newer editions of AC 00-46 or AC 120-66 exist could not be confirmed; nothing newer was found.
+
+---
+
+## Second-round verification (4 November 2026)
+
+Scope: every item in the table above re-checked against `paper.md` v0.2, using the README revision log to locate changes; every new or changed reference re-opened. `paper.md` was not edited. Sources re-opened in this round: arXiv API and full PDFs (2610.04914, 2507.05246, 2512.08093, 2511.11584, 2503.11926, 2602.15515, 2511.06626, 2506.01926, 2505.13787, 2209.13085); LessWrong GraphQL API (Greenblatt & Fish post `7C4KJot4aN8ieEDoz`; mako yass answer `Yoor8dRcJzamKnDRr`; Dearnaley post `r97QrSvXEpRLZ9ckb`); OpenAI Raising Concerns Policy PDF; PSNet 2007 interview page; Crossref and doi.org for 10.1609/aaai.v40i44.41139; EU Publications Office (CELEX 32014R0376, header "L 122/18"); Annex 19 2nd ed. (FOCA copy) 5.3.1–5.3.4; Citadel library for 14 CFR 193.7, AC 120-66C ¶¶16.1 and 18.4, AC 00-46F ¶12.3 (incl. Note) and Reg. 376/2014 Art. 16; GAIN (2004) PDF; DeepMind URL redirect.
+
+**Counts (44 items):** FIXED 42 · REJECTED (in part) WITH GOOD REASON 2 (n16, n19) · NOT FIXED 0 · FIXED BUT WRONG 0 · REJECTED WITHOUT GOOD REASON 0. **Residual or new issues: 6** (4 required, minor; 2 optional), listed after the table.
+
+| Item | Status | Note / required fix |
+|---|---|---|
+| M1 | FIXED (residual R1–R3) | Abstract, §1 bullet and §4.1 A1–A4 correct; "close to definitional" and reward-ordering caveat present. §8 still omits A4 (see R1); two precision slips in §4.1 (R2, R3). |
+| M2 | FIXED | Full clause quoted verbatim; §7 RL result verified (PDF pp. 25–26: weak monitor evaded, "hundreds of thousands of RL episodes", symbolic monitor not evaded, "reason to be cautious"). |
+| M3 | FIXED | GAIN §4.1 "It is punishable not to report an incident in aviation" verified; Danish figures gone from P6. |
+| M4 | FIXED | Art. 16(6) opening verified in OJ text; Art. 16(7) "may in particular extend that protection to civil or criminal proceedings" supports the added sentence. |
+| M5 | FIXED | §7 wording as required; mitigations reasonable. |
+| M6 | FIXED | S1 recast; §2.2, §2.6 closing paragraph, Table 1 FOQA row and post-table paragraph consistent with each other and with the abstract. |
+| M7 | FIXED | All four sources verified: Greenblatt & Fish 0.873 / 0.925 / 16%→1.4% (helpful-only) and both prompt strings verbatim; mako yass quote verbatim, 18 Nov 2022; Golchin & Wetter (arXiv v1, 4 Oct 2026) "about 16%", "high-severity misbehavior is never self-reported", "least strict" verbatim; Dearnaley 21 Feb 2026, 110% reward and over-reporting penalty verified. Novelty claim correctly narrowed. |
+| m1 | FIXED | Matches §2 "independent, non-confession-trained instance". |
+| m2 | FIXED | 74.3%, 11/12, 4/12, "light RL training", "proof-of-concept" verified (§1, fn. 1). |
+| m3 | FIXED | |
+| m4 | FIXED | |
+| m5 | FIXED (optional R6) | 5.3.1 Standard / 5.3.2 Recommendation verified. |
+| m6 | FIXED | MacDiarmid "removes misaligned generalization" supports "removed". |
+| m7 | FIXED (new slip R4) | "non-frontier", CoT-only monitor and frontier CoT+action monitor correct; but "smaller" added in §1 is not in Baker et al. |
+| m8 | FIXED | |
+| m9 | FIXED | λ(r − f) condition correct in expectation. |
+| m10 | FIXED | |
+| m11 | FIXED | Crossref: *Proc. AAAI* 40(44), 38016–38029, Wei & Heim; DOI resolves to ojs.aaai.org/…/41139. |
+| m12 | FIXED (new slip R2) | Mixed-monitor sentence added; H1 restricted to CoT-only monitor. |
+| m13 | FIXED | Drori §1 "Mind"/"Face" and removed gradient term verified. |
+| m14 | FIXED | |
+| m15 | FIXED | AC 120-66C ¶16.1 verified. |
+| m16 | FIXED | OpenAI policy PDF verified ("Noncompliance with the Preparedness Framework"; anonymous Integrity Line; no date in document, so n.d. is right). |
+| n1–n4 | FIXED | Skalse NeurIPS 2022, "Vasil Georgiev" + NeurIPS 2025, Li "Published as a conference paper at ICLR 2026", Taufeeque "PMLR 306, 2026" all verified in PDFs. |
+| n5 | FIXED | Cundy & Gleave and Skaf NeurIPS 2025 footers verified. |
+| n6 | FIXED | OJ L 122/18, 24.4.2014 verified. |
+| n7–n9 | FIXED | ¶18.4 verified; MacDiarmid wording fine; DeepMind URL returns 200. |
+| n10–n15 | FIXED | Main text ≈8,390–8,490 tokens incl. Table 1 (within 8,500); abstract 248 words. |
+| n16 | REJECTED IN PART, GOOD REASON (optional R5) | 193.7(d) verified verbatim. |
+| n17, n18 | FIXED | PSNet 2007 page verified ("three classes of human fallibility"; "taking shortcuts that ultimately lead to increased risk"; punitive response for reckless behaviour). |
+| n19 | REJECTED IN PART, GOOD REASON | Reason (1997) still unobtainable; attribution kept to GAIN. |
+| n20, n21 | FIXED | |
+
+**Citation cross-check (script):** 51 reference entries; every entry is cited and every in-text author–year has an entry.
+
+**Residual or new issues**
+
+| # | Location | Problem | Required fix |
+|---|---|---|---|
+| R1 | §8, sentence 3 | States A1–A3 but omits A4 (README says §8 states all four conditions). | After "the monitor reads only the disclosure" add ", and a disclosure the monitor scores no worse than an honest one is available,". |
+| R2 | §4.1, para after the derivation | "Under A3, a monitor that also sees actions mixes the two cases" is self-contradictory: such a monitor violates A3. | "Relaxing A3, a monitor that also sees actions mixes the two cases: …" |
+| R3 | §4.1, same two paragraphs | (a) "whenever λM(d_m) > T(b_m) − T(b_g)" ignores the score of the good disclosure, which A4 allows to be > 0. (b) "if every disclosure available with b_m scores at least m more than the best honest one, good behaviour wins if and only if λm > …" is only "if" (the true gap may exceed m), and "honest one" is ambiguous. | (a) "whenever λ[M(d_m) − M(d)] > T(b_m) − T(b_g)". (b) "if the best disclosure available with b_m scores m more than the best disclosure available with b_g, good behaviour wins if and only if λm > T(b_m) − T(b_g)". |
+| R4 | §1, para 2 | "a smaller, non-frontier agent": Baker et al. say only "non-frontier" (Fig. 3 caption; §3 intro). | Delete "smaller,". |
+| R5 (optional) | §2.6 S3 | 14 C.F.R. § 193.7(d) concerns protection from public disclosure, not use as evidence; cited under "can still be used". | Add "(for public disclosure)" after "§ 193.7(d)" or move it to S2. |
+| R6 (optional) | §2.4 | Annex 19 5.3.3 (a Standard) restricts the use of data collected under both 5.1 (mandatory) and 5.2 (voluntary) to safety purposes unless an exception applies; an ICAO specialist may read "for mandatory systems ICAO only recommends it" as understating this. | Add: "5.3.3 nonetheless restricts data from both kinds of system to safety purposes unless a principle of exception applies." |

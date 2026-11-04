@@ -4,11 +4,11 @@
 
 James Le Cuirot · [CitadelAero](https://citadelaero.com) · Senior First Officer and Flight Safety Officer · MSc Human Factors in Aviation
 
-**Paper (draft, November 2026): [`paper/afacs.pdf`](paper/afacs.pdf)** · Plain-English guide to the project: [`docs/GUIDE.md`](docs/GUIDE.md)
+**Paper (Preprint v1.0, 4 November 2026): [`paper/afacs.pdf`](paper/afacs.pdf)** · Plain-English guide to the project: [`docs/GUIDE.md`](docs/GUIDE.md)
 
 *AFACS stands for Agent Failure Analysis and Classification System.*
 
-*Status: in progress. Part of James Le Cuirot's [research repository](../../README.md).*
+*Status: Preprint v1.0, 4 November 2026. Not peer reviewed. Part of James Le Cuirot's [research repository](../../README.md).*
 
 ---
 
@@ -203,7 +203,7 @@ To re-run the annotation itself, use `uv run python scripts/pilot.py`. It calls 
   author = {Le Cuirot, James},
   title  = {Extending AI-Agent Incident Analysis to Multi-Agent Systems: AFACS, an HFACS-based Framework, and an Audit of Public Traces},
   year   = {2026},
-  note   = {CitadelAero. Draft, November 2026},
+  note   = {CitadelAero. Preprint v1.0, 4 November 2026. Not peer reviewed},
   url    = {https://github.com/JamesLeCuirot/Research}
 }
 ```

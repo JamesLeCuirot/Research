@@ -1,16 +1,20 @@
-# AFACS paper (draft)
+# AFACS paper
 
-`afacs.tex` is the research paper. Its layout follows a plain LaTeX article style: 10pt A4, Latin Modern, running header, booktabs tables, numbered references.
+`afacs.tex` is the paper; `references.bib` holds its references (IEEE style); `afacs.pdf` is the built copy and `afacs.bbl` is kept for arXiv submission. The layout is the research repository's house style (`papers/_build/techreport.sty`; rules in `papers/STYLE.md`).
 
 ## Build
 
-From this folder, run pdfLaTeX twice (the second pass resolves cross-references):
+From this folder:
 
 ```bash
-pdflatex afacs.tex
-pdflatex afacs.tex
+TEXINPUTS="../../../papers/_build//:" BSTINPUTS="../../../papers/_build//:" latexmk -pdf afacs.tex
 ```
 
-Figures are read from `../figures/` (made by `uv run afacs-analysis mast`). Every number in the draft comes from `data/processed/audit.json`, `docs/data_audit.md` or `src/afacs/design.py`. Anything not yet known is marked `[Pending: ...]` in grey via the `\pending{}` macro; search for `\pending` to find them.
+Figures are read from `../figures/` as vector PDFs (made by `uv run afacs-analysis mast`, `uv run afacs-analysis afacs --run sonnet_bulk_r1` and `uv run afacs-info-audit`, run from `projects/afacs`). The numbers come from `results/`, `docs/` and `data/processed/` (see the comment at the top of `afacs.tex`). The independent audit is in `../AUDIT.md`.
 
-On Overleaf: upload `afacs.tex` and put the two PNGs from `figures/` in a `figures/` folder one level up, or change `\graphicspath`.
+## Versions
+
+| Version | Date | Change |
+|---|---|---|
+| Preprint v1.0 | 4 Nov 2026 | Released after the independent audit (`../AUDIT.md`) and the author's read-through. |
+| Working draft v0.9 | 4 Nov 2026 | House style; independent audit and its fixes. |

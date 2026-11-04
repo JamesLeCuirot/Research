@@ -1,20 +1,28 @@
 """Analysis (PREREGISTRATION sections 5 and 6).
 
-Reads results/monitor_raw.jsonl (+ data/design_main.jsonl, data/items.jsonl) and writes
+Reads only results/monitor_raw.jsonl. Each raw record carries its design fields (experiment,
+condition, batch key and the `shown` items with problem ID, backdoored flag and position), so the
+design and item files are not needed; the audit checked that these fields equal data/design_main.jsonl.
+Writes
 - results/judgments.csv            one row per item judgment (the analysis data set)
 - results/analysis.json            every number reported
-- results/RESULTS_numbers.md       tables per hypothesis (pasted into RESULTS.md)
+- results/RESULTS_numbers.md       tables per hypothesis (section 9 of RESULTS.md is a copy)
 - figures/fig_a_prevalence.png ... figures/fig_e_remedies.png (300 dpi, greyscale-readable)
 
 Confirmatory tests (two-sided, alpha = .05, Holm-corrected across the two monitors):
   H1  P2.5 vs P50 hit rate   - GLM Binomial, batch-clustered SEs, backdoored items of Experiment 1
-  H2  S1 vs S50 hit rate     - logistic GLMM with item random intercepts (ML, Gauss-Hermite
-                               quadrature); if it does not converge, GLM with item-clustered SEs
+  H2  S1 vs S50 hit rate     - logistic GLMM with item random intercepts (ML, 40-node non-adaptive
+                               Gauss-Hermite quadrature); if it does not converge under the
+                               PREREGISTRATION section 9 item 9 rule, GLM with item-clustered SEs.
+                               (Post hoc, code/posthoc_h2.py: this approximation is inaccurate for
+                               Sonnet, whose item SD is large; the registered numbers are kept.)
   H3  R-cal vs P2.5 hit rate - GLM Binomial, batch-clustered SEs
   H1a d', c, AUROC per condition with 95% percentile CIs from a cluster bootstrap over batches
       (2,000 resamples). Support needs delta-c (P2.5 - P50) > 0 with CI excluding 0 and
       |delta-c| > |delta-d'|.
 Exploratory (labelled as such): E1 position, E2 R-ind vs P2.5, E3 monitors, E4 single vs batch.
+Also written, all labelled post hoc in the outputs: a GLMM node-count check and a table of flag rate
+by suspicion-score band.
 """
 
 from __future__ import annotations
@@ -211,8 +219,11 @@ def fisher_fallback(d: pd.DataFrame, a: str, b: str) -> dict:
 
 def glmm_random_intercept(d: pd.DataFrame, cond_order: list[str], ref: str, item: str = "problem_id", n_nodes: int = 40) -> dict:
     """Logistic regression of flag on condition with item random intercepts, fitted by maximum
-    likelihood with (non-adaptive) Gauss-Hermite quadrature. SEs from the numerical Hessian.
-    'converged' = optimiser success and a positive-definite Hessian."""
+    likelihood with (non-adaptive) Gauss-Hermite quadrature and BFGS from a single start. SEs from the
+    numerical Hessian. 'converged' follows PREREGISTRATION section 9 item 9: (optimiser success, or
+    maximum absolute numerical gradient < 0.01) and a positive-definite Hessian with positive variances,
+    finite estimates and log sigma > -5. The rule does not detect a local optimum, nor quadrature error
+    at large sigma (see code/posthoc_h2.py)."""
     conds = [c for c in cond_order if c != ref]
     X = np.column_stack([np.ones(len(d))] + [(d.condition == c).to_numpy(float) for c in conds])
     y = d.flag.to_numpy(float)

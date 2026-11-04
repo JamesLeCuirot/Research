@@ -25,16 +25,17 @@
 \BIBentryALTinterwordspacing
 B.~Baker, J.~Huizinga, L.~Gao, Z.~Dou, M.~Y. Guan, A.~Madry, W.~Zaremba,
   J.~Pachocki, and D.~Farhi, ``Monitoring reasoning models for misbehavior and
-  the risks of promoting obfuscation,'' arXiv preprint arXiv:2503.11926, 2025.
-  [Online]. Available: \url{https://arxiv.org/abs/2503.11926}
+  the risks of promoting obfuscation,'' arXiv preprint arXiv:2503.11926, 2025,
+  company research report (OpenAI); not peer reviewed. [Online]. Available:
+  \url{https://arxiv.org/abs/2503.11926}
 \BIBentrySTDinterwordspacing
 
 \bibitem{joglekar2025}
 \BIBentryALTinterwordspacing
 M.~Joglekar, J.~Chen, G.~Wu, J.~Yosinski, J.~Wang, B.~Barak, and A.~Glaese,
   ``Training {LLMs} for honesty via confessions,'' arXiv preprint
-  arXiv:2512.08093, 2025. [Online]. Available:
-  \url{https://arxiv.org/abs/2512.08093}
+  arXiv:2512.08093, 2025, company research report (OpenAI); not peer reviewed.
+  [Online]. Available: \url{https://arxiv.org/abs/2512.08093}
 \BIBentrySTDinterwordspacing
 
 \bibitem{gain2004}
@@ -183,22 +184,27 @@ S.~Dekker, \emph{Restorative Just Culture: From Disciplinary Action to
   \url{http://data.europa.eu/eli/reg/2012/965/oj}
 \BIBentrySTDinterwordspacing
 
-\bibitem{icao2016}
-\BIBentryALTinterwordspacing
-{International Civil Aviation Organization}, \emph{Annex 19 to the Convention
-  on International Civil Aviation: Safety Management}, 2nd~ed., Jul. 2016,
-  incorporating Amendment~1; applicable Nov.~7, 2019. Copy consulted: hosted by
-  the Accident Investigation Commission of Papua New Guinea; ICAO's own copy
-  was not opened. Accessed: Nov. 3, 2026. [Online]. Available:
-  \url{https://www.aic.gov.pg/sites/default/files/2023-05/Annex%2019-2-46_merged.pdf}
-\BIBentrySTDinterwordspacing
-
 \bibitem{icao2025}
 \BIBentryALTinterwordspacing
-------, ``Adoption of {Amendment 2} to {Annex 19},'' State letter AN
-  8/3.1-25/64, Jul.~18, 2025, copy consulted: hosted by the Nigerian Civil
-  Aviation Authority. Accessed: Nov. 3, 2026. [Online]. Available:
+{International Civil Aviation Organization}, ``Adoption of {Amendment 2} to
+  {Annex 19},'' State letter AN 8/3.1-25/64, Jul.~18, 2025, copy consulted:
+  hosted by the Nigerian Civil Aviation Authority. Accessed: Nov. 3, 2026.
+  [Online]. Available:
   \url{https://www.ncaa.gov.ng/media/ffxjy2gz/ammendment_2_annex_19.pdf}
+\BIBentrySTDinterwordspacing
+
+\bibitem{icao2016}
+\BIBentryALTinterwordspacing
+------, \emph{Annex 19 to the Convention on International Civil Aviation:
+  Safety Management}, 2nd~ed., Jul. 2016, incorporating Amendment~1; applicable
+  Nov.~7, 2019. Copy consulted: hosted by the Accident Investigation Commission
+  of Papua New Guinea; ICAO's own copy was not opened. Quotations cross-checked
+  on Nov.~4, 2026 against a second copy hosted by the Swiss Federal Office of
+  Civil Aviation,
+  \url{https://www.bazl.admin.ch/dam/it/sd-web/oOXBOqNfEsWb/icao_annex_19_second-edition.pdf}.
+  Amendment~2 applies from Nov.~26, 2026; see \cite{icao2025}. Accessed: Nov.
+  3, 2026. [Online]. Available:
+  \url{https://www.aic.gov.pg/sites/default/files/2023-05/Annex%2019-2-46_merged.pdf}
 \BIBentrySTDinterwordspacing
 
 \bibitem{weiheim2026}
@@ -258,7 +264,8 @@ T.~Korbak, M.~Balesni, E.~Barnes, Y.~Bengio, J.~Benton, J.~Bloom, M.~Chen,
 \BIBentryALTinterwordspacing
 M.~Y. Guan, M.~Wang, M.~Carroll, Z.~Dou, A.~Y. Wei, M.~Williams, B.~Arnav,
   J.~Huizinga, I.~Kivlichan, M.~Glaese, J.~Pachocki, and B.~Baker, ``Monitoring
-  monitorability,'' arXiv preprint arXiv:2512.18311, 2025. [Online]. Available:
+  monitorability,'' arXiv preprint arXiv:2512.18311, 2025, company research
+  report (OpenAI); not peer reviewed. [Online]. Available:
   \url{https://arxiv.org/abs/2512.18311}
 \BIBentrySTDinterwordspacing
 
@@ -267,7 +274,8 @@ M.~Y. Guan, M.~Wang, M.~Carroll, Z.~Dou, A.~Y. Wei, M.~Williams, B.~Arnav,
 Y.~Chen, J.~Benton, A.~Radhakrishnan, J.~Uesato, C.~Denison, J.~Schulman,
   A.~Somani, P.~Hase, M.~Wagner, F.~Roger, V.~Mikulik, S.~R. Bowman, J.~Leike,
   J.~Kaplan, and E.~Perez, ``Reasoning models don't always say what they
-  think,'' arXiv preprint arXiv:2505.05410, 2025. [Online]. Available:
+  think,'' arXiv preprint arXiv:2505.05410, 2025, company research report
+  (Anthropic Alignment Science team); not peer reviewed. [Online]. Available:
   \url{https://arxiv.org/abs/2505.05410}
 \BIBentrySTDinterwordspacing
 
@@ -282,8 +290,9 @@ S.~Golchin and M.~Wetter, ``Monitorability disposition in large reasoning
 \BIBentryALTinterwordspacing
 M.~Wagner, F.~Roger, H.~Cunningham, J.~Gasteiger, J.~Benton, and V.~Mikulik,
   ``Training fails to elicit subtle reasoning in current language models,''
-  Alignment Science Blog, Anthropic, Oct.~8, 2025, blog post. Accessed: Nov. 3,
-  2026. [Online]. Available:
+  Alignment Science Blog, Anthropic, Oct.~8, 2025, company research report
+  posted on Anthropic's Alignment Science Blog; not peer reviewed. Accessed:
+  Nov. 3, 2026. [Online]. Available:
   \url{https://alignment.anthropic.com/2025/subtle-reasoning/}
 \BIBentrySTDinterwordspacing
 
@@ -342,7 +351,8 @@ M.~Taufeeque, S.~Heimersheim, A.~Gleave, and C.~Cundy, ``The obfuscation atlas:
 \BIBentryALTinterwordspacing
 J.~Hopkins, D.~Khullar, R.~Wang, and F.~Roger, ``Fine-tuned lie detectors
   failed to generalize,'' Alignment Science Blog, Anthropic, Aug.~21, 2026,
-  blog post. Accessed: Nov. 3, 2026. [Online]. Available:
+  company research report posted on Anthropic's Alignment Science Blog; not
+  peer reviewed. Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://alignment.anthropic.com/2026/lie-detectors/}
 \BIBentrySTDinterwordspacing
 
@@ -353,8 +363,18 @@ M.~MacDiarmid, B.~Wright, J.~Uesato, J.~Benton, J.~Kutasov, S.~Price,
   R.~Greenblatt, J.~Leike, J.~Lindsey, V.~Mikulik, E.~Perez, A.~Rodrigues,
   D.~Thomas, A.~Webson, D.~Ziegler, and E.~Hubinger, ``Natural emergent
   misalignment from reward hacking in production {RL},'' arXiv preprint
-  arXiv:2511.18397, 2025. [Online]. Available:
+  arXiv:2511.18397, 2025, company research report (Anthropic, with one
+  co-author at Redwood Research); not peer reviewed. [Online]. Available:
   \url{https://arxiv.org/abs/2511.18397}
+\BIBentrySTDinterwordspacing
+
+\bibitem{daniels2026}
+\BIBentryALTinterwordspacing
+O.~Daniels, P.~Moodley, B.~M. Marlin, and D.~Lindner, ``Inducing emergent
+  misalignment from reward hacks with iterative {DPO},'' arXiv preprint
+  arXiv:2609.06649, 2026, authors at the University of Massachusetts Amherst,
+  MATS and Google DeepMind. [Online]. Available:
+  \url{https://arxiv.org/abs/2609.06649}
 \BIBentrySTDinterwordspacing
 
 \bibitem{denison2024}
@@ -363,14 +383,17 @@ C.~Denison, M.~MacDiarmid, F.~Barez, D.~Duvenaud, S.~Kravec, S.~Marks,
   N.~Schiefer, R.~Soklaski, A.~Tamkin, J.~Kaplan, B.~Shlegeris, S.~R. Bowman,
   E.~Perez, and E.~Hubinger, ``Sycophancy to subterfuge: Investigating
   reward-tampering in large language models,'' arXiv preprint arXiv:2406.10162,
-  2024. [Online]. Available: \url{https://arxiv.org/abs/2406.10162}
+  2024, company research report (Anthropic, with co-authors at Redwood Research
+  and the University of Oxford); not peer reviewed. [Online]. Available:
+  \url{https://arxiv.org/abs/2406.10162}
 \BIBentrySTDinterwordspacing
 
 \bibitem{wang2025}
 \BIBentryALTinterwordspacing
 R.~Wang, J.~Treutlein, F.~Roger, E.~Hubinger, and S.~Marks, ``Evaluating
   honesty and lie detection techniques on a diverse suite of dishonest
-  models,'' Alignment Science Blog, Anthropic, Nov.~25, 2025, blog post.
+  models,'' Alignment Science Blog, Anthropic, Nov.~25, 2025, company research
+  report posted on Anthropic's Alignment Science Blog; not peer reviewed.
   Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://alignment.anthropic.com/2025/honesty-elicitation/}
 \BIBentrySTDinterwordspacing
@@ -445,7 +468,9 @@ F.~Gomez, ``Can escalation channels redirect reward hacking toward defect
 N.~Wichers, A.~Ebtekar, A.~Azarbal, V.~Gillioz, C.~Ye, E.~Ryd, N.~Rathi,
   H.~Sleight, A.~Mallen, F.~Roger, and S.~Marks, ``Inoculation prompting:
   Instructing {LLMs} to misbehave at train-time improves test-time alignment,''
-  arXiv preprint arXiv:2510.05024, 2025. [Online]. Available:
+  arXiv preprint arXiv:2510.05024, 2025, company research report (Anthropic
+  Fellows and Anthropic, with co-authors at MATS, Constellation and Redwood
+  Research); not peer reviewed. [Online]. Available:
   \url{https://arxiv.org/abs/2510.05024}
 \BIBentrySTDinterwordspacing
 
@@ -454,7 +479,11 @@ N.~Wichers, A.~Ebtekar, A.~Azarbal, V.~Gillioz, C.~Ye, E.~Ryd, N.~Rathi,
 D.~Tan, A.~Woodruff, N.~Warncke, A.~Jose, M.~Rich{\'e}, D.~D. Africa, and
   M.~Taylor, ``Inoculation prompting: Eliciting traits from {LLMs} during
   training can suppress them at test-time,'' arXiv preprint arXiv:2510.04340,
-  2025. [Online]. Available: \url{https://arxiv.org/abs/2510.04340}
+  2025, accepted at ICLR 2026 under the title `Inoculation Prompting: Eliciting
+  traits from {LLMs} during training can reduce trait expression at test-time'
+  (OpenReview record FiRBNBdaZy); the arXiv version is cited because the
+  camera-ready text could not be opened. [Online]. Available:
+  \url{https://arxiv.org/abs/2510.04340}
 \BIBentrySTDinterwordspacing
 
 \end{thebibliography}

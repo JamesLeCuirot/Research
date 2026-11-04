@@ -361,3 +361,22 @@ Run on 3 November 2026 to check the author's earlier finding of no prior work.
 - **Anthropic 2026 policy** — verified and cited.
 - **Anthropic posts listed in the brief** — all five opened and used where relevant (honesty-elicitation → Wang et al.; lie-detectors → Hopkins et al.; subtle-reasoning → Wagner et al.; inoculation-prompting → Wichers et al.; emergent-misalignment → MacDiarmid et al.; reward-tampering → Denison et al.; reasoning-models-dont-say-think → Chen et al.).
 - **Turpin et al. (2023)** (arXiv:2305.04388) — metadata checked; not cited (Chen et al., 2025 covers the point).
+
+---
+
+## E. [v0.4] Author decisions A3–A6 (4 November 2026)
+
+- **A3 (impersonal voice).** A search of `paper.tex` for "I", "we", "our", "us", "my" and "me" found these words only inside quotations (Amodei et al., Emmons et al., Wang et al., mako yass, Greenblatt & Fish). The remaining hits were the label `sec:us`, "US", "i.e." and "(i)". Nothing needed rewording.
+- **A4 (Annex 19 Amendment 2).** The 2nd edition stays the baseline. A footnote at the start of §2.4 flags the Amendment 2 changes recorded under ICAO (2025) above.
+- **A5 (second ICAO copy).** Swiss FOCA copy; every quotation matched (see ICAO (2016) above). The ICAO (2025) State letter was read only from the NCAA copy. No second host was looked for, because the paper quotes the 2nd edition, not the amendment.
+- **A6 (company sources).** Kept and labelled in `references.bib` as company research reports, not peer reviewed. The affiliations were checked on p. 1 of each PDF:
+  - OpenAI: Baker et al. (2025), Joglekar et al. (2025), Guan et al. (2025).
+  - Anthropic: Chen et al. (2025), "Alignment Science Team, Anthropic".
+  - Anthropic with external co-authors: MacDiarmid et al. (2025), Anthropic with one Redwood Research co-author; Denison et al. (2024), Anthropic with Redwood Research and University of Oxford co-authors; Wichers et al. (2025), Anthropic Fellows and Anthropic with MATS, Constellation and Redwood Research co-authors.
+  - Anthropic Alignment Science Blog posts: Wagner et al. (2025), Hopkins et al. (2026), Wang et al. (2025).
+- **Searches for independent or peer-reviewed versions (4 November 2026):**
+  - arXiv API title and author searches found no arXiv version of the blog posts by Wang et al. (honesty elicitation), Hopkins et al. (lie detectors) or Wagner et al. (subtle reasoning).
+  - The OpenReview notes search found only arXiv (CoRR) records for Chen et al., MacDiarmid et al., Denison et al. and Baker et al., and no record for Joglekar et al. Wichers et al. is listed as a rejected ICLR 2026 submission. Tan et al. (an independent group) is an ICLR 2026 poster.
+  - Added: Daniels et al. (2026), an independent study of misalignment from reward hacking, cited alongside MacDiarmid et al. The note on the Tan et al. reference records its ICLR 2026 acceptance.
+  - Not added: independent evaluations of lie detectors (Kretschmar et al., arXiv:2511.16035; von Klinski et al., arXiv:2609.39807). Only their abstracts were read, and they test other kinds of detector, so they do not support the same claim as Hopkins et al. (fine-tuned detectors transferring across lie types).
+- **Limitations sentence (§7).** It names the results that rest on one company's account, as listed above. It notes that groups other than OpenAI report the same direction for CoT obfuscation (Emmons et al., Google DeepMind; Skaf et al., whose p. 1 lists MARS, MATS and universities; Drori et al., MATS), and that independent groups report it for inoculation (Tan et al.) and for misalignment from reward hacking (Daniels et al.).

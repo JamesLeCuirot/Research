@@ -2,7 +2,7 @@
 
 **AFACS, an HFACS-based framework, and an audit of public traces**
 
-James Le Cuirot · [CitadelAero](https://citadelaero.com) · Senior First Officer and Flight Safety Officer · MSc Human Factors in Aviation · james@citadelaero.com
+James Le Cuirot · [CitadelAero](https://citadelaero.com) · Senior First Officer and Flight Safety Officer · MSc Human Factors in Aviation
 
 **Paper (draft, November 2026): [`paper/afacs.pdf`](paper/afacs.pdf)** · Plain-English guide to the project: [`docs/GUIDE.md`](docs/GUIDE.md)
 

@@ -524,6 +524,7 @@ def draw_figure(audit: dict, path) -> None:
              fontsize=8, color=INK_2)
     fig.tight_layout(rect=(0, 0, 1, 0.94))
     fig.savefig(path, dpi=200)
+    fig.savefig(path.with_suffix(".pdf"))  # vector copy for the paper
     plt.close(fig)
 
 

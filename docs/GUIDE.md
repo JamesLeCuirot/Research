@@ -162,7 +162,7 @@ All study-design numbers live in `src/afacs/design.py` with their reasons.
 
 1. **Approve the AI pilot.** Codebook v1 is settled, so Claude can code the 250 bulk traces through your subscription (it may take several sessions because of usage limits).
 2. **Check the cross-walk** (`docs/crosswalk_ezell.md`) and correct it wherever your human-factors judgement differs from my draft.
-3. **Case studies:** written as worked examples (paper section 7). The Case Review page (https://claude.ai/artifact/VqKkHidKjkwsaBMzhDVXL6) is kept for the technical coders in paper 2.
+3. **Case studies:** written as worked examples (paper section 6). The Case Review page (https://claude.ai/artifact/VqKkHidKjkwsaBMzhDVXL6) is kept for the technical coders in paper 2.
 4. **Optional:** code the 10 short AG2 and MetaGPT calibration traces yourself (about 2 hours) as a small human anchor. Not required for paper 1.
 5. **Read the paper draft** (`paper/afacs.pdf`) as it fills in.
 

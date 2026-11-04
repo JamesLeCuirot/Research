@@ -2,7 +2,7 @@
 
 **AFACS, an HFACS-based framework, and an audit of public traces**
 
-James Le Cuirot · Senior First Officer and Flight Safety Officer · MSc Human Factors in Aviation
+James Le Cuirot · [CitadelAero](https://citadelaero.com) · Senior First Officer and Flight Safety Officer · MSc Human Factors in Aviation · james@citadelaero.com
 
 **Paper (draft, November 2026): [`paper/afacs.pdf`](paper/afacs.pdf)** · Plain-English guide to the project: [`docs/GUIDE.md`](docs/GUIDE.md)
 
@@ -129,7 +129,7 @@ The AI's 24 most frequent design claims were checked against each framework's pa
 
 The typical error was calling a weak safeguard a missing one: "no loop detection" where a loop detector exists but only nudges. A trace cannot tell the two apart, so design factors coded from traces alone mean "no effective safeguard visible in the trace".
 
-Worked examples of what the layered coding shows are in section 7 of the paper.
+Worked examples of what the layered coding shows are in section 6 of the paper.
 
 ## Limitations
 
@@ -188,7 +188,8 @@ To re-run the annotation itself, use `uv run python scripts/pilot.py`. It calls 
 
 ## Licences, AI use and citation
 
-- **Code:** MIT. **Data:** MAST dataset by Cemri et al., CC-BY-4.0, used with attribution.
+- **Code:** MIT licence, © 2026 CitadelAero. **Data:** MAST dataset by Cemri et al., CC-BY-4.0, used with attribution.
+- **Competing interests:** the author's company, CitadelAero, works on AI for aviation, the area of the aviation evaluation proposed as future work. This study received no external funding and uses only public data.
 - **AI use:**
   - The data pipeline, tests, figures and much of the drafting were done with Claude Code under the author's direction.
   - The AI pilot's annotations were produced by Claude models.
@@ -200,7 +201,7 @@ To re-run the annotation itself, use `uv run python scripts/pilot.py`. It calls 
   author = {Le Cuirot, James},
   title  = {Extending AI-Agent Incident Analysis to Multi-Agent Systems: AFACS, an HFACS-based Framework, and an Audit of Public Traces},
   year   = {2026},
-  note   = {Draft, November 2026},
+  note   = {CitadelAero. Draft, November 2026},
   url    = {https://github.com/JamesLEC1999/Research}
 }
 ```

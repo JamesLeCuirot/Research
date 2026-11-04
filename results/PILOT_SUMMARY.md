@@ -99,7 +99,7 @@ The AI's 24 most frequent design claims were checked against each framework's pa
 
 ## 7. What's next (as planned on 4 November; superseded)
 
-*Update: you decided the case studies need technical reviewers, so they are now worked examples whose claims rest on the traces, the benchmark verdicts and the documentation (paper section 7); expert review moves to paper 2.*
+*Update: you decided the case studies need technical reviewers, so they are now worked examples whose claims rest on the traces, the benchmark verdicts and the documentation (paper section 6); expert review moves to paper 2.*
 
 
 1. **Case studies:** you review a handful of codings with the trace beside you. I'd pick:

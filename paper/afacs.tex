@@ -81,8 +81,17 @@ every framework's logs record what the agents said and did, but none includes th
 system documentation, artefacts or access needed to reconstruct a failure;
 sampling settings are logged by one framework and seeds by none, and the only
 logged model identifier contradicts MAST's metadata for one group of 30 traces.
-\pending{AI pilot: consistency of AFACS coding between models and between runs,
-and the prevalence of supervision, coordination and violation codes}.
+In an AI pilot, Claude coded 250 MAST-failed traces three times (two runs of
+one model and one run of a second). The layers were applied consistently
+(Cohen's $\kappa$ 0.63--0.76 between models and 0.74--0.87 between runs;
+individual codes 0.52 and 0.59), well above the agreement of MAST's judge with
+itself. Supervision factors appear in about two-thirds of failures and
+coordination factors in two-fifths. Violations appear in 9--13\%, are mostly
+inferred from the act rather than stated, and are concentrated in two
+frameworks; MAST's ``Disobey Task Specification'' mixes them with errors. The
+annotator's quotes were genuine (over 99.5\% found verbatim), but its design-level
+codes are inferences from traces, and checking them against the frameworks'
+documentation shows the limit of trace-only analysis.
 \end{abstract}
 
 \section{Introduction}
@@ -154,8 +163,9 @@ audit of the MAST dataset documenting duplicates, corrupt and misfiled rows,
 logging artefacts and the test--retest reliability of its LLM judge; (iii) an
 audit of MAST's logs against Ezell et al.'s information requirements, showing
 what public multi-agent traces do and do not let an investigator establish; and
-(iv) \pending{an AI-coded pilot measuring how consistently the
-framework can be applied, and what it shows that the flat labels do not}. Human
+(iv) an AI-coded pilot on 250 traces, coded three times, measuring how
+consistently the framework can be applied and what it shows that the flat labels
+do not. Human
 validation with independent coders is planned as a second study, for which a
 blinded, pre-registered calibration set has already been frozen.
 
@@ -689,9 +699,20 @@ violations. In the other direction, their framework contributes a
 model-development factor, which AFACS adopts as L4.4 with its own evidence
 requirement (Section~\ref{sec:evidence}), and named
 security-related contexts. Whether the added categories matter in practice is an
-empirical question, taken up in RQ3. \pending{observed cross-tabulation of HFACS
-error types against Ezell et al.'s cognitive functions in the AI pilot, and whether
-it matches the predicted alignment}.
+empirical question, taken up in RQ3.
+
+In the pilot the annotator recorded, for each error code, the Ezell function or
+functions involved. The pairings follow the cross-walk closely: every
+skill-based error (E1, $n=56$ traces) was paired with action; decision errors
+(E2, $n=177$) with decision in 175 cases, but also with action (61) and
+understanding (44); perceptual errors (E3, $n=128$) with understanding (124) and
+observation (83). This cannot be read as support for the cross-walk. The
+codebook the annotator read (v1, note 5.11) stated the predicted pairing, so the
+annotator may have followed it rather than tested it, and the two schemes'
+definitions share examples (a malformed tool call illustrates both Ezell's
+action execution and HFACS's skill-based error). The prediction has been removed
+from the codebook for later coding (v1.1). The comparison of how consistently
+each scheme is applied (Table~\ref{tab:rq3}) is unaffected.
 
 \subsection{RQ2: information adequacy}
 
@@ -763,33 +784,87 @@ MetaGPT & 430 & 10 & 2 & 3 & 5\\
 
 \subsection{RQ3: applicability}
 
-\pending{agreement between models and between runs (Table~\ref{tab:rq3}); weighted
-prevalence of supervision (L3.1--L3.3), coordination (L2.3) and violation codes,
-with violations broken down by evidence grade, overall and by framework}.
+The primary annotator (\code{claude-sonnet-5-5}) coded the 250 bulk traces
+twice and \code{claude-opus-5-5} coded them once, all with codebook v1 and the
+same prompt. All 750 codings were valid; there were no refusals or errors.
+Table~\ref{tab:rq3} gives the agreement. Layer presence was applied
+consistently: $\kappa$ 0.63--0.76 between the two models and 0.74--0.87 between
+the two runs of one model, substantial to almost perfect. Individual codes
+agreed less (mean per-code $\kappa$ 0.52 between models, 0.59 between runs), the
+usual pattern in HFACS coding, and only 24\% and 40\% of traces received an
+identical full set of codes. The weakest codes were \code{L4.3} (no procedure;
+$\kappa$ 0.19 and 0.23), which overlaps with \code{L4.1}; the rare
+\code{L1.V?} (about zero); and \code{L3.2} and \code{L3.4} (0.32--0.62). For
+comparison, MAST's own judge agrees with itself at a mean per-mode $\kappa$ of
+0.43 on its flat labels (Section~\ref{sec:audit}). HFACS's three error types and
+Ezell et al.'s four cognitive functions were applied about equally consistently
+(0.55 and 0.58 between models; 0.71 and 0.70 between runs).
+
+The evidence was genuine: of 1{,}350, 1{,}328 and 1{,}350 evidence quotes in the
+three runs, 99.6\%, 99.9\% and 99.6\% appeared verbatim in the step cited, and
+none was absent from the trace. The check shows that the words exist, not that
+they support the code.
+
+Weighted to the eligible pool, the annotator found a failure in 80\% of the
+MAST-failed traces (83\% and 79\% in the other runs). Among failures, every run
+coded an unsafe act in all of them, and a contributing factor at L2--L4 in 88\%
+(85\%, 91\%). The categories AFACS adds to Ezell et al.\ were common:
+supervision failures (L3.1--L3.3) in 67\% (95\% interval 59--75\%; other runs
+69\% and 71\%) and coordination breakdowns (L2.3) in 40\% (32--48\%; 41\%, 41\%).
+Violations were a minority: 9\% of failures (5--15\%; 13\%, 10\%), of which most
+rested on the nature of the act (inferred, 6\% of failures) rather than the agent's
+own words (stated, 1\%), with 2\% indeterminate. They were concentrated in
+HyperAgent (69\% of its failures) and AG2 (24\%) and absent from MetaGPT and
+AppWorld. The typical violation was an agent reporting results of tool calls it
+never received, or writing ``verification'' code that only returned a
+hard-coded answer. Within AG2 on the same Olympiad benchmark, GPT-4o traces
+carried a violation code in 31\% of failures; the groups are too small for a
+model-level conclusion.
+
+Three features of the coding need care in interpretation. First, design factors
+(L4) were coded in 63--74\% of failures and were the deepest contributing layer in
+most, but the annotator saw only the trace, so every L4 code is an inference about
+the system's design; Section~\ref{sec:designcheck} tests these inferences against
+the frameworks' documentation. Second, no run left L1 empty for any failure,
+although the codebook allows a failure with no unsafe act (note 5.8); either such
+failures are rare in MAST or the annotator is reluctant to use the option, and
+the prompt's opening instruction to look for ``the unsafe acts at the sharp end''
+may encourage the latter. Third, confidence was ``medium'' in 86--87\% of codings,
+but it was informative when used: for the 24 codings Sonnet rated ``low'', its
+two runs agreed on whether there was a failure in 67\% of cases, against 96\% for
+``medium''.
+
+\subsection{Design claims against documentation}
+\label{sec:designcheck}
+
+\pending{for each framework, the annotator's most frequent design claims and
+whether the framework's paper, documentation, code and MAST's set-up confirm,
+contradict or cannot settle them}.
 
 \begin{table}[tbp]
 \centering
-\caption{Consistency of AI coding with AFACS on the bulk sample (shell; values
-pending). Cohen's $\kappa$ with 95\% bootstrap intervals.}
+\caption{Consistency of AI coding with AFACS on the 250-trace bulk sample.
+Cohen's $\kappa$ with 95\% bootstrap intervals (2{,}000 resamples); intervals are
+omitted where either coder gave fewer than three positive or negative answers.}
 \label{tab:rq3}
 \small
 \begin{tabular}{@{}lcc@{}}
 \toprule
 Measure & Sonnet vs Opus & Sonnet run 1 vs run 2\\
 \midrule
-L4 present & -- & --\\
-L3 present & -- & --\\
-L2 present & -- & --\\
-L1 present & -- & --\\
-Individual codes (mean per-code $\kappa$) & -- & --\\
-Violation vs error & -- & --\\
-Violation evidence grade & -- & --\\
-Error type, HFACS E1--E3 (mean per-code $\kappa$) & -- & --\\
-Error type, Ezell et al.\ functions (mean per-label $\kappa$) & -- & --\\
-Deepest layer (weighted) & -- & --\\
-Failure observed & -- & --\\
-Identical full code set (share of traces) & -- & --\\
-Evidence quotes found in the cited step (share) & \multicolumn{2}{c}{-- (per model)}\\
+L4 present & 0.71 (0.62--0.79) & 0.74 (0.65--0.82)\\
+L3 present & 0.63 (0.53--0.72) & 0.74 (0.65--0.82)\\
+L2 present & 0.75 (0.67--0.83) & 0.76 (0.67--0.83)\\
+L1 present & 0.76 (0.65--0.86) & 0.87 (0.78--0.94)\\
+Individual codes (mean per-code $\kappa$) & 0.52 (0.45--0.57) & 0.59 (0.53--0.66)\\
+Violation vs error & 0.67 (0.51--0.81) & 0.68 (0.50--0.83)\\
+Violation evidence grade & 0.56 & 0.62\\
+Error type, HFACS E1--E3 (mean per-code $\kappa$) & 0.55 & 0.71\\
+Error type, Ezell et al.\ functions (mean per-label $\kappa$) & 0.58 & 0.70\\
+Deepest layer (weighted) & 0.75 (0.68--0.82) & 0.80 (0.73--0.86)\\
+Failure observed & 0.69 (0.57--0.79) & 0.80 (0.70--0.88)\\
+Identical full code set (share of traces) & 24\% & 40\%\\
+Evidence quotes found in the cited step & \multicolumn{2}{c}{Sonnet 99.6\%, 99.6\%; Opus 99.9\%}\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -826,8 +901,24 @@ MAST mode & Expected AFACS location\\
 \end{tabular}
 \end{table}
 
-\pending{observed distribution of AFACS layers, codes and violation grades within
-each MAST mode; modes that map to one layer and modes that spread}.
+Observed against these expectations (Sonnet run 1, weighted shares of failed
+traces carrying each MAST mode), every MAST mode spread across layers. Within
+each mode at least 62\% of traces had a supervision factor (L3) and between 49\%
+and 100\% a precondition (L2); at least half had a design factor (L4) in every
+mode except FM-2.2 Fail to Ask for Clarification (48\%) and the four traces of
+FM-2.4 Information Withholding. FM-1.1 Disobey Task
+Specification ($n=79$) was a mixture as expected: 17\% of these traces carry a
+violation code (22\% and 12\% in the other runs) and the rest errors only, while
+a deficient specification (L3.4) was coded in only 6\%. The inter-agent modes
+were mostly, but not only, coordination: L2.3 appears in 52\% of FM-2.3 Task
+Derailment and 62\% of FM-2.5 Ignored Other Agent's Input. FM-1.3 Step Repetition
+($n=118$) was coded as a design factor (L4.1, 60\%) more often than as a
+supervisor failing to break the loop (L3.3, 27\%). FM-3.2 No or Incomplete
+Verification ($n=101$) split between supervision (L3.1, 69\%) and design
+(L4.1, 69\%), and was never coded as a routine violation. A single flat label
+therefore covers failures whose remedies differ: a missing verifier, a supervisor
+who did not check, and an agent that departed from a requirement it had
+registered.
 
 \section{Case Studies}
 \label{sec:cases}
@@ -858,9 +949,22 @@ among the most widely used public records of multi-agent failure, contain almost
 none of them. A logging standard for multi-agent research releases, covering at
 least model identifiers and versions, sampling settings and seeds, system prompts
 and role definitions, and timestamps, would let later studies reconstruct the
-failures they analyse. \pending{what the extension adds to Ezell et al.'s framework
-in practice; how consistently the framework can be applied, and what that means
-for AI-assisted incident analysis}.
+failures they analyse.
+
+The pilot suggests that the extension earns its place. The categories with no
+counterpart in Ezell et al.'s framework were among the most frequently coded:
+supervision failures in about two-thirds of failures, coordination in about
+two-fifths. Violations were rarer, but they were where MAST's labels were least
+informative, and the evidence grade showed that most rested on the act rather
+than on stated reasoning. The layers could be applied consistently by an AI
+annotator, at a level well above MAST's own judge. Two cautions temper this.
+Consistency is not correctness: two runs of a model can share a mistake, and only
+independent human coding can show which codes are right. And the deeper the
+layer, the less a trace alone can establish: design factors were the most common
+deepest layer, yet they are the least observable in a trace, which is why the
+documentation check (Section~\ref{sec:designcheck}) matters. In aviation,
+organisational findings come from company records rather than the flight
+recorder; the same division of evidence applies here.
 
 \section{Limitations}
 
@@ -870,6 +974,26 @@ for AI-assisted incident analysis}.
   validation is the next study.
   \item \textbf{AI coding AI traces.} The annotator is a language model coding
   the behaviour of other language models, and may share their blind spots.
+  \item \textbf{Design factors inferred from traces.} The annotator saw only the
+  trace, so its L4 codes are inferences about each system's design. The
+  documentation check (Section~\ref{sec:designcheck}) tests the most frequent
+  ones; establishing them properly needs reviews that combine the trace with the
+  system's documentation, which future case-study work should provide.
+  \item \textbf{No failure without an unsafe act.} Although the codebook allows
+  it, the annotator never coded a failure without an unsafe act. Whether such
+  failures are rare or the annotator (or its prompt's framing) avoids the option
+  needs further research.
+  \item \textbf{Outcomes hidden from the annotator.} To avoid hindsight bias,
+  benchmark answers and verdicts were hidden. The annotator therefore could not
+  tell whether, for example, a mathematical answer was wrong, which probably
+  explains most of the AG2 traces it judged failure-free.
+  \item \textbf{The Ezell pairing is not a test.} The codebook the annotator read
+  stated the predicted pairing of error types and cognitive functions
+  (Section~\ref{sec:results}), so the observed pairing cannot support the
+  cross-walk. The prediction is removed in codebook v1.1.
+  \item \textbf{Confidence rarely varied.} Most codings were rated ``medium'', so
+  confidence can flag only a minority of uncertain codings, although those it did
+  flag were less stable between runs.
   \item \textbf{Behavioural, not intentional.} ``Violation'' describes what the
   trace shows. It is not a claim about what a model wanted, and stated reasoning
   may not reflect what produced an action.
@@ -895,7 +1019,17 @@ for AI-assisted incident analysis}.
 
 The next study validates AFACS with independent human coders on the frozen
 calibration set, measuring agreement between humans and between humans and the
-AI annotator on the pre-registered held-out traces.
+AI annotator on the pre-registered held-out traces. Three questions from the
+pilot belong there. Case-study reviews that combine each trace with the system's
+documentation should establish how often trace-inferred design factors are
+right. A variant prompt without the instruction to look for unsafe acts, applied
+to a subset of traces, would show whether the absence of failures without an
+unsafe act is real or induced. And giving the annotator the outcome (the
+benchmark's verdict, though not the answer), much as an investigator knows that
+an accident occurred, or using datasets with verified outcomes and human
+attribution of the responsible agent and step, such as
+Who\&When~\cite{zhang2025whowhen}, would remove the annotator's blindness to
+whether a task actually failed.
 
 A conceptual question is left open. AFACS places the user who sets the task in
 the supervision tier and the people who launch runs in the organisational tier

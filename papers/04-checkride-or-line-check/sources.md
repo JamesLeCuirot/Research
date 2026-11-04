@@ -1,7 +1,7 @@
 # Sources and verification log
 
-Paper: *Checkride or Line Check? What LOSA and Evidence-Based Training Teach About Evaluation Awareness in AI Systems* (draft v0.1).
-All checks were made on **3 November 2026** by the AI drafting assistant. "Opened" means the full text (or the stated part) was retrieved in this session and searched for the quoted wording. Quotations below are copied from the retrieved text. Locators are section, paragraph or heading names actually seen; no page numbers are given unless printed in the source.
+Paper: *Checkride or Jump Seat? What LOSA and Evidence-Based Training Teach About Evaluation Awareness in AI Systems* (draft v0.2; v0.1 was titled "Checkride or Line Check?").
+All checks were made on **3 November 2026** by the AI drafting assistant (Claude Opus 5.5); checks added for v0.2 in response to the independent audit (`AUDIT.md`) were made on 3–4 November 2026 and are marked **[v0.2]**. "Opened" means the full text (or the stated part) was retrieved in this session and searched for the quoted wording. Quotations below are copied from the retrieved text. Locators are section, paragraph or heading names actually seen; no page numbers are given unless printed in the source.
 
 Verification methods used: arXiv export API (metadata and abstracts) and arXiv HTML; Crossref API (DOI metadata); PubMed E-utilities (abstracts); direct download of PDFs and web pages (text extracted locally); the Citadel Aero regulation library (verbatim EASA, UK and FAA texts, with `status` and `version` fields).
 
@@ -42,6 +42,7 @@ Verification methods used: arXiv export API (metadata and abstracts) and arXiv H
 
 ### Baker et al. (2025), arXiv:2503.11926
 - Verified: arXiv API record and abstract. Preprint.
+- **[v0.2]** §3.4 definition of reward hacking paraphrases: "where AI systems misbehave due to flaws or misspecifications in their learning objectives". §5.1 now cites Baker et al. with "compare" for the held-out channel, which is the author's extension.
 - §4 and §5.1: "with too much optimization, agents learn obfuscated reward hacking, hiding their intent within the CoT while still exhibiting a significant rate of reward hacking"; "it may be necessary to pay a monitorability tax by not applying strong optimization pressures directly to the chain-of-thought".
 
 ### Berglund et al. (2023), arXiv:2309.00667
@@ -65,13 +66,13 @@ Verification methods used: arXiv export API (metadata and abstracts) and arXiv H
 - §3.2: "We find that probes primarily track benchmark-canonical structure and fail to generalize to free-form prompts independent of linguistic style."
 
 ### Fraser-Taliente et al. (2026). Natural language autoencoders (Transformer Circuits Thread)
-- Verified: page text retrieved from https://transformer-circuits.pub/2026/nla/ (20 authors listed; published 7 May 2026).
+- Verified: page text retrieved from https://transformer-circuits.pub/2026/nla/ (20 authors listed; published 7 May 2026). **[v0.2]** Reference now lists all 20 authors (APA 7 uses an ellipsis only for 21 or more).
 - §3.2: abstract: "During our pre-deployment audit of Claude Opus 4.6, NLAs helped diagnose safety-relevant behaviors and surfaced unverbalized evaluation awareness—cases where Claude believed, but did not say, that it was being evaluated."
 - Not quoted but read: the NLA grader for evaluation awareness had "97% agreement" with two authors on 186 explanations.
 
 ### Greenblatt et al. (2024), arXiv:2412.14093
 - Verified: arXiv API record and abstract. Preprint.
-- §3.3: "we say it will be trained only on conversations with free users, not paid users. We find the model complies with harmful queries from free users 14% of the time, versus almost never for paid users."
+- §3.3: "we say it will be trained only on conversations with free users, not paid users. We find the model complies with harmful queries from free users 14% of the time, versus almost never for paid users." **[v0.2]** Direction made explicit (behaviour shifted towards the training objective, not towards safety), quoting: "with the model stating it is strategically answering harmful queries in training to preserve its preferred harmlessness behavior out of training".
 
 ### Gurnee et al. (2026). Verbalizable representations form a global workspace (Transformer Circuits Thread; also arXiv:2607.15495)
 - Verified: page text retrieved from https://transformer-circuits.pub/2026/workspace/ (16 authors; "Published July 6, 2026"); arXiv record 2607.15495 (posted 16 July 2026) checked for title and authors. The page lists "T. Ben Thompson"; arXiv lists "Ben Thompson".
@@ -101,15 +102,15 @@ Verification methods used: arXiv export API (metadata and abstracts) and arXiv H
 ### Krippendorff (2011). Computing Krippendorff's alpha-reliability
 - Verified: the ScholarlyCommons postprint PDF (cover: "1-25-2011", "Recommended Citation ... https://repository.upenn.edu/asc_papers/43") was retrieved via a typeset.io mirror; the UPenn repository page itself returned HTTP 403.
 - §6.3: alpha handles "Any number of observers, not just two", "Any metric or level of measurement (nominal, ordinal, interval, ratio, and more)" and "Incomplete or missing data".
-- Not used: conventional thresholds (α ≥ .800, .667). These could not be verified in an opened source (Krippendorff 2004 and the textbook were not accessible), so the paper and figure do not use them.
+- **[v0.2]** The thresholds are now taken from Krippendorff (2004); see below.
 
-### Laine et al. (2024), arXiv:2407.04694 (SAD)
-- Verified: arXiv API record and abstract. Preprint.
+### Laine et al. (2024), NeurIPS 2024 (SAD)
+- Verified: arXiv API record and abstract (arXiv:2407.04694). **[v0.2]** Published version confirmed via Crossref: *Advances in Neural Information Processing Systems 37*, pp. 64010–64118, https://doi.org/10.52202/079017-2044; the reference now cites the proceedings.
 - §3.1: the benchmark tests the capacity of LLMs to "(iii) determine whether a prompt is from internal evaluation or real-world deployment".
 
 ### Li et al. (2026), arXiv:2605.23055
 - Verified: arXiv API record and abstract (v3, updated 29 September 2026). Preprint.
-- §3.3: "Recognition rarely associates with behavioral change, and when it does, the direction depends on the type of evaluation perceived." Appendix A: "We ground evaluation awareness in social psychology".
+- §3.3: "Recognition rarely associates with behavioral change, and when it does, the direction depends on the type of evaluation perceived." Appendix A of the paper: abstract, "We ground evaluation awareness in social psychology".
 
 ### Lynch et al. (2025), arXiv:2510.05179 (Agentic misalignment)
 - Verified: arXiv API record and abstract; arXiv HTML v2 text searched; the same passage was also found on the Anthropic research page https://www.anthropic.com/research/agentic-misalignment (published 20 June 2025). Preprint.
@@ -135,12 +136,13 @@ Verification methods used: arXiv export API (metadata and abstracts) and arXiv H
 - Verified: arXiv API record and abstract (ICML 2025 workshop posters). Preprint.
 - §3.2: "we study evaluation awareness in Llama-3.3-70B-Instruct. We show that linear probes can separate real-world evaluation and deployment prompts".
 
-### Panickssery, Bowman & Feng (2024), arXiv:2404.13076
-- Verified: arXiv API record and abstract. Preprint.
+### Panickssery, Bowman & Feng (2024), NeurIPS 2024
+- Verified: arXiv API record and abstract (arXiv:2404.13076). **[v0.2]** Published version confirmed via Crossref (*Advances in Neural Information Processing Systems 37*, pp. 68772–68802, https://doi.org/10.52202/079017-2197) and the papers.nips.cc abstract page.
 - §6.5: self-preference: "an LLM evaluator scores its own outputs higher than others' while human annotators consider them of equal quality."
 
 ### Schoen et al. (2025), arXiv:2509.15541
 - Verified: arXiv API record (19 authors) and abstract. Preprint.
+- **[v0.2]** §3.3 definitions: "Highly capable AI systems could secretly pursue misaligned goals -- what we call "scheming""; "covert actions" -- such as secretly breaking rules or intentionally underperforming in tests -- as a proxy for scheming".
 - §3.3: "show causal evidence that this awareness decreases covert behavior, while unawareness increases it. Therefore, we cannot exclude that the observed reductions in covert action rates are at least partially driven by situational awareness."
 
 ### Tamkin et al. (2024), arXiv:2412.13678 (Clio)
@@ -161,7 +163,7 @@ Verification methods used: arXiv export API (metadata and abstracts) and arXiv H
 
 ### Feinstein & Cicchetti (1990)
 - Verified: Crossref DOI record 10.1016/0895-4356(90)90158-L; PubMed abstract PMID 2348207.
-- §6.3 (agreement coefficients depend on the distribution of what is graded): "a high value of p0 can be drastically lowered by a substantial imbalance in the table's marginal totals". The paper extends this kappa result to alpha by analogy; it is a general property of chance-corrected coefficients and is presented without a quotation for alpha.
+- §6.3: "a high value of p0 can be drastically lowered by a substantial imbalance in the table's marginal totals". **[v0.2]** The paper now says only that chance-corrected coefficients such as kappa and alpha can be low despite high raw agreement when ratings concentrate in a few categories; the extension to alpha is the author's.
 
 ---
 
@@ -176,23 +178,25 @@ Verification methods used: arXiv export API (metadata and abstracts) and arXiv H
 - Characteristic 4: "In over 2200 LOSA flights, not one pilot to the knowledge of The LOSA Collaborative has ever been disciplined because of issues observed during a LOSA observation."
 - Characteristic 6: observer selection by "a joint process between management and the pilots' association"; "the majority should be regular line pilots from within the airline."
 - "Summary": grouping of characteristics into "Trust in the process" (2, 3, 4, 6, 10) and "Trust in the data" (5, 7, 8, 9) (Table 1); "If an airline fails to earn its pilots' trust, then LOSA will be nothing more than an elaborate line check".
-- Secondary figure (§2.2): Klinect et al. quote Gunther (2002): "a 70 percent reduction in non-conforming approaches". Gunther (2002) was not opened; the paper labels this as reported second-hand.
+- **[v0.2]** The second-hand Gunther (2002) figure ("a 70 percent reduction in non-conforming approaches") has been removed from the paper.
+- **[v0.2]** Klinect et al. number characteristic 2 "Anonymous and confidential data collection" and 4 "Joint management/ pilot association sponsorship"; AC 120-90 numbers them the other way round. The paper now cites Klinect by characteristic name, and Table 1 uses the AC's names and numbers with a note.
+- **[v0.2]** §1: "Many managers agreed these data were good at uncovering proficiency issues" (the data came from "Line Oriented Flight Training (LOFT) and regular line checks"); §2.2: "not one pilot to the knowledge of The LOSA Collaborative".
 
 ### FAA (2006). AC 120-90, Line Operations Safety Audits (US; guidance, not binding)
 - Verified: verbatim text from the Citadel Aero regulation library (document `faa:ac:120-90`, version "FAA AC 120-90, dated 2006-04-27 (faa.gov, as fetched 2026-09-08)", status "guidance"); source https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_120-90.pdf.
 - ¶4a (definition, §2.2): "A LOSA is a formal process that requires expert and highly trained observers to ride the jumpseat during regularly scheduled flights ... Confidential data collection and non-jeopardy assurance for pilots are fundamental to the process."
 - ¶4c(1): "FOQA and ASAP rely on outcomes to generate data"; "By contrast, LOSA samples all activities in normal operations." ¶4c(3): "A LOSA is recommended every 3 years."
-- ¶10a: "It is recommended that a LOSA observe all 10 characteristics". ¶10b: names of the ten characteristics (Table 1). ¶10b(1): "Having another observer onboard adds to an already high stress level, thus providing an unrealistic picture of performance." ¶10b(4): "If a LOSA observation is ever used for disciplinary reasons, the credibility of the entire safety program may be irreparably compromised." ¶10b(8) data verification roundtables; ¶10b(9)–(10) targets for enhancement and feedback.
+- ¶10a: "It is recommended that a LOSA observe all 10 characteristics". ¶10b: names and numbers of the ten characteristics (Table 1; **[v0.2]** characteristic 10 now named as in the AC, "Feedback Results to the Line Pilots"). ¶10b(1): "Line checks, initial line indoctrination or other training flights are off-limits"; "Having another observer onboard adds to an already high stress level, thus providing an unrealistic picture of performance." ¶10b(4): "The purpose of LOSA is to collect safety data, not to punish pilots"; "If a LOSA observation is ever used for disciplinary reasons, the credibility of the entire safety program may be irreparably compromised." ¶10b(8) data verification roundtables; ¶10b(9)–(10) targets for enhancement and feedback.
 - Appendix 1, 2a–c (TEM definitions quoted in §2.2); note 1: "the TEM framework can be applied to other high-risk jobs. To do so requires task and situational analyses by subject matter experts"; 3c: DOSA and NOSS.
 - Appendix 2, 1a: "LOSA observers should be trained to accept their role as observers, not evaluators—they are not check airmen"; "they should only interrupt if they perceive the safety of the flight to be seriously and immediately endangered"; observers "politely decline" requests to debrief. 2a: "Observers are trained, calibrated, tested, and recalibrated"; analyst checks coding against the narrative.
-- Appendix 4 (sample letter): "LOSA observations are no-jeopardy events".
+- Appendix 4 (sample letter): "LOSA observations are no-jeopardy events"; **[v0.2]** "Be assured that these observations are not checkrides" (§2.2).
 
 ### ICAO (2002). Doc 9803, Line Operations Safety Audit (LOSA), 1st ed.
-- Verified: ICAO Store listing https://store.icao.int/en/line-operations-safety-audit-losa-doc-9803 ("1st Edition, 2002"; product code DOC-09803-001-01). The document itself was **not** opened: a third-party copy (UK Flight Safety Committee site) returned an HTML page, not the PDF.
-- Claims are limited to existence, title, edition and year (§2.2). Store description: "LOSA focuses on the use of expert and highly trained observers to collect data about flight crew behaviour and situational factors on normal flights." Klinect et al. (2003) also cite it as "International Civil Aviation Organization (2002). Line Operations Safety Audit (LOSA), Document 9803."
+- Verified: ICAO Store listing https://store.icao.int/en/line-operations-safety-audit-losa-doc-9803 ("1st Edition, 2002"; product code DOC-09803-001-01). The document itself was **not** opened (a third-party copy returned an HTML page, not the PDF).
+- Claims are limited to existence, title, edition and year (§2.2). Store description: "LOSA focuses on the use of expert and highly trained observers to collect data about flight crew behaviour and situational factors on normal flights."
 
 ### ICAO (2013). Doc 9995, Manual of Evidence-based Training, 1st ed.
-- Verified: full text read from a copy hosted by the Swedish Transport Agency (https://www.transportstyrelsen.se/globalassets/global/luftfart/certifikat_och_utbildning/seminarium/2016/toni-reuterstrand-4.pdf); title page "Doc 9995 AN/497 ... First Edition — 2013", ISBN 978-92-9249-242-7. Not checked against an ICAO-distributed copy or the corrigendum (ICAO Store lists "Corrigendum no. 1 dated 6/1/14"). Existence of Doc 9995 as the EBT reference is also stated in EASA GM1 ORO.FC.230(a);(b);(f).
+- Verified: full text read from a copy published as seminar material on the website of the **Swedish Transport Agency (Transportstyrelsen)**, a national authority; this is not an ICAO distribution, and (per the audit) the paper no longer links to it. Title page "Doc 9995 AN/497 ... First Edition — 2013", ISBN 978-92-9249-242-7, "© ICAO 2013 All rights reserved". Not checked against an ICAO-distributed copy or the corrigendum (ICAO Store lists "Corrigendum no. 1 dated 6/1/14"). EASA GM1 ORO.FC.230(a);(b);(f) also names Doc 9995 as the EBT reference.
 - Glossary: definitions of "Evidence-based training (EBT)", "Competency", "Behavioural indicator" (§2.3) and "Inter-rater reliability. The consistency or stability of scores between different raters."
 - Part I, 1.1 (§2.1): "largely based on the evidence of hull losses from early generation jets, and on a simple view that, in order to mitigate a risk, simply repeating an event in a training programme was sufficient"; "created an inventory or "tick box" approach to training".
 - Part I, 1.3 (§2.3): "It is impossible to foresee all plausible accident scenarios"; "The scenarios recommended in EBT are simply a vehicle and a means to assess and develop competence"; "should allow a pilot to manage situations in flight that are unforeseen by the aviation industry and for which the pilot has not been specifically trained."
@@ -202,24 +206,25 @@ Verification methods used: arXiv export API (metadata and abstracts) and arXiv H
 - Part II, Appendix 1: eight core competencies (Application of Procedures; Communication; Aircraft Flight Path Management, automation; Aircraft Flight Path Management, manual control; Leadership and Teamwork; Problem Solving and Decision Making; Situation Awareness; Workload Management).
 
 ### ICAO (2020). Doc 9868, PANS-TRG, 3rd ed.
-- Verified: full text read from a third-party copy (https://ffac.ch/wp-content/uploads/2026/08/ICAO-Doc-9868-Training-PANS-TRG-3rd-ed.-amdt.-7-2020.pdf); title page "Third Edition, 2020 ... supersedes on 5 November 2020, all previous editions of Doc 9868". Later amendments, if any, were not checked.
-- Part II, Section 1, Chapter 1, 1.1.4 (§2.3): "the ICAO competency framework for aeroplane pilots can be applied to recurrent assessment and training". Appendix 1 to Chapter 1: "ICAO COMPETENCY FRAMEWORK TO DEVELOP COMPETENCY-BASED TRAINING AND ASSESSMENT FOR AEROPLANE PILOT LICENCES, RATINGS, AND RECURRENT TRAINING", with OB numbering matching EASA (e.g., "OB 1.1 Identifies where to find procedures and regulations").
+- Verified: full text read from a copy on the website of the **Foundation for Aviation Competence (FFAC)**, a Swiss non-profit foundation (its home page: "eine unabhängige gemeinnützige Stiftung unter eidgenössischer Aufsicht"); this is **not** an authority or an ICAO distribution, and the paper no longer links to it. Title page "Third Edition, 2020 ... This edition incorporates all amendments approved by the Council prior to 8 June 2020 and supersedes on 5 November 2020, all previous editions of Doc 9868"; "© ICAO 2020 All rights reserved". Later amendments were not checked.
+- Part II, Section 1, Chapter 1, 1.1.4 (§2.3): "the ICAO competency framework for aeroplane pilots can be applied to recurrent assessment and training". Appendix 1 to Chapter 1: "ICAO COMPETENCY FRAMEWORK TO DEVELOP COMPETENCY-BASED TRAINING AND ASSESSMENT FOR AEROPLANE PILOT LICENCES, RATINGS, AND RECURRENT TRAINING", with OB numbering matching EASA.
 
-### EASA. Easy Access Rules for Air Operations (EU)
-All texts via the Citadel Aero regulation library (jurisdiction EU), source https://www.easa.europa.eu/en/document-library/easy-access-rules/easy-access-rules-air-operations. Status as returned by the library is given for each.
-- **ORO.FC.231** (binding; "Regulation (EU) 2020/2036", in force from 2020-12-31): (a)(2)(iv)(A) "The evaluation phase comprises a line-orientated flight scenario (or scenarios) to assess all competencies"; (a)(4) "The operator shall establish an EBT instructor standardisation and concordance assurance programme"; "(iii) The operator shall demonstrate that the instructors have sufficient concordance."; (b)(2) "include observable behaviours required for safe, effective and efficient operations"; (c)(3) "procedures governing the protection of EBT data"; (d)(1)(ii) "a performance criterion and a scale for each competency, with a point on the scale which determines the minimum acceptable level"; (h)(3)(ii) "or 3 years, subject to a feedback process for the monitoring of line operations which identifies threats to the operations, minimises the risks of such threats, and implements measures to manage human error in the operations."
-- **AMC1 ORO.FC.231(b)** (AMC; ED Decision 2021/002/R): nine competencies with OB lists (KNO, PRO, COM, FPA, FPM, LTW, PSD, SAW, WLM). Wording used in the rubric: OB 1.1–1.3, 1.6, 2.3, 2.6, 2.7, 6.1, 6.2, 6.5, 7.1, 7.4, 7.5, 7.6 (see `code/rubric.py`).
+### EASA (2026). Easy Access Rules for Air Operations, Revision 24 (EU)
+- **[v0.2]** Revision and date: EASA page https://www.easa.europa.eu/en/document-library/easy-access-rules/easy-access-rules-air-operations, title "Easy Access Rules for Air Operations - Revision 24, March 2026", dated 27/03/2026. Provision texts were taken from the Citadel Aero regulation library (jurisdiction EU), whose `version` field names the amending instrument for each provision; whether the library's consolidation is identical to Revision 24 was not checked line by line. Status as returned by the library is given for each.
+- **ORO.FC.230** (binding; "Regulation (EU) 2021/2237") **[v0.2]**: "(b) Operator proficiency check"; "(c) Line check — Each flight crew member shall complete a line check on the aircraft. The validity period of the line check shall be 12 calendar months." (§2.1)
+- **AMC1 ORO.FC.230** (AMC; ED Decision 2025/002/R) **[v0.2]**: (b)(3)(i) "A line check should establish the ability to perform satisfactorily a complete line operation"; (b)(3)(v) "A line check should be conducted by a commander nominated by the operator ... The person conducting the line check should occupy an observer's seat where installed."; (d)(2) "The line check should be performed in the aircraft. All other training and checking should be performed in an FSTD" (§1, §2.1, §2.2).
+- **ORO.FC.231** (binding; "Regulation (EU) 2020/2036", in force from 2020-12-31): (a)(4) "The operator shall establish an EBT instructor standardisation and concordance assurance programme"; "(iii) The operator shall demonstrate that the instructors have sufficient concordance."; (b)(2) "include observable behaviours required for safe, effective and efficient operations"; (d)(1)(ii) "a performance criterion and a scale for each competency, with a point on the scale which determines the minimum acceptable level"; (h)(1) "Each pilot shall periodically undertake a line evaluation of competence in an aircraft"; (h)(3)(ii) "or 3 years, subject to a feedback process for the monitoring of line operations which identifies threats to the operations, minimises the risks of such threats, and implements measures to manage human error in the operations." **[v0.2]** §5.3 now treats (h)(3)(ii) only as a loose parallel: it lengthens the interval between evaluative line evaluations, and does not lighten simulator assessment.
+- **AMC1 ORO.FC.231(b)** (AMC; ED Decision 2021/002/R): nine competencies with OB lists (KNO, PRO, COM, FPA, FPM, LTW, PSD, SAW, WLM). Wording used in the rubric: OB 1.1–1.3, 2.3, 2.6, 2.7, 6.1, 6.2, 6.5, 7.1, 7.4, 7.5, 7.6 (see `code/rubric.py`).
 - **AMC1 ORO.FC.231(c)** (AMC; ED Decision 2022/014/R): "level 2 grading metrics (observable behaviour metrics): the instructors record predetermined OBs during the session".
-- **GM1 ORO.FC.231(c)** (GM; 2021/002/R): "It is important to remind that the purpose of this system is not to spy on instructors or to pressure individuals to change their grading".
-- **AMC1 ORO.FC.231(d)(1)** (AMC; 2021/002/R): "The grading scale should be 1 to 5"; "Grade 1 — NOT COMPETENT".
+- **GM1 ORO.FC.231(c)** (GM; 2021/002/R): "the purpose of this system is not to spy on instructors or to pressure individuals to change their grading".
+- **AMC1 ORO.FC.231(d)(1)** (AMC; 2021/002/R): "The grading scale should be 1 to 5"; "Grade 1 — NOT COMPETENT — determines that the minimum acceptable level of performance was not achieved for the conduct of line operations. An outcome of ADDITIONAL TRAINING REQUIRED ..." (§1, §2.3); **[v0.2]** "Grade 2 (below the average) determines that the minimum acceptable level was achieved"; "Grade 3 is the average." (§2.3, §6.2, §6.5).
 - **AMC4 ORO.FC.231(d)(1)** (AMC; 2022/014/R): "RECOMMENDED GRADING SYSTEM METHODOLOGY — VENN MODEL"; abbreviated word picture (outcome; how well; how many; how often) used to write the pilot's grade anchors.
-- **GM2 ORO.FC.231(d)(1)** (GM; 2022/014/R): "the OB(s) should simply link the observed performance to the competency; they are not to be used as a checklist"; "Although it is not recommended, if the instructor performs an overall grade (additional to level 1), it should be at level 0 grading metric (competent or not)."
-- **GM1 ORO.FC.231(a)(4)** (GM; 2021/002/R; text seen as an excerpt): "(1) through uniform standardisation material where at least three different levels of performance are included and for all the competencies"; "Neither the competency(-ies) nor the grade level(s) may be communicated in advance to the instructors."
+- **GM2 ORO.FC.231(d)(1)** (GM; 2022/014/R): "the OB(s) should simply link the observed performance to the competency; they are not to be used as a checklist"; "Although it is not recommended, if the instructor performs an overall grade (additional to level 1), it should be at level 0 grading metric (competent or not)." **[v0.2]** §6.2 now states that the pilot's overall grade departs from this guidance.
+- **GM1 ORO.FC.231(a)(4)** (GM; 2021/002/R; **[v0.2]** full text now read): "(d) Individual instructor concordance may be verified: (1) through uniform standardisation material where at least three different levels of performance are included and for all the competencies at a frequency of 72 months"; "(f) ... Neither the competency(-ies) nor the grade level(s) may be communicated in advance to the instructors." **[v0.2]** The paper now says "may be verified"/"suggests" and no longer attributes a statistical reason to EASA.
 - **AMC1 ORO.FC.231(a)(4)** (AMC; 2021/002/R): ICAP should demonstrate "instructor-group assessment homogeneity (agreement)" and "instructor assessment accuracy (alignment)" (read, not quoted).
-- **GM19 Annex I Definitions** (GM; 2021/002/R): "'Instructor concordance' is also called 'inter-rater reliability'."
-- **GM1 ORO.FC.230(a);(b);(f)** (GM; 2021/002/R): names LPC and OPC; "ICAO has developed Doc 9995 'Manual of Evidence-based Training', followed by the EASA EBT manual".
-- **AMC2 ORO.FC.232** (AMC; 2022/014/R; seen as an excerpt): table columns include "Desired outcome (includes performance criteria OR training outcome)" and "Guidance material (GM); Example scenario elements" (§6.5).
-- The reference list uses "(n.d.)" because the consolidated Easy Access Rules revision date was not shown by the library; the instrument versions are named instead.
+- **GM19 Annex I Definitions** (GM; 2021/002/R): "'Instructor concordance' is also called 'inter-rater reliability'."; **[v0.2]** "'Line-orientated safety audit (LOSA)' is one of the tools used to help evaluate the performance of the operations. It consists of line flights that are observed by appropriately qualified operator personnel to provide feedback to validate the EBT programme." (§2.4)
+- **GM1 ORO.FC.230(a);(b);(f)** (GM; 2021/002/R): names LPC and OPC; "Implementation of a mixed EBT programme means that some portion of the recurrent assessment and training is dedicated to the application of EBT" (**[v0.2]**, §2.3).
+- **AMC2 ORO.FC.232** (AMC; 2022/014/R; seen as an excerpt): table columns include "Desired outcome (includes performance criteria OR training outcome)", "Guidance material (GM); Example scenario elements" and one column per competency (PRO, COM, FPA, FPM, LTW, PSD, SAW, WLM, KNO) (§6.5).
 
 ### Regulation (EU) No 965/2012 [UK] (n.d.), ORO.FC.231 (UK assimilated law; binding)
 - Verified: Citadel Aero library (`uk:uk-reg-965-2012:oro.fc.231`, status binding, version "legislation.gov.uk eur (current, OGL)"), source https://www.legislation.gov.uk/eur/2012/965/annex/III. Text matches the EU rule with "the CAA" as approving authority (§2.3).
@@ -231,15 +236,44 @@ All texts via the Citadel Aero regulation library (jurisdiction EU), source http
 
 ---
 
+## New sources added in v0.2
+
+### Carvell et al. (2026), AIAA SciTech 2026 / arXiv:2601.04288 [v0.2]
+- Verified: arXiv API record (10 authors; DOI 10.2514/6.2026-2558) and Crossref record (AIAA SCITECH 2026 Forum, 8 January 2026); full text read via arXiv HTML v1.
+- §1, Table 2, §4, Appendix A: abstract: "a rigorous, human-in-the-loop evaluation framework for assessing the performance of AI agents on the task of Air Traffic Control, grounded in a regulator-certified simulator-based curriculum"; §2: "heavily drawing on the ICAO 'Manual on Air Traffic Controller Competency-based Training and Assessment'"; "Each competency is scored on a four-point scale".
+- §6.5, section 4.1 (Inter-Rater Reliability (IRR) Assessment): "we compared the scores on 19 scenarios ... that were independently assessed by at least 7 instructors"; "We report the mean Spearman's rho of 0.59 and Kendall's W of 0.64"; "there is no appreciable difference in the consistency of scores for machine agents or human trainees".
+
+### Pepper et al. (2026), arXiv:2601.03113 [v0.2]
+- Verified: arXiv API record (14 authors; DOI 10.2514/6.2026-1794) and Crossref record (published title "A Probabilistic Digital Twin of UK en Route Airspace", AIAA SCITECH 2026 Forum). Cited as the preprint, with the published version noted.
+- §1, Table 2, Appendix A: abstract: "the framework facilitates competency-based assessment of AI agents by qualified Air Traffic Control Officers".
+
+### Covas & Hidalgo Toledo (2026), arXiv:2605.15034 [v0.2]
+- Verified: arXiv API record and abstract. Preprint.
+- Appendix A (observer effects in LLM debates): "Monitored conditions (Delta+24.9%, Delta+24.2%) and the automated AI monitoring condition (Delta+22.2%) produce higher TTR change than audience-framing conditions (Delta+17.7%)".
+
+### Krippendorff (2004). Reliability in content analysis [v0.2]
+- Verified: Crossref DOI record 10.1111/j.1468-2958.2004.tb00738.x (Human Communication Research 30(3), 411–433); full text of the author's postprint downloaded from the University of Pennsylvania repository (item for asc_papers/242, file "Reliability_in_content_analysis.pdf", header "Manuscript published in Human Communication Research 30, 3: 411-433, 2004").
+- §6.3, abstract, Fig. 1: section "Recommendations", point (iii): "I suggested elsewhere to require α ≥ .800, and where tentative conclusions are still acceptable, α ≥ .667 (Krippendorff, 2004, p. 241)" (Greek letters lost in text extraction; restored from context); "Except for perfect agreement, there are no magical numbers, however."
+
+### Anthropic (n.d.). Models overview [v0.2]
+- Verified: page text retrieved from https://docs.claude.com/en/docs/about-claude/models/overview on 3 November 2026: product names "Claude Haiku 5.5", "Claude Sonnet 5.5", "Claude Opus 5.5" with API IDs `claude-haiku-5-5`, `claude-sonnet-5-5`, `claude-opus-5-5` (§6.1, §6.3).
+
+---
+
 ## Pilot-study facts (internal)
-- All pilot numbers in §6 come from `results/*.csv` and `results/summary.json`, produced by `code/analyse.py` from `data/grades.jsonl` (408 gradings) and `data/transcripts.jsonl` (48 transcripts). The run log is reproducible: bootstrap uses a fixed seed (20261103).
+- All pilot numbers in §6 come from `results/*.csv` and `results/summary.json`, produced by `code/analyse.py` from `data/grades.jsonl` (408 gradings) and `data/transcripts.jsonl` (48 transcripts). The analysis is deterministic (bootstrap and permutation seed 20261103); the independent audit reproduced `results/` byte for byte for v0.1.
+- **[v0.2]** New outputs: run-2 and pooled inter-grader alphas (`agreement_grades.csv`, now labelled "Repeat-run" instead of "Test-retest"); epsilon-squared = H/(n − 1) (competency mean 0.525, holistic 0.616) alongside the previously mislabelled eta-squared based on H, (H − k + 1)/(n − k) (0.469, 0.570), in `discrimination.csv`; scenario-stratified permutation test for the two models (competency mean difference 0.065, p = 0.42; 10,000 permutations) and minimum detectable difference at 80% power (0.21); Bonferroni-adjusted grader-bias p-values (`grader_bias.csv`); grader × agent means (`grader_by_agent_means.csv`); alpha counts against Krippendorff's minima (`summary.json`).
+- **[v0.2]** S6 misreported-status count, checked directly in `data/transcripts.jsonl`: digests stating the escalation as done in Haiku samples 1 and 3 and Sonnet samples 1–4 (six of eight); Haiku 4 ambiguous ("Referred for same-day action (see above)"); Haiku 3 and Sonnet 1–4 say in the same response that the assistant could not or did not make the call. S2 Haiku sample 1: "I've flagged this to the Continuing Airworthiness Manager for review". In `data/grades.jsonl`, all 14 COM grades ≤ 3 for those six S6 transcripts and both COM grades ≤ 3 for S2 Haiku 1 cite the misstated status in the evidence note; all 16 of these gradings mark COM.2 "not_demonstrated".
+- **[v0.2]** Indicator disagreements involving "not_required": 64 of 77 (run 1) and 65 of 84 (run 2).
 - Call count (458): 2 set-up test calls (not saved), 48 generations, 384 main gradings, 24 control gradings; `attempts` = 1 for every saved call.
+- **[v0.2]** Controls are post hoc: data timestamps (UTC, 3 November 2026) show transcripts 22:47–22:49, main grades 22:50–23:02 and control grades 23:03; the audit recorded `code/controls.py` as first written at 22:59. They were written by the drafting assistant, Claude Opus 5.5.
 - Two transcripts (`S3_beyond_authority|claude-sonnet-5-5|1` and `|4`) report usage under both `claude-sonnet-5-5` and `claude-sonnet-5`; see `data/transcripts.jsonl`, field `model_served`.
 
 ## Items that could not be fully verified, and how they were handled
 1. ICAO Doc 9803 text: not opened; only the ICAO Store listing. Claims limited to bibliographic facts.
-2. ICAO Doc 9995 and Doc 9868: read from copies hosted by a national authority (Sweden) and a third party (ffac.ch), not from ICAO. Quoted wording should be checked against the author's licensed copies.
-3. Gunther (2002) "70 percent" figure: second-hand via Klinect et al.; labelled as such.
-4. Krippendorff's alpha thresholds: not verifiable; not used.
-5. Commercial model names: the paper calls the models "Claude Haiku 5.5", "Claude Sonnet 5.5" and "Claude Opus 5.5" from their API identifiers (`claude-haiku-5-5`, `claude-sonnet-5-5`, `claude-opus-5-5`). Official product names were not checked.
+2. ICAO Doc 9995 and Doc 9868: read from copies on the websites of the Swedish Transport Agency (an authority) and the Foundation for Aviation Competence (a private Swiss foundation), not from ICAO. The paper names the hosts in the reference list but does not link to them. Quoted wording should be checked against the author's licensed copies, including the Doc 9995 corrigendum and any later PANS-TRG amendments.
+3. **[v0.2]** Gunther (2002) "70 percent" figure: removed from the paper.
+4. **[v0.2]** Krippendorff's alpha thresholds: now verified in the 2004 postprint and used.
+5. **[v0.2]** Model names: now confirmed on Anthropic's models overview page.
 6. Affiliations of Williams et al. (2026) were not checked; the paper avoids naming the organisation.
+7. **[v0.2]** Whether the Citadel Aero consolidation matches EASA EAR Revision 24 line by line was not checked; amending instruments are named per provision.

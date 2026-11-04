@@ -11,7 +11,7 @@ This repository holds my research, complete and in progress. Most of it applies 
 | Work | Type | Status | Where |
 |---|---|---|---|
 | **Extending AI-Agent Incident Analysis to Multi-Agent Systems: AFACS**, an HFACS-based framework and an audit of public multi-agent traces | Framework and empirical study | **In progress.** Paper draft written and AI coding pilot complete (250 traces); human-coder validation planned as a second study | [`projects/afacs/`](projects/afacs/) |
-| **Just Culture for Machines:** Why Penalising Disclosure Teaches Concealment | Theory | Working paper v0.4, in author review | [`papers/01-just-culture-for-machines/`](papers/01-just-culture-for-machines/) |
+| **Just Culture for Machines:** Why Penalising Disclosure Teaches Concealment | Theory | **Preprint v1.0** (4 Nov 2026), not peer reviewed | [`papers/01-just-culture-for-machines/`](papers/01-just-culture-for-machines/) |
 | **Do LLM Monitors Miss Rare Threats?** A Pre-registered Test of the Low-Prevalence Effect | Pre-registered experiment | **Preprint v1.0** (4 Nov 2026), not peer reviewed | [`papers/02-do-llm-monitors-miss-rare-threats/`](papers/02-do-llm-monitors-miss-rare-threats/) |
 | **From RSP to SMS:** Reading Frontier AI Safety Frameworks Through ICAO's Safety Management System | Theory and document analysis | Working paper v0.4, in author review | [`papers/03-from-rsp-to-sms/`](papers/03-from-rsp-to-sms/) |
 | **Checkride or Jump Seat?** What LOSA and Evidence-Based Training Teach About Evaluation Awareness in AI Systems | Theory and pilot study | Working paper v0.4, in author review | [`papers/04-checkride-or-jump-seat/`](papers/04-checkride-or-jump-seat/) |

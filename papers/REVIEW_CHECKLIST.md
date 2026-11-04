@@ -24,10 +24,10 @@ On 4 November 2026 James accepted the recommended defaults for the routine items
 
 Other research repositories (pc24-study, CitadelAero research-studies and others) **stay separate** from this hub (James, 4 Nov 2026).
 
-### 01 Just Culture for Machines
+### 01 Just Culture for Machines — **released as Preprint v1.0 (4 Nov 2026)**
 | # | Item | Status | Decision |
 |---|---|---|---|
-| B1.1 | Aviation accuracy and tone of §2 and Table 1 (S1 wording; why P2 departs from FOQA protection; Art. 16(6) carve-out; Danish case presented as confounded) | ☐ | |
+| B1.1 | Aviation accuracy and tone of §2 and Table 1 (S1 wording; why P2 departs from FOQA protection; Art. 16(6) carve-out; Danish case presented as confounded) | ✔ | Approved by James ("01 fine") after reviewing the condensed Section 2 passages. |
 | B1.2 | Is the formal argument (§4.1, assumptions A1–A4) clear to aviation readers? | ✔ | Default accepted: keep §4.1 as audited (assumptions A1–A4 stated where the claim is summarised). |
 | B1.3 | Reason (1997), Marx (2001), Dekker (2025) seen only via secondary sources: check wording and add page numbers if you hold the books | ✔ | Default accepted: keep the "as cited in" attribution; add page numbers only if the books are consulted later. |
 | B1.4 | Reference-style choices (legal citation form; secondary-source entries; screen names) | ✔ | Superseded by A7: IEEE numeric style via BibTeX; legal designations kept in the text. |

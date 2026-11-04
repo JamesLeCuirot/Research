@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import textwrap
 import json
 import math
 from collections import defaultdict
@@ -106,7 +107,7 @@ def heatmap(matrix, row_labels, col_labels, title, path, row_note=None, fmt="{:.
     """A one-hue (light->dark blue) heatmap with the value printed in each cell."""
     h = 0.42 * len(row_labels) + 1.6
     w = 0.62 * len(col_labels) + 3.6
-    fig, ax = plt.subplots(figsize=(w, h))
+    fig, ax = plt.subplots(figsize=(w, h), layout="constrained")
     im = ax.imshow(matrix, cmap=SEQ, vmin=0, vmax=vmax, aspect="auto")
     ax.set_xticks(range(len(col_labels)), col_labels, rotation=45, ha="right")
     ax.set_yticks(range(len(row_labels)), [f"{r}  {row_note[i]}" if row_note else r for i, r in enumerate(row_labels)])
@@ -121,14 +122,13 @@ def heatmap(matrix, row_labels, col_labels, title, path, row_note=None, fmt="{:.
     ax.tick_params(which="both", length=0)
     for s in ax.spines.values():
         s.set_visible(False)
-    ax.set_title(title, loc="left")
+    fig.suptitle(textwrap.fill(title, 48), x=0.02, ha="left", fontweight="bold")  # wrapped so it is never clipped
     ax.set_xlabel(xlabel)
     cbar = fig.colorbar(im, ax=ax, fraction=0.03, pad=0.02)
     cbar.outline.set_visible(False)
     cbar.ax.tick_params(length=0)
-    fig.tight_layout()
     paths.FIGURES.mkdir(exist_ok=True)
-    fig.savefig(path, dpi=200)
+    fig.savefig(path, dpi=200, bbox_inches="tight")
     plt.close(fig)
     print(f"  wrote {path.relative_to(paths.ROOT)}")
 
@@ -217,6 +217,10 @@ def mast_figures() -> None:
 # ---------------------------------------------------------------------------
 
 
+RUN_LABELS = {"sonnet_bulk_r1": "AI pilot, Sonnet run 1", "opus_bulk_r1": "AI pilot, Opus",
+              "sonnet_bulk_r2": "AI pilot, Sonnet run 2", "human_calibration": "human coding"}
+
+
 def afacs_analysis(rows: dict[str, dict], name: str, weights: dict[str, float] | None = None,
                    extra: list[str] | None = None) -> None:
     """RQ2-RQ4 tables and figures. With `weights` (bulk run), shares are weighted to the eligible pool."""
@@ -265,7 +269,7 @@ def afacs_analysis(rows: dict[str, dict], name: str, weights: dict[str, float] |
     out += ["", "Deepest contributing layer: " + ", ".join(
         f"{L} {pct(share(all_us, lambda u, L=L: failed[u]['deepest_layer'] == L)[0])}" for L in LAYERS), ""]
     if failed:
-        hbar_panels(panels, f"Share of failed traces with a contributing factor at each layer ({name})",
+        hbar_panels(panels, f"Share of failed traces with a contributing factor at each layer ({RUN_LABELS.get(name, name)}; weighted, 95% intervals)",
                     paths.FIGURES / f"layers_by_framework_{name}.png")
 
     # RQ3 - violations
@@ -346,9 +350,9 @@ def afacs_analysis(rows: dict[str, dict], name: str, weights: dict[str, float] |
         out.append(f"| {c} {design.MAST_NAMES[c]} | {len(us)} | " + " | ".join(f"{x:.0%}" for x in lrow) + f" | {vio:.0%} |")
     if layer_matrix:
         notes = [f"{design.MAST_NAMES[c]} (n={n})" for c, n in zip(row_labels, row_n)]
-        heatmap(layer_matrix, row_labels, LAYERS + ["Violation"], f"AFACS layers within each MAST label ({name})",
+        heatmap(layer_matrix, row_labels, LAYERS + ["Violation"], f"AFACS layers within each MAST label ({RUN_LABELS.get(name, name)})",
                 paths.FIGURES / f"crosswalk_layers_{name}.png", row_note=notes)
-        heatmap(code_matrix, row_labels, codes, f"AFACS codes within each MAST label ({name})",
+        heatmap(code_matrix, row_labels, codes, f"AFACS codes within each MAST label ({RUN_LABELS.get(name, name)})",
                 paths.FIGURES / f"crosswalk_codes_{name}.png", row_note=notes)
 
     out += extra or []

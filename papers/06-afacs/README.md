@@ -200,11 +200,11 @@ To re-run the annotation itself, use `uv run python scripts/pilot.py`. It calls 
 
 ```bibtex
 @misc{lecuirot2026afacs,
-  author = {Le Cuirot, James},
-  title  = {Extending AI-Agent Incident Analysis to Multi-Agent Systems: AFACS, an HFACS-based Framework, and an Audit of Public Traces},
-  year   = {2026},
-  note   = {CitadelAero. Preprint v1.1, 4 November 2026. Not peer reviewed},
-  url    = {https://github.com/JamesLeCuirot/Research}
+  author       = {Le Cuirot, James},
+  title        = {Extending {AI}-Agent Incident Analysis to Multi-Agent Systems: {AFACS}, an {HFACS}-Based Framework, and an Audit of Public Traces},
+  year         = {2026},
+  howpublished = {Preprint v1.1, 4 November 2026. Not peer reviewed},
+  url          = {https://www.lecuirot.je/research/afacs/}
 }
 ```
 

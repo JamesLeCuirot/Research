@@ -11,16 +11,12 @@ Aviation learned that when reports of error feed punishment, people stop reporti
 ## How to cite
 
 ```bibtex
-@techreport{lecuirot2026justculture,
-  author      = {Le Cuirot, James},
-  title       = {Just Culture for Machines: Why Penalising Disclosure Teaches Concealment},
-  institution = {CitadelAero},
-  type        = {Preprint},
-  number      = {v1.0},
-  year        = {2026},
-  month       = nov,
-  note        = {Not peer reviewed},
-  url         = {https://github.com/JamesLeCuirot/Research/tree/main/papers/01-just-culture-for-machines}
+@misc{lecuirot2026justculture,
+  author       = {Le Cuirot, James},
+  title        = {Just Culture for Machines: Why Penalising Disclosure Teaches Concealment},
+  year         = {2026},
+  howpublished = {Preprint v1.0, 4 November 2026. Not peer reviewed},
+  url          = {https://www.lecuirot.je/research/just-culture/}
 }
 ```
 

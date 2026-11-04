@@ -13,16 +13,12 @@ Frontier AI developers publish safety frameworks, such as Anthropic’s Responsi
 ## How to cite
 
 ```bibtex
-@techreport{lecuirot2026rsp2sms,
-  author      = {Le Cuirot, James},
-  title       = {Applying Aviation Safety Management to Frontier AI: A Gap Analysis of Developer Safety Frameworks},
-  institution = {CitadelAero},
-  type        = {Preprint},
-  number      = {v1.1},
-  year        = {2026},
-  month       = nov,
-  note        = {Not peer reviewed},
-  url         = {https://github.com/JamesLeCuirot/Research/tree/main/papers/03-from-rsp-to-sms}
+@misc{lecuirot2026rsp2sms,
+  author       = {Le Cuirot, James},
+  title        = {Applying Aviation Safety Management to Frontier {AI}: A Gap Analysis of Developer Safety Frameworks},
+  year         = {2026},
+  howpublished = {Preprint v1.1, 4 November 2026. Not peer reviewed},
+  url          = {https://www.lecuirot.je/research/safety-management/}
 }
 ```
 

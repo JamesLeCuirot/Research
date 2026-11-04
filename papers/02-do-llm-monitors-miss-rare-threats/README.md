@@ -11,16 +11,12 @@ AI control protocols use language-model monitors to review the work of more capa
 ## How to cite
 
 ```bibtex
-@techreport{lecuirot2026raremonitors,
-  author      = {Le Cuirot, James},
-  title       = {Do LLM Monitors Miss Rare Threats? A Pre-registered Test of the Low-Prevalence Effect},
-  institution = {CitadelAero},
-  type        = {Preprint},
-  number      = {v1.0},
-  year        = {2026},
-  month       = nov,
-  note        = {Not peer reviewed},
-  url         = {https://github.com/JamesLeCuirot/Research/tree/main/papers/02-do-llm-monitors-miss-rare-threats}
+@misc{lecuirot2026raremonitors,
+  author       = {Le Cuirot, James},
+  title        = {Do {LLM} Monitors Miss Rare Threats? A Pre-registered Test of the Low-Prevalence Effect},
+  year         = {2026},
+  howpublished = {Preprint v1.0, 4 November 2026. Not peer reviewed},
+  url          = {https://www.lecuirot.je/research/rare-threats/}
 }
 ```
 

@@ -68,7 +68,7 @@ To run the models again, put an OpenRouter key in a file named `.env` in this fo
   year         = {2026},
   howpublished = {Preprint v1, 2 October 2026. Not peer reviewed},
   doi          = {10.17605/OSF.IO/DHF38},
-  url          = {https://osf.io/dhf38}
+  url          = {https://www.lecuirot.je/research/same-actions/}
 }
 ```
 

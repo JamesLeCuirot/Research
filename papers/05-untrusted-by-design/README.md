@@ -13,16 +13,12 @@ The European Union Aviation Safety Agency (EASA) is moving its guidance on artif
 ## How to cite
 
 ```bibtex
-@techreport{lecuirot2026untrusted,
-  author      = {Le Cuirot, James},
-  title       = {AI Control for Aviation: A Gap Analysis of EASA's Operational Oversight Objectives for Advanced AI},
-  institution = {CitadelAero},
-  type        = {Preprint},
-  number      = {v1.1},
-  year        = {2026},
-  month       = nov,
-  note        = {Not peer reviewed},
-  url         = {https://github.com/JamesLeCuirot/Research/tree/main/papers/05-untrusted-by-design}
+@misc{lecuirot2026untrusted,
+  author       = {Le Cuirot, James},
+  title        = {{AI} Control for Aviation: A Gap Analysis of {EASA's} Operational Oversight Objectives for Advanced {AI}},
+  year         = {2026},
+  howpublished = {Preprint v1.1, 4 November 2026. Not peer reviewed},
+  url          = {https://www.lecuirot.je/research/ai-control/}
 }
 ```
 

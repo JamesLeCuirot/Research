@@ -13,16 +13,12 @@
 ## How to cite
 
 ```bibtex
-@techreport{lecuirot2026checkride,
-  author      = {Le Cuirot, James},
-  title       = {Observing AI Systems in Normal Operations: What Aviation's Line Operations Safety Audit and Evidence-Based Training Offer AI Evaluation},
-  institution = {CitadelAero},
-  type        = {Preprint},
-  number      = {v1.1},
-  year        = {2026},
-  month       = nov,
-  note        = {Not peer reviewed},
-  url         = {https://github.com/JamesLeCuirot/Research/tree/main/papers/04-checkride-or-jump-seat}
+@misc{lecuirot2026checkride,
+  author       = {Le Cuirot, James},
+  title        = {Observing {AI} Systems in Normal Operations: What Aviation's Line Operations Safety Audit and Evidence-Based Training Offer {AI} Evaluation},
+  year         = {2026},
+  howpublished = {Preprint v1.1, 4 November 2026. Not peer reviewed},
+  url          = {https://www.lecuirot.je/research/normal-operations/}
 }
 ```
 

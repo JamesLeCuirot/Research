@@ -16,7 +16,7 @@ Status: ☐ open · ▶ in progress · ✔ done · ↻ deferred
 | A5 | ICAO manuals read from non-ICAO copies: spot-check quotes against licensed copies | 01, 03, 04 | ✔ | James has **no access to licensed ICAO copies**. Keep the provenance disclosures; cross-check each ICAO quotation against a second, independently hosted copy where one exists and record the result in each `sources.md`. Re-check against licensed copies before any journal submission. Results (v0.4): Annex 19 quotes in 01 matched the Swiss FOCA copy; Doc 9995 quotes in 04 matched the SKYbrary copy. **Open:** Doc 9868 §1.1.4 quote (paper 04) rests on one copy; ICAO's Asia–Pacific copy blocks automated access, so James could open it in a browser to confirm. Paper 03: Annex 19 (PNG AIC copy), Doc 9859 (CAA Nepal copy) and Annex 6 3.3.2–3.3.3 (Swiss FOCA copy) all matched. |
 | A8 | Licence and merge | all | ✔ | Paper text **all rights reserved** (© 2026 James Le Cuirot); code MIT; MBPP-derived data CC BY 4.0. Open a **pull request** from the working branch into `main` after the conversion check, so public links point at `main`. The repo had no `main`: its default branch was `claude/zen-bardeen-sf0mtp` (AFACS work). James chose to **rename that default branch to `main`** in GitHub; the PR then targets `main`. **Done 4 Nov 2026:** James renamed the default branch to `main` and asked for the research to be pushed straight to `main`; the papers branch was merged into `main` (no conflicts, no files outside `papers/` changed, AFACS tests 57/57 passing). |
 | A9 | Publication label: personal preprints or a numbered CitadelAero technical report series | all | ✔ | **Keep as personal preprints** ("Preprint v1.0, <date>. Not peer reviewed.") with **CitadelAero** as the affiliation; text © James Le Cuirot. Released papers are linked from James's website and the CitadelAero website. |
-| A10 | Revise the titles of all papers to be more professional | all | ☐ | Requested by James (4 Nov 2026), to be done together later and **before the papers go live on lecuirot.je**. Keep folder names (and so GitHub links) unchanged; record each new title in the paper's NOTES.md; bump the version (v1.1). |
+| A10 | Revise the titles of all papers to be more professional | all | ✔ | **Done 4 Nov 2026.** 01 and 02 kept. 03 → "Applying Aviation Safety Management to Frontier AI: A Gap Analysis of Developer Safety Frameworks"; 04 → "Observing AI Systems in Normal Operations: What Aviation's Line Operations Safety Audit and Evidence-Based Training Offer AI Evaluation"; 05 → "AI Control for Aviation: A Gap Analysis of EASA's Operational Oversight Objectives for Advanced AI" ("Objectives", EASA's own term, in place of the offered "Requirements"). Folder names unchanged; 03–05 bumped to Preprint v1.1; old titles recorded in each NOTES.md and README. |
 | A6 | Reliance on Anthropic research posts that are not peer reviewed | 01, 02, 03, 05 | ✔ | **Corroborate where possible**: keep them, labelled as company research reports; add independent sources alongside wherever they exist (e.g. UK AISI's own incident report, METR's investigation, peer-reviewed or arXiv versions); state in limitations where a fact rests on one company's account. |
 
 ## Part B: paper by paper
@@ -40,7 +40,7 @@ Other research repositories (pc24-study, CitadelAero research-studies and others
 | B2.2 | H2 presentation: registered GLMM kept as the result, accurate refit reported post hoc | ✔ | Default accepted: registered GLMM stays the registered result; accurate refit and exact paired test reported as post hoc. |
 | B2.3 | Length (~7,650 words of prose) | ✔ | Default accepted: no further cuts for the website; trim to a venue's limit when submitting. |
 
-### 03 From RSP to SMS — **released as Preprint v1.0 (4 Nov 2026)**
+### 03 Applying Aviation Safety Management to Frontier AI (was "From RSP to SMS") — **released as Preprint v1.0, retitled v1.1 (4 Nov 2026)**
 | # | Item | Status | Decision |
 |---|---|---|---|
 | B3.1 | Table 2 ratings (single coder): the debatable cells (OpenAI 3.2 = D; Anthropic/OpenAI 4.1 = P; OpenAI 1.3 = P) | ✔ | Agreed by James as rated (single-coder judgements, disclosed). |
@@ -49,10 +49,10 @@ Other research repositories (pc24-study, CitadelAero research-studies and others
 | B3.4 | The twelve proposed safety performance indicators (§6), reviewed as a practitioner | ✔ | Accepted by James as sensible proposals; kept labelled as untested. |
 | B3.5 | Length (~8,700 words incl. tables) | ✔ | Default accepted: no further cuts for the website. |
 
-### 04 Checkride or Jump Seat? — **released as Preprint v1.0 (4 Nov 2026)**
+### 04 Observing AI Systems in Normal Operations (was "Checkride or Jump Seat?") — **released as Preprint v1.0, retitled v1.1 (4 Nov 2026)**
 | # | Item | Status | Decision |
 |---|---|---|---|
-| B4.1 | Title: "Checkride or Jump Seat?" or "Checkride or Fly on the Wall?" | ↻ | Deferred: James will revise the titles of all papers together later, before the website goes live (see A10). Folder names stay stable. |
+| B4.1 | Title: "Checkride or Jump Seat?" or "Checkride or Fly on the Wall?" | ✔ | Neither: retitled with the other papers under A10 to "Observing AI Systems in Normal Operations: What Aviation's Line Operations Safety Audit and Evidence-Based Training Offer AI Evaluation" (v1.1). |
 | B4.2 | Definitions of checkride, line check, LOSA and mixed EBT against current practice | ✔ | Confirmed accurate by James. |
 | B4.3 | The rubric's observable behaviours, from an EBT instructor's view (restore EASA's "grade 3 = average" norm?) | ✔ | Default accepted: keep the pilot rubric as run; restoring EASA's norm reference (grade 3 = average) is listed as future work. |
 | B4.4 | The non-jeopardy translation (§4): jeopardy ≈ optimisation pressure from training on observation data | ✔ | Default accepted: keep the non-jeopardy translation (§4). |
@@ -60,7 +60,7 @@ Other research repositories (pc24-study, CitadelAero research-studies and others
 | B4.6 | §5.3 framing of the ORO.FC.231(h)(3)(ii) parallel | ✔ | Default accepted: keep the narrowed §5.3 framing. |
 | B4.7 | Name Delta Air Lines (as Klinect et al. do) or keep "one US airline" | ✔ | Default accepted: keep "one US airline". |
 
-### 05 Untrusted by Design — **released as Preprint v1.0 (4 Nov 2026)**
+### 05 AI Control for Aviation (was "Untrusted by Design") — **released as Preprint v1.0, retitled v1.1 (4 Nov 2026)**
 | # | Item | Status | Decision |
 |---|---|---|---|
 | B5.1 | Spot-check EASA quotations (DHO-01–07, Table 2, RU-04, ET-01, MOC ET-02-2, RO-01, levelling table) | ✔ | Default accepted: quotations were verified verbatim against the official EASA PDFs by two audits, and the v0.4 check confirmed all 199 quotations unchanged. |

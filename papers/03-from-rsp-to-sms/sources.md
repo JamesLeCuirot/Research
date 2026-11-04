@@ -1,4 +1,4 @@
-# Sources and verification log: "From RSP to SMS"
+# Sources and verification log: "Applying Aviation Safety Management to Frontier AI" (titled "From RSP to SMS" up to v1.0)
 
 Verification carried out on 3 November 2026 with AI assistance (Claude). For each reference: how it was verified, and the claims in the paper it supports (`paper.md` up to v0.3; `paper.tex` from v0.4), with a short verbatim quote or locator. Quotes are copied from the source text as extracted (PDF text extraction or HTML-to-text); curly and straight apostrophes may differ from the original. Page numbers are given only where they were seen.
 

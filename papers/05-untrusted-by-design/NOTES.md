@@ -1,4 +1,4 @@
-# Author notes: Untrusted by Design: Bringing AI Control into Aviation's Operational Oversight of AI
+# Author notes: AI Control for Aviation: A Gap Analysis of EASA's Operational Oversight Objectives for Advanced AI
 
 *Working notes for the author: review points, open questions, development ideas and the revision log. The reader-facing summary is [`README.md`](README.md).*
 
@@ -115,3 +115,7 @@ Format conversion of the audited v0.3 text to the house style in `papers/STYLE.m
 ### v1.0 (4 November 2026): released as a preprint
 
 James is not aware of EASA deliberately scoping out an adversarial AI (B5.3, wording kept), judged Sections 5.4, 5.7 and 7 realistic (B5.5) and kept the stricter aviation meaning of "trusted" (B5.8); B5.1, B5.2, B5.4, B5.6 and B5.7 closed with the recommended defaults. Date line changed to "Preprint v1.0"; affiliation CitadelAero. No change to arguments, numbers or quotations.
+
+### v1.1 (4 November 2026): retitled
+
+Retitled by James to be clearer and more professional (REVIEW_CHECKLIST A10). Old title: "Untrusted by Design: Bringing AI Control into Aviation's Operational Oversight of AI". New title: "AI Control for Aviation: A Gap Analysis of EASA's Operational Oversight Objectives for Advanced AI". Running header "AI Control for Aviation" (was "Untrusted by Design"). Date line changed to "Preprint v1.1". The folder name is unchanged so that links keep working. No change to the text, arguments, numbers or quotations.

@@ -40,9 +40,9 @@ Status: **written** = a working paper exists in [`papers/`](../papers/); **plann
 
 | ID | Proposal | Kind | Status |
 |---|---|---|---|
-| SG-1 | **From RSP to SMS:** frontier AI safety frameworks read through ICAO's Safety Management System. | Theory | **Written:** [paper 03](../papers/03-from-rsp-to-sms/) |
-| SG-2 | **Checkride or Jump Seat?** What LOSA and evidence-based training teach about evaluation awareness. | Theory and pilot | **Written:** [paper 04](../papers/04-checkride-or-jump-seat/) |
-| SG-3 | **Untrusted by Design:** bringing AI control into EASA's operational oversight of Level 3 AI. | Theory | **Written:** [paper 05](../papers/05-untrusted-by-design/) |
+| SG-1 | **Applying Aviation Safety Management to Frontier AI** (working title "From RSP to SMS"): frontier AI safety frameworks read through ICAO's Safety Management System. | Theory | **Written:** [paper 03](../papers/03-from-rsp-to-sms/) |
+| SG-2 | **Observing AI Systems in Normal Operations** (working title "Checkride or Jump Seat?"): what LOSA and evidence-based training teach about evaluation awareness. | Theory and pilot | **Written:** [paper 04](../papers/04-checkride-or-jump-seat/) |
+| SG-3 | **AI Control for Aviation** (working title "Untrusted by Design"): bringing AI control into EASA's operational oversight of Level 3 AI. | Theory | **Written:** [paper 05](../papers/05-untrusted-by-design/) |
 
 ## AI welfare
 

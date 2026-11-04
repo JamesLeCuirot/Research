@@ -1,4 +1,4 @@
-# Verification log: "Untrusted by Design"
+# Verification log: "AI Control for Aviation" (titled "Untrusted by Design" up to v1.0)
 
 All sources were opened on **3 November 2026** in this session unless stated otherwise. "Downloaded" means the PDF or HTML was fetched with `curl` into `scratch/` and its text extracted with `pypdf` (PDFs) or an HTML-to-text script; page-image renders (`pdftoppm`) were used to read figures and levelling tables. "Library" means the Citadel Aero regulation library (MCP tools `lookup_citation`, `get_provision`, `search_regulations`); the library's `status` and `version` fields are recorded.
 

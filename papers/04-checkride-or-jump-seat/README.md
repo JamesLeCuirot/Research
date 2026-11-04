@@ -1,6 +1,8 @@
-# Checkride or Jump Seat? What LOSA and Evidence-Based Training Teach About Evaluation Awareness in AI Systems
+# Observing AI Systems in Normal Operations: What Aviation's Line Operations Safety Audit and Evidence-Based Training Offer AI Evaluation
 
-**James Le Cuirot** · CitadelAero · Preprint v1.0, 4 November 2026. Not peer reviewed.
+**James Le Cuirot** · CitadelAero · Preprint v1.1, 4 November 2026. Not peer reviewed.
+
+*Titled "Checkride or Jump Seat? What LOSA and Evidence-Based Training Teach About Evaluation Awareness in AI Systems" up to v1.0.*
 
 **[Read the paper (PDF)](paper.pdf)** · Part of the [research repository](../../README.md) · [All papers](../README.md)
 
@@ -13,10 +15,10 @@
 ```bibtex
 @techreport{lecuirot2026checkride,
   author      = {Le Cuirot, James},
-  title       = {Checkride or Jump Seat? What LOSA and Evidence-Based Training Teach About Evaluation Awareness in AI Systems},
+  title       = {Observing AI Systems in Normal Operations: What Aviation's Line Operations Safety Audit and Evidence-Based Training Offer AI Evaluation},
   institution = {CitadelAero},
   type        = {Preprint},
-  number      = {v1.0},
+  number      = {v1.1},
   year        = {2026},
   month       = nov,
   note        = {Not peer reviewed},

@@ -32,7 +32,7 @@ The venue research for each paper, the original submission plan, follows. The AA
 
 | Priority | Venue | Deadline | Length / format | Notes |
 |---|---|---|---|---|
-| 1 | **AAAI 2027 Workshop on Trustworthy Evolution of AI Agents** (Montréal, 22–23 Feb 2027) | **20 Nov 2026 AoE** (strict); notification 2 Dec 2026 | Up to 8 pp full paper, AAAI 2027 author kit; refs and appendices usually excluded | Verified on the official page. Non-archival; papers under review elsewhere welcome; double-blind. The page does not state an in-person requirement or an AI-text policy. Submit via OpenReview: https://openreview.net/group?id=AAAI.org/2027/Workshop/Trust4RSI-Agent |
+| 1 | **AAAI 2027 Workshop on Trustworthy Evolution of AI Agents** (Montréal, 22–23 Feb 2027) | **20 Nov 2026 AoE** (strict); notification 2 Dec 2026 | Up to 8 pp full paper, AAAI 2027 author kit; refs and appendices usually excluded | Verified on the official page. Non-archival; papers under review elsewhere welcome; double-blind. The page does not state an in-person requirement or an AI-text policy; AAAI-27's author policy bans LLM-generated text for the conference proceedings, so ask the organisers (trust4rsi.agent@gmail.com). Submit via OpenReview: https://openreview.net/group?id=AAAI.org/2027/Workshop/Trust4RSI-Agent. **Anonymised, verified version ready:** [`submissions/aaai27-trust4rsi-workshop/`](02-do-llm-monitors-miss-rare-threats/submissions/aaai27-trust4rsi-workshop/) |
 | 2 | **TMLR** | Rolling | Any length | Accepts disclosed AI use; preprints allowed; no fees; keeps the full paper. https://jmlr.org/tmlr/author-guide.html |
 | 3 | ICML 2027 main track | Expected late Jan 2027 | 8 pp + refs/appendix (2026) | Call not yet published |
 | — | arXiv | Any time | — | cs.LG/cs.AI; needs an endorser |
@@ -46,7 +46,7 @@ The venue research for each paper, the original submission plan, follows. The AA
 | 3 | ICLR 2027 workshop | ~1 Feb 2027 (workshop list out 29 Nov 2026) | Per workshop | Feedback route; workshop review does not satisfy arXiv |
 | — | arXiv | Any time | — | cs.CY, framed around the testable predictions |
 
-## Paper 03: From RSP to SMS (governance)
+## Paper 03: Applying Aviation Safety Management to Frontier AI (governance)
 
 | Priority | Venue | Deadline | Length / format | Notes |
 |---|---|---|---|---|
@@ -55,7 +55,7 @@ The venue research for each paper, the original submission plan, follows. The AA
 | 3 | IASEAI '27 (Paris, 9–12 Feb 2027) | Talk proposals ~8–9 Jan 2027 (not verified on the official page) | Proposal | Governance audience |
 | — | arXiv | Any time | — | cs.CY |
 
-## Paper 04: Checkride or Jump Seat? (evaluation)
+## Paper 04: Observing AI Systems in Normal Operations (evaluation)
 
 | Priority | Venue | Deadline | Length / format | Notes |
 |---|---|---|---|---|
@@ -65,7 +65,7 @@ The venue research for each paper, the original submission plan, follows. The AA
 | 4 | ISAP 2027 (Auburn, 18–21 May 2027) | Call not open | — | Aviation psychology audience |
 | — | arXiv | Any time | — | cs.AI (cs.HC, cs.CY) |
 
-## Paper 05: Untrusted by Design (regulatory)
+## Paper 05: AI Control for Aviation (regulatory)
 
 | Priority | Channel | Deadline | Format | Notes |
 |---|---|---|---|---|

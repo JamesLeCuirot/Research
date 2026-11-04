@@ -1,7 +1,7 @@
 # Paper 05: submission to The Aeronautical Journal
 
 **Journal:** *The Aeronautical Journal* (Royal Aeronautical Society; published by Cambridge University Press), research article.
-**Status (4 November 2026):** package ready for James's read and edit, in the journal's template. Not yet submitted. **Send the presubmission enquiry first** (below): the journal's scope is the main risk for this paper.
+**Status (4 November 2026):** package ready for James's read and edit, in the journal's template. Not yet submitted. **The presubmission enquiry (below) is optional:** to submit straight away, skip it and let the cover letter make the case; the editor's desk decision answers the same question in days. the journal's scope is the main risk for this paper.
 
 ## Why this journal
 
@@ -91,7 +91,7 @@ The preprint's "The author is responsible for the final text" is replaced by the
 
 ## Before you submit
 
-1. **Send the presubmission enquiry** (draft above) and wait for the reply.
+1. **Optional:** send the presubmission enquiry (draft above) and wait for the reply, or skip it and submit directly.
 2. **Read and edit the manuscript in your own words.** Then replace the placeholder `[AUTHOR TO DESCRIBE HIS OWN REVISION OF THE MANUSCRIPT]` in the "Use of AI" paragraph of the Acknowledgements in `paper.tex` with what you did, and rebuild (`latexmk -pdf paper.tex` in this folder). If you know which tool and model the audit agents used, put them in place of "tool and model version not recorded".
 3. **CitadelAero's rule.** Paper 07's notes record that you overrode CitadelAero's research-plan rule against preprint and journal submissions for that paper. Decide whether the rule covers this paper too, and record the decision.
 4. **Points you may want to change in your own edit.** None was changed here, because this version keeps the preprint's text:

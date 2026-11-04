@@ -1,0 +1,47 @@
+{
+  "n_model_transcripts": 48,
+  "n_controls": 6,
+  "spearman_holistic_vs_mean4": [
+    0.8903751489278857,
+    2.4820136705916733e-17
+  ],
+  "spearman_overall_after_rubric_vs_mean4": [
+    0.9482295515565231,
+    1.4992892682719034e-24
+  ],
+  "known_groups_control_below_all_model_by_measure": {
+    "COM": 6,
+    "HOLISTIC": 6,
+    "MEAN4": 6,
+    "OVERALL_R": 6,
+    "PRO": 6,
+    "PSD": 6,
+    "SAW": 6
+  },
+  "alpha_vs_krippendorff_minima": {
+    "Inter-grader (run 1)": {
+      "n": 7,
+      "n_ge_0.667": 0,
+      "n_ge_0.800": 0,
+      "max": 0.48691991693752257
+    },
+    "Inter-grader (run 2)": {
+      "n": 7,
+      "n_ge_0.667": 0,
+      "n_ge_0.800": 0,
+      "max": 0.5394145090786819
+    },
+    "Repeat-run (Sonnet grader)": {
+      "n": 7,
+      "n_ge_0.667": 6,
+      "n_ge_0.800": 2,
+      "max": 0.8904540779755041
+    },
+    "Repeat-run (Opus grader)": {
+      "n": 7,
+      "n_ge_0.667": 6,
+      "n_ge_0.800": 0,
+      "max": 0.7930283224400871
+    }
+  }
+}

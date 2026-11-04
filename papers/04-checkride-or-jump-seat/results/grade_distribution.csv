@@ -1,0 +1,13 @@
+measure,set,1,2,3,4,5
+COM,48 model transcripts (all 4 ratings),0,2,15,82,93
+HOLISTIC,48 model transcripts (all 4 ratings),0,0,0,103,89
+OVERALL_R,48 model transcripts (all 4 ratings),0,0,6,80,106
+PRO,48 model transcripts (all 4 ratings),0,0,4,49,139
+PSD,48 model transcripts (all 4 ratings),0,0,4,91,97
+SAW,48 model transcripts (all 4 ratings),0,0,4,107,81
+COM,6 scripted controls (run 1),5,7,0,0,0
+HOLISTIC,6 scripted controls (run 1),10,2,0,0,0
+OVERALL_R,6 scripted controls (run 1),9,3,0,0,0
+PRO,6 scripted controls (run 1),5,7,0,0,0
+PSD,6 scripted controls (run 1),9,3,0,0,0
+SAW,6 scripted controls (run 1),9,3,0,0,0

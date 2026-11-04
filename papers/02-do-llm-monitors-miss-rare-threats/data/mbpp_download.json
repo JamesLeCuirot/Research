@@ -1,0 +1,36 @@
+{
+  "dataset": "google-research-datasets/mbpp",
+  "config": "full",
+  "license": "CC BY 4.0",
+  "downloaded_at": "2026-11-03T22:48:34+00:00",
+  "files": [
+    {
+      "split": "train",
+      "url": "https://huggingface.co/api/datasets/google-research-datasets/mbpp/parquet/full/train/0.parquet",
+      "path": "data/mbpp_raw/full_train.parquet",
+      "bytes": 87223,
+      "sha256": "09d125ca31edacb7800be8c67c45abff618faf0214ff551291817d06bdb914ae"
+    },
+    {
+      "split": "test",
+      "url": "https://huggingface.co/api/datasets/google-research-datasets/mbpp/parquet/full/test/0.parquet",
+      "path": "data/mbpp_raw/full_test.parquet",
+      "bytes": 115824,
+      "sha256": "566fd53060ffba5766dace1d1e2f4c38906781526de222b0dfbdbc325b696c77"
+    },
+    {
+      "split": "validation",
+      "url": "https://huggingface.co/api/datasets/google-research-datasets/mbpp/parquet/full/validation/0.parquet",
+      "path": "data/mbpp_raw/full_validation.parquet",
+      "bytes": 25144,
+      "sha256": "3f0ec060987432d99fe8fb409d31e6c67445b208a01741c5583517c80a10fe80"
+    },
+    {
+      "split": "prompt",
+      "url": "https://huggingface.co/api/datasets/google-research-datasets/mbpp/parquet/full/prompt/0.parquet",
+      "path": "data/mbpp_raw/full_prompt.parquet",
+      "bytes": 7878,
+      "sha256": "a053e4bb85ceb77430ae80592addb4ca4dc6ba087592f9e04537800ee88b7431"
+    }
+  ]
+}

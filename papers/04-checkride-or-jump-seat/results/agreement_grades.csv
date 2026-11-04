@@ -1,0 +1,43 @@
+set,comparison,measure,level,n_units,alpha,ci_low,ci_high,exact_agreement,within_1_agreement
+48 model transcripts,Inter-grader (run 1),PRO,ordinal,48,0.4869,0.1648,0.7473,0.7708,1.0000
+48 model transcripts,Inter-grader (run 1),COM,ordinal,48,0.3875,0.1011,0.6121,0.5000,1.0000
+48 model transcripts,Inter-grader (run 1),PSD,ordinal,48,0.3072,0.0310,0.5502,0.6250,1.0000
+48 model transcripts,Inter-grader (run 1),SAW,ordinal,48,0.3195,0.0297,0.5759,0.6458,1.0000
+48 model transcripts,Inter-grader (run 1),MEAN4,interval,48,0.4101,0.1778,0.5983,,1.0000
+48 model transcripts,Inter-grader (run 1),OVERALL_R,ordinal,48,0.2411,-0.0513,0.4851,0.5625,1.0000
+48 model transcripts,Inter-grader (run 1),HOLISTIC,ordinal,48,0.4217,0.1620,0.6678,0.7083,1.0000
+48 model transcripts,Inter-grader (run 2),PRO,ordinal,48,0.3451,0.0337,0.6202,0.6875,0.9792
+48 model transcripts,Inter-grader (run 2),COM,ordinal,48,0.5394,0.2897,0.7373,0.6250,1.0000
+48 model transcripts,Inter-grader (run 2),PSD,ordinal,48,0.2539,-0.0359,0.5165,0.5833,0.9792
+48 model transcripts,Inter-grader (run 2),SAW,ordinal,48,0.3970,0.1254,0.6242,0.6250,1.0000
+48 model transcripts,Inter-grader (run 2),MEAN4,interval,48,0.4638,0.1963,0.6576,,1.0000
+48 model transcripts,Inter-grader (run 2),OVERALL_R,ordinal,48,0.4808,0.2139,0.6906,0.6458,1.0000
+48 model transcripts,Inter-grader (run 2),HOLISTIC,ordinal,48,0.2914,0.0035,0.5448,0.6458,1.0000
+48 model transcripts,Repeat-run (Sonnet grader),PRO,ordinal,48,0.8684,0.7066,0.9888,0.8958,1.0000
+48 model transcripts,Repeat-run (Sonnet grader),COM,ordinal,48,0.6852,0.4559,0.8431,0.7500,1.0000
+48 model transcripts,Repeat-run (Sonnet grader),PSD,ordinal,48,0.7509,0.5200,0.9174,0.8750,1.0000
+48 model transcripts,Repeat-run (Sonnet grader),SAW,ordinal,48,0.6735,0.4456,0.8665,0.8333,1.0000
+48 model transcripts,Repeat-run (Sonnet grader),MEAN4,interval,48,0.8905,0.7909,0.9458,,1.0000
+48 model transcripts,Repeat-run (Sonnet grader),OVERALL_R,ordinal,48,0.7363,0.5321,0.8896,0.8333,1.0000
+48 model transcripts,Repeat-run (Sonnet grader),HOLISTIC,ordinal,48,0.6552,0.4134,0.8351,0.8333,1.0000
+48 model transcripts,Repeat-run (Opus grader),PRO,ordinal,48,0.7293,0.4345,0.9398,0.9167,1.0000
+48 model transcripts,Repeat-run (Opus grader),COM,ordinal,48,0.7613,0.5666,0.9048,0.8333,1.0000
+48 model transcripts,Repeat-run (Opus grader),PSD,ordinal,48,0.5590,0.3174,0.7426,0.6875,1.0000
+48 model transcripts,Repeat-run (Opus grader),SAW,ordinal,48,0.7444,0.5576,0.8948,0.8125,1.0000
+48 model transcripts,Repeat-run (Opus grader),MEAN4,interval,48,0.7526,0.5948,0.8684,,1.0000
+48 model transcripts,Repeat-run (Opus grader),OVERALL_R,ordinal,48,0.7098,0.4979,0.8758,0.8333,1.0000
+48 model transcripts,Repeat-run (Opus grader),HOLISTIC,ordinal,48,0.7930,0.6083,0.9573,0.8958,1.0000
+48 model transcripts,All four ratings,PRO,ordinal,48,0.5436,0.3450,0.7129,0.7917,0.9896
+48 model transcripts,All four ratings,COM,ordinal,48,0.5659,0.3885,0.6977,0.6528,1.0000
+48 model transcripts,All four ratings,PSD,ordinal,48,0.4147,0.2485,0.5612,0.6701,0.9931
+48 model transcripts,All four ratings,SAW,ordinal,48,0.4946,0.3360,0.6326,0.7118,1.0000
+48 model transcripts,All four ratings,MEAN4,interval,48,0.5729,0.4194,0.6926,,1.0000
+48 model transcripts,All four ratings,OVERALL_R,ordinal,48,0.4814,0.3039,0.6250,0.6806,1.0000
+48 model transcripts,All four ratings,HOLISTIC,ordinal,48,0.4652,0.2821,0.6394,0.7326,1.0000
+48 model + 6 controls,Inter-grader (run 1),PRO,ordinal,54,0.6995,0.4651,0.8579,0.7778,1.0000
+48 model + 6 controls,Inter-grader (run 1),COM,ordinal,54,0.5967,0.3582,0.7655,0.5370,1.0000
+48 model + 6 controls,Inter-grader (run 1),PSD,ordinal,54,0.5549,0.2846,0.7562,0.6481,1.0000
+48 model + 6 controls,Inter-grader (run 1),SAW,ordinal,54,0.5685,0.3052,0.7551,0.6667,1.0000
+48 model + 6 controls,Inter-grader (run 1),MEAN4,interval,54,0.9098,0.7560,0.9536,,1.0000
+48 model + 6 controls,Inter-grader (run 1),OVERALL_R,ordinal,54,0.5114,0.2409,0.7146,0.5926,1.0000
+48 model + 6 controls,Inter-grader (run 1),HOLISTIC,ordinal,54,0.6291,0.3858,0.8089,0.7037,1.0000

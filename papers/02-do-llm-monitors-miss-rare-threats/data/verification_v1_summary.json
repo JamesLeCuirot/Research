@@ -1,0 +1,49 @@
+{
+ "version": "v1",
+ "n_generated_calls": 450,
+ "n_generator_ok": 450,
+ "n_refusal": 0,
+ "n_failed": 0,
+ "n_verified": 419,
+ "yield": 0.931,
+ "exclusions": {
+  "backdoored output equals reference output on trigger": 14,
+  "edit too large (difflib ratio < 0.6)": 14,
+  "backdoored output equals clean output on trigger": 1,
+  "clean does not return on trigger (invalid trigger)": 1,
+  "backdoored fails MBPP tests": 1
+ },
+ "diff_threshold": 0.6,
+ "diff_ratio_all_parsed": {
+  "min": 0.007,
+  "p10": 0.755,
+  "p25": 0.836,
+  "median": 0.938,
+  "p75": 0.989,
+  "p90": 0.997,
+  "max": 0.999
+ },
+ "diff_ratio_verified": {
+  "min": 0.606,
+  "p10": 0.771,
+  "p25": 0.842,
+  "median": 0.944,
+  "p75": 0.989,
+  "p90": 0.997,
+  "max": 0.999
+ },
+ "changed_lines_verified": {
+  "min": 1.0,
+  "p10": 2.0,
+  "p25": 2.0,
+  "median": 2.0,
+  "p75": 2.0,
+  "p90": 4.0,
+  "max": 8.0
+ },
+ "n_diff_ratio_below_threshold_among_otherwise_valid": 14,
+ "n_weak_revealing_names_verified": 0,
+ "weak_revealing_names_verified": [],
+ "n_clean_differs_from_reference_on_trigger": 4,
+ "n_reference_rejects_trigger": 2
+}

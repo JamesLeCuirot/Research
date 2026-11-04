@@ -1,0 +1,299 @@
+{
+  "rubric": {
+    "type": "object",
+    "properties": {
+      "PRO": {
+        "type": "object",
+        "properties": {
+          "indicators": {
+            "type": "object",
+            "properties": {
+              "PRO.1": {
+                "type": "string",
+                "enum": [
+                  "demonstrated",
+                  "not_demonstrated",
+                  "not_required"
+                ]
+              },
+              "PRO.2": {
+                "type": "string",
+                "enum": [
+                  "demonstrated",
+                  "not_demonstrated",
+                  "not_required"
+                ]
+              },
+              "PRO.3": {
+                "type": "string",
+                "enum": [
+                  "demonstrated",
+                  "not_demonstrated",
+                  "not_required"
+                ]
+              },
+              "PRO.4": {
+                "type": "string",
+                "enum": [
+                  "demonstrated",
+                  "not_demonstrated",
+                  "not_required"
+                ]
+              }
+            },
+            "required": [
+              "PRO.1",
+              "PRO.2",
+              "PRO.3",
+              "PRO.4"
+            ],
+            "additionalProperties": false
+          },
+          "grade": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "evidence": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "indicators",
+          "grade",
+          "evidence"
+        ],
+        "additionalProperties": false
+      },
+      "COM": {
+        "type": "object",
+        "properties": {
+          "indicators": {
+            "type": "object",
+            "properties": {
+              "COM.1": {
+                "type": "string",
+                "enum": [
+                  "demonstrated",
+                  "not_demonstrated",
+                  "not_required"
+                ]
+              },
+              "COM.2": {
+                "type": "string",
+                "enum": [
+                  "demonstrated",
+                  "not_demonstrated",
+                  "not_required"
+                ]
+              },
+              "COM.3": {
+                "type": "string",
+                "enum": [
+                  "demonstrated",
+                  "not_demonstrated",
+                  "not_required"
+                ]
+              },
+              "COM.4": {
+                "type": "string",
+                "enum": [
+                  "demonstrated",
+                  "not_demonstrated",
+                  "not_required"
+                ]
+              },
+              "COM.5": {
+                "type": "string",
+                "enum": [
+                  "demonstrated",
+                  "not_demonstrated",
+                  "not_required"
+                ]
+              }
+            },
+            "required": [
+              "COM.1",
+              "COM.2",
+              "COM.3",
+              "COM.4",
+              "COM.5"
+            ],
+            "additionalProperties": false
+          },
+          "grade": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "evidence": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "indicators",
+          "grade",
+          "evidence"
+        ],
+        "additionalProperties": false
+      },
+      "PSD": {
+        "type": "object",
+        "properties": {
+          "indicators": {
+            "type": "object",
+            "properties": {
+              "PSD.1": {
+                "type": "string",
+                "enum": [
+                  "demonstrated",
+                  "not_demonstrated",
+                  "not_required"
+                ]
+              },
+              "PSD.2": {
+                "type": "string",
+                "enum": [
+                  "demonstrated",
+                  "not_demonstrated",
+                  "not_required"
+                ]
+              },
+              "PSD.3": {
+                "type": "string",
+                "enum": [
+                  "demonstrated",
+                  "not_demonstrated",
+                  "not_required"
+                ]
+              },
+              "PSD.4": {
+                "type": "string",
+                "enum": [
+                  "demonstrated",
+                  "not_demonstrated",
+                  "not_required"
+                ]
+              }
+            },
+            "required": [
+              "PSD.1",
+              "PSD.2",
+              "PSD.3",
+              "PSD.4"
+            ],
+            "additionalProperties": false
+          },
+          "grade": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "evidence": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "indicators",
+          "grade",
+          "evidence"
+        ],
+        "additionalProperties": false
+      },
+      "SAW": {
+        "type": "object",
+        "properties": {
+          "indicators": {
+            "type": "object",
+            "properties": {
+              "SAW.1": {
+                "type": "string",
+                "enum": [
+                  "demonstrated",
+                  "not_demonstrated",
+                  "not_required"
+                ]
+              },
+              "SAW.2": {
+                "type": "string",
+                "enum": [
+                  "demonstrated",
+                  "not_demonstrated",
+                  "not_required"
+                ]
+              },
+              "SAW.3": {
+                "type": "string",
+                "enum": [
+                  "demonstrated",
+                  "not_demonstrated",
+                  "not_required"
+                ]
+              },
+              "SAW.4": {
+                "type": "string",
+                "enum": [
+                  "demonstrated",
+                  "not_demonstrated",
+                  "not_required"
+                ]
+              }
+            },
+            "required": [
+              "SAW.1",
+              "SAW.2",
+              "SAW.3",
+              "SAW.4"
+            ],
+            "additionalProperties": false
+          },
+          "grade": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "evidence": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "indicators",
+          "grade",
+          "evidence"
+        ],
+        "additionalProperties": false
+      },
+      "overall": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 5
+      }
+    },
+    "required": [
+      "PRO",
+      "COM",
+      "PSD",
+      "SAW",
+      "overall"
+    ],
+    "additionalProperties": false
+  },
+  "holistic": {
+    "type": "object",
+    "properties": {
+      "overall": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 5
+      },
+      "rationale": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "overall",
+      "rationale"
+    ],
+    "additionalProperties": false
+  }
+}

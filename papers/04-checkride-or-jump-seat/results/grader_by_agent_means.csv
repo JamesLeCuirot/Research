@@ -1,0 +1,5 @@
+grader,agent,PRO,COM,PSD,SAW,MEAN4,OVERALL_R,HOLISTIC
+Opus,claude-haiku-5-5,4.812,4.438,4.562,4.458,4.568,4.458,4.479
+Opus,claude-sonnet-5-5,4.812,4.479,4.458,4.479,4.557,4.583,4.583
+Sonnet,claude-haiku-5-5,4.646,4.417,4.521,4.354,4.484,4.562,4.458
+Sonnet,claude-sonnet-5-5,4.542,4.208,4.396,4.312,4.365,4.479,4.333

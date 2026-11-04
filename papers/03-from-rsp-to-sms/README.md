@@ -2,14 +2,14 @@
 
 **Author:** James Le Cuirot (Citadel Aero)
 **Status:** working draft v0.4 for author review (4 November 2026): the v0.3 text (revised after an independent audit and a second-round verification, `AUDIT.md`) converted to the LaTeX technical-report house style with IEEE numeric references. Not peer reviewed. Not committed by the drafting agent.
-**Length:** about 7,100 words of prose plus about 1,600 words in three tables (about 8,700 words of main text, excluding references); 22 pages as typeset. This is slightly above the STYLE.md guide of "about 6,000–8,500" once tables are counted. Abstract 250 words. 40 references.
+**Length:** about 7,100 words of prose plus about 1,600 words in three tables (about 8,700 words of main text, excluding references); 23 pages as typeset. This is slightly above the STYLE.md guide of "about 6,000–8,500" once tables are counted. Abstract 250 words. 42 references (40 at v0.3, plus 2 independent sources added under decision A6).
 
 ## Files
 
 | File | Contents |
 |---|---|
 | `paper.tex` | The paper (source of truth): LaTeX, house style `../_build/techreport.sty` per `../STYLE.md` |
-| `references.bib` | BibTeX entries for all 40 references, rendered in IEEE style (`IEEEtran.bst`) |
+| `references.bib` | BibTeX entries for all 42 references, rendered in IEEE style (`IEEEtran.bst`) |
 | `paper.pdf` | Built by `../_build/build.sh papers/03-from-rsp-to-sms`; do not edit by hand |
 | `paper.bbl` | Generated bibliography, kept for arXiv submission |
 | `sources.md` | Verification log: how each reference was checked, with quotes and locators, the prior-work search log and the v0.2 searches for companion documents |
@@ -26,11 +26,11 @@ Across 15 rows (the 12 Annex 19 elements, with 3.1 split into occurrence investi
 
 ## What to check before this goes further
 
-1. **Annex 19 Amendment 2** becomes applicable on **26 November 2026**. It keeps 4 components and 12 elements, renames three, deletes Standard 3.1.2 and redefines SPI. The paper uses the 2nd edition as its baseline and notes the changes. Source: ICAO State letter AN 8/3.1-25/64, hosted by the Nigerian CAA, read from page images. Decide whether to switch the baseline after 26 November.
+1. **Annex 19 Amendment 2** becomes applicable on **26 November 2026**. It keeps 4 components and 12 elements, renames three, deletes Standard 3.1.2 and redefines SPI. The paper uses the 2nd edition as its baseline and notes the changes. Source: ICAO State letter AN 8/3.1-25/64, hosted by the Nigerian CAA, read from page images. **Decided (A4):** the 2nd edition stays the baseline. §2.1 now flags the Amendment 2 changes explicitly, including the move of 4.1.4 to 4.2.2 and the rewording of 4.1.1. Update the citations at the first revision after 26 November 2026.
 2. **Table 2 ratings** remain single-coder judgements. The most debatable are OpenAI "D" on 3.2 (management of change; see revision log W3), Anthropic and OpenAI "P" on 4.1 (security-awareness training only), and OpenAI "P" on 1.3 (a committee rather than a post).
 3. **Documents not read.** Anthropic's Frontier Compliance Framework (portal would not open), the SB 53 statute (leginfo 403; an official Senate floor analysis was used) and OpenAI's web pages (403). If you can obtain the FCF, rows 1.4, 3.1a and 3.2 for Anthropic may change.
-4. **Doc 9859.** The copy read was hosted by a private foundation (ffac.ch); the reference now cites ICAO and the ICAO Store. Please spot-check the quoted paragraphs (4.3.1.3, 4.4.5.2, 4.4.6.1–2, 9.4.4.1, 9.4.5.8, 9.5.4.3, 9.5.4.15, 9.5.5.4–7) against a licensed copy.
-5. **ICAO Annex 6 Part I, 3.3.3** is still seen only via the CAA New Zealand checklist. The text now avoids the ambiguous 1 January 2027 clause.
+4. **Doc 9859.** The copy read was hosted by a private foundation (ffac.ch); the reference now cites ICAO and the ICAO Store. No licensed copy is available (decision A5). In v0.4 every quotation and paragraph number was cross-checked against a second copy, hosted by the Civil Aviation Authority of Nepal: all match (`sources.md` §F). Re-check against a licensed copy before any journal submission.
+5. **ICAO Annex 6 Part I, 3.3.3** was read via the CAA New Zealand checklist. In v0.4 it was cross-checked against the Swiss FOCA copy of Annex 6 Part I (12th edition with later amendments): 3.3.2 and 3.3.3 are word for word the same. The Annex 19 quotations were cross-checked against a second copy, hosted by the Accident Investigation Commission of Papua New Guinea: all match. The text still avoids the ambiguous 1 January 2027 clause.
 6. **Regulation (EC) No 300/2008** (§7.2) was checked only in its UK assimilated text.
 7. **Transparency bias and source of assistance.** Anthropic publishes most and rates highest, and the AI assistant used is Anthropic's. Both are disclosed.
 8. **SPI table (Section 6)** remains a set of proposals; indicator 10 is now credited to OpenAI's framework.
@@ -124,3 +124,16 @@ Format conversion only: wording, numbers, quotations, table cells and ratings ar
   - `check_bib.py`: the 10 entries with a DOI or arXiv ID are OK. The 30 entries without an ID were checked by hand against `sources.md` and the v0.3 list (URL, title, date). No cite keys are missing and no entries are unused; references were 40 before and 40 after.
   - `compare_text.sh`: every difference is citation format, automatic section numbering, cross-reference markup, title block, closing text, the reference list, digit grouping, non-breaking spaces or the table layout produced by Pandoc's plain-text writer. The abstract, which the script does not compare, was checked separately and is identical.
 - `paper.md` and `paper.html` were deleted (they remain in git history).
+
+**Author decisions applied: A3, A4, A5, A6.** These are the only changes to content in v0.4. A `compare_text.sh` run against the reviewed conversion shows no other differences.
+
+- **A3 (impersonal voice).** Every "I", "we", "our", "us" and "my" was already inside a quotation, apart from "Part I". The one third-person self-reference now reads "The ratings in Table 2 were made by a single coder" (§8).
+- **A4 (Annex 19 baseline).** §2.1 has a new paragraph: the 2nd edition is the baseline, and the Amendment 2 changes are flagged. Applicable 26 November 2026; component 1 and elements 3.1 and 3.3 renamed (names given); Standard 3.1.2 deleted; "safety performance indicator" redefined; 4.1.4 renumbered 4.2.2; 4.1.1's "commensurate" requirement moved to a Note. Citations are to be updated at the first revision after that date. The renumbering and the 4.1.1 change were newly verified from the NCAA copy's page images (`sources.md` §F).
+- **A5 (ICAO copies).** Each quotation was cross-checked against a second, independently hosted copy, with no mismatch. Annex 19: copy hosted by the PNG Accident Investigation Commission. Doc 9859: copy hosted by CAA Nepal. Annex 6 Part I 3.3.2–3.3.3: copy hosted by the Swiss FOCA. The bib notes for Annex 19 and Doc 9859 now name the second copy, and `sources.md` §F records each quotation.
+- **A6 (company sources).** Anthropic, OpenAI and Google DeepMind entries are labelled in `references.bib` as company documents or reports, not peer reviewed. Two verified independent sources were added and cited only where they support the same claim.
+  - UK AISI's incident report (4 August 2026) is cited in §3.2 and §5.3 for the AISI case.
+  - METR's Frontier Risk Report (19 May 2026) is cited in §3.2, Table 2 row 3.1c and §5.5 for METR's red-teaming of Anthropic's monitors.
+  - A new sentence in §8 names the facts that rest on a single company's account.
+  - No public METR findings on Anthropic's cyber incidents were found.
+- **Closing text.** It already read "An independent AI-assisted audit checked the references and quotations against their sources".
+- **Checks after the decisions.** Clean build, 23 pages, no undefined references or overfull boxes. `check_bib.py`: 10 DOI/arXiv entries OK; 32 entries without an ID checked by hand, including the 2 new ones; no missing or unused keys; 42 references. `compare_text.sh` against dfd94b7: the reviewed conversion differences plus the A3, A4 and A6 edits above, and nothing else.

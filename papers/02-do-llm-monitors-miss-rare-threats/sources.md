@@ -1,6 +1,6 @@
 # Sources and verification log: paper 02, "Do LLM Monitors Miss Rare Threats?"
 
-Reference checks were made on **3 November 2026**; the Phase 2 additions (Cain et al., 2013; the Korbak et al. "across space" quote; the provenance table for results) on **4 November 2026**. For each reference: how it was verified, and each claim in `paper.md` it supports, with a verbatim quote or a locator. Quotes are copied from the source text as retrieved (PDF text extraction, publisher page, or a fetch of the HTML page). "Bibliographic only" means the record was confirmed but the content was not opened; such sources are cited only for general background.
+Reference checks were made on **3 November 2026**. The Phase 2 additions (Cain et al., 2013; the Korbak et al. "across space" quote; the provenance table) and the v0.2 revision after the independent audit (`AUDIT.md`) were made on **4 November 2026**. v0.2 changes to references: Mitroff & Biggs (2014) and Makins et al. (2026) are no longer cited (entries kept below, marked); Kapetanovic et al. is cited as "in press"; notes added to Griffin et al. and Hida et al.; Wolfe et al. (2013) given as "Article 33". For each reference: how it was verified, and each claim in `paper.md` it supports, with a verbatim quote or a locator. Quotes are copied from the source text as retrieved (PDF text extraction, publisher page, or a fetch of the HTML page). "Bibliographic only" means the record was confirmed but the content was not opened; such sources are cited only for general background.
 
 Methods used:
 
@@ -30,22 +30,22 @@ Methods used:
   - Failed attempts to move the criterion (Section 2.2, paraphrased) — Abstract: "Several efforts to induce observers to adopt a better criterion fail." Experiment 2: "this massive slowing had no appreciable effect on errors."
   - Faster "no" responses (Section 2.2) — Experiment 2: "observers respond 'no' much more quickly at 2% prevalence than at 50%".
   - Criterion shift as sensible (Section 2.1) — Introduction: "the prevalence effect is a very sensible behavior unless the goal is to minimize misses". (Also: "You will be less likely to call something a target if the a priori probability of a target is lower.")
-  - Remedy raised false alarms too (Sections 2.2, 7.4) — Experiment 7 results, quoted above.
+  - Remedy raised false alarms relative to the baseline experiment (Sections 2.2, 7.4) — Experiment 7, comparison with Experiment 1a: "Miss error rates were much reduced in Experiment 7 (t(36) = 4.68, p = .00)" / "and false alarms were correspondingly increased (t(36) = 11.49, p = .00)." Within Experiment 7, false alarms did not differ by prevalence: "Similarly, the difference in average false alarm rate is not significant" "(low prevalence = 0.13, high prevalence = 0.15, t(13) = 1.32, p = .21)." (Re-checked 4 November 2026 via WebFetch after audit issue 11; v0.1 had wrongly implied a within-experiment rise.)
 
 ### Wolfe, Brunelli, Rubinstein & Horowitz (2013), *Journal of Vision*, doi:10.1167/13.3.33
-- **Verified:** Crossref (13(3), 33; Dec 2013). Full text read via PMC3848386 (https://pmc.ncbi.nlm.nih.gov/articles/PMC3848386/) with WebFetch.
+- **Verified:** Crossref (13(3), 33; Dec 2013); reference formatted as *13*(3), Article 33. Full text read via PMC3848386 (https://pmc.ncbi.nlm.nih.gov/articles/PMC3848386/) with WebFetch.
 - **Claims supported (Section 2.2):**
   - Abstract: "A total of 125 newly trained TSOs participated in one of two experiments as part of their final evaluation following training." / "The first three blocks were low prevalence (target prevalence ≤ .05) with no feedback; the fourth block was high prevalence (.50) with full feedback; and the final block was, again, low prevalence." / "We found that newly trained TSOs were better at detecting targets at high compared to low prevalence, replicating the prevalence effect." / "Furthermore, performance was better (and response criterion was more "liberal") in the low-prevalence block that took place after the high-prevalence block than in the initial three low-prevalence blocks".
   - *d′* changed in the field: "In the case of these TSO observers, however, d' did change with prevalence."
   - Lab mechanism (Abstract): "In the lab, this "prevalence effect" is caused by changes in decision and response criteria (Wolfe & Van Wert, 2010)".
 
-### Mitroff & Biggs (2014), *Psychological Science*, doi:10.1177/0956797613504221
+### Mitroff & Biggs (2014), *Psychological Science*, doi:10.1177/0956797613504221 — **not cited in v0.2** (cut for length)
 - **Verified:** Crossref (25(1), 284–289; Jan 2014; Crossref main title "The Ultra-Rare-Item Effect"). Abstract and full title from Europe PMC / PubMed record PMID 24270463 ("The ultra-rare-item effect: visual search for exceedingly rare items is highly susceptible to error."). Full text not opened (not open access).
 - **Claims supported (Section 2.2: detection fell logarithmically with target frequency), from the abstract:** "By assessing search performance across millions of trials from the Airport Scanner smartphone application, we demonstrated that the detection of ultra-rare items was disturbingly poor. A logarithmic relationship between target detection and target frequency (adjusted R (2) = .92) revealed that ultra-rare items had catastrophically low detection rates relative to targets with higher frequencies."
 
 ### Becker, Rodriguez, Montalvo & Peltier (2026), *Cognitive Research: Principles and Implications*, doi:10.1186/s41235-025-00702-w
 - **Verified:** Crossref (vol. 11, issue 1, article 5; published 8 Jan 2026). Open-access full text (PMC12779849) via Europe PMC full-text XML.
-- **Claims supported (Sections 2.2, 7 plan), from the abstract:** "In Experiment 1, we used a low-prevalence T-among-Ls task and found that distributing "probe" trials—trials with known targets and post-response feedback—reduced the LPE." / "The probe benefit scaled with the frequency of the matching target, suggesting limited generalizability to non-probed targets." / "Results showed that probes biased top-down guidance toward features of frequently probed targets, without affecting the number of items inspected or the decision criterion." / "Findings suggest that probes improve rare-target search by altering perceived prevalence, not through feedback alone."
+- **Claims supported (Sections 2.2 and 7.4), from the abstract** (v0.2 quotes only "The probe benefit scaled with the frequency of the matching target"; the others support the paraphrase in 7.4): "In Experiment 1, we used a low-prevalence T-among-Ls task and found that distributing "probe" trials—trials with known targets and post-response feedback—reduced the LPE." / "The probe benefit scaled with the frequency of the matching target, suggesting limited generalizability to non-probed targets." / "Results showed that probes biased top-down guidance toward features of frequently probed targets, without affecting the number of items inspected or the decision criterion." / "Findings suggest that probes improve rare-target search by altering perceived prevalence, not through feedback alone."
 
 ### Green & Swets (1966), *Signal Detection Theory and Psychophysics*, Wiley
 - **Verified: bibliographic only.** Open Library records (work OL31575577W: "Signal Detection Theory and Psychophysics", David M. Green and John A. Swets, John Wiley & Sons, 1966; a 1974 R. E. Krieger reprint also exists). Content not opened.
@@ -112,7 +112,7 @@ Methods used:
   - Section 3.2 (Trusted monitoring): "Auditing decision: ask T whether the code looks suspicious; audit the top 2% most suspicious proposals (roughly)." / "We pick a classifier threshold such that the classifier has a 2% false positive rate on the distribution of solutions written by GPT-4" / "Safety: The blue team win probability is 62% (up from 15% when using upfront auditing)".
   - Trusted GPT-3.5 / untrusted GPT-4: Abstract ("access to a powerful but untrusted model (in our case, GPT-4), access to a less powerful trusted model (in our case, GPT-3.5)").
 
-### Griffin, Thomson, Shlegeris & Abate (2024), arXiv:2409.07985
+### Griffin, Thomson, Shlegeris & Abate (2024), arXiv:2409.07985 (reference notes the IASEAI '26 presentation, from the v2 PDF footer)
 - **Verified:** arXiv API (v2 updated 7 May 2026); PDF v2. Footer: "Article presented at the Second IASEAI Conference (IASEAI'26). © 2026 Association for the Advancement of Artificial Intelligence". Cited as a preprint (proceedings record not checked).
 - **Claims supported (Sections 1, 3.1):**
   - Section 2 (Trusted Monitoring Example): "T's suspicion scores are modelled as a distribution, conditioned on whether the code is safe or backdoored."
@@ -162,7 +162,7 @@ Methods used:
 
 ### Najt, Toft, Tracy, Roger & Benton (2026), SLEIGHT-Bench, Alignment Science Blog
 - **Verified:** https://alignment.anthropic.com/2026/sleight-bench/ downloaded and read (dated "May 19, 2026"; authors and affiliations as listed).
-- **Claims supported (Sections 3.2, 8):** "a benchmark of synthetic transcripts containing 40 attacks across 11 categories" / "If a monitor is too trigger-happy, it becomes infeasible to deploy in practice, since humans won't be able to review every flagged transcript" / "We calibrate our monitors to a 1% false positive rate" / "On Opus 4.6, the main monitor we work with, 50% of attacks are never caught on any of the 10 trials."
+- **Claims supported (Sections 3.2, 8):** "a benchmark of synthetic transcripts containing 40 attacks across 11 categories" / "If a monitor is too trigger-happy, it becomes infeasible to deploy in practice, since humans won't be able to review every flagged transcript" / "We calibrate our monitors to a 1% false positive rate" / "On Opus 4.6, the main monitor we work with, 50% of attacks are never caught on any of the 10 trials." v0.2 wording (audit issue 10): "half of its 40 hand-designed attacks were never caught by an Opus 4.6 monitor in any of ten trials".
 
 ### Remedios, Storf, Roger & Hughes (2026), "Red-Teaming Auto Mode", Alignment Science Blog
 - **Verified:** https://alignment.anthropic.com/2026/red-teaming-auto-mode/ downloaded and read (dated "October 22, 2026"; "Primary contributors. Name order randomised." for Remedios and Storf).
@@ -184,8 +184,8 @@ Methods used:
 - **Verified:** Crossref (vol. 12, 157–173; 2024); abstract via arXiv API (arXiv:2307.03172).
 - **Claim (Section 4.1), abstract:** "we observe that performance is often highest when relevant information occurs at the beginning or end of the input context, and significantly degrades when models must access relevant information in the middle of long contexts".
 
-### Kapetanovic, Altwlkany, Mercep, Duricic & Lacic (2026), CIKM '26, doi:10.1145/3799682.3840879; arXiv:2608.25869
-- **Verified:** arXiv API and PDF (ACM reference format on page 1 gives the DOI and "CIKM '26, November 07–11, 2026, Rome, Italy"); Crossref record (Proceedings of the 35th ACM CIKM, pp. 2043–2052, dated 7 Nov 2026). The conference takes place after the date of this check; the DOI and page numbers are as registered in Crossref.
+### Kapetanovic, Altwlkany, Mercep, Duricic & Lacic (in press), CIKM '26, doi:10.1145/3799682.3840879; arXiv:2608.25869 (2026)
+- **Verified:** arXiv API and PDF (ACM reference format on page 1 gives the DOI and "CIKM '26, November 07–11, 2026, Rome, Italy"); Crossref record (Proceedings of the 35th ACM CIKM, pp. 2043–2052, dated 7 Nov 2026). The conference (7–11 November 2026) takes place after this draft, so v0.2 cites it as "in press" (audit issue 23a) and omits page numbers; recheck before circulation.
 - **Claims supported (Section 4.1), abstract:** "We show that prior scores, even when included only as context metadata, anchor judgments and systematically shift ratings toward their values." / "Neither Chain-of-Thought nor a metadata-disregard warning reduces the total effect".
 
 ### Chen, Zhu, Zheng & Li (2026), arXiv:2609.18204
@@ -204,7 +204,7 @@ Methods used:
 - **Verified:** arXiv API (v1, 30 Oct 2026); PDF. Found by our own search (WebSearch b).
 - **Claims supported (Sections 1 and 7.3):** Abstract: "In the eleven evaluations we audited, attacks or anomalies make up 16% to 86% of the test samples, no evaluation varies that share". Section I: "When attacks are rare, even a small false-positive rate yields alerts that are mostly false [14], and the receiver operating characteristic (ROC) hides this because, unlike precision, it does not depend on prevalence". Section III.E: "Prevalence shift leaves the class-conditional score distributions unchanged, so precision at prevalence π follows from the true- and false-positive rates at a threshold".
 
-### Hida, Ribeiro & Hida (2026), arXiv:2608.14737
+### Hida, Ribeiro & Hida (2026), arXiv:2608.14737 (reference notes acceptance at ENIAC 2026, part of BRACIS 2026, from the arXiv comment)
 - **Verified:** arXiv API (v1, 13 Aug 2026; comment "Accepted at ENIAC 2026 ... part of BRACIS 2026"); PDF read. Found by our own search (query 8 below). **Closest prior work.**
 - **Claims supported (Sections 4.1, 4.2, 4.3):**
   - Section 1: "We selected five reviews from SESR-Eval [Huotala et al. 2025], with prevalence ranging from 2.9% to 53.0%".
@@ -218,7 +218,7 @@ Methods used:
 - **Verified:** arXiv API (v2); PDF (Section 1 and Section 4 searched). Found by our own search (query 9).
 - **Claims supported (Sections 4.1, 4.3), abstract:** "a harmful question that is reliably refused in isolation can elicit a harmful response when embedded in a batch of benign questions" / "analyze its causes from two complementary perspectives: alignment signal weakening and refusal signal dilution."
 
-### Makins, Angelini, Shams & Phuong (2026), arXiv:2607.07368
+### Makins, Angelini, Shams & Phuong (2026), arXiv:2607.07368 — **not cited in v0.2** (cut for length)
 - **Verified:** arXiv API (v2); PDF. Found by our own search (WebSearch b).
 - **Claim (Section 4.1):** Abstract: "Our central finding is the fragmentation effect: as more agents coordinate to attack, per-agent monitoring becomes less likely to catch any of the attackers. Secondly, this is not driven by the ratio of benign to malicious code". Section 1: "This is not driven by the lower ratio of the malicious to benign code of each commit".
 
@@ -232,7 +232,7 @@ Methods used:
 
 ### Anthropic (n.d.), "Run Claude Code programmatically", Claude Code Docs
 - **Verified:** https://code.claude.com/docs/en/headless read with WebFetch.
-- **Claims supported (Section 5.4):** "Add the `-p` (or `--print`) flag to any `claude` command to run it non-interactively." / "To get output conforming to a specific schema, use `--output-format json` with `--json-schema` and a JSON Schema definition." The page does not document an effort flag for `-p` (it mentions `/effort` as a command); the exact mechanism used for "effort low" is marked CONFIRM in the paper.
+- **Claims supported (Section 5.4):** "Add the `-p` (or `--print`) flag to any `claude` command to run it non-interactively." / "To get output conforming to a specific schema, use `--output-format json` with `--json-schema` and a JSON Schema definition." v0.2 (Section 5.4, harness context) also relies on two statements from the same page: bare mode, "Without it, `claude -p` discovers and loads them as an interactive session would, including anything configured in the working directory or `~/.claude`", and "See system prompt flags for more options including `--system-prompt` to fully replace the default prompt. If you replace it, the run also starts without the git status snapshot." The engineer's code (`code/common.py`) passes `--effort`, `--system-prompt`, `--tools ""`, `--strict-mcp-config`, `--disable-slash-commands` and `--no-session-persistence`, and not `--bare`.
 
 ### Pre-registration
 - `PREREGISTRATION.md`, git commit `f4bedaa610d8f434e0aedf2f5763f3f100861f45`, "Tue Nov 3 22:38:38 2026 +0000", message "Add papers/ folder: house style and pre-registration for the low-prevalence monitor study" (from `git log`). All design details in Section 5 of the paper are taken from this file.
@@ -302,3 +302,11 @@ Every number in Sections 5 and 6 of the paper, and in the Abstract, Discussion a
 | 6.6 reasoning, robustness | thinking tokens 7,592/4,195 and 116/480; sensitivity ORs 2.35 (p .0007) and 2.81 | `results/RESULTS.md` §5–6; `results/sensitivity_excluding_extra_turn_calls.json` |
 | 7.2 | calibration 0.60 vs Experiment 2 *none* 0.633 | `results/RESULTS.md` §8 note 6 |
 | Figures 1–5 | `figures/fig_a_prevalence.png` … `fig_e_remedies.png`; error-bar definitions | `code/analyse.py`, function `figures` (Wilson intervals for Figures 1, 3, 4, 5; cluster-bootstrap intervals for Figure 2) |
+| v0.2: 5.4 harness context | 1,812 (Haiku) and 1,791 (Sonnet) tokens; about 74% / 24% of single-item / batch input; constancy across conditions, monitors and time; no CLAUDE.md, memory, git status or hooks; e-mail field present (address not reproduced) | `results/RESULTS.md` §10.4 (from `code/posthoc_harness_context.py`, `results/harness_context.json`) |
+| v0.2: 5.8 timing | `7fe31dc` at 23:10:45 UTC holds `analyse.py` (with the §9 item 9 rule), `monitor.py`, `common.py`, `s6_design.py`, `s3_verify.py`; first main output 23:12:32 UTC; author's correction to item 3 | `AUDIT.md` (Summary; issue 27); checked by the writing agent with `git log --diff-filter=A` / `--follow` and the minimum `at` timestamp in `results/monitor_attempts.jsonl`; `PREREGISTRATION.md` §9 "Correction to item 3" |
+| v0.2: Table 3 | all *d′*, *c*, AUROC with CIs and mean suspicion scores | `results/RESULTS.md` §10.2 = `results/registered_measures_table.md`; checked cell by cell by script (0 mismatches) |
+| v0.2: 6.4 H2 refit | registered σ 32.83 local optimum; 40-node multi-start −97.455 at σ 10.94; accurate σ 13.44, −3.761 (SE 1.409), z −2.67, p .0076; LR 13.50, p .00024; Haiku accurate −0.552, p .246; exact paired Sonnet 9 vs 0 p .0039, Haiku 12 vs 7 p .36 | `results/RESULTS.md` §10.1; `results/posthoc_h2.json` |
+| v0.2: 6.4 Sonnet S1 extras | ΔAUROC −0.017 [−0.034, −0.004]; mean bd score 75.0 → 62.7; flag at 40–59 0.83 → 1.00; Haiku Δ*H* −0.042 ("about 4 points") | `results/RESULTS_numbers.md` H2 "S1 minus S50" table, descriptive table, post hoc band table |
+| v0.2: 6.6 sensitivity | Haiku H3 OR 0.59, p .076; H2 by item-clustered GLM | `results/sensitivity_excluding_extra_turn_calls.json`; `code/posthoc_turns_sensitivity.py` |
+| v0.2: 5.7, 6.4, 6.5, 8 power | "Effects smaller than about 15 points may be missed" | `PREREGISTRATION.md` §6 "Power (informal)" |
+| v0.2: 6.6 E1 | dip in P10 positions 1–8 (described without numbers) | `figures/fig_c_position.png` |

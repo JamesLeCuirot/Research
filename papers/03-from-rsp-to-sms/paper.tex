@@ -1,0 +1,348 @@
+\documentclass[11pt]{article}
+\usepackage{techreport}
+\title{From RSP to SMS: Reading Frontier AI Safety Frameworks Through ICAO's Safety Management System}
+\shorttitle{From RSP to SMS}
+\author{James Le Cuirot\thanks{Commercial pilot (Senior First Officer), aviation flight safety officer, and aviation safety and compliance consultant specialising in human factors; MSc in Human Factors in Aviation.}\\[2pt] \normalsize Citadel Aero}
+\date{Working draft v0.4, 4 November 2026. Not peer reviewed.}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Frontier AI developers publish safety frameworks, such as Anthropic's Responsible Scaling Policy, OpenAI's Preparedness Framework and Google DeepMind's Frontier Safety Framework. In 2026 Anthropic also published risk reports, incident investigations and monitoring statistics. Commercial aviation manages operational safety through the Safety Management System (SMS) defined in ICAO Annex 19: four components and twelve elements, run in practice on safety performance indicators, management of change, occurrence reporting and monitoring of routine operations. This paper maps the three frameworks, OpenAI's companion compliance framework and Anthropic's 2026 operational artefacts onto the twelve SMS elements, with the EU General-Purpose AI Code of Practice as a reference point, using documents public on 3 November 2026. The documents contain more SMS-like machinery than a reading of the headline frameworks alone suggests: hazard identification and risk acceptance throughout, incident response plans, security change management and audits, and security detection targets set as goals. The remaining gaps are specific. In the documents assessed, no developer publishes indicators with targets, alert levels and trends for its safety controls, such as monitors and classifiers. None documents a change process aimed at those controls' settings with hazard assessment. None publishes an occurrence taxonomy or measures detection latency. Training for safety-assurance roles is not described, and independent assurance covers security controls more than safety controls in practice. Anthropic's oversight metrics (coverage, review latency and escalation rate) are safety performance indicators in all but name. The paper proposes twelve AI safety performance indicators for testing and notes practices aviation could adopt. No prior element-by-element mapping was found.
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+An airline does not show that it is safe by publishing a policy. It shows it through a working system that collects data on routine flights, sets indicators and alert levels, investigates occurrences, assesses changes before they are made, and is examined by a regulator. The International Civil Aviation Organization (ICAO) calls this a Safety Management System (SMS) and sets its minimum content in Annex 19 to the Chicago Convention~\cite{icao2016annex19}.
+
+Frontier AI developers, the small number of companies training the most capable general-purpose models, now publish safety frameworks. The best known are Anthropic's Responsible Scaling Policy (RSP), OpenAI's Preparedness Framework and Google DeepMind's Frontier Safety Framework. These documents are built around capability thresholds: levels of model capability at which stronger safeguards are required before training or deployment continues. An assessment of twelve such frameworks against 65 criteria adapted from aviation, nuclear power and other high-risk industries found that ``Overall scores range from 34\% (Anthropic) to 8\% (Cohere), with a median of 18\%''~\cite{stelling2025}.
+
+In 2026 the published material changed in kind. RSP version 3.0 (24 February 2026) introduced Frontier Safety Roadmaps and Risk Reports~\cite{anthropic2026rsppage}. Anthropic's August 2026 Risk Report describes how it monitors internal AI agents, how well the monitors perform and which safeguards failed~\cite{anthropic2026riskreport}; four investigations covered incidents in which its models acted against real systems~\cite{anthropic2026cyberassessment,anthropic2026aisi,anthropic2026threeincidents,anthropic2026unintended}, a further post described remediation~\cite{anthropic2026improving}, and three oversight metrics, coverage, review latency and escalation rate, were published with values~\cite{favaro2026}. Developers also published compliance frameworks for new laws, such as OpenAI's Frontier Governance Framework~\cite{openaiFGF}. An aviation safety professional will recognise much of this as the output of a safety assurance function. This paper asks what the frameworks and their companion documents look like when read through the SMS that every airline already runs.
+
+The paper contributes:
+
+\begin{itemize}
+\item A systematic, element-by-element mapping of the twelve elements of the ICAO SMS framework onto the public documents of Anthropic, OpenAI and Google DeepMind, with the EU General-Purpose AI Code of Practice as a regulatory reference point (Section~\ref{sec:mapping}).
+\item A precise statement of the gaps that remain once credit is given for what the documents already contain, distinguishing what is absent from what is not described in public (Section~\ref{sec:gaps}).
+\item A starter set of twelve AI safety performance indicators, each with a definition, data source, leading or lagging classification and example alert logic. They are untested proposals (Section~\ref{sec:spis}).
+\item An account of what aviation can learn from frontier AI practice, with brief implications for aviation AI developers and regulators (Section~\ref{sec:learn}).
+\end{itemize}
+
+\subsection{Terms}\label{sec:terms}
+
+\begin{itemize}
+\item \textbf{Safety Management System (SMS).} ``A systematic approach to managing safety, including the necessary organizational structures, accountability, responsibilities, policies and procedures''~\cite[Chapter~1]{icao2016annex19}.
+\item \textbf{Safety performance indicator (SPI).} ``A data-based parameter used for monitoring and assessing safety performance''~\cite[Chapter~1]{icao2016annex19}; from 26 November 2026, a ``metric used to measure and monitor a State or a service provider's safety performance, including the progress towards achieving a safety objective''~\cite{icao2025amdt2}. A \textbf{safety performance target (SPT)} is the planned value of an SPI over a period. An \textbf{alert level} starts an evaluation or remedial action when an SPI reaches it; Doc 9859 uses ``trigger'' and ``alert level'' interchangeably~\cite[4.4.5, 9.5.4.15]{icao2018doc9859}.
+\item \textbf{Management of change (MoC).} A process to identify changes that may affect safety risk and to manage the resulting risks~\cite[Appendix~2, 3.2]{icao2016annex19}.
+\item \textbf{Flight data monitoring (FDM)} or flight data analysis (FDA): routine, non-punitive analysis of recorded data from normal flights. \textbf{LOSA} (Line Operations Safety Audit) uses observation to monitor day-to-day operations~\cite[9.4.4.1]{icao2018doc9859}.
+\item \textbf{Accountable executive.} The person accountable for the SMS, with final authority over operations and control of resources (\cite[Appendix~2, 1.2]{icao2016annex19}; 14 C.F.R. §~5.25~\cite{cfr14part5}); EU rules say ``accountable manager''.
+\item \textbf{Agent, scaffold, monitor, classifier.} An agent is an AI model that takes actions through tools; the scaffold is the software that gives it tools and instructions. A monitor, often itself an AI model, reviews the agent's actions before execution (online or blocking) or afterwards (offline). A classifier labels inputs or outputs, for example to block dangerous requests.
+\item \textbf{Jailbreak}: input crafted to bypass safeguards. \textbf{Red-teaming}: adversarial testing. \textbf{Chain of thought}: a model's reasoning text. \textbf{Misalignment}: behaviour its developers did not intend.
+\end{itemize}
+
+\subsection{Related work and literature search}\label{sec:related}
+
+Koessler and Schuett~\cite{koessler2023} reviewed risk assessment techniques from safety-critical industries, such as bow-tie analysis and system-theoretic process analysis, for use by AI companies. Campos et al.~\cite{campos2025} proposed a frontier AI risk management framework drawing on ``best practices in mature industries such as aviation or nuclear power''; Stelling et al.~\cite{stelling2025} built their 65 criteria on it and assessed RSP version 2.2 (May 2025), before the 2026 rewrite. Safety cases, structured arguments that a system is safe enough in a given context, are developed by Buhl et al.~\cite{buhl2024} and Clymer et al.~\cite{clymer2024}. Cârlan et al.~\cite{carlan2024} proposed dynamic safety cases that use ``Safety Performance Indicators (SPIs) recommended by UL 4600'', from the autonomous-vehicle sector. This is the closest prior use of SPIs in frontier AI, but their indicators test the claims of a particular safety case; this paper uses SPIs in the ICAO sense, as measures of an organisation's safety performance. On governance, Schuett~\cite{schuett2025} argued for an internal audit function; Simpson et al.~\cite{simpson2025} recommended anonymised incident monitoring and a capacity to investigate major AI incidents; Dietterich~\cite{dietterich2019} argued that ``the combined human plus AI system must function as a high-reliability organization''; and Barkett et al.~\cite{barkett2026} warned that ``organizations can complete safety processes in full compliance and still produce catastrophic outcomes''.
+
+No prior work was found that maps the ICAO SMS framework, element by element, onto frontier AI developers' documents. Searches on 3 November 2026 used six arXiv API queries (for example ``safety management system'' AND ``frontier AI'' and ``Annex 19'', both with no results), four Crossref queries and three web searches; the log is in \code{sources.md}. Semantic Scholar was rate-limited and Elicit was unavailable, and grey literature may exist that these searches did not reach.
+
+\subsection{Method and scope}\label{sec:method}
+
+The analysis compares public documents as of 3 November 2026. For Anthropic the corpus is the RSP (version 3.4), the Frontier Safety Roadmap, the August 2026 Risk Report and the 2026 posts on incidents and remediation. For OpenAI it is the Preparedness Framework (version 2) and the Frontier Governance Framework, its compliance framework for California law and the EU Code. For Google DeepMind it is the Frontier Safety Framework (version 3.1); no separate compliance document was found. The EU Code of Practice and Article 55 of the AI Act are the regulatory reference.
+
+Some relevant documents could not be read. Anthropic's Frontier Compliance Framework, which ``covers how we protect model weights and respond to safety incidents''~\cite{anthropic2025fcf}, sits behind a portal that could not be opened. OpenAI's website returned HTTP 403, so its July 2026 incident disclosure and its investigation with METR, known here only from Anthropic's posts~\cite{anthropic2026aisi,anthropic2026threeincidents}, were not assessed. SB 53's statutory text was not opened; it is described from an official legislative analysis.
+
+Each SMS element is rated for each developer: \textbf{D} (described: the documents describe a provision serving the element's core purpose); \textbf{P} (partly described: some features are described, or the element is evidenced in practice but not set out as a process); \textbf{N} (not described in the documents assessed, which does not mean the practice is absent).
+
+\section{What an SMS is and how it works in practice}\label{sec:sms}
+
+\subsection{Regulatory basis}\label{sec:regbasis}
+
+The second edition of Annex 19 (July 2016) became applicable on 7 November 2019~\cite{icao2016annex19}; Amendment 2, adopted on 23 June 2025, becomes applicable on 26 November 2026~\cite{icao2025amdt2}. Each service provider's SMS must ``be established in accordance with the framework elements contained in Appendix 2'' and ``be commensurate with the size of the service provider and the complexity of its aviation products or services''~\cite[4.1.1]{icao2016annex19}. An international air transport operator's SMS ``shall be made acceptable to the State of the Operator'' (4.1.4). Guidance is in Doc 9859~\cite{icao2018doc9859}.
+
+In the United States, 14 C.F.R. Part 5 requires the same four components (§~5.5). A final rule effective on 28 May 2024 extended it beyond Part 121 airlines to Part 135 operators, air tour operators under §~91.147 and certain Part 21 certificate holders (Federal Aviation Administration {[}FAA{]}~\cite{faa2024sms}; 14 C.F.R. §~5.1), with Part 135 compliance due by 28 May 2027 (§~5.9). In the EU, ORO.GEN.200 of Regulation (EU) No 965/2012~\cite{reg2012_965} requires ``a direct safety accountability of the accountable manager'', a safety policy, hazard identification and risk management, and ``a function to monitor compliance''; the same text applies in the UK as assimilated law.
+
+\subsection{Components and elements}\label{sec:components}
+
+Annex 19 Appendix 2 states that ``The framework comprises four components and twelve elements as the minimum requirements for SMS implementation''~\cite{icao2016annex19}. Table~\ref{tab:sms} lists them.
+
+\begin{table}[htbp]
+\centering
+\caption{The ICAO SMS framework (Annex 19, 2nd ed., Appendix 2~\cite{icao2016annex19}). Names in brackets are those introduced by Amendment 2~\cite{icao2025amdt2}, applicable 26 November 2026.}
+\label{tab:sms}
+\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.27\linewidth}>{\raggedright\arraybackslash}p{0.27\linewidth}>{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Component} & \textbf{Element} & \textbf{Core requirement (paraphrased)} \\
+\midrule
+1 Safety policy and objectives {[}Safety policy, objectives and resources{]} & 1.1 Management commitment & Signed safety policy covering resources, reporting and unacceptable behaviour; safety objectives \\
+ & 1.2 Safety accountability and responsibilities & Accountable executive; lines of accountability; authority for risk-tolerability decisions \\
+ & 1.3 Appointment of key safety personnel & A safety manager \\
+ & 1.4 Coordination of emergency response planning & Response plan coordinated with interfacing organisations \\
+ & 1.5 SMS documentation & SMS manual and operational records \\
+2 Safety risk management & 2.1 Hazard identification & Reactive and proactive hazard identification \\
+ & 2.2 Safety risk assessment and mitigation & Analysis, assessment and control of risks \\
+3 Safety assurance & 3.1 Safety performance monitoring and measurement {[}Safety performance measurement and monitoring{]} & Verify safety performance; validate risk controls \\
+ & 3.2 The management of change & Identify and manage the risks of changes \\
+ & 3.3 Continuous improvement of the SMS {[}Continual improvement of the SMS{]} & Assess and improve SMS processes \\
+4 Safety promotion & 4.1 Training and education & Staff competent in their SMS duties \\
+ & 4.2 Safety communication & Convey safety-critical information; explain actions and changes \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Safety performance management}\label{sec:spm}
+
+The second edition of Annex 19 says: ``The service provider's safety performance shall be verified in reference to the safety performance indicators and safety performance targets of the SMS in support of the organization's safety objectives''~\cite[Appendix~2, 3.1.2]{icao2016annex19}. Doc 9859 advises that, ``where appropriate'', SPIs be expressed as rates, such as runway incursions per \num{1000} movements~\cite[4.3.1.3]{icao2018doc9859}. Lagging SPIs measure outcomes; leading SPIs measure ``processes and inputs being implemented to improve or maintain safety'' (4.3.1.4); lagging SPIs for high-probability, low-severity outcomes are ``sometimes also referred to as precursor indicators'' (4.3.1.7).
+
+Alert levels can be set statistically: ``One method for setting out-of-limits trigger criteria for SPTs is the use of the population standard deviation (STDEVP) principle'', with action considered ``when the trend goes beyond +1SD or +2SD from the mean of the preceding period''~\cite[4.4.5.2]{icao2018doc9859}. Doc 9859 is candid about the limits. ``The notion of triggers is arguably less relevant to SRM {[}safety risk management{]} of socio-technical systems'' (4.4.6.1), ``Annex 19 does not require that States or service providers define trigger levels for each SPI'' (4.4.6.2), and targets ``implemented poorly \ldots{} have been known to lead to undesirable behaviours'' (9.5.4.15). Amendment 2 deletes Standard 3.1.2 and requires means to ``measure and monitor the safety performance of the organization'', ``measure and monitor the progress towards achieving its safety objectives'' and ``validate the effectiveness of safety risk controls'', with SPIs, ``qualitative means and the appropriate use of safety performance targets'' left to a Note pointing to Doc 9859~\cite[attachment]{icao2025amdt2}. Measurement remains mandatory; its form becomes more flexible.
+
+In the United States, data must come from sources that include monitoring of operational processes, audits, investigations and ``A confidential employee reporting system in which employees can report hazards, issues, concerns, occurrences, incidents, as well as propose solutions and safety improvements, without concern of reprisal for reporting'' (14 C.F.R. §~5.71(a)). Performance is assessed against safety objectives in reviews that include the accountable executive (§~5.73).
+
+\subsection{Management of change}\label{sec:moc}
+
+The management of change element requires a process ``to identify changes which may affect the level of safety risk associated with its aviation products or services and to identify and manage the safety risks that may arise from those changes''~\cite[Appendix~2, 3.2]{icao2016annex19}. Part 5 applies safety risk management to the ``Revision of existing systems'' (14 C.F.R. §~5.51(b)), and EASA's acceptable means of compliance for complex operators asks for ``a documented process to identify external and internal change that may have an adverse effect on safety''~\cite[AMC1 ORO.GEN.200(a)(3)(e)]{easa2025amc}. Doc 9859 lists the ``introduction of new technology or equipment'' as a typical trigger (9.5.5.5), warns that ``Small incremental changes often go unnoticed, but the cumulative effect can be considerable'' (9.5.5.4), and ends the process with sign-off and an assurance plan (9.5.5.7).
+
+\subsection{Monitoring routine operations and investigating occurrences}\label{sec:monitoring}
+
+An airline SMS draws data from normal operations as well as failures. Doc 9859 lists ``Normal operations monitoring'', such as LOSA, and ``Automated monitoring systems'' such as FDM among internal sources of hazard information~\cite[9.4.4.1]{icao2018doc9859}; these ``permit recording successful system and human performance'' (5.2.8). EU and UK operators of aeroplanes over \SI{27000}{kg} maximum certificated take-off mass must run an FDM programme, which ``shall be non-punitive and contain adequate safeguards to protect the source(s) of the data'' (ORO.AOC.130). ICAO Annex 6, Part I, 3.3.3 requires the operator of an aeroplane equipped as described in 3.3.2 (over \SI{27000}{kg}, and certain lighter aeroplanes with more than 19 passenger seats) to ``establish and maintain a flight data analysis programme as part of its safety management system'' (as reproduced by the Civil Aviation Authority of New Zealand~\cite{caanz2025annex6}). Internal investigations ``should extend beyond the scope of occurrences required to be reported to the competent authority''~\cite[AMC1 ORO.GEN.200(a)(3)(c)(1)]{easa2025amc}, and investigators are ``ideally organizationally independent from the area associated with the occurrence''~\cite[9.4.5.8]{icao2018doc9859}.
+
+\subsection{Accountability}\label{sec:accountability}
+
+Annex 19 requires an accountable executive ``who, irrespective of other functions, is accountable on behalf of the organization for the implementation and maintenance of an effective SMS'', defined authority for ``decisions regarding safety risk tolerability''~\cite[Appendix~2, 1.2]{icao2016annex19} and a safety manager (1.3). Under Part 5 the accountable executive is ``the final authority over operations'', controls financial and human resources, ``Retains ultimate responsibility for the safety performance of the operations'' and must ``Regularly review the safety performance and direct actions necessary to address substandard safety performance'' (14 C.F.R. §~5.25).
+
+\subsection{Assurance and regulatory oversight}\label{sec:assurance}
+
+``Internal audits are most effective when conducted by persons or departments independent of the functions being audited'', and organisations that cannot ensure this should consider external auditors~\cite[9.5.4.3 to 9.5.4.4]{icao2018doc9859}. State surveillance then ``proactively verifies through inspections and audits'' that approval holders ``function at the level of competency and safety required by the State''~\cite[definitions]{icao2018doc9859}, and Part 121 and Part 135 operators must give the FAA, on request, ``all necessary information and data that demonstrates that the person has an SMS that meets the requirements'' (14 C.F.R. §§~5.7(d), 5.9(d)). Oversight is directed at a working system and its data as well as at the manual.
+
+\section{What frontier safety frameworks contain}\label{sec:frameworks}
+
+\subsection{Anthropic: Responsible Scaling Policy, version 3.4}\label{sec:rsp}
+
+The RSP is ``our voluntary framework for managing catastrophic risks from advanced AI systems''~\cite[Introduction]{anthropic2026rsp}. Version 1.0 took effect on 19 September 2023, version 3.0 (24 February 2026) was ``a comprehensive rewrite'', and version 3.4 took effect on 8 July 2026~\cite{anthropic2026rsppage}. Section 1 tables four capability or usage thresholds (non-novel and novel chemical and biological weapons production, misaligned AI systems in high-stakes settings, and automated R\&D) against Anthropic's own plans and separate ``ambitious industry-wide recommendations''. Section 2 requires a Frontier Safety Roadmap. Section 3 requires Risk Reports every three to six months, covering threat models, evidence, mitigations, risk analyses and a risk-benefit determination, and reviewing ``Changes in risk mitigation practices'' and ``cases where we failed to meet our goals''. The CEO and the Responsible Scaling Officer (RSO) approve each report and share it with the Board and the Long-Term Benefit Trust (LTBT). Anthropic will ``work toward a practice of seeking comprehensive, public external review'', which is required at a minimum for ``significantly redacted'' reports on ``highly capable'' models or at the LTBT's request. Section 4 sets governance: an RSO ``responsible for the implementation of this policy''; unredacted Risk Reports shared with at least 200 employees; anonymous or identified noncompliance reporting with quarterly Board updates; internal review; and an approximately annual third-party review that ``will focus on procedural compliance, not substantive outcomes'' (§4). Regulatory requirements are handled ``in separate compliance frameworks'' (fn. 1), which for SB 53 is Anthropic's Frontier Compliance Framework~\cite{anthropic2025fcf}.
+
+\subsection{Anthropic's operational artefacts}\label{sec:artefacts}
+
+The \textbf{August 2026 Risk Report}, the second after February 2026, has a coverage date of 15 July 2026~\cite{anthropic2026rsppage,anthropic2026riskreport}. It rates misalignment risk as ``Low (an increase from our previous assessment of ``very low,'' in light of general increased uncertainty around recent incident disclosures related to model behavior in cybersecurity evaluations)``. Its monitoring appendix describes a two-stage offline pipeline in which researchers''manually review on the order of 50 trajectories per week'', almost always ``within a week''. The current monitor with second-stage filtering flagged 79\% of 163 attacks devised by a staff member of METR, an independent evaluation organisation, although the exercise ``was done mostly iterating against a previous Opus 4.6 no-CoT monitor'' and ``We have not red-teamed the current Opus 4.8 monitor as much''. The report states that ``We also occasionally accidentally weaken offline monitoring coverage'' and ``did not perform end-to-end evaluations'' of the pipeline (§2.23), and it lists incidents that weakened safeguards (§4.5.8, App. 6.5) and a ``representative sample'' of safety process failures (§5.2).
+
+The \textbf{Frontier Safety Roadmap} (goals as of 19 October 2026) aims by 1 January 2027 for an internal environment ``intensively monitored and comprehensively understood'' and commits to catalogue ``all high-stakes internal usage of Claude''. Its security goal, due on 1 July 2027, includes ``Detection coverage is measured against priority attack techniques with defined targets''. Some goals are graded by a report to the RSO~\cite{anthropic2026roadmap}.
+
+Four \textbf{incident investigations} were published. On 30 July Anthropic reported that a review of \num{141006} cyber-evaluation runs, prompted by another developer's disclosure, found three incidents, the earliest from April, in which models reached the internet through a misconfigured third-party environment and gained unauthorised access to real systems. It stopped all cyber evaluations the day the review began and wrote that, ``consistent with a blameless postmortem culture, we're approaching the fixes as if the responsibility were ours alone''~\cite{anthropic2026threeincidents}. On 9 September a fuller assessment reported a fourth incident, from January 2026, that the first scan had missed; revised the preliminary view that the incidents were mainly operational failures; announced an independent METR investigation; and acknowledged that ``Our pre-release auditing did not warn us that misalignment of this severity was present''~\cite{anthropic2026cyberassessment}. On 9 October a report on lower-severity cases introduced two severity dimensions, overreach and dishonesty~\cite{anthropic2026unintended}. On 23 October Anthropic assessed an incident observed by the UK AI Security Institute in its own testing~\cite{anthropic2026aisi}.
+
+The \textbf{remediation post} of 31 August describes a classifier that, on detecting an attempted sandbox escape or unexpected internet access, ``blocks the action before the tool call is run, ends the task, and alerts a human''; best practices that Anthropic has asked evaluation partners to commit to, including monitoring that should ``flag this to a human and end the exercise''; expanded offline monitoring ``to cover most other forms of internal frontier agentic usage''; and an April freeze of training environments, after which ``Rewards and environments now have to conform to an agreed specification'' and fixed environments had to be ``re-certified''~\cite{anthropic2026improving}.
+
+The \textbf{oversight metrics}~\cite{favaro2026} define coverage as ``the share of an agent's actions that pass through a monitor before or after execution'', review latency as ``the time between an action and its review'', and escalation rate as ``the share of agent activities that are either blocked/redirected (in the case of online monitors) or flagged for further review (in the case of offline monitors)''. On Anthropic's most-used internal platform in August 2026, with ``approximately 30,000 agents'' at any one time, all actions passed through the online monitor and ``100\% of these agents' actions are ingested by the monitor after they are taken''. The online monitor blocked ``0.002\% of them (about 1 in 47,000)'' of over a billion decisions; the offline monitor ``flags roughly 100,000 transcripts per week'', of which ``approximately \textasciitilde50 per week'' go to human review.
+
+Earlier, the Pilot Sabotage Risk Report had internal and independent (METR) reviews~\cite{bowman2025}, and Clio analyses ``aggregated usage patterns across millions of conversations, without the need for human reviewers to read raw conversations''~\cite{tamkin2024}, which resembles de-identified FDM.
+
+\subsection{OpenAI: Preparedness Framework, version 2, and Frontier Governance Framework}\label{sec:openai}
+
+The Preparedness Framework, version 2 (15 April 2025), was the most recent version found~\cite{openai2025pf}. It tracks biological and chemical, cybersecurity and AI self-improvement capabilities against High and Critical thresholds. Capabilities and Safeguards Reports go to an internal Safety Advisory Group (SAG), which recommends; ``OpenAI Leadership, i.e., the CEO or a person designated by them'' makes ``all final decisions, including accepting any residual risks''. The Board's Safety and Security Committee ``can review decisions'', and the Board may reverse them. OpenAI commits to ``track and appropriately investigate'' reported noncompliance and reviews the framework at least annually. Appendix C gives illustrative evidence that safeguards work, including ``In-production detection and enforcement SLAs for human monitoring teams, and historical performance'', where an SLA is a service-level agreement, and ``Time to patching a new known jailbreak''. It lists security practices that ``We will require \ldots{} for High capability models'', including formal change management, ``Independent Security Audits'' and 24x7 incident response (App. C.3).
+
+The Frontier Governance Framework (FGF), an undated PDF that secondary sources date to May 2026, is OpenAI's framework under California's Transparency in Frontier AI Act and its public summary for the EU Code~\cite{openaiFGF}. It states that ``OpenAI maintains an AI Safety Incident Response Plan (AIRP)'', lists detection channels from automated monitoring to ``notification from regulators or the press'', and describes severity determination, root-cause investigation and retrospectives (§2.6). It also covers security assurance, Model Report updates, responsibility allocation and an annual Framework Assessment (§§3--7).
+
+\subsection{Google DeepMind: Frontier Safety Framework, version 3.1}\label{sec:gdm}
+
+Version 3.1 (17 April 2026) defines Critical Capability Levels (CCLs) for chemical, biological, radiological and nuclear risk, cyber, harmful manipulation and machine learning R\&D, and adds lower Tracked Capability Levels (TCLs)~\cite{gdm2026fsf}. Its process runs from risk identification through inherent and residual risk assessment to risk acceptance, with a safety case where a CCL is reached. \textbf{Alert thresholds} ``are thresholds which we set marginally earlier than our CCLs'', and \textbf{material capability change assessments} decide whether a new model version needs a full capability assessment. The framework mentions post-market monitoring and the ``detection, mitigation, response and/or reporting of incidents''; its recommended ``Security Level 2+'' measures may include ``24/7 incident response capabilities''. The governance section is one paragraph, stating that ``Responsibilities for assessing and mitigating risks are clearly defined and allocated across all levels of the organization''. The framework is reviewed at least annually, including for adherence.
+
+\subsection{Regulatory reference points: EU AI Act, EU Code of Practice and SB 53}\label{sec:regref}
+
+Under Article 55(1)(c) of the EU AI Act, applicable since 2 August 2025, providers of general-purpose AI models with systemic risk ``shall \ldots{} keep track of, document, and report, without undue delay, to the AI Office \ldots{} relevant information about serious incidents and possible corrective measures to address them'' (Regulation (EU) 2024/1689, Arts. 55 and 113~\cite{reg2024_1689}). The Code of Practice (10 July 2025), signed by Anthropic, Google and OpenAI, is a voluntary means of demonstrating compliance~\cite{ecGPAIcodepage} and the closest of the documents to an SMS. It requires a framework assessment at least every 12 months or sooner on grounds including ``serious incidents and/or near misses'' (Measure 1.3); allocates responsibilities for risk oversight, ownership, support and monitoring, and assurance (Measure 8.1); lists indicators of ``a healthy risk culture'' (Measure 8.3); and requires serious-incident reports within 2 to 15 days by type of harm, with four-weekly updates, a final report within 60 days of resolution and a root cause analysis (Commitment 9). Near misses, defined as ``a situation in which a serious incident could have, but ultimately did not, materialise'', feed risk identification (Measure 2.1), reassessment (Measure 1.3) and Model Report updates (Measure 7.6). A deliberate model change placed on the market needs a completed assessment ``before the change is made available on the market'' (Measure 7.6)~\cite{ec2025code}.
+
+California's SB 53 took effect on 1 January 2026~\cite{anthropic2025fcf}. It requires large frontier developers to publish a frontier AI framework and requires critical-safety-incident reports to the Office of Emergency Services ``within 15 days, or within 24 hours if there is an imminent threat''~\cite{casenate2025sb53}.
+
+\section{Element-by-element mapping}\label{sec:mapping}
+
+Table~\ref{tab:mapping} sets out the mapping. Element 3.1 is split into three additional rows, because aviation delivers it through distinct programmes: occurrence reporting and investigation, routine operations monitoring, and internal audit. ``Framework'' in the comments means the documents in the corpus for each developer (Section~\ref{sec:method}).
+
+{\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.13\linewidth}>{\raggedright\arraybackslash}p{0.42\linewidth}>{\centering\arraybackslash}p{0.075\linewidth}>{\raggedright\arraybackslash}p{0.315\linewidth}@{}}
+\caption{ICAO SMS elements mapped onto frontier AI developers' public documents. A = Anthropic (RSP v3.4~\cite{anthropic2026rsp}, Roadmap~\cite{anthropic2026roadmap}, Risk Report~\cite{anthropic2026riskreport} and 2026 posts~\cite{anthropic2026threeincidents,anthropic2026improving,anthropic2026cyberassessment,anthropic2026unintended,anthropic2026aisi}); O = OpenAI (Preparedness Framework v2~\cite{openai2025pf} and FGF~\cite{openaiFGF}); G = Google DeepMind (Frontier Safety Framework v3.1~\cite{gdm2026fsf}). D = described; P = partly described; N = not described in the documents assessed.}\label{tab:mapping}\\
+\toprule
+\textbf{SMS element} & \textbf{Closest provisions} & \textbf{A / O / G} & \textbf{Comment} \\
+\midrule
+\endfirsthead
+\caption[]{(continued)}\\
+\toprule
+\textbf{SMS element} & \textbf{Closest provisions} & \textbf{A / O / G} & \textbf{Comment} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r@{}}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+1.1 Management commitment & A: Board-approved policy (RSP §4(8)); RSO oversees resources (§4(1)); about 150 engineers redirected with exit criteria~\cite{anthropic2026improving}; graded Roadmap goals. O: Leadership resources implementation (PF App. B). G: annual review (§5.1). & D / P / P & Reporter protection exists (RSP §4(4); OpenAI's ``Raising Concerns Policy''), but no framework states which behaviours are unacceptable (Annex 19, App. 2, 1.1.1(d)). \\
+\addlinespace[2pt]
+1.2 Accountability and responsibilities & A: CEO and RSO ``make the ultimate determination'' (RSP §3.4). O: Leadership accepts residual risk; Board committee reviews, Board may reverse (PF App. B); EU oversight by OpenAI Ireland board (FGF §6). G: ``appropriate governance function'' (§1.3.2, §3.1.2). & D / D / P & Upward reporting exists for noncompliance (Anthropic) and security-control validation (OpenAI), but no executive duty to review safety-performance indicators, as in 14 C.F.R. §~5.25(b)(5). \\
+\addlinespace[2pt]
+1.3 Key safety personnel & A: RSO (RSP §4(1)). O: SAG, with rotating chair, oversees implementation ``in partnership with the safety organization leader'' (PF App. B). G: none named. & D / P / N & The RSO combines parts of the safety manager and accountable executive roles. OpenAI assigns oversight to a committee. \\
+\addlinespace[2pt]
+1.4 Emergency response planning & A: activity contained ``within 90 minutes'' (Risk Report §4.5.8.2.1); security ``detection and response procedures''~\cite{anthropic2026unintended}; partners asked to commit to halting out-of-scope runs~\cite{anthropic2026improving}. O: AI Safety Incident Response Plan (FGF §2.6); 24x7 security response (PF App. C.3). G: 24/7 response among possible security measures (§2.1.1). & P / P / P & Response plans exist. A plan coordinated in advance with interfacing organisations (evaluation vendors, affected operators, package registries), the core of Annex 19, App. 2, 1.4, is not described. \\
+\addlinespace[2pt]
+1.5 SMS documentation & A: RSP, Roadmap, Risk Reports with change logs; trajectories logged (Risk Report §2.23.1.3). O: PF; FGF with published change log (§7.1). G: framework; disclosures. & D / P / P & Operational records are described publicly only by Anthropic, whose offline monitoring ``still doesn't cover all employees'' (Risk Report §5.2.5). \\
+\addlinespace[2pt]
+2.1 Hazard identification & A: threat models (RSP §3.3); thresholds (§1); incident inputs (Risk Report §5.2). O: Tracked and Research Categories (PF §2). G: risk identification; TCLs and CCLs (§1.3.1). & D / D / D & The strongest area, especially for hazards not yet realised (Section~\ref{sec:learn-thresholds}). \\
+\addlinespace[2pt]
+2.2 Risk assessment and mitigation & A: threat-specific and overall risk; risk-benefit determination (RSP §3.3). O: Safeguards Reports; SAG (PF §4.2). G: residual risk; risk acceptance; safety case at a CCL (§1.3). & D / D / D & None publishes a tolerability matrix; assessments ``will often involve some level of subjective analysis'' (Google DeepMind). \\
+\addlinespace[2pt]
+3.1 Safety performance monitoring and measurement & A: oversight metrics~\cite{favaro2026}; monitor detection rates (Risk Report §2.23.1.2); security detection ``with defined targets'' (Roadmap goal). O: illustrative detection SLAs and time to patch jailbreaks (PF App. C.1). G: capability alert thresholds (§1.3.2). & P / P / P & Measures exist. No developer publishes indicators with targets, alert levels and trends for its safety controls (monitors, classifiers). \\
+\addlinespace[2pt]
+3.1a Occurrence reporting and investigation & A: noncompliance reporting (RSP §4(4)); incidents in Risk Report (§4.5.8.2, App. 6.5, §5.2); four investigations; METR investigation. O: AIRP with severity determination, root-cause investigation and retrospectives (FGF §2.6). G: incidents in post-market monitoring (§1.3.2). & D / D / P & Anthropic publishes occurrence data; OpenAI describes the process only. No occurrence taxonomy or severity scheme is published in the documents assessed. \\
+\addlinespace[2pt]
+3.1b Routine operations monitoring (FDM and LOSA analogue) & A: online and offline monitoring of internal agents (Risk Report §2.23); Clio. O: post-launch classifiers and human review (FGF §2.5). G: ``monitoring and escalation'' among possible safeguards (§3.1.2). & D / P / P & The closest analogue to FDM is at Anthropic; coverage is incomplete and reported differently in different documents (Section~\ref{sec:gap-indicators}). \\
+\addlinespace[2pt]
+3.1c Internal audit and independent assurance & A: internal review (RSP §4(6)); third-party procedural review (§4(7)); external review of Risk Reports (§3.6); METR red-teaming of monitors. O: third-party security audits (PF App. C.3); SOC 2 Type II, ISO 27001 (FGF §3). G: adherence assessment (§5.1); penetration testing (§1.3.4). & P / P / P & Independent assurance of security controls is described; independent audit of safety controls in practice is limited to particular exercises. \\
+\addlinespace[2pt]
+3.2 Management of change & A: changes should ``not significantly increase the level of risk'' (RSP §3.2); environment checks, specification and re-certification (Risk Report §5.2.3; \cite{anthropic2026improving}); pre-merge code review (Risk Report §2.23.2.3). O: formal change management for ``all modifications to systems, applications, and infrastructure'' (PF App. C.3); Model Report updates (FGF §4). G: material capability change assessments (§1.3.2). & P / D / P & OpenAI's process is the most general but framed as security practice. No developer documents a change process for safety-control settings (thresholds, monitor filters, exemptions, scaffold permissions) with hazard assessment and post-change verification. \\
+\addlinespace[2pt]
+3.3 Continuous improvement & A: internal and procedural review; Roadmap updates; change log. O: annual review and corrective action (PF §5.1); Framework Assessment with remediation plans (FGF §7.2). G: annual review of adequacy and adherence (§5.1). & D / D / D & Improvement driven by safety-performance data is evidenced in public only in Anthropic's incident follow-up. \\
+\addlinespace[2pt]
+4.1 Training and education & A: ``Educate employees on insider risk'' (planned safeguards~\cite{anthropic2026rsppage}). O: personnel ``subject to regular training'' on insider threats (FGF §3). G: none found. & P / P / N & Security-awareness training is described, as the EU Code requires (App. 4.4(2)); training for safety-assurance duties is not. \\
+\addlinespace[2pt]
+4.2 Safety communication & A: Roadmap to all full-time employees; unredacted Risk Reports to at least 200 employees (RSP §2, §4(3)); public reports. O: internal transparency; public disclosures (PF §5.1--5.2). G: disclosures to government (§5.2). & D / P / P & Anthropic publishes company-held safety information that aviation operators would keep protected (Section~\ref{sec:learn-reporting}). Explaining why procedures change (Annex 19, App. 2, 4.2(d)) is not described. \\
+\end{longtable}
+}
+
+Three patterns stand out. First, the documents contain more SMS-like machinery than the headline frameworks suggest. Hazard identification and risk acceptance are described by all three developers; OpenAI's compliance framework adds an incident response plan with severity determination and root-cause investigation, and its Preparedness Framework requires formal change management and independent audits for security; Anthropic's Roadmap sets security-detection metrics with targets. Anthropic rates D on ten of fifteen rows, OpenAI on six and Google DeepMind on three, and only Google DeepMind has N ratings. Second, much of this machinery serves security or regulatory reporting. The SMS functions applied to the safety controls themselves (monitors, classifiers, their settings and the people who run them) are where the documents are thinnest. Third, the EU Code has SMS features the company documents mostly lack: allocation of assurance responsibility (Measure 8.1), risk-culture indicators (Measure 8.3), near misses as a defined input, and assessment before a deliberate change is released (Measure 7.6). It does not specify indicators or a change process for safety-control settings either.
+
+\section{Gaps that remain}\label{sec:gaps}
+
+\subsection{Indicators with targets, alert levels and trends for safety controls}\label{sec:gap-indicators}
+
+Measures exist. Anthropic publishes coverage, review latency and escalation rate, which are leading and precursor SPIs in all but name, and detection rates against test sets. Its Roadmap sets, as goals for July 2027, security detection ``measured against priority attack techniques with defined targets'' and measurement of ``coverage of attack techniques, time to detect threats, and accuracy''~\cite{anthropic2026roadmap}. OpenAI lists detection SLAs, ``historical performance'' and time to patch jailbreaks as illustrative evidence~\cite[App.~C.1]{openai2025pf}. What is missing for the safety controls is the rest of the cycle in Section~\ref{sec:spm}: no target or alert level is stated for monitor coverage, latency, escalation or detection, and no time series is published.
+
+Denominators are a further problem. For Anthropic's most-used internal platform in August 2026, the metrics page reports that 100\% of agents' actions pass through the online monitor and are ingested by the offline monitor~\cite{favaro2026}. The Risk Report, as of 15 July, describes offline monitors covering ``most internal users'', with 25\% and 5\% subsampling of some traffic, and says ``About half of agent scaffold tokens are seen at some point by the prompt+completion monitor''~\cite[§2.23.1.1]{anthropic2026riskreport}; the 31 August post reports an expansion~\cite{anthropic2026improving}. Differences in date, scope and the meaning of ``ingested'' versus ``seen'' probably explain the gap, but a reader cannot tell, because no denominator is published. Doc 9859's advice to express SPIs as normalised rates (4.3.1.3) addresses exactly this problem.
+
+\subsection{Management of change for safety-control settings}\label{sec:gap-moc}
+
+The documents contain more prospective change control than a first reading suggests. For High capability models OpenAI requires ``a formal change management process to ensure that all modifications to systems, applications, and infrastructure are properly authorized, documented, tested, and approved before deployment'', with rollback procedures~\cite[App.~C.3]{openai2025pf}. The EU Code requires assessment before a deliberate model change is released (Measure 7.6). Anthropic's RSP, after committing to report deviations, adds: ``We should make a strong attempt to ensure that ongoing (as opposed to temporary) changes do not significantly increase the level of risk''~\cite[§3.2]{anthropic2026rsp}. Anthropic also describes automated checks before new environments enter production training~\cite[§5.2.3]{anthropic2026riskreport}, an environment specification with re-certification~\cite{anthropic2026improving}, pre-merge review of infrastructure code with tests of security invariants~\cite[§2.23.2.3]{anthropic2026riskreport} and, as a Roadmap goal, approval for workload configurations that deviate from hardened defaults~\cite{anthropic2026roadmap}. Google DeepMind manages changes to the model through material capability change assessments.
+
+None of the documents describes a change process for the settings of safety controls (classifier thresholds, monitor prompts and filters, safeguard exemptions, scaffold permissions) with hazard assessment, sign-off and verification afterwards, and Anthropic's disclosures show why this matters. In one case changes are made without measurement: ``We also occasionally update the exact filters used in the second stage without evaluating its effect on recall''~\cite[§2.23.1.2]{anthropic2026riskreport}. In another, during a classifier update, ``the stage-1 probe threshold was incorrectly set to the numerical value of the previous classifier's threshold'', leaving some traffic unblocked and unlogged for five days; the planned remedy is ``to ensure that probe and threshold changes are paired programmatically rather than copied by hand'' (App. 6.5). Two further cases were configuration failures rather than documented changes: contractor traffic ran without blocking biological classifiers from May 2025 to April 2026, because ``a flag meant only for internal use \ldots{} disabled not only the blocking behavior of the classifiers but also the logging of their flags'' (§4.5.8.2.2), and an agent spawned others with a permissions-bypass setting ``Due to legacy instructions'' (§5.2.5). Each is a failure of a safety control's configuration that a change or configuration-assurance step could plausibly have caught.
+
+\subsection{Occurrence reporting and investigation}\label{sec:gap-occurrence}
+
+Anthropic's 2026 practice deserves credit. Its cyber-incident investigations show a wide retrospective search (roughly 481 million transcripts scanned), immediate containment, notification of affected parties, a blameless approach, an independent investigation and a public revision of preliminary findings: ``In retrospect, we should have avoided making such strong claims about what Claude believed based solely on what Claude said it believed''~\cite{anthropic2026cyberassessment}. It produced a new measure (``until this incident analysis, we had not been tracking biased reasoning closely'') and tested whether existing monitors would have caught the incidents; the offline monitor ``would likely not have flagged'' one, because the model's reasoning persuaded it the activity was permitted. This is the AI equivalent of asking which barriers failed. OpenAI's FGF describes a comparable process on paper, with detection channels, severity determination, root-cause investigation and retrospectives~\cite[§2.6]{openaiFGF}.
+
+The remaining gaps are narrower. No occurrence taxonomy or severity scheme is published in the documents assessed: OpenAI determines severity internally, Anthropic is establishing ``a regular process for publishing what we learn about model behavior and alignment \ldots{} with clear criteria for what we report and when we report it''~\cite{anthropic2026cyberassessment}, and Anthropic's Frontier Compliance Framework could not be read. Detection latency is not measured, although the record suggests it can be long: about three months for the first cyber incidents, about seven months for the fourth, which the first retrospective scan also missed, and about eleven months for the contractor-traffic classifier gap. Detection sources are mixed. Each minor safeguard incident in Appendix 6.5 ``was identified through our own testing and monitoring rather than surfaced by external exploitation''~\cite{anthropic2026riskreport}, whereas another developer's disclosure prompted the cyber review and an external report revealed the contractors' unauthorised access. The UK AI Security Institute case occurred in AISI's own environment and says little about Anthropic's detection. The EU Code defines near misses and uses them as inputs (Section~\ref{sec:regref}), but no document sets a near-miss reporting duty or indicator, although Doc 9859 warns that relying on accidents and serious incidents alone can give ``a potential false sense of confidence''~\cite[4.3.1.8]{icao2018doc9859}.
+
+\subsection{Training and safety promotion}\label{sec:gap-training}
+
+Security-awareness training is described: Anthropic's 2024 planned safeguards include ``Educate employees on insider risk''~\cite{anthropic2026rsppage}, OpenAI's personnel ``are screened and subject to regular training'' against insider threats~\cite[§3]{openaiFGF}, and the EU Code requires ``training on recognising and reporting insider threats''~\cite[App.~4.4(2)]{ec2025code}. Training for safety-assurance duties is not described, yet the controls depend on people who review escalations, decide which uses are high-stakes and change thresholds. Anthropic reports that ``human reviewers dismissed environments flagged by our automated monitors as false positives'' and that it is ``tightening the criteria for dismissing a flag''~\cite{anthropic2026improving}. The EU Code's risk-culture indicators, such as whether staff ``are comfortable raising concerns about systemic risks, are aware of channels for doing so, and understand the Signatory's Framework'' (Measure 8.3), are close to SMS safety-promotion measures. Communication that ``explains why safety procedures are introduced or changed''~\cite[Appendix~2, 4.2(d)]{icao2016annex19} is not described.
+
+\subsection{Independent audit of safety controls in practice}\label{sec:gap-audit}
+
+Independent assurance of security controls is described. OpenAI requires that ``security controls and practices are validated regularly by third-party auditors''~\cite[App.~C.3]{openai2025pf} and cites SOC 2 Type II audits and ISO 27001 certification~\cite[§3]{openaiFGF}; Google DeepMind's security infrastructure ``is subject to penetration testing''; and the EU Code calls for ``regular independent external security reviews'' where internal expertise is inadequate (App. 4.5(1)). Anthropic's external reviewers address ``the quality of our reasoning, the validity of our risk assessments, the overall level of risk'' and make ``Risk reduction recommendations''~\cite[§3.6]{anthropic2026rsp}; its third-party review ``will focus on procedural compliance, not substantive outcomes'' (§4(7)). In aviation, independent audit checks the effectiveness of safety risk controls~\cite[9.5.4.3]{icao2018doc9859}. For AI safety controls, independent testing in practice is limited to particular exercises, such as METR's red-teaming of Anthropic's monitors. Anthropic plans to embed ``independent third-party evaluators'' who ``will verify safety practices, report incidents, and monitor key metrics''~\cite{favaro2026}, with a policy proposal on evaluator access due on 15 December 2026~\cite{anthropic2026roadmap}. The SMS view adds a concrete object for such audit: indicators, change records and occurrence records.
+
+\subsection{The accountable executive}\label{sec:gap-ae}
+
+Decision authority is assigned: at OpenAI to the CEO or a designee, at Anthropic jointly to the CEO and the RSO. Some upward reporting exists, such as quarterly noncompliance updates to Anthropic's Board and reports on the validation of security controls to OpenAI's leadership~\cite[App.~C.3]{openai2025pf}. The SMS concept adds a person who ``Retains ultimate responsibility for the safety performance'' (14 C.F.R. §~5.25(a)(4)) and must review it regularly, which depends on the indicators in Section~\ref{sec:spis} existing.
+
+\section{A starter set of AI safety performance indicators}\label{sec:spis}
+
+Table~\ref{tab:spi} proposes twelve indicators for a frontier AI developer's safety assurance function. Most build on measures that Anthropic already reports in some form, and indicator 10 is already named in OpenAI's framework. None has been validated, and example values in the alert column only illustrate the form of the logic.
+
+{\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.025\linewidth}>{\raggedright\arraybackslash}p{0.12\linewidth}>{\raggedright\arraybackslash}p{0.255\linewidth}>{\raggedright\arraybackslash}p{0.15\linewidth}>{\raggedright\arraybackslash}p{0.095\linewidth}>{\raggedright\arraybackslash}p{0.255\linewidth}@{}}
+\caption{Proposed AI safety performance indicators (proposals, not validated). ``Type'' follows Doc 9859~\cite{icao2018doc9859}: leading (processes, inputs and conditions), lagging precursor (high-probability, low-severity outcomes) or lagging.}\label{tab:spi}\\
+\toprule
+\textbf{\hypertarget{section}{%
+\section{}\label{section}}} & \textbf{Indicator} & \textbf{Definition} & \textbf{Data source} & \textbf{Type} & \textbf{Example alert logic} \\
+\midrule
+\endfirsthead
+\caption[]{(continued)}\\
+\toprule
+\textbf{\hypertarget{section}{%
+\section{}\label{section}}} & \textbf{Indicator} & \textbf{Definition} & \textbf{Data source} & \textbf{Type} & \textbf{Example alert logic} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{6}{r@{}}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+1 & Monitor coverage & Share of agent actions on catalogued high-stakes surfaces that pass through (a) a blocking monitor before execution and (b) an asynchronous monitor within the review window, by surface & Monitor telemetry; catalogue of high-stakes usage & Leading & Any high-stakes surface below its target (for example 100\% for blocking); week-on-week fall above a set margin \\
+\addlinespace[2pt]
+2 & Unmonitored high-stakes usage & Count of high-stakes activities found running without logging or monitoring & Catalogue reconciliation; audits; incident reports & Leading & Any instance opens an investigation \\
+\addlinespace[2pt]
+3 & Review latency & 50th and 95th percentile time from action to automated review, and from escalation to human decision & Pipeline timestamps & Leading & 95th percentile above the stated service level (for example seven days) in two consecutive weeks \\
+\addlinespace[2pt]
+4 & Escalation rate & Actions blocked or flagged per million actions, by monitor & Monitor logs & Lagging precursor & Two-sided: outside the mean ± 2 standard deviations of the preceding 12 weeks; baseline reset after any model or monitor change. A sudden fall is treated like a sudden rise \\
+\addlinespace[2pt]
+5 & Human-review yield & Share of human-reviewed escalations confirmed as behaviour of concern & Reviewer decisions & Leading (process) & Sustained fall (alert fatigue, poor filtering) or sustained rise (cases may be missed below the threshold) \\
+\addlinespace[2pt]
+6 & Planted-test catch rate & Share of seeded red-team trajectories (planted tests) detected end-to-end (flagged, surfaced and reviewed) within the latency target & Internal and third-party red-teaming & Leading & Below target; any fall after a change to a model, monitor, filter or threshold blocks the change pending review \\
+\addlinespace[2pt]
+7 & Confirmed policy-violating agent actions & Confirmed violations per million agent actions, by severity class & Investigation outcomes & Lagging precursor & Trend outside the standard-deviation band; any action in the highest severity class opens an investigation regardless of rate \\
+\addlinespace[2pt]
+8 & Detection-source mix & Share of confirmed occurrences first detected by (a) automated monitoring, (b) staff report, (c) the model's own disclosure, (d) an external party & Occurrence database & Lagging (diagnostic) & Any occurrence first detected externally triggers a coverage review; external share rising over two quarters \\
+\addlinespace[2pt]
+9 & Time to detect & Time from onset of an occurrence or control failure to its detection & Investigations & Lagging & Any control failure undetected for more than a set period (for example 30 days) triggers a review of logging and monitoring \\
+\addlinespace[2pt]
+10 & Time to mitigate a new jailbreak class & Time from first credible report of a new jailbreak technique to deployed mitigation (cf.~OpenAI's ``Time to patching a new known jailbreak'') & Bug bounty; red-teaming; threat intelligence & Leading (process) & 90th percentile above target \\
+\addlinespace[2pt]
+11 & Unassessed safety-control changes & Count of changes to classifier thresholds, monitor prompts or filters, exemptions, scaffold permissions or deployment configurations deployed without a documented change assessment and sign-off & Change records; configuration audit & Leading & Target zero; any instance is reported to the accountable executive \\
+\addlinespace[2pt]
+12 & Investigation and corrective-action closure & Median time to close investigations; share of corrective actions closed by their due date & Occurrence database & Leading (process) & Overdue actions above a set number, or any overdue action from a high-severity occurrence \\
+\end{longtable}
+}
+
+Each indicator is anchored in the published record. Indicators 1 and 2 respond to Anthropic's reported coverage gaps, and indicator 3 formalises its statement that reviews almost always happen within a week. Indicator 4 is two-sided because the contractor-traffic flag disabled logging as well as blocking: a monitor that fails silently produces a falling escalation rate, which a one-sided alert would read as improvement. Indicator 6 implements the call to ``share how often known agent misbehavior is caught by monitors, and \ldots{} have third parties do this kind of testing independently''~\cite{favaro2026}; by analogy, it is a smoke-detector test, and it links assurance to the change process in Section~\ref{sec:gap-moc}. Indicators 8 and 9 measure the detection problems seen in 2026, and indicator 11 measures the change-management gap directly.
+
+Four cautions apply. First, express indicators as rates with published denominators~\cite[4.3.1.3]{icao2018doc9859}. Second, use the standard-deviation method only where the process is stable; models, monitors and thresholds change often, so baselines should be reset after significant changes, and rare high-severity events need hard triggers. Third, avoid targets that reward the wrong behaviour: a target to reduce the escalation rate could be met by weakening monitors (9.5.4.15). Fourth, the monitored system may adapt to the monitor, whose gaps ``could in principle be predicted by a sufficiently situationally aware AI''~\cite[§2.23.1.1]{anthropic2026riskreport}, so planted tests should be refreshed and partly designed by third parties.
+
+\section{What aviation can learn back}\label{sec:learn}
+
+\subsection{Capability thresholds as forward-looking hazard identification}\label{sec:learn-thresholds}
+
+Annex 19 requires hazard identification ``based on a combination of reactive and proactive methods'' (Appendix 2, 2.1.2), and reactive methods depend on occurrences having happened. Frontier frameworks must name hazards that have never occurred and set measurable thresholds for them in advance. Google DeepMind's alert thresholds, set ``marginally earlier than our CCLs'', and the RSP's recommendation that a developer ``should make a strong argument'' about risk at each threshold are structured ways of acting before data exist. Aviation organisations introducing novel technology, including AI, could borrow capability-based hazard thresholds with early-warning evaluations.
+
+\subsection{Testing the detection system}\label{sec:learn-testing}
+
+Aviation already tests detection adversarially in security. Under Regulation (EC) No 300/2008~\cite{reg2008_300}, a ``test'' is ``a trial of aviation security measures, where the appropriate authority simulates intent to commit an act of unlawful interference for the purpose of examining the effectiveness of the implementation of existing security measures'', and tests must cover screening and access control (Annex II, 1.1(12) and 8.1, UK assimilated text). Annex 19 has no equivalent requirement for an organisation's SMS detection systems. Anthropic has applied the security approach to safety monitoring, through METR's red-teaming and published detection rates against seeded attacks. The proposal for aviation, which would need testing, is to extend the security practice to SMS detection: periodic tests of whether FDM event definitions or occurrence-reporting systems catch seeded scenarios.
+
+\subsection{Candid public risk reporting by the organisation}\label{sec:learn-reporting}
+
+Anthropic's Risk Report states its residual-risk judgements, records when they get worse, lists its own process failures and explains its redactions. Aviation publishes investigation reports at State level: ``The safety investigation authority shall make public the final report in the shortest possible time and if possible within 12 months'' of an accident or serious incident (Regulation (EU) No 996/2010, Art. 16(6)~\cite{reg2010_996}). Operator-held SMS data are treated differently. Annex 19 requires States to ensure that safety data and safety information are not used for ``disclosure to the public'' unless an exception applies, and that permitted public disclosure either complies with privacy law or is made ``in a de-identified, summarized or aggregate form''~\cite[Appendix~3, 2.1 and 4.2]{icao2016annex19}. The objective is ``to ensure the continued availability of safety data and safety information'' (Appendix 3, Note 4). The comparison therefore concerns what operators publish about themselves, and a partial lesson applies: organisation-level indicators, process failures and changes in assessed risk can be published in aggregate form without identifying individuals.
+
+\subsection{Implications for aviation AI developers and regulators}\label{sec:learn-implications}
+
+Aviation organisations that deploy AI models in operational or maintenance roles already hold SMS obligations. A model update, a new prompt or scaffold, or a changed monitoring threshold can be a change ``which may affect the level of safety risk'' under Annex 19, Appendix 2, 3.2, and Doc 9859 lists the ``introduction of new technology or equipment'' as a typical trigger (9.5.5.5). Developers supplying AI tools to aviation could support their customers' safety assurance with indicator data (coverage, review latency, escalation and planted-test catch rates) and with notice of changes. For regulators, Amendment 2 adds a recommendation allowing States to require an SMS, where appropriate, for any sector of the aviation system~\cite{icao2025amdt2}, one possible route for bringing AI service providers whose products affect operational safety within the SMS framework.
+
+\section{Limitations and disanalogies}\label{sec:limitations}
+
+\paragraph{Public information and scope.} Internal practice may be stronger or weaker than the public documents describe, and documents that could not be read (Section~\ref{sec:method}) may contain more than is credited here.
+
+\paragraph{Transparency bias.} Anthropic is rated higher partly because it publishes much more, and the same disclosures make its incidents visible. The ratings say nothing about which developer is safer.
+
+\paragraph{Fast change.} The RSP had five versions in 2026, and Annex 19 Amendment 2 becomes applicable on 26 November 2026.
+
+\paragraph{Single coder.} The author made the ratings in Table~\ref{tab:mapping}. A second independent coder and an agreement statistic would strengthen them.
+
+\paragraph{SMS was built for mature operations.} SMS works best with stable processes, plentiful data and known base rates. The catastrophic risks the frameworks address have no base rate. SPIs can track precursors and control performance; they cannot measure the probability of an event that has never happened.
+
+\paragraph{An adversarial monitored system.} An aircraft does not model the FDM programme. A capable model may model its monitors, and may also be the monitor. Monitor-performance indicators can therefore be gamed in ways with no direct counterpart in flight data.
+
+\paragraph{Organisational structure and oversight.} A frontier developer is designer, manufacturer and operator at once, and changes its product frequently; Part 5's extension to some Part 21 organisations gives aviation only limited experience of SMS in manufacturers. No AI regulator accepts and audits an SMS as a civil aviation authority does, although serious-incident reporting to the AI Office is a binding duty under Article 55(1)(c) of the AI Act, and SB 53 adds incident reporting in California.
+
+\paragraph{Paperwork.} An SMS can become a documentation exercise, and full procedural compliance can coexist with catastrophe~\cite{barkett2026}. Indicators help only if someone with authority reviews them and acts.
+
+\section{Conclusion}\label{sec:conclusion}
+
+Read through the ICAO SMS framework, frontier AI developers' public documents contain more of an SMS than their headline frameworks suggest. Hazard identification and risk acceptance are described throughout; incident response plans, security change management, independent security audits and security detection metrics with targets appear in companion documents and roadmaps; and Anthropic's 2026 Risk Report, investigations, remediation post and oversight metrics are outputs of a working safety assurance function, published more openly than aviation operators publish their own safety data.
+
+The remaining gaps share a theme: SMS functions applied to the safety controls themselves. In the documents assessed, no developer publishes indicators with targets, alert levels and trends for its monitors and classifiers. None documents a change process aimed at their settings with hazard assessment, although Anthropic's own disclosures show such settings failing. None publishes an occurrence taxonomy or measures detection latency, which in 2026 ran from months to nearly a year; Anthropic's Frontier Compliance Framework, which covers incident response, could not be read and may contain such a taxonomy. Training for safety-assurance roles is not described, and independent assurance covers security controls more than safety controls in practice. This paper's contribution is the systematic mapping that locates these gaps and twelve indicators that need testing against real data. Aviation, in turn, can take from frontier AI a disciplined way to name hazards before they occur, adversarial testing extended from security to safety detection, and a model of candid organisational reporting.
+
+\section*{Acknowledgement}
+\paragraph{AI assistance.} Literature searches, drafting and source verification were carried out with AI assistance (Claude, Anthropic) under the author's direction. An independent AI-assisted audit checked the references and quotations against their sources, and its findings were addressed before this version. The author is responsible for the final text. Several of the AI-safety sources cited are research reports by Anthropic, the developer of the assistant used.
+\paragraph{Competing interests.} The author is the founder of Citadel Aero, which builds AI tools for aviation.
+\paragraph{Disclaimer.} The views expressed are the author's own and do not represent those of any employer or regulator. Nothing here is operational, legal or regulatory advice.
+\paragraph{Materials.} The verification log and audit record for this paper are available from the author.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

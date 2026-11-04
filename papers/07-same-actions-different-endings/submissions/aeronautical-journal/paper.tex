@@ -1,20 +1,13 @@
-% "Outcome Bias in AI Models ..." -- version for The Aeronautical Journal (Royal Aeronautical Society / Cambridge University Press).
-% Single-anonymised review, so the author is named. Single column, APA references, nomenclature (journal requirements).
-% Built from ../safety-science/paper.tex (same text, checked against the preprint), with the author block, nomenclature,
-% OSF links and declarations restored. Build: latexmk -pdf paper.tex
-\documentclass[11pt]{article}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{lmodern}
-\usepackage[british]{babel}
-\usepackage[a4paper,margin=25mm]{geometry}
-\usepackage{setspace}\onehalfspacing
-\usepackage{amsmath,amssymb}
-\usepackage{graphicx}
+% "Outcome Bias in AI Models ..." -- version for The Aeronautical Journal (Royal Aeronautical Society / Cambridge University Press),
+% in the journal's own LaTeX class (aer.cls, from the journal's template files, supplied by the author on 4 November 2026).
+% Single-anonymised review, so the author is named. APA author-year references, as Cambridge's "Preparing your materials" page asks
+% (the template's sample shows the older numbered style). Text as in the previous version of this file (checked against the preprint);
+% the metadata commands are left empty, as the template's guide asks. Build: latexmk -pdf paper.tex
+\documentclass{aer}
+\usepackage{txfonts}
 \usepackage{longtable,booktabs,array,calc}
 \usepackage{etoolbox}
 \AtBeginEnvironment{longtable}{\footnotesize\linespread{1}\selectfont}
-\usepackage[font=small,labelfont=bf]{caption}
 \usepackage{lineno}
 \usepackage{xurl}
 \usepackage[hidelinks]{hyperref}
@@ -24,52 +17,73 @@
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setlength{\emergencystretch}{2em}
 
-\title{Outcome Bias in AI Models Applying a Culpability Decision Tree to Airline Occurrence Reports: A Pre-registered Within-Case Experiment}
-\author{James Le Cuirot\\[2pt]
-\normalsize CitadelAero, Jersey, Channel Islands\\
-\normalsize ORCID: 0009-0009-6014-1298 \quad Correspondence: james@citadelaero.com}
-\date{}
+\jmonth{}
+\jyear{}
+\volume{}
+\issue{}
+\historydate{}
+\doi{}
 
 \begin{document}
+
+\markboth{Le Cuirot}{Outcome bias in AI models applying a culpability decision tree}
+
+\title{Outcome Bias in AI Models Applying a Culpability Decision Tree to Airline Occurrence Reports}
+\subtitle{A Pre-registered Within-Case Experiment}
+
+\author{J. Le Cuirot\email{james@citadelaero.com}}
+\affil{CitadelAero\\ Jersey\\ Channel Islands}
+
 \maketitle
-\thispagestyle{empty}
 
 \begin{abstract}
-\noindent Just culture judges people on what they knew and did, not on how events turned out. AI models are starting to code safety reports. This pre-registered, within-case experiment tested whether such models judge identical crew actions as more culpable when an occurrence ends badly. Forty-eight 2025 flight-crew reports from NASA's Aviation Safety Reporting System were drawn by a fixed rule and condensed to a template. Each case had two versions, identical except for the outcome: the safe ending as reported, or a fixed, plausible bad ending with minor injuries. Claude Sonnet 5.5, GPT-6.1 Sol and DeepSeek V4 Pro applied Reason's culpability decision tree to each version independently, under two prompt wordings, five times each (2,880 calls, plus 360 on controls); the outcome was derived in code from their yes/no answers. All three models reached more culpable outcomes after a bad ending: mean shifts of +0.35, +0.25 and +0.18 steps on Reason's nine-step scale (Holm-adjusted p = .0009, .007, .023), with 14--18 of 48 cases judged more harshly and 2--3 more leniently. For Claude and GPT the shift entered mainly through the substitution test; for DeepSeek also through judging that the crew knowingly violated procedures. Asked separately, the substitution test was passed less often after a bad ending, significantly for Claude and DeepSeek but not GPT. Control cases were unaffected. Models gave the same outcome on all five repeats in only 72--82\% of cells. A structured just-culture instrument did not prevent outcome bias.
+Just culture judges people on what they knew and did, not on how events turned out. AI models are starting to code safety reports. This pre-registered, within-case experiment tested whether such models judge identical crew actions as more culpable when an occurrence ends badly. Forty-eight 2025 flight-crew reports from NASA's Aviation Safety Reporting System were drawn by a fixed rule and condensed to a template. Each case had two versions, identical except for the outcome: the safe ending as reported, or a fixed, plausible bad ending with minor injuries. Claude Sonnet 5.5, GPT-6.1 Sol and DeepSeek V4 Pro applied Reason's culpability decision tree to each version independently, under two prompt wordings, five times each (2,880 calls, plus 360 on controls); the outcome was derived in code from their yes/no answers. All three models reached more culpable outcomes after a bad ending: mean shifts of +0.35, +0.25 and +0.18 steps on Reason's nine-step scale (Holm-adjusted p = .0009, .007, .023), with 14--18 of 48 cases judged more harshly and 2--3 more leniently. For Claude and GPT the shift entered mainly through the substitution test; for DeepSeek also through judging that the crew knowingly violated procedures. Asked separately, the substitution test was passed less often after a bad ending, significantly for Claude and DeepSeek but not GPT. Control cases were unaffected. Models gave the same outcome on all five repeats in only 72--82\% of cells. A structured just-culture instrument did not prevent outcome bias.
 \end{abstract}
 
-\vspace{6pt}
-\noindent\textit{An earlier version of this study was posted as a preprint titled ``Same Actions, Different Endings: Outcome Severity Shifts How AI Models Apply Reason's Culpability Decision Tree to Airline Flight Crews'' (OSF, 2 October 2026, doi:10.17605/OSF.IO/DHF38).}
 
-\section*{Nomenclature}
-\begin{tabular}{@{}ll@{}}
-ACN & ASRS accession number \\
-AI & artificial intelligence \\
-API & application programming interface \\
-ASRS & Aviation Safety Reporting System (NASA) \\
-ATC & air traffic control \\
-CI & confidence interval \\
-D1--D11 & deviations from the registered plan (Appendix C) \\
-FAR & Federal Aviation Regulations (US) \\
-GAIN & Global Aviation Information Network \\
-H1--H3 & pre-registered hypotheses \\
-JSON & JavaScript Object Notation (the reply format) \\
-LLM & large language model \\
-OSF & Open Science Framework \\
-Q1--Q5 & questions of Reason's culpability decision tree (with sub-questions Q1b--Q4b) \\
-RA & resolution advisory \\
-TCAS & Traffic Alert and Collision Avoidance System \\
-W1, W2 & the two prompt wordings (investigator and neutral framing) \\
-$W^{+}$ & Wilcoxon signed-rank statistic (sum of positive ranks) \\
-$z$ & standard normal test statistic \\
-$p$ & two-sided p value (Holm-adjusted where stated) \\
-$\kappa$ & Fleiss' kappa \\
-\end{tabular}
+\section*{NOMENCLATURE}
+\begin{deflist}
+\listterm{\emph{ACN}}{ASRS accession number (report identifier)}
+\listterm{\emph{AI}}{artificial intelligence}
+\listterm{\emph{API}}{application programming interface}
+\listterm{\emph{ASRS}}{Aviation Safety Reporting System (NASA)}
+\listterm{\emph{ATC}}{air traffic control}
+\listterm{\emph{CC BY}}{Creative Commons Attribution licence}
+\listterm{\emph{CI}}{confidence interval}
+\listterm{\emph{D1--D11}}{deviations from the registered plan (Appendix C)}
+\listterm{\emph{EU}}{European Union}
+\listterm{\emph{FAR}}{Federal Aviation Regulations (US)}
+\listterm{\emph{GAIN}}{Global Aviation Information Network}
+\listterm{\emph{H1--H3}}{pre-registered hypotheses}
+\listterm{\emph{HTTP}}{Hypertext Transfer Protocol (status 429: too many requests)}
+\listterm{\emph{ID}}{identifier}
+\listterm{\emph{JSON}}{JavaScript Object Notation (the reply format)}
+\listterm{\emph{LLM}}{large language model}
+\listterm{\emph{NASA}}{National Aeronautics and Space Administration (US)}
+\listterm{\emph{OSF}}{Open Science Framework}
+\listterm{p}{two-sided $p$ value (Holm-adjusted where stated)}
+\listterm{\emph{Q1--Q5}}{questions of Reason's culpability decision tree, with sub-questions Q1b--Q4b}
+\listterm{r}{Pearson correlation coefficient}
+\listterm{\emph{RA}}{resolution advisory (TCAS)}
+\listterm{\emph{S08}}{case identifier (main case 8)}
+\listterm{\emph{SHA-256}}{Secure Hash Algorithm, 256-bit (file fingerprint)}
+\listterm{\emph{TCAS}}{Traffic Alert and Collision Avoidance System}
+\listterm{\emph{US}}{United States}
+\listterm{\emph{USD}}{United States dollars}
+\listterm{\emph{W1, W2}}{the two prompt wordings (investigator and neutral framing)}
+\listterm{$W^{+}$}{Wilcoxon signed-rank statistic (sum of positive ranks)}
+\listterm{z}{standard normal test statistic}
+\end{deflist}
+
+\subsection*{Greek Symbol}
+\begin{deflist}
+\listterm{$\kappa$}{Fleiss' kappa}
+\end{deflist}
 
 \linenumbers
 
 \hypertarget{introduction}{%
-\section{Introduction}\label{introduction}}
+\section{INTRODUCTION}\label{introduction}}
 
 Aviation's reporting systems depend on a promise. A crew that reports an error made in good faith will not be punished for it, provided the error is ``commensurate with their experience and training''. Gross negligence, wilful violations and destructive acts remain out of bounds. That promise, written into European law as the definition of \emph{just culture} (Regulation (EU) No 376/2014, Art. 2(12)), has a well-known enemy: knowing the outcome.
 
@@ -142,7 +156,7 @@ This study tests that directly. We used real occurrences drawn by rule from a pu
 \end{itemize}
 
 \hypertarget{method}{%
-\section{Method}\label{method}}
+\section{METHOD}\label{method}}
 
 \hypertarget{design}{%
 \subsection{Design}\label{design}}
@@ -168,7 +182,7 @@ Each call was a single, independent request with no conversation history, so a m
 \textbf{Deviations.} Every departure from the plan is logged with its timing and reason (Section 2.8 and Appendix C).
 
 \hypertarget{sampling-frame-and-case-selection}{%
-\subsection{Sampling frame and case selection}\label{sampling-frame-and-case-selection}}
+\subsection{Sampling Frame and Case Selection}\label{sampling-frame-and-case-selection}}
 
 \textbf{The search.} On 1 October 2026 the author exported every ASRS Database Online report matching a fixed search:
 
@@ -302,9 +316,9 @@ Four qualifying cases were later excluded under written rules and replaced from 
 Forty-two were coded with Human Factors as the primary problem and six with Procedure. Two further qualifiers served as pilot cases.
 
 \hypertarget{condensing-and-the-two-versions}{%
-\subsection{Condensing and the two versions}\label{condensing-and-the-two-versions}}
+\subsection{Condensing and the Two Versions}\label{condensing-and-the-two-versions}}
 
-\textbf{AI assistance in preparing the study.} Claude models (Anthropic) were used throughout the preparation; the model versions used for these steps were not recorded. Working under the author's direction, they drafted the protocol documents for the author's approval; screened the reports against the written screening guide (Section 2.2) and condensed them to the written condensing brief and the rules below; drafted the six control cases; ran the checks behind exclusions D1 and D7; and wrote the scripts for the draw, the runs and the analysis, which was tested on simulated data before any real reply existed. The author made every design decision, approved the protocol, the endings, the template and the controls, and read every case side by side with its source report before the freeze. No independent human re-screened a sample (D11). The models under test (Section 2.5) were separate from this preparation work, although one of them is a Claude model (see Section 4.5).
+\textbf{AI assistance in preparing the study.} Claude models (Anthropic) were used throughout the preparation, on 1--2 October 2026; the model versions used for these steps were not recorded. Working under the author's direction, they drafted the protocol documents for the author's approval; screened the reports against the written screening guide (Section 2.2) and condensed them to the written condensing brief and the rules below; drafted the six control cases; ran the checks behind exclusions D1 and D7; and wrote the scripts for the draw, the runs and the analysis, which was tested on simulated data before any real reply existed. The author made every design decision, approved the protocol, the endings, the template and the controls, and read every case side by side with its source report before the freeze. No independent human re-screened a sample (D11). The models under test (Section 2.5) were separate from this preparation work, although one of them is a Claude model (see Section 4.5).
 
 \textbf{The template.} Each report was condensed to a fixed five-part template:
 
@@ -386,7 +400,7 @@ The author, a commercial pilot and flight safety officer, read every case side b
 Each control had a safe and a bad version built the same way.
 
 \hypertarget{instrument-and-prompt}{%
-\subsection{Instrument and prompt}\label{instrument-and-prompt}}
+\subsection{Instrument and Prompt}\label{instrument-and-prompt}}
 
 Each prompt contained, in this order:
 
@@ -428,7 +442,7 @@ Replies were JSON in a fixed shape.
 \textbf{The primary measure.} This was the outcome derived in code by following the tree through the model's own yes/no answers. The outcome the model named was kept as a cross-check. Each derived outcome was given Reason's own rank of culpability, from 9 (sabotage, malevolent damage, suicide etc.) to 1 (blameless error). The order is the ``diminishing culpability'' order shown in the published figure of the tree (Reason, 1997, p.~209; GAIN Working Group E, 2004, Fig. 3). No author judgement entered the ranking.
 
 \hypertarget{models-and-procedure}{%
-\subsection{Models and procedure}\label{models-and-procedure}}
+\subsection{Models and Procedure}\label{models-and-procedure}}
 
 \textbf{The models}, called through the OpenRouter API at each provider's default settings, as a safety department would meet them:
 
@@ -492,7 +506,7 @@ The bad endings are fixed text per category, so this last measure checks whether
 All statistics were computed in plain Python with no third-party libraries. Further descriptive results were produced after the registered analysis by a separate script (\texttt{scripts/09\_paper\_tables.py}): the per-case plot (Figure 1), the shares of verdicts (Figure 2), the answer rates at each question, and the agreement between models. None of them is a test of H1--H3.
 
 \hypertarget{data-quality}{%
-\subsection{Data quality}\label{data-quality}}
+\subsection{Data Quality}\label{data-quality}}
 
 Every one of the 3,240 planned calls produced a valid reply (Table 1). There were no missing data.
 
@@ -527,7 +541,7 @@ Cost of main run (USD) & 18.27 & 7.73 & 1.20 \\
 
 
 \hypertarget{deviations-from-the-registered-plan}{%
-\subsection{Deviations from the registered plan}\label{deviations-from-the-registered-plan}}
+\subsection{Deviations from the Registered Plan}\label{deviations-from-the-registered-plan}}
 
 All deviations are logged in the study repository and summarised in Appendix C. Three affect how the registration should be read:
 
@@ -554,10 +568,10 @@ Two further points were found while writing up (D11):
 None of these changes the cases, the wording, the outcome measure or the tests.
 
 \hypertarget{results}{%
-\section{Results}\label{results}}
+\section{RESULTS}\label{results}}
 
 \hypertarget{manipulation-and-validity-checks}{%
-\subsection{Manipulation and validity checks}\label{manipulation-and-validity-checks}}
+\subsection{Manipulation and Validity Checks}\label{manipulation-and-validity-checks}}
 
 \textbf{Manipulation check.} The manipulation worked. Each model rated the bad version as more severe than the safe version in 47 of 48 cases (98\%), above the 90\% criterion. Mean severity rose from 2.38 to 3.25 (Claude), from 2.95 to 4.25 (GPT) and from 1.93 to 3.64 (DeepSeek).
 
@@ -568,7 +582,7 @@ None of these changes the cases, the wording, the outcome measure or the tests.
 \textbf{Controls.} Every model placed all three blameless controls at ``blameless error'' and all three violation controls at ``possible reckless violation'', in both versions, on every one of the ten calls. Mean ranks were exactly 1.0 and 6.0 throughout. The bad ending did not move any clear case.
 
 \hypertarget{h1-outcome-and-culpability}{%
-\subsection{H1: outcome and culpability}\label{h1-outcome-and-culpability}}
+\subsection{H1: Outcome and Culpability}\label{h1-outcome-and-culpability}}
 
 All three models reached more culpable outcomes when the ending was bad (Table 2, Figure 1). H1 is supported for each model after Holm correction.
 
@@ -664,7 +678,7 @@ DeepSeek & 10 blameless & 7 blameless, 3 negligent \\
 With the safe ending, a typical Claude reply passed the substitution test: the late runway change, the high base leg and the time pressure ``would probably lead a comparable well-motivated captain into the same plan continuation''. With the bad ending, a typical reply failed it: ``a comparably qualified captain would probably have asked for delay vectors, or gone around''. The crew's actions and knowledge were word for word the same in both versions.
 
 \hypertarget{where-the-outcome-enters-the-tree}{%
-\subsection{Where the outcome enters the tree}\label{where-the-outcome-enters-the-tree}}
+\subsection{Where the Outcome Enters the Tree}\label{where-the-outcome-enters-the-tree}}
 
 Because the tree is a fixed sequence, the questions that change between versions show where the outcome enters. Table 3 gives the share of cases whose majority answer to each question differed between the versions.
 
@@ -721,7 +735,7 @@ GPT-6.1 Sol & 8\% & 8\% & 0\% & 2\% & 2\% & 10\% & 10\% & 8\% \\
 \end{itemize}
 
 \hypertarget{h2-the-substitution-test-asked-on-its-own}{%
-\subsection{H2: the substitution test asked on its own}\label{h2-the-substitution-test-asked-on-its-own}}
+\subsection{H2: The Substitution Test Asked on Its Own}\label{h2-the-substitution-test-asked-on-its-own}}
 
 Asked separately whether a well-motivated, equally competent and comparably qualified person would probably have done the same, all three models answered ``yes'' less often after a bad ending (Table 4).
 
@@ -761,7 +775,7 @@ GPT-6.1 Sol & 67\% & 61\% & −0.060 (−0.119, −0.008) & .0530 & .0530 \\
 \textbf{H2 is supported for Claude and DeepSeek.} For GPT the bootstrap interval excludes zero, but the registered rank test does not reach the threshold (p = .053), so H2 is not supported for GPT on the registered criterion.
 
 \hypertarget{h3-consistency-across-repeats}{%
-\subsection{H3: consistency across repeats}\label{h3-consistency-across-repeats}}
+\subsection{H3: Consistency Across Repeats}\label{h3-consistency-across-repeats}}
 
 Given identical text, the models did not always reach the same outcome (Table 5). \textbf{H3 is supported for all three models.} DeepSeek was the least consistent.
 
@@ -781,7 +795,7 @@ DeepSeek V4 Pro & 139/192 (72\%) & 0.51 \\
 
 
 \hypertarget{exploratory-results}{%
-\subsection{Exploratory results}\label{exploratory-results}}
+\subsection{Exploratory Results}\label{exploratory-results}}
 
 These analyses were labelled exploratory in the registration and should be read as hypotheses for further work.
 
@@ -810,10 +824,10 @@ These analyses were labelled exploratory in the registration and should be read 
 \end{itemize}
 
 \hypertarget{discussion}{%
-\section{Discussion}\label{discussion}}
+\section{DISCUSSION}\label{discussion}}
 
 \hypertarget{what-we-found}{%
-\subsection{What we found}\label{what-we-found}}
+\subsection{What We Found}\label{what-we-found}}
 
 \textbf{The main result.} Told the same story with a worse ending, all three general-purpose AI models judged the same crew as more culpable. This happened although the models were working through an instrument designed to prevent exactly that. None of the tree's questions mentions the outcome, every answer had to be justified, and the verdict was derived mechanically from the answers rather than chosen by the model.
 
@@ -836,7 +850,7 @@ These analyses were labelled exploratory in the registration and should be read 
 The six control cases were unaffected. Clearly blameless errors stayed blameless and clear reckless violations stayed reckless, whatever the ending. \textbf{The bias lives in the grey area}, the cases where a fair-minded investigator has to exercise judgement about what a peer would have done. That is where most real occurrence reports sit.
 
 \hypertarget{how-hindsight-enters}{%
-\subsection{How hindsight enters}\label{how-hindsight-enters}}
+\subsection{How Hindsight Enters}\label{how-hindsight-enters}}
 
 The tree makes it possible to see where the outcome gets in. For Claude and GPT it entered mainly through the substitution test, the question that asks the investigator to imagine a comparable peer in the same circumstances. That is the most judgement-laden question in the tree, and it is exactly where human hindsight bias would be expected to act.
 
@@ -863,14 +877,14 @@ The two studies agree on a second point. Models differ in how severe they are to
 The finding also parallels Walmsley and Gilbey's (2016) result that pilots themselves rate weather decisions more favourably when the flight ends well. The models reproduce, in an applied professional task, a bias that is well documented in the professionals they would assist.
 
 \hypertarget{inconsistency-is-a-separate-problem}{%
-\subsection{Inconsistency is a separate problem}\label{inconsistency-is-a-separate-problem}}
+\subsection{Inconsistency Is a Separate Problem}\label{inconsistency-is-a-separate-problem}}
 
 Even without any change of outcome, the same model given the same text reached different verdicts on repeated runs in 18--28\% of cells. In a culpability determination, where the result can affect a person's career, this is a reliability problem in its own right.
 
 It also helps explain why the models did not agree on which cases shifted. Part of each case-level shift is run-to-run variation. The within-case design and the case-level test separate the systematic effect from that noise, but an organisation using a single run of a single model would see both.
 
 \hypertarget{implications-for-practice}{%
-\subsection{Implications for practice}\label{implications-for-practice}}
+\subsection{Implications for Practice}\label{implications-for-practice}}
 
 The study tested general-purpose models under default settings, as a safety department would most likely meet them. It did not test any specific product. Five practical points follow:
 
@@ -915,7 +929,7 @@ The study tested general-purpose models under default settings, as a safety depa
 \end{itemize}
 
 \hypertarget{future-work}{%
-\subsection{Future work}\label{future-work}}
+\subsection{Future Work}\label{future-work}}
 
 The materials are built to be reused. Four studies follow directly:
 
@@ -933,32 +947,31 @@ The materials are built to be reused. Four studies follow directly:
 \end{enumerate}
 
 \hypertarget{conclusion}{%
-\section{Conclusion}\label{conclusion}}
+\section{CONCLUSION}\label{conclusion}}
 
 Asked to apply Reason's culpability decision tree to the same crew actions, three current general-purpose AI models judged the crew more culpable when the occurrence ended badly. The effect was modest on average, consistent in direction, concentrated in ambiguous cases, and absent in clear ones. It entered mainly through the substitution test.
 
 Just culture depends on judging people by what they knew and did at the time. Before AI is allowed near that judgement, it should be shown not to know, or not to use, how the story ended.
 
 
-\section*{Ethics}
-No human participants were involved. The source data are public, de-identified ASRS reports. NASA does not verify or validate ASRS reports.
-
-\section*{Data availability}
-The study was registered on OSF on 1 October 2026, before any main-study data were collected (\url{https://osf.io/s8q24}). The sampling rule, screening guide and logs, case template and endings, the 48 cases with their source reports, the controls, the prompts, the analysis code, every model reply and the deviations log are openly available at \url{https://osf.io/dhf38} (doi:10.17605/OSF.IO/DHF38). The materials written for the study are under a CC BY 4.0 licence; the ASRS reports are NASA's public records.
-
-\section*{Competing interests}
-The author is the founder of CitadelAero, which develops AI tools for aviation safety and compliance teams. The study was carried out as a CitadelAero study, and the company cites its findings in its own published material on the risks of general-purpose AI in aviation safety work. No CitadelAero product was tested. The results were to be published whichever way they came out.
-
-\section*{Funding}
-This research received no specific grant. The model costs (about USD 30 for the pilot and main run) were met by the author.
-
-\section*{Acknowledgements}
+\section*{ACKNOWLEDGEMENTS}
 NASA's Aviation Safety Reporting System and the reporters whose accounts made this study possible.
 
-\section*{Declaration of the use of AI}
-The author used Claude (Anthropic) to draft the protocol documents, write the code, screen and condense the reports under written rules, draft the control cases and run the analysis (as described in Section 2.3), and to draft the manuscript, under the author's direction. The author made every design decision, approved the cases, endings and controls, checked every case against its source report, and [AUTHOR TO DESCRIBE HIS OWN REVISION OF THE MANUSCRIPT]. The author takes full responsibility for the content.
+\textbf{Use of AI.} The author used Claude (Anthropic), a generally available AI assistant (claude.ai, and Anthropic's API through Claude Code), to draft the manuscript under the author's direction: the first version of the preprint on 1--2 October 2026 (model version not recorded) and this version on 4 November 2026 (Claude Opus 5.5, through Claude Code). [AUTHOR TO DESCRIBE HIS OWN REVISION OF THE MANUSCRIPT]. The use of Claude in preparing the study and its data is described in Section~\ref{condensing-and-the-two-versions}. The author made every design decision, approved the cases, endings and controls, checked every case against its source report, and is responsible for the content.
 
-\section*{References}
+\section*{COMPETING INTERESTS}
+The author is the founder of CitadelAero, which develops AI tools for aviation safety and compliance teams. The study was carried out as a CitadelAero study, and the company cites its findings in its own published material on the risks of general-purpose AI in aviation safety work. No CitadelAero product was tested. The results were to be published whichever way they came out.
+
+\section*{FINANCIAL SUPPORT}
+This research received no specific grant. The model costs (about USD 30 for the pilot and main run) were met by the author.
+
+\section*{ETHICS}
+No human participants were involved. The source data are public, de-identified ASRS reports. NASA does not verify or validate ASRS reports.
+
+\section*{DATA AVAILABILITY}
+An earlier version of this study was posted as a preprint titled ``Same Actions, Different Endings: Outcome Severity Shifts How AI Models Apply Reason's Culpability Decision Tree to Airline Flight Crews'' (OSF, 2 October 2026, doi:10.17605/OSF.IO/DHF38). The study was registered on OSF on 1 October 2026, before any main-study data were collected (\url{https://osf.io/s8q24}). The sampling rule, screening guide and logs, case template and endings, the 48 cases with their source reports, the controls, the prompts, the analysis code, every model reply and the deviations log are openly available at \url{https://osf.io/dhf38} (doi:10.17605/OSF.IO/DHF38). The materials written for the study are under a CC BY 4.0 licence; the ASRS reports are NASA's public records.
+
+\section*{REFERENCES}
 {\setlength{\parindent}{-1.5em}\setlength{\leftskip}{1.5em}\setlength{\parskip}{3pt}
 Almeida, G. F. C. F., Nunes, J. L., Engelmann, N., Wiegmann, A., \& de Araújo, M. (2024). Exploring the psychology of LLMs' moral and legal reasoning. \emph{Artificial Intelligence, 333}, 104145. \url{https://doi.org/10.1016/j.artint.2024.104145}
 
@@ -1008,13 +1021,14 @@ Yiu, C. Y., Li, W.-C., Ng, K. K. H., Chi, C.-F., \& Schiefele, J. (2026). Enhanc
 
 \par}
 
+\section*{APPENDIX}
 \appendix
 \hypertarget{the-prompt}{%
-\section{The prompt}\label{the-prompt}}
+\section{THE PROMPT}\label{the-prompt}}
 
 Each prompt was the wording (W1 or W2), the tree, the case and the instructions below, in that order. The full text of every prompt can be rebuilt with \texttt{scripts/03\_run.py\ -\/-stage\ dry}.
 
-\textbf{The tree, as given to the models} (\texttt{prompts/tree.md})
+\textbf{Box 2. The tree, as given to the models} (\texttt{prompts/tree.md})
 
 {\footnotesize\linespread{1}\selectfont
 \begin{verbatim}
@@ -1059,7 +1073,7 @@ Q5. Is there a history of unsafe acts?
 \end{verbatim}
 }
 
-\textbf{The instructions, as given to the models} (\texttt{prompts/instructions.md})
+\textbf{Box 3. The instructions, as given to the models} (\texttt{prompts/instructions.md})
 
 {\footnotesize\linespread{1}\selectfont
 \begin{verbatim}
@@ -1099,7 +1113,7 @@ on your path.
 The tree above is the study's own text rendering of Reason's (1997, p.~209) figure, as reproduced in GAIN Working Group E (2004, Fig. 3, p.~10).
 
 \hypertarget{the-endings}{%
-\section{The endings}\label{the-endings}}
+\section{THE ENDINGS}\label{the-endings}}
 
 \textbf{Safe ending (all categories):} what the report says happened next, then ``There was no conflict with other traffic. No one was hurt and the aircraft was not damaged.'' Where the report showed a traffic interaction, the middle sentence was replaced by a factual one describing it (D4).
 
@@ -1124,7 +1138,7 @@ C, D, F, altitude, track and clearance deviations (34 cases) & ``Another aircraf
 \end{longtable}
 
 \hypertarget{app-deviations}{%
-\section{Deviations from the registered plan}\label{app-deviations}}
+\section{DEVIATIONS FROM THE REGISTERED PLAN}\label{app-deviations}}
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}

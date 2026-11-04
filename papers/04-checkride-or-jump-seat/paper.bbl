@@ -31,8 +31,8 @@ J.~Needham, G.~Edkins, G.~Pimpale, H.~Bartsch, and M.~Hobbhahn, ``Large
 
 \bibitem{anthropic2025sonnet45}
 \BIBentryALTinterwordspacing
-{Anthropic}, ``System card: {Claude Sonnet} 4.5,'' 2025, accessed: Nov. 3,
-  2026. [Online]. Available:
+{Anthropic}, ``System card: {Claude Sonnet} 4.5,'' 2025, company system card;
+  not peer reviewed. Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://assets.anthropic.com/m/12f214efcc2f457a/original/Claude-Sonnet-4-5-System-Card.pdf}
 \BIBentrySTDinterwordspacing
 
@@ -110,7 +110,8 @@ N.~Pepper, A.~Keane, A.~Hodgkin, D.~Gould, E.~Henderson, L.~Lauritsen,
 {International Civil Aviation Organization}, \emph{Manual of Evidence-based
   Training}, 1st~ed.\hskip 1em plus 0.5em minus 0.4em\relax ICAO, 2013, {Doc}
   9995. Read from a copy published as seminar material on the website of the
-  Swedish Transport Agency (Transportstyrelsen), not an ICAO distribution.
+  Swedish Transport Agency (Transportstyrelsen), not an ICAO distribution;
+  quotations cross-checked against a second copy hosted on SKYbrary.
 
 \bibitem{faa2006losa}
 \BIBentryALTinterwordspacing
@@ -193,10 +194,18 @@ V.~Devbunova, ``Is evaluation awareness just format sensitivity? {Limitations}
   \url{https://arxiv.org/abs/2603.19426}
 \BIBentrySTDinterwordspacing
 
+\bibitem{souly2026}
+\BIBentryALTinterwordspacing
+A.~Souly, R.~Kirk, J.~Merizian, A.~D'Cruz, and X.~Davies, ``{UK AISI} alignment
+  evaluation case-study,'' arXiv preprint arXiv:2604.00788, 2026, technical
+  report of the UK AI Security Institute. [Online]. Available:
+  \url{https://arxiv.org/abs/2604.00788}
+\BIBentrySTDinterwordspacing
+
 \bibitem{anthropic2026opus46}
 \BIBentryALTinterwordspacing
-{Anthropic}, ``System card: {Claude Opus} 4.6,'' 2026, accessed: Nov. 3, 2026.
-  [Online]. Available:
+{Anthropic}, ``System card: {Claude Opus} 4.6,'' 2026, company system card; not
+  peer reviewed. Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://www-cdn.anthropic.com/c788cbc0a3da9135112f97cdf6dcd06f2c16cee2.pdf}
 \BIBentrySTDinterwordspacing
 
@@ -206,9 +215,9 @@ K.~Fraser-Taliente, S.~Kantamneni, E.~Ong, D.~Mossing, C.~Lu, P.~C. Bogdan,
   E.~Ameisen, J.~Chen, D.~Kishylau, A.~Pearce, J.~Tarng, A.~Wu, J.~Wu,
   Y.~Zhang, D.~M. Ziegler, E.~Hubinger, J.~Batson, J.~Lindsey, S.~Zimmerman,
   and S.~Marks, ``Natural language autoencoders produce unsupervised
-  explanations of {LLM} activations,'' Transformer Circuits Thread, May~7,
-  2026, accessed: Nov. 3, 2026. [Online]. Available:
-  \url{https://transformer-circuits.pub/2026/nla/}
+  explanations of {LLM} activations,'' Transformer Circuits Thread (Anthropic),
+  May~7, 2026, company research report; not peer reviewed. Accessed: Nov. 3,
+  2026. [Online]. Available: \url{https://transformer-circuits.pub/2026/nla/}
 \BIBentrySTDinterwordspacing
 
 \bibitem{gurnee2026}
@@ -217,9 +226,9 @@ W.~Gurnee, N.~Sofroniew, A.~Pearce, M.~Piotrowski, I.~Kauvar, R.~Chen,
   A.~Soligo, P.~Bogdan, E.~Ong, R.~Wang, T.~B. Thompson, D.~Abrahams,
   S.~Kantamneni, E.~Ameisen, J.~Batson, and J.~Lindsey, ``Verbalizable
   representations form a global workspace in language models,'' Transformer
-  Circuits Thread, Jul.~6, 2026, also arXiv preprint arXiv:2607.15495.
-  Accessed: Nov. 3, 2026. [Online]. Available:
-  \url{https://transformer-circuits.pub/2026/workspace/}
+  Circuits Thread (Anthropic), Jul.~6, 2026, company research report; not peer
+  reviewed. Also arXiv preprint arXiv:2607.15495. Accessed: Nov. 3, 2026.
+  [Online]. Available: \url{https://transformer-circuits.pub/2026/workspace/}
 \BIBentrySTDinterwordspacing
 
 \bibitem{schoen2025}
@@ -230,6 +239,15 @@ B.~Schoen, E.~Nitishinskaya, M.~Balesni, A.~H{\o}jmark, F.~Hofst{\"a}tter,
   B.~Barak, W.~Zaremba, and M.~Hobbhahn, ``Stress testing deliberative
   alignment for anti-scheming training,'' arXiv preprint arXiv:2509.15541,
   2025. [Online]. Available: \url{https://arxiv.org/abs/2509.15541}
+\BIBentrySTDinterwordspacing
+
+\bibitem{abdelnabi2025}
+\BIBentryALTinterwordspacing
+S.~Abdelnabi and A.~Salem, ``The {Hawthorne} effect in reasoning models:
+  Evaluating and steering test awareness,'' in \emph{Advances in Neural
+  Information Processing Systems 38}, 2025, pp. 156\,975--157\,002, also
+  arXiv:2505.14617. [Online]. Available:
+  \url{https://doi.org/10.52202/085713-4731}
 \BIBentrySTDinterwordspacing
 
 \bibitem{greenblatt2024}
@@ -260,16 +278,17 @@ C.~Li, T.~J. Zhang, J.~Zhang, Z.~Jin, F.~Tram{\`e}r, S.~Abdelnabi, and
 \bibitem{anthropic2025petri}
 \BIBentryALTinterwordspacing
 {Anthropic}, ``{Petri}: An open-source auditing tool to accelerate {AI} safety
-  research,'' Alignment Science Blog, Oct.~6, 2025, accessed: Nov. 3, 2026.
-  [Online]. Available: \url{https://alignment.anthropic.com/2025/petri/}
+  research,'' Anthropic Alignment Science Blog, Oct.~6, 2025, company blog
+  post; not peer reviewed. Accessed: Nov. 3, 2026. [Online]. Available:
+  \url{https://alignment.anthropic.com/2025/petri/}
 \BIBentrySTDinterwordspacing
 
 \bibitem{anthropic2026petri2}
 \BIBentryALTinterwordspacing
 ------, ``{Petri} 2.0: New scenarios, new model comparisons, and improved
-  eval-awareness mitigations,'' Alignment Science Blog, Jan.~22, 2026,
-  accessed: Nov. 3, 2026. [Online]. Available:
-  \url{https://alignment.anthropic.com/2026/petri-v2/}
+  eval-awareness mitigations,'' Anthropic Alignment Science Blog, Jan.~22,
+  2026, company blog post; not peer reviewed. Accessed: Nov. 3, 2026. [Online].
+  Available: \url{https://alignment.anthropic.com/2026/petri-v2/}
 \BIBentrySTDinterwordspacing
 
 \bibitem{baker2025}
@@ -283,8 +302,9 @@ B.~Baker, J.~Huizinga, L.~Gao, Z.~Dou, M.~Y. Guan, A.~Madry, W.~Zaremba,
 \bibitem{kissane2026}
 \BIBentryALTinterwordspacing
 C.~Kissane, M.~MacDiarmid, and F.~Roger, ``Measuring and improving coding audit
-  realism with deployment resources,'' Alignment Science Blog, Mar.~23, 2026,
-  accessed: Nov. 3, 2026. [Online]. Available:
+  realism with deployment resources,'' Anthropic Alignment Science Blog,
+  Mar.~23, 2026, company blog post; not peer reviewed. Accessed: Nov. 3, 2026.
+  [Online]. Available:
   \url{https://alignment.anthropic.com/2026/coding-audit-realism/}
 \BIBentrySTDinterwordspacing
 
@@ -335,17 +355,17 @@ M.~McCain, T.~Millar, S.~Huang, J.~Eaton, K.~Handa, M.~Stern, A.~Tamkin,
   M.~Kearney, E.~Durmus, J.~Shen, J.~Hong, B.~Calvert, J.~S. Chan, F.~Mosconi,
   D.~Saunders, T.~Neylon, G.~Nicholas, S.~Pollack, J.~Clark, and D.~Ganguli,
   ``Measuring {AI} agent autonomy in practice,'' Anthropic, Feb.~18, 2026,
-  accessed: Nov. 3, 2026. [Online]. Available:
-  \url{https://www.anthropic.com/research/measuring-agent-autonomy}
+  company research post; not peer reviewed. Accessed: Nov. 3, 2026. [Online].
+  Available: \url{https://www.anthropic.com/research/measuring-agent-autonomy}
 \BIBentrySTDinterwordspacing
 
 \bibitem{bowman2025}
 \BIBentryALTinterwordspacing
 S.~R. Bowman, M.~Srivastava, J.~Kutasov, R.~Wang, T.~Bricken, B.~Wright,
   E.~Perez, and N.~Carlini, ``Findings from a pilot {Anthropic}--{OpenAI}
-  alignment evaluation exercise,'' Alignment Science Blog, Aug.~27, 2025,
-  accessed: Nov. 3, 2026. [Online]. Available:
-  \url{https://alignment.anthropic.com/2025/openai-findings/}
+  alignment evaluation exercise,'' Anthropic Alignment Science Blog, Aug.~27,
+  2025, company blog post; not peer reviewed. Accessed: Nov. 3, 2026. [Online].
+  Available: \url{https://alignment.anthropic.com/2025/openai-findings/}
 \BIBentrySTDinterwordspacing
 
 \bibitem{arora2025}
@@ -379,8 +399,8 @@ D.~Manheim and S.~Garrabrant, ``Categorizing variants of {Goodhart's} law,''
 
 \bibitem{anthropicmodels}
 \BIBentryALTinterwordspacing
-{Anthropic}, ``Models overview,'' Claude Docs, accessed: Nov. 3, 2026.
-  [Online]. Available:
+{Anthropic}, ``Models overview,'' Claude Docs, company documentation. Accessed:
+  Nov. 3, 2026. [Online]. Available:
   \url{https://platform.claude.com/docs/en/about-claude/models/overview}
 \BIBentrySTDinterwordspacing
 

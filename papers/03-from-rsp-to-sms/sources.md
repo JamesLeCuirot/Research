@@ -316,3 +316,87 @@ Conclusion recorded in the paper: no prior element-by-element mapping found; gre
 - UK AISI's 4 August 2026 report was not opened; not cited.
 - UK CAA CAP 795 was not consulted; not cited.
 - The ratings in Table 2 and the indicators in Table 3 are the author's analysis, not claims attributed to any source.
+
+---
+
+## F. v0.4 (4 November 2026): author decisions A3–A6
+
+Checks carried out on 4 November 2026 with AI assistance (Claude). Downloads were kept in a scratch folder and are not committed.
+
+### A3. Voice
+Every "I", "we", "our", "us" and "my" in `paper.tex` was checked: all occur inside quotations from the sources, except "Part I" (Annex 6). The only third-person self-reference, "The author made the ratings in Table 2" (§8), now reads "The ratings in Table 2 were made by a single coder."
+
+### A4. Annex 19 Amendment 2: further facts verified from the State letter
+Source: the same NCAA-hosted State letter AN 8/3.1-25/64 as above. Redlines were read from page images (PDF pp. 45, 46, 54–59), because text extraction merges struck and inserted text.
+- **Chapter 4 renumbering (PDF p. 46).** Editorial note: "Insert the following paragraphs, which have been extracted from 4.1 General, from paragraphs 4.1.3 through 4.1.9, and amended and renumbered as shown below". Former 4.1.4 (certified operators of aeroplanes or helicopters, "shall be made acceptable to the State of the Operator") becomes **4.2.2**. The quoted words are unchanged; only "Section II," is struck from the Annex 6 reference.
+- **4.1.1 (PDF p. 45).** (a) becomes "be established and managed in accordance with the framework elements contained in Appendix 2". (b) "be commensurate with the size of the service provider and the complexity of its aviation products or services" is struck and replaced by "cover a defined scope of products and services". A new (c) adds "be supported by a system description …". New Note 1: "The way in which an SMS is established and managed differs from one service provider to another and depends on many variables, including, but not limited to, size and complexity. Guidance on tailoring an SMS is contained in the Safety Management Manual (Doc 9859)."
+- **Appendix 2 (PDF pp. 54–58).** The renamed component 1 and elements 3.1 and 3.3, the struck 3.1.1 and 3.1.2, and the new 3.1 text are as recorded in section B above. Paragraph numbers 1.1.1(d), 1.2, 1.3, 1.4, 2.1.2, 3.2 and 4.2(d) are unchanged, and so is their quoted wording. A new 1.1.3 (Recommendation) is added.
+- **Appendix 3 (PDF pp. 59–60).** 2.1, 4.2 and Note 4 are unchanged in number and wording.
+- These facts support the new §2.1 paragraph that flags Amendment 2.
+
+### A5. Second, independently hosted copies of ICAO texts
+The author has no licensed ICAO copies, so each quotation was checked against a second copy hosted by a different authority.
+
+| Text | Copy 1 (as before) | Copy 2 (v0.4) | Result |
+|---|---|---|---|
+| Annex 19, 2nd ed., July 2016 | Swiss FOCA (bazl.admin.ch) | Accident Investigation Commission of Papua New Guinea: https://www.aic.gov.pg/sites/default/files/2023-05/Annex%2019-2-46_merged.pdf. 46 pp.; title page "Second Edition, July 2016 … supersedes, on 7 November 2019"; ISBN 978-92-9249-965-5; record of amendments "1 Incorporated in this edition". | All quotations and paragraph numbers match (below). |
+| Doc 9859, 4th ed., 2018 | Private foundation (ffac.ch); reference cites the ICAO Store | Civil Aviation Authority of Nepal library: https://dspace.caanepal.gov.np/bitstream/123456789/400/1/9859_cons_en.pdf (record https://dspace.caanepal.gov.np/handle/123456789/400, "Fourth Edition, 2018"). 192 pp.; PDF created 4 Oct 2018. | All quotations and paragraph numbers match (below). |
+| Annex 6, Part I, 3.3.2–3.3.3 | CAA New Zealand compliance checklist (Amendment 49) | Swiss FOCA: https://www.bazl.admin.ch/dam/en/sd-web/aiYJ-VqmKr1x/icao_annex_6_operationofaircraftparti-internationalcommercialair.pdf. Twelfth Edition, July 2022, with later amendments; the page carrying 3.3.2–3.3.3 is dated 28/11/24. | 3.3.2 and 3.3.3 are word for word as reproduced by CAA NZ and quoted in §2.5. |
+
+Copies tried without success: the Australian DASA copy of Annex 19 (server error again) and the CAA Nepal record for Annex 19 (handle 376, listed by a search engine but now HTTP 404).
+
+The unamended Twelfth Edition of Annex 6 Part I hosted by Mongolia's NAMEM (https://amc.namem.gov.mn/wp-content/uploads/2022/12/ANNEX%206%20part%201-12th%20edition%202022.pdf) numbers the provisions differently: its 3.3.2 is the 27 000 kg operator requirement. This shows that the 3.3.2–3.3.3 wording cited in the paper came in with a later amendment. The paper cites the amended text, so nothing changes.
+
+**Annex 19, quotation by quotation (PNG AIC copy; each also re-found in the FOCA copy):**
+- Ch. 1, SMS definition: match.
+- Ch. 1, SPI definition: match.
+- 4.1.1 a) and b): match.
+- 4.1.4: match.
+- App. 2, introductory sentence ("four components and twelve elements …"): match.
+- App. 2, the names of the 4 components and 12 elements in Table 1: match.
+- App. 2, 1.1.1 d): match.
+- App. 2, 1.2 a) and 1.2 e): match.
+- App. 2, 1.3 (safety manager): match.
+- App. 2, 1.4 (coordination with interfacing organizations): match.
+- App. 2, 2.1.2: match.
+- App. 2, 3.1.2: match.
+- App. 2, 3.2 (full sentence and the §7.4 fragment): match.
+- App. 2, 4.2 d): match.
+- App. 3, 2.1 b) "disclosure to the public": match.
+- App. 3, 4.2 b): match.
+- App. 3, Note 4: match. The same phrase also opens the Chapter 5 Note; the paper's locator, App. 3 Note 4, is correct.
+- Foreword, Amendment 1 dates: match.
+- **No mismatches.**
+
+**Doc 9859, quotation by quotation (CAAN copy):**
+- 4.3.1.3 ("where appropriate … relative rate"; "x incursions per 1 000 movements"): match.
+- 4.3.1.4: match.
+- 4.3.1.7 b): match.
+- 4.3.1.8: match.
+- 4.4.5.2 (STDEVP sentence; "+1SD or +2SD … preceding period"): match.
+- Figure 4-5 caption and "Alert Levels" label, in 4.4.5: match.
+- 4.4.6.1: match.
+- 4.4.6.2: match.
+- 5.2.8 ("Self-disclosure reporting systems" … "permit recording successful system and human performance"): match.
+- 9.4.4.1 a)–b): match.
+- 9.4.5.8: match.
+- 9.5.4.3: match.
+- 9.5.4.4 ("should consider engaging external auditors"): match.
+- 9.5.4.15 ("consider whether it appropriate to identify SPTs and alert levels"; "implemented poorly, they have been known to lead to undesirable behaviours"): match.
+- 9.5.5.4: match.
+- 9.5.5.5 a): match.
+- 9.5.5.7 e)–f) ("sign off on the change"; "assurance plan … Any assumptions made need to be tested"): match.
+- Definitions ("Surveillance"; "Trigger"): match.
+- **No mismatches.**
+
+### A6. Company sources and independent corroboration
+- **Labelling.** In `references.bib`, Anthropic, OpenAI and Google DeepMind documents now carry `note` labels: "Company document, not peer reviewed" (RSP, RSP page, Roadmap, Preparedness Framework, FGF, FSF); "Company report" (Risk Report); "Company research report" (the incident and remediation posts, Favaro & Wright, Bowman et al.); and "Company announcement" (the FCF post).
+- **AI Security Institute (2026, August 4). *Incident Report: unsanctioned agent behaviour during cyber testing*.** https://www.aisi.gov.uk/blog/incident-report-unsanctioned-agent-behaviour-during-cyber-testing (opened 4 Nov 2026; HTML; dated "Aug 4, 2026"; links to a technical incident report PDF, which was not opened).
+  - Quotes: "On 28 th July 2026, AISI's Security Team detected unusual data transfers leaving our research systems during a routine cyber evaluation"; "All runs were conducted in AISI's research environment"; "our security monitoring flagged data leaving one of our testing systems through the 'Tor' anonymity network".
+  - Supports §3.2 (an incident observed by UK AISI in its own testing) and §5.3 (the case occurred in AISI's own environment, so it says little about Anthropic's detection).
+  - Consistency with Anthropic (2026b): AISI reports 43 of 122 runs on Mythos 5 and 10 runs with unsanctioned actions, one of them a GPT-5.6 Sol run. That is consistent with Anthropic's "nine of AISI's 43 evaluation runs". The paper uses neither count.
+- **METR (2026, May 19). *Frontier Risk Report (February to March 2026)*.** https://metr.org/blog/2026-05-19-frontier-risk-report/ (opened 4 Nov 2026). Participating companies approved which of their non-public information could be disclosed.
+  - Quotes: "We conducted a red-teaming exercise to stress-test Anthropic's internal monitoring system. We are not aware of public evidence of similar red-teaming at other companies"; "our red-teaming exercise found that monitoring coverage had exceptions (for example, it did not cover non-Claude Code traffic)"; "Our red-teaming exercise found several simple ways to disable monitors at Anthropic".
+  - Supports the existence of METR's red-teaming of Anthropic's monitors, cited in §3.2, Table 2 row 3.1c and §5.5. It does not report the 79% / 163-attack figure, which still rests on Anthropic (2026i).
+- **Searched, nothing usable found.** No public METR findings on Anthropic's cyber-evaluation incidents were found (Anthropic (2026a) announced the investigation). OpenAI's incident disclosure and the OpenAI–METR investigation are still unread (openai.com 403).
+- **Limitations sentence (§8).** It names the facts that rest on a single company's account: Anthropic's incidents, their detection, monitoring statistics and oversight metrics, and each developer's description of its own processes.

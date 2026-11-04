@@ -27,7 +27,9 @@
   Safety Management}, 2nd~ed., International Civil Aviation Organization, Jul.
   2016, applicable Nov. 7, 2019; current consolidated text until Amendment 2
   applies on Nov. 26, 2026. Copy consulted hosted by the Swiss Federal Office
-  of Civil Aviation (FOCA). [Online]. Available:
+  of Civil Aviation (FOCA); quotations cross-checked against the copy hosted by
+  the Accident Investigation Commission of Papua New Guinea. [Online].
+  Available:
   \url{https://www.bazl.admin.ch/dam/it/sd-web/oOXBOqNfEsWb/icao_annex_19_second-edition.pdf}
 \BIBentrySTDinterwordspacing
 
@@ -43,69 +45,73 @@ L.~Stelling, M.~Murray, B.~Galizzi, M.~Schaffelder, S.~Campos, and
 \bibitem{anthropic2026rsppage}
 \BIBentryALTinterwordspacing
 {Anthropic}, ``{Anthropic's Responsible Scaling Policy},'' Web page, last
-  updated Aug.~14, 2026, accessed: Nov. 3, 2026. [Online]. Available:
+  updated Aug.~14, 2026, company document, not peer reviewed. Accessed: Nov. 3,
+  2026. [Online]. Available:
   \url{https://www.anthropic.com/responsible-scaling-policy}
 \BIBentrySTDinterwordspacing
 
 \bibitem{anthropic2026riskreport}
 \BIBentryALTinterwordspacing
 ------, ``{Risk Report: August 2026},'' Redacted public version; coverage date
-  Jul. 15, 2026, announced Aug.~14, 2026. [Online]. Available:
-  \url{https://anthropic.com/aug-2026-risk-report}
+  Jul. 15, 2026, announced Aug.~14, 2026, company report, not peer reviewed.
+  [Online]. Available: \url{https://anthropic.com/aug-2026-risk-report}
 \BIBentrySTDinterwordspacing
 
 \bibitem{anthropic2026cyberassessment}
 \BIBentryALTinterwordspacing
 ------, ``An alignment assessment of recent cybersecurity incidents,''
-  Anthropic research, Sep.~9, 2026, accessed: Nov. 3, 2026. [Online].
-  Available:
+  Anthropic research, Sep.~9, 2026, company research report, not peer reviewed.
+  Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents}
 \BIBentrySTDinterwordspacing
 
 \bibitem{anthropic2026aisi}
 \BIBentryALTinterwordspacing
 ------, ``An alignment assessment of the {UK AISI} cybertesting incident,''
-  Anthropic research, Oct.~23, 2026, accessed: Nov. 3, 2026. [Online].
-  Available:
+  Anthropic research, Oct.~23, 2026, company research report, not peer
+  reviewed. Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://www.anthropic.com/research/alignment-assessment-ukaisi}
 \BIBentrySTDinterwordspacing
 
 \bibitem{anthropic2026threeincidents}
 \BIBentryALTinterwordspacing
 ------, ``Investigating three real-world incidents in our cybersecurity
-  evaluations,'' Anthropic news, Jul.~30, 2026, updated Aug. 3, 2026. Accessed:
-  Nov. 3, 2026. [Online]. Available:
+  evaluations,'' Anthropic news, Jul.~30, 2026, company research report, not
+  peer reviewed. Updated Aug. 3, 2026. Accessed: Nov. 3, 2026. [Online].
+  Available:
   \url{https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals}
 \BIBentrySTDinterwordspacing
 
 \bibitem{anthropic2026unintended}
 \BIBentryALTinterwordspacing
 ------, ``Investigating unintended model actions in our evaluations and
-  internal use,'' Anthropic research, Oct.~9, 2026, corrected Oct. 12, 2026.
-  Accessed: Nov. 3, 2026. [Online]. Available:
+  internal use,'' Anthropic research, Oct.~9, 2026, company research report,
+  not peer reviewed. Corrected Oct. 12, 2026. Accessed: Nov. 3, 2026. [Online].
+  Available:
   \url{https://www.anthropic.com/research/investigating-unintended-model-actions}
 \BIBentrySTDinterwordspacing
 
 \bibitem{anthropic2026improving}
 \BIBentryALTinterwordspacing
 ------, ``Improving our alignment and security efforts,'' Anthropic news,
-  Aug.~31, 2026, accessed: Nov. 3, 2026. [Online]. Available:
+  Aug.~31, 2026, company research report, not peer reviewed. Accessed: Nov. 3,
+  2026. [Online]. Available:
   \url{https://www.anthropic.com/news/improving-alignment-security-efforts}
 \BIBentrySTDinterwordspacing
 
 \bibitem{favaro2026}
 \BIBentryALTinterwordspacing
 M.~Favaro and P.~Wright, ``Measurements for understanding the pace of {AI}
-  development inside frontier labs,'' Anthropic, 2026, accessed: Nov. 3, 2026.
-  [Online]. Available:
+  development inside frontier labs,'' Anthropic, 2026, company research report,
+  not peer reviewed. Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://www.anthropic.com/institute/measuring-pace-of-ai-development}
 \BIBentrySTDinterwordspacing
 
 \bibitem{openaiFGF}
 \BIBentryALTinterwordspacing
 {OpenAI}, ``{Frontier Governance Framework},'' Undated PDF; release dated to
-  May 2026 by secondary sources, n.d., accessed: Nov. 3, 2026. [Online].
-  Available:
+  May 2026 by secondary sources, n.d., company document, not peer reviewed.
+  Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://cdn.openai.com/pdf/e37d949b-8c9f-4d76-b99e-4272f4631a7e/openai-frontier-governance-framework.pdf}
 \BIBentrySTDinterwordspacing
 
@@ -122,8 +128,9 @@ M.~Favaro and P.~Wright, ``Measurements for understanding the pace of {AI}
 \BIBentryALTinterwordspacing
 ------, \emph{Safety Management Manual ({Doc} 9859)}, 4th~ed., International
   Civil Aviation Organization, 2018, the copy read was not distributed by
-  {ICAO}; the {URL} is the {ICAO} Store page. [Online]. Available:
-  \url{https://store.icao.int/en/safety-management-manual-doc-9859}
+  {ICAO}; quotations cross-checked against the copy hosted by the Civil
+  Aviation Authority of Nepal; the {URL} is the {ICAO} Store page. [Online].
+  Available: \url{https://store.icao.int/en/safety-management-manual-doc-9859}
 \BIBentrySTDinterwordspacing
 
 \bibitem{cfr14part5}
@@ -207,8 +214,8 @@ E.~Barkett, A.~Kimpton, D.~Graham, and Y.~Kundgol, ``The normalization of
 \bibitem{anthropic2025fcf}
 \BIBentryALTinterwordspacing
 {Anthropic}, ``Sharing our compliance framework for {California's Transparency
-  in Frontier AI Act},'' Anthropic news, Dec.~19, 2025, accessed: Nov. 3, 2026.
-  [Online]. Available:
+  in Frontier AI Act},'' Anthropic news, Dec.~19, 2025, company announcement,
+  not peer reviewed. Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://www.anthropic.com/news/compliance-framework-SB53}
 \BIBentrySTDinterwordspacing
 
@@ -257,23 +264,40 @@ E.~Barkett, A.~Kimpton, D.~Graham, and Y.~Kundgol, ``The normalization of
 \bibitem{anthropic2026rsp}
 \BIBentryALTinterwordspacing
 {Anthropic}, ``{Responsible Scaling Policy},'' Version 3.4, effective Jul.~8,
-  2026. [Online]. Available:
+  2026, company document, not peer reviewed. [Online]. Available:
   \url{https://www-cdn.anthropic.com/files/4zrzovbb/website/0bacdc8440ea96e62a8766d99ebe1d4eea6d5f3a.pdf}
+\BIBentrySTDinterwordspacing
+
+\bibitem{metr2026frr}
+\BIBentryALTinterwordspacing
+{METR}, ``{Frontier Risk Report (February to March 2026)},'' May~19, 2026,
+  independent assessment, not peer reviewed; participating companies approved
+  the non-public information disclosed. Accessed: Nov. 4, 2026. [Online].
+  Available: \url{https://metr.org/blog/2026-05-19-frontier-risk-report/}
 \BIBentrySTDinterwordspacing
 
 \bibitem{anthropic2026roadmap}
 \BIBentryALTinterwordspacing
-------, ``{Frontier Safety Roadmap},'' Web page, goals as of Oct.~19, 2026,
-  accessed: Nov. 3, 2026. [Online]. Available:
-  \url{https://www.anthropic.com/responsible-scaling-policy/roadmap}
+{Anthropic}, ``{Frontier Safety Roadmap},'' Web page, goals as of Oct.~19,
+  2026, company document, not peer reviewed. Accessed: Nov. 3, 2026. [Online].
+  Available: \url{https://www.anthropic.com/responsible-scaling-policy/roadmap}
+\BIBentrySTDinterwordspacing
+
+\bibitem{aisi2026incident}
+\BIBentryALTinterwordspacing
+{AI Security Institute}, ``{Incident Report}: unsanctioned agent behaviour
+  during cyber testing,'' AISI blog, Aug.~4, 2026, report by a {UK} government
+  body, with a linked technical incident report. Accessed: Nov. 4, 2026.
+  [Online]. Available:
+  \url{https://www.aisi.gov.uk/blog/incident-report-unsanctioned-agent-behaviour-during-cyber-testing}
 \BIBentrySTDinterwordspacing
 
 \bibitem{bowman2025}
 \BIBentryALTinterwordspacing
 S.~R. Bowman, M.~Wagner, F.~Roger, and H.~Karnofsky, ``{Anthropic's Pilot
   Sabotage Risk Report},'' Anthropic Alignment Science Blog, Oct.~28, 2025,
-  accessed: Nov. 3, 2026. [Online]. Available:
-  \url{https://alignment.anthropic.com/2025/sabotage-risk-report/}
+  company research report, not peer reviewed. Accessed: Nov. 3, 2026. [Online].
+  Available: \url{https://alignment.anthropic.com/2025/sabotage-risk-report/}
 \BIBentrySTDinterwordspacing
 
 \bibitem{tamkin2024}
@@ -288,15 +312,15 @@ A.~Tamkin, M.~McCain, K.~Handa, E.~Durmus, L.~Lovitt, A.~Rathi, S.~Huang,
 
 \bibitem{openai2025pf}
 \BIBentryALTinterwordspacing
-{OpenAI}, ``{Preparedness Framework},'' Version 2, last updated Apr.~15, 2025.
-  [Online]. Available:
+{OpenAI}, ``{Preparedness Framework},'' Version 2, last updated Apr.~15, 2025,
+  company document, not peer reviewed. [Online]. Available:
   \url{https://cdn.openai.com/pdf/18a02b5d-6b67-4cec-ab64-68cdfbddebcd/preparedness-framework-v2.pdf}
 \BIBentrySTDinterwordspacing
 
 \bibitem{gdm2026fsf}
 \BIBentryALTinterwordspacing
 {Google DeepMind}, ``{Frontier Safety Framework},'' Version 3.1, published
-  Apr.~17, 2026. [Online]. Available:
+  Apr.~17, 2026, company document, not peer reviewed. [Online]. Available:
   \url{https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/strengthening-our-frontier-safety-framework/frontier-safety-framework_3-1.pdf}
 \BIBentrySTDinterwordspacing
 

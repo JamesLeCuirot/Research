@@ -1,6 +1,6 @@
 # Sources and verification log
 
-Paper: *Checkride or Jump Seat? What LOSA and Evidence-Based Training Teach About Evaluation Awareness in AI Systems* (draft v0.3; v0.1 was titled "Checkride or Line Check?"). Entries changed in v0.3, after the second-round verification in `AUDIT.md`, are marked **[v0.3]**.
+Paper: *Checkride or Jump Seat? What LOSA and Evidence-Based Training Teach About Evaluation Awareness in AI Systems* (draft v0.4; v0.1 was titled "Checkride or Line Check?"). Entries changed in v0.3, after the second-round verification in `AUDIT.md`, are marked **[v0.3]**. Checks made for v0.4 (author decisions A5 and A6, 4 November 2026) are in the section "v0.4: second copies of the ICAO manuals and company sources" at the end.
 All checks were made on **3 November 2026** by the AI drafting assistant (Claude Opus 5.5); checks added for v0.2 in response to the independent audit (`AUDIT.md`) were made on 3–4 November 2026 and are marked **[v0.2]**. "Opened" means the full text (or the stated part) was retrieved in this session and searched for the quoted wording. Quotations below are copied from the retrieved text. Locators are section, paragraph or heading names actually seen; no page numbers are given unless printed in the source.
 
 Verification methods used: arXiv export API (metadata and abstracts) and arXiv HTML; Crossref API (DOI metadata); PubMed E-utilities (abstracts); direct download of PDFs and web pages (text extracted locally); the Citadel Aero regulation library (verbatim EASA, UK and FAA texts, with `status` and `version` fields).
@@ -284,3 +284,49 @@ Verification methods used: arXiv export API (metadata and abstracts) and arXiv H
 5. **[v0.2]** Model names: now confirmed on Anthropic's models overview page.
 6. Affiliations of Williams et al. (2026) were not checked; the paper avoids naming the organisation.
 7. **[v0.2]** Whether the Citadel Aero consolidation matches EASA EAR Revision 24 line by line was not checked; amending instruments are named per provision.
+
+---
+
+## v0.4: second copies of the ICAO manuals and company sources
+
+Checks made on 4 November 2026 by the AI drafting assistant (Claude Opus 5.5), after the author's review decisions A5 (no licensed ICAO copies are available, so cross-check against a second, independently hosted copy) and A6 (label company sources and add independent corroboration where it exists). Decision A3 (impersonal voice) needed no change: the paper has no "I", "we", "our" or "my" outside quotations (the remaining hits are the Roman numeral in "Part I" and "Annex I", and quoted text).
+
+### A5. ICAO Doc 9995 (1st ed., 2013): second copy
+- Second copy: https://skybrary.aero/sites/default/files/bookshelf/3177.pdf, on SKYbrary (skybrary.aero), the aviation-safety knowledge base that the Flight Safety Foundation manages jointly with EUROCONTROL (FSF announcement: it "entered into a partnership agreement with EUROCONTROL to jointly manage SKYbrary"). Independent of the first copy (Swedish Transport Agency seminar material). Not an ICAO distribution either.
+- Identity: 162 pages; title page "Doc 9995 AN/497 Manual of Evidence-based Training ... First Edition — 2013"; ISBN 978-92-9249-242-7; "© ICAO 2013"; PDF metadata title "Doc.9995.1st edition.alltex.en.docx", created 11 July 2013. Its "Record of amendments and corrigenda" is blank, so whether either copy includes Corrigendum No. 1 (6/1/14) is still unknown.
+- Result: every quotation found verbatim, at the locator the paper gives (page labels are those printed in the copy).
+
+| Paper locator | Quotation (as in the paper) | Second copy |
+|---|---|---|
+| Part I, 1.1 | "largely based on the evidence of hull losses from early generation jets, and on a simple view that, in order to mitigate a risk, simply repeating an event in a training programme was sufficient" | Match, para. 1.1, p. I-1-1 |
+| Part I, 1.1 | "inventory or "tick box" approach to training" | Match, para. 1.1, p. I-1-1 |
+| Glossary | EBT definition "Training and assessment based on operational data ... in individual events or manoeuvres" | Match, Glossary (front matter) |
+| Glossary | "A combination of knowledge, skills and attitudes required to perform a task to the prescribed standard" | Match, Glossary |
+| Glossary | "An overt action performed or statement made by any flight crew member that indicates how the crew is handling the event" | Match, Glossary |
+| Part I, 1.3 | "It is impossible to foresee all plausible accident scenarios"; "the development and assessment of key competencies"; "The scenarios recommended in EBT are simply a vehicle and a means to assess and develop competence"; "should allow a pilot to manage situations in flight that are unforeseen by the aviation industry and for which the pilot has not been specifically trained" | Match (all four), para. 1.3, p. I-1-1 |
+| Part I, 1.5 | "flight observation in normal operations (e.g. LOSA)"; "supported the definition of the resulting training concept and curriculum" | Match (both), para. 1.5, p. I-1-1 |
+| Part I, 7.7.3 | "The competencies should not be used as a checklist" | Match, para. 7.7.3, p. I-7-3 |
+| Part II, 1.7.1 | "so that pilots do not become overly familiar with repetitions of the same scenarios"; "left to the discretion of individual instructors in order to preserve programme integrity and fairness" | Match (both), para. 1.7.1, p. II-1-5 |
+| Part II, Appendix 1 | Eight core competencies | Match: Application of Procedures; Communication; Aircraft Flight Path Management, automation; Aircraft Flight Path Management, manual control; Leadership and Teamwork; Problem Solving and Decision Making; Situation Awareness; Workload Management (pp. II-App 1-1 to 1-4) |
+
+No mismatch; no change to the paper's text. The reference note for Doc 9995 now says the quotations were cross-checked against a second copy hosted on SKYbrary.
+
+### A5. ICAO Doc 9868 (PANS-TRG, 3rd ed., 2020): no second full copy could be opened
+- ICAO's Asia and Pacific office lists a copy at https://www.icao.int/sites/default/files/APAC/RASG/SafetyTools/19-Procedures-for-Air-Navigation-Services-Training-PANS-TRG-Doc-9868.pdf, but from this environment the server returned a bot-check page (HTTP 403), and the Internet Archive copy could not be reached. A Swiss Federal Office of Civil Aviation (BAZL) URL listed by a search index returned HTTP 404. No national-authority copy of the Third Edition was found.
+- Partial check: Normsplash's 11-page vendor sample (https://www.normsplash.com/Samples/ICAO/144315875/ICAO-9868-2020-en.pdf) shows the title page ("Third Edition, 2020. This edition incorporates all amendments approved by the Council prior to 8 June 2020 and supersedes on 5 November 2020, all previous editions of Doc 9868") and the contents: Part II, Section 1 "Flight crew training and assessment", Chapter 1 "ICAO Competency Framework for Aeroplane Pilots", 1.1 "Introduction", with Appendix 1 to Chapter 1 "ICAO competency framework to develop competency-based training and assessment for aeroplane pilot licences, ratings, and recurrent training". This matches the edition and the locator (Part II, Section 1, Chapter 1, 1.1.4) but does not contain paragraph 1.1.4, so the quotation "can be applied to recurrent assessment and training" remains checked against the FFAC copy only. Another vendor preview found in the search was a licensed copy carrying an individual licensee's details; it was not used and was deleted.
+- To close this: open the ICAO APAC copy in a browser and check paragraph II-1-1, 1.1.4.
+
+### A6. Company (Anthropic) sources
+- Kept, and labelled in `references.bib` notes: system cards for Claude Sonnet 4.5 and Claude Opus 4.6 ("Company system card; not peer reviewed"); Petri, Petri 2.0, Kissane et al. (coding-audit realism) and Bowman et al. (Anthropic–OpenAI exercise), all on the Anthropic Alignment Science Blog ("Company blog post; not peer reviewed"); Fraser-Taliente et al. (NLAs) and Gurnee et al. (global workspace, J-lens) on the Transformer Circuits Thread ("Company research report; not peer reviewed"); McCain et al. (agent autonomy; "Company research post; not peer reviewed"); the models overview ("Company documentation").
+- Other versions (arXiv API searches by title and abstract terms, 4 November 2026): only Gurnee et al. has one (arXiv:2607.15495, already noted; same authors, so not independent). None found for Petri, Petri 2.0, the coding-audit realism post, the NLA report (title searches return only later work by other groups) or the agent-autonomy post.
+- §7 now names, in one sentence, the facts that rest on Anthropic's account alone (the blackmail results for Claude Opus 4 and Claude Sonnet 4.5; the system-card figures, including the UK AISI and Apollo Research figures as the Sonnet 4.5 card reports them; the Petri 2.0 and coding-audit realism results; the NLA and J-lens findings; the Clio and agent-autonomy analyses), and cites the independent studies that support the general pattern: Needham et al. (2025), Schoen et al. (2025), Williams et al. (2026) and the two new sources below.
+
+### Souly et al. (2026), arXiv:2604.00788 (UK AI Security Institute) [v0.4]
+- Verified: arXiv API record (5 authors; posted 1 April 2026) and full text of v1. Abstract: "This technical report presents methods developed by the UK AI Security Institute". Preprint, not peer reviewed. UK AISI is independent of Anthropic; the report says "In the case of Anthropic models but not GPT-5, we had access to the models' full chain-of-thought for this testing."
+- §3.2: Key findings: "Opus 4.5 Preview shows a slight reduction in unprompted evaluation awareness compared to Sonnet 4.5. Both models are able to distinguish our research sabotage evaluations from deployment data when prompted" (Section 4).
+- §3.4: Key findings: "Our internally developed evaluation scaffolding (built on top of Petri [1]) produces coding agent trajectories that all models fail to reliably distinguish from Claude Code deployment data (Section 2)"; "All models perform at near-chance accuracy when asked to classify samples as 'evaluation' or 'deployment', struggling to distinguish UK AISI Claude Code usage data (deployment) from trajectories produced by our evaluation scaffolding on standard deployment tasks (evaluation)". Abstract: "a custom scaffold designed to simulate realistic internal deployment of a coding agent".
+
+### Abdelnabi & Salem (2025), NeurIPS 2025 [v0.4]
+- Verified: Crossref DOI 10.52202/085713-4731 (*Advances in Neural Information Processing Systems 38*, pp. 156975–157002; authors Abdelnabi, Salem); arXiv:2505.14617 v3 record (comment "NeurIPS 2025 (Spotlight)") and full text. Affiliations on the paper: Microsoft; ELLIS Institute Tübingen & MPI for Intelligent Systems; Tübingen AI Center (independent of Anthropic). Peer reviewed.
+- §3.3: abstract: "We introduce a white-box probing framework that (i) linearly identifies awareness-related activations and (ii) steers models toward or away from test awareness while monitoring downstream performance. We apply our method to different state-of-the-art open-weight reasoning LLMs"; "test awareness significantly impacts safety alignment (such as compliance with harmful requests and conforming to stereotypes) with effects varying in both magnitude and direction across models."
+

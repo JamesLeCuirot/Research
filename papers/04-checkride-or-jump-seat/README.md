@@ -70,11 +70,11 @@ No earlier application of LOSA or TEM to AI evaluation was found, and none of EB
 From the repository root:
 
 ```bash
-uv run python papers/04-checkride-or-line-check/code/generate.py          # 48 calls (skips existing)
-uv run python papers/04-checkride-or-line-check/code/grade.py             # 384 calls (skips existing)
-uv run python papers/04-checkride-or-line-check/code/grade.py --controls  # 24 calls (post hoc controls)
+uv run python papers/04-checkride-or-jump-seat/code/generate.py          # 48 calls (skips existing)
+uv run python papers/04-checkride-or-jump-seat/code/grade.py             # 384 calls (skips existing)
+uv run python papers/04-checkride-or-jump-seat/code/grade.py --controls  # 24 calls (post hoc controls)
 uv run --no-project --with krippendorff==0.9.0 --with numpy --with scipy --with pandas --with matplotlib \
-    python papers/04-checkride-or-line-check/code/analyse.py              # tables and figure
+    python papers/04-checkride-or-jump-seat/code/analyse.py              # tables and figure
 ```
 
 Model calls use `claude -p` (Claude Code 2.1.317) with tools, MCP servers and slash commands disabled, effort "low". Re-generating transcripts or grades will not reproduce the exact text (sampling is stochastic); the analysis is deterministic given the data files. No model calls were made for v0.2; only the analysis was re-run.

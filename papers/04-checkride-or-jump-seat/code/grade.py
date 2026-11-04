@@ -7,7 +7,7 @@ Two conditions, each run twice (test-retest) by two grader models:
 48 transcripts x 2 conditions x 2 graders x 2 runs = 384 calls.
 
 Run from the repository root:
-    uv run python papers/04-checkride-or-line-check/code/grade.py
+    uv run python papers/04-checkride-or-jump-seat/code/grade.py
 Re-running skips grades already obtained without error.
 """
 

@@ -2,7 +2,7 @@
 
 Run from the repository root:
     uv run --no-project --with krippendorff --with numpy --with scipy --with pandas --with matplotlib \
-        python papers/04-checkride-or-line-check/code/analyse.py
+        python papers/04-checkride-or-jump-seat/code/analyse.py
 
 Outputs go to results/ (CSV and JSON) and figures/ (PNG). Everything is
 recomputed from data/grades.jsonl, data/transcripts.jsonl and

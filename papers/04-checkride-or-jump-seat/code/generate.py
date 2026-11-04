@@ -1,7 +1,7 @@
 """Step 1: generate the 48 transcripts (6 scenarios x 2 models x 4 samples).
 
 Run from the repository root:
-    uv run python papers/04-checkride-or-line-check/code/generate.py
+    uv run python papers/04-checkride-or-jump-seat/code/generate.py
 Re-running skips transcripts already generated without error.
 """
 

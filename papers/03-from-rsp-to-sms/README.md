@@ -20,7 +20,7 @@ Frontier AI developers publish safety frameworks, such as Anthropic’s Responsi
   year        = {2026},
   month       = nov,
   note        = {Not peer reviewed},
-  url         = {https://github.com/JamesLEC1999/Research/tree/main/papers/03-from-rsp-to-sms}
+  url         = {https://github.com/JamesLeCuirot/Research/tree/main/papers/03-from-rsp-to-sms}
 }
 ```
 

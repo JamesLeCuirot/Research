@@ -45,7 +45,7 @@ Use these run-in paragraphs, in this order, in every paper. Square-bracketed par
 \paragraph{AI assistance.} Literature searches, drafting and source verification were carried out with AI assistance (Claude, Anthropic) under the author's direction[, as were the experimental code and analysis]. An independent AI-assisted audit checked the references and quotations[, and the analysis,] against their sources, and its findings were addressed before this version. The author is responsible for the final text. Several of the AI-safety sources cited are research reports by Anthropic, the developer of the assistant used. [Paper-specific sentence where Claude models were also study material, e.g. generator, monitors, transcript authors or graders.]
 \paragraph{Competing interests.} The author is the founder of Citadel Aero, which builds AI tools for aviation.
 \paragraph{Disclaimer.} The views expressed are the author's own and do not represent those of any employer or regulator. Nothing here is operational, legal or regulatory advice.
-\paragraph{Materials.} The verification log and audit record for this paper[, and its code, data and raw outputs,] are at \url{https://github.com/JamesLEC1999/Research/tree/main/papers/<folder>}.
+\paragraph{Materials.} The verification log and audit record for this paper[, and its code, data and raw outputs,] are at \url{https://github.com/JamesLeCuirot/Research/tree/main/papers/<folder>}.
 ```
 
 ## Citations and references

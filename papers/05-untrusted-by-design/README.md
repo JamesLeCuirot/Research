@@ -20,7 +20,7 @@ The European Union Aviation Safety Agency (EASA) is moving its guidance on artif
   year        = {2026},
   month       = nov,
   note        = {Not peer reviewed},
-  url         = {https://github.com/JamesLEC1999/Research/tree/main/papers/05-untrusted-by-design}
+  url         = {https://github.com/JamesLeCuirot/Research/tree/main/papers/05-untrusted-by-design}
 }
 ```
 

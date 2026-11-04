@@ -20,7 +20,7 @@
   year        = {2026},
   month       = nov,
   note        = {Not peer reviewed},
-  url         = {https://github.com/JamesLEC1999/Research/tree/main/papers/04-checkride-or-jump-seat}
+  url         = {https://github.com/JamesLeCuirot/Research/tree/main/papers/04-checkride-or-jump-seat}
 }
 ```
 

@@ -204,7 +204,7 @@ To re-run the annotation itself, use `uv run python scripts/pilot.py`. It calls 
   title  = {Extending AI-Agent Incident Analysis to Multi-Agent Systems: AFACS, an HFACS-based Framework, and an Audit of Public Traces},
   year   = {2026},
   note   = {CitadelAero. Draft, November 2026},
-  url    = {https://github.com/JamesLEC1999/Research}
+  url    = {https://github.com/JamesLeCuirot/Research}
 }
 ```
 

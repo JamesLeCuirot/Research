@@ -20,7 +20,7 @@ Aviation learned that when reports of error feed punishment, people stop reporti
   year        = {2026},
   month       = nov,
   note        = {Not peer reviewed},
-  url         = {https://github.com/JamesLEC1999/Research/tree/main/papers/01-just-culture-for-machines}
+  url         = {https://github.com/JamesLeCuirot/Research/tree/main/papers/01-just-culture-for-machines}
 }
 ```
 

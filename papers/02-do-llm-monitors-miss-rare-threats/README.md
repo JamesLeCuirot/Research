@@ -20,7 +20,7 @@ AI control protocols use language-model monitors to review the work of more capa
   year        = {2026},
   month       = nov,
   note        = {Not peer reviewed},
-  url         = {https://github.com/JamesLEC1999/Research/tree/main/papers/02-do-llm-monitors-miss-rare-threats}
+  url         = {https://github.com/JamesLeCuirot/Research/tree/main/papers/02-do-llm-monitors-miss-rare-threats}
 }
 ```
 

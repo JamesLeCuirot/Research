@@ -105,7 +105,7 @@ Shares come with **Wilson 95% intervals**, a standard and well-behaved interval 
 
 ## 3. The codebook
 
-`codebook/v0.md` is your original draft. `codebook/v1.md` is the current draft: your decisions so far (see the table in section 5), the Ezell category for each layer, and the operational notes (section 5), which you have accepted. All the open questions are now decided, so codebook v1 is ready for the AI pilot. The codebook file is the single source of truth: the code list the software accepts is read straight from it (`CURRENT_CODEBOOK` in `src/afacs/schema.py` is now `"v1"`).
+`codebook/v0.md` is your original draft. `codebook/v1.md` is the current draft: your decisions so far (see the table in section 5), the Ezell category for each layer, and the operational notes (section 5), which you have accepted. All the open questions are now decided. The AI pilot ran on v1. `codebook/v1.1.md` is identical except that note 5.11 no longer states the predicted pairing of HFACS error types with Ezell's functions (the AI had read it, so the pilot could not test it); v1.1 is used for any further coding. The codebook file is the single source of truth: the code list the software accepts is read straight from it (`CURRENT_CODEBOOK` in `src/afacs/schema.py` is now `"v1.1"`).
 
 The operational notes add **no new categories**. They add one field, `failure_observed` (yes / no / unclear), and spell out the violation rule as three questions in order.
 
@@ -190,7 +190,7 @@ All study-design numbers live in `src/afacs/design.py` with their reasons.
 | `docs/CODING_GUIDE.md` | How to hand-code the calibration traces |
 | `docs/data_audit.md` | Generated report on MAST data quality |
 | `docs/related_work.md`, `docs/references.bib` | Literature review and references |
-| `codebook/v0.md`, `codebook/v1.md` | The AFACS codebook (versioned; v1 is current) |
+| `codebook/v0.md`, `codebook/v1.md`, `codebook/v1.1.md` | The AFACS codebook (v1 as used in the AI pilot; v1.1 current) |
 | `docs/crosswalk_ezell.md` | How Ezell et al.'s framework maps onto AFACS |
 | `docs/information_audit.md` | What MAST's logs contain against Ezell et al.'s information needs |
 | `paper/` | The paper (LaTeX source and PDF) |

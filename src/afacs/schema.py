@@ -17,7 +17,7 @@ from pathlib import Path
 
 from afacs import paths
 
-CURRENT_CODEBOOK = "v1"
+CURRENT_CODEBOOK = "v1.1"  # v1 = as used in the AI pilot; v1.1 drops the Ezell prediction from note 5.11
 
 LAYER_COLUMNS = {"L4": "l4_codes", "L3": "l3_codes", "L2": "l2_codes", "L1": "l1_codes"}
 FAILURE_OBSERVED = ["yes", "no", "unclear"]

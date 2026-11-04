@@ -45,6 +45,40 @@ Checked on 4 November 2026 on each journal's or publisher's own pages where they
 4. ***Journal of Safety Research*** (Elsevier; double-anonymised; free route). Or ***Judgment and Decision Making*** (Cambridge): outcome bias is a core topic and pre-registration is valued, but it is fully open access at £2,610 unless waived.
    - *Fast free fallback:* ***IJAAA*** (Embry-Riddle). No fees; its policy names Claude as allowed if disclosed; decisions within 90 days. Limit about 25 double-spaced pages including references; low visibility.
 
+### 05 AI Control for Aviation (regulatory analysis, ~9,000 words of main text plus references; checked 4 November 2026)
+
+1. ***The Aeronautical Journal*** (RAeS/Cambridge).
+   - A second paper there is allowed: the rules set no limit per author, only that the same manuscript must not be under consideration elsewhere.
+   - Single-anonymised review; Cambridge's AI policy (declare); free route.
+   - **Risk:** the aims and scope never mention regulation, certification or AI. It has published certification papers, and AI reviews in 2025–26 that discuss regulatory challenges.
+   - **Recommended:** a short presubmission enquiry to the editor first, asking whether a regulatory AI-assurance paper is in scope and mentioning paper 07 under review.
+   - **Changes:**
+     - IEEE references to APA;
+     - a nomenclature section;
+     - trim to about 9,500 words in total (Section 6, "the other direction", is the natural cut);
+     - lead with airworthiness and development assurance;
+     - AI declaration in the acknowledgements.
+2. ***Frontiers in Aerospace Engineering***, Intelligent Aerospace Systems section.
+   - Best scope fit: it lists "responsible, trustworthy, transparent, and certifiable AI", and in 2024 published a paper on certifying airborne AI against EASA's concept paper.
+   - Most permissive AI policy: disclose in the acknowledgements.
+   - Up to 12,000 words, so no cutting; single-anonymised; open access, so regulators can read it free.
+   - **But** it is open access only, at CHF 2,195; the journal is young, and Frontiers has a mixed reputation.
+3. ***CEAS Aeronautical Journal*** (Springer; Council of European Aerospace Societies).
+   - European readership close to EASA; Springer AI policy (document in a Methods-type section).
+   - Single-blind; free route; median 19 days to first decision, so a desk rejection costs little.
+   - **But** its aims are technical and never mention safety, certification or AI.
+4. ***IJAAA*** (Embry-Riddle).
+   - Scope includes "Aviation/aerospace legislation and regulation"; its AI policy names Claude as allowed if disclosed; free; decision within 90 days.
+   - **But** low visibility, and about 20–25 pages, which means cutting about a third.
+
+**Worth an email first:** AIAA's *Journal of Aerospace Information Systems* and *Journal of Air Transportation*. Both are a good fit and take 10,000–12,000-word papers on a free route, but no AIAA generative-AI policy could be found.
+
+**Ruled out:** *Air and Space Law* (Kluwer). Its AI policy allows AI "only for improving readability and language". *Safety Science* is kept for papers 01 and 07.
+
+**Regulatory routes, not instead of a journal:**
+- **EASA's RMT.0742 Step 2 consultation**, expected Q2 2027 (from EASA's 2026 slides, not a formal notice). It covers airworthiness, ATM/ANS and drones. Comments go through EASA's Comment-Response Tool and are published. Cite the paper (ideally with a DOI) behind paragraph-by-paragraph comments.
+- **EUROCAE WG-114** (artificial intelligence). Reports on human-factors concerns (ER-43) and information-security concerns for AI are due 31 December 2026, and the next meeting is 7 December 2026. Input comes from members: €700 a year for an individual, or a three-month trial membership.
+
 ### A suggested spread
 
 | Paper | Journal |

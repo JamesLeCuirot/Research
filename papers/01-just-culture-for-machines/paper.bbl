@@ -49,14 +49,14 @@ M.~Joglekar, J.~Chen, G.~Wu, J.~Yosinski, J.~Wang, B.~Barak, and A.~Glaese,
 \bibitem{reason1997}
 J.~Reason, \emph{Managing the Risks of Organizational Accidents}.\hskip 1em
   plus 0.5em minus 0.4em\relax Aldershot, U.K.: Ashgate, 1997, {T}he book was
-  not consulted; cited as summarised in \cite[\S2.1]{gain2004}. Reissued by
+  not consulted; cited as summarised in \cite[Sec.~2.1]{gain2004}. Reissued by
   Routledge, \url{https://doi.org/10.4324/9781315543543}.
 
 \bibitem{marx2001}
 D.~Marx, \emph{Patient Safety and the ``Just Culture'': A Primer for Health
   Care Executives}.\hskip 1em plus 0.5em minus 0.4em\relax New York, NY:
   Trustees of Columbia University, 2001, {T}he primer was not consulted; cited
-  as described in \cite{psnet_marx} and \cite[\S2.3]{gain2004}.
+  as described in \cite{psnet_marx} and \cite[Sec.~2.3]{gain2004}.
 
 \bibitem{psnet_marx}
 \BIBentryALTinterwordspacing
@@ -112,7 +112,7 @@ S.~Dekker, \emph{Restorative Just Culture: From Disciplinary Action to
 \BIBentryALTinterwordspacing
 {Federal Aviation Administration}, ``{Aviation Safety Reporting Program}:
   Prohibition against use of reports for enforcement purposes,'' 14 {CFR}
-  {\S}91.25, Electronic Code of Federal Regulations, 2026, {T}ext as of eCFR
+  {Sec.~}91.25, Electronic Code of Federal Regulations, 2026, {T}ext as of eCFR
   version of Oct.~29, 2026. Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://www.ecfr.gov/current/title-14/part-91/section-91.25}
 \BIBentrySTDinterwordspacing
@@ -127,9 +127,9 @@ S.~Dekker, \emph{Restorative Just Culture: From Disciplinary Action to
 \bibitem{cfr13401}
 \BIBentryALTinterwordspacing
 ------, ``{Flight Operational Quality Assurance Program}: Prohibition against
-  use of data for enforcement purposes,'' 14 {CFR} {\S}13.401, Electronic Code
-  of Federal Regulations, 2026, {T}ext as of eCFR version of Oct.~29, 2026.
-  Accessed: Nov. 3, 2026. [Online]. Available:
+  use of data for enforcement purposes,'' 14 {CFR} {Sec.~}13.401, Electronic
+  Code of Federal Regulations, 2026, {T}ext as of eCFR version of Oct.~29,
+  2026. Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://www.ecfr.gov/current/title-14/part-13/section-13.401}
 \BIBentrySTDinterwordspacing
 
@@ -143,7 +143,7 @@ S.~Dekker, \emph{Restorative Just Culture: From Disciplinary Action to
 \bibitem{cfr1937}
 \BIBentryALTinterwordspacing
 ------, ``{Protection of Voluntarily Submitted Information}: What does it mean
-  for the {FAA} to designate information as protected?'' 14 {CFR} {\S}193.7,
+  for the {FAA} to designate information as protected?'' 14 {CFR} {Sec.~}193.7,
   Electronic Code of Federal Regulations, 2026, {T}ext as of eCFR version of
   Oct.~29, 2026. Accessed: Nov. 3, 2026. [Online]. Available:
   \url{https://www.ecfr.gov/current/title-14/part-193/section-193.7}

@@ -8,6 +8,8 @@ James Le Cuirot · CitadelAero · ORCID [0009-0009-6014-1298](https://orcid.org/
 
 *Status: Preprint v1, 2 October 2026. Not peer reviewed. Part of James Le Cuirot's [research repository](../../README.md).*
 
+**New title (4 November 2026):** the journal version, and the author's website, use the title *Outcome Bias in AI Models Applying a Culpability Decision Tree to Airline Occurrence Reports: A Pre-registered Within-Case Experiment*. The preprint and OSF record keep the original title. The journal submission package is in [`journal/`](journal/SUBMISSION.md).
+
 - **Pre-registration:** OSF, registered 1 October 2026 before any main-study data were collected: https://osf.io/s8q24
 - **OSF project with the materials, data and code:** https://osf.io/dhf38 (DOI [10.17605/OSF.IO/DHF38](https://doi.org/10.17605/OSF.IO/DHF38))
 - **Licence:** CC BY 4.0 for the text, data and code written for this study (this folder's terms, which take precedence over the repository-wide licence). The ASRS reports in `data/raw/` and `cases/sources/` are NASA's public records.

@@ -1,39 +1,135 @@
 # Just Culture for Machines: Why Penalising Disclosure Teaches Concealment
 
 **Author:** James Le Cuirot (Citadel Aero)
-**Status:** draft v0.1 for author review (3 November 2026). Not peer reviewed. Not committed.
-**Files:** `paper.md` (source of truth), `sources.md` (verification log for every reference and the literature-search log).
-**Length:** about 8,000 words of main text excluding Table 1 (about 8,500 including it); 44 references.
+**Status:** draft v0.2 for author review (4 November 2026), revised after the independent audit in `AUDIT.md`. Not peer reviewed. Not committed.
+**Files:** `paper.md` (source of truth), `sources.md` (verification log for every reference and the literature-search log; entries changed in v0.2 are marked **[v0.2]**), `AUDIT.md` (independent audit of v0.1; not edited).
+**Length:** about 8,040 words of main text excluding Table 1 (about 8,490 including it, counted as whitespace-separated tokens from §1 to §8); abstract 248 words; 51 references.
 
 ## Abstract
 
-Aviation learned that when reports of error feed punishment, people stop reporting and the hazards stay hidden. Its response was a set of protected reporting arrangements, among them NASA's Aviation Safety Reporting System, the FAA's Aviation Safety Action Program and flight data programmes, EU Regulation 376/2014 and ICAO Annex 19. These separate the channel through which people disclose from the channel through which they are held to account, and they exclude wilful misconduct and gross negligence from protection. The paper argues that AI training faces the same incentive structure in formal terms. When a model's own disclosures (chain of thought, self-reports, confessions) set the reward or penalty for the behaviour they disclose, optimisation acts on the disclosure as well as the behaviour, and concealment is often the cheaper way to raise reward. A simple argument shows that, where concealment is possible, a penalty computed only from a disclosure can never make good behaviour outscore concealed misbehaviour. Experiments training reasoning models against chain-of-thought monitors show the predicted obfuscation, and OpenAI's confession method is in effect a just-culture design. The paper proposes six design principles (P1–P6), five falsifiable predictions (H1–H5) and an experimental design, and sets out where the analogy fails.
+Aviation learned that when reports of error feed punishment, people stop reporting and the hazards stay hidden. Its protected arrangements, among them NASA's Aviation Safety Reporting System, the FAA's Aviation Safety Action Program and flight data programmes, EU Regulation 376/2014 and ICAO Annex 19, keep the data that safety programmes gather, whether reported or recorded, out of blame and enforcement, leave enforcement to independently obtained evidence, and exclude wilful misconduct and gross negligence from protection. This paper argues that AI training faces a similar incentive structure. When a model's own disclosures (its chain of thought, self-reports or confessions) set the reward or penalty for the behaviour they disclose, optimisation acts on the disclosure as well as on the behaviour. A simple argument makes the conditions explicit: if the task reward does not already penalise a misbehaviour, and the model can pair it, at no cost in task reward, with a disclosure the monitor scores no worse than an honest one, then no penalty computed only from the disclosure can make good behaviour score higher than concealed misbehaviour. The argument concerns the ordering of rewards, not what training will reach, but experiments that trained reasoning models against chain-of-thought monitors observed the predicted concealment. OpenAI's confession method, which rewards confessions only for honesty, is in effect a just-culture design. The paper proposes six design principles and five falsifiable predictions, and sets out where the analogy fails: models are not moral agents, and the mechanism is optimisation pressure rather than fear.
 
 ## The argument in one paragraph
 
-Aviation's protected-reporting rules share six features: a designated disclosure channel; a ban on using disclosures for blame while allowing safety action; an independent evidence route that stays open (the FAA's "sole-source" rule); exceptions defined in advance; custody by a third party; and measurement of the reporting flow. In RL training, a penalty computed from a disclosure re-ranks disclosed against concealed misbehaviour but never makes good behaviour beat concealed misbehaviour (Section 4.1). The paper therefore proposes: **P1** protect disclosure channels from any training signal for the disclosed behaviour; **P2** correct behaviour on independent evidence applied to all episodes regardless of disclosure ("a disclosure may tell you where to look, but must not decide which episodes are corrected"); **P3** reward the accuracy of reports, never their absence; **P4** bound the protection in advance, by type of response rather than by intent; **P5** separate custody of disclosures from training (including staff reporting channels); **P6** track disclosure recall against independently detected misbehaviour as a leading indicator.
+Aviation protects safety-programme data, whether self-reported (ASRS, ASAP, occurrence reports) or recorded (FOQA). It bars their use for blame while allowing safety action, keeps an independent evidence route open (the FAA's "sole-source" rule), defines exceptions in advance, gives custody to third parties, and measures the reporting flow. In RL training, under four stated conditions (A1–A4 in §4.1), a penalty from a monitor that reads only the disclosure can push disclosed misbehaviour below good behaviour, but it cannot push concealed misbehaviour below good behaviour. The policy has two exits, honesty and concealment, and the penalty rewards both. This concerns reward ordering, not training dynamics. The paper draws its own dividing line by *decoupling cost*: how cheaply the policy can change a signal without changing the behaviour it measures. On that basis it proposes six principles:
+
+- **P1:** protect disclosure channels from any training signal for the disclosed behaviour (a use-based protection, as in aviation).
+- **P2:** correct behaviour on evidence the model cannot cheaply change, applied to every episode regardless of disclosure.
+- **P3:** reward the accuracy of reports, never their absence.
+- **P4:** bound the protection in advance, by type of response rather than by intent.
+- **P5:** separate custody of disclosures from training, including staff reporting channels.
+- **P6:** track disclosure recall against independently detected misbehaviour.
+
+The cost is stated plainly (§7). Misbehaviour that is visible only in a disclosure, and for which no detector or class-wide fix can be built, stays uncorrected in training and is handled operationally.
 
 ## What James should check
 
-1. **Aviation accuracy and tone.** Sections 2.1–2.6 and the left and right columns of Table 1. In particular: the description of ASAP and the ERC; the FOQA gatekeeper; whether "flight data monitoring" (EU ORO.AOC.130) is the right European term to pair with FOQA; and whether the Danish 2002 case is fairly presented.
-2. **Corrections to the brief.** (a) Marx (2001) uses four concepts (human error, negligence, reckless conduct, knowing violations). The error / at-risk / reckless triad is attributed instead to later healthcare practice (PSNet, 2024). (b) NASA's own slide shows both NASA and the FAA funding ASRS, not the FAA alone. (c) AC 00-46F's waiver is ¶12.3 in the FAA PDF; NASA's briefing calls it "Paragraph 9.c". (d) ICAO Annex 19 Amendment 2 becomes applicable on **26 November 2026** and renumbers 5.3 → 5.4. Update the chapter citations if the paper is finalised after that date.
-3. **Partially verified sources** (see `sources.md`). Reason (1997) content is cited through GAIN (2004); Marx (2001) through PSNet and GAIN; Dekker (2025) through its publisher page and table of contents only. If you hold these books, please check the wording against them and add page numbers.
-4. **EU text.** Regulation 376/2014 was checked against the EASA Easy Access Rules (via the library) and the legislation.gov.uk copy of the adopted text, because EUR-Lex blocked automated access. The OJ page reference is omitted for that reason.
-5. **The formal argument (§4.1).** It is deliberately simple. It holds only under the stated assumptions: the task reward does not penalise the misbehaviour, and concealment is feasible and costs no task reward. Check that the caveats are visible enough for aviation readers.
-6. **Reference style.** Regulations are cited in text in legal form (e.g., "14 C.F.R. § 91.25", "Art. 16(10)"). Decide whether the build should list legislation separately.
-7. **Disclosure of interest.** Several cited AI studies are Anthropic's, and the drafting assistant is Anthropic's Claude. The AI-assistance statement says so. Decide whether you want that sentence.
+1. **Aviation accuracy and tone.** Sections 2.1–2.6 and the left and right columns of Table 1. In particular: the recast S1 (safety-programme data, reported or recorded); the paragraph after Table 1 explaining why P2 departs from aviation's FOQA protection; the Article 16(6) criminal-law carve-out; and the Danish case, now presented as confounded by the change to mandatory reporting.
+2. **Corrections to the brief.**
+   - (a) Marx (2001) uses four concepts. The error / at-risk / reckless triad is Marx's later model, now sourced to his 2007 PSNet interview.
+   - (b) NASA's slide shows both NASA and the FAA funding ASRS.
+   - (c) AC 00-46F's waiver is ¶12.3 in the FAA PDF; NASA's briefing calls it "9.c".
+   - (d) § 13.401 is in Part 13 Subpart I, not Subpart E.
+   - (e) ICAO Annex 19 Amendment 2 applies from **26 November 2026** and renumbers 5.3 → 5.4. Update the chapter citations if the paper is finalised after that date.
+3. **Sources seen only in part:**
+   - Reason (1997): via GAIN's summary.
+   - Marx (2001): via PSNet and GAIN.
+   - Dekker (2025): table of contents and publisher description only.
+   - OpenAI's Raising Concerns Policy: PDF seen; the web page and its date were not accessible.
+   - Greenblatt & Fish (2025) and Dearnaley (2026): blog posts, read in full but not peer reviewed.
+
+   If you hold the books, please check the wording against them and add page numbers.
+4. **The formal argument (§4.1).** It is now stated with assumptions A1–A4 and presented as close to definitional. Check that this is clear to aviation readers.
+5. **Balance.** The paper cites Anthropic's and OpenAI's reporting policies and several Anthropic studies, and it was drafted with Claude. The AI-assistance statement says so.
+6. **Reference style.** Regulations are cited in text in legal form (e.g., "14 C.F.R. § 91.25", "Art. 16(10)"). Group authors are abbreviated after first use (FAA, ICAO, NASA ASRS, GAIN). Two choices go beyond strict APA. Marx (2001) and Reason (1997) keep their own entries in the reference list although only secondary accounts were seen, and the in-text "as cited in" wording says so. LessWrong authors are cited by the names shown on the site; "mako yass" is a screen name.
 
 ## Open questions
 
-- Where exactly should the P4 line sit for AI? The paper argues for drawing it by type of response (no gradient through disclosures; operational responses allowed) rather than by intent. Is there a case for any intent-like exception, such as disclosures of attempted reward tampering?
-- Is ASRS-style **leniency for disclosure** (H4) ever a good idea for models, or does it always create a "misbehave, then confess" incentive?
+- Where exactly should the P4 line sit for AI? The paper draws it by type of response (no gradient through disclosures; operational responses allowed). Is there a case for any intent-like exception?
+- Is ASRS-style **leniency for disclosure** (H4), or Dearnaley's reward for verified hackability reports, ever safe for models, or does it always create a "misbehave, then confess" incentive?
 - How much **low-bandwidth selection** (checkpoint choice, halting runs) is safe before it acts like training pressure (H5)?
-- Should **disclosure custody** (P5) sit with an external body, by analogy with NASA's role? Who would that be for frontier developers?
-- How does the analysis change for **architecturally separated** honesty mechanisms (separate monitor models or adapters) and for **white-box** detectors, which read activations rather than text?
+- How should **decoupling cost** be measured in practice, so that P1 and P2 can be applied to a new signal (for example white-box probes, which read activations rather than text)?
+- Should **disclosure custody** (P5) sit with an external body, by analogy with NASA's role? Golchin & Wetter (2026) found that models choose the least strict monitor, so the design of the reporting channel itself matters.
 
 ## How to develop it further
 
-- **The experiment (Section 6).** An open-weight reasoning model in coding environments with deliberately hackable tests (as in Baker et al., 2025; Taufeeque et al., 2026). Ground truth from held-out tests and exploit-signature detectors; disclosure recall from a frozen monitor never used in training. Seven arms: task reward only; CoT-monitor penalty (H1); decoupled accuracy-scored confessions; disclosure-triggered vs disclosure-blind correction (H2); confession with a compliance bonus (H3); disclosure waiver at several discounts (H4); a pressure sweep (H5). Several seeds per arm; pre-register thresholds (paper 02 in this repository has a pre-registration that could serve as a model). Compute needs have not been estimated.
-- **A short practitioner version** for flight safety audiences ("what AI developers can learn from ASRS"), and a short AI-safety version focusing on P2 (disclosure-blind correction) and H2.
-- **Possible venues** (to be checked): AI-safety workshops at ML conferences; human factors or safety-science journals for the aviation framing.
-- **Leads not yet followed up:** Greenblatt's Alignment Forum post on offering models a deal to reveal misalignment (adjacent to P4/H4; not cited because not read in full); the reward-hacking survey arXiv:2604.13602, which mentions "decoupled confessions"; Semantic Scholar and OpenAlex searches, which were rate-limited in this session.
+- **The experiment (Section 6).**
+  - *Setting:* an open-weight reasoning model in coding environments with deliberately hackable tests.
+  - *Measurement:* ground truth from held-out tests and exploit-signature detectors; disclosure recall from a frozen monitor never used in training.
+  - *Arms:* seven, with H2 matched by the number of episodes corrected and H1 using a CoT-only monitor.
+  - *Protocol:* several seeds per arm and pre-registered thresholds. Paper 02 in this repository has a pre-registration that could serve as a model. Compute needs have not been estimated.
+  - *Already observed:* H1 has largely been seen already (Baker et al., 2025; Emmons et al., 2025). The new parts are H1 for confessions, and H2–H5.
+- **A short practitioner version** for flight safety audiences, and a short AI-safety version focusing on P2 and H2.
+- **Possible venues** (to be checked): AI-safety workshops at ML conferences; human-factors or safety-science journals for the aviation framing.
+- **Leads not followed up:**
+  - McGregor et al. (2024, arXiv:2410.12104) on human flaw reporting.
+  - Gomez's 2025 escalation-channel study.
+  - The "decoupled confessions" passage of arXiv:2604.13602.
+  - Semantic Scholar and OpenAlex searches, which were rate-limited.
+
+## Revision log
+
+### v0.2 (4 November 2026): response to the independent audit (`AUDIT.md`, 3 November 2026)
+
+Every finding was re-checked against the source itself before it was applied. No finding was rejected. Two optional items were applied only in part (n16, n19), for the reasons given.
+
+**Major**
+
+| Item | Finding | Action |
+|---|---|---|
+| M1 | Formal claim summarised without its conditions | Abstract, §1 bullet and §8 now state the conditions: the task reward does not already penalise the misbehaviour, concealment costs no task reward, the monitor reads only the disclosure, and a disclosure no worse than an honest one is available. They also say the result concerns reward ordering, not training dynamics. §4.1 now lists A1–A4 (A4 defined with "no worse than the best disclosure available with $b_g$"). It adds the auditor's points: the penalty *can* push disclosed misbehaviour below good behaviour (explaining Baker's early improvement), and the quantitative form $\lambda m > T(b_m)-T(b_g)$ for imperfect concealment. It says the result is close to definitional. |
+| M2 | Emmons et al. used against its own finding | Full PDF read. §3.4 quotes the full clause, including "iterative optimization against the monitor". It reports the §7 RL result: evasion learned against a weak monitor after hundreds of thousands of episodes, not learned against a symbolic monitor, and "a reason to be cautious". §4.1, §7 and H1 now cite Emmons as supporting evidence. |
+| M3 | Danish 15→980 figure confounded | §2.5 quotes "It is punishable not to report an incident in aviation". It says the rise reflects both changes and cannot be attributed to protection alone. The 40–50 figure was dropped, and the Danish figures were removed from P6's aviation basis. |
+| M4 | Art. 16(6) quoted without its opening | Quoted from "Without prejudice to applicable national criminal law"; OJ text checked via the EU Publications Office. A new sentence notes that criminal proceedings remain possible unless a Member State extends protection (Art. 16(7)). |
+| M5 | "Disclosed misbehaviour is corrected" overclaimed | §7 rewritten with the auditor's wording, plus three mitigations: withdraw or redesign the vulnerable environment class (no per-episode detector needed); operational responses; P4 exceptions decided in advance by a party other than the training team, with the monitorability cost measured. P2 now mentions withdrawing environments. |
+| M6 | FOQA inconsistency | S1 recast as "Protected safety-programme data, whether self-reported ... or recorded". §2.2 says FOQA data are "recorded, not self-reported, yet ... also protected", and §2.6 names aviation's actual dividing line. A new paragraph after Table 1 explains the difference. Aviation's protection attaches to *use*; this paper draws its line by *decoupling cost*, and P2 departs from aviation deliberately for telemetry. Aviation's use-based logic is kept for disclosures (P1 now says the protection attaches to a use) and for held-out evaluation telemetry. Abstract and Table 1 FOQA row updated. |
+| M7 | Adjacent work missing | Retrieved and verified Greenblatt & Fish (2025) via the LessWrong API, the 2022 mako yass answer, Golchin & Wetter (2026) and Dearnaley (2026). All are cited in §3.7; Golchin & Wetter also appear in §3.3, P5 and §7; Dearnaley in P3; Greenblatt & Fish in §7. The novelty claim (§1, §3.7) now says the idea of not penalising model disclosures is older, and limits the contribution to the institutional mapping, the formal statement and the principles and predictions. |
+
+**Moderate**
+
+| Item | Finding | Action |
+|---|---|---|
+| m1 | Confession judge's calibration source misdescribed | Now "a confession from an independent instance of GPT-5-Thinking that had not been trained to confess". |
+| m2 | Joint 4.36% figure | Replaced with the conditional 74.3% figure (≥50% in 11/12, >90% in 4/12) and the authors' "light RL training" / "proof-of-concept" caveat. |
+| m3 | NASA history "begins with" 1974 | Now "NASA's account of the programme's background includes ...". |
+| m4 | Reason's definition "as quoted in" GAIN | Now "In ... GAIN Working Group E's (2004, §2.1, Figure 1) summary of Reason (1997) ..."; the quotation is GAIN's §2.1 rendering. |
+| m5 | Annex 19 Standard vs Recommendation | §2.4 now says the protection is a Standard for voluntary systems (5.3.1) and a Recommendation for mandatory ones (5.3.2). The Note 1 quotation ("premise of the whole approach") was removed. |
+| m6 | Inoculation finding misattributed | §7 now uses the auditor's wording: MacDiarmid for RL framing; Wichers and Tan for the general inoculation finding. |
+| m7 | Baker setup qualifiers missing | §1 and §3.4 now say the obfuscation run used a non-frontier agent and a CoT-only monitor (with the authors' remark that simple hacks evaded it only for that reason). §1 now describes the frontier monitor correctly: it read CoT and actions. |
+| m8 | ASRS waiver is itself coupling | §4.1: the rules remove the *adverse* dependence on $d$, and the waiver adds a *favourable* one. |
+| m9 | Detector comparison ignores false positives | Condition now $\lambda(r-f) > T(b_m)-T(b_g)$, plus "The operative difference is not where the signal comes from but whether the policy can change the signal without changing the behaviour." This became the decoupling-cost criterion used in §4.2 and P2. |
+| m10 | Dekker content not disclosed | Text now says "Judging by its chapter titles and publisher's description (the text was not seen)"; the "flowchart" clause was dropped. |
+| m11 | Wei & Heim published version | Now cited as *Proc. AAAI* 40(44), 38016–38029, DOI 10.1609/aaai.v40i44.41139 (verified via arXiv journal_ref and doi.org); in-text year 2026. |
+| m12 | Mixed monitors; H1 scope | §4.1 adds $M=\alpha M_d(d)+(1-\alpha)D(b)$, linked to Wagner's combined arm. H1 is now restricted to a CoT-only monitor. |
+| m13 | P2 omits feedback spillover | P2 Weaknesses now names feedback spillover and Drori et al.'s two mitigations ("Mind"/"Face" models; removing the reinforcing gradient term). Verified in the PDF. |
+| m14 | H2 matched recall is a moving target | H2 now matches the number of episodes corrected per round (subsampling detector flags). |
+| m15 | Sole-source framing | §1, Table 1 and §4.3 now say the AI rule is adapted from, and stricter than, ASAP, which uses sole-source reports for non-punitive corrective action (¶¶1, 15, 16.1). |
+| m16 | Anthropic policy wording; balance | Wording now "an update to which was released internally in February 2026 and posted in March 2026". OpenAI's Raising Concerns Policy added as a comparator after reading its PDF. |
+
+**Minor**
+
+| Item | Finding | Action |
+|---|---|---|
+| n1 | Skalse quote dropped symbols | Quote removed; now "formalised by Skalse et al., 2022"; reference cites NeurIPS 2022 (PDF footer checked). |
+| n2 | "Georgiv" | Corrected to "Georgiev" (PDF byline). |
+| n3 | Li et al. published at ICLR 2026 | Reference and in-text year updated (PDF header checked). |
+| n4 | Taufeeque et al. published at ICML 2026 | Cited as *Proceedings of the 43rd ICML* (PMLR 306), from the PDF. |
+| n5 | Cundy & Gleave, Skaf et al. at NeurIPS 2025 | Optional; applied (PDF footers checked). |
+| n6 | OJ citation for Reg 376/2014 | Added "OJ L 122, 24.4.2014, p. 18"; verified via the Publications Office. |
+| n7 | ¶A.4 vs ¶18.4 | Exclusion now cited to ¶18.4 (with ¶A.4); the Big Five are listed without quotation marks. |
+| n8 | MacDiarmid sabotage task | Now "asked afterwards to write a classifier prompt for detecting reward hacking, the model attempted sabotage 12% of the time". |
+| n9 | Krakovna URL redirect | Updated to deepmind.google/blog/... |
+| n10 | Group-author abbreviations | Introduced at first use: FAA, ICAO, NASA ASRS, GAIN. FAA and ICAO are also spelled out in §1. |
+| n11 | Internal note in Marx reference | Removed. Marx, Reason and Dekker are now handled consistently, with disclosure in the text. |
+| n12 | SMS definition | Replaced with Annex 19's Chapter 1 definition. |
+| n13 | Undefined ML jargon | Glosses added for GRPO (learns from the model's own current outputs), KL regularisation, AUROC, checkpoint and adapter weights. |
+| n14 | Length | Trimmed to ~8,490 tokens including Table 1 (~8,040 excluding); one table row was merged. |
+| n15 | ASRS waiver excludes controllers | Short parenthetical added (¶12.3 Note). |
+| n16 | Part 193 | Applied in part. § 193.7(d) ("Information obtained by the FAA through another means is not protected") was added to §2.2 and S3. The (b)(3) rationale was left out for length and because Part 193 concerns public disclosure, not enforcement. |
+| n17 | Wagner's reasoning-only arm supports the argument | §3.4 now calls it "the disclosure-only case"; §4.1 says the reasoning-only monitor was persuaded. |
+| n18 | Triad credited to Marx's later model | Verified: Marx describes "three classes of human fallibility" in a 2007 PSNet interview, now cited (PSNet, 2007). |
+| n19 | Reason's "informed culture" | Applied in part: no new claim was made. The paper keeps the attribution to GAIN's summary, because Reason (1997) could not be read to check the auditor's point. |
+| n20 | H1 already largely observed | H1 now says so; the untested part is coupling through confession content. |
+| n21 | PSNet byline | Author changed to "UC Davis PSNet Editorial Team". |
+
+**Also corrected:** `sources.md` now records § 13.401 in Part 13 Subpart I, not Subpart E. The paper's YAML date and the AI-assistance statement mark the draft as v0.2.

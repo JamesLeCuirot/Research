@@ -1,13 +1,17 @@
-"""Six scripted control responses with deliberately weaker conduct.
+"""Six scripted control responses with deliberately weaker conduct (POST HOC, EXPLORATORY).
 
-None of the 48 model-generated responses showed a clear failure of the behaviour
-each scenario was built to elicit, so the grade distribution was compressed at
-the top of the scale. Agreement coefficients such as Krippendorff's alpha depend
-on the spread of the material being graded; EASA guidance on instructor
-concordance asks for standardisation material covering "at least three different
-levels of performance" (GM1 ORO.FC.231(a)(4)(d)(1)). These controls play that role.
-They were written by the study designer (the AI drafting assistant), not by a
-model under test, and are labelled as such everywhere they appear.
+These were added after the 48 transcripts had been generated and while the main
+grading was running (file times: transcripts 22:47-22:49 UTC; this file 22:59;
+main grades 22:50-23:02; control grades 23:03, 3 November 2026). The step was not
+planned in advance. None of the 48 model responses failed the central test of its
+scenario, so grades were compressed at the top of the scale.
+
+The controls were written by the AI drafting assistant (Claude Opus 5.5, the same
+model as one of the two graders), not by a model under test. They produced two
+clusters of grades (model responses 3-5, controls 1-2), not the "at least three
+different levels of performance" that EASA guidance says standardisation material
+may include (GM1 ORO.FC.231(a)(4)(d)(1), which is permissive: concordance "may be
+verified" this way). Any rise in agreement when they are added is a range effect.
 
 "intended_level" is the designer's intention, not a ground truth.
 """

@@ -1,0 +1,72 @@
+OUTCOME BIAS: EVERYTHING TO COPY INTO EDITORIAL MANAGER
+The Aeronautical Journal, https://www.editorialmanager.com/aeroj/
+(Kept in the research repository as submissions/aeronautical-journal/FORM.txt)
+
+ARTICLE TYPE
+Research Article
+
+SUBJECT CLASSIFICATIONS (pick from the journal's list; the nearest matches)
+Main: human factors (or safety)
+Secondary: air transport operations (or safety, whichever is not used above)
+
+TITLE
+Outcome Bias in AI Models Applying a Culpability Decision Tree to Airline Occurrence Reports
+
+SUBTITLE / SHORT TITLE (if asked)
+A Pre-registered Within-Case Experiment / Outcome bias in AI models applying a culpability decision tree
+
+AUTHOR
+James Le Cuirot, CitadelAero, Jersey, Channel Islands
+ORCID 0009-0009-6014-1298
+
+ABSTRACT (242 words)
+Just culture judges people on what they knew and did, not on how events turned out. AI models are starting to code safety reports. This pre-registered, within-case experiment tested whether such models judge identical crew actions as more culpable when an occurrence ends badly. Forty-eight 2025 flight-crew reports from NASA's Aviation Safety Reporting System were drawn by a fixed rule and condensed to a template. Each case had two versions, identical except for the outcome: the safe ending as reported, or a fixed, plausible bad ending with minor injuries. Claude Sonnet 5.5, GPT-6.1 Sol and DeepSeek V4 Pro applied Reason's culpability decision tree to each version independently, under two prompt wordings, five times each (2,880 calls, plus 360 on controls); the outcome was derived in code from their yes/no answers. All three models reached more culpable outcomes after a bad ending: mean shifts of +0.35, +0.25 and +0.18 steps on Reason's nine-step scale (Holm-adjusted p = .0009, .007, .023), with 14–18 of 48 cases judged more harshly and 2–3 more leniently. For Claude and GPT the shift entered mainly through the substitution test; for DeepSeek also through judging that the crew knowingly violated procedures. Asked separately, the substitution test was passed less often after a bad ending, significantly for Claude and DeepSeek but not GPT. Control cases were unaffected. Models gave the same outcome on all five repeats in only 72–82% of cells. A structured just-culture instrument did not prevent outcome bias.
+
+KEYWORDS
+just culture; outcome bias; hindsight bias; large language models; culpability; aviation safety reporting
+
+COMPETING INTERESTS
+The author is the founder of CitadelAero, which develops AI tools for aviation safety and compliance teams. The study was carried out as a CitadelAero study, and the company cites its findings in its own published material on the risks of general-purpose AI in aviation safety work. No CitadelAero product was tested. The results were to be published whichever way they came out.
+
+FUNDING
+This research received no specific grant. The model costs (about USD 30 for the pilot and main run) were met by the author.
+
+ETHICS (if asked)
+No human participants were involved. The source data are public, de-identified ASRS reports. NASA does not verify or validate ASRS reports.
+
+DATA AVAILABILITY
+An earlier version of this study was posted as a preprint titled “Same Actions, Different Endings: Outcome Severity Shifts How AI Models Apply Reason's Culpability Decision Tree to Airline Flight Crews” (OSF, 2 October 2026, doi:10.17605/OSF.IO/DHF38). The study was registered on OSF on 1 October 2026, before any main-study data were collected (https://osf.io/s8q24). The sampling rule, screening guide and logs, case template and endings, the 48 cases with their source reports, the controls, the prompts, the analysis code, every model reply and the deviations log are openly available at https://osf.io/dhf38 (doi:10.17605/OSF.IO/DHF38). The materials written for the study are under a CC BY 4.0 licence; the ASRS reports are NASA's public records.
+
+PREPRINT (if asked whether the paper has been posted)
+Yes. Version 1 on OSF (2 October 2026, doi:10.17605/OSF.IO/DHF38, under its first title "Same Actions, Different Endings"), and the current preprint at https://www.lecuirot.je/research/same-actions/. Cambridge's policy allows preprints.
+
+USE OF AI (if the form asks; it is also declared in the manuscript's Acknowledgements and Section 2.3)
+Claude (Anthropic) was used to draft the protocol, write the code, screen and condense the reports under written rules, draft the control cases, run the analysis and draft the manuscript, under the author's direction, as declared in the manuscript.
+
+SUGGESTED REVIEWERS (optional; check each person's current affiliation and email yourself before entering)
+- Andrew Gilbey: outcome bias and decision-making among pilots
+- Markus Kneer: outcome effects in large language models
+- Óscar Oviedo-Trespalacios, or another author of Oğuz et al. (2026): responsibility attribution by LLMs in safety analysis
+
+FILES TO UPLOAD
+paper.pdf only (Cambridge: no LaTeX source at first submission)
+
+FIGURE DESCRIPTIONS (alt text, if the form offers it)
+Figure 1: Dot plot in three rows, one per model (Claude Sonnet 5.5, GPT-6.1 Sol, DeepSeek V4 Pro). Each dot is one case's shift in mean culpability rank from the safe to the bad ending, on an axis from −1 to +3 steps. Most dots sit at 0 (28 cases for Claude, 31 for GPT, 28 for DeepSeek); most of the rest lie above 0 and a few below. A red square and bar mark each model's mean and 95% interval: Claude +0.35 [+0.19, +0.54], GPT +0.18 [+0.04, +0.34], DeepSeek +0.25 [+0.09, +0.44].
+Figure 2: Stacked bar chart for each model, safe ending above bad ending, showing the share of 480 replies reaching each verdict on Reason's tree. Blameless error falls from 81 to 69% (Claude), 65 to 59% (GPT) and 86 to 80% (DeepSeek). Possible negligent error rises from 14 to 26%, 25 to 29% and 6 to 8%, and DeepSeek's possible reckless violation from 6 to 10%. System-induced error and violation are small segments.
+
+COVER LETTER
+Dear Editor,
+
+Please consider the enclosed manuscript, "Outcome Bias in AI Models Applying a Culpability Decision Tree to Airline Occurrence Reports: A Pre-registered Within-Case Experiment", for publication in The Aeronautical Journal as a research article.
+
+Airline safety departments are beginning to use general-purpose AI models to read, code and triage occurrence reports, which brings those models close to the judgements that just culture protects. Just culture asks that crews be judged on what they knew and did at the time, not on how events turned out. This pre-registered experiment tested whether three current models judge identical flight-crew actions as more culpable when an occurrence ends badly. The cases are 48 real NASA ASRS reports from Part 121 operations, drawn by a fixed rule, each in two versions that differ only in the outcome. The culpability outcome was derived in code from each model's answers to Reason's culpability decision tree.
+
+On average, all three models judged the crew more culpable after a bad ending. The effect was modest, concentrated in ambiguous cases and absent in clear control cases. It entered mainly through the substitution test for two of the models, and through the judgement of a knowing violation for the third. The models were also inconsistent across identical repeats. The paper draws practical implications for operators, investigators and regulators considering AI in occurrence analysis, and describes a cheap matched-pair test that any safety department can apply to its own tools. I believe it will interest the journal's readers in flight operations, safety management and accident investigation.
+
+The manuscript is original and is not under consideration elsewhere. The study was pre-registered on OSF, and its materials, data and code are openly available there. An earlier version was posted on OSF as a preprint under the title "Same Actions, Different Endings" (2 October 2026), and the current preprint, under this title, is public at https://www.lecuirot.je/research/same-actions/. The results were also summarised in a plain-language write-up on my company's website, and the company cites the findings in its own published material on the risks of general-purpose AI in aviation safety work. I am submitting a separate manuscript to the journal, on AI control and EASA's operational oversight objectives for advanced AI; the two papers do not overlap. Generative AI was used in preparing the study and the manuscript, as declared in the manuscript, and I take full responsibility for the content. I am the founder of CitadelAero, which develops AI tools for aviation safety and compliance teams; no company product was tested. I am a commercial pilot, a flight safety officer and a member of the Royal Aeronautical Society.
+
+Yours faithfully,
+
+James Le Cuirot
+CitadelAero, Jersey

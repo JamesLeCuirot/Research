@@ -37,3 +37,12 @@ Two independent AI reviewers (Claude, Anthropic), neither of which had seen the 
 - Military and government callsigns were not removed from the airline class.
 - The EUROCONTROL paper has still not been read in full.
 - The reviewers' figures quoted in the paper (alternative models, the stuck-transponder check, coverage by type) were not all re-derived by the analysis author. The corrected-measure results were.
+
+## Added 11 November 2026, after v0.2: weather-report check on the first sample (post hoc)
+
+Hourly and special weather reports for 118 of the 119 airports (Iowa State University archive; Palm Beach missing from the download) were compared with the consensus reference for the first sample, using the script frozen for the replication (`code/rep_analysis.py`). Results are in `results/sample1_weather_check.json`.
+
+- The consensus reference was within 1.0 hPa of the most recent weather report for 97.4% of 708,227 landings (96.9% in Europe, 97.7% in the US) and within 1.7 hPa for 99.9%.
+- With the weather report as the reference in place of the consensus, the business-jet against airline odds ratio was 2.6 (2.3 to 3.0) at 2 hPa and 9.9 (6.5 to 15.1) at 5 hPa. This version includes about 18,000 business-jet landings that had no consensus reference.
+
+This resolves the "reference was not validated against weather reports" item above for the first sample. The paper text has not yet been updated with it.

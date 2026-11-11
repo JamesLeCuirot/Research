@@ -9,7 +9,7 @@
 - **Single-anonymised review** ("a single-anonymized model of peer review"): reviewers see your name. This removes the anonymity problem the *Safety Science* route had, because the OSF preprint is public.
 - **Preprints are fine:** "deposition of a preprint on the author's personal website, in an institutional repository, or in a preprint archive" is not prior publication.
 - **AI use is allowed if declared.** Cambridge does not accept AI as an author, and asks you to declare AI use that generates text or analyses data. The manuscript has a declaration section.
-- **Length and format:** "Papers should preferably not exceed 10,000 words" (this one has about 5,900 words of main text); single column; abstract up to 250 words (242); APA references; a nomenclature section is required (included). Journal-style formatting is only required at acceptance.
+- **Length and format:** "Papers should preferably not exceed 10,000 words" (this one has about 6,300 words of main text, including tables); single column; abstract up to 250 words (249); APA references; a nomenclature section is required (included). Journal-style formatting is only required at acceptance.
 - **Process:** at least two referees; "typically lasts 3-6 months".
 - **Fees:** none on the standard route; open access is optional (£2,610).
 
@@ -35,10 +35,10 @@ No number or finding changed.
 
 | Requirement | This manuscript |
 |---|---|
-| Research Article, preferably under 10,000 words, single column | About 6,000 words of main text, single column |
+| Research Article, preferably under 10,000 words, single column | About 6,300 words of main text including tables, single column |
 | Journal template (Word or LaTeX) | `aer.cls` |
 | LaTeX: upload the PDF only at first submission | Upload `paper.pdf`; the source is sent after provisional acceptance |
-| Abstract up to 250 words, standalone, no references; also pasted into the form | 242 words, no references |
+| Abstract up to 250 words, standalone, no references; also pasted into the form | 249 words, no references |
 | No keywords in the manuscript | Removed; enter them in the form |
 | Nomenclature of all symbols and abbreviations, in the journal's order | Done |
 | Tables titled, numbered, cited; figures captioned beneath, numbered in order, cited | Yes |
@@ -91,5 +91,6 @@ No number or finding changed.
 |---|---|
 | 4 Nov 2026 | Package prepared |
 | 4 Nov 2026 | James overrides CitadelAero's no-submission rule for this paper; he is reading the manuscript before submission |
+| 11 Nov 2026 | Style revision: lists turned into prose, bold labels and signposting cut, "we" removed; checked independently against the previous text (no change of meaning; every number kept). Abstract now pairs each mean shift with its model, which it had listed in a different order |
 | 4 Nov 2026 | Journal-styled PDF taken out of the public repository (kept locally and sent to James) |
 | 4 Nov 2026 | Set in the journal's template (`aer.cls`) and checked against Cambridge's "Preparing your materials" page; submission system is Editorial Manager |

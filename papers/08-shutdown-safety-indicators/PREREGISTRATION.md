@@ -167,3 +167,13 @@ Absolute rates and rate differences are reported beside every ratio. Per-airport
 ## 11. Changes after registration
 
 None at registration.
+
+### 11.1 Addendum, 11 November 2026 (before any outcome was computed; 27 of 154 days processed)
+
+Hourly METAR was obtained for all 84 study airports from the Iowa Environmental Mesonet (routine and special reports, 31 August–17 November 2025 and 1 September–18 November 2024), downloaded by the author because the analysis workspace cannot reach that site. The weather-adjusted secondary analysis of section 7.4 will therefore be run. Details fixed here, before unblinding:
+
+- Covariates are computed per airport and UTC day by `code/weather.py`; the output is `data/weather_airport_day.csv`. A clock hour counts as low if any report in it shows a ceiling (lowest broken, overcast or vertical-visibility layer) under 1,000 ft or visibility under 3 statute miles; the covariate is the share of reporting hours that are low. Gust is 1 if any report that day has a gust of 25 kt or more. Thunderstorm is 1 if any report that day carries a thunderstorm code, including thunderstorm in the vicinity.
+- Model: Poisson regression on airport-days in the primary shutdown window, with airport fixed effects, year, year × US, the three covariates and offset log(approaches). The coefficient on year × US is the weather-adjusted ratio of rate ratios. Interval: day-pair bootstrap, 2,000 resamples. The same model without covariates on the same airport-days is reported beside it.
+- This analysis is secondary. The primary analysis and decision rules of section 7.1 are unchanged.
+
+SHA-256 of the two source files as received: 2025 `2dcca1c37bf86d1b35683121eb115bb0f418aca77dc2b429cccdddca2bc76f01`; 2024 `473cae8f66a4e6638aab080c322ea287383449beba4448135edf698f15b4b9b8`.

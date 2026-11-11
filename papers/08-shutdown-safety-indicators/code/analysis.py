@@ -274,6 +274,34 @@ def run(t, t_air, t_norule1, rng, nboot=NBOOT):
     R['holm_raw_p'] = dict(H2_spacing=p2, H3_tcas=p3)
     return R
 
+# ---------------------------------------------------------------- 7.4 weather-adjusted secondary model
+WX = ['lowvis_share', 'gust25', 'ts']
+def wx_adjusted(sh, wx, rng, nboot=NBOOT):
+    """Airport-day Poisson on the shutdown window: airport fixed effects, year, year x US, the three preregistered weather
+    covariates, offset log(approaches). Day-pair bootstrap by reweighting. Also returns the same model without covariates
+    on the same airport-days, so the effect of adjustment is visible."""
+    x = sh.merge(wx[['apt', 'date'] + WX], on=['apt', 'date'], how='left')
+    miss = int(x[WX].isna().any(axis=1).sum()); x = x.dropna(subset=WX).reset_index(drop=True)
+    A = pd.get_dummies(x.apt, dtype=float).values; y25 = (x.year == 2025).astype(float).values
+    core = np.column_stack([A, y25, y25 * x.us.values]); k = A.shape[1] + 1
+    Xa = np.column_stack([core, x[WX].values.astype(float)]); off = np.log(x.n.values); yv = x.ga.values
+    def fit(X, wt=None):
+        m = slice(None) if wt is None else wt > 0
+        return sm.GLM(yv[m], X[m], family=sm.families.Poisson(), offset=off[m], freq_weights=None if wt is None else wt[m]).fit()
+    ra, ru = fit(Xa), fit(core)
+    days = sorted(x.pdate.unique()); idx = {p: i for i, p in enumerate(days)}; di = x.pdate.map(idx).values
+    ba, bu = [], []
+    for _ in range(nboot):
+        wt = np.bincount(rng.integers(0, len(days), len(days)), minlength=len(days))[di].astype(float)
+        try: ba.append(fit(Xa, wt).params[k]); bu.append(fit(core, wt).params[k])
+        except Exception: ba.append(np.nan); bu.append(np.nan)
+    la, ha, sa = ci(np.array(ba)); lu, hu, su = ci(np.array(bu))
+    return dict(airport_days=int(len(x)), airport_days_without_weather=miss,
+                adjusted=dict(rrr=float(np.exp(ra.params[k])), ci_day=[float(np.exp(la)), float(np.exp(ha))], se_log_day=sa),
+                unadjusted_same_days=dict(rrr=float(np.exp(ru.params[k])), ci_day=[float(np.exp(lu)), float(np.exp(hu))], se_log_day=su),
+                covariate_rate_ratios={c: float(np.exp(ra.params[k + 1 + i])) for i, c in enumerate(WX)},
+                covariate_means={f"{'us' if u else 'ctl'}{y}": g[WX].mean().round(4).to_dict() for (u, y), g in x.groupby(['us', 'year'])})
+
 def weekly(t):
     x = t.copy(); x['week'] = [(p - d('2025-09-01')).days // 7 for p in x.pdate]
     g = x.groupby(['us', 'year', 'week'])[['ga', 'n', 'tight', 'pairs', 'ra']].sum().reset_index()
@@ -289,12 +317,15 @@ def selftest():
         for p in days25:
             for y in (2024, 2025):
                 date = p if y == 2025 else p - dt.timedelta(364)
-                wx = np.exp(rng.normal(0, 0.5))
+                lv = float(rng.random() < 0.2) * rng.random(); wx = np.exp(rng.normal(0, 0.4) + 1.5 * lv)
                 eff = 1.30 if (a.us and y == 2025 and p >= d('2025-10-01')) else 1.0
                 n = rng.poisson(vol * (1.1 if y == 2025 else 1.0)); ga = rng.binomial(n, min(0.5, base * wx * eff * (1.15 if y == 2025 else 1)))
-                pairs = int(0.7 * n); rows.append(dict(date=date, apt=a.icao, n=n, ga=ga, pairs=pairs, tight=rng.binomial(pairs, 0.08), ra=rng.poisson(0.002 * n), ra_nococ=0,
+                pairs = int(0.7 * n); rows.append(dict(date=date, apt=a.icao, n=n, ga=ga, pairs=pairs, tight=rng.binomial(pairs, 0.08), ra=rng.poisson(0.002 * n), ra_nococ=0, lowvis_share=lv, gust25=0.0, ts=0.0,
                                                        year=y, pdate=p, grp=a.grp, us=a.us))
-    t = pd.DataFrame(rows); t, exc, _ = apply_rules23(t)
+    t = pd.DataFrame(rows); wx = t[['apt', 'date'] + WX]; t = t.drop(columns=WX); t, exc, _ = apply_rules23(t)
+    W = wx_adjusted(in_window(t, 'shutdown'), wx, np.random.default_rng(3), nboot=200)
+    print('selftest weather-adjusted RRR (planted 1.30):', round(W['adjusted']['rrr'], 3), W['adjusted']['ci_day'], 'low-vis rate ratio (planted 4.48):', round(W['covariate_rate_ratios']['lowvis_share'], 2))
+    assert 1.15 < W['adjusted']['rrr'] < 1.45
     R = run(t, t, t, np.random.default_rng(2), nboot=200)
     print('selftest primary RRR (planted 1.30):', round(R['primary']['rrr'], 3), R['primary']['ci_day'], R['primary']['verdict'])
     print('selftest placebo RRR (planted 1.00):', round(R['placebo_september']['rrr'], 3), R['placebo_september']['ci_day'])
@@ -312,6 +343,10 @@ if __name__ == '__main__':
     t_no1 = airport_day(a, ra); t_no1 = t_no1[t_no1.apt.isin(t.apt.unique()) & (t_no1.n >= 30)]
     t.to_csv(os.path.join(out, 'airport_day.csv'), index=False); weekly(t).to_csv(os.path.join(out, 'weekly.csv'), index=False)
     R = run(t, t_air, t_no1, rng)
+    wxf = os.path.join(HERE, '..', 'data', 'weather_airport_day.csv')
+    if os.path.exists(wxf):
+        wx = pd.read_csv(wxf); wx['date'] = [d(z) for z in wx.date]
+        R['weather_adjusted'] = wx_adjusted(in_window(t, 'shutdown'), wx, np.random.default_rng(SEED + 1))
     R['meta'] = dict(days_2024=int(a[[x.year == 2024 for x in a.date]].date.nunique()), days_2025=int(a[[x.year == 2025 for x in a.date]].date.nunique()),
                      attempts_total=int(len(a)), rule1=info, excluded_airports=excluded, airports_kept=int(t.apt.nunique()),
                      airports_kept_by_group=t.groupby('grp').apt.nunique().to_dict(), nboot=NBOOT, seed=SEED)

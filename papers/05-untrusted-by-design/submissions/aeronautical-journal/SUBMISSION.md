@@ -22,7 +22,7 @@ The journal's aims and scope never mention regulation, certification or AI. It h
 >
 > Dear Editor,
 >
-> Before I submit, could you tell me whether a paper of this kind would be in scope for The Aeronautical Journal? "AI Control for Aviation: A Gap Analysis of EASA's Operational Oversight Objectives for Advanced AI" (about 8,300 words) looks at the independent operational oversight system that EASA's draft AI concept paper (Proposed Issue 03, June 2026) would require for Level 3 AI. It compares the draft's threat model with research on monitoring AI systems that may work against their monitors, and proposes means of compliance for EASA and EUROCAE. It is a regulatory and assurance analysis with no experimental data. A preprint is at https://www.lecuirot.je/research/ai-control/.
+> Before I submit, could you tell me whether a paper of this kind would be in scope for The Aeronautical Journal? "AI Control for Aviation: A Gap Analysis of EASA's Operational Oversight Objectives for Advanced AI" (about 8,300 words) looks at the independent operational oversight system that EASA's draft AI concept paper (Proposed Issue 03, June 2026) would require for Level 3 AI. It compares the draft's threat model with research on monitoring AI systems that may work against their monitors, and proposes means of compliance for EASA and EUROCAE. It is a regulatory and assurance analysis with no experimental data. A preprint is at https://github.com/JamesLeCuirot/Research/tree/main/papers/05-untrusted-by-design.
 >
 > I am also submitting a separate experimental paper to the journal, on outcome bias in AI models applied to airline occurrence reports.
 >

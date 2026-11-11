@@ -18,7 +18,7 @@ The European Union Aviation Safety Agency (EASA) is moving its guidance on artif
   title        = {{AI} Control for Aviation: A Gap Analysis of {EASA's} Operational Oversight Objectives for Advanced {AI}},
   year         = {2026},
   howpublished = {Preprint v1.1, 4 November 2026},
-  url          = {https://www.lecuirot.je/research/ai-control/}
+  url          = {https://github.com/JamesLeCuirot/Research/tree/main/papers/05-untrusted-by-design}
 }
 ```
 

@@ -66,7 +66,7 @@ To run the models again, put an OpenRouter key in a file named `.env` in this fo
   title        = {Outcome Bias in {AI} Models Applying a Culpability Decision Tree to Airline Occurrence Reports: A Pre-registered Within-Case Experiment},
   year         = {2026},
   howpublished = {Preprint v1.1, 4 November 2026},
-  url          = {https://www.lecuirot.je/research/same-actions/}
+  url          = {https://github.com/JamesLeCuirot/Research/tree/main/papers/07-same-actions-different-endings}
 }
 ```
 

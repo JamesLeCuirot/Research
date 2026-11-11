@@ -16,7 +16,7 @@ AI control protocols use language-model monitors to review the work of more capa
   title        = {Do {LLM} Monitors Miss Rare Threats? A Pre-registered Test of the Low-Prevalence Effect},
   year         = {2026},
   howpublished = {Preprint v1.0, 4 November 2026},
-  url          = {https://www.lecuirot.je/research/rare-threats/}
+  url          = {https://github.com/JamesLeCuirot/Research/tree/main/papers/02-do-llm-monitors-miss-rare-threats}
 }
 ```
 

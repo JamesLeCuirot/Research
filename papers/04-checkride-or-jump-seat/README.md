@@ -18,7 +18,7 @@
   title        = {Observing {AI} Systems in Normal Operations: What Aviation's Line Operations Safety Audit and Evidence-Based Training Offer {AI} Evaluation},
   year         = {2026},
   howpublished = {Preprint v1.1, 4 November 2026},
-  url          = {https://www.lecuirot.je/research/normal-operations/}
+  url          = {https://github.com/JamesLeCuirot/Research/tree/main/papers/04-checkride-or-jump-seat}
 }
 ```
 

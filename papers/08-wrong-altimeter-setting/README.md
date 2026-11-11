@@ -1,6 +1,6 @@
 # 08 · Landing on the Wrong Altimeter Setting
 
-**Status:** working draft v0.2 (11 November 2026), revised after independent review. Pre-registered.
+**Status:** working draft v0.3 (11 November 2026). Pre-registered; revised after independent review; main result replicated on a second pre-registered sample of 30 days (`PREREGISTRATION_REPLICATION.md`, `results/replication.json`) and reference checked against weather reports.
 
 A pre-registered study using open ADS-B data (adsb.lol) of how often aircraft land with the broadcast altimeter setting differing from the local setting, at 119 US and European airports on 30 days in 2026.
 

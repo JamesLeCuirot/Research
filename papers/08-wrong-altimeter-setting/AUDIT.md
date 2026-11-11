@@ -60,3 +60,35 @@ Pre-registered in `PREREGISTRATION_REPLICATION.md` (commit 7306d3b, 14:39 UTC) b
 - **Not re-reviewed.** The v0.3 additions (replication section and weather check) have not been through independent review.
 
 Items above now resolved: reference validated against weather reports; corrected measure confirmed on a second sample. Still open: source of the second data stream; which altimeter the broadcast reflects; military and government callsigns in the airline class; EUROCONTROL paper not read in full (requested from an author).
+
+## Third independent review (AI), 11 November 2026, and changes in v0.4
+
+A third AI reviewer, which had not seen the work, reproduced every number in the replication section from the data, reproduced the random day draw, verified the code hashes, and re-derived R1 with its own code (4.02; conditional estimate 4.09). Its findings and the response:
+
+| Finding | Response in v0.4 |
+| --- | --- |
+| Corrupt weather reports in the archive (e.g. 40.00 inHg at EGLL) inflate airline "errors" against the weather-report reference | Reports outside 940 to 1060 hPa and isolated spikes removed (25 reports). Weather-referenced 5 hPa odds ratio restated as 13.1 (frozen-script figure 9.4 shown and explained) |
+| The weather-referenced "2.6 to 2.8" was a threshold artefact of the 0.8 hPa broadcast step; "more conservative" was not a fair description | Removed from the abstract and discussion. Matched-threshold (2.4 hPa) figure 4.0 reported. Weather check presented as a validity check |
+| Landings whose value is off the 0.8 hPa grid (second source only) are 0.2% of European landings but about half of European errors of 5 hPa or more; a few old aircraft show 1013 on most landings | New Section 7 and Table 6 report rates with and without them. US against Europe conclusion changed: 2.8 times (sample 2) and 2.2 times (sample 1) on grid values. R1 to R3 unchanged; R4 reported both ways |
+| Overclaims: "nearly all" 10 hPa errors from rarely seen aircraft; the "not renewed" explanation of small US discrepancies; 1013 "absent in types with integrated flight decks"; unhedged novelty claims | Each rewritten with second-sample figures (15 of 21; 24% and 11% matching a recent destination setting; 22 types). Novelty statements hedged in abstract and introduction |
+| Missing registered reporting for sample 2: exclusions, airport-resampling intervals, four-plus sensitivity, 33 UTC dates, one unreadable trace file | Added |
+| "This section is confirmatory" covered descriptive material | Scope narrowed to the four tests |
+| Intervals too narrow given clustering by operator; two fractional operators are 26% of business-jet landings | Operator-level bootstrap intervals added to Table 5 and the abstract (R1 2.7 to 5.4) |
+| Implausible large business-jet values | Sensitivity excluding non-standard values 30 hPa or more from reference added (R2 13.0) |
+| Body text did not say the reviewers were AI | Stated in the abstract, date line, Section 3, limitations and acknowledgement |
+| README stale | Rewritten |
+
+Re-derived by the analysis author (`code/posthoc_after_review3.py`): cleaned weather results, grid/off-grid rates and tests, operator, airport and aircraft bootstrap intervals, exclusion counts, the 10 hPa counts, aircraft overlap between samples, the share of small US discrepancies matching a recent destination report, and 1013-at-landing by type. The author's weather cleaning found 25 bad reports against the reviewer's 80; the resulting odds ratios agree (13.1).
+
+Quoted from the reviewer and NOT re-derived: the identification of the off-grid aircraft types (A300-600, 737 Classic); the trace inspection of the 35 business-jet 1013 events and of the implausible large values; the higher second-sample rate among business jets with a first-sample error (14.3 against 8.5 per 1,000).
+
+## Still open after v0.4
+
+- No human peer review. All review has been by AI.
+- EUROCONTROL paper (Mourousias et al.) not read in full; a copy has been requested from an author. The reviewer recalled, without verifying, UK NATS/CAA monitoring of barometric pressure settings; not searched.
+- Which altimeter the broadcast reflects on each business-jet type: needs human avionics input.
+- The second source is identified only by an approximate grid test, not by decoding message types.
+- Military and government callsigns remain in the airline class.
+- No mixed-effects model; clustering handled by bootstrap only.
+- What the 2 to 5 hPa discrepancies are (other-station settings were not tested).
+- Timestamps are git commit times; no external registry (OSF or Zenodo) yet.

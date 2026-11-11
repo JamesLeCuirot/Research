@@ -13,3 +13,9 @@
 | `adsblol`, `ourairports` | Used directly | Data sources |
 
 Entries marked in bold must be opened and checked by the author before release.
+
+
+## Added for v0.3/v0.4
+
+- **Iowa Environmental Mesonet ASOS/METAR archive** (`iem`): data downloaded by the author on 11 November 2026 for 118 of the 119 airports (Palm Beach missing), altimeter field only, 1 January to 1 November 2026. Used as data, not as a cited claim. 25 corrupt reports removed (see AUDIT.md).
+- The GREPECAS figure for the EUROCONTROL study (196 errors above 5 hPa in 747,353 flights) remains a secondary-source figure; the paper says so.

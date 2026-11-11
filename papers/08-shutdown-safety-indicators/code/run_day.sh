@@ -24,8 +24,8 @@ if [ ! -f "$PTS" ]; then
   TOT=$(cat $RAW/*.tar.* | wc -c); MIB=$((TOT/1048576))
   echo "$D bytes $TOT MiB $MIB published $PUB" >> $LOG
   DIFF=$((MIB-PUB)); [ ${DIFF#-} -gt 2 ] && { echo "$D size mismatch" >> $LOG; rm -rf "$RAW"; exit 6; }
-  cat $RAW/*.tar.* | python3 -I $CODE/extract.py $W/ref/airports.csv $CODE/airports_study.csv "$PTS" "$ACAS" 2>> $LOG || { echo "$D extract failed" >> $LOG; rm -f "$PTS"; exit 7; }
+  cat $RAW/*.tar.* | flock /tmp/shutdown_cpu.lock python3 -I $CODE/extract.py $W/ref/airports.csv $CODE/airports_study.csv "$PTS" "$ACAS" 2>> $LOG || { echo "$D extract failed" >> $LOG; rm -f "$PTS"; exit 7; }
 fi
 rm -rf "$RAW"
-python3 -I $CODE/approaches.py "$PTS" $W/ref/runways.csv $W/ref/airports.csv $CODE/airports_study.csv "$ATT" 2>> $LOG || { echo "$D approaches failed" >> $LOG; exit 8; }
+flock /tmp/shutdown_cpu.lock python3 -I $CODE/approaches.py "$PTS" $W/ref/runways.csv $W/ref/airports.csv $CODE/airports_study.csv "$ATT" 2>> $LOG || { echo "$D approaches failed" >> $LOG; exit 8; }
 rm -f "$PTS"; touch $W/data/done/$D; echo "$D done $(date -u +%H:%M:%S)" >> $LOG

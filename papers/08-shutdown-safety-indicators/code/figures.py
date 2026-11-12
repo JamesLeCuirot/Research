@@ -27,7 +27,7 @@ def weekly_fig(col, ylabel, name, groups=(1, 0)):
     f, axs = plt.subplots(1, len(groups), figsize=(6.3 if len(groups) == 2 else 3.6, 2.8), sharey=True, squeeze=False)
     for ax, us in zip(axs[0], groups):
         weekly_panel(ax, col, us, 'US study airports' if us else 'Control airports (Canada, Europe)', ylabel if ax is axs[0][0] else '')
-        ax.legend(frameon=False, loc='best')
+        ax.legend(frameon=False, loc='lower left', fontsize=7)
     f.tight_layout(); f.savefig(os.path.join(fig, name)); plt.close(f)
 
 weekly_fig('ga_per_1000', 'Go-arounds per 1,000 approaches', 'fig_weekly_goaround.pdf')

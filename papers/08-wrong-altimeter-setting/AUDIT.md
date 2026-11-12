@@ -119,3 +119,16 @@ Honesty and reporting changes: the Conclusion and Section 3.4 no longer describe
 Raised by the checker and NOT changed (author decisions before journal submission): "wrong"/"error" in the title and table captions versus "discrepancy" in the Discussion; the 2 hPa label for an effective 2.4 hPa threshold; reliance on AI reviewers' unre-derived figures in the body; references 4 and 5 not read in full; appendix tables numbered 6 to 10; the miscellany in Section 3.8; the unfinished regression models; sampling frame (1 January to 31 October 2026) and the basis for choosing airports and types not fully stated; the abstract's AI-review sentence and the "Not peer reviewed" date line, which suit a preprint but should come out of a journal version.
 
 Figures in the paper that are in no results file (computed in session or taken from reviewers): aircraft overlap 99.9%/96.6%; the 24%/11% destination-match shares; 22 types; "four of five" corrupt; 14.3 against 8.5; "most of them 2.4 or 3.2 hPa".
+
+## v0.9, 12 November 2026: terminology and re-derivation of reviewer figures
+
+- **Terminology.** At the author's decision the title is now "Altimeter Setting Discrepancies at Landing" and the text uses "discrepancy" (2 hPa or more) and "large discrepancy" (5 hPa or more) in place of "error" and "wrong". The "half-wrong rule" is now the "persistent-discrepancy rule". The folder and branch names are unchanged.
+- **Reviewer figures re-derived** (`code/rederive_reviewer_figures.py`, `results/rederived_reviewer_figures.json`). The paper no longer quotes any figure from a reviewer's report. Differences from what the reviewers reported:
+  - Second-source large discrepancies in Europe: confirmed on A300-600 (12), 737 Classic (7) and 777 (4) airframes, 38 of 40 at 1013. But only 18 of the 33 aircraft showed 1013 on at least half of their landings; the earlier text ("most or all of their landings") overstated this and was changed.
+  - Traces of the 35 second-sample business-jet 1013 events: author's count is 31 at 1013 throughout the observed window, 1 changing to 1013, 3 other (reviewer: 28 and 5). The window definitions differ; the author's figures are used.
+  - Implausible values: of the five in the second sample, two jumped in the last three minutes, two are one aircraft repeating the value, one is a steady one-inch difference. Consistent with the reviewer's "four of five".
+  - Repeat across samples: 14.3 against 8.5 per 1,000 confirmed; airline 2.9 against 1.2 added.
+  - Airline-only reference: 3.70 (first sample), 3.99 (second). Confirmed.
+  - Coverage against rate across business-jet types: Spearman -0.54 over 44 types. Confirmed in direction.
+  - First-sample statements that were reviewer-only and not re-derived were removed (conditional logistic models; the 533 of 542 count), replaced by the author's pooled equivalents.
+- Figures previously computed in session are now saved in the same results file (aircraft overlap, share of small discrepancies at 2.4 or 3.2 hPa, destination-match shares, 22 types).

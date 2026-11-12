@@ -1,0 +1,720 @@
+{
+ "A_offgrid_europe_err5": {
+  "events": 40,
+  "aircraft": 33,
+  "by_type": {
+   "A306": 12,
+   "B734": 6,
+   "F900": 4,
+   "B772": 4,
+   "C650": 2,
+   "B738": 2,
+   "C525": 2,
+   "C55B": 2,
+   "A20N": 1,
+   "ASTR": 1,
+   "BE40": 1,
+   "C550": 1,
+   "B733": 1,
+   "C56X": 1
+  },
+  "events_within_0p5_of_1013": 38,
+  "aircraft_with_1013_on_half_or_more_landings": 18,
+  "aircraft_table": [
+   {
+    "icao": "39dd00",
+    "actype": "A20N",
+    "landings": 41,
+    "near_1013": 5,
+    "offgrid": 4
+   },
+   {
+    "icao": "451dad",
+    "actype": "B734",
+    "landings": 30,
+    "near_1013": 2,
+    "offgrid": 3
+   },
+   {
+    "icao": "452084",
+    "actype": "B734",
+    "landings": 27,
+    "near_1013": 2,
+    "offgrid": 1
+   },
+   {
+    "icao": "48ae83",
+    "actype": "B738",
+    "landings": 22,
+    "near_1013": 4,
+    "offgrid": 2
+   },
+   {
+    "icao": "4caed3",
+    "actype": "B738",
+    "landings": 15,
+    "near_1013": 1,
+    "offgrid": 1
+   },
+   {
+    "icao": "3cf3a4",
+    "actype": "C550",
+    "landings": 10,
+    "near_1013": 2,
+    "offgrid": 10
+   },
+   {
+    "icao": "484703",
+    "actype": "F900",
+    "landings": 9,
+    "near_1013": 2,
+    "offgrid": 2
+   },
+   {
+    "icao": "471843",
+    "actype": "C650",
+    "landings": 8,
+    "near_1013": 1,
+    "offgrid": 7
+   },
+   {
+    "icao": "45216e",
+    "actype": "B734",
+    "landings": 8,
+    "near_1013": 2,
+    "offgrid": 8
+   },
+   {
+    "icao": "505d66",
+    "actype": "C525",
+    "landings": 7,
+    "near_1013": 1,
+    "offgrid": 7
+   },
+   {
+    "icao": "471f14",
+    "actype": "BE40",
+    "landings": 7,
+    "near_1013": 1,
+    "offgrid": 1
+   },
+   {
+    "icao": "4400b0",
+    "actype": "C55B",
+    "landings": 6,
+    "near_1013": 2,
+    "offgrid": 6
+   },
+   {
+    "icao": "39c486",
+    "actype": "F900",
+    "landings": 6,
+    "near_1013": 1,
+    "offgrid": 1
+   },
+   {
+    "icao": "3949e6",
+    "actype": "B772",
+    "landings": 6,
+    "near_1013": 4,
+    "offgrid": 5
+   },
+   {
+    "icao": "3c5425",
+    "actype": "A306",
+    "landings": 5,
+    "near_1013": 4,
+    "offgrid": 4
+   },
+   {
+    "icao": "4850cf",
+    "actype": "F900",
+    "landings": 4,
+    "near_1013": 1,
+    "offgrid": 1
+   },
+   {
+    "icao": "3949f7",
+    "actype": "B772",
+    "landings": 4,
+    "near_1013": 2,
+    "offgrid": 3
+   },
+   {
+    "icao": "3c542f",
+    "actype": "A306",
+    "landings": 3,
+    "near_1013": 2,
+    "offgrid": 3
+   },
+   {
+    "icao": "3c5428",
+    "actype": "A306",
+    "landings": 3,
+    "near_1013": 3,
+    "offgrid": 3
+   },
+   {
+    "icao": "407812",
+    "actype": "C525",
+    "landings": 3,
+    "near_1013": 3,
+    "offgrid": 3
+   },
+   {
+    "icao": "484b09",
+    "actype": "C650",
+    "landings": 3,
+    "near_1013": 2,
+    "offgrid": 3
+   },
+   {
+    "icao": "0201af",
+    "actype": "F900",
+    "landings": 2,
+    "near_1013": 1,
+    "offgrid": 1
+   },
+   {
+    "icao": "3c5426",
+    "actype": "A306",
+    "landings": 2,
+    "near_1013": 2,
+    "offgrid": 2
+   },
+   {
+    "icao": "3c542c",
+    "actype": "A306",
+    "landings": 2,
+    "near_1013": 2,
+    "offgrid": 2
+   },
+   {
+    "icao": "34208d",
+    "actype": "C56X",
+    "landings": 2,
+    "near_1013": 1,
+    "offgrid": 2
+   }
+  ]
+ },
+ "B_biz_1013_traces_sample2": {
+  "events": 35,
+  "types": 22,
+  "with_trace": 35,
+  "all_values_1013_in_observed_window": 31,
+  "changed_into_1013": 1,
+  "other_pattern": 3,
+  "observed_minutes_quartiles": [
+   5.0,
+   6.1,
+   7.6
+  ],
+  "aircraft": 35,
+  "aircraft_with_a_non_1013_value_on_another_landing": 34,
+  "aircraft_with_no_other_landing": 0
+ },
+ "C_biz_30plus_nonstandard_sample2": {
+  "n": 5,
+  "changed_in_last_3_min": 2,
+  "repeated_on_other_landings": 2,
+  "about_one_inch": 1,
+  "cases": [
+   {
+    "icao": "a42a28",
+    "actype": "HDJT",
+    "apt": "KIAH",
+    "own": 991.2,
+    "ref": 1024.8,
+    "n_distinct": 1,
+    "held_s": 397.3,
+    "observed_s": 397.8,
+    "n_distinct_trace": 1,
+    "first": 991.2,
+    "last": 991.2,
+    "n_changes": 0,
+    "last_change_s_before": null,
+    "other_landings_same_value": 0,
+    "inch_slip": true,
+    "changed_in_last_3_min": false
+   },
+   {
+    "icao": "a414b4",
+    "actype": "CL30",
+    "apt": "KBWI",
+    "own": 1054.4,
+    "ref": 1014.4,
+    "n_distinct": 1,
+    "held_s": 33.9,
+    "observed_s": 498.9,
+    "n_distinct_trace": 2,
+    "first": 1015.2,
+    "last": 1054.4,
+    "n_changes": 1,
+    "last_change_s_before": 55.4,
+    "other_landings_same_value": 0,
+    "inch_slip": false,
+    "changed_in_last_3_min": true
+   },
+   {
+    "icao": "a5f894",
+    "actype": "C560",
+    "apt": "KADS",
+    "own": 948.8,
+    "ref": 1018.4,
+    "n_distinct": 1,
+    "held_s": 253.8,
+    "observed_s": 445.0,
+    "n_distinct_trace": 2,
+    "first": 948.8,
+    "last": 948.8,
+    "n_changes": 4,
+    "last_change_s_before": 253.8,
+    "other_landings_same_value": 4,
+    "inch_slip": false,
+    "changed_in_last_3_min": false
+   },
+   {
+    "icao": "a5f894",
+    "actype": "C560",
+    "apt": "KAUS",
+    "own": 948.8,
+    "ref": 1017.6,
+    "n_distinct": 1,
+    "held_s": 355.3,
+    "observed_s": 373.5,
+    "n_distinct_trace": 1,
+    "first": 948.8,
+    "last": 948.8,
+    "n_changes": 0,
+    "last_change_s_before": null,
+    "other_landings_same_value": 4,
+    "inch_slip": false,
+    "changed_in_last_3_min": false
+   },
+   {
+    "icao": "490d09",
+    "actype": "CL35",
+    "apt": "LSZH",
+    "own": 945.6,
+    "ref": 1024.8,
+    "n_distinct": 2,
+    "held_s": 65.5,
+    "observed_s": 343.5,
+    "n_distinct_trace": 2,
+    "first": 1024.8,
+    "last": 945.6,
+    "n_changes": 1,
+    "last_change_s_before": 65.5,
+    "other_landings_same_value": 0,
+    "inch_slip": false,
+    "changed_in_last_3_min": true
+   }
+  ]
+ },
+ "D_repeat_across_samples": {
+  "air": {
+   "with_prior": [
+    45491,
+    130,
+    2.86
+   ],
+   "without_prior": [
+    621180,
+    762,
+    1.23
+   ]
+  },
+  "biz": {
+   "with_prior": [
+    4069,
+    58,
+    14.25
+   ],
+   "without_prior": [
+    55612,
+    474,
+    8.52
+   ]
+  }
+ },
+ "E_airline_only_reference": {
+  "sample1": {
+   "n_strata": 601,
+   "n_biz": 15876,
+   "n_air": 200564,
+   "ev_biz": 287,
+   "ev_air": 835,
+   "or_mh": 3.697475097335066,
+   "lo": 3.158464593153869,
+   "hi": 4.328470904833392,
+   "p": 4.7164898826679784e-66
+  },
+  "sample2": {
+   "n_strata": 617,
+   "n_biz": 16276,
+   "n_air": 209418,
+   "ev_biz": 317,
+   "ev_air": 867,
+   "or_mh": 3.992474670913523,
+   "lo": 3.433324242253392,
+   "hi": 4.642688215029829,
+   "p": 5.55229982100807e-84
+  }
+ },
+ "F_biz_discrepancies": {
+  "n": 1131,
+  "single_value_in_last_120s": 1113,
+  "aircraft_showing_other_values_elsewhere": 1095,
+  "aircraft_with_two_or_more": 51,
+  "aircraft": 1078
+ },
+ "G_coverage_vs_rate_biz_types": {
+  "types": 44,
+  "spearman_rho": -0.5435319336600052,
+  "p": 0.00013736581265041812,
+  "table": [
+   {
+    "actype": "BE40",
+    "landings": 2778.0,
+    "recorded": 0.666,
+    "valid": 1444.0,
+    "rate": 9.003
+   },
+   {
+    "actype": "C25A",
+    "landings": 4208.0,
+    "recorded": 0.787,
+    "valid": 2332.0,
+    "rate": 12.436
+   },
+   {
+    "actype": "C25B",
+    "landings": 5270.0,
+    "recorded": 0.966,
+    "valid": 3793.0,
+    "rate": 10.809
+   },
+   {
+    "actype": "C25C",
+    "landings": 2686.0,
+    "recorded": 0.999,
+    "valid": 1987.0,
+    "rate": 7.046
+   },
+   {
+    "actype": "C510",
+    "landings": 1399.0,
+    "recorded": 0.996,
+    "valid": 953.0,
+    "rate": 10.493
+   },
+   {
+    "actype": "C525",
+    "landings": 1412.0,
+    "recorded": 0.968,
+    "valid": 978.0,
+    "rate": 17.382
+   },
+   {
+    "actype": "C550",
+    "landings": 1463.0,
+    "recorded": 0.377,
+    "valid": 382.0,
+    "rate": 18.325
+   },
+   {
+    "actype": "C560",
+    "landings": 2852.0,
+    "recorded": 0.577,
+    "valid": 1173.0,
+    "rate": 23.018
+   },
+   {
+    "actype": "C56X",
+    "landings": 11433.0,
+    "recorded": 0.789,
+    "valid": 6832.0,
+    "rate": 8.489
+   },
+   {
+    "actype": "C650",
+    "landings": 1198.0,
+    "recorded": 0.233,
+    "valid": 220.0,
+    "rate": 22.727
+   },
+   {
+    "actype": "C680",
+    "landings": 3075.0,
+    "recorded": 0.997,
+    "valid": 2397.0,
+    "rate": 5.841
+   },
+   {
+    "actype": "C68A",
+    "landings": 14323.0,
+    "recorded": 1.0,
+    "valid": 11172.0,
+    "rate": 5.281
+   },
+   {
+    "actype": "C700",
+    "landings": 5246.0,
+    "recorded": 1.0,
+    "valid": 4115.0,
+    "rate": 5.346
+   },
+   {
+    "actype": "C750",
+    "landings": 4195.0,
+    "recorded": 0.582,
+    "valid": 1778.0,
+    "rate": 13.498
+   },
+   {
+    "actype": "CL30",
+    "landings": 6559.0,
+    "recorded": 0.995,
+    "valid": 5047.0,
+    "rate": 11.888
+   },
+   {
+    "actype": "CL35",
+    "landings": 12307.0,
+    "recorded": 0.999,
+    "valid": 9597.0,
+    "rate": 6.773
+   },
+   {
+    "actype": "CL60",
+    "landings": 7942.0,
+    "recorded": 0.964,
+    "valid": 5714.0,
+    "rate": 9.1
+   },
+   {
+    "actype": "E35L",
+    "landings": 2057.0,
+    "recorded": 0.992,
+    "valid": 1598.0,
+    "rate": 5.632
+   },
+   {
+    "actype": "E50P",
+    "landings": 1334.0,
+    "recorded": 0.956,
+    "valid": 894.0,
+    "rate": 4.474
+   },
+   {
+    "actype": "E545",
+    "landings": 4359.0,
+    "recorded": 1.0,
+    "valid": 3485.0,
+    "rate": 8.321
+   },
+   {
+    "actype": "E550",
+    "landings": 2844.0,
+    "recorded": 1.0,
+    "valid": 2250.0,
+    "rate": 5.333
+   },
+   {
+    "actype": "E55P",
+    "landings": 17208.0,
+    "recorded": 0.999,
+    "valid": 13190.0,
+    "rate": 6.823
+   },
+   {
+    "actype": "F2TH",
+    "landings": 4951.0,
+    "recorded": 0.944,
+    "valid": 3483.0,
+    "rate": 8.613
+   },
+   {
+    "actype": "F900",
+    "landings": 3194.0,
+    "recorded": 0.863,
+    "valid": 2023.0,
+    "rate": 12.852
+   },
+   {
+    "actype": "FA50",
+    "landings": 1075.0,
+    "recorded": 0.571,
+    "valid": 441.0,
+    "rate": 9.07
+   },
+   {
+    "actype": "FA7X",
+    "landings": 2083.0,
+    "recorded": 1.0,
+    "valid": 1495.0,
+    "rate": 7.358
+   },
+   {
+    "actype": "G280",
+    "landings": 2980.0,
+    "recorded": 0.997,
+    "valid": 2256.0,
+    "rate": 9.752
+   },
+   {
+    "actype": "GA5C",
+    "landings": 1651.0,
+    "recorded": 0.999,
+    "valid": 1315.0,
+    "rate": 9.886
+   },
+   {
+    "actype": "GA6C",
+    "landings": 1880.0,
+    "recorded": 0.999,
+    "valid": 1395.0,
+    "rate": 7.885
+   },
+   {
+    "actype": "GALX",
+    "landings": 1480.0,
+    "recorded": 0.755,
+    "valid": 808.0,
+    "rate": 11.139
+   },
+   {
+    "actype": "GL5T",
+    "landings": 2585.0,
+    "recorded": 0.992,
+    "valid": 1937.0,
+    "rate": 11.358
+   },
+   {
+    "actype": "GL7T",
+    "landings": 2189.0,
+    "recorded": 0.995,
+    "valid": 1637.0,
+    "rate": 8.552
+   },
+   {
+    "actype": "GLEX",
+    "landings": 5544.0,
+    "recorded": 0.989,
+    "valid": 4044.0,
+    "rate": 9.149
+   },
+   {
+    "actype": "GLF4",
+    "landings": 6629.0,
+    "recorded": 0.643,
+    "valid": 3198.0,
+    "rate": 15.009
+   },
+   {
+    "actype": "GLF5",
+    "landings": 5243.0,
+    "recorded": 0.821,
+    "valid": 3246.0,
+    "rate": 14.171
+   },
+   {
+    "actype": "GLF6",
+    "landings": 4842.0,
+    "recorded": 0.996,
+    "valid": 3598.0,
+    "rate": 11.673
+   },
+   {
+    "actype": "H25B",
+    "landings": 5378.0,
+    "recorded": 0.748,
+    "valid": 2889.0,
+    "rate": 8.307
+   },
+   {
+    "actype": "HDJT",
+    "landings": 1134.0,
+    "recorded": 1.0,
+    "valid": 775.0,
+    "rate": 10.323
+   },
+   {
+    "actype": "LJ35",
+    "landings": 1172.0,
+    "recorded": 0.111,
+    "valid": 107.0,
+    "rate": 9.346
+   },
+   {
+    "actype": "LJ45",
+    "landings": 3761.0,
+    "recorded": 0.84,
+    "valid": 2354.0,
+    "rate": 8.921
+   },
+   {
+    "actype": "LJ60",
+    "landings": 2802.0,
+    "recorded": 0.436,
+    "valid": 873.0,
+    "rate": 11.455
+   },
+   {
+    "actype": "PC24",
+    "landings": 3352.0,
+    "recorded": 1.0,
+    "valid": 2568.0,
+    "rate": 5.841
+   },
+   {
+    "actype": "PRM1",
+    "landings": 1004.0,
+    "recorded": 0.722,
+    "valid": 528.0,
+    "rate": 9.47
+   },
+   {
+    "actype": "SF50",
+    "landings": 2030.0,
+    "recorded": 0.999,
+    "valid": 1314.0,
+    "rate": 17.504
+   }
+  ]
+ },
+ "H_overlap_sample2_landings_by_aircraft_in_sample1": {
+  "air": 0.9991,
+  "biz": 0.9655
+ },
+ "H_small_at_2p4_or_3p2": 0.817,
+ "H_small_value_counts": {
+  "2.4": 1547,
+  "3.2": 590,
+  "4.0": 231,
+  "2.0": 107,
+  "4.8": 84,
+  "2.8": 23
+ },
+ "H_us_small_matching_destination_last_2h_sample2": {
+  "air": [
+   769,
+   0.243
+  ],
+  "biz": [
+   501,
+   0.106
+  ]
+ },
+ "H_us_small_matching_destination_last_2h_pooled": {
+  "air": [
+   1515,
+   0.269
+  ],
+  "biz": [
+   957,
+   0.106
+  ]
+ }
+}

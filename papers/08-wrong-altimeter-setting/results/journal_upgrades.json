@@ -1,0 +1,150 @@
+{
+ "milgov": {
+  "landings": 308,
+  "by_prefix": {
+   "TUA": 75,
+   "GAF": 75,
+   "MMF": 31,
+   "CMB": 27,
+   "QAF": 24,
+   "RRR": 18,
+   "IAM": 16,
+   "PLF": 8,
+   "AME": 7,
+   "CEF": 5,
+   "HUF": 5,
+   "CNV": 5,
+   "ASY": 4,
+   "CTM": 4,
+   "CFC": 3,
+   "KAF": 1
+  },
+  "errors_2": 0,
+  "errors_5": 0
+ },
+ "excl_milgov_pooled": {
+  "R1": {
+   "n_strata": 1328,
+   "n_biz": 37670,
+   "n_air": 420060,
+   "ev_biz": 719,
+   "ev_air": 1733,
+   "or_mh": 3.7320555148502925,
+   "lo": 3.35772548244649,
+   "hi": 4.148117062796972,
+   "p": 2.534110639098025e-154
+  },
+  "R2": {
+   "n_strata": 242,
+   "n_biz": 6569,
+   "n_air": 80597,
+   "ev_biz": 113,
+   "ev_air": 142,
+   "or_mh": 11.139961353442862,
+   "lo": 7.989847827000208,
+   "hi": 15.53205288051068,
+   "p": 6.066035112013422e-70
+  }
+ },
+ "excl_milgov_sample2": {
+  "R1": {
+   "n_strata": 675,
+   "n_biz": 18678,
+   "n_air": 215292,
+   "ev_biz": 377,
+   "ev_air": 877,
+   "or_mh": 4.015200561213812,
+   "lo": 3.4657417873865457,
+   "hi": 4.651770540277008,
+   "p": 6.755718320171503e-92
+  },
+  "R2": {
+   "n_strata": 118,
+   "n_biz": 3332,
+   "n_air": 39459,
+   "ev_biz": 64,
+   "ev_air": 63,
+   "or_mh": 13.933285870667799,
+   "lo": 8.906822958419562,
+   "hi": 21.79637521258183,
+   "p": 5.417809584286477e-51
+  }
+ },
+ "nearby_station": {
+  "pooled": {
+   "us_small_total": {
+    "air": 1518,
+    "biz": 958
+   },
+   "with_nearby_station": {
+    "air": 1367,
+    "biz": 864
+   },
+   "match_nearby": {
+    "air": 0.1982,
+    "biz": 0.2627
+   },
+   "match_mirror_baseline": {
+    "air": 0.0629,
+    "biz": 0.0949
+   },
+   "mean_nearby_stations": 2.911250560286867
+  },
+  "sample2": {
+   "us_small_total": {
+    "air": 772,
+    "biz": 501
+   },
+   "with_nearby_station": {
+    "air": 691,
+    "biz": 455
+   },
+   "match_nearby": {
+    "air": 0.2243,
+    "biz": 0.2527
+   },
+   "match_mirror_baseline": {
+    "air": 0.0695,
+    "biz": 0.0945
+   },
+   "mean_nearby_stations": 2.9764397905759163
+  }
+ },
+ "models_sample2_y5": {
+  "n": 42798,
+  "events": 127,
+  "logit_fe_cluster_operator": {
+   "or_": 13.846339112533292,
+   "lo": 8.260259031676874,
+   "hi": 23.21005988844261,
+   "n_clusters": 1720
+  },
+  "mixed_operator_random_intercept": {
+   "or_": 10.526076188391519,
+   "lo": 8.01924489723653,
+   "hi": 13.816547735311659,
+   "re_sd": 1.7577161752876875,
+   "method": "variational Bayes, airport fixed effects"
+  }
+ },
+ "models_sample2_y": {
+  "n": 233984,
+  "events": 1254,
+  "logit_fe_cluster_operator": {
+   "or_": 4.07255534222066,
+   "lo": 2.936105348585156,
+   "hi": 5.648880079675045,
+   "n_clusters": 4912
+  }
+ },
+ "models_pooled_y5": {
+  "n": 87178,
+  "events": 255,
+  "logit_fe_cluster_operator": {
+   "or_": 10.300536085446417,
+   "lo": 6.642776470933716,
+   "hi": 15.972394090308766,
+   "n_clusters": 2726
+  }
+ }
+}

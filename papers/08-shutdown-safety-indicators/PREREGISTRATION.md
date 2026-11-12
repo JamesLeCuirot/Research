@@ -177,3 +177,14 @@ Hourly METAR was obtained for all 84 study airports from the Iowa Environmental 
 - This analysis is secondary. The primary analysis and decision rules of section 7.1 are unchanged.
 
 SHA-256 of the two source files as received: 2025 `2dcca1c37bf86d1b35683121eb115bb0f418aca77dc2b429cccdddca2bc76f01`; 2024 `473cae8f66a4e6638aab080c322ea287383449beba4448135edf698f15b4b9b8`.
+
+### 11.2 Departures recorded after the analysis, 12 November 2026
+
+1. `code/analysis.py` omitted three registered items: the median follower distance (7.5), the airport-resampled interval for the baseline-adjusted spacing estimate (7.5), and the Holm adjustment across airports (7.3). They were computed after unblinding by `code/supplementary.py` and `code/post_review.py` using the registered definitions.
+2. RA events were assigned to the nearest of the 84 registered airports and dropped if that airport was later excluded by rule 3, which departs slightly from "within 15 NM of a US study airport" (5).
+3. The airport bootstrap resamples within two strata (US, control), not within the four registered groups.
+4. The realised detectable change was 33%, against the 21–23% expected in section 8.
+5. Six 2025 days failed during processing (out of memory) and completed on retry; rule 4 was not invoked.
+6. `code/run_day.sh` was changed during processing so that the two memory-heavy steps take turns; this affects scheduling only.
+7. All analyses in `code/supplementary.py` part 2, `code/post_review.py` and `code/post_review_ops.py` are exploratory and were chosen after the results, and after independent review, were known.
+8. This document was not lodged with a registry. Its time-stamp is the repository commit.

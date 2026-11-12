@@ -15,6 +15,7 @@ Part of James Le Cuirot's [research repository](../README.md).
 | 05 | **AI Control for Aviation:** A Gap Analysis of EASA's Operational Oversight Objectives for Advanced AI | Theory and regulatory analysis | **v1.1 preprint** | [PDF](05-untrusted-by-design/paper.pdf) · [LaTeX](05-untrusted-by-design/paper.tex) |
 | 06 | **AFACS:** Extending AI-Agent Incident Analysis to Multi-Agent Systems, an HFACS-Based Framework, and an Audit of Public Traces | Framework and empirical study | **v1.1 preprint** | [PDF](06-afacs/paper.pdf) · [LaTeX](06-afacs/paper.tex) |
 | 07 | **Same Actions, Different Endings:** Outcome Severity Shifts How AI Models Apply Reason's Culpability Decision Tree to Airline Flight Crews | Experiment (pre-registered) | **v1 preprint** (2 Oct 2026, [OSF](https://doi.org/10.17605/OSF.IO/DHF38)) | [PDF](07-same-actions-different-endings/paper/same-actions-different-endings-preprint-v1.pdf) · [Markdown](07-same-actions-different-endings/paper/preprint-v1.md) |
+| 08 | **Did the 2025 US Government Shutdown Change Go-Around Rates?** A Preregistered Study of Open Flight-Track Data at 76 Airports | Observational study (pre-registered) | Working draft v0.2 (12 Nov 2026); result inconclusive | [PDF](08-shutdown-safety-indicators/paper.pdf) · [Prereg](08-shutdown-safety-indicators/PREREGISTRATION.md) · [Audit](08-shutdown-safety-indicators/AUDIT.md) |
 
 ## The papers in brief
 

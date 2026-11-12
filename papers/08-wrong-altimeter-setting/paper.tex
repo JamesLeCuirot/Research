@@ -3,15 +3,17 @@
 \title{Landing on the Wrong Altimeter Setting:\texorpdfstring{\\}{} A Pre-registered Study of Business Jets and Airline Jets in Open ADS-B Data}
 \shorttitle{Landing on the Wrong Altimeter Setting}
 \author{James Le Cuirot\thanks{Commercial pilot (Senior First Officer), aviation flight safety officer, and aviation safety and compliance consultant specialising in human factors; MSc in Human Factors in Aviation.}\\[2pt] \normalsize CitadelAero}
-\date{Working draft v0.7, 12 November 2026. Not peer reviewed}
+\date{Working draft v0.8, 12 November 2026. Not peer reviewed}
 
 \begin{document}
 \setlength{\emergencystretch}{1.5em}
 \maketitle
 
 \begin{abstract}
-An aircraft that lands with the wrong altimeter setting flies its barometric altitudes at the wrong height with no barometric indication of it. Two European studies have measured how often this happens; no published measurement was found for the United States, or one that compares types of operator. Modern aircraft broadcast the pressure setting selected on board. This study compared that broadcast setting with the consensus of other aircraft landing at the same airport within 30 minutes, at 119 US and European airports, in two pre-registered samples of 30 days in 2026 (about 714{,}000 and 730{,}000 landings). In the first sample business jets landed with a setting at least 2~hPa from the consensus more often than airline jets at the same airport on the same day (Mantel-Haenszel odds ratio 3.4). A second hypothesis, about Europe against the United States, was not supported, and review showed that the registered measure picked up a spurious switch to the standard setting in the final seconds on some European airliners. A corrected measure was then fixed in advance and tested on the second sample. The business-jet result replicated: odds ratio 4.0 (95\% interval 3.5 to 4.7; 2.7 to 5.4 when whole operators are resampled), and 13.9 (7.9 to 23.7) for errors of 5~hPa or more. Across both samples the setting was wrong by 2~hPa or more on 2.0 per 1{,}000 landings, by 5~hPa or more on 0.20, and by 10~hPa or more (about 280~ft) on 0.06. The consensus was within 1~hPa of the airport weather report for 97\% of landings, and the results were the same with the weather report as the reference. Nine in ten of the discrepancies are of 2 to 5~hPa and may not be errors in the operational sense. About half of the large errors recorded in Europe came from a few older aircraft that supply the value by a second route and show the standard setting on most landings; with those removed, errors of 5~hPa or more were two to three times as frequent in the United States as in Europe. Which altimeter the broadcast reflects is not defined, so on some business jets a wrong broadcast may not mean the crew flew on a wrong setting. Review of this draft has been by AI reviewers only.
+An aircraft that lands with the wrong altimeter setting flies its barometric altitudes at the wrong height with no barometric indication of it. Two European studies have measured how often this happens; no published measurement was found for the United States, or one that compares types of operator. Modern aircraft broadcast the pressure setting selected on board. This study compared that broadcast setting with the consensus of other aircraft landing at the same airport within 30 minutes, at 119 US and European airports, in two pre-registered samples of 30 days in 2026 (about 714{,}000 and 730{,}000 landings). In the first sample business jets landed with a setting at least 2~hPa from the consensus more often than airline jets at the same airport on the same day (Mantel-Haenszel odds ratio 3.4). A second hypothesis, about Europe against the United States, was not supported, and review showed that the registered measure picked up a spurious switch to the standard setting in the final seconds on some European airliners. A corrected measure was then fixed in advance and tested on the second sample. The business-jet result replicated: odds ratio 4.0 (95\% interval 3.5 to 4.7; 2.7 to 5.4 when whole operators are resampled), and 13.9 (7.9 to 23.7) for errors of 5~hPa or more. Pooling both samples for description, the setting was wrong by 2~hPa or more on 2.0 per 1{,}000 landings, by 5~hPa or more on 0.20, and by 10~hPa or more (about 280~ft) on 0.06. The consensus was within 1~hPa of the airport weather report for 97\% of landings, and the results were the same with the weather report as the reference. Nine in ten of the discrepancies are of 2 to 5~hPa and may not be errors in the operational sense. In exploratory analysis, about half of the large errors recorded in Europe came from a few older aircraft that supply the value by a second route and show the standard setting on most landings; with those removed, errors of 5~hPa or more were two to three times as frequent in the United States as in Europe. Which altimeter the broadcast reflects is not defined, so on some business jets a wrong broadcast may not mean the crew flew on a wrong setting. Review of this draft has been by AI reviewers only.
 \end{abstract}
+
+\noindent\textbf{Keywords:} altimeter setting; QNH; ADS-B; business aviation; barometric altimetry; pre-registration; open data
 
 \section{Introduction}\label{sec:intro}
 
@@ -51,7 +53,7 @@ Business jets were compared with airline jets by the Mantel-Haenszel common odds
 
 \subsection{Pre-registration, deviations and review}\label{sec:prereg}
 
-The study was pre-registered twice in a public repository (see Materials).
+The study was pre-registered twice, as dated commits in a public git repository (see Materials). No external registry was used, so the dates are not independently certified.
 
 \emph{First sample} (commit \code{be41aa0}, 11 November 2026, 13:18 UTC, before any altimeter-setting data from the study days was read). Two hypotheses: H1, that business jets land with a setting 2~hPa or more from the reference more often than airline jets; H2, that landing with the standard setting selected is more frequent in Europe than in the United States. The registered setting at landing was the \emph{last} value in the 120-second window. Review found that measure flawed: on some aircraft, mostly European airliners, the second source shows the standard setting for a few seconds around touchdown after the correct setting had been shown throughout the approach, and a few aircraft broadcast values that jumped between impossible ones. The most-frequent-value measure described above was adopted in response. Appendix~\ref{app:registered} gives the first-sample results exactly as registered.
 
@@ -63,7 +65,7 @@ All review of this paper has been by three independent AI reviewers that had not
 
 \section{Results}\label{sec:results}
 
-Rates and descriptive figures in this section pool the two samples (60 days). The four hypothesis tests are reported on the second sample, where they were pre-registered, with the pooled estimate alongside. Appendix~\ref{app:bysample} gives every table by sample; the two samples agree closely throughout.
+Rates and descriptive figures in this section pool the two samples (60 days). The four hypothesis tests are reported on the second sample, where they were pre-registered, with the pooled estimate alongside. Appendix~\ref{app:bysample} gives every table by sample. The samples agree on every main result; the estimates that rest on few events differ more.
 
 \subsection{Samples}
 
@@ -90,20 +92,20 @@ The setting differed from the reference by 2~hPa or more on 2.01 per 1{,}000 lan
 
 \begin{table}[h]
 \centering
-\caption{Landings per 1{,}000 with the setting wrong by at least the amount shown. Crude rates, both samples. ``Grid only'' rows keep only values on the 0.8~hPa broadcast grid (Section~\ref{sec:source}); US rows are unchanged by that restriction.}\label{tab:rates}
+\caption{Landings per 1{,}000 with the setting wrong by at least the amount shown. Crude rates with event counts in brackets, both samples. ``Grid only'' rows keep only values on the 0.8~hPa broadcast grid (Section~\ref{sec:source}); US rows are unchanged by that restriction.}\label{tab:rates}
 \begin{tabular}{lrrrr}
 \toprule
  & Landings & 2 hPa & 5 hPa & 10 hPa \\
 \midrule
-Airline jets, Europe & 522{,}755 & 0.28 & 0.11 & 0.033 \\
-\quad grid only & 521{,}808 & 0.20 & 0.057 & 0.013 \\
-Airline jets, United States & 794{,}884 & 2.04 & 0.12 & 0.034 \\
-Business jets, Europe & 25{,}689 & 1.83 & 1.25 & 0.51 \\
-\quad grid only & 25{,}540 & 1.29 & 0.70 & 0.43 \\
-Business jets, United States & 100{,}754 & 10.8 & 0.97 & 0.30 \\
+Airline jets, Europe & 522{,}755 & 0.28 (148) & 0.11 (56) & 0.033 (17) \\
+\quad grid only & 521{,}808 & 0.20 (105) & 0.057 (30) & 0.013 (7) \\
+Airline jets, United States & 794{,}884 & 2.04 (1{,}622) & 0.12 (98) & 0.034 (27) \\
+Business jets, Europe & 25{,}689 & 1.83 (47) & 1.25 (32) & 0.51 (13) \\
+\quad grid only & 25{,}540 & 1.29 (33) & 0.70 (18) & 0.43 (11) \\
+Business jets, United States & 100{,}754 & 10.8 (1{,}084) & 0.97 (98) & 0.30 (30) \\
 \midrule
-All landings & 1{,}444{,}082 & 2.01 & 0.20 & 0.060 \\
-\quad grid only & 1{,}442{,}972 & 1.97 & 0.17 & 0.052 \\
+All landings & 1{,}444{,}082 & 2.01 (2{,}901) & 0.20 (284) & 0.060 (87) \\
+\quad grid only & 1{,}442{,}972 & 1.97 (2{,}841) & 0.17 (243) & 0.052 (75) \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -122,27 +124,29 @@ The European rates on grid values (0.25, 0.09 and 0.03 per 1{,}000 at 2, 5 and 1
 
 \subsection{Business jets against airline jets}
 
-Within the same airport and date, business jets had about four times the odds of airline jets of landing with a setting 2~hPa or more from the reference, and eleven to fourteen times the odds for 5~hPa or more (Table~\ref{tab:or}). All four pre-registered hypotheses were supported on the second sample after Holm correction (each $p < .001$), and R1 met its replication criterion. The first-sample hypothesis H1, on the originally registered measure, was also supported (odds ratio 3.42; Appendix~\ref{app:registered}).
+Within the same airport and date, business jets had about four times the odds of airline jets of landing with a setting 2~hPa or more from the reference, and about fourteen times the odds for 5~hPa or more in the second sample, eleven with the samples pooled (Table~\ref{tab:or}). All four pre-registered hypotheses were supported on the second sample after Holm correction (each $p < .001$), and R1 met its replication criterion. The first-sample hypothesis H1, on the originally registered measure, was also supported (odds ratio 3.42; Appendix~\ref{app:registered}).
 
-\begin{table}[h]
+
+
+\paragraph{Crude rates.} Over all airports the rates of a discrepancy of 2~hPa or more were 8.9 per 1{,}000 for business jets and 1.34 for airline jets; of 5~hPa or more, 1.03 and 0.12. The crude ratios are larger than the odds ratios because business jets land more at airports where rates are higher for every class.
+
+\begin{table}[!ht]
 \centering
-\caption{Business jets against airline jets within airport and date. Mantel-Haenszel odds ratios with 95\% intervals from resampling whole operators; business-jet and airline events in informative strata in square brackets. The second-sample tests were pre-registered; the pooled estimate is exploratory.}\label{tab:or}
-\small\setlength{\tabcolsep}{4pt}
+\caption{Business jets against airline jets within airport and date. Mantel-Haenszel odds ratios; business-jet and airline events in informative strata in square brackets. For the second sample, where the tests were pre-registered, the first interval is the registered Robins-Breslow-Greenland one and the second comes from resampling whole operators (exploratory, and wider). The pooled estimate is exploratory, with operator-level intervals.}\label{tab:or}
+\footnotesize\setlength{\tabcolsep}{4pt}
 \begin{tabular}{lll}
 \toprule
 Outcome & Second sample & Both samples \\
 \midrule
-R1: wrong by 2 hPa or more & 4.0 (2.7--5.4) [377, 877] & 3.7 (2.5--4.9) [719, 1{,}733] \\
-R2: wrong by 5 hPa or more & 13.9 (7.9--23.7) [64, 63] & 11.1 (6.4--17.4) [113, 142] \\
-R3: as R1, aircraft with 10+ landings & 2.6 (1.7--3.6) [135, 830] & 2.6 (1.7--3.6) [265, 1{,}627] \\
-R4: 1013 at landing, 5 hPa+ away & 35 (12--114) [34, 18] & 34 (13--85) [61, 37] \\
+R1: wrong by 2 hPa or more & 4.0 (3.5--4.7; 2.7--5.4) [377, 877] & 3.7 (2.5--4.9) [719, 1{,}733] \\
+R2: wrong by 5 hPa or more & 13.9 (8.9--21.8; 7.9--23.7) [64, 63] & 11.1 (6.4--17.4) [113, 142] \\
+R3: as R1, aircraft with 10+ landings & 2.6 (2.1--3.2; 1.7--3.6) [135, 830] & 2.6 (1.7--3.6) [265, 1{,}627] \\
+R4: 1013 at landing, 5 hPa+ away & 35 (16--78; 12--114) [34, 18] & 34 (13--85) [61, 37] \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\paragraph{Crude rates.} Over all airports the rates of a discrepancy of 2~hPa or more were 8.9 per 1{,}000 for business jets and 1.34 for airline jets; of 5~hPa or more, 1.03 and 0.12. The crude ratios are larger than the odds ratios because business jets land more at airports where rates are higher for every class.
-
-\paragraph{Robustness.} The R1 odds ratio was 3.6 in the United States and 7.2 (4.7 to 10.9) in Europe, and 3.7 on grid values only (R2 10.5). It held under every sensitivity analysis run on either sample (Appendix~\ref{app:bysample}). The reviewers confirmed it with conditional and fixed-effects logistic models, with the reference built from airline aircraft only, and with their own independent code.
+\paragraph{Robustness.} With the samples pooled, the R1 odds ratio was 3.6 in the United States and 7.2 (4.7 to 10.9) in Europe, and 3.7 on grid values only (R2 10.5). The second-sample sensitivity analyses are in Appendix~\ref{app:bysample}. On the first sample the reviewers confirmed the 2~hPa result with conditional and fixed-effects logistic models and with the reference built from airline aircraft only, and on the second with their own independent code.
 
 \paragraph{Regression models.} A logistic model with airport fixed effects and standard errors clustered by operator, fitted to second-sample landings in informative strata, gave an odds ratio of 4.1 (2.9 to 5.6) for 2~hPa or more and 13.8 (8.3 to 23.2) for 5~hPa or more; pooled, the latter was 10.3 (6.6 to 16.0). Adding a random intercept for each operator gave 10.5 (8.0 to 13.8) for 5~hPa or more in the second sample. The random-intercept model could not be fitted for the 2~hPa outcome within the computing limits available.
 
@@ -171,7 +175,7 @@ Airline jets & 14.0 & 4.5 & 1.4 & 1.5 & 1.3 \\
 
 About half of business-jet errors of 5~hPa or more had 1013 selected (67 of 130). Table~\ref{tab:std} gives the counts. Within airport and date, business jets had far higher odds than airline jets (Table~\ref{tab:or}, R4). Most European airline events were second-source values; on grid values only the pooled odds ratio is 50 (22 to 118), on 47 business-jet and 18 airline events.
 
-\begin{table}[h]
+\begin{table}[!ht]
 \centering
 \caption{Landings with 1013 selected and the reference at least 5~hPa away: events / eligible landings, both samples.}\label{tab:std}
 \begin{tabular}{lrr}
@@ -186,19 +190,19 @@ Business jets, United States & 43 / 55{,}310 & 43 / 55{,}305 \\
 \end{tabular}
 \end{table}
 
-The reviewers examined the traces of all 35 business-jet events in the second sample. On 28 the value was 1013 throughout the observed part of the approach, which was the last four to ten minutes; five showed a change to 1013 during it. All were one-off for the aircraft, and they occurred across 22 aircraft types, old and recent. They are not stuck transponders and not the touchdown artefact, but the traces cannot show whether the crew's own altimeter was also at 1013.
+The reviewers examined the traces of all 35 business-jet events in the second sample. On 28 the value was 1013 throughout the observed part of the approach, which was the last four to ten minutes; five showed a change to 1013 during it, and the reviewers' record does not classify the other two. All were one-off for the aircraft, and they occurred across 22 aircraft types, old and recent. They are not stuck transponders and not the touchdown artefact, but the traces cannot show whether the crew's own altimeter was also at 1013.
 
 The first-sample hypothesis H2, that the standard setting at landing is more frequent in Europe, was not supported as registered (rate ratio 1.97, $p = .072$), and the apparent European excess was the touchdown artefact: on the corrected measure the ratio was 0.95 ($p = .85$).
 
 \subsection{The United States against Europe}
 
-On grid values, discrepancies of 2 to 5~hPa were seventeen times as frequent in the United States as in Europe (2.80 against 0.16 per 1{,}000), and errors of 5~hPa or more were 2.5 times as frequent (0.22 against 0.088; resampling airports, 1.6 to 4.1; significant in each sample). On all values the second ratio was 1.4 (1.0 to 2.1). The comparison is exploratory and is not adjusted for the mix of traffic.
+On grid values, discrepancies of 2 to 5~hPa were seventeen times as frequent in the United States as in Europe (2.80 against 0.16 per 1{,}000), and errors of 5~hPa or more were 2.5 times as frequent (0.22 against 0.088; resampling airports, 1.6 to 4.1; significant in each sample). On all values the second ratio was 1.4 (0.95 to 2.1; $p = .11$). The comparison is exploratory and is not adjusted for the mix of traffic.
 
 \subsection{The reference against weather reports}
 
 The consensus reference was within 1.0~hPa of the latest weather report for 97.4\% of 1{,}432{,}931 landings (97.0\% in Europe, 97.7\% in the United States) and within 1.7~hPa for 99.9\%. Agreement was lower at airports where business jets were over 60\% of traffic (94.3\%).
 
-With the weather report as the reference in place of the consensus, which brings in about 35{,}000 business-jet landings that had too little other traffic for a consensus, the odds ratio was 3.8 (3.4 to 4.2) at the matched threshold of 2.4~hPa and 12.4 (9.3 to 16.6) at 5~hPa. The two references give the same answer. (The frozen second-sample script, which did not remove corrupt reports and used a nominal 2.0~hPa threshold that admits two-step differences, gave 2.8 and 9.4.) Measured against weather reports, landings without a consensus reference had higher discrepancy rates in both classes (business jets 9.7 against 6.7 per 1{,}000, airline jets 2.6 against 0.9), so the rates in Table~\ref{tab:rates} are probably too low.
+With the weather report as the reference in place of the consensus, which brings in about 40{,}000 business-jet landings that had too little other traffic for a consensus, the odds ratio was 3.8 (3.4 to 4.2) at the matched threshold of 2.4~hPa and 12.4 (9.3 to 16.6) at 5~hPa. The two references give the same answer. (On the second sample alone these are 4.0 and 13.1. The frozen second-sample script, which did not remove corrupt reports and used a nominal 2.0~hPa threshold that admits two-step differences, gave 2.8 and 9.4.) Measured against weather reports, landings without a consensus reference had higher discrepancy rates in both classes (business jets 9.7 against 6.7 per 1{,}000, airline jets 2.6 against 0.9), so the rates in Table~\ref{tab:rates} are probably too low.
 
 \subsection{Other observations}
 
@@ -213,7 +217,7 @@ With the weather report as the reference in place of the consensus, which brings
 
 \paragraph{What is established.} Compared at the same airport on the same day, the odds that a business jet lands with a broadcast altimeter setting 2~hPa or more from that of other aircraft are about four times those for an airline jet. The result was confirmed in a second pre-registered sample of new days, is the same when the airport weather report is the reference, and holds with allowance for landings by the same operator (interval 2.7 to 5.4). It is not produced by a few faulty transponders.
 
-\paragraph{Most of it is small.} Nine in ten of the discrepancies are between 2 and 5~hPa, mostly 2.4 or 3.2~hPa, equivalent to about 65 to 90~ft. What they are is not established. The bunching of airline ones after the hourly update points to settings not yet renewed, but only a minority in either class matched a recent setting for the destination. A setting taken from a nearby airport accounts for at least a sixth of them, and probably more, since only a few nearby stations could be tested; a setting from a station within 100~NM is legitimate en route. These are best described as discrepancies from the local setting, not errors in the sense of the Paris incident.
+\paragraph{Most of it is small.} Nine in ten of the discrepancies are between 2 and 5~hPa, mostly 2.4 or 3.2~hPa, equivalent to about 65 to 90~ft. What they are is not established. In the United States, the bunching of airline ones after the hourly update (first sample) points to settings not yet renewed, but only a minority in either class matched a recent setting for the destination. In the United States a setting taken from a nearby airport accounts for about a seventh of them beyond chance, and probably more, since only a few nearby stations could be tested; a setting from a station within 100~NM is legitimate en route. These are best described as discrepancies from the local setting, not errors in the sense of the Paris incident.
 
 \paragraph{The large errors are few.} Errors of 5~hPa or more occurred on about 1 business-jet landing per 1{,}000 against about 0.1 for airline jets. The ratio is large and was confirmed, and it is the safety-relevant finding. It rests on 130 business-jet events in 60 days, about half of them with 1013 selected. At 10~hPa most came from aircraft seen fewer than ten times, and about a quarter look like corrupt values.
 
@@ -240,7 +244,7 @@ With the weather report as the reference in place of the consensus, which brings
 
 \section{Conclusion}
 
-In open ADS-B data from 119 airports, a broadcast altimeter setting at least 2~hPa from the local one was present on about 2 landings per 1{,}000, and one at least 5~hPa away on about 2 per 10{,}000. Business jets had about four times the odds of airline jets of the first and eleven to fourteen times the odds of the second, at the same airport on the same day, a result that was predicted in advance and confirmed on a second sample. Large errors were not confined to Europe. Whether the business-jet excess reflects the altimeter the crew flew on, a second altimeter left unset, or differences in how settings are obtained cannot be settled from broadcast data, and needs avionics evidence for the main types and operator flight data. The standards leave the source of the broadcast setting to the manufacturer and installer, and no public document was found that states it for any of the main business-jet avionics suites.
+In open ADS-B data from 119 airports, a broadcast altimeter setting at least 2~hPa from the local one was present on about 2 landings per 1{,}000, and one at least 5~hPa away on about 2 per 10{,}000. At the same airport on the same day, business jets had about four times the odds of airline jets of the first. That was predicted before any data was read and confirmed on a second sample. For the second, the odds were about fourteen times as high in the second sample, where that hypothesis was registered after the first sample had been seen. In exploratory analysis, large errors were not confined to Europe. Whether the business-jet excess reflects the altimeter the crew flew on, a second altimeter left unset, or differences in how settings are obtained cannot be settled from broadcast data, and needs avionics evidence for the main types and operator flight data. The standards leave the source of the broadcast setting to the manufacturer and installer, and no public document was found that states it for any of the main business-jet avionics suites.
 
 \appendix
 \section{First-sample results as pre-registered}\label{app:registered}
@@ -257,7 +261,7 @@ These results use the registered measure, the last value in the 120-second windo
 
 \paragraph{Effect of the correction.} The corrected setting differed from the registered one on 1{,}784 first-sample landings, and 80 landings were excluded as unstable. On the corrected measure the H1 odds ratio was 3.46 (2.97 to 4.02).
 
-\paragraph{Other deviations.} The rate tables by aircraft type use lower cut-offs than the frozen script. In the frozen replication script the two rate labels in the United States against Europe output are transposed; the ratio and $p$-value are unaffected. One trace file on the reserve day of the second sample could not be read.
+\paragraph{Other deviations (both samples).} The rate tables by aircraft type use lower cut-offs than the frozen script. In the frozen replication script the two rate labels in the United States against Europe output are transposed; the ratio and $p$-value are unaffected. One trace file on the reserve day of the second sample could not be read.
 
 
 \section{Results by sample}\label{app:bysample}
@@ -346,12 +350,15 @@ Business jets, United States & 18 / 27{,}437 & 25 / 27{,}873 & 25 / 27{,}871 \\
 \end{tabular}
 \end{table}
 
-Other per-sample figures. Errors of 5~hPa or more, United States over Europe, on grid values: 2.2 in the first sample ($p = .002$) and 2.8 in the second ($p < .001$); on all values 1.4 ($p = .15$) and 1.3 ($p = .22$). Consensus reference within 1.0~hPa of the weather report: 97.4\% and 97.5\%. Weather report as reference: odds ratios 3.5 and 4.0 at 2.4~hPa, 11.5 and 13.1 at 5~hPa. Second-source values among European errors of 5~hPa or more: 17 of 44 and 23 of 44. Business-jet errors of 10~hPa or more by aircraft with fewer than ten landings: 19 of 22 and 15 of 21. In the second sample, the R1 odds ratio was 3.9 in the United States and 7.4 in Europe, 3.8 with the hour added to the strata, 4.8 with a reference from ten or more aircraft with over 95\% agreement, and 3.1 to 5.4 resampling whole airports; in the first sample every sensitivity analysis gave between 3.1 and 5.1.
+Other per-sample figures. Errors of 5~hPa or more, United States over Europe, on grid values: 2.2 in the first sample ($p = .002$) and 2.8 in the second ($p < .001$); on all values 1.4 ($p = .15$) and 1.3 ($p = .22$). Consensus reference within 1.0~hPa of the weather report: 97.4\% and 97.5\%. Weather report as reference: odds ratios 3.5 and 4.0 at 2.4~hPa, 11.5 and 13.1 at 5~hPa. Second-source values among European errors of 5~hPa or more: 17 of 44 and 23 of 44. Business-jet errors of 10~hPa or more by aircraft with fewer than ten landings: 19 of 22 and 15 of 21. In the second sample, the R1 odds ratio was 3.9 in the United States and 7.4 in Europe, 3.8 with the hour added to the strata, 4.8 with a reference from ten or more aircraft with over 95\% agreement, 3.4 for discrepancies of 2 to 5~hPa, 20 (9 to 44) for 10~hPa or more, 3.1 among aircraft with four or more landings and 2.2 among those with twenty or more. The registered intervals from resampling whole airports were 3.2 to 5.3 for R1 and 9.4 to 21.4 for R2. Second-sample exclusions were 74 landings with three or more values, 20 implausible values, 3 on QFE and 53 by 6 business jets under the half-wrong rule; strata span 33 UTC dates because three landings fell just after midnight. In the first sample, on the registered measure, every pre-registered sensitivity analysis of H1 gave between 3.1 and 5.1 (\code{results/secondary.json}, which also holds the registered exploratory analyses not reported here).
 
 \section*{Acknowledgement}
 \paragraph{AI assistance.} Literature searches, drafting and source verification were carried out with AI assistance (Claude, Anthropic) under the author's direction, as were the code and analysis. Three independent AI reviewers (two on the first sample, one on the replication), which had not seen the work being produced, checked the analysis and the claims against the data; their findings changed the paper and are recorded in \code{AUDIT.md}. The author is responsible for the final text.
 \paragraph{Competing interests.} The author is the founder of CitadelAero, which builds AI tools for aviation, and is employed as a business-jet pilot.
 \paragraph{Disclaimer.} The views expressed are the author's own and do not represent those of any employer or regulator. Nothing here is operational, legal or regulatory advice.
+\paragraph{Data and code availability.} The raw data are public: ADS-B traces from the adsb.lol archive, weather reports from the Iowa Environmental Mesonet, airport data from OurAirports. All code and result files are in the repository below. The processed per-landing tables are too large for the repository and are available from the author on request.
+\paragraph{Funding.} None.
+\paragraph{Ethics.} The study uses only publicly broadcast aircraft data and involves no human participants. Individual aircraft and operators are not named in the results, apart from aircraft types.
 \paragraph{Materials.} The pre-registration, code, results and audit record for this paper are at \url{https://github.com/JamesLeCuirot/Research/tree/prereg/08-wrong-altimeter-setting/papers/08-wrong-altimeter-setting}.
 
 \bibliographystyle{IEEEtran}

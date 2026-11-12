@@ -1,0 +1,8 @@
+2025-10-01 bytes 3585310720 MiB 3419 published 3419
+files 75022 errors 0 oversize_skipped 0 acas_saved 1 rows 9233704 aircraft 15931
+/home/claude/research/papers/08-shutdown-safety-indicators/code/approaches.py:74: RuntimeWarning: All-NaN slice encountered
+  rec[f'gs{G}'] = float(np.nanmedian(gs[w])); rec[f'trk{G}'] = float(angdiff(trk[k+1], e['course']))
+/home/claude/research/papers/08-shutdown-safety-indicators/code/approaches.py:74: RuntimeWarning: All-NaN slice encountered
+  rec[f'gs{G}'] = float(np.nanmedian(gs[w])); rec[f'trk{G}'] = float(angdiff(trk[k+1], e['course']))
+attempts 29957 airports 82
+2025-10-01 done 19:21:38

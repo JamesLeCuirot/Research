@@ -96,3 +96,7 @@ Quoted from the reviewer and NOT re-derived: the identification of the off-grid 
 ## v0.5, 12 November 2026: restructured at the author's request
 
 The paper was reorganised into a standard structure (Introduction, Methods, Results, Discussion, Limitations, Conclusion) with one Results section arranged by finding. No analysis was rerun and no result changed. The corrected (most-frequent-value) measure is now described in Methods as the study's measure. Which results are confirmatory is stated in Methods section 2.6; the first-sample results exactly as registered (H1, H2, on the last-value measure) are in Appendix A. Figure 1 now shows the second sample on broadcast-grid values with a logarithmic scale. A Conclusion was added. This version has not been independently reviewed.
+
+## v0.6, 12 November 2026: pooled presentation
+
+At the author's request, to reduce clutter, descriptive rates and tables in Results now pool the two samples (60 days, 1,444,082 analysed landings; `code/pooled_analysis.py`, `results/pooled.json`). Each sample is prepared separately with the frozen functions and the analysed landings are stacked. The four hypothesis tests are still reported on the second sample, where they were pre-registered, with the pooled estimate beside them and labelled exploratory. Per-sample tables are in Appendix B and the first-sample results as registered remain in Appendix A. Pooling was considered and rejected as the primary test because the first sample was used to choose the corrected measure. Not independently reviewed since v0.4.

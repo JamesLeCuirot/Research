@@ -1,6 +1,6 @@
 # 08 · Landing on the Wrong Altimeter Setting
 
-**Status:** working draft v0.5 (12 November 2026). Two pre-registrations (first sample; replication). Reviewed by three independent AI reviewers; not peer reviewed.
+**Status:** working draft v0.6 (12 November 2026). Two pre-registrations (first sample; replication). Reviewed by three independent AI reviewers; not peer reviewed.
 
 A study using open ADS-B data (adsb.lol) of how often aircraft land with the broadcast altimeter setting differing from the local setting, at 119 US and European airports, in two pre-registered samples of 30 days in 2026 (about 714,000 and 730,000 landings).
 
@@ -15,6 +15,7 @@ A study using open ADS-B data (adsb.lol) of how often aircraft land with the bro
 | `results/` | `confirmatory.json` and `secondary.json` (registered measure); `modal_*.json` and `after_review.json` (corrected measure, post hoc) |
 | [`PREREGISTRATION_REPLICATION.md`](PREREGISTRATION_REPLICATION.md) | Plan for the second sample, committed before it was downloaded (commit `7306d3b`); `code/rep_analysis.py`, `code/HASHES_REPLICATION.txt`, `results/replication.json` |
 | `results/after_review3_*.json` | Post hoc checks after the third review (`code/posthoc_after_review3.py`): weather reports cleaned, value source, clustered intervals |
+| `results/pooled.json` | Both samples pooled, for the descriptive tables (`code/pooled_analysis.py`); exploratory |
 | [`AUDIT.md`](AUDIT.md) | The three independent AI reviews and what changed |
 | [`sources.md`](sources.md) | How each reference was checked |
 

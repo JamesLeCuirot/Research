@@ -132,3 +132,7 @@ Figures in the paper that are in no results file (computed in session or taken f
   - Coverage against rate across business-jet types: Spearman -0.54 over 44 types. Confirmed in direction.
   - First-sample statements that were reviewer-only and not re-derived were removed (conditional logistic models; the 533 of 542 count), replaced by the author's pooled equivalents.
 - Figures previously computed in session are now saved in the same results file (aircraft overlap, share of small discrepancies at 2.4 or 3.2 hPa, destination-match shares, 22 types).
+
+## v0.10, 12 November 2026
+
+At the author's instruction, "Not peer reviewed" was removed from the date line and the sentence "Review of this draft has been by AI reviewers only" from the abstract. The AI review is still stated in Section 2.6, the Limitations and the Acknowledgement.

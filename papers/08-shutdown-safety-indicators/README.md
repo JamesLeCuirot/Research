@@ -27,7 +27,7 @@
 | `results/*.json`, `weekly.csv`, `acas_daily.csv` | Outputs. |
 | `data/weather_airport_day.csv` | Weather covariates. |
 
-The raw archive (about 550 GB) and the per-day attempt files are not in the repository. `code/run_day.sh` rebuilds a day from the public archive.
+The processed per-day files (approach attempts, TCAS RA messages, raw METAR, processing logs; about 650 MB) are on the separate [`paper08-data`](https://github.com/JamesLeCuirot/Research/tree/paper08-data) branch, kept off `main` so the main branch stays small. The raw archive (about 550 GB) is not stored; `code/run_day.sh` rebuilds a day from the public archive.
 
 ## Open questions and next steps
 

@@ -92,3 +92,7 @@ Quoted from the reviewer and NOT re-derived: the identification of the off-grid 
 - No mixed-effects model; clustering handled by bootstrap only.
 - What the 2 to 5 hPa discrepancies are (other-station settings were not tested).
 - Timestamps are git commit times; no external registry (OSF or Zenodo) yet.
+
+## v0.5, 12 November 2026: restructured at the author's request
+
+The paper was reorganised into a standard structure (Introduction, Methods, Results, Discussion, Limitations, Conclusion) with one Results section arranged by finding. No analysis was rerun and no result changed. The corrected (most-frequent-value) measure is now described in Methods as the study's measure. Which results are confirmatory is stated in Methods section 2.6; the first-sample results exactly as registered (H1, H2, on the last-value measure) are in Appendix A. Figure 1 now shows the second sample on broadcast-grid values with a logarithmic scale. A Conclusion was added. This version has not been independently reviewed.

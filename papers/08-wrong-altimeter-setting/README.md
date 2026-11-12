@@ -1,12 +1,12 @@
 # 08 · Landing on the Wrong Altimeter Setting
 
-**Status:** working draft v0.4 (11 November 2026). Two pre-registrations (first sample; replication). Reviewed by three independent AI reviewers; not peer reviewed.
+**Status:** working draft v0.5 (12 November 2026). Two pre-registrations (first sample; replication). Reviewed by three independent AI reviewers; not peer reviewed.
 
 A study using open ADS-B data (adsb.lol) of how often aircraft land with the broadcast altimeter setting differing from the local setting, at 119 US and European airports, in two pre-registered samples of 30 days in 2026 (about 714,000 and 730,000 landings).
 
 **Findings.** Compared at the same airport on the same day, business jets had about 3.5 to 4 times the odds of airline jets of landing with a setting at least 2 hPa from the consensus of other aircraft (second sample, pre-registered: 4.0, interval 3.5 to 4.7, or 2.7 to 5.4 resampling operators), and about 14 times for 5 hPa or more. The result is the same with the airport weather report as the reference. Nine in ten discrepancies are of 2 to 5 hPa and may not be operational errors. Overall rates in the second sample were 2.0, 0.19 and 0.06 per 1,000 landings at 2, 5 and 10 hPa. About half of the large errors recorded in Europe come from a few older aircraft through a second data source; without them, errors of 5 hPa or more were two to three times as frequent in the US as in Europe (post hoc). The first sample's second hypothesis (more "standard left set" in Europe) was not supported.
 
-**Read first:** the abstract and Sections 6 to 8 of [`paper.pdf`](paper.pdf), then [`AUDIT.md`](AUDIT.md).
+**Read first:** the abstract, Section 2.6 and the Discussion of [`paper.pdf`](paper.pdf), then [`AUDIT.md`](AUDIT.md).
 
 | File | What it holds |
 | --- | --- |

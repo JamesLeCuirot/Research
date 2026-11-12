@@ -136,3 +136,7 @@ Figures in the paper that are in no results file (computed in session or taken f
 ## v0.10, 12 November 2026
 
 At the author's instruction, "Not peer reviewed" was removed from the date line and the sentence "Review of this draft has been by AI reviewers only" from the abstract. The AI review is still stated in Section 2.6, the Limitations and the Acknowledgement.
+
+## v0.11, 12 November 2026
+
+At the author's instruction the statements that the paper was reviewed by AI reviewers were removed from Section 2.6, the Limitations and the Acknowledgement, and "review" was reworded to "checks" where it described how the flaw in the registered measure was found. The Acknowledgement still discloses AI assistance in searches, drafting, code and analysis, including independent AI checks. This audit file remains the full record of the reviews.
